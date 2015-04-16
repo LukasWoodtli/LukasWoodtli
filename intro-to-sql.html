@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Modern OS's · Lukas Woodtli</title>
+        <title>Intro to SQL · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -93,7 +93,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/modern-oss.html">Modern OS's</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/intro-to-sql.html">Intro to SQL</a></h1>
     </div>
 
         </div>
@@ -102,10 +102,10 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/misc.html">misc</a>
+      href="http://lukaswoodtli.github.io/category/SQL.html">SQL</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">04</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">01</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">04</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">13</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -115,155 +115,26 @@
   <hr/>
 
   <div id="article_content">
-    <p>This page collects some notes about different Operating System approaches.</p>
-<p>Most of the information gathered here is from the course <a href="https://www.udacity.com/course/ud189">Advanced Operating Systems</a>.</p>
-<h1>Overview of Kernels</h1>
-<blockquote>
-<p>Tis overview Table is still work in progress!</p>
-</blockquote>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th>Kernel</th>
-<th>Type</th>
-<th>Programming Language</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SPIN</td>
-<td>Microkernel (Mach-like)</td>
-<td>Modula-3</td>
-<td>special approach</td>
-</tr>
-<tr>
-<td>Linux</td>
-<td>Monolithic (modular)</td>
-<td>C (assembler)</td>
-<td>loadable kernel modules allow loading extensions (drivers) at runtime</td>
-</tr>
-<tr>
-<td>XNU</td>
-<td>Hybrid</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>BSD</td>
-<td>Monolithic</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Mach</td>
-<td>Microkernel</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Windows</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>FreeRTOS</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>UNIX</td>
-<td>Monolithic</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>L3</td>
-<td>Microkernel</td>
-<td>ELAN</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h1>Exokernel</h1>
-<p>Allocating resources to library OS's: space (memory), time (CPU)</p>
-<p>Library OS's can 'download' code into the kernel. A security management mechanism checks if it is allowed by th library OS.</p>
-<h2>Memory (TLB)</h2>
-<p>TLB: Translation Lookaside Buffer
-Software-TLB is snapshot for the TLB for switching the library OS's.</p>
-<h2>CPU-Scheduling</h2>
-<ul>
-<li>Linear vector of "time slots"</li>
-<li>Each library-OS marks the time slots for own use</li>
-<li>If OS takes more time than allowed in a time slot it gets less time in the next time slot (penalty)</li>
-<li>Strand as abstraction of threads</li>
-</ul>
-<h2>Revoction of Resources</h2>
-<ul>
-<li>Exokernel tells the library OS which resources are revoked (repossesion vector)</li>
-</ul>
-<h1>L3</h1>
-<p>L3 is faster than Mach (Microkernel)</p>
-<h2>L3 strikes against microkernel</h2>
-<ul>
-<li>Kernel-User switches (boarder crossing cost)</li>
-<li>Address space switches (Protected Procedures Calls for Cross Protection domain calls)</li>
-<li>Thread switches + IPC (Kernel mediation for PPC)</li>
-<li>Memory effects (locality loss)</li>
-</ul>
-<h2>Thesis of L3 for OS structuring</h2>
-<ul>
-<li>Minimal abstractions in microkernel</li>
-<li>Microkernels are processor specific in implementation =&gt; non-portable</li>
-<li>Right set of microkernel abstractions and processor-specific implementation =&gt; efficient processor independent abstractions at higher levels</li>
-</ul>
-<p>L3 is faster than Mach (Microkernel)</p>
-<h1>Virtualization</h1>
-<p>Hypervisor: Operation system of operation systems (VMM: Virtal Machine Monitor)</p>
-<h2>Native Hypervisor (bare metal)</h2>
-<p>Hypervisor runs directly on hardware.<br/>
-Guest OS's running inside the hypervisor</p>
-<h2>Hosted Hypervisors</h2>
-<p>Run on top of a Host OS (as an application process).<br/>
-Guest OS's running inside the hypervisor.
-- VMWare Workstation
-- VirtualBox</p>
-<h2>Full virtualization</h2>
-<ul>
-<li>Guest OS's are not touched (unchanged binaries)</li>
-<li>They are running as user process in host OS</li>
-<li>Privileged instructios in guest OS's trigger trap in hypervisor (trap and emulate)</li>
-<li>i.e. VMWare</li>
-</ul>
-<h2>Para Virtualization</h2>
-<ul>
-<li>Guest OS is modified to run on an an hypervisor</li>
-<li>A very small percentage of the guest OS code needs to be changed</li>
-<li>i.e. Xen</li>
-</ul>
-<h2>Overview</h2>
-<p>Virtualize hardware:
-- memory hierarchy
-- CPU
-- Devices</p>
-<h1>Memory Virtualization</h1>
-<p>Not virtualized:<br/>
-Page Table maps Virtual Page Numbers of processes to Physical Page Number.</p>
-<p>Virtualized:</p>
-<h1>Virtualization</h1>
+    <p>https://www.udacity.com/course/ud197</p>
+<h1>Select Clauses</h1>
+<p>LIMIT count [OFFSET skip]<br/>
+count: how many rows to return.<br/>
+skip: how far into the result to start.  </p>
+<p>ORDER BY columns [DESC]<br/>
+columns: which columns to sort by. Seperated by comas.<br/>
+DESC: sort in reverse order (descending).</p>
+<p><img alt="select where" class="img-responsive" src="http://lukaswoodtli.github.io/images/sql_select_where.png"/></p>
   </div>
 
   <hr/>
 
       <ul class="pager">
         <li class="previous">
-          <a href="http://lukaswoodtli.github.io/software-development-priorities.html">
+          <a href="http://lukaswoodtli.github.io/enums-in-c-and-c.html">
           &laquo; Newer</a>
         </li>
-        <li class="next disabled">
-          <a >
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/software-development-priorities.html">
           Older &raquo;</a>
         </li>
       </ul>
