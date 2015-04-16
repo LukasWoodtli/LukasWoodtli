@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Enums in C and C++ · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/cv.html">CV</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/enums-in-c-and-c.html">Enums in C and C++</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/misc.html">misc</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">04</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">16</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/Lukas Woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>Enums in C and C++ are a very simple construct. It’s just a collection of identifiers that have (usually) distinctive values. 
+By default the values increase by one in the stated order. But the values can defined by the programmer.
+Even if enums are a simple language construct there are special precautions that need to be taken when using them:</p>
+<ul>
+<li>Is a enum continuous (i.e. can I iterate over it?)</li>
+<li>Have the enum values meaning outside of my software or module</li>
+<li>what is the size (in Bytes) of an enum variable</li>
+</ul>
+<h1>Iterating over enums</h1>
+<p>Be careful if you iterate over an enum. If the enum is not continuously defined your code is probably doing some things you don’t want it to do.
+For exampe:</p>
+<div class="highlight"><pre><span class="o">&lt;</span><span class="n">code</span> <span class="n">goes</span> <span class="n">here</span><span class="o">&gt;</span>
+<span class="k">typedef</span> <span class="k">enum</span>
+<span class="p">{</span>
+  <span class="n">VAL_1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">VAL_2</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+  <span class="n">VAL_3</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="n">VAL_NB</span>
+<span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">enum_var</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">enum_var</span> <span class="o">=</span> <span class="n">VAL_1</span><span class="p">;</span> <span class="n">enum_var</span> <span class="o">&lt;</span> <span class="n">VAL_NB</span><span class="p">;</span> <span class="o">++</span><span class="n">enum_var</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">enum_var</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><code>printf</code> is called 11 times with the values 10 to 20. That’s usually not what we want.</p>
+<p>So what is the solution? Don’t iterate over enums that have fixed values assigned. If you have to do it there is a trick calles X Macros 
+that I’ll cover in another post.</p>
+<p>There is one exception. You can assign a value to the first enum type:</p>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<span class="p">{</span>
+    <span class="n">VAL_1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">VAL_2</span><span class="p">,</span>
+    <span class="n">VAL_3</span><span class="p">,</span>
+    <span class="n">VAL_NB</span>
+<span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
+</pre></div>
+<p>If you call the same loop as above you’ll get calls to printf`  with the values:</p>
+<p>10 (VAL_1), 11 (VAL_2) and 12 (VAL_3).</p>
+<h1>Enums with fixed values</h1>
+<p>If you don’t need to iterate over your enum it’s usually a good practice to assign a defined value to your enum fields. This is even mandatory if your enum has a meaning across your software (or module) or even different versions of the same software. Add defined values to your enums if:</p>
+<ul>
+<li>the value can be saved to a file</li>
+<li>the value is sent (or received) over a physical interface</li>
+<li>the value is needed in an other software (or library…) or a different version of the same software (i. e. feature release)</li>
+</ul>
+<p>But if you do so, don’t iterate over your enum!</p>
+<p>If you serialize/deserialize your values (i.e. save into a file, send over an interface) be careful about the enum size and the endianness of 
+the used platform.</p>
+<h1>Size and endianness</h1>
+<p>The size (and endianness) of a enum variable depends on the compiler and on the target platform. So if you write platform independent code (and you should always do that) take care of this.
+There are some language extension in different compilers to address this topic. For example in Visual Studio:</p>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="kt">uint8_t</span>
+<span class="p">{</span> <span class="n">VAL_1</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="cm">/* … */</span><span class="p">,</span> <span class="n">VAL_NB</span><span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
+</pre></div>
+<p>For platform independent code you can do: <code>#define ENUM_AS_UINT8 : uint8_t</code></p>
+<h1>Romable values</h1>
+<p>Another use of enums is mainly used in embedded systems development. In embedded systems you are often concerned that a constant is stored in the program flash. Otherwise it has to be loaded from RAM at runtime (and even stored there at start time). The usual way is to use defines. 
+But they are not really type safe. So for int-types it’s possible to use enums. If your compiler(s) support it you can even use anonymous enums.</p>
+<h1>Advanced enum constructs (C++11, Qt)</h1>
+<p>C++11 introduces the enum class. And Qt some extensions for enums (Q_ENUMS) that I’ll not cover here. If you can use one of this advanced enum construct then do it!</p>
+<h1>Conclusion</h1>
+<ul>
+<li>If you have to iterate over your enum: don’t add explicit values to your enum, but add and {identifier}_NB value to the end (or something similar) to check when the iteration is finished</li>
+<li>If your enum value is meaningful (serialization…): assign a defined value and take care about endianness and size of the enum variables</li>
+<li>Use (anonymous) enums to make values Romable</li>
+<li>Use an advanced enum type (C++11, Qt) if you can</li>
+<li>If you need fixed enum values and you want to iterate over the values you need two enums. Use X Macros for it (there is going to be a feature post on that)</li>
+</ul>
+<h1>References</h1>
+<p>http://en.wikipedia.org/wiki/Endianness
+http://stackoverflow.com/questions/7147008/the-usage-of-anonymous-enums</p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next disabled">
+          <a >
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
