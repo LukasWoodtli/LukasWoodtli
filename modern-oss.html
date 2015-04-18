@@ -205,7 +205,6 @@ Software-TLB is snapshot for the TLB for switching the library OS's.</p>
 <li>Exokernel tells the library OS which resources are revoked (repossesion vector)</li>
 </ul>
 <h1>L3</h1>
-<p>L3 is faster than Mach (Microkernel)</p>
 <h2>L3 strikes against microkernel</h2>
 <ul>
 <li>Kernel-User switches (boarder crossing cost)</li>
@@ -227,9 +226,11 @@ Software-TLB is snapshot for the TLB for switching the library OS's.</p>
 Guest OS's running inside the hypervisor</p>
 <h2>Hosted Hypervisors</h2>
 <p>Run on top of a Host OS (as an application process).<br/>
-Guest OS's running inside the hypervisor.
-- VMWare Workstation
-- VirtualBox</p>
+Guest OS's running inside the hypervisor.</p>
+<ul>
+<li>VMWare Workstation</li>
+<li>VirtualBox</li>
+</ul>
 <h2>Full virtualization</h2>
 <ul>
 <li>Guest OS's are not touched (unchanged binaries)</li>
@@ -244,10 +245,12 @@ Guest OS's running inside the hypervisor.
 <li>i.e. Xen</li>
 </ul>
 <h2>Overview</h2>
-<p>Virtualize hardware:
-- memory hierarchy
-- CPU
-- Devices</p>
+<p>Virtualize hardware:</p>
+<ul>
+<li>memory hierarchy</li>
+<li>CPU</li>
+<li>Devices</li>
+</ul>
 <h1>Memory Virtualization</h1>
 <p>Not virtualized:<br/>
 Page Table maps Virtual Page Numbers of processes to Physical Page Number.</p>
