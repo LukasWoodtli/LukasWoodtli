@@ -103,6 +103,11 @@
     <span id="article_info">
     <a class="label label-primary" 
       href="http://lukaswoodtli.github.io/category/misc.html">misc</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/C.html">C</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/C++.html">C++</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">04</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">16</a>
@@ -180,7 +185,7 @@ There are some language extension in different compilers to address this topic. 
 <p>Another use of enums is mainly used in embedded systems development. In embedded systems you are often concerned that a constant is stored in the program flash. Otherwise it has to be loaded from RAM at runtime (and even stored there at start time). The usual way is to use defines. 
 But they are not really type safe. So for int-types it’s possible to use enums. If your compiler(s) support it you can even use anonymous enums.</p>
 <h1>Advanced enum constructs (C++11, Qt)</h1>
-<p>C++11 introduces the enum class. And Qt some extensions for enums (Q_ENUMS) that I’ll not cover here. If you can use one of this advanced enum construct then do it!</p>
+<p>C++11 introduces the enum class. And Qt some extensions for enums (Q_ENUMS) that I’ll not cover here. If you can use one of this advanced enum constructs then do it!</p>
 <h1>Conclusion</h1>
 <ul>
 <li>If you have to iterate over your enum: don’t add explicit values to your enum, but add and {identifier}_NB value to the end (or something similar) to check when the iteration is finished</li>
