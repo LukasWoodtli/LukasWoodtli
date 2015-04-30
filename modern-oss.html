@@ -253,9 +253,9 @@ Guest OS's running inside the hypervisor.</p>
 </ul>
 <h1>Memory Virtualization</h1>
 <p>Not virtualized:<br/>
-Page Table maps Virtual Page Numbers of processes to Physical Page Number.</p>
-<p>Virtualized:</p>
-<h1>Virtualization</h1>
+Page Table (PT) maps Virtual Page Numbers (VPN) of processes to Physical Page Number (PPN).</p>
+<p>Virtualized:
+Guest OS translates Virtual Page Number (VPN) to Physical Page Number (PPN) with Page Table (PT). Hypervisor then translates Physical Page Number (PPN) to Machine Page Number (MPN) with Shadow Page Table (S-PT).</p>
   </div>
 
   <hr/>
