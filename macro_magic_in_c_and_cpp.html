@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Tag: C++ · Lukas Woodtli</title>
+        <title>Macro Magic in C and C++ · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -93,39 +93,82 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/cpp.html">Tag: C++</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">Macro Magic in C and C++</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="C++" href="#C++">C++</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#C++collapse">
-          <span class="badge pull-right">2</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/c.html">C</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month05">05</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month05">15</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="C++collapse">
-        <a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">
-          <li class="list-group-item">
-Macro Magic in C and C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">
-          <li class="list-group-item">
-Enums in C and C++</li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <h1>Macro Tricks</h1>
+<h2>Stringification</h2>
+<p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
+<div class="highlight"><pre><span class="o">:::</span> <span class="n">C</span>
+<span class="cp">#define _stringize(s) stringize(s)</span>
+<span class="cp">#define stringize(s) #s</span>
+<span class="cp">#define IMPORTANT_CONST 23</span>
+
+<span class="o">:::</span> <span class="n">C</span>
+<span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
+</pre></div>
+<blockquote>
+<p>"IMPORTANT_CONST"</p>
+</blockquote>
+<div class="highlight"><pre> stringize (IMPORTANT_CONST)
+</pre></div>
+<blockquote>
+<p>stringize(4)
+_stringize(4)
+"4"</p>
+</blockquote>
+<h2>Concatenation</h2>
+<p>With the <code>##</code> operator in a preprocessor macro it's possible to combine two tokens.</p>
+<div class="highlight"><pre><span class="o">:::</span> <span class="n">C</span>
+<span class="cp">#define CREATE_ID(name) ID_##name</span>
+
+<span class="n">CREATE_ID</span><span class="p">(</span><span class="n">IMPORTANT_THING</span><span class="p">)</span>
+</pre></div>
+<blockquote>
+<p>ID_IMPORTANT_THING</p>
+</blockquote>
+<h2>Links</h2>
+<p>There is a good explanation in the GCC online docs:
+<a href="https://gcc.gnu.org/onlinedocs/cpp/Macros.html#Macros">Macros</a></p>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/emacs_artist_mode.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
