@@ -117,6 +117,8 @@
   <div id="article_content">
     <p>This page collects some notes about different Operating System approaches.</p>
 <p>Most of the information gathered here is from the course <a href="https://www.udacity.com/course/ud189">Advanced Operating Systems</a>.</p>
+<p>Some information is from <a href="wiki/Barrelfish">Wikipedia</a>.</p>
+<p>The book Modern Operating Systems by Andrew S. Tanenbaum is also a very good resource I'm using for learning about Operating Systems.</p>
 <h1>Overview of Kernels</h1>
 <blockquote>
 <p>This overview Table is still work in progress!</p>
@@ -185,8 +187,24 @@
 <td>ELAN</td>
 <td>Predecessor of L4.</td>
 </tr>
+<tr>
+<td>Barrelfish</td>
+<td></td>
+<td></td>
+<td>Special aproach.</td>
+</tr>
+<tr>
+<td>Mac OS 9</td>
+<td>Microkernel (Nanokernel)</td>
+<td>?</td>
+<td>Legacy</td>
+</tr>
 </tbody>
 </table>
+<h1>Sharing Resources</h1>
+<p>One of the most important task of an OS is to share (hardware) resources. There are two posibilities how resources can be shared.
+1. time sharing: i.e CPU, Printer
+2. space sharing: i.e RAM, Hard Disc</p>
 <h1>Exokernel</h1>
 <p>Allocating resources to library OS's: space (memory), time (CPU)</p>
 <p>Library OS's can 'download' code into the kernel. A security management mechanism checks if it is allowed by th library OS.</p>
