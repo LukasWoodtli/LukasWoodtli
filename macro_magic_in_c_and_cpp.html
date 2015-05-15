@@ -123,17 +123,17 @@
     <h1>Macro Tricks</h1>
 <h2>Stringification</h2>
 <p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
-<div class="highlight"><pre><span class="cp">#define _stringize(s) stringize(s)</span>
-<span class="cp">#define stringize(s) #s</span>
+<div class="highlight"><pre><span class="cp">#define stringize(s) _stringize(s)</span>
+<span class="cp">#define _stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
-
-
-<span class="o">:::</span><span class="n">C</span>
-<span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
+</pre></div>
+<p>If you'd use the stingize operator <code>#</code> directly in a macro you won't get the intended string:</p>
+<div class="highlight"><pre><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
 </pre></div>
 <blockquote>
 <p>"IMPORTANT_CONST"</p>
 </blockquote>
+<p>Thats why there is an other macro calling the first one:</p>
 <div class="highlight"><pre> stringize (IMPORTANT_CONST)
 </pre></div>
 <blockquote>
@@ -150,7 +150,7 @@ _stringize(4)
 <blockquote>
 <p>ID_IMPORTANT_THING</p>
 </blockquote>
-<h2>Links</h2>
+<h2>Further Reading</h2>
 <p>There is a good explanation in the GCC online docs:
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Macros.html#Macros">Macros</a></p>
   </div>
