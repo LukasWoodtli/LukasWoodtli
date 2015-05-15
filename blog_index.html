@@ -161,12 +161,11 @@
           <li class="list-group-item"><h1>Macro Tricks</h1>
 <h2>Stringification</h2>
 <p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
-<div class="highlight"><pre><span class="o">:::</span> <span class="n">C</span>
-<span class="cp">#define _stringize(s) stringize(s)</span>
+<div class="highlight"><pre><span class="cp">#define _stringize(s) stringize(s)</span>
 <span class="cp">#define stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
 
-<span class="o">:::</span> <span class="n">C</span>
+<span class="o">:::</span><span class="n">C</span>
 <span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
 </pre></div>
 <blockquote>
@@ -175,7 +174,8 @@
 <div class="highlight"><pre> stringize (IMPORTANT_CONST)
 </pre></div>
 <blockquote>
-<p>stringize(4 ...</p></blockquote></li>
+<p>stringize(4)
+_stringize ...</p></blockquote></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html#disqus_thread" title="comments">
