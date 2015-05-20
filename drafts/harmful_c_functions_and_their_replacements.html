@@ -183,18 +183,170 @@
 </tr>
 </tbody>
 </table>
-<h1>gets</h1>
+<h1>C Std Library</h1>
+<h2>Buffer Overflows</h2>
+<p>15 C functions suffer buffer overflow problems:</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Original</th>
 <th>Replacement</th>
+<th>Problem</th>
+<th align="center">Relevant in Embedded</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>char <em>gets(char </em>str)</td>
-<td>fgets(buf, sizeof(buf), stdin)</td>
+<td>gets()</td>
+<td>fgets()</td>
+<td></td>
+<td align="center">no</td>
+</tr>
+<tr>
+<td>cuserid()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>scanf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>fscanf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>sscanf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vscanf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vsscanf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vfscanf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>sprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>strcat()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>strcpy()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>streadd()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>strecpy()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vsprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>strtrns()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h2>String Vulnerabilities</h2>
+<p>8 C functions suffer from format string vulnerabilities:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Original</th>
+<th>Replacement</th>
+<th>Problem</th>
+<th align="center">Relevant in Embedded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>printf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>fprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>sprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>snprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vfprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vsprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>vsnprintf()</td>
+<td></td>
+<td></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
@@ -211,12 +363,6 @@
 <p>http://www.microsoft.com/en-us/download/details.aspx?id=24817</p>
 <p>OpenBSD:
 http://www.openbsd.org/cgi-bin/man.cgi?query=strlcat</p>
-<p>1) 15 C functions suffer buffer overflow problems:</p>
-<p>gets() cuserid() scanf() fscanf() sscanf() vscanf() vsscanf() vfscanf()</p>
-<p>sprintf() strcat() strcpy() streadd() strecpy() vsprintf() strtrns()</p>
-<p>2) 8 C functions suffer from format string vulnerabilities</p>
-<p>printf() fprintf() sprintf() snprintf() vprintf() vfprintf() vsprintf()</p>
-<p>vsnprintf()</p>
 <p>memcpy</p>
 <p>Function</p>
 <p>Compiler</p>
