@@ -127,15 +127,21 @@
 <span class="cp">#define _stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
 </pre></div>
+
+
 <p>If you'd use the stingize operator <code>#</code> directly in a macro you won't get the intended string:</p>
 <div class="highlight"><pre><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
 </pre></div>
+
+
 <blockquote>
 <p>"IMPORTANT_CONST"</p>
 </blockquote>
 <p>Thats why there is an other macro calling the first one:</p>
 <div class="highlight"><pre> stringize (IMPORTANT_CONST)
 </pre></div>
+
+
 <blockquote>
 <p>stringize(4)  </p>
 <p>_stringize(4)  </p>
@@ -147,6 +153,8 @@
 
 <span class="n">CREATE_ID</span><span class="p">(</span><span class="n">IMPORTANT_THING</span><span class="p">)</span>
 </pre></div>
+
+
 <blockquote>
 <p>ID_IMPORTANT_THING</p>
 </blockquote>
