@@ -120,15 +120,19 @@
   <hr/>
 
   <div id="article_content">
-    <h1>printf and the prefixes</h1>
-<p>The <code>printf</code> family of function are quite ...</p>
+    <blockquote>
+<p>This article is still work in progress!</p>
+</blockquote>
+<h1>printf and the prefixes</h1>
+<p>There are quite a lot of functions in the <code>printf</code> family. It might not be very clear when to use which of them.</p>
+<p>Here is an explanation of the functions in the <em>Standard C library</em>.</p>
 <ul>
 <li>f: print to a <code>FILE</code> stream</li>
 <li>s: print to a  <code>char</code> buffer (string)</li>
 <li>sn: same as s but checks for buffer size</li>
-<li>v: takes a <code>va_list</code> istead <code>...</code>(ellipsis), can be combined with the other prefixes</li>
+<li>v: takes a <code>va_list</code> instead <code>...</code> (ellipsis), can be combined with the other prefixes</li>
 </ul>
-<p>So we get following functions</p>
+<p>So we get following functions:</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -160,6 +164,9 @@
 </tr>
 </tbody>
 </table>
+<p>The <code>sprintf</code> and <code>vsprintf</code> functions should not be used since the can result in stack overflow. They are also
+suffer from string vulnerability.</p>
+<p>Use <code>snpritf</code> or <code>vsnprintf</code> instead.</p>
 <h1>OpenBSD</h1>
 <p>The OpenBSD kernel library defines some additional functions that are safer than their counterparts in the standard library.</p>
 <table class="table table-hover table-striped">
