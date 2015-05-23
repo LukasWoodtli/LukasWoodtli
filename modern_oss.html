@@ -117,7 +117,7 @@
   <div id="article_content">
     <p>This page collects some notes about different Operating System approaches.</p>
 <p>Most of the information gathered here is from the course <a href="https://www.udacity.com/course/ud189">Advanced Operating Systems</a>.</p>
-<p>Some information is from <a href="http://en.wikipedia.org/wiki/Operating_system" title="Operating System">Wikipedia</a>. And other Wikipedia pages.</p>
+<p>Some information is from <a href="http://en.wikipedia.org/wiki/Operating_system" title="Wikipedia">Operating System</a>. And other Wikipedia pages.</p>
 <p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I'm using for learning about Operating Systems.</p>
 <h1>Overview of Kernels</h1>
 <blockquote>
@@ -202,14 +202,18 @@
 </tbody>
 </table>
 <h1>Sharing Resources</h1>
-<p>One of the most important task of an OS is to share (hardware) resources. There are two posibilities how resources can be shared.
-1. time sharing: i.e CPU, Printer
-2. space sharing: i.e RAM, Hard Disc</p>
+<p>One of the most important task of an OS is to share (hardware) resources. There are two posibilities how resources can be shared.</p>
+<ol>
+<li>time sharing: i.e CPU, Printer</li>
+<li>space sharing: i.e RAM, Hard Disc</li>
+</ol>
 <h1>Exokernel</h1>
-<p>Allocating resources to library OS's: space (memory), time (CPU)</p>
+<p>Allocating resources to library OS's: 
+- space (memory)
+- time (CPU)</p>
 <p>Library OS's can 'download' code into the kernel. A security management mechanism checks if it is allowed by th library OS.</p>
 <h2>Memory (TLB)</h2>
-<p>TLB: Translation Lookaside Buffer
+<p>TLB: Translation Lookaside Buffer.
 Software-TLB is snapshot for the TLB for switching the library OS's.</p>
 <h2>CPU-Scheduling</h2>
 <ul>
@@ -236,12 +240,12 @@ Software-TLB is snapshot for the TLB for switching the library OS's.</p>
 <li>Microkernels are processor specific in implementation =&gt; non-portable</li>
 <li>Right set of microkernel abstractions and processor-specific implementation =&gt; efficient processor independent abstractions at higher levels</li>
 </ul>
-<p>L3 is faster than Mach (Microkernel)</p>
+<p>L3 is faster than Mach (Microkernel).</p>
 <h1>Virtualization</h1>
-<p>Hypervisor: Operation system of operation systems (VMM: Virtal Machine Monitor)</p>
+<p>Hypervisor: Operation system of operation systems (VMM: Virtal Machine Monitor).</p>
 <h2>Native Hypervisor (bare metal)</h2>
 <p>Hypervisor runs directly on hardware.<br/>
-Guest OS's running inside the hypervisor</p>
+Guest OS's running inside the hypervisor.</p>
 <h2>Hosted Hypervisors</h2>
 <p>Run on top of a Host OS (as an application process).<br/>
 Guest OS's running inside the hypervisor.</p>
@@ -270,10 +274,10 @@ Guest OS's running inside the hypervisor.</p>
 <li>Devices</li>
 </ul>
 <h1>Memory Virtualization</h1>
-<p>Not virtualized:<br/>
-Page Table (PT) maps Virtual Page Numbers (VPN) of processes to Physical Page Number (PPN).</p>
-<p>Virtualized:
-Guest OS translates Virtual Page Number (VPN) to Physical Page Number (PPN) with Page Table (PT). Hypervisor then translates Physical Page Number (PPN) to Machine Page Number (MPN) with Shadow Page Table (S-PT).</p>
+<h2>Not virtualized:</h2>
+<p>Page Table (PT) maps Virtual Page Numbers (VPN) of processes to Physical Page Number (PPN).</p>
+<h2>Virtualized:</h2>
+<p>Guest OS translates Virtual Page Number (VPN) to Physical Page Number (PPN) with Page Table (PT). Hypervisor then translates Physical Page Number (PPN) to Machine Page Number (MPN) with Shadow Page Table (S-PT).</p>
 <h1>CPU Virtualization</h1>
 <p>Events that happen in a task of the Guest OS need to be delivered to the Guest OS by the Hypervisor.</p>
 <p>An event can be:</p>
