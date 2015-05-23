@@ -287,6 +287,43 @@ Guest OS translates Virtual Page Number (VPN) to Physical Page Number (PPN) with
 <p>Communication from the Guest OS to the CPU hapens generally through traps. So the hypervisor can
 handle it. In para-virtualized environment the Hypervisor can provide an API for the Guest OS instead
 of using traps.</p>
+<ul>
+<li>Full virtualization: "trap and emulate"</li>
+<li>Para virtualization: more opportunity for innovation</li>
+</ul>
+<h2>Control Transfer</h2>
+<h3>Full virtualization</h3>
+<ul>
+<li>implicit (traps) guest -&gt; hypervisor</li>
+<li>software interrupts (events) hypervisor -&gt; guest</li>
+</ul>
+<h3>Para virtualization</h3>
+<ul>
+<li>explicit (hypercalls) guest -&gt; hypervisor</li>
+<li>software interrupts (events) hypervisor -&gt; guest</li>
+</ul>
+<blockquote>
+<p>Guest has control vie hypercalls on when event notifications
+need to be delivered.</p>
+</blockquote>
+<h2>Data Transfer</h2>
+<h3>Full virtualization</h3>
+<ul>
+<li>implicit</li>
+</ul>
+<h3>Para virtualization (e.g. Xen)</h3>
+<ul>
+<li>explicit =&gt; opportunity to innovate</li>
+</ul>
+<h4>Xen I/O-Rings</h4>
+<p>Xen uses a ring buffer for data transfer with producer-consumer pattern.
+There are 4 pointer to the buffer_</p>
+<ol>
+<li>Request producer (shared, updated by guest)</li>
+<li>Request consumer (private to Xen)</li>
+<li>Response producer (shared, updated by guest)</li>
+<li>Response consumer (private to guest)</li>
+</ol>
   </div>
 
   <hr/>
