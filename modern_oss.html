@@ -117,8 +117,8 @@
   <div id="article_content">
     <p>This page collects some notes about different Operating System approaches.</p>
 <p>Most of the information gathered here is from the course <a href="https://www.udacity.com/course/ud189">Advanced Operating Systems</a>.</p>
-<p>Some information is from <a href="wiki/Barrelfish">Wikipedia</a>.</p>
-<p>The book Modern Operating Systems by Andrew S. Tanenbaum is also a very good resource I'm using for learning about Operating Systems.</p>
+<p>Some information is from [Wikipedia]http://en.wikipedia.org/wiki/Operating_system). And other Wikipedia pages.</p>
+<p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I'm using for learning about Operating Systems.</p>
 <h1>Overview of Kernels</h1>
 <blockquote>
 <p>This overview Table is still work in progress!</p>
@@ -190,7 +190,7 @@
 <tr>
 <td>Barrelfish</td>
 <td></td>
-<td></td>
+<td>C</td>
 <td>Special aproach.</td>
 </tr>
 <tr>
@@ -303,8 +303,8 @@ of using traps.</p>
 <li>software interrupts (events) hypervisor -&gt; guest</li>
 </ul>
 <blockquote>
-<p>Guest has control vie hypercalls on when event notifications
-need to be delivered.</p>
+<p>Guest has control via hypercalls on when event notifications
+  need to be delivered.</p>
 </blockquote>
 <h2>Data Transfer</h2>
 <h3>Full virtualization</h3>
@@ -317,7 +317,7 @@ need to be delivered.</p>
 </ul>
 <h4>Xen I/O-Rings</h4>
 <p>Xen uses a ring buffer for data transfer with producer-consumer pattern.
-There are 4 pointer to the buffer_</p>
+There are 4 pointer to the buffer.</p>
 <ol>
 <li>Request producer (shared, updated by guest)</li>
 <li>Request consumer (private to Xen)</li>
