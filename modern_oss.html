@@ -330,6 +330,33 @@ There are 4 pointer to the buffer.</p>
 <li>Response producer (shared, updated by guest)</li>
 <li>Response consumer (private to guest)</li>
 </ol>
+<h1>Memory Models</h1>
+<ul>
+<li>Memory Consistency: What is the Model presented to the Programmer?</li>
+<li>Cache Coherence: How is the System implementing the Model in presence of private caches?</li>
+</ul>
+<h2>Sequential Consistency (Memory Model)</h2>
+<p>Access to a shared memory location is performed in sequence by the processors. The accesses can be
+interwoven.</p>
+<h2>Cache Coherence</h2>
+<h3>Non cache coherent shared address space multi processor (NCC shared memory multi processor)</h3>
+<p>System only gives access to shared address space. System Software maintains chaching.</p>
+<ul>
+<li>Shared address space available for all processors</li>
+<li>Private caches</li>
+</ul>
+<blockquote>
+<p>If you modify data it's a problem of the system software to make sure the caches are coherent!</p>
+</blockquote>
+<h3>CC shared memory multi processor</h3>
+<ul>
+<li>Hardware provides shared address space</li>
+<li>Maintains cache coherence in hardware</li>
+</ul>
+<h4>Write-Invalidate</h4>
+<p>Hardware ensures that written memory location is invalidated in all caches.</p>
+<h4>Write-Update</h4>
+<p>Hardware ensure that modified memory location is updated in all caches.</p>
   </div>
 
   <hr/>
