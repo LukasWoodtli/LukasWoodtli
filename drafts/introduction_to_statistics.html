@@ -133,21 +133,22 @@
 </ul>
 <h1>Dependent Events</h1>
 <p><span class="math">\(P(A\mid B)\)</span>: Probability of Event <span class="math">\(A\)</span> when <span class="math">\(B\)</span> already occured.</p>
-<h1>Bayes Rule</h1>
+<h1>Bayes' Rule</h1>
 <p>See also <a href="http://en.wikipedia.org/wiki/Bayes%27_theorem" title="Bayes' theorem">Wikipedia</a></p>
+<div class="math">$$P(A\mid B) \; = \; \frac {P(B\mid A) \cdot P(A)} {P(B)}$$</div>
 <blockquote>
 <p>Prior Probability  &amp; Test Evidence -&gt; Posterior Probability</p>
 </blockquote>
-<p>Prior: <span class="math">\(P(C)\)</span></p>
+<p>Prior: <span class="math">\(P(A)\)</span></p>
 <p>Posterior: </p>
-<div class="math">$$P(C \mid Pos) = P(C) \cdot P(Pos \mid C)\\
-    P(\lnot C\mid Pos) = P(\lnot C) \cdot P(Pos \mid \lnot C)$$</div>
+<div class="math">$$P(A \mid B) = P(A) \cdot P(B \mid A)\\
+    P(\lnot A\mid B) = P(\lnot A) \cdot P(B \mid \lnot A)$$</div>
 <ul>
 <li><span class="math">\(P(A)\)</span>: the prior, is the initial degree of belief in <span class="math">\(A\)</span>.</li>
 <li><span class="math">\(P(A \mid B)\)</span>: the posterior, is the degree of belief having accounted for <span class="math">\(B\)</span>.</li>
 <li>the quotient <span class="math">\(\frac{P(B \mid A)}{P(B)}\)</span> represents the support <span class="math">\(B\)</span> provides for <span class="math">\(A\)</span>.</li>
 </ul>
-<div class="math">$$P(A\mid B) \; = \; \frac {P(B\mid A) \cdot P(A)} {P(B)}$$</div>
+<h2>Algorithm</h2>
 <p><a href="/images/bayes_algorithm.pdf">Bayes' rule: Algorithm</a></p>
 <h1>Probablity Distributions</h1>
 <blockquote>
