@@ -149,7 +149,25 @@
 <li>the quotient <span class="math">\(\frac{P(B \mid A)}{P(B)}\)</span> represents the support <span class="math">\(B\)</span> provides for <span class="math">\(A\)</span>.</li>
 </ul>
 <h2>Algorithm</h2>
-<p><a href="/images/bayes_algorithm.pdf">Bayes' rule: Algorithm</a></p>
+<p>Imagine there is a disease. The posibility to get this particular desease is <span class="math">\(P(D)\)</span>.</p>
+<p>There is a test to check if someone has that disease. But the test is not completely reliable.</p>
+<p>Prior: <span class="math">\(P(D)\)</span>
+Sensitivity: <span class="math">\(P(Pos \mid D)\)</span>
+Specitivity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
+<p>The <strong>Prior</strong> says how many people have the disease.</p>
+<p>The <strong>Sensitivity</strong> says how many get a <strong>positive</strong> test if they <strong>have the desease</strong>.</p>
+<p>The <strong>Selicivity</strong> says how many get a <strong>negative</strong> test if they <strong>don't have the desease</strong>.</p>
+<p>Imagine someone get's a <strong>positive</strong> test result. How can we calculate the probability that this person has the desease?</p>
+<p><img alt="Algorithm to calculate Bayes' rule" class="img-responsive" src="/images/(bayes_algorithm.svg"/></p>
+<ol>
+<li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid D)\)</span> (Sensitivity) → <span class="math">\(P(Pos, D)\)</span>.</li>
+<li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid \lnot D)\)</span> → <span class="math">\(P(Pos \lnot D)\)</span>.</li>
+<li>Add the results of 1. and 2. up → <span class="math">\(P(Pos)\)</span>.</li>
+<li>Divide the result from 1. (<span class="math">\(P(Pos, D)\)</span>) by the result of 3. (<span class="math">\(P(Pos)\)</span>) → <span class="math">\(P(D \mid Pos)\)</span>.</li>
+<li>Divide the result from 2. (<span class="math">\(P(Pos, \lnot D)\)</span>) by the result of 3. (<span class="math">\(P(Pos)\)</span>) → <span class="math">\(P(\lnot D \mid Pos)\)</span>.</li>
+<li>Check: add the results of 4. and 5. → <span class="math">\(1\)</span>.</li>
+</ol>
+<p>The calculation for a <strong>negative</strong> test result are analogous. Just replace <span class="math">\(Pos\)</span> with <span class="math">\(Neg\)</span>.</p>
 <h1>Probablity Distributions</h1>
 <blockquote>
 <p>In <strong>Continous Distributions</strong> every outcome has the <strong>Probability</strong> <span class="math">\(0\)</span>.</p>
