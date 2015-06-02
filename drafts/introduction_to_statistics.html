@@ -183,6 +183,17 @@ Specitivity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <li>Doesn't need to be smaller or equal than one</li>
 <li>Integrates to one</li>
 </ul>
+<h1>Estimation</h1>
+<p>Estimation problem is:</p>
+<p>Data → P</p>
+<p>P → P(Data)</p>
+<h2>Maximum Likelihood Estimator (MLE):</h2>
+<div class="math">$$\frac{1}{N} \cdot \sum_{i}^{} X_i$$</div>
+<p>The sum is always between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>.</p>
+<h2>Laplace Estimator:</h2>
+<div class="math">$$\frac{1}{N + k} \cdot \left(1 + \sum_{i}^{} X_i \right)$$</div>
+<p><span class="math">\(k\)</span>: Number of Outcomes</p>
+<p><span class="math">\(N\)</span>: Number of Experiments</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
