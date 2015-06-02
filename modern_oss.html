@@ -400,8 +400,13 @@ interwoven.</p>
 of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <div class="highlight"><pre>LOCK(L):
     WHILE(L == locked); // Spinning on cached var. Reading L is atomic.
-        IF(T+S(L) == locked) go back; // Read L from memory. If it fails spin on cached L again.
+        IF(T+S(L) == locked) // Read L from memory (not cache).
+            go back; // If it fails start spinning on cached L again.
 </pre></div>
+<ul>
+<li>Less traffic on bus.</li>
+<li>Disruptive.</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
