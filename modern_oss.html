@@ -407,6 +407,24 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <li>Less traffic on bus.</li>
 <li>Disruptive.</li>
 </ul>
+<h2>Spinlocks With Delay</h2>
+<h3>Delay after lock release</h3>
+<div class="highlight"><pre>WHILE((L == locked) or
+      (T+S(L) == locked))
+{
+    WHILE(L == locked);
+    delay(d[Pi]); // when I get the lock I wait a while
+}
+</pre></div>
+<p>The delay time is dependent on the Processor.</p>
+<h3>Delay with exponential backoff</h3>
+<div class="highlight"><pre>WHILE(T+S(L) == locked) // not using chaching at all
+{
+    delay(d);
+    d = d * 2;
+}
+</pre></div>
+<p>This algorithm works also on architecture without chaches (or cache coherent system in HW).</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
