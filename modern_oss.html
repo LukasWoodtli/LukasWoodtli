@@ -395,6 +395,13 @@ interwoven.</p>
 <li>Does not exploit caches: Private caches in processor can't contain lock variable (T+S needs to be atomic. That's not possible with cached variables).</li>
 <li>Disrupts useful work: After releasing a lock a processor usually wants to do some work. But other processors need resources for trying to acquire the lock.</li>
 </ul>
+<h2>Caching Spinlock (Spin on read)</h2>
+<p>Waiting processors spin on cached copy of ’L’. So there is no communication to memory. The cached copy
+of ’L’ is updated by the cache coherence mechanism of the system.</p>
+<div class="highlight"><pre>LOCK(L):
+    WHILE(L == locked); // Spinning on cached var. Reading L is atomic.
+        IF(T+S(L) == locked) go back; // Read L from memory. If it fails start spinning on cached L again.
+</pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
