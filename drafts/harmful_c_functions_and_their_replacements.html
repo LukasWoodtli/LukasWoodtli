@@ -123,7 +123,7 @@
     <blockquote>
 <p>This article is still work in progress!</p>
 </blockquote>
-<h1>printf and the prefixes</h1>
+<h1 id="printf-and-the-prefixes">printf and the prefixes</h1>
 <p>There are quite a lot of functions in the <code>printf</code> family. It might not be very clear when to use which of them.</p>
 <p>Here is an explanation of the functions in the <em>Standard C Library</em>.</p>
 <ul>
@@ -167,7 +167,7 @@
 <p>The <code>sprintf</code> and <code>vsprintf</code> functions should not be used since the can result in stack overflow. They are also
 suffer from string vulnerability.</p>
 <p>Use <code>snpritf</code> or <code>vsnprintf</code> instead.</p>
-<h1>OpenBSD</h1>
+<h1 id="openbsd">OpenBSD</h1>
 <p>The OpenBSD kernel library defines some additional functions that are safer than their counterparts in the standard library.</p>
 <table class="table table-hover table-striped">
 <thead>
@@ -190,8 +190,8 @@ suffer from string vulnerability.</p>
 </tr>
 </tbody>
 </table>
-<h1>C Std Library</h1>
-<h2>Buffer Overflows</h2>
+<h1 id="c-std-library">C Std Library</h1>
+<h2 id="buffer-overflows">Buffer Overflows</h2>
 <p>15 C functions suffer buffer overflow problems:</p>
 <table class="table table-hover table-striped">
 <thead>
@@ -295,7 +295,7 @@ suffer from string vulnerability.</p>
 </tr>
 </tbody>
 </table>
-<h2>String Vulnerabilities</h2>
+<h2 id="string-vulnerabilities">String Vulnerabilities</h2>
 <p>8 C functions suffer from format string vulnerabilities:</p>
 <table class="table table-hover table-striped">
 <thead>
