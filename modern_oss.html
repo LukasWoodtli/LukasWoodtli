@@ -486,6 +486,7 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <li>Disruptive.</li>
 </ul>
 <h2 id="spinlocks-with-delay">Spinlocks With Delay</h2>
+<p>If a lock is released every process waits for a given time before trying to aquire the lock.</p>
 <h3 id="delay-after-lock-release">Delay after lock release</h3>
 <div class="highlight"><pre>WHILE((L == locked) or
       (T+S(L) == locked))
@@ -494,15 +495,17 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
     delay(d[Pi]); // when I get the lock I wait a while
 }
 </pre></div>
-<p>The delay time is dependent on the Processor.</p>
+<p>The delay time is dependent on the processor.</p>
 <h3 id="delay-with-exponential-backoff">Delay with exponential backoff</h3>
 <div class="highlight"><pre>WHILE(T+S(L) == locked) // not using chaching at all
 {
-    delay(d);
+    delay(d); // d is small at first
     d = d * 2;
 }
 </pre></div>
-<p>This algorithm works also on architecture without chaches (or cache coherent system in HW).</p>
+<p>Every time when the lock is checked and not free the processor waits a longer time before trying again.
+T+S can be used because we wait before trying to quire the lock again. This reduces the contention.
+This algorithm works also on architecture without chaches (or cache coherent system in HW).</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
