@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Memory Layout · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/cv.html">CV</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/drafts/memory_layout.html">Memory Layout</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">09</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Architecture</th>
+<th>Stack growth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compiler: CCS, Processor: ARM_CM4F</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: CCS, Processor: ARM_Cortex-R4</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: CCS, Processor: MSP430X</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: CodeWarrior, Processor: ColdFire_V1</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: CodeWarrior, Processor: ColdFire_V2</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: CodeWarrior, Processor: HCS12</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM7_AT91FR40008</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM7_AT91SAM7S</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM7_LPC2000</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM7_LPC23xx</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM_CA9</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM_CM0</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM_CM3</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM_CM3_MPU</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM_CM4F</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ARM_CM7 (ARM_CM7)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ATMega323</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: AVR32_UC3</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: ColdFire_V2</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: CORTUS_APS3</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: H8S2329</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: HCS12</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: MCF5235</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: MicroBlaze</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: MicroBlazeV8</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: MSP430F449</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: NiosII</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: PPC405_Xilinx</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: PPC440_Xilinx</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: RL78</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: RX100</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: RX600</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: RX600v2</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: STR75x</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: GCC, Processor: TriCore_1782</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: 78K0R</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ARM_CA5_No_GIC</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ARM_CA9</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ARM_CM0</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ARM_CM3</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ARM_CM4F</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ARM_CM7 (ARM_CM7)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: ATMega323</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: AtmelSAM7S64</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: AtmelSAM9XE</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: AVR32_UC3</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: LPC2000</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: MSP430</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: MSP430X</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: RL78</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: RX100</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: RX600</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: STR71x</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: STR75x</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: STR91x</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: IAR, Processor: V850ES</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: MPLAB, Processor: PIC18F</td>
+<td>upwards</td>
+</tr>
+<tr>
+<td>Compiler: MPLAB, Processor: PIC24_dsPIC</td>
+<td>upwards</td>
+</tr>
+<tr>
+<td>Compiler: MPLAB, Processor: PIC32MX</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: MPLAB, Processor: PIC32MZ</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: MSVC-MingW</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: oWatcom, Processor: 16BitDOS (16BitDOS)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: oWatcom, Processor: 16BitDOS (16BitDOS)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Paradigm, Processor: Tern_EE (Tern_EE)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Paradigm, Processor: Tern_EE (Tern_EE)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Renesas, Processor: RX100</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Renesas, Processor: RX200</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Renesas, Processor: RX600</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Renesas, Processor: RX600v2</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Renesas, Processor: SH2A_FPU</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Rowley, Processor: MSP430F449</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: RVDS, Processor: ARM7_LPC21xx</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: RVDS, Processor: ARM_CA9</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: RVDS, Processor: ARM_CM0</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: RVDS, Processor: ARM_CM3</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: RVDS, Processor: ARM_CM4F</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: RVDS, Processor: ARM_CM7 (ARM_CM7)</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: SDCC, Processor: Cygnal</td>
+<td>upwards</td>
+</tr>
+<tr>
+<td>Compiler: Softune, Processor: MB91460</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Softune, Processor: MB96340</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: Tasking, Processor: ARM_CM4F</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td>Compiler: WizC, Processor: PIC18</td>
+<td>downwards</td>
+</tr>
+</tbody>
+</table>
+  </div>
+
+  <hr/>
+
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
