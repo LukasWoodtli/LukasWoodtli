@@ -118,7 +118,8 @@
     <p>This page collects some notes about different Operating System approaches.</p>
 <p>Most of the information gathered here is from the course <a href="https://www.udacity.com/course/ud189">Advanced Operating Systems</a>.</p>
 <p>Some information is from <a href="http://en.wikipedia.org/wiki/Operating_system" title="Wikipedia">Operating System</a>. And other Wikipedia pages.</p>
-<p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I'm using for learning about Operating Systems.</p>
+<p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I'm using for learning about Operating Systems.
+5</p>
 <div class="toc">
 <ul>
 <li><a href="#overview-of-kernels">Overview of Kernels</a></li>
@@ -186,13 +187,15 @@
 </ul>
 </li>
 <li><a href="#spinlock">Spinlock</a><ul>
-<li><a href="#naive-spinlock-spin-on-ts">Naive Spinlock (spin on T+S)</a></li>
+<li><a href="#naive-spinlock-spin-on-ts">Naive Spinlock (Spin on T+S)</a></li>
 <li><a href="#caching-spinlock-spin-on-read">Caching Spinlock (Spin on read)</a></li>
-<li><a href="#spinlocks-with-delay">Spinlocks With Delay</a><ul>
+<li><a href="#spinlock-with-delay">Spinlock with Delay</a><ul>
 <li><a href="#delay-after-lock-release">Delay after lock release</a></li>
 <li><a href="#delay-with-exponential-backoff">Delay with exponential backoff</a></li>
 </ul>
 </li>
+<li><a href="#ticket-lock">Ticket Lock</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -462,7 +465,7 @@ interwoven.</p>
 <li>Contention: If a lock is released and several threads are waiting for it. How long does it take until a thread is chosen from the waiting threads.</li>
 </ul>
 <h1 id="spinlock">Spinlock</h1>
-<h2 id="naive-spinlock-spin-on-ts">Naive Spinlock (spin on T+S)</h2>
+<h2 id="naive-spinlock-spin-on-ts">Naive Spinlock (Spin on T+S)</h2>
 <p>A thread or processor waiting for a lock loops (spins) without doing any useful work. </p>
 <div class="highlight"><pre>LOCK(L):
     WHILE(T+S(L) == locked);
@@ -485,7 +488,7 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <li>Less traffic on bus.</li>
 <li>Disruptive.</li>
 </ul>
-<h2 id="spinlocks-with-delay">Spinlocks With Delay</h2>
+<h2 id="spinlock-with-delay">Spinlock with Delay</h2>
 <p>If a lock is released every process waits for a given time before trying to aquire the lock.</p>
 <h3 id="delay-after-lock-release">Delay after lock release</h3>
 <div class="highlight"><pre>WHILE((L == locked) or
@@ -506,6 +509,16 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <p>Every time when the lock is checked and not free the processor waits a longer time before trying again.
 T+S can be used because we wait before trying to quire the lock again. This reduces the contention.
 This algorithm works also on architecture without chaches (or cache coherent system in HW).</p>
+<h2 id="ticket-lock">Ticket Lock</h2>
+<p>The process that tries to acquire a lock gets a ticket.
+When the lock is released the process is notified.</p>
+<p>This adds fairness to the locking algorithm.</p>
+<p>But it causes contention.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Spin on T+S, Spin on read and Spinlock with Delay are not fair</li>
+<li>Ticket Lock is fair but noisy (contention)</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
