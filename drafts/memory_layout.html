@@ -120,14 +120,18 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating Systems</h1>
+    <p>When a process is started the operating system allocates memory for this process.
+On modern systems this memory is usually mapped to an virtual address space (using the MMU).</p>
+<p>But also on deeply embedded system the compiler and runtime environment need to define a memory
+layout. In this case there is only one process and there is no virtual memory.</p>
+<h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating Systems</h1>
 <p>The use of the memory for a process is different in each operating system.</p>
-<p>This example overwiew is taken from <em>Secure Coding in C and C++, by Robert Seacord</em>.
+<p>This example overwiew is taken from <em>Secure Coding in C and C++, by Robert Seacord</em>:
 <img alt="Memory layouts on different OS's" class="img-responsive" src="/images/memory_layout.png"/></p>
 <h1 id="stack-growth">Stack Growth</h1>
 <p>Depending on the platform the stack grows in different directions:
-- Downwards: the stack grows from bigger adresses to smaller ones
-- Upwards: it grows from bigger addresses to smaller ones</p>
+- Downwards: the stack grows from high adresses to low ones
+- Upwards: it grows from high addresses to low ones</p>
 <p>On most platforms the stack grows downwards. But there are some exeptions.</p>
 <p>This table is an inclomplete (but hopefully correct) overview. Most data in this
 table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p>
@@ -151,8 +155,8 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 <td>downwards</td>
 </tr>
 <tr>
-<td>16BitDOS (16BitDOS)</td>
-<td>oWatcom</td>
+<td>DOS (16Bit)</td>
+<td>Open Watcom</td>
 <td>downwards</td>
 </tr>
 <tr>
@@ -162,7 +166,7 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 </tr>
 <tr>
 <td>ARM7 (LPC2xxx, AT91SAM7S, AT91FR40008)</td>
-<td>GCC, RVDS</td>
+<td>GCC, RVDS, IAR</td>
 <td>downwards</td>
 </tr>
 <tr>
@@ -216,11 +220,6 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 <td>downwards</td>
 </tr>
 <tr>
-<td>LPC2000</td>
-<td>IAR</td>
-<td>downwards</td>
-</tr>
-<tr>
 <td>MB91460</td>
 <td>Softune</td>
 <td>downwards</td>
@@ -237,22 +236,7 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 </tr>
 <tr>
 <td>MSP430</td>
-<td>IAR</td>
-<td>downwards</td>
-</tr>
-<tr>
-<td>MSP430F449</td>
-<td>GCC</td>
-<td>downwards</td>
-</tr>
-<tr>
-<td>MSP430F449</td>
-<td>Rowley</td>
-<td>downwards</td>
-</tr>
-<tr>
-<td>MSP430X</td>
-<td>CCS, IAR</td>
+<td>GCC, IAR, Rowley, CCS</td>
 <td>downwards</td>
 </tr>
 <tr>
@@ -296,12 +280,7 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 <td>downwards</td>
 </tr>
 <tr>
-<td>PPC405_Xilinx</td>
-<td>GCC</td>
-<td>downwards</td>
-</tr>
-<tr>
-<td>PPC440_Xilinx</td>
+<td>PPC</td>
 <td>GCC</td>
 <td>downwards</td>
 </tr>
