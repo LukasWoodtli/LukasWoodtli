@@ -103,6 +103,11 @@
     <span id="article_info">
     <a class="label label-primary" 
       href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/c.html">C</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">09</a>
@@ -115,7 +120,18 @@
   <hr/>
 
   <div id="article_content">
-    <table class="table table-hover table-striped">
+    <h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating Systems</h1>
+<p>The use of the memory for a process is different in each operating system.</p>
+<p>This example overwiew is taken from <em>Secure Coding in C and C++, by Robert Seacord</em>.
+<img alt="Memory layouts on different OS's" class="img-responsive" src="/images/memory_layout.png"/></p>
+<h1 id="stack-growth">Stack Growth</h1>
+<p>Depending on the platform the stack grows in different directions:
+- Downwards: the stack grows from bigger adresses to smaller ones
+- Upwards: it grows from bigger addresses to smaller ones</p>
+<p>On most platforms the stack grows downwards. But there are some exeptions.</p>
+<p>This table is an inclomplete (but hopefully correct) overview. Most data in this
+table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Architecture</th>
