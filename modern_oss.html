@@ -179,8 +179,6 @@
 </li>
 <li><a href="#synchronization">Synchronization</a><ul>
 <li><a href="#synchronization-primitives">Synchronization Primitives</a></li>
-</ul>
-</li>
 <li><a href="#atomic-instruction">Atomic Instruction</a><ul>
 <li><a href="#read-modify-write-rmw">Read-Modify-Write (RMW)</a></li>
 <li><a href="#scalability-issues-with-synchronitation">Scalability issues with Synchronitation</a></li>
@@ -196,6 +194,8 @@
 </li>
 <li><a href="#ticket-lock">Ticket Lock</a></li>
 <li><a href="#summary">Summary</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -448,24 +448,24 @@ interwoven.</p>
 <li>Shared Lock (Multiple reader to one resource)</li>
 <li>Barriers (Synchronize threads, wait for other threads till all completed their work)</li>
 </ul>
-<h1 id="atomic-instruction">Atomic Instruction</h1>
+<h2 id="atomic-instruction">Atomic Instruction</h2>
 <p>During the execution of an instruction the processor can not be interrupted.</p>
 <p>Aquiring a lock needs to be atomic.</p>
-<h2 id="read-modify-write-rmw">Read-Modify-Write (RMW)</h2>
+<h3 id="read-modify-write-rmw">Read-Modify-Write (RMW)</h3>
 <p>Different aproaches:</p>
 <ul>
 <li>Test-and-Set (T+S): Reads a memory location. Then returns the actual value and sets it to 1 atomically.</li>
 <li>Fetch-and-Inc: Reads a memory location. Then returns the actual value and increments it atomically.</li>
 <li>Fetch-and-<span class="math">\(\Phi\)</span>: Generally with any given function (<span class="math">\(\Phi\)</span>) after fetching and returning the actual value.</li>
 </ul>
-<h2 id="scalability-issues-with-synchronitation">Scalability issues with Synchronitation</h2>
+<h3 id="scalability-issues-with-synchronitation">Scalability issues with Synchronitation</h3>
 <ul>
 <li>Latency: Latency is the time that a thread needs to acquire a lock.</li>
 <li>Waiting time: The time that a thread needs to wait to get the lock. This time is in the hands of the application developers and not of the OS developers.</li>
 <li>Contention: If a lock is released and several threads are waiting for it. How long does it take until a thread is chosen from the waiting threads.</li>
 </ul>
-<h1 id="spinlock">Spinlock</h1>
-<h2 id="naive-spinlock-spin-on-ts">Naive Spinlock (Spin on T+S)</h2>
+<h2 id="spinlock">Spinlock</h2>
+<h3 id="naive-spinlock-spin-on-ts">Naive Spinlock (Spin on T+S)</h3>
 <p>A thread or processor waiting for a lock loops (spins) without doing any useful work. </p>
 <div class="highlight"><pre>LOCK(L):
     WHILE(T+S(L) == locked);
@@ -476,7 +476,7 @@ interwoven.</p>
 <li>Does not exploit caches: Private caches in processor can't contain lock variable (T+S needs to be atomic. That's not possible with cached variables).</li>
 <li>Disrupts useful work: After releasing a lock a processor usually wants to do some work. But other processors need resources for trying to acquire the lock.</li>
 </ul>
-<h2 id="caching-spinlock-spin-on-read">Caching Spinlock (Spin on read)</h2>
+<h3 id="caching-spinlock-spin-on-read">Caching Spinlock (Spin on read)</h3>
 <p>Waiting processors spin on cached copy of <code>L</code>. So there is no communication to memory. The cached copy
 of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <div class="highlight"><pre>LOCK(L):
@@ -488,9 +488,9 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <li>Less traffic on bus.</li>
 <li>Disruptive.</li>
 </ul>
-<h2 id="spinlock-with-delay">Spinlock with Delay</h2>
+<h3 id="spinlock-with-delay">Spinlock with Delay</h3>
 <p>If a lock is released every process waits for a given time before trying to aquire the lock.</p>
-<h3 id="delay-after-lock-release">Delay after lock release</h3>
+<h4 id="delay-after-lock-release">Delay after lock release</h4>
 <div class="highlight"><pre>WHILE((L == locked) or
       (T+S(L) == locked))
 {
@@ -499,7 +499,7 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 }
 </pre></div>
 <p>The delay time is dependent on the processor.</p>
-<h3 id="delay-with-exponential-backoff">Delay with exponential backoff</h3>
+<h4 id="delay-with-exponential-backoff">Delay with exponential backoff</h4>
 <div class="highlight"><pre>WHILE(T+S(L) == locked) // not using chaching at all
 {
     delay(d); // d is small at first
@@ -509,12 +509,12 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
 <p>Every time when the lock is checked and not free the processor waits a longer time before trying again.
 T+S can be used because we wait before trying to quire the lock again. This reduces the contention.
 This algorithm works also on architecture without chaches (or cache coherent system in HW).</p>
-<h2 id="ticket-lock">Ticket Lock</h2>
+<h3 id="ticket-lock">Ticket Lock</h3>
 <p>The process that tries to acquire a lock gets a ticket.
 When the lock is released the process is notified.</p>
 <p>This adds fairness to the locking algorithm.</p>
 <p>But it causes contention.</p>
-<h2 id="summary">Summary</h2>
+<h3 id="summary">Summary</h3>
 <ul>
 <li>Spin on T+S, Spin on read and Spinlock with Delay are not fair</li>
 <li>Ticket Lock is fair but noisy (contention)</li>
