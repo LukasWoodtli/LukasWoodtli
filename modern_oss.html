@@ -331,10 +331,10 @@ Software-TLB is snapshot for the TLB for switching the library OS's.</p>
 <h1 id="virtualization">Virtualization</h1>
 <p>Hypervisor: Operation system of operation systems (VMM: Virtal Machine Monitor).</p>
 <h2 id="native-hypervisor-bare-metal">Native Hypervisor (bare metal)</h2>
-<p>Hypervisor runs directly on hardware.<br/>
+<p>Hypervisor runs directly on hardware.
 Guest OS's running inside the hypervisor.</p>
 <h2 id="hosted-hypervisors">Hosted Hypervisors</h2>
-<p>Run on top of a Host OS (as an application process).<br/>
+<p>Run on top of a Host OS (as an application process).
 Guest OS's running inside the hypervisor.</p>
 <ul>
 <li>VMWare Workstation</li>
@@ -470,7 +470,7 @@ interwoven.</p>
 </ul>
 <h2 id="spinlock">Spinlock</h2>
 <h3 id="naive-spinlock-spin-on-ts">Naive Spinlock (Spin on T+S)</h3>
-<p>A thread or processor waiting for a lock loops (spins) without doing any useful work. </p>
+<p>A thread or processor waiting for a lock loops (spins) without doing any useful work.</p>
 <div class="highlight"><pre>LOCK(L):
     WHILE(T+S(L) == locked);
 </pre></div>
@@ -526,7 +526,7 @@ When the lock is released the process is notified.</p>
 <h2 id="queuing-lock">Queuing Lock</h2>
 <h3 id="array-based-queuing-lock-anderson-lock">Array-based queuing Lock (Anderson Lock)</h3>
 <hr/>
-<p>For each lock there is an array with flags. The size of the 
+<p>For each lock there is an array with flags. The size of the
 array is equal to the number of processors.</p>
 <p>Flags:</p>
 <ul>
@@ -536,6 +536,19 @@ array is equal to the number of processors.</p>
 <p><img alt="The flag array structure" class="img-responsive" src="/images/array_based_queuing_lock.png"/></p>
 <p>Only one slot can be marked as <strong>hl</strong>.</p>
 <p>The slots are not statically associated with a particular processor.</p>
+<div class="highlight"><pre>LOCK(L):
+   myPlace = fetch_and_inc(queuelast);
+   WHILE(flags[myPlace mod N] == mw);
+
+UNLOCK(L):
+    flags[current mod N] = mw; // release lock for feature use
+    flags[(current+1) mod N] = hl; // next processor in queue gets lock
+</pre></div>
+<ul>
+<li>Only one atomic operation needed per critical section</li>
+<li>Fairness: first-come, first-served</li>
+<li>But needs a lot of space. For each lock there is one array with the size of number of processors</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
