@@ -198,6 +198,7 @@
 </li>
 <li><a href="#queuing-lock">Queuing Lock</a><ul>
 <li><a href="#array-based-queuing-lock-anderson-lock">Array-based queuing Lock (Anderson Lock)</a></li>
+<li><a href="#link-based-queuing-lock">Link Based queuing Lock</a></li>
 </ul>
 </li>
 </ul>
@@ -525,7 +526,6 @@ When the lock is released the process is notified.</p>
 </ul>
 <h2 id="queuing-lock">Queuing Lock</h2>
 <h3 id="array-based-queuing-lock-anderson-lock">Array-based queuing Lock (Anderson Lock)</h3>
-<hr/>
 <p>For each lock there is an array with flags. The size of the
 array is equal to the number of processors.</p>
 <p>Flags:</p>
@@ -549,6 +549,10 @@ UNLOCK(L):
 <li>Fairness: first-come, first-served</li>
 <li>But needs a lot of space. For each lock there is one array with the size of number of processors</li>
 </ul>
+<h3 id="link-based-queuing-lock">Link Based queuing Lock</h3>
+<p>The Locks are stored in a linked list.</p>
+<p>Synchronization for adding and removing clients to a lock.</p>
+<p>Published by <a href="http://www.cs.rice.edu/~johnmc/papers/tocs91.pdf">John M. Mellor-Crummey and Michael L. Scott (MCS)</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
