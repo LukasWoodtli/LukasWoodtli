@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Category: Programming · Lukas Woodtli</title>
+        <title>Endianness · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,43 +111,97 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/category/programming.html">Category: Programming</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/endianness.html">Endianness</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="Programming" href="#Programming">Programming</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#Programmingcollapse">
-          <span class="badge pull-right">3</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/c.html">C</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">17</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="Programmingcollapse">
-        <a href="http://lukaswoodtli.github.io/endianness.html">
-          <li class="list-group-item">
-Endianness</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">
-          <li class="list-group-item">
-Macro Magic in C and C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">
-          <li class="list-group-item">
-Enums in C and C++</li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <p>The endianness means the representation of a variable (if it is bigger than one byte) in the memory.</p>
+<blockquote>
+<p>Big-Endian: Most Significant Byte (MSB) is first (bigger end is first)</p>
+<p>Little Endian: Least Significant Byte (LSB) is first (little end is first)</p>
+</blockquote>
+<p><img alt="Big-Endian and Little-Endian" class="img-responsive" src="/images/endianness.png"/></p>
+<h1 id="cpus">CPU's</h1>
+<h2 id="big-endian">Big-Endian:</h2>
+<ul>
+<li>Motorola-6800</li>
+<li>Motorola-68k</li>
+<li>Coldfire</li>
+<li>System-z</li>
+<li>Sun-SPARC</li>
+<li>PowerPC (some models can be switched to little-endian)</li>
+<li>Atmel AVR32</li>
+<li>TMS9900</li>
+</ul>
+<h2 id="little-endian">Little-Endian:</h2>
+<ul>
+<li>6502</li>
+<li>NEC-V800</li>
+<li>PICmicro</li>
+<li>Intel-x86</li>
+<li>Alpha</li>
+<li>Altera Nios</li>
+<li>Atmel AVR</li>
+<li>SH3/SH4 (some)</li>
+<li>VAX</li>
+</ul>
+<h2 id="configurable">Configurable:</h2>
+<ul>
+<li>PowerPC (some models)</li>
+<li>IA-64 (Hewlett-Packard and Intel)</li>
+<li>ARM (and XScale)</li>
+</ul>
+<h1 id="uses">Uses</h1>
+<h2 id="technical">Technical</h2>
+<p>IP and Ethernet Network Byte Order: Big-Endian</p>
+<h2 id="real-life-use">Real-Life use</h2>
+<h3 id="big-endian_1">Big-Endian:</h3>
+<ul>
+<li>written arabic numbers: 1234 (thousend-two-hundert-thirty-four)</li>
+<li>Time: 18:34</li>
+</ul>
+<h3 id="little-endian_1">Little-Endian:</h3>
+<ul>
+<li>European Date (dd. MM YYYY): 17. June 2015</li>
+</ul>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/agile_software_development.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
