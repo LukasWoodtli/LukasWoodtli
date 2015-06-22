@@ -159,6 +159,133 @@
 <p><span class="math">\(-\)</span> means that this element is not used.</p>
 <h2 id="addressing-memory">Addressing Memory</h2>
 <p>For addressing the memory the immediate, direct and indirect method can be used.</p>
+<h1 id="registers">Registers</h1>
+<p>This are the 16 bit registers of Intel 8086, 8088,  80186 and 80188.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Register</th>
+<th>Purpose</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AX</td>
+<td>General-Purpose Register (GPR)</td>
+<td></td>
+</tr>
+<tr>
+<td>BX</td>
+<td>General-Purpose Register (GPR)</td>
+<td></td>
+</tr>
+<tr>
+<td>CX</td>
+<td>General-Purpose Register (GPR)</td>
+<td>Only register that can be used for <code>loop</code>.</td>
+</tr>
+<tr>
+<td>DX</td>
+<td>General-Purpose Register (GPR)</td>
+<td></td>
+</tr>
+<tr>
+<td>SP</td>
+<td>Stack Pointer</td>
+<td>Points to the "top" of the stack.</td>
+</tr>
+<tr>
+<td>BP</td>
+<td>Base Pointer</td>
+<td>Often used as Frame Pointer.</td>
+</tr>
+<tr>
+<td>SI, DI, BX and BP</td>
+<td>Address Registers</td>
+<td>May also be used for array indexing.</td>
+</tr>
+<tr>
+<td>CS, DS, SS and ES</td>
+<td>Segment Registers</td>
+<td>Used to form a memory address.</td>
+</tr>
+<tr>
+<td>FLAGS</td>
+<td>Status Register</td>
+<td>Carry Flag, Overflow Flag, Zero flag...</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>Instruction Pointer</td>
+<td>Points to the <em>next</em> instruction (cannot be directly accessed).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-bit-registers">8-bit Registers</h2>
+<p>Each of the <em>GPRs</em> can be accessed as two 8 bit registers. i. e:
+<em>BX's</em> high byte can be accessed as <em>BH</em> and low byte as <em>BL</em>.</p>
+<h2 id="flags-register">FLAGS Register</h2>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Bit</th>
+<th align="center">15</th>
+<th align="center">14</th>
+<th align="center">13 and 12</th>
+<th align="center">11</th>
+<th align="center">10</th>
+<th align="center">9</th>
+<th align="center">8</th>
+<th align="center">7</th>
+<th align="center">6</th>
+<th align="center">5</th>
+<th align="center">4</th>
+<th align="center">3</th>
+<th align="center">2</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mnemonic</td>
+<td align="center">-</td>
+<td align="center">NT</td>
+<td align="center">IOPL</td>
+<td align="center">OF</td>
+<td align="center">DF</td>
+<td align="center">IF</td>
+<td align="center">TF</td>
+<td align="center">SF</td>
+<td align="center">ZF</td>
+<td align="center">-</td>
+<td align="center">AF</td>
+<td align="center">-</td>
+<td align="center">PF</td>
+<td align="center">-</td>
+<td align="center">CF</td>
+</tr>
+<tr>
+<td>Meaning</td>
+<td align="center">Reserved</td>
+<td align="center">Nested Task</td>
+<td align="center">I/O Privilege Level</td>
+<td align="center">Overflow</td>
+<td align="center">Direction</td>
+<td align="center">Interrupt Enable</td>
+<td align="center">Trap</td>
+<td align="center">Sign</td>
+<td align="center">Zero</td>
+<td align="center">Reserved</td>
+<td align="center">Adjust</td>
+<td align="center">Reserved</td>
+<td align="center">Parity</td>
+<td align="center">Reserved</td>
+<td align="center">Carry</td>
+</tr>
+</tbody>
+</table>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
