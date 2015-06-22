@@ -155,8 +155,8 @@
 <pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
 <h3 id="offset-address">Offset Address</h3>
 <p>To calculate the address offset with immediate addressing  mode the following scheme is used:</p>
-<div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix}\end{bmatrix} +\begin{bmatrix}\begin{Bmatrix}-\\SI\\DI\end{Bmatrix}\end{bmatrix} + \begin{bmatrix}-\\displacement_8\\displacement_{16}\end{bmatrix}$$</div>
-<p><span class="math">\(-\)</span>: means that this element is not used.</p>
+<div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
+<p><span class="math">\(-\)</span> means that this element is not used.</p>
 <h2 id="addressing-memory">Addressing Memory</h2>
 <p>For addressing the memory the immediate, direct and indirect method can be used.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
