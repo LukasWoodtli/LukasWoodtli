@@ -159,6 +159,12 @@
 <li><a href="#flags-register">FLAGS Register</a></li>
 </ul>
 </li>
+<li><a href="#data-transfer-commands">Data Transfer Commands</a><ul>
+<li><a href="#move-command-mov">Move Command (MOV)</a></li>
+<li><a href="#exchange-command-xchg">Exchange Command (XCHG)</a></li>
+<li><a href="#input-output-commands-inout">Input-/Output Commands (IN/OUT)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="addressing">Addressing</h1>
@@ -190,9 +196,9 @@
 </ol>
 <p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are <strong>not allowed</strong>:</p>
 <ul>
-<li>No address at all: <pre><strike>MOV AX, [];</strike></pre> or <pre><strike>MOV AX, ;</strike></pre>.</li>
+<li>No address at all: <pre><strike>MOV AX, [];</strike></pre> or <pre><strike>MOV AX, ;</strike></pre></li>
 <li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
-<li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre>.</li>
+<li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre></li>
 </ul>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
@@ -344,6 +350,28 @@
 </tr>
 </tbody>
 </table>
+<h1 id="data-transfer-commands">Data Transfer Commands</h1>
+<h2 id="move-command-mov">Move Command (<code>MOV</code>)</h2>
+<p>Moves (copies) a value from a source to a destination.</p>
+<div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span><span class="c1">;</span>
+</pre></div>
+<ul>
+<li><code>dest</code> can be a memory variable or a register (but not CS or IP).</li>
+<li><code>src</code> can be a memory variable, a register or a constant.</li>
+<li>Only one memory operand can be used. Then the other one needs to be a register or a constant.</li>
+</ul>
+<h2 id="exchange-command-xchg">Exchange Command (<code>XCHG</code>)</h2>
+<p>Exchanges the values of the two operands (memory/registers).</p>
+<div class="highlight"><pre><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+</pre></div>
+<ul>
+<li>Addressing memory/register is same as with <code>MOV</code>.</li>
+<li>Segment Register and Immediate addressing is not possible.</li>
+</ul>
+<h2 id="input-output-commands-inout">Input-/Output Commands (<code>IN</code>/<code>OUT</code>)</h2>
+<p>For reading and writing data to/from ports</p>
+<p>Input/Output can only be done with accumulator register (AX/AL).</p>
+<p>Port address needs to be written to DX before calling the IN-/OUT-Command. As special case a 8-bit address can be given directly.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
