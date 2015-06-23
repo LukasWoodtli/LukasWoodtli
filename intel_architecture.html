@@ -190,9 +190,9 @@
 </ol>
 <p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are not allowed:</p>
 <ul>
-<li>No address at all: ~~<code>MOV AX, [];</code>~~ or ~~<code>MOV AX, ;</code>~~.</li>
+<li>No address at all: ~~ <code>MOV AX, [];</code> ~~ or ~~ <code>MOV AX, ;</code> ~~.</li>
 <li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
-<li>Only BP: BP points to stack. No practical use. ~<code>MOV AX, [BP];</code>~~~.</li>
+<li>Only BP: BP points to stack. No practical use. ~~ <code>MOV AX, [BP];</code> ~~.</li>
 </ul>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
