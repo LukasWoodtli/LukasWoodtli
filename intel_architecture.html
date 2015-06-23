@@ -136,7 +136,7 @@
   <hr/>
 
   <div id="article_content">
-    <p>On this page I write down some notes about the Intel architecture (x86) that I learned in school. I'ts mainly for Intel 80186. But I'll extend it with informations about modern Intel processors.</p>
+    <p>On this page I write down some notes about the Intel architecture (x86) that I learned in school. I'ts mainly for Intel 80186. But I'll extend it with informations about modern Intel processors (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
 <div class="toc">
 <ul>
 <li><a href="#addressing">Addressing</a><ul>
@@ -190,9 +190,9 @@
 </ol>
 <p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are not allowed:</p>
 <ul>
-<li>No address at all: MOV AX, []; or MOV AX, ;.</li>
+<li>No address at all: ~~<code>MOV AX, [];</code>~~ or ~~<code>MOV AX, ;</code>~~.</li>
 <li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
-<li>Only BP: BP points to stack. No practical use. MOV AX, [BP];</li>
+<li>Only BP: BP points to stack. No practical use. ~<code>MOV AX, [BP];</code>~~~.</li>
 </ul>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
