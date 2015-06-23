@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Intel Architecture · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/cv.html">CV</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/intel_architecture.html">Intel Architecture</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/computer_science.html">Computer Science</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/assembler.html">Assembler</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month06">22</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>On this page I write down some notes about the Intel architecture (x86) that I learned in school. I'ts mainly for Intel 80186. But I'll extend it with informations about modern Intel processors (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
+<div class="toc">
+<ul>
+<li><a href="#addressing">Addressing</a><ul>
+<li><a href="#imediate">Imediate</a></li>
+<li><a href="#implicit">Implicit</a></li>
+<li><a href="#register">Register</a></li>
+<li><a href="#direct">Direct</a></li>
+<li><a href="#register-indirect">Register-Indirect</a><ul>
+<li><a href="#address">Address</a><ul>
+<li><a href="#segment-prefix">Segment Prefix</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#addressing-memory">Addressing Memory</a></li>
+</ul>
+</li>
+<li><a href="#registers">Registers</a><ul>
+<li><a href="#8-bit-registers">8-bit Registers</a></li>
+<li><a href="#flags-register">FLAGS Register</a></li>
+</ul>
+</li>
+<li><a href="#data-transfer-commands">Data Transfer Commands</a><ul>
+<li><a href="#move-command-mov">Move Command (MOV)</a></li>
+<li><a href="#exchange-command-xchg">Exchange Command (XCHG)</a></li>
+<li><a href="#input-output-commands-inout">Input-/Output Commands (IN/OUT)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="addressing">Addressing</h1>
+<p>Intel processors have 5 different addressing modes.</p>
+<h2 id="imediate">Imediate</h2>
+<p>The operand (constant) is given with the command. i.e:</p>
+<pre>MOV CL, <strong>42</strong>; move the value 42 to register CL</pre>
+<h2 id="implicit">Implicit</h2>
+<p>Some commands work always with the same register/address. i.e:</p>
+<p><code>PUSH</code>/<code>POP</code> work always with SP register.</p>
+<h2 id="register">Register</h2>
+<p>The operand is held in a register</p>
+<pre>INC <strong>CH</strong>; Increment value in CH register</pre>
+<h2 id="direct">Direct</h2>
+<p>The address of the operand value comes directly after the command. i. e:</p>
+<pre>MOV CX, <strong>counter</strong>; counter holds the address of the value</pre>
+<h2 id="register-indirect">Register-Indirect</h2>
+<p>The operand is given indirectly by one or two registers. i.e:</p>
+<pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
+<h3 id="address">Address</h3>
+<p>To calculate the address with immediate addressing  mode the following scheme is used:</p>
+<div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
+<p><span class="math">\(-\)</span> means that this element is not used.</p>
+<p>The three possible address parts are:</p>
+<ol>
+<li>Basis Register (BX or BP): Contains usually the start address of a data structure. A segment prefix can be given.</li>
+<li>Index Register (SI or DI): Can contain an index (i.e Array index) that can be calculated at runtime. It's 16-bit unsigned.</li>
+<li>Displacement: A <em>signed</em> constant value (8-bit or 16-bit) that gives an offset.</li>
+</ol>
+<p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are <strong>not allowed</strong>:</p>
+<ul>
+<li>No address at all: <pre><strike>MOV AX, [];</strike></pre> or <pre><strike>MOV AX, ;</strike></pre></li>
+<li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
+<li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre></li>
+</ul>
+<h4 id="segment-prefix">Segment Prefix</h4>
+<p>A segment prefix (CS:, DS:, ES: or SS:) defines which segment will be used for calculating the address.
+Default for most registers is DS. But for BP the default is SS.</p>
+<h4 id="examples">Examples</h4>
+<div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
+</pre></div>
+<h2 id="addressing-memory">Addressing Memory</h2>
+<p>For addressing the memory the immediate, direct and indirect method can be used.</p>
+<h1 id="registers">Registers</h1>
+<p>This are the 16 bit registers of Intel 8086, 8088,  80186 and 80188.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Register</th>
+<th>Purpose</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AX</td>
+<td>General-Purpose Register (GPR)</td>
+<td>Accumulator for <code>IN</code>/<code>OUT</code> (AX or AL).</td>
+</tr>
+<tr>
+<td>BX</td>
+<td>General-Purpose Register (GPR)</td>
+<td></td>
+</tr>
+<tr>
+<td>CX</td>
+<td>General-Purpose Register (GPR)</td>
+<td>Only register that can be used for <code>loop</code>.</td>
+</tr>
+<tr>
+<td>DX</td>
+<td>General-Purpose Register (GPR)</td>
+<td>Needs to contain port address for <code>IN</code>/<code>OUT</code>.</td>
+</tr>
+<tr>
+<td>SP</td>
+<td>Stack Pointer</td>
+<td>Points to the "top" of the stack.</td>
+</tr>
+<tr>
+<td>BP</td>
+<td>Base Pointer</td>
+<td>Often used as Frame Pointer.</td>
+</tr>
+<tr>
+<td>SI, DI, BX and BP</td>
+<td>Address Registers</td>
+<td>May also be used for array indexing.</td>
+</tr>
+<tr>
+<td>CS, DS, SS and ES</td>
+<td>Segment Registers</td>
+<td>Used to form a memory address.</td>
+</tr>
+<tr>
+<td>FLAGS</td>
+<td>Status Register</td>
+<td>Carry Flag, Overflow Flag, Zero flag...</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>Instruction Pointer</td>
+<td>Points to the <em>next</em> instruction (cannot be directly accessed).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-bit-registers">8-bit Registers</h2>
+<p>Each of the <em>GPRs</em> can be accessed as two 8 bit registers. i. e:
+<em>BX's</em> high byte can be accessed as <em>BH</em> and low byte as <em>BL</em>.</p>
+<h2 id="flags-register">FLAGS Register</h2>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Bit</th>
+<th align="center">15</th>
+<th align="center">14</th>
+<th align="center">13 and 12</th>
+<th align="center">11</th>
+<th align="center">10</th>
+<th align="center">9</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mnemonic</td>
+<td align="center">-</td>
+<td align="center">NT</td>
+<td align="center">IOPL</td>
+<td align="center">OF</td>
+<td align="center">DF</td>
+<td align="center">IF</td>
+<td align="center">TF</td>
+</tr>
+<tr>
+<td>Meaning</td>
+<td align="center">Reserved</td>
+<td align="center">Nested Task (286+)</td>
+<td align="center">I/O Privilege Level (286+)</td>
+<td align="center">Overflow</td>
+<td align="center">Direction</td>
+<td align="center">Interrupt Enable</td>
+<td align="center">Trap</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Bit</th>
+<th align="center">7</th>
+<th align="center">6</th>
+<th align="center">5</th>
+<th align="center">4</th>
+<th align="center">3</th>
+<th align="center">2</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mnemonic</td>
+<td align="center">SF</td>
+<td align="center">ZF</td>
+<td align="center">-</td>
+<td align="center">AF</td>
+<td align="center">-</td>
+<td align="center">PF</td>
+<td align="center">-</td>
+<td align="center">CF</td>
+</tr>
+<tr>
+<td>Meaning</td>
+<td align="center">Sign</td>
+<td align="center">Zero</td>
+<td align="center">Reserved</td>
+<td align="center">Adjust</td>
+<td align="center">Reserved</td>
+<td align="center">Parity</td>
+<td align="center">Reserved</td>
+<td align="center">Carry</td>
+</tr>
+</tbody>
+</table>
+<h1 id="data-transfer-commands">Data Transfer Commands</h1>
+<h2 id="move-command-mov">Move Command (<code>MOV</code>)</h2>
+<p>Moves (copies) a value from a source to a destination.</p>
+<div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span><span class="c1">;</span>
+</pre></div>
+<ul>
+<li><code>dest</code> can be a memory variable or a register (but not CS or IP).</li>
+<li><code>src</code> can be a memory variable, a register or a constant.</li>
+<li>Only one memory operand can be used. Then the other one needs to be a register or a constant.</li>
+</ul>
+<h2 id="exchange-command-xchg">Exchange Command (<code>XCHG</code>)</h2>
+<p>Exchanges the values of the two operands (memory/registers).</p>
+<div class="highlight"><pre><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+</pre></div>
+<ul>
+<li>Addressing memory/register is same as with <code>MOV</code>.</li>
+<li>Segment Register and Immediate addressing is not possible.</li>
+</ul>
+<h2 id="input-output-commands-inout">Input-/Output Commands (<code>IN</code>/<code>OUT</code>)</h2>
+<p>For reading and writing data to/from ports</p>
+<p>Input/Output can only be done with accumulator register (AX/AL).</p>
+<p>Port address needs to be written to DX before calling the IN-/OUT-Command. As special case a 8-bit port address can be given directly.</p>
+<div class="highlight"><pre><span class="nf">IN</span> <span class="nb">AL</span><span class="p">,</span> <span class="nb">DX</span><span class="c1">;</span>
+<span class="nf">OUT</span> <span class="nb">DX</span><span class="p">,</span> <span class="nb">AX</span><span class="c1">;</span>
+<span class="nf">IN</span> <span class="nb">AX</span><span class="p">,</span> <span class="mh">42h</span><span class="c1">;</span>
+<span class="nf">OUT</span> <span class="mh">16h</span><span class="p">,</span> <span class="nb">AL</span><span class="c1">;</span>
+</pre></div>
+<p>It's not possible communicate directly between memory and ports. For this a DMA (Direct Memory Access) Hardware is needed.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+    
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/endianness.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
