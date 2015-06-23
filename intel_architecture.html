@@ -146,6 +146,7 @@
 <li><a href="#direct">Direct</a></li>
 <li><a href="#register-indirect">Register-Indirect</a><ul>
 <li><a href="#address">Address</a><ul>
+<li><a href="#segment-prefix">Segment Prefix</a></li>
 <li><a href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -190,7 +191,7 @@
 <p><span class="math">\(-\)</span> means that this element is not used.</p>
 <p>The three possible address parts are:</p>
 <ol>
-<li>Basis Register (BX or BP): Contains usually the start address of a data structure.</li>
+<li>Basis Register (BX or BP): Contains usually the start address of a data structure. A segment prefix can be given.</li>
 <li>Index Register (SI or DI): Can contain an index (i.e Array index) that can be calculated at runtime. It's 16-bit unsigned.</li>
 <li>Displacement: A <em>signed</em> constant value (8-bit or 16-bit) that gives an offset.</li>
 </ol>
@@ -200,6 +201,9 @@
 <li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
 <li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre></li>
 </ul>
+<h4 id="segment-prefix">Segment Prefix</h4>
+<p>A segment prefix (CS:, DS:, ES: or SS:) defines which segment will be used for calculating the address.
+Default for most registers is DS. But for BP the default is SS.</p>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
@@ -222,7 +226,7 @@
 <tr>
 <td>AX</td>
 <td>General-Purpose Register (GPR)</td>
-<td></td>
+<td>Accumulator for <code>IN</code>/<code>OUT</code> (AX or AL).</td>
 </tr>
 <tr>
 <td>BX</td>
@@ -237,7 +241,7 @@
 <tr>
 <td>DX</td>
 <td>General-Purpose Register (GPR)</td>
-<td></td>
+<td>Needs to contain port address for <code>IN</code>/<code>OUT</code>.</td>
 </tr>
 <tr>
 <td>SP</td>
@@ -371,7 +375,13 @@
 <h2 id="input-output-commands-inout">Input-/Output Commands (<code>IN</code>/<code>OUT</code>)</h2>
 <p>For reading and writing data to/from ports</p>
 <p>Input/Output can only be done with accumulator register (AX/AL).</p>
-<p>Port address needs to be written to DX before calling the IN-/OUT-Command. As special case a 8-bit address can be given directly.</p>
+<p>Port address needs to be written to DX before calling the IN-/OUT-Command. As special case a 8-bit port address can be given directly.</p>
+<div class="highlight"><pre><span class="nf">IN</span> <span class="nb">AL</span><span class="p">,</span> <span class="nb">DX</span><span class="c1">;</span>
+<span class="nf">OUT</span> <span class="nb">DX</span><span class="p">,</span> <span class="nb">AX</span><span class="c1">;</span>
+<span class="nf">IN</span> <span class="nb">AX</span><span class="p">,</span> <span class="mh">42h</span><span class="c1">;</span>
+<span class="nf">OUT</span> <span class="mh">16h</span><span class="p">,</span> <span class="nb">AL</span><span class="c1">;</span>
+</pre></div>
+<p>It's not possible communicate directly between memory and ports. For this a DMA (Direct Memory Access) Hardware is needed.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
