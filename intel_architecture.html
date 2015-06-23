@@ -136,7 +136,8 @@
   <hr/>
 
   <div id="article_content">
-    <p>On this page I write down some notes about the Intel architecture (x86) that I learned in school. I'ts mainly for Intel 80186. But I'll extend it with informations about modern Intel processors (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
+    <p>On this page I write down some notes about the Intel architecture (x86). I learned most of it in school few years ago.</p>
+<p>I'ts mainly for Intel 80186. But I'll extend it with informations about modern Intel processors (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
 <div class="toc">
 <ul>
 <li><a href="#addressing">Addressing</a><ul>
@@ -202,7 +203,7 @@
 <li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre></li>
 </ul>
 <h4 id="segment-prefix">Segment Prefix</h4>
-<p>A segment prefix (CS:, DS:, ES: or SS:) defines which segment will be used for calculating the address.
+<p>A segment prefix (<strong>CS:</strong>, <strong>DS:</strong>, <strong>ES:</strong> or <strong>SS:</strong>) defines which segment register will be used for calculating the address.
 Default for most registers is DS. But for BP the default is SS.</p>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
@@ -381,7 +382,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <span class="nf">IN</span> <span class="nb">AX</span><span class="p">,</span> <span class="mh">42h</span><span class="c1">;</span>
 <span class="nf">OUT</span> <span class="mh">16h</span><span class="p">,</span> <span class="nb">AL</span><span class="c1">;</span>
 </pre></div>
-<p>It's not possible communicate directly between memory and ports. For this a DMA (Direct Memory Access) Hardware is needed.</p>
+<p>It's not possible communicate directly between memory and ports. For this a DMA (Direct Memory Access) Hardware would be needed.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
