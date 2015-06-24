@@ -205,7 +205,7 @@
 </ul>
 </div>
 <h1 id="registers">Registers</h1>
-<p>This are the 16 bit registers of Intel 8086, 8088,  80186 and 80188.</p>
+<p>This are the 16-bit registers of Intel 8086, 8088,  80186 and 80188.</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -218,22 +218,27 @@
 <tr>
 <td>AX</td>
 <td>General-Purpose Register (GPR)</td>
-<td>Accumulator for <code>IN</code>/<code>OUT</code> (AX or AL).</td>
+<td>Accumulator for <code>IN</code>/<code>OUT</code> (AX or AL). Can be used as 8-bit registers (AH/AL).</td>
 </tr>
 <tr>
 <td>BX</td>
 <td>General-Purpose Register (GPR)</td>
-<td>Base index (array).</td>
+<td>Base index (array). Can be used as 8-bit registers (BH/BL).</td>
 </tr>
 <tr>
 <td>CX</td>
 <td>General-Purpose Register (GPR)</td>
-<td>Only register that can be used for <code>LOOP</code>.</td>
+<td>Only register that can be used for <code>LOOP</code>. Can be used as 8-bit registers (CH/CL).</td>
 </tr>
 <tr>
 <td>DX</td>
 <td>General-Purpose Register (GPR)</td>
 <td>Needs to contain port address for <code>IN</code>/<code>OUT</code>. Extend precision of accumulator.</td>
+</tr>
+<tr>
+<td>Can be used as 8-bit registers (DH/DL).</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>DI</td>
@@ -401,8 +406,8 @@
 <h1 id="segmentation">Segmentation</h1>
 <p>To allow access to 20-bit addresses with 16-bit registers the 8086 uses segmentation.</p>
 <div class="math">$$physical\_ address = segment\_ register \times 10_{hex} + offset$$</div>
-<p><span class="math">\(\timnes 10_{hex}\)</span> means a 4-bit shift to left</p>
 <ul>
+<li><span class="math">\(\times 10_{hex}\)</span> means a 4-bit shift to left</li>
 <li>Each addressable segment is 64 kB big.</li>
 <li>20-bit address bus: Total <span class="math">\(2^{20}\)</span> bytes addressable (1'048'576 bytes = 1 MB).</li>
 <li>16-bit offset: <span class="math">\(2^{16}\)</span> bytes addressable (65'536 bytes = 64 kB) per segment.</li>
