@@ -141,6 +141,12 @@
 <p>I'm trying to keep all code examples in <a href="http://www.nasm.us">NASM</a> syntax.</p>
 <div class="toc">
 <ul>
+<li><a href="#registers">Registers</a><ul>
+<li><a href="#8-bit-registers">8-bit Registers</a></li>
+<li><a href="#values-after-reset">Values after Reset</a></li>
+<li><a href="#flags-register">FLAGS Register</a></li>
+</ul>
+</li>
 <li><a href="#segmentation">Segmentation</a></li>
 <li><a href="#addressing">Addressing</a><ul>
 <li><a href="#imediate">Imediate</a></li>
@@ -157,12 +163,6 @@
 </ul>
 </li>
 <li><a href="#addressing-memory">Addressing Memory</a></li>
-</ul>
-</li>
-<li><a href="#registers">Registers</a><ul>
-<li><a href="#8-bit-registers">8-bit Registers</a></li>
-<li><a href="#values-after-reset">Values after Reset</a></li>
-<li><a href="#flags-register">FLAGS Register</a></li>
 </ul>
 </li>
 <li><a href="#data-transfer-commands">Data Transfer Commands</a><ul>
@@ -204,67 +204,6 @@
 </li>
 </ul>
 </div>
-<h1 id="segmentation">Segmentation</h1>
-<p>To allow access to 20-bit addresses with 16-bit registers the 8086 uses segmentation.</p>
-<div class="math">$$physical\_ address = segment\_ register \cdot 10_{hex} + offset$$</div>
-<p><span class="math">\(\cdot 10_{hex}\)</span> means a 4-bit shift to left</p>
-<p>Each addressable segment is 64 kB big.</p>
-<p>20-bit address bus:</p>
-<p>Total <span class="math">\(2^{20}\)</span> bytes addressable (1'048'576 bytes = 1 MB).</p>
-<p>16-bit offset:</p>
-<p><span class="math">\(2^{16}\)</span> bytes addressable (65'536 bytes = 64 kB) per segment.</p>
-<p>Needed segments:</p>
-<p><span class="math">\(2^{20}/2^{16} = 2^4 = 16\)</span> segments needed to access complete address space.</p>
-<h1 id="addressing">Addressing</h1>
-<p>Intel processors have 5 different addressing modes.</p>
-<h2 id="imediate">Imediate</h2>
-<p>The operand (constant) is given with the command. i.e:</p>
-<pre>MOV CL, <strong>42</strong>; move the value 42 to register CL</pre>
-<h2 id="implicit">Implicit</h2>
-<p>Some commands work always with the same register/address. i.e:</p>
-<p><code>PUSH</code>/<code>POP</code> work always with SP register.</p>
-<h2 id="register">Register</h2>
-<p>The operand is held in a register</p>
-<pre>INC <strong>CH</strong>; Increment value in CH register</pre>
-<h2 id="direct">Direct</h2>
-<p>The address of the operand value comes directly after the command. i. e:</p>
-<pre>MOV CX, <strong>counter</strong>; counter holds the address of the value</pre>
-<h2 id="register-indirect">Register-Indirect</h2>
-<p>The operand is given indirectly by one or two registers. A segment register and a constant offset value can be supplied.</p>
-<p>The calculated value acts as a pointer (address to a memory location).</p>
-<p>i.e:</p>
-<pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
-<h3 id="address">Address</h3>
-<p>To calculate an address the following scheme is used:</p>
-<div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
-<p><span class="math">\(-\)</span> means that this element is not used.</p>
-<p>The three possible address parts are:</p>
-<ol>
-<li>Basis Register (BX or BP): Contains usually the start address of a data structure. A segment prefix can be given.</li>
-<li>Index Register (SI or DI): Can contain an index (i.e Array index) that can be calculated at runtime. It's 16-bit unsigned.</li>
-<li>Displacement: A <em>signed</em> constant value (8-bit or 16-bit) that gives an offset.</li>
-</ol>
-<p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are <strong>not allowed</strong>:</p>
-<ul>
-<li>No address at all: <pre><strike>MOV AX, [];</strike></pre> or <pre><strike>MOV AX, ;</strike></pre></li>
-<li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
-<li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre></li>
-</ul>
-<h4 id="segment-prefix">Segment Prefix</h4>
-<p>A segment prefix (<strong>CS:</strong>, <strong>DS:</strong>, <strong>ES:</strong> or <strong>SS:</strong>) defines which segment register will be used for calculating the address.
-Default for most registers is DS. But for BP the default is SS.</p>
-<h4 id="operand-size-word-dword">Operand Size (<code>WORD</code>, <code>DWORD</code>...)</h4>
-<p>In some cases the size of an operand can be given (for some cases it is even mandatory). Size types:</p>
-<p><code>BYTE</code>, <code>WORD</code>, <code>DWORD</code>, <code>QWORD</code>, <code>TBYTE</code>, <code>FAR</code>...</p>
-<h4 id="examples">Examples</h4>
-<div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
-<span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
-<span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">CS</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
-<span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
-<span class="nf">MOV</span> <span class="kt">WORD</span> <span class="p">[</span><span class="nb">ES</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nb">AX</span><span class="c1">;</span>
-</pre></div>
-<h2 id="addressing-memory">Addressing Memory</h2>
-<p>For addressing the memory the immediate, direct and indirect method can be used.</p>
 <h1 id="registers">Registers</h1>
 <p>This are the 16 bit registers of Intel 8086, 8088,  80186 and 80188.</p>
 <table class="table table-hover table-striped">
@@ -459,6 +398,67 @@ Default for most registers is DS. But for BP the default is SS.</p>
 </tr>
 </tbody>
 </table>
+<h1 id="segmentation">Segmentation</h1>
+<p>To allow access to 20-bit addresses with 16-bit registers the 8086 uses segmentation.</p>
+<div class="math">$$physical\_ address = segment\_ register \times 10_{hex} + offset$$</div>
+<p><span class="math">\(\timnes 10_{hex}\)</span> means a 4-bit shift to left</p>
+<ul>
+<li>Each addressable segment is 64 kB big.</li>
+<li>20-bit address bus: Total <span class="math">\(2^{20}\)</span> bytes addressable (1'048'576 bytes = 1 MB).</li>
+<li>16-bit offset: <span class="math">\(2^{16}\)</span> bytes addressable (65'536 bytes = 64 kB) per segment.</li>
+<li>Needed segments: <span class="math">\(2^{20}/2^{16} = 2^4 = 16\)</span> segments needed to access complete address space.</li>
+<li>Segments can overlap or there can be gaps between them.</li>
+</ul>
+<h1 id="addressing">Addressing</h1>
+<p>Intel processors have 5 different addressing modes.</p>
+<h2 id="imediate">Imediate</h2>
+<p>The operand (constant) is given with the command. i.e:</p>
+<pre>MOV CL, <strong>42</strong>; move the value 42 to register CL</pre>
+<h2 id="implicit">Implicit</h2>
+<p>Some commands work always with the same register/address. i.e:</p>
+<p><code>PUSH</code>/<code>POP</code> work always with SP register.</p>
+<h2 id="register">Register</h2>
+<p>The operand is held in a register</p>
+<pre>INC <strong>CH</strong>; Increment value in CH register</pre>
+<h2 id="direct">Direct</h2>
+<p>The address of the operand value comes directly after the command. i. e:</p>
+<pre>MOV CX, <strong>counter</strong>; counter holds the address of the value</pre>
+<h2 id="register-indirect">Register-Indirect</h2>
+<p>The operand is given indirectly by one or two registers. A segment register and a constant offset value can be supplied.</p>
+<p>The calculated value acts as a pointer (address to a memory location).</p>
+<p>i.e:</p>
+<pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
+<h3 id="address">Address</h3>
+<p>To calculate an address the following scheme is used:</p>
+<div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
+<p><span class="math">\(-\)</span> means that this element is not used.</p>
+<p>The three possible address parts are:</p>
+<ol>
+<li>Basis Register (BX or BP): Contains usually the start address of a data structure. A segment prefix can be given.</li>
+<li>Index Register (SI or DI): Can contain an index (i.e Array index) that can be calculated at runtime. It's 16-bit unsigned.</li>
+<li>Displacement: A <em>signed</em> constant value (8-bit or 16-bit) that gives an offset.</li>
+</ol>
+<p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are <strong>not allowed</strong>:</p>
+<ul>
+<li>No address at all: <pre><strike>MOV AX, [];</strike></pre> or <pre><strike>MOV AX, ;</strike></pre></li>
+<li>Only 8-bit displacement: Only memory 0-255 could be addressed.</li>
+<li>Only BP: BP points to stack. No practical use. <pre><strike>MOV AX, [BP];</strike></pre></li>
+</ul>
+<h4 id="segment-prefix">Segment Prefix</h4>
+<p>A segment prefix (<strong>CS:</strong>, <strong>DS:</strong>, <strong>ES:</strong> or <strong>SS:</strong>) defines which segment register will be used for calculating the address.
+Default for most registers is DS. But for BP the default is SS.</p>
+<h4 id="operand-size-word-dword">Operand Size (<code>WORD</code>, <code>DWORD</code>...)</h4>
+<p>In some cases the size of an operand can be given (for some cases it is even mandatory). Size types:</p>
+<p><code>BYTE</code>, <code>WORD</code>, <code>DWORD</code>, <code>QWORD</code>, <code>TBYTE</code>, <code>FAR</code>...</p>
+<h4 id="examples">Examples</h4>
+<div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">CS</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="kt">WORD</span> <span class="p">[</span><span class="nb">ES</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nb">AX</span><span class="c1">;</span>
+</pre></div>
+<h2 id="addressing-memory">Addressing Memory</h2>
+<p>For addressing the memory the immediate, direct and indirect method can be used.</p>
 <h1 id="data-transfer-commands">Data Transfer Commands</h1>
 <h2 id="move-command-mov">Move Command (<code>MOV</code>)</h2>
 <p>Moves (copies) a value from a source to a destination.</p>
