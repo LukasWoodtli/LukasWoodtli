@@ -138,6 +138,7 @@
   <div id="article_content">
     <p>On this page I write down some notes about the Intel architecture (x86). I learned most of it in school few years ago.</p>
 <p>I'ts mainly for Intel 80186. But I'll extend it with informations about modern Intel processors (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
+<p>I'm trying to keep all code examples in <a href="www.nasm.us">NASM</a> syntax.</p>
 <div class="toc">
 <ul>
 <li><a href="#addressing">Addressing</a><ul>
@@ -148,6 +149,7 @@
 <li><a href="#register-indirect">Register-Indirect</a><ul>
 <li><a href="#address">Address</a><ul>
 <li><a href="#segment-prefix">Segment Prefix</a></li>
+<li><a href="#operand-size-word-dword">Operand Size (WORD, DWORD...)</a></li>
 <li><a href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -184,10 +186,12 @@
 <p>The address of the operand value comes directly after the command. i. e:</p>
 <pre>MOV CX, <strong>counter</strong>; counter holds the address of the value</pre>
 <h2 id="register-indirect">Register-Indirect</h2>
-<p>The operand is given indirectly by one or two registers. i.e:</p>
+<p>The operand is given indirectly by one or two registers. A segment register and a constant offset value can be supplied.</p>
+<p>The calculated value acts as a pointer (address to a memory location).</p>
+<p>i.e:</p>
 <pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
 <h3 id="address">Address</h3>
-<p>To calculate the address with immediate addressing  mode the following scheme is used:</p>
+<p>To calculate an address the following scheme is used:</p>
 <div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
 <p><span class="math">\(-\)</span> means that this element is not used.</p>
 <p>The three possible address parts are:</p>
@@ -205,11 +209,15 @@
 <h4 id="segment-prefix">Segment Prefix</h4>
 <p>A segment prefix (<strong>CS:</strong>, <strong>DS:</strong>, <strong>ES:</strong> or <strong>SS:</strong>) defines which segment register will be used for calculating the address.
 Default for most registers is DS. But for BP the default is SS.</p>
+<h4 id="operand-size-word-dword">Operand Size (<code>WORD</code>, <code>DWORD</code>...)</h4>
+<p>In some cases the size of an operand can be given (for some cases it is even mandatory). Size types:</p>
+<p><code>BYTE</code>, <code>WORD</code>, <code>DWORD</code>, <code>QWORD</code>, <code>TBYTE</code>, <code>FAR</code>...</p>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
-<span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">CS</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
+<span class="nf">MOV</span> <span class="kt">WORD</span> <span class="p">[</span><span class="nb">ES</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nb">AX</span><span class="c1">;</span>
 </pre></div>
 <h2 id="addressing-memory">Addressing Memory</h2>
 <p>For addressing the memory the immediate, direct and indirect method can be used.</p>
@@ -237,7 +245,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <tr>
 <td>CX</td>
 <td>General-Purpose Register (GPR)</td>
-<td>Only register that can be used for <code>loop</code>.</td>
+<td>Only register that can be used for <code>LOOP</code>.</td>
 </tr>
 <tr>
 <td>DX</td>
