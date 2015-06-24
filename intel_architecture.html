@@ -182,6 +182,22 @@
 <li><a href="#affected-flags_2">Affected Flags</a></li>
 </ul>
 </li>
+<li><a href="#subtraction-sub">Subtraction (SUB)</a><ul>
+<li><a href="#affected-flags_3">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#subtraction-with-borrow-sbb">Subtraction with Borrow (SBB)</a><ul>
+<li><a href="#affected-flags_4">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#decrement-dec">Decrement (DEC)</a><ul>
+<li><a href="#affected-flags_5">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#negate-a-signed-number-neg">Negate a signed Number (NEG)</a><ul>
+<li><a href="#affected-flags_6">Affected Flags</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -425,7 +441,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <h2 id="addition-with-carry-adc">Addition with Carry (<code>ADC</code>)</h2>
 <p>Adds the two operands and the carry flag. The result is written into the first operand. The first operand can not be a constant.</p>
 <blockquote>
-<p>Addition of big signed operands can be splitted in several <code>ADC</code> commands.</p>
+<p>Addition of big signed operands can be splitted into several <code>ADC</code> commands.</p>
 </blockquote>
 <h3 id="affected-flags_1">Affected Flags</h3>
 <ul>
@@ -448,6 +464,52 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>The carry-flag is not affected! An overflow can be recognized with the zero-flag.</p>
 <p><code>INC</code> can be used to increment a control variable in a loop without affecting the carry-flag.</p>
 </blockquote>
+<h2 id="subtraction-sub">Subtraction (<code>SUB</code>)</h2>
+<p>Subtracts the second operand from the first. The result is written into the first operand. The first operand can not be a constant.</p>
+<h3 id="affected-flags_3">Affected Flags</h3>
+<ul>
+<li>Carry: with unsigned operands</li>
+<li>Overflow: with signed operands</li>
+<li>Zero: if result is zero</li>
+<li>Sign: if signed result is negative</li>
+<li>Parity: if parity is even</li>
+</ul>
+<h2 id="subtraction-with-borrow-sbb">Subtraction with Borrow (<code>SBB</code>)</h2>
+<p>Subtracts the second operand and the carry-flag (borrow) from the first operand. The result is written into the first operand. The first operand can not be a constant.</p>
+<h3 id="affected-flags_4">Affected Flags</h3>
+<ul>
+<li>Carry: with unsigned operands</li>
+<li>Overflow: with signed operands</li>
+<li>Zero: if result is zero</li>
+<li>Sign: if signed result is negative</li>
+<li>Parity: if parity is even</li>
+</ul>
+<blockquote>
+<p>Subtraction of big signed operands can be splitted into several <code>SBB</code> commands.</p>
+</blockquote>
+<h2 id="decrement-dec">Decrement (<code>DEC</code>)</h2>
+<p>Subtracts one from the given operand.</p>
+<h3 id="affected-flags_5">Affected Flags</h3>
+<ul>
+<li>Overflow: with signed operands</li>
+<li>Zero: if result is zero</li>
+<li>Sign: if signed result is negative</li>
+<li>Parity: if parity is even</li>
+</ul>
+<blockquote>
+<p>The carry-flag is not affected! An overflow can be only recognized with checking the result for 0xFF.</p>
+<p><code>DEC</code> can be used to decrement a control variable in a loop without affecting the carry-flag.</p>
+</blockquote>
+<h2 id="negate-a-signed-number-neg">Negate a signed Number (<code>NEG</code>)</h2>
+<p>Changes a negative into a positive number and vice versa. It's basically subtracting the operand from zero (0).</p>
+<h3 id="affected-flags_6">Affected Flags</h3>
+<ul>
+<li>Carry: set if operand wasn't zero (not very useful)</li>
+<li>Overflow: if no positive representation exist (operand was biggest negative number)</li>
+<li>Zero: if result is zero</li>
+<li>Sign: if signed result is negative</li>
+<li>Parity: if parity is even</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
