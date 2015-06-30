@@ -200,6 +200,15 @@
 <li><a href="#affected-flags_6">Affected Flags</a></li>
 </ul>
 </li>
+<li><a href="#multiplication-mul-imul">Multiplication (MUL, IMUL)</a><ul>
+<li><a href="#affected-flags_7">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#division-div-idiv">Division (DIV, IDIV)</a><ul>
+<li><a href="#affected-flags_8">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#convert-operand-size-cbw-cwd">Convert Operand Size (CBW, CWD)</a></li>
 </ul>
 </li>
 </ul>
@@ -575,6 +584,47 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <li>Sign: if signed result is negative</li>
 <li>Parity: if parity is even</li>
 </ul>
+<h2 id="multiplication-mul-imul">Multiplication (<code>MUL</code>, <code>IMUL</code>)</h2>
+<p>Multiplicates unsigned (<code>MUL</code>) or signed (<code>IMUL</code>) numbers.</p>
+<p>There is a explicit operand given after the command and an implicit operand in the AX or AL register.</p>
+<p>The explicit operand sets the size and defines the used implicit register. It can be either a register or a memory location.</p>
+<p>The result is always twice as big as the operands. It's either the accumulator (<em>AX</em>)
+or the <strong>extended accumulator</strong> (<em>DX/AX</em>).</p>
+<div class="highlight"><pre><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
+<span class="nf">IMUL</span> <span class="nb">BX</span> <span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span>
+</pre></div>
+<h3 id="affected-flags_7">Affected Flags</h3>
+<ul>
+<li>Carry: set if operand extended acumulator is needed for saving result (<em>DX/AX</em>)</li>
+<li>Zero: changed (undefined)</li>
+<li>Sign: changed (undefined)</li>
+<li>Parity: changed (undefined)</li>
+</ul>
+<blockquote>
+<p>The 8086 can not multiply with constants (immediate).</p>
+</blockquote>
+<h2 id="division-div-idiv">Division (<code>DIV</code>, <code>IDIV</code>)</h2>
+<p>There are different division operations for unsigned (<code>DIV</code>) and signed (<code>IDIV</code>) numbers.</p>
+<p>The explicit operand (given directly after the command) defines the size of the operands.
+It can be a register or a memory location.</p>
+<p>The implicit operand is the accumulator (<em>AX</em>) or the extended accumulator (<em>DX/AX</em>), dependant on
+the size of the explicit operator.</p>
+<p>The result (quotient) is saved either in <em>AX</em> or <em>AL</em>. The remainder is saved in either <em>DX</em> or <em>AH</em>.</p>
+<div class="highlight"><pre><span class="nf">DIV</span> <span class="nb">BX</span> <span class="c1">; Use DX/AX  as implicit operand. Result is saved in AX. Remainder is saved in DX.</span>
+<span class="nf">IDIV</span> <span class="mh">0x34</span> <span class="c1">; Use AX as implicit operand. Result is saved in AL. Remainder is saved in AH.</span>
+</pre></div>
+<h3 id="affected-flags_8">Affected Flags</h3>
+<ul>
+<li><strong>All</strong> flags are changed to <em>undefined</em>!</li>
+</ul>
+<blockquote>
+<p>If the result is too big for the register <em>AL</em> resp. <em>AX</em> a interrupt (<em>division error</em>) is caused.
+If it is not handled the <strong>program can crash</strong> (undefined behaviour).</p>
+</blockquote>
+<h2 id="convert-operand-size-cbw-cwd">Convert Operand Size (<code>CBW</code>, <code>CWD</code>)</h2>
+<p>The commands <em>convert byte to word</em> (<code>CBW</code>) and <em>convert word to doubleword</em> (<code>CWD</code>) convert a <em>signed</em>
+number to a number of the same value but twice the size. This is needed to keep the
+<a href="https://en.wikipedia.org/wiki/Two%27s_complement">two's complement</a> format.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
