@@ -211,6 +211,25 @@
 <li><a href="#convert-operand-size-cbw-cwd">Convert Operand Size (CBW, CWD)</a></li>
 </ul>
 </li>
+<li><a href="#logical-commands">Logical Commands</a><ul>
+<li><a href="#and-and">And (AND)</a><ul>
+<li><a href="#affected-flags_9">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#or-or">Or (OR)</a><ul>
+<li><a href="#affected-flags_10">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#xor-xor">Xor (XOR)</a><ul>
+<li><a href="#affected-flags_11">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#not-not">Not (NOT)</a><ul>
+<li><a href="#affected-flags_12">Affected Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="registers">Registers</h1>
@@ -625,6 +644,41 @@ If it is not handled the <strong>program can crash</strong> (undefined behaviour
 <p>The commands <em>convert byte to word</em> (<code>CBW</code>) and <em>convert word to doubleword</em> (<code>CWD</code>) convert a <em>signed</em>
 number to a number of the same value but twice the size. This is needed to keep the
 <a href="https://en.wikipedia.org/wiki/Two%27s_complement">two's complement</a> format.</p>
+<h1 id="logical-commands">Logical Commands</h1>
+<h2 id="and-and">And (<code>AND</code>)</h2>
+<p>Bitwise <strong>and</strong> operation. The first operand can be a register or a memory address. The second operand can
+be a register, a memory address or a constant.</p>
+<p>The first operand is overwritten with the result.</p>
+<h3 id="affected-flags_9">Affected Flags</h3>
+<ul>
+<li>Carry and Overflow: are always reset (0)</li>
+<li>Zero and Sign: are set according to the result</li>
+</ul>
+<h2 id="or-or">Or (<code>OR</code>)</h2>
+<p>Bitwise <strong>or</strong> operation. The first operand can be a register or a memory address. The second operand can
+be a register, a memory address or a constant.</p>
+<p>The first operand is overwritten with the result.</p>
+<h3 id="affected-flags_10">Affected Flags</h3>
+<ul>
+<li>Carry and Overflow: are always reset (0)</li>
+<li>Zero and Sign: are set according to the result</li>
+</ul>
+<h2 id="xor-xor">Xor (<code>XOR</code>)</h2>
+<p>Bitwise <strong>xor</strong> operation. The first operand can be a register or a memory address. The second operand can
+be a register, a memory address or a constant.</p>
+<p>The first operand is overwritten with the result.</p>
+<h3 id="affected-flags_11">Affected Flags</h3>
+<ul>
+<li>Carry and Overflow: are always reset (0)</li>
+<li>Zero and Sign: are set according to the result</li>
+</ul>
+<h2 id="not-not">Not (<code>NOT</code>)</h2>
+<p>Bitwise <strong>not</strong> (inverse) operation. The operand can be a register or a memory address.</p>
+<p>The operand is overwritten with the result.</p>
+<h3 id="affected-flags_12">Affected Flags</h3>
+<ul>
+<li><strong>No</strong> flags are changed</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
