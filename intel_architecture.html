@@ -245,6 +245,13 @@
 </li>
 </ul>
 </li>
+<li><a href="#jump-commands">Jump Commands</a><ul>
+<li><a href="#conditionalunconditional-jumps">Conditional/Unconditional Jumps</a></li>
+<li><a href="#short-near-and-far-jumps">Short, Near and Far Jumps</a></li>
+<li><a href="#direct-and-indirect-jumps">Direct and Indirect Jumps</a></li>
+<li><a href="#absolute-and-relative-jumps">Absolute and Relative Jumps</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="registers">Registers</h1>
@@ -745,6 +752,29 @@ constant <strong>1</strong> or the register <em>CL</em>.</p>
 <li>SF</li>
 <li>(OF)</li>
 </ul>
+<h1 id="jump-commands">Jump Commands</h1>
+<p>Jump commands can be divided by different topics.</p>
+<h2 id="conditionalunconditional-jumps">Conditional/Unconditional Jumps</h2>
+<p>Unconditional jumps are always performed. Conditional jumps are only
+performed if a check gives an expected result (i.e flags).</p>
+<h2 id="short-near-and-far-jumps">Short, Near and Far Jumps</h2>
+<ul>
+<li>Short: signed 8-bit distance</li>
+<li>Near: unsigned 16-bit distance</li>
+<li>Far: 32-bit (Segment and Offset)</li>
+</ul>
+<h2 id="direct-and-indirect-jumps">Direct and Indirect Jumps</h2>
+<ul>
+<li>Direct: The target address is given directly after the command</li>
+<li>Indirect: The position is given indirectly by a register or a memory position</li>
+</ul>
+<h2 id="absolute-and-relative-jumps">Absolute and Relative Jumps</h2>
+<ul>
+<li>Absolute jumps: The target address is an absolute address</li>
+<li>Relative jumps: The target address is given relative to the actual position (<em>IP</em>)</li>
+</ul>
+<p>The 8086 has following possible jump commands:</p>
+<p><img alt="The Intel x86 jump commands" class="img-responsive" src="/images/intel_architecture_jump.svg"/></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
