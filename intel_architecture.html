@@ -222,6 +222,29 @@
 </li>
 </ul>
 </li>
+<li><a href="#rotation-commands">Rotation Commands</a><ul>
+<li><a href="#roatate-rol-ror">Roatate (ROL, ROR)</a><ul>
+<li><a href="#affected-flags_11">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#rotate-with-carry-rcl-rcr">Rotate with Carry (RCL, RCR)</a><ul>
+<li><a href="#affected-flags_12">Affected Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#manipulate-the-carry-flag-clc-stc-cmc">Manipulate the Carry Flag (CLC, STC, CMC)</a></li>
+<li><a href="#shift-commands">Shift Commands</a><ul>
+<li><a href="#left-shift-commands-shl-sal">Left Shift Commands (SHL, SAL)</a><ul>
+<li><a href="#affected-flags_13">Affected Flags</a></li>
+</ul>
+</li>
+<li><a href="#right-shift-commands-shr-sar">Right  Shift Commands (SHR, SAR)</a><ul>
+<li><a href="#affected-flags_14">Affected Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="registers">Registers</h1>
@@ -652,6 +675,75 @@ be a register, a memory address or a constant.</p>
 <h3 id="affected-flags_10">Affected Flags</h3>
 <ul>
 <li><strong>No</strong> flags are changed</li>
+</ul>
+<h1 id="rotation-commands">Rotation Commands</h1>
+<h2 id="roatate-rol-ror">Roatate (<code>ROL</code>, <code>ROR</code>)</h2>
+<p>Rotate left (<code>ROL</code>) or right (<code>ROR</code>).</p>
+<p>Rotates the first operand (memory or register) by the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>.</p>
+<div class="highlight"><pre><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
+<span class="nf">ROR</span> <span class="nb">AX</span><span class="p">,</span> <span class="nb">CL</span><span class="c1">; Rotate by value in CL.</span>
+</pre></div>
+<h3 id="affected-flags_11">Affected Flags</h3>
+<ul>
+<li>Overflow:<ul>
+<li>For one-bit rotation: Overflow set if MSB is changed by the rotation. Otherwise it's not set.</li>
+<li>For other cases: Overflow is undefined</li>
+</ul>
+</li>
+<li>Carry has the value of the bit that was shifted from one end to the other.</li>
+</ul>
+<h2 id="rotate-with-carry-rcl-rcr">Rotate with Carry (<code>RCL</code>, <code>RCR</code>)</h2>
+<p>Rotate left (<code>RCL</code>) or right (<code>RCR</code>) with carry as MSB.</p>
+<p>The first operand (memory or register) is extended with the carry bit as the MSB.
+It is then rotated by the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>.</p>
+<h3 id="affected-flags_12">Affected Flags</h3>
+<ul>
+<li>Overflow:<ul>
+<li>For one-bit rotation: Overflow set if MSB is changed by the rotation. Otherwise it's not set.</li>
+<li>For other cases: Overflow is undefined</li>
+</ul>
+</li>
+<li>Carry has the value of the bit that was shifted from one end to the other.</li>
+</ul>
+<h1 id="manipulate-the-carry-flag-clc-stc-cmc">Manipulate the Carry Flag (<code>CLC</code>, <code>STC</code>, <code>CMC</code>)</h1>
+<p>Clear Carry Flag (<code>CLC</code>): CF = 0.</p>
+<p>Set Carry Flage (<code>STC</code>): CF = 1.</p>
+<p>Complement Carry Flag (<code>CMC</code>): CF = !CF.</p>
+<h1 id="shift-commands">Shift Commands</h1>
+<p>The shift commands can be used to multiply with or divide by a
+power of two (2, 5, 8, ...).</p>
+<p>For a multiplication or a division of a <em>unsigned</em> number the <em>logical
+shift operators</em> need to be used.</p>
+<p>For a multiplication or a division of a <em>signed</em> number the <em>arithmetic
+shift operators</em> need to be used.</p>
+<h2 id="left-shift-commands-shl-sal">Left Shift Commands (<code>SHL</code>, <code>SAL</code>)</h2>
+<p>Both left shift operators are functional identical. They muliplicate
+the operator by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
+<p>Shifts the given operator (memory or register) left by
+the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>.</p>
+<h3 id="affected-flags_13">Affected Flags</h3>
+<ul>
+<li>Zero</li>
+<li>Sign</li>
+<li>Offset</li>
+<li>For one-bit shift:<ul>
+<li>Carry: For unsigned Operands a set carry flag means <em>overflow</em></li>
+<li>Overflow: For signed Operands a set overflow flag means <em>overflow</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="right-shift-commands-shr-sar">Right  Shift Commands (<code>SHR</code>, <code>SAR</code>)</h2>
+<p>The <em>logical shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
+<p>The <em>arithmetic shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.
+The sign stays unchanged.</p>
+<p>The first operand is a memory location or a register. The second operand is the
+constant <strong>1</strong> or the register <em>CL</em>.</p>
+<h3 id="affected-flags_14">Affected Flags</h3>
+<ul>
+<li>CF: For one-bit shifts the carry flag holds the remainder of the division</li>
+<li>ZF</li>
+<li>SF</li>
+<li>(OF)</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
