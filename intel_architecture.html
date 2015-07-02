@@ -803,12 +803,12 @@ is always inside the actual code segment (<em>CS</em>).</p>
 <p>All far jumps are absolute.</p>
 <h2 id="unconditional-jumps">Unconditional Jumps</h2>
 <ul>
-<li><pre><strong>JMP</strong> displ8</pre>: 8-bit displacement is added to <em>IP</em> as signed number.</li>
-<li><pre><strong>JMP</strong> displ16</pre>: 16-bit displacement is added to <em>IP</em> as unsigned number.</li>
-<li><pre><strong>JMP</strong> const32</pre>: The constant is the absolute 32-bit FAR-addresd.</li>
-<li><pre><strong>JMP</strong> reg16</pre>: <em>IP</em> is loaded with the value of the register.</li>
-<li><pre><strong>JMP</strong> mem16</pre>: <em>IP</em> is loaded with the value given by the memory position.</li>
-<li><pre><strong>JMP</strong> mem32</pre>: <em>CS</em> and <em>IP</em> are loaded with the value at the memory position.</li>
+<li>8-bit displacement is added to <em>IP</em> as signed number:<pre><strong>JMP</strong> displ8</pre></li>
+<li>16-bit displacement is added to <em>IP</em> as unsigned number:<pre><strong>JMP</strong> displ16</pre></li>
+<li>The constant is the absolute 32-bit FAR-addresd:<pre><strong>JMP</strong> const32</pre></li>
+<li><em>IP</em> is loaded with the value of the register:<pre><strong>JMP</strong> reg16</pre></li>
+<li><em>IP</em> is loaded with the value given by the memory position:<pre><strong>JMP</strong> mem16</pre></li>
+<li><em>CS</em> and <em>IP</em> are loaded with the value at the memory position:<pre><strong>JMP</strong> mem32</pre></li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
