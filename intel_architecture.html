@@ -261,6 +261,15 @@
 </ul>
 </li>
 <li><a href="#unconditional-jumps">Unconditional Jumps</a></li>
+<li><a href="#conditional-jumps">Conditional Jumps</a><ul>
+<li><a href="#arithmetic-jumps">Arithmetic Jumps</a><ul>
+<li><a href="#arithmetic-unsigned-jumps">Arithmetic "unsigned" Jumps</a></li>
+<li><a href="#arithmetic-signed-jumps">Arithmetic "signed" Jumps</a></li>
+</ul>
+</li>
+<li><a href="#flag-oriented-jumps">Flag oriented Jumps</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -834,6 +843,263 @@ is always inside the actual code segment (<em>CS</em>).</p>
 <li><em>IP</em> is loaded with the value given by the memory position:<pre><strong>JMP</strong> mem16</pre></li>
 <li><em>CS</em> and <em>IP</em> are loaded with the value at the memory position:<pre><strong>JMP</strong> mem32</pre></li>
 </ul>
+<h2 id="conditional-jumps">Conditional Jumps</h2>
+<p>Conditional jumps check one or more flags and jump to a given address if a condition is met.</p>
+<p>Before the jump can be performed the flags need to be set by a logical or arithmetic command.
+Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</p>
+<p>Conditional jumps can be divided into following groups:</p>
+<ul>
+<li>Arithmetic jumps: The jump depends on size difference of two operands. The two operands have to be <em>divided</em> in advance.
+                    One or more flags have to be checked.</li>
+<li>Flag oriented jumps: A jump is performed if <em>one</em> given flag is set or deleted.</li>
+</ul>
+<h3 id="arithmetic-jumps">Arithmetic Jumps</h3>
+<p>The jump is performed if the size relation between two given operands is as expected.</p>
+<p>The relation is expressed differently for signed and unsigned operands:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Relation</th>
+<th>unsigned</th>
+<th>signed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math">\(=\)</span></td>
+<td>equal</td>
+<td>equal</td>
+</tr>
+<tr>
+<td><span class="math">\(&lt;\)</span></td>
+<td>below</td>
+<td>less</td>
+</tr>
+<tr>
+<td><span class="math">\(&gt;\)</span></td>
+<td>above</td>
+<td>greater</td>
+</tr>
+</tbody>
+</table>
+<h4 id="arithmetic-unsigned-jumps">Arithmetic <em>"unsigned"</em> Jumps</h4>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Relation</th>
+<th>Command</th>
+<th>Explanation</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math">\(=\)</span></td>
+<td><code>JE</code></td>
+<td>Jump if equal</td>
+<td>ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(\neq\)</span></td>
+<td><code>JNE</code></td>
+<td>Jump if not equal</td>
+<td>ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><span class="math">\(&lt;\)</span></td>
+<td><code>JB</code></td>
+<td>Jump if below</td>
+<td>CF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(\ngeq\)</span></td>
+<td><code>JNAE</code></td>
+<td>Jump if not above or equal</td>
+<td>CF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(\ge\)</span></td>
+<td><code>JAE</code></td>
+<td>Jump if above or equal</td>
+<td>CF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><span class="math">\(\not&lt;\)</span></td>
+<td><code>JNB</code></td>
+<td>Jump if not below</td>
+<td>CF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><span class="math">\(\le\)</span></td>
+<td><code>JBE</code></td>
+<td>Jump if below or equal</td>
+<td>CF <span class="math">\(=\)</span> 1 or ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(\not&gt;\)</span></td>
+<td><code>JNA</code></td>
+<td>Jump if not above</td>
+<td>CF <span class="math">\(=\)</span> 1 or ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(&gt;\)</span></td>
+<td><code>JA</code></td>
+<td>Jump if above</td>
+<td>CF <span class="math">\(=\)</span> 0 and ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><span class="math">\(\not\le\)</span></td>
+<td><code>JNBE</code></td>
+<td>Jump if not below or equal</td>
+<td>CF <span class="math">\(=\)</span> 0 and ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="arithmetic-signed-jumps">Arithmetic <em>"signed"</em> Jumps</h4>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Relation</th>
+<th>Command</th>
+<th>Explanation</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math">\(=\)</span></td>
+<td><code>JE</code></td>
+<td>Jump if equal</td>
+<td>ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(\neq\)</span></td>
+<td><code>JNE</code></td>
+<td>Jump if not equal</td>
+<td>ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><span class="math">\(&lt;\)</span></td>
+<td><code>JL</code></td>
+<td>Jump if less</td>
+<td>OF <span class="math">\(\neq\)</span> SF</td>
+</tr>
+<tr>
+<td><span class="math">\(\ngeq\)</span></td>
+<td><code>JNGE</code></td>
+<td>Jump if not greater or equal</td>
+<td>OF <span class="math">\(\neq\)</span> SF</td>
+</tr>
+<tr>
+<td><span class="math">\(\ge\)</span></td>
+<td><code>JGE</code></td>
+<td>Jump if greater or equal</td>
+<td>OF <span class="math">\(=\)</span> SF</td>
+</tr>
+<tr>
+<td><span class="math">\(\not&lt;\)</span></td>
+<td><code>JNL</code></td>
+<td>Jump if not less</td>
+<td>OF <span class="math">\(=\)</span> SF</td>
+</tr>
+<tr>
+<td><span class="math">\(\le\)</span></td>
+<td><code>JLE</code></td>
+<td>Jump if less or equal</td>
+<td>OF <span class="math">\(\neq\)</span> SF or ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(\not&gt;\)</span></td>
+<td><code>JNG</code></td>
+<td>Jump if not greater</td>
+<td>OF <span class="math">\(\neq\)</span> SF or ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><span class="math">\(&gt;\)</span></td>
+<td><code>JG</code></td>
+<td>Jump if greater</td>
+<td>OF <span class="math">\(=\)</span> SF and ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><span class="math">\(\not\le\)</span></td>
+<td><code>JNLE</code></td>
+<td>Jump if not less or equal</td>
+<td>OF <span class="math">\(=\)</span> SF and ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flag-oriented-jumps">Flag oriented Jumps</h3>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JZ</code></td>
+<td>Jump if zero</td>
+<td>ZF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><code>JNZ</code></td>
+<td>Jump if not zero</td>
+<td>ZF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><code>JC</code></td>
+<td>Jump if carry</td>
+<td>CF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><code>JNC</code></td>
+<td>Jump if no carry</td>
+<td>CF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><code>JS</code></td>
+<td>Jump if sign</td>
+<td>SF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><code>JNS</code></td>
+<td>Jump if no sign</td>
+<td>SF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><code>JO</code></td>
+<td>Jump if overflow</td>
+<td>OF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><code>JNO</code></td>
+<td>Jump if no overflow</td>
+<td>OF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><code>JP</code></td>
+<td>Jump if parity</td>
+<td>PF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><code>JNP</code></td>
+<td>Jump if no parity</td>
+<td>PF <span class="math">\(=\)</span> 0</td>
+</tr>
+<tr>
+<td><code>JPE</code></td>
+<td>Jump if parity even</td>
+<td>PF <span class="math">\(=\)</span> 1</td>
+</tr>
+<tr>
+<td><code>JPO</code></td>
+<td>Jump if parity odd</td>
+<td>PF <span class="math">\(=\)</span> 0</td>
+</tr>
+</tbody>
+</table>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
