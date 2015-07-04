@@ -277,6 +277,60 @@ execution status and current executing IRQ number.</p>
 </tr>
 </tbody>
 </table>
+<h1 id="nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (NVIC)</h1>
+<h2 id="nested">Nested</h2>
+<p>All external and some system interrupts can be assigned to different priority levels. Current
+handled interrupts can only be disruppted by interrupts of higher priority.</p>
+<h2 id="vectored">Vectored</h2>
+<p>The addresses of the interrupt service routines (ISRs) are stored in a vector. If an interrupt
+occures the lookup of the routine is fast and the handling of the interrupt is not delayed by lookup
+code.</p>
+<h2 id="dynamic-priority-setting">Dynamic Priority Setting</h2>
+<p>The priority of an interrupt can be changed at run time.</p>
+<h1 id="memory-layout">Memory Layout</h1>
+<p>The Cortex-M3 has a defined memory map. So most built in peripherals are accessible by their
+memory address. Thus it's easy to access it in C/C++ code.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Address Range</th>
+<th>Use</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00000000 - 0x1FFFFFFF</td>
+<td>CODE</td>
+<td>Program Code. Exception vector table after start up.</td>
+</tr>
+<tr>
+<td>0x20000000 - 0x3FFFFFFF</td>
+<td>SRAM</td>
+<td>Used as static RAM.</td>
+</tr>
+<tr>
+<td>0x40000000 - 0x5FFFFFFF</td>
+<td>Peripherals</td>
+<td>For integrated peripherals.</td>
+</tr>
+<tr>
+<td>0x60000000 - 0x9FFFFFFF</td>
+<td>External RAM</td>
+<td>For external connected RAM.</td>
+</tr>
+<tr>
+<td>0xA0000000 - 0xDFFFFFFF</td>
+<td>External Peripherals</td>
+<td>For external connected peripherals.</td>
+</tr>
+<tr>
+<td>0xE0000000 - 0xFFFFFFFF</td>
+<td>System</td>
+<td>NVIC, MPU, Debug...</td>
+</tr>
+</tbody>
+</table>
 <p><img alt="The ARM Cortex-M3 Modes and Levels" class="img-responsive" src="/images/arm_cortex_m3_modes_levels.svg"/></p>
   </div>
 
