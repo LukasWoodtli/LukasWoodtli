@@ -277,6 +277,7 @@ execution status and current executing IRQ number.</p>
 </tr>
 </tbody>
 </table>
+<p><img alt="The ARM Cortex-M3 Modes and Levels" class="img-responsive" src="/images/arm_cortex_m3_modes_levels.svg"/></p>
 <h1 id="nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (NVIC)</h1>
 <h2 id="nested">Nested</h2>
 <p>All external and some system interrupts can be assigned to different priority levels. Current
@@ -331,7 +332,13 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="The ARM Cortex-M3 Modes and Levels" class="img-responsive" src="/images/arm_cortex_m3_modes_levels.svg"/></p>
+<h1 id="bus-interfaces">Bus Interfaces</h1>
+<p>The Cortex-M3 has multiple bus interfaces:</p>
+<ul>
+<li>Code Memory Bus: For fetching instructions from code memory.</li>
+<li>System Bus: For static RAM and peripherals.</li>
+<li>Private Peripheral Bus: For access to a part of the system memory and for debugging.</li>
+</ul>
   </div>
 
   <hr/>
