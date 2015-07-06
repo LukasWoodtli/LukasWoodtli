@@ -149,9 +149,16 @@ layout. In this case there is only one process and there is no virtual memory.</
 <h1 id="stack-growth">Stack Growth</h1>
 <p>Depending on the platform the stack grows in different directions:</p>
 <ul>
-<li>Downwards: the stack grows from high adresses to low ones</li>
-<li>Upwards: it grows from high addresses to low ones</li>
+<li>Downwards (descending): the stack grows from high adresses to low ones</li>
+<li>Upwards (ascending): it grows from high addresses to low ones</li>
 </ul>
+<p>There is also a distinction on where a stack pointer points to:</p>
+<ul>
+<li>Full: on the last written position.</li>
+<li>Empty: on the position where the next value is going to be written...</li>
+</ul>
+<p>So for example ARM has (usually) a full descending stack.</p>
+<p><a href="http://stackoverflow.com/a/3844164">Here</a> is a short explanation.</p>
 <p>On most platforms the stack grows downwards. But there are some exeptions.</p>
 <p>This table is an inclomplete (but hopefully correct) overview. Most data in this
 table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p>
@@ -181,6 +188,11 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 </tr>
 <tr>
 <td><a href="http://lukaswoodtli.github.io/intel_architecture.html">x86</a></td>
+<td>any</td>
+<td>downwards</td>
+</tr>
+<tr>
+<td filename="filename">[ARM] (</td>
 <td>any</td>
 <td>downwards</td>
 </tr>
