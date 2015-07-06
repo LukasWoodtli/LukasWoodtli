@@ -271,6 +271,14 @@
 <li><a href="#flag-oriented-jumps">Flag oriented Jumps</a></li>
 </ul>
 </li>
+<li><a href="#compairing-commands-cmp-test">Compairing Commands (CMP, TEST)</a></li>
+</ul>
+</li>
+<li><a href="#loop-commands-loopx-jcxz">Loop Commands (LOOPx, JCXZ)</a><ul>
+<li><a href="#loop-loop">Loop (LOOP)</a></li>
+<li><a href="#loop-while-equal-and-loop-while-zero-loope-loopz">Loop while equal and Loop while zero (LOOPE, LOOPZ)</a></li>
+<li><a href="#loop-while-not-equal-and-loop-while-not-zero-loopne-loopnz">Loop while not equal and Loop while not zero (LOOPNE, LOOPNZ)</a></li>
+<li><a href="#jump-if-cx-zero-jcxz">Jump if CX zero (JCXZ)</a></li>
 </ul>
 </li>
 </ul>
@@ -1130,6 +1138,33 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </tr>
 </tbody>
 </table>
+<h2 id="compairing-commands-cmp-test">Compairing Commands (<code>CMP</code>, <code>TEST</code>)</h2>
+<p>Since the different jump commands depend on flags set or not there
+are special commands that only affect the flags.</p>
+<ul>
+<li><code>CMP</code> is a subtraction of the operands (8-bit or 16-bit) but it only changes the flags.
+   The result is not written anywhere.</li>
+<li><code>TEST</code> is a <em>AND</em> operation of the operands (8-bit or 16-bit) that only changes the flags.
+   The result is not written anywhere.</li>
+</ul>
+<p>Both commands accept a register or a memory location as first operand and a register, a memory location
+or a constant as second operator.</p>
+<h1 id="loop-commands-loopx-jcxz">Loop Commands (<code>LOOPx</code>, <code>JCXZ</code>)</h1>
+<p>All loop commands accept an displacement operator (8-bit).</p>
+<p>None of the loop commands affects any flags!</p>
+<h2 id="loop-loop">Loop (<code>LOOP</code>)</h2>
+<p>Decremets <em>CX</em> by one (1). If <em>CX</em> is not zero (<em>CX</em> <span class="math">\(\neq\)</span> 0) it performs the jump.</p>
+<h2 id="loop-while-equal-and-loop-while-zero-loope-loopz">Loop while equal and Loop while zero (<code>LOOPE</code>, <code>LOOPZ</code>)</h2>
+<p><code>LOOPE</code> and <code>LOOPZ</code> are different mnemonics for the same command.</p>
+<p>Decrements <em>CX</em> by one (1). Performs the jump if if Zero Flag is set and <em>CX</em> is not zero (0).</p>
+<p>Jump if: ZF <span class="math">\(=\)</span> 1 and CX <span class="math">\(\neq\)</span> 0</p>
+<h2 id="loop-while-not-equal-and-loop-while-not-zero-loopne-loopnz">Loop while not equal and Loop while not zero (<code>LOOPNE</code>, <code>LOOPNZ</code>)</h2>
+<p><code>LOOPNE</code> and <code>LOOPNZ</code> are different mnemonics for the same command.</p>
+<p>Decrements <em>CX</em> by one (1). Performs the jump if if Zero Flag is not set and <em>CX</em> is not zero (0).</p>
+<p>Jump if: ZF <span class="math">\(=\)</span> 0 and CX <span class="math">\(\neq\)</span> 0</p>
+<h2 id="jump-if-cx-zero-jcxz">Jump if <em>CX</em> zero (<code>JCXZ</code>)</h2>
+<p>Performs the jump if <em>CX</em> is zero.</p>
+<p>Jump if: CX <span class="math">\(=\)</span> 0</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
