@@ -266,7 +266,7 @@ execution status and current executing IRQ number.</p>
 </thead>
 <tbody>
 <tr>
-<td>User Level</td>
+<td>Unprivileged (user) Level</td>
 <td>Thread Mode</td>
 <td>-</td>
 </tr>
@@ -339,6 +339,22 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 <li>System Bus: For static RAM and peripherals.</li>
 <li>Private Peripheral Bus: For access to a part of the system memory and for debugging.</li>
 </ul>
+<h1 id="data-types">Data Types</h1>
+<p>Following data types are supported in memory:</p>
+<ul>
+<li>Byte: 8 bits.</li>
+<li>Halfword: 16 bits.</li>
+<li>Word: 32 bits.</li>
+</ul>
+<p>The registers are 32 bit wide. The instruction set supports following data types in the registers:</p>
+<ul>
+<li>32-bit pointers.</li>
+<li>Unsigned and signed 32-bit integers.</li>
+<li>Unsigned 16-bit and 8-bit integers in zero-extended form.</li>
+<li>Signed 16-bit and 8-bit integers in sign-extended form.</li>
+<li>Unsigned and signed 64-bit integers held in two registers (limited direct support).</li>
+</ul>
+<p>Signed data is represented using two's complement format.</p>
   </div>
 
   <hr/>

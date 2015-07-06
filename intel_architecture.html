@@ -281,6 +281,8 @@
 <li><a href="#jump-if-cx-zero-jcxz">Jump if CX zero (JCXZ)</a></li>
 </ul>
 </li>
+<li><a href="#stack-and-function-calls">Stack and Function calls</a></li>
+<li><a href="#push-and-pop-push-pushf-pusha-pop-popf-popa">Push and Pop (PUSH, PUSHF, PUSHA, POP, POPF, POPA)</a></li>
 </ul>
 </div>
 <h1 id="general">General</h1>
@@ -1165,6 +1167,29 @@ or a constant as second operator.</p>
 <h2 id="jump-if-cx-zero-jcxz">Jump if <em>CX</em> zero (<code>JCXZ</code>)</h2>
 <p>Performs the jump if <em>CX</em> is zero.</p>
 <p>Jump if: CX <span class="math">\(=\)</span> 0</p>
+<h1 id="stack-and-function-calls">Stack and Function calls</h1>
+<p>The stack on x86 is always addressed by the Stack Segment (<em>SS</em>).</p>
+<p>Stack operations are word aligned (16-bit). So <code>PUSH</code> decrements <em>SP</em> by <em>2</em> and
+<code>POP</code> increments <em>SP</em> by <em>2</em>.</p>
+<p><em>SP</em> points to the <em>last written</em> word.</p>
+<h1 id="push-and-pop-push-pushf-pusha-pop-popf-popa">Push and Pop (<code>PUSH</code>, <code>PUSHF</code>, <code>PUSHA</code>, <code>POP</code>, <code>POPF</code>, <code>POPA</code>)</h1>
+<p>The different push and pop commands save/restore 16-bit words to/from the stack.</p>
+<p><code>PUSH</code> can be called with all registers as as operands or a memory operand. Immediate addressing
+is not possible with <code>PUSH</code>.</p>
+<p>The registers that can be pushed are: <em>AX</em>, <em>BX</em>, <em>CX</em>, <em>DX</em>, <em>SP</em>, <em>BP</em>, <em>SI</em>, <em>DI</em>, <em>ES</em>, <em>SS</em>, <em>DS</em> and <em>CS</em>.</p>
+<p><code>POP</code> can use the same operands as <code>PUSH</code> with the exception of <em>CS</em>. Memory operands are also possible.</p>
+<p>The registers that can be poped are: <em>AX</em>, <em>BX</em>, <em>CX</em>, <em>DX</em>, <em>SP</em>, <em>BP</em>, <em>SI</em>, <em>DI</em>, <em>ES</em>, <em>SS</em> and <em>DS</em>.</p>
+<p>With the commands <code>PUSHA</code> and <code>POPA</code> (introduced with 80186) the 8 working registers are pushed to the stack and
+poped in the reversed order:</p>
+<p><em>AX</em>, <em>CX</em>, <em>DX</em>, <em>BX</em>, <em>SP+</em>, <em>BP</em>, <em>SI</em>, <em>DI</em></p>
+<p><em>SP+</em> is the <em>SP</em> before the first push to the stack. With <code>POPA</code> <em>SP</em> is not poped. Is is just decremented (by 2) at
+the end of all the pop operations.</p>
+<p><code>PUSHF</code> and <code>POPF</code> push and pop the flag register to/from the stack.</p>
+<div class="highlight"><pre><span class="nf">PUSH</span> <span class="nv">result</span>   <span class="c1">; variable result</span>
+<span class="nf">PUSH</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span>   <span class="c1">; memory word at address [BX+7]</span>
+<span class="nf">PUSH</span> <span class="nv">tab</span><span class="p">[</span><span class="nb">SI</span><span class="p">]</span>  <span class="c1">; memory word at address tab[SI]</span>
+<span class="nf">POP</span> <span class="nb">AX</span>        <span class="c1">; value from stack to AX</span>
+</pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
