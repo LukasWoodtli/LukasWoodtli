@@ -136,7 +136,39 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="general">General</h1>
+    <div class="toc">
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#registers">Registers</a><ul>
+<li><a href="#general-purpose-registers">General Purpose Registers</a></li>
+<li><a href="#stack-pointers">Stack Pointers</a></li>
+<li><a href="#link-register">Link Register</a></li>
+<li><a href="#program-counter">Program Counter</a></li>
+<li><a href="#program-status-registers">Program Status Registers</a><ul>
+<li><a href="#application-program-status-register-apsr">Application Program Status Register (APSR)</a></li>
+<li><a href="#interrupt-program-status-register-ipsr">Interrupt Program Status Register (IPSR)</a></li>
+<li><a href="#execution-program-status-register-epsr">Execution Program Status Register (EPSR)</a></li>
+<li><a href="#composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</a></li>
+</ul>
+</li>
+<li><a href="#special-purpose-mask-registers">Special-Purpose Mask Registers</a></li>
+<li><a href="#special-registers">Special Registers</a></li>
+<li><a href="#control-register">Control Register</a></li>
+</ul>
+</li>
+<li><a href="#modes">Modes</a></li>
+<li><a href="#nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (NVIC)</a><ul>
+<li><a href="#nested">Nested</a></li>
+<li><a href="#vectored">Vectored</a></li>
+<li><a href="#dynamic-priority-setting">Dynamic Priority Setting</a></li>
+</ul>
+</li>
+<li><a href="#memory-layout">Memory Layout</a></li>
+<li><a href="#bus-interfaces">Bus Interfaces</a></li>
+<li><a href="#data-types">Data Types</a></li>
+</ul>
+</div>
+<h1 id="general">General</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -202,38 +234,7 @@
 <h2 id="program-counter">Program Counter</h2>
 <p>This register holds the current program position. It can be written to for
 controlling the program flow (jumps).</p>
-<h2 id="special-registers">Special Registers</h2>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th>Register</th>
-<th>Use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>xPSR</td>
-<td>Program Status Registers</td>
-</tr>
-<tr>
-<td>PRIMASK</td>
-<td>Disable IRQs except NMI and hard fault</td>
-</tr>
-<tr>
-<td>FAULTMASK</td>
-<td>Disable IRQs except NMI</td>
-</tr>
-<tr>
-<td>BASEPRI</td>
-<td>Disable IRQs of given priority</td>
-</tr>
-<tr>
-<td>CONTROL</td>
-<td>Control resgister</td>
-</tr>
-</tbody>
-</table>
-<h3 id="program-status-registers">Program Status Registers</h3>
+<h2 id="program-status-registers">Program Status Registers</h2>
 <p>The special-purpose program status registers (<em>xPSR</em>) provide arithmethic and logic flags (zero and carry flag),
 execution status and current executing IRQ number.</p>
 <table class="table table-hover table-striped">
@@ -314,7 +315,7 @@ execution status and current executing IRQ number.</p>
 </tr>
 </tbody>
 </table>
-<h4 id="application-program-status-register-apsr">Application Program Status Register (APSR)</h4>
+<h3 id="application-program-status-register-apsr">Application Program Status Register (APSR)</h3>
 <p>Flags that can be set by application code (unprivileged mode).</p>
 <ul>
 <li><strong>N (bit[31])</strong>: Negative condition flag. Set if result of instruction is negative.</li>
@@ -324,17 +325,17 @@ execution status and current executing IRQ number.</p>
 <li><strong>Q (bit[27])</strong>: Set if a <code>SSAT</code> or <code>USAT</code> instruction changes the input value for the signed/unsigned range of the result (saturation).</li>
 <li><strong>GE[3:0] (bits[19:16])</strong>: DSP extension only. Otherwise reserved.</li>
 </ul>
-<h4 id="interrupt-program-status-register-ipsr">Interrupt Program Status Register (IPSR)</h4>
+<h3 id="interrupt-program-status-register-ipsr">Interrupt Program Status Register (IPSR)</h3>
 <ul>
 <li>Handler Mode: This register holds the exception number of the exception that is currently processed.</li>
 <li>Thread Mode: If no exception is processed the value is zero (0).</li>
 </ul>
-<h4 id="execution-program-status-register-epsr">Execution Program Status Register (EPSR)</h4>
+<h3 id="execution-program-status-register-epsr">Execution Program Status Register (EPSR)</h3>
 <ul>
 <li><strong>T bit[24]</strong>: Defines the instuction set. The Cortex-M3 supports only Thumb-2. So the processor can execute instructions only if the T bit is set.</li>
 <li><strong>ICI/IT</strong>: TBD</li>
 </ul>
-<h4 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h4>
+<h3 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h3>
 <p>The commands <code>MSR</code> and <code>MRS</code> can use the mnemonics APSR, IPSR, and EPSR directly or combined mnemonics for the Program Status Registers.</p>
 <table class="table table-hover table-striped">
 <thead>
@@ -362,13 +363,14 @@ execution status and current executing IRQ number.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="special-purpose-mask-registers">Special-Purpose Mask Registers</h3>
+<h2 id="special-purpose-mask-registers">Special-Purpose Mask Registers</h2>
+<h2 id="special-registers">Special Registers</h2>
 <ul>
 <li><em>PRIMASK</em>: Disable interrupts except nonmaskable interrupt (NMI) and hard fault.</li>
 <li><em>FAULTMASK</em>: Disable interrupts except nonmaskable interrupt (NMI).</li>
 <li><em>BASEPRI</em>: Disable interrupts of given priority level or lower priority level.</li>
 </ul>
-<h3 id="control-register">Control Register</h3>
+<h2 id="control-register">Control Register</h2>
 <p>Define privileged status and select stack pointer.</p>
 <h1 id="modes">Modes</h1>
 <p>The Cortex-M3 has two modes:</p>
