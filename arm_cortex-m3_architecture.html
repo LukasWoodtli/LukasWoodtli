@@ -175,7 +175,7 @@
 </tr>
 <tr>
 <td>R13</td>
-<td>Stack Pointers (MSP, PSP)</td>
+<td>Stack Pointers (SP_main, SP_process)</td>
 </tr>
 <tr>
 <td>R14</td>
@@ -192,15 +192,15 @@
 <h2 id="stack-pointers">Stack Pointers</h2>
 <p>The  Cortex-M3  contains  two  stack  pointers:</p>
 <ul>
-<li>Main Stack Pointer (MSP): The default stack pointer, used by the operating system and exception handlers</li>
-<li>Process Stack Pointer (PSP): Used by application code</li>
+<li>Main Stack Pointer (SP_main): The default stack pointer, used by the operating system and exception handlers</li>
+<li>Process Stack Pointer (SP_process): Used by application code</li>
 </ul>
-<p>The two Stack Pointers are banked. Only one is visible at a time.</p>
+<p>The two Stack Pointers are banked. Only one is visible at a time (R13).</p>
 <p>The lowest 2 bits of the stack pointers are always 0. So they are always word aligned.</p>
 <h2 id="link-register">Link Register</h2>
 <p>The Link Register contains the return address of a subroutine/function.</p>
 <h2 id="program-counter">Program Counter</h2>
-<p>This register holds the current program position. It can be written to for 
+<p>This register holds the current program position. It can be written to for
 controlling the program flow (jumps).</p>
 <h2 id="special-registers">Special Registers</h2>
 <table class="table table-hover table-striped">
@@ -234,9 +234,135 @@ controlling the program flow (jumps).</p>
 </tbody>
 </table>
 <h3 id="program-status-registers">Program Status Registers</h3>
-<p>The <em>xPSR</em> provide arithmethic and logic flags (zero and carry flag),
+<p>The special-purpose program status registers (<em>xPSR</em>) provide arithmethic and logic flags (zero and carry flag),
 execution status and current executing IRQ number.</p>
-<h3 id="interrupt-mask-registers">Interrupt Mask Registers</h3>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Bit</th>
+<th>APSR</th>
+<th>IPSR</th>
+<th>EPSR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td>N</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Z</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>29</td>
+<td>C</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>28</td>
+<td>V</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Q</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>25-26</td>
+<td>-</td>
+<td>-</td>
+<td>ICI/IT</td>
+</tr>
+<tr>
+<td>24</td>
+<td>-</td>
+<td>-</td>
+<td>T</td>
+</tr>
+<tr>
+<td>20-23</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>16-19</td>
+<td>GE[3:0]</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>9-15</td>
+<td>-</td>
+<td>-</td>
+<td>ICI/IT</td>
+</tr>
+<tr>
+<td>0-8</td>
+<td>-</td>
+<td>Exception Number</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="application-program-status-register-apsr">Application Program Status Register (APSR)</h4>
+<p>Flags that can be set by application code (unprivileged mode).</p>
+<ul>
+<li><strong>N (bit[31])</strong>: Negative condition flag. Set if result of instruction is negative.</li>
+<li><strong>Z (bit[30])</strong>: Zero condition flag. Set if result of instuction is zero (0).</li>
+<li><strong>C (bit[29])</strong>: Carry condition flag. Set if instrucion results in a carry condition (i.e unsigned overflow on addition)</li>
+<li><strong>V (bit[28])</strong>: Overflow condition flag. Set if the instuction results in a an overflow condition (i.e. signed overflow on addition)</li>
+<li><strong>Q (bit[27])</strong>: Set if a <code>SSAT</code> or <code>USAT</code> instruction changes the input value for the signed/unsigned range of the result (saturation).</li>
+<li><strong>GE[3:0] (bits[19:16])</strong>: DSP extension only. Otherwise reserved.</li>
+</ul>
+<h4 id="interrupt-program-status-register-ipsr">Interrupt Program Status Register (IPSR)</h4>
+<ul>
+<li>Handler Mode: This register holds the exception number of the exception that is currently processed.</li>
+<li>Thread Mode: If no exception is processed the value is zero (0).</li>
+</ul>
+<h4 id="execution-program-status-register-epsr">Execution Program Status Register (EPSR)</h4>
+<ul>
+<li><strong>T bit[24]</strong>: Defines the instuction set. The Cortex-M3 supports only Thumb-2. So the processor can execute instructions only if the T bit is set.</li>
+<li><strong>ICI/IT</strong>: TBD</li>
+</ul>
+<h4 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h4>
+<p>The commands <code>MSR</code> and <code>MRS</code> can use the mnemonics APSR, IPSR, and EPSR directly or combined mnemonics for the Program Status Registers.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Registers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IAPSR</td>
+<td>IPSR and APSR</td>
+</tr>
+<tr>
+<td>EAPSR</td>
+<td>EPSR and APSR</td>
+</tr>
+<tr>
+<td>IEPSR</td>
+<td>IPSR and EPSR</td>
+</tr>
+<tr>
+<td>XPSR</td>
+<td>All three xPSR registers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="special-purpose-mask-registers">Special-Purpose Mask Registers</h3>
 <ul>
 <li><em>PRIMASK</em>: Disable interrupts except nonmaskable interrupt (NMI) and hard fault.</li>
 <li><em>FAULTMASK</em>: Disable interrupts except nonmaskable interrupt (NMI).</li>
