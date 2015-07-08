@@ -290,6 +290,11 @@
 <li><a href="#examples_1">Examples</a></li>
 </ul>
 </li>
+<li><a href="#call-and-ret">CALL and RET</a></li>
+<li><a href="#defining-a-function">Defining a Function</a><ul>
+<li><a href="#function-prologue">Function Prologue</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1215,6 +1220,36 @@ the end of all the pop operations.</p>
 <span class="nf">PUSH</span> <span class="nv">tab</span><span class="p">[</span><span class="nb">SI</span><span class="p">]</span>  <span class="c1">; memory word at address tab[SI]</span>
 <span class="nf">POP</span> <span class="nb">AX</span>        <span class="c1">; value from stack to AX</span>
 </pre></div>
+<h2 id="call-and-ret"><code>CALL</code> and <code>RET</code></h2>
+<p><code>CALL</code> stores the return address (address of the instruction after <code>CALL</code>) on the stack, increments <em>SP</em> (by 2)
+and calls the function.</p>
+<p><code>RET</code> returns from the function by loading the stored address in to <em>IP</em> and decrements <em>SP</em> (by 2).</p>
+<h2 id="defining-a-function">Defining a Function</h2>
+<p>In <a href="http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/">NASM</a> a function is defined as follows:</p>
+<div class="highlight"><pre><span class="nl">my_func:</span>
+
+<span class="c1">; code of the function...</span>
+
+<span class="nf">ret</span>
+</pre></div>
+<p>For calling the function:</p>
+<div class="highlight"><pre><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span> <span class="c1">;</span>
+</pre></div>
+<p>The pseudo commands <code>PROC and</code>ENDP` (as in MASM/TASM) are not supported by NASM.</p>
+<h3 id="function-prologue">Function Prologue</h3>
+<p>At the beginning of each function some registers have to be saved. This code is called
+<a href="https://en.wikipedia.org/wiki/Function_prologue">function prologue</a>.</p>
+<p>The usual tasks in a function prologue are:</p>
+<ul>
+<li>Save old <em>BP</em> (push it on the stack).</li>
+<li>Assign <em>SP</em> to <em>BP</em> (<em>PB</em> = <em>SP</em>). So the <em>BP</em> points the the old <em>BP</em>.</li>
+<li>Save regisister contents to stack. So the registers can be used in the fuction.</li>
+<li>Allocate memory on stack for use in function.</li>
+</ul>
+<p>The the actual code of the function can run.</p>
+<p>Before the function ends it has to undo most of the things that were done in the prologue (i.e restoring registers,
+adjusting <em>SP</em>...).
+This code is called function epilogue.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
