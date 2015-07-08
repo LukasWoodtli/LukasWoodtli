@@ -139,6 +139,7 @@
     <p>On this page I write down some notes about the Intel architecture (x86). I learned most of it in <a href="http://www.vdf.ethz.ch/info/showDetails.asp?isbnNr=3255">school</a> few years ago.</p>
 <p>I'ts mainly for Intel 80186. But I'll extend it with informations about modern <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">Intel processors</a> (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
 <p>I'm trying to keep all code examples in <a href="http://www.nasm.us">NASM</a> syntax.</p>
+<p>There is a good overview of the <a href="https://en.wikipedia.org/wiki/X86_instruction_listings">x86 instructions</a> on Wikipedia.</p>
 <div class="toc">
 <ul>
 <li><a href="#general">General</a></li>
@@ -295,6 +296,12 @@
 <li><a href="#function-prologue">Function Prologue</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#string-operations">String Operations</a><ul>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#direction">Direction</a></li>
+<li><a href="#repeat-prefix">Repeat Prefix</a></li>
 </ul>
 </li>
 </ul>
@@ -1250,6 +1257,63 @@ and calls the function.</p>
 <p>Before the function ends it has to undo most of the things that were done in the prologue (i.e restoring registers,
 adjusting <em>SP</em>...).
 This code is called function epilogue.</p>
+<h1 id="string-operations">String Operations</h1>
+<p>The x86 architecture contains some commands that can be executed on consecutive memory location (strings, arrays...).</p>
+<p>This commands are powerful but not so easy to understand. <a href="http://www.oocities.org/codeteacher/x86asm/asml1013.html">Here</a> is a good explanation.</p>
+<h2 id="commands">Commands</h2>
+<p>Moslty <em>SI</em> is used for addressing the source operator and <em>DI</em> is used for addressing the destination operator. Hence the names.
+For some commands the accumulator (<em>AL</em>/<em>AX</em>) is used as operator.
+<em>SI</em> is <em>DS</em>-relative by default. But the segment can be overridden.
+<em>DI</em> is <em>ES</em>-relative by default. The segment can <strong>not</strong> be overridden.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MOVSx</code></td>
+<td>Move (copy) data addressed by <em>SI</em> to position addressed by <em>DI</em>.</td>
+</tr>
+<tr>
+<td><code>STOSx</code></td>
+<td>Load data from accumulator to position addressed by <em>DI</em>.</td>
+</tr>
+<tr>
+<td><code>LODSx</code></td>
+<td>Load data addressed by <em>SI</em> into accumulator.</td>
+</tr>
+<tr>
+<td><code>CMPSx</code></td>
+<td>Compare data addressed by <em>SI</em> with data addressed by <em>DI</em>. Flags are set according to result of [<em>SI</em>] - [<em>DI</em>].</td>
+</tr>
+<tr>
+<td><code>SCASx</code></td>
+<td>Compare data from accumulator  with data addressed by <em>DI</em>. Flags are set according to result of accumulator - [<em>DI</em>].</td>
+</tr>
+</tbody>
+</table>
+<p>In the commands listed above <em>x</em> can be <em>B</em> for operation on bytes or <em>W</em> for operation on words (16-bit).</p>
+<p>Processors 80186 and newer have also the commands: <code>INS</code> and <code>OUTS</code> for string input and output from/to ports.</p>
+<h2 id="direction">Direction</h2>
+<p>The direction of the string commands can be controlled by the direction flag:</p>
+<ul>
+<li><code>CLD</code>: Clear direction flag. Index registers are incremented.</li>
+<li><code>STD</code>: Set direction flag. Index registers are decremented.</li>
+</ul>
+<h2 id="repeat-prefix">Repeat Prefix</h2>
+<ul>
+<li><code>REP</code>: Repeat the string command as long as <em>CX</em> <span class="math">\(\neq\)</span> 0. Decrement <em>CX</em> in each iteration.</li>
+<li><code>REPE</code>: Repeat while operands are equal.</li>
+<li><code>REPZ</code>: Repeat while zero (ZF = 1).</li>
+<li><code>REPNE</code>: Repeat while operands are <em>not</em> equal.</li>
+<li><code>REPNZ</code>: Repeat while <em>not</em> zero (ZF = 0).</li>
+</ul>
+<blockquote>
+<p>There is now practical use for <code>LODSx</code> with <code>REP</code>.</p>
+</blockquote>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
