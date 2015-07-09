@@ -141,9 +141,9 @@
 <li><a href="#general">General</a></li>
 <li><a href="#registers">Registers</a><ul>
 <li><a href="#general-purpose-registers">General Purpose Registers</a></li>
-<li><a href="#stack-pointers">Stack Pointers</a></li>
-<li><a href="#link-register">Link Register</a></li>
-<li><a href="#program-counter">Program Counter</a></li>
+<li><a href="#stack-pointers-sp-r13-msp-psp">Stack Pointers (SP, R13, MSP, PSP)</a></li>
+<li><a href="#link-register-r14-lr">Link Register (R14, LR)</a></li>
+<li><a href="#program-counter-r15-pc">Program Counter (R15, PC)</a></li>
 <li><a href="#program-status-registers">Program Status Registers</a><ul>
 <li><a href="#application-program-status-register-apsr">Application Program Status Register (APSR)</a></li>
 <li><a href="#interrupt-program-status-register-ipsr">Interrupt Program Status Register (IPSR)</a></li>
@@ -152,8 +152,12 @@
 </ul>
 </li>
 <li><a href="#special-purpose-mask-registers">Special-Purpose Mask Registers</a></li>
-<li><a href="#special-registers">Special Registers</a></li>
-<li><a href="#control-register">Control Register</a></li>
+<li><a href="#control-register">Control Register</a><ul>
+<li><a href="#control-bit0-npriv-privilege-level">Control bit[0] (nPRIV, privilege level)</a></li>
+<li><a href="#control-bit1-spsel-stack-selection">Control bit[1] (SPSEL, stack selection)</a></li>
+<li><a href="#switching-privilege-level">Switching Privilege Level</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#modes">Modes</a></li>
@@ -166,6 +170,11 @@
 <li><a href="#memory-layout">Memory Layout</a></li>
 <li><a href="#bus-interfaces">Bus Interfaces</a></li>
 <li><a href="#data-types">Data Types</a></li>
+<li><a href="#exceptions">Exceptions</a><ul>
+<li><a href="#reset">Reset</a></li>
+<li><a href="#non-maskable-interrupt-nmi">Non Maskable Interrupt (NMI)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="general">General</h1>
@@ -222,19 +231,44 @@
 <h2 id="general-purpose-registers">General Purpose Registers</h2>
 <p>Some 16-bit Thumb instruction can only access R0 - R7.</p>
 <p>The reset values of R0 - R12 are random.</p>
-<h2 id="stack-pointers">Stack Pointers</h2>
+<h2 id="stack-pointers-sp-r13-msp-psp">Stack Pointers (SP, R13, MSP, PSP)</h2>
 <p>The  Cortex-M3  contains  two  stack  pointers:</p>
 <ul>
 <li>Main Stack Pointer (SP_main): The default stack pointer, used by the operating system and exception handlers</li>
 <li>Process Stack Pointer (SP_process): Used by application code</li>
 </ul>
-<p>The two Stack Pointers are banked. Only one is visible at a time (R13).</p>
+<p>The two Stack Pointers are banked. Only one is visible at a time throu R13.</p>
 <p>The lowest 2 bits of the stack pointers are always 0. So they are always word aligned.</p>
-<h2 id="link-register">Link Register</h2>
+<p>It's not nessecary to use both stack pointers (SP_main and SP_process). Simple applications use only SP_main.</p>
+<p>PUSH and POP work with the actual <em>SP</em> (R13). The stack is 32-bit aligned.</p>
+<div class="highlight"><pre><span class="nf">PUSH</span> <span class="err">{</span><span class="nv">R3</span><span class="err">}</span>  <span class="c1">; R13 = R13-4, memory[R13] = R3</span>
+<span class="nf">POP</span> <span class="err">{</span><span class="nv">R3</span><span class="err">}</span>   <span class="c1">; R3 = memory[R13], R13 = R13+4</span>
+</pre></div>
+<p>It's also possible to to push and pop multiple registers in one instruction.</p>
+<div class="highlight"><pre><span class="nf">my_function</span>
+    <span class="nf">PUSH</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="p">,</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R7</span><span class="err">}</span> <span class="c1">; Save registers</span>
+    <span class="nf">...</span>
+    <span class="nf">POP</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="p">,</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R7</span><span class="err">}</span>  <span class="c1">; Restore registers</span>
+    <span class="nf">BX</span> <span class="nv">R7</span>                <span class="c1">; Return to caller</span>
+</pre></div>
+<p>It's possible to use <em>SP</em> instead of <em>R13</em> for accessing the actual Stack Pointer.
+For accessing a particular Stack Pointer the mnemonic MSP (for SP_main) or PSP (for SP_process) exist.</p>
+<h2 id="link-register-r14-lr">Link Register (R14, LR)</h2>
 <p>The Link Register contains the return address of a subroutine/function.</p>
-<h2 id="program-counter">Program Counter</h2>
-<p>This register holds the current program position. It can be written to for
-controlling the program flow (jumps).</p>
+<div class="highlight"><pre><span class="nf">main</span>
+   <span class="nf">BL</span> <span class="nv">my_func</span> <span class="c1">; call function with branch and link. PC=my_func, LR=next instr in main</span>
+
+<span class="nf">...</span>
+
+<span class="nf">my_func</span>
+    <span class="nf">...</span>
+    <span class="nf">BX</span> <span class="nv">LR</span> <span class="c1">; return to address in LR</span>
+</pre></div>
+<h2 id="program-counter-r15-pc">Program Counter (R15, PC)</h2>
+<p>This register holds the current program position.</p>
+<p>It can be written to for controlling the program flow (jumps). But then <em>LR</em> is not updated.</p>
+<p>Since the Cortex-M3 has a piplelined architecture the PC can be ahead of the actual executed
+instruction (normally by 4).</p>
 <h2 id="program-status-registers">Program Status Registers</h2>
 <p>The special-purpose program status registers (<em>xPSR</em>) provide arithmethic and logic flags (zero and carry flag),
 execution status and current executing IRQ number.</p>
@@ -321,7 +355,7 @@ execution status and current executing IRQ number.</p>
 <ul>
 <li><strong>N (bit[31])</strong>: Negative condition flag. Set if result of instruction is negative.</li>
 <li><strong>Z (bit[30])</strong>: Zero condition flag. Set if result of instuction is zero (0).</li>
-<li><strong>C (bit[29])</strong>: Carry condition flag. Set if instrucion results in a carry condition (i.e unsigned overflow on addition)</li>
+<li><strong>C (bit[29])</strong>: Carry (or borrow) condition flag. Set if instrucion results in a carry condition (i.e unsigned overflow on addition)</li>
 <li><strong>V (bit[28])</strong>: Overflow condition flag. Set if the instuction results in a an overflow condition (i.e. signed overflow on addition)</li>
 <li><strong>Q (bit[27])</strong>: Set if a <code>SSAT</code> or <code>USAT</code> instruction changes the input value for the signed/unsigned range of the result (saturation).</li>
 <li><strong>GE[3:0] (bits[19:16])</strong>: DSP extension only. Otherwise reserved.</li>
@@ -333,7 +367,7 @@ execution status and current executing IRQ number.</p>
 </ul>
 <h3 id="execution-program-status-register-epsr">Execution Program Status Register (EPSR)</h3>
 <ul>
-<li><strong>T bit[24]</strong>: Defines the instuction set. The Cortex-M3 supports only Thumb-2. So the processor can execute instructions only if the T bit is set.</li>
+<li><strong>T bit[24]</strong>: Defines the instuction set. The Cortex-M3 supports only Thumb-2. So it must be 0. An fault is caused if this bit is set to 0.</li>
 <li><strong>ICI/IT</strong>: TBD</li>
 </ul>
 <h3 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h3>
@@ -365,7 +399,8 @@ execution status and current executing IRQ number.</p>
 </tbody>
 </table>
 <h2 id="special-purpose-mask-registers">Special-Purpose Mask Registers</h2>
-<h2 id="special-registers">Special Registers</h2>
+<p>This registers are set to 0 at reset.</p>
+<p>They can only be written if in privileged level.</p>
 <ul>
 <li><em>PRIMASK</em>: Disable interrupts except nonmaskable interrupt (NMI) and hard fault.</li>
 <li><em>FAULTMASK</em>: Disable interrupts except nonmaskable interrupt (NMI).</li>
@@ -373,6 +408,25 @@ execution status and current executing IRQ number.</p>
 </ul>
 <h2 id="control-register">Control Register</h2>
 <p>Define privileged status and select stack pointer.</p>
+<h3 id="control-bit0-npriv-privilege-level">Control bit[0] (nPRIV, privilege level)</h3>
+<p>This bit has only a meaning in thread mode.</p>
+<ul>
+<li>0: Privileged Level</li>
+<li>1: Unprivileged (user) Level</li>
+</ul>
+<p>In handler mode the processor operates in privileged mode.</p>
+<p>This bit is only writable with privileged level.</p>
+<h3 id="control-bit1-spsel-stack-selection">Control bit[1] (SPSEL, stack selection)</h3>
+<p>This bit makes only sense in thread mode.</p>
+<ul>
+<li>0: Use SP_process</li>
+<li>1: Use SP_main</li>
+</ul>
+<p>In handler mode this bit must be 0 (SP_main is used).</p>
+<p>This bit is only writable if in thread mode with privileged level.</p>
+<h3 id="switching-privilege-level">Switching Privilege Level</h3>
+<p>To switch from privileged level to user level the <em>Control bit[0]</em> can be written directly.</p>
+<p>The switch from user level to privilege level heeds to be performed within an exeption handler.</p>
 <h1 id="modes">Modes</h1>
 <p>The Cortex-M3 has two modes:</p>
 <ul>
@@ -484,6 +538,20 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 <li>Unsigned and signed 64-bit integers held in two registers (limited direct support).</li>
 </ul>
 <p>Signed data is represented using two's complement format.</p>
+<h1 id="exceptions">Exceptions</h1>
+<h2 id="reset">Reset</h2>
+<p>There are two levels of reset:</p>
+<ul>
+<li>Power Reset: Resets processor, System Control Space and debug logic.</li>
+<li>Local Reset: Resets processor and System Control Space (except some fault and debug resources).</li>
+</ul>
+<p>The exception can't be disabled.
+Reset exception has a fixed priority of <em>-3</em>.</p>
+<h2 id="non-maskable-interrupt-nmi">Non Maskable Interrupt (NMI)</h2>
+<p>NMI is the highest priority exception after reset.</p>
+<p>NMI can be generated by hardware or software can set the NMI exception to the Pending state.</p>
+<p>It can't be disabled. 
+The fixed priority is <em>-2</em>.</p>
   </div>
 
   <hr/>
