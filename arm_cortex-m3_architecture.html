@@ -138,10 +138,12 @@
   <div id="article_content">
     <p>This page collects my notes about the Cortex-M3 architecture.
 In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter kit by Energy Micro.</p>
-<p>The EFM32TG has:
-- Number of interrupts: 23
-- No Memory Protection Unit (MPU)
-- No Embedded Trace Macrocell (ETM)</p>
+<p>The EFM32TG has:</p>
+<ul>
+<li>Number of interrupts: 23</li>
+<li>No Memory Protection Unit (MPU)</li>
+<li>No Embedded Trace Macrocell (ETM)</li>
+</ul>
 <div class="toc">
 <ul>
 <li><a href="#general">General</a></li>
@@ -264,7 +266,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li>0: MSP</li>
 <li>1: PSP</li>
 </ul>
-<p>The two Stack Pointers are banked. Only one is visible at a time throu R13.</p>
+<p>The two Stack Pointers are banked. Only one is visible at a time through R13.</p>
 <p>The lowest 2 bits of the stack pointers are always 0. So they are always word aligned.</p>
 <p>It's not nessecary to use both stack pointers (SP_main and SP_process). Simple applications use only SP_main.</p>
 <p>PUSH and POP work with the actual <em>SP</em> (R13). The stack is 32-bit aligned.</p>
@@ -283,7 +285,7 @@ For accessing a particular Stack Pointer the mnemonic MSP (for SP_main) or PSP (
 <h2 id="link-register-r14-lr">Link Register (R14, LR)</h2>
 <p>The Link Register contains the return address of a subroutine/function.</p>
 <div class="highlight"><pre><span class="nf">main</span>
-   <span class="nf">BL</span> <span class="nv">my_func</span> <span class="c1">; call function with branch and link. PC=my_func, LR=next instr in main</span>
+   <span class="nf">BL</span> <span class="nv">my_func</span><span class="c1">; call funct. with branch and link. PC=my_func, LR=next instr in main</span>
 
 <span class="nf">...</span>
 
