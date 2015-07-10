@@ -138,15 +138,10 @@
   <div id="article_content">
     <p>This page collects my notes about the Cortex-M3 architecture.
 In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter kit by Energy Micro.</p>
-<p>The EFM32TG has:</p>
-<ul>
-<li>Number of interrupts: 23</li>
-<li>No Memory Protection Unit (MPU)</li>
-<li>No Embedded Trace Macrocell (ETM)</li>
-</ul>
 <div class="toc">
 <ul>
 <li><a href="#general">General</a></li>
+<li><a href="#efm32tg-overview">EFM32TG Overview</a></li>
 <li><a href="#registers">Registers</a><ul>
 <li><a href="#general-purpose-registers">General Purpose Registers</a></li>
 <li><a href="#stack-pointers-sp-r13-msp-psp">Stack Pointers (SP, R13, MSP, PSP)</a></li>
@@ -224,6 +219,77 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </tr>
 </tbody>
 </table>
+<h1 id="efm32tg-overview">EFM32TG Overview</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Feature</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>32 MHz ARM Cortex-M3 (r2p1)</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td>32 kB</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>4 kB</td>
+</tr>
+<tr>
+<td>SPI</td>
+<td>1</td>
+</tr>
+<tr>
+<td>I2C</td>
+<td>1</td>
+</tr>
+<tr>
+<td>USART</td>
+<td>2</td>
+</tr>
+<tr>
+<td>I2S</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Dig. Pins</td>
+<td>56</td>
+</tr>
+<tr>
+<td>ADC</td>
+<td>12-bit, 8 ch, 1 Msps</td>
+</tr>
+<tr>
+<td>DAC</td>
+<td>12-bit, 2 ch</td>
+</tr>
+<tr>
+<td>IRQs</td>
+<td>23</td>
+</tr>
+<tr>
+<td>LCD</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>MPU</td>
+<td>No</td>
+</tr>
+<tr>
+<td>ETM</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Package</td>
+<td>QFN64 9x9 mm</td>
+</tr>
+</tbody>
+</table>
 <h1 id="registers">Registers</h1>
 <p>All registers are 32-bit wide.</p>
 <table class="table table-hover table-striped">
@@ -283,7 +349,8 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <p>It's possible to use <em>SP</em> instead of <em>R13</em> for accessing the actual Stack Pointer.
 For accessing a particular Stack Pointer the mnemonic MSP (for SP_main) or PSP (for SP_process) exist.</p>
 <h2 id="link-register-r14-lr">Link Register (R14, LR)</h2>
-<p>The Link Register contains the return address of a subroutine/function.</p>
+<p>The Link Register contains the return address of a subroutine/function.
+On function entry (BL) the return address is automatically saved on LR.</p>
 <div class="highlight"><pre><span class="nf">main</span>
    <span class="nf">BL</span> <span class="nv">my_func</span><span class="c1">; call funct. with branch and link. PC=my_func, LR=next instr in main</span>
 
@@ -299,6 +366,10 @@ For accessing a particular Stack Pointer the mnemonic MSP (for SP_main) or PSP (
 <p>Since the Cortex-M3 has a piplelined architecture the PC can be ahead of the actual executed
 instruction (normally by 4).</p>
 <p>On reset, the processor loads the PC with the value of the reset vector, which is at address 0x00000004.</p>
+<blockquote>
+<p>The least-significant bit of each address loaded into <em>PC</em> must be 1 (indicating thumb mode).
+Otherwise an exception will occure on the Cortex-M3.</p>
+</blockquote>
 <h2 id="program-status-registers">Program Status Registers</h2>
 <p>The special-purpose program status registers (<em>xPSR</em>) provide arithmethic and logic flags (zero and carry flag),
 execution status and current executing IRQ number.</p>
@@ -659,60 +730,74 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 <tr>
 <th>Exception number</th>
 <th>Exception</th>
+<th>Priority</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
 <td>Reset</td>
+<td>-3</td>
 </tr>
 <tr>
 <td>2</td>
 <td>NMI</td>
+<td>-2</td>
 </tr>
 <tr>
 <td>3</td>
 <td>Hard Fault</td>
+<td>-1</td>
 </tr>
 <tr>
 <td>4</td>
 <td>MemManage</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>5</td>
 <td>BusFault</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>6</td>
 <td>UsageFault</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>7 - 10</td>
 <td>Reserved</td>
+<td>-</td>
 </tr>
 <tr>
 <td>11</td>
 <td>SVCall</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>12</td>
 <td>DebugMonitor</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>13</td>
 <td>Reserved</td>
+<td>-</td>
 </tr>
 <tr>
 <td>14</td>
 <td>PendSV</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>15</td>
 <td>SysTick</td>
+<td>configurable</td>
 </tr>
 <tr>
 <td>16 - 16+N</td>
 <td>External interrupt 0 .. N</td>
+<td>configurable</td>
 </tr>
 </tbody>
 </table>
@@ -807,7 +892,10 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 </tr>
 </tbody>
 </table>
-<p>Ths position of the <em>Vector Table</em> is defined by the <em>Vector Table Offset Register (VTOR)</em>.</p>
+<blockquote>
+<p>The least-significant bit of each exception handler address (vector) must be 1, indicating that the exception handler is in Thumb code.</p>
+</blockquote>
+<p>The position of the <em>Vector Table</em> is defined by the <em>Vector Table Offset Register (VTOR)</em>.</p>
   </div>
 
   <hr/>
