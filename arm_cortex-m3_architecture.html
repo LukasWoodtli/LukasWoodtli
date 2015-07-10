@@ -196,6 +196,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 </ul>
 </li>
+<li><a href="#the-vector-table">The Vector Table</a></li>
 </ul>
 </div>
 <h1 id="general">General</h1>
@@ -684,7 +685,7 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 <td>UsageFault</td>
 </tr>
 <tr>
-<td>7-10</td>
+<td>7 - 10</td>
 <td>Reserved</td>
 </tr>
 <tr>
@@ -784,6 +785,27 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 <blockquote>
 <p>Software can suppress hardware generation of the SysTick event.</p>
 </blockquote>
+<h1 id="the-vector-table">The Vector Table</h1>
+<p>The Vector Table contains the reset value of SP_main and the addresses of each exception handler function.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Offset in Table (32-bit words)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Reset value of SP_main</td>
+</tr>
+<tr>
+<td>Exception Number</td>
+<td>Address of exception handler</td>
+</tr>
+</tbody>
+</table>
+<p>Ths position of the <em>Vector Table</em> is defined by the <em>Vector Table Offset Register (VTOR)</em>.</p>
   </div>
 
   <hr/>
