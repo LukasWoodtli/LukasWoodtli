@@ -194,6 +194,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </ul>
 </li>
 <li><a href="#the-vector-table">The Vector Table</a></li>
+<li><a href="#reset-sequence">Reset Sequence</a></li>
 </ul>
 </div>
 <h1 id="general">General</h1>
@@ -873,7 +874,7 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 <p>Software can suppress hardware generation of the SysTick event.</p>
 </blockquote>
 <h1 id="the-vector-table">The Vector Table</h1>
-<p>The Vector Table contains the reset value of SP_main and the addresses of each exception handler function.</p>
+<p>The Vector Table contains the reset value of <em>SP_main</em> and the addresses of each exception handler function.</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -896,6 +897,26 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 <p>The least-significant bit of each exception handler address (vector) must be 1, indicating that the exception handler is in Thumb code.</p>
 </blockquote>
 <p>The position of the <em>Vector Table</em> is defined by the <em>Vector Table Offset Register (VTOR)</em>.</p>
+<h1 id="reset-sequence">Reset Sequence</h1>
+<p>At start up the <em>Vector Table</em> is located at memory position 0 (flash).
+It can later be relocated to an other memory position by software.</p>
+<p>After reset the processor does:</p>
+<ol>
+<li>Set main Stack Pointer<ul>
+<li>Load 32-bit value from address 0x00000000</li>
+<li>Save that value to <em>SP_main</em></li>
+</ul>
+</li>
+<li>Run start up code<ul>
+<li>Read the next entry in the <em>Vector Table</em> (0x00000004, reset vector)</li>
+<li>Jump to that address and start running code there</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Since the Cortex-M4 has a full descending stack the initial stack address
+has to be 0x04 bigger the the beginning of the stack.</p>
+</blockquote>
   </div>
 
   <hr/>
