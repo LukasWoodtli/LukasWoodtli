@@ -195,6 +195,10 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 <li><a href="#the-vector-table">The Vector Table</a></li>
 <li><a href="#reset-sequence">Reset Sequence</a></li>
+<li><a href="#assembler">Assembler</a><ul>
+<li><a href="#addressing-modes">Addressing Modes</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="general">General</h1>
@@ -917,6 +921,15 @@ It can later be relocated to an other memory position by software.</p>
 <p>Since the Cortex-M4 has a full descending stack the initial stack address
 has to be 0x04 bigger the the beginning of the stack.</p>
 </blockquote>
+<h1 id="assembler">Assembler</h1>
+<p>Most assembler examples use the <a href="https://sourceware.org/binutils/docs-2.25/as/index.html">GCC Assembler (gas)</a>.</p>
+<h2 id="addressing-modes">Addressing Modes</h2>
+<p><code>addr</code>: Absolute addressing mode (memory address of operator is given directly).</p>
+<p><code>%Rn</code>: Register direct (the value given in the register is used as operator).</p>
+<p><code>[%Rn]</code>: Register indirect or indexed (the value given in the register is used as address to the operator).</p>
+<p><code>[%Rn,#n]</code>: Register based with offset (the address of the operand is calculated by the content of the register plus a constant).</p>
+<p><code>#imm</code>: Immediate data (the operator is given directly as a constant).</p>
+<p><em>Rn</em> can be any of the numbered registers.</p>
   </div>
 
   <hr/>
