@@ -202,6 +202,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#conditional-suffixes">Conditional Suffixes</a></li>
 </ul>
 </li>
+<li><a href="#instruction-width-qualifier">Instruction Width Qualifier</a></li>
 </ul>
 </li>
 </ul>
@@ -1028,6 +1029,15 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="instruction-width-qualifier">Instruction Width Qualifier</h2>
+<p>This assembler qualifier is used to select a 16-bit
+or 32-bit instruction encoding.</p>
+<p><code>.N</code>: Narrow: Assembler must select a 16-bit istruction.</p>
+<p><code>.W</code>: Wide: Assembler must select a 32-bit istruction.</p>
+<p>If the instruction is not available in the requested encoding the
+assembler prroduces an error.</p>
+<p>If no qualifier is given the assembler selects the 16-bit encoding if it
+is available.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
