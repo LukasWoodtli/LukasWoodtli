@@ -203,6 +203,15 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </ul>
 </li>
 <li><a href="#instruction-width-qualifier">Instruction Width Qualifier</a></li>
+<li><a href="#data-transfer-commands">Data Transfer Commands</a><ul>
+<li><a href="#move-data-between-registers-mov-mvn">Move Data between Registers (MOV, MVN)</a><ul>
+<li><a href="#immediate">Immediate</a></li>
+<li><a href="#register">Register</a></li>
+<li><a href="#move-to-top-halfword-of-register-movt">Move to top halfword of Register (MOVT)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1029,6 +1038,8 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 </tr>
 </tbody>
 </table>
+<p>In the instruction examples <code>&lt;c&gt;</code> is used to indicate that one of the conditional
+suffixes can be used.</p>
 <h2 id="instruction-width-qualifier">Instruction Width Qualifier</h2>
 <p>This assembler qualifier is used to select a 16-bit
 or 32-bit instruction encoding.</p>
@@ -1038,6 +1049,43 @@ or 32-bit instruction encoding.</p>
 assembler prroduces an error.</p>
 <p>If no qualifier is given the assembler selects the 16-bit encoding if it
 is available.</p>
+<p>In the instruction examples <code>&lt;q&gt;</code> is used to indicate that <code>.N</code> or <code>.W</code> can be used.</p>
+<h2 id="data-transfer-commands">Data Transfer Commands</h2>
+<h3 id="move-data-between-registers-mov-mvn">Move Data between Registers (<code>MOV</code>, <code>MVN</code>)</h3>
+<p>Moves a value (or it's negated value) from one register to an other.</p>
+<p>Moving immediate value directly into a register is also possible.</p>
+<p>There are also command for movig shifted data. In this case
+the <code>MOV</code> commands are aliases for the shifting commands.</p>
+<h4 id="immediate">Immediate</h4>
+<div class="highlight"><pre><span class="nf">MOVS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>     <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">MOV</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>   <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">MOV</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+<span class="nf">MOVW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm16</span><span class="o">&gt;</span>
+</pre></div>
+<h4 id="register">Register</h4>
+<div class="highlight"><pre><span class="nf">MOV</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+<span class="nf">MOVS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+<span class="nf">MOV</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
+<p>Examples:</p>
+<div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R2</span><span class="c1">; /* Move the value from R2 to R3 */</span>
+<span class="nf">MVN</span> <span class="nv">R5</span><span class="p">,</span> <span class="nv">R6</span><span class="c1">; /* Move the negated value of R6 to R5 */</span>
+</pre></div>
+<h4 id="move-to-top-halfword-of-register-movt">Move to top halfword of Register (<code>MOVT</code>)</h4>
+<p>Moves an immediate value to the top half of the given register. The
+bottom half of the register is not written.</p>
+<div class="highlight"><pre><span class="nf">MOVT</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm16</span><span class="o">&gt;</span>
+</pre></div>
+<!---### Move Data between Register and Memory
+
+The basic commands for moving data to and from memory are store and load.
+They exist with different operand sizes (byte, half word, word and double word).
+
+With some commands a register operand can be updated after the operation with `!`. If it's
+available it is optional.
+
+There are commands for storing or loading multiple registers at once.
+--->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
