@@ -208,8 +208,14 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#immediate">Immediate</a></li>
 <li><a href="#register">Register</a></li>
 <li><a href="#move-to-top-halfword-of-register-movt">Move to top halfword of Register (MOVT)</a></li>
+<li><a href="#move-special-register-to-register-mrs">Move Special Register to Register (MRS)</a></li>
+<li><a href="#move-register-to-special-register-msr">Move Register to Special Register (MSR)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#other-commands">Other Commands</a><ul>
+<li><a href="#no-operation-nop">No Operation (NOP)</a></li>
 </ul>
 </li>
 </ul>
@@ -1076,6 +1082,14 @@ the <code>MOV</code> commands are aliases for the shifting commands.</p>
 bottom half of the register is not written.</p>
 <div class="highlight"><pre><span class="nf">MOVT</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm16</span><span class="o">&gt;</span>
 </pre></div>
+<h4 id="move-special-register-to-register-mrs">Move Special Register to Register (<code>MRS</code>)</h4>
+<div class="highlight"><pre><span class="nf">MRS</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nb">sp</span><span class="nv">ec_reg</span><span class="o">&gt;</span>
+</pre></div>
+<p><code>MRS</code> is a system level instruction except when accessing the <em>APSR</em> or <em>CONTROL</em> register.</p>
+<h4 id="move-register-to-special-register-msr">Move Register to Special Register (<code>MSR</code>)</h4>
+<div class="highlight"><pre><span class="nf">MSR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">sp</span><span class="nv">ec_reg</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span>
+</pre></div>
+<p><code>MRS</code> is a system level instruction except when accessing the <em>APSR</em> or <em>CONTROL</em> register. </p>
 <!---### Move Data between Register and Memory
 
 The basic commands for moving data to and from memory are store and load.
@@ -1086,6 +1100,12 @@ available it is optional.
 
 There are commands for storing or loading multiple registers at once.
 --->
+<h2 id="other-commands">Other Commands</h2>
+<h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
+<p>The NOP does nothing.</p>
+<div class="highlight"><pre><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>
+<span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span>
+</pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
