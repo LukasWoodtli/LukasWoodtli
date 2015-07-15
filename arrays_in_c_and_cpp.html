@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Lukas Woodtli</title>
+        <title>Arrays in C and C++ · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -110,14 +110,64 @@
 
       <div class="col-md-8">
         <div class="row">
-          
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">Arrays in C and C++</a></h1>
+    </div>
+
         </div>
 
         <div class="row">
-    <h1>Authors on Lukas Woodtli</h1>
 
-    <ul>        <li><a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a> (12)</li>
-    </ul>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/c.html">C</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month07">07</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month07">15</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <div class="highlight"><pre><span class="c1">//     rows  columns</span>
+<span class="c1">//        |  |   </span>
+<span class="c1">//        v  v   </span>
+<span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span>
+                 <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span>
+                <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}};</span>
+</pre></div>
+<p>The values of the array <code>data</code> are stored row for row in memory:</p>
+<blockquote>
+<p>0,1,2,3,4,5</p>
+</blockquote>
+<p>An other possibility to see it is that multi-dimensional arrays in
+C/C++ are arrays of arrays.</p>
+<p>So <code>data</code> is like an array (with size <em>3</em>) of arrays of char (with size <em>2</em>).</p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/arm_cortex-m3_architecture.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
         </div>
 
         <div class="row">

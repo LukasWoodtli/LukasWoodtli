@@ -1213,10 +1213,10 @@ of it's <em>sign bit</em>.</p>
 of it's sing flag. The number of bits
 to shift is read from the <em>bottom byte</em> of a register.</p>
 <p>Flags can be set.</p>
-<div class="highlight"><pre>ASRS&lt;Rdn&gt;,&lt;Rm&gt;             /* Outside IT block */
-ASR&lt;c&gt; &lt;Rdn&gt;,&lt;Rm&gt;          /* Inside IT block */
-ASR{S}&lt;c&gt;.W &lt;Rd&gt;,&lt;Rn&gt;,&lt;Rm&gt;
-ASR{S}&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;Rn&gt;, &lt;Rm&gt;
+<div class="highlight"><pre><span class="nf">ASRS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>             <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">ASR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
 <h2 id="other-commands">Other Commands</h2>
 <h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
@@ -1293,8 +1293,8 @@ ASR{S}&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;Rn&gt;, &lt;Rm&gt;
   <hr/>
 
       <ul class="pager">
-        <li class="previous disabled">
-          <a >
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">
           &laquo; Newer</a>
         </li>
         <li class="next">
