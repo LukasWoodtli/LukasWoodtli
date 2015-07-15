@@ -237,6 +237,14 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 </ul>
 </li>
+<li><a href="#shift-and-rotate-commands">Shift and Rotate Commands</a><ul>
+<li><a href="#arithmetic-shift-right-asr">Arithmetic Shift Right (ASR)</a><ul>
+<li><a href="#immediate_4">Immediate</a></li>
+<li><a href="#register_4">Register</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#other-commands">Other Commands</a><ul>
 <li><a href="#calculate-address-adr">Calculate Address (ADR)</a></li>
 <li><a href="#no-operation-nop">No Operation (NOP)</a></li>
@@ -1178,27 +1186,48 @@ writes the result to the destination register.</p>
 <h3 id="and-and">And (<code>AND</code>)</h3>
 <h4 id="immediate_3">Immediate</h4>
 <p>Bitwise <em>AND</em> of register and immediate value.</p>
-<div class="highlight"><pre>AND{S}&lt;c&gt;  &lt;Rd&gt;,&lt;Rn&gt;,#&lt;const&gt;
-AND{S}&lt;c&gt;&lt;q&gt; {&lt;Rd&gt;,} &lt;Rn&gt;,  #&lt;const&gt;
+<div class="highlight"><pre><span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+<span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
 <h4 id="register_3">Register</h4>
 <p>Bitwise <em>AND</em> of a register and a second (optionally-shifted) register.
 The flags can be updated based on the result.</p>
-<div class="highlight"><pre>ANDS&lt;Rdn&gt;,&lt;Rm&gt;                       /* Outside IT block */
-AND&lt;c&gt; &lt;Rdn&gt;,&lt;Rm&gt;                    /* Inside IT block */
-AND{S}&lt;c&gt;.W &lt;Rd&gt;,&lt;Rn&gt;,&lt;Rm&gt;{,&lt;shift&gt;}
-AND{S}&lt;c&gt;&lt;q&gt; {&lt;Rd&gt;,} &lt;Rn&gt;, &lt;Rm&gt; {,&lt;shift&gt;}
+<div class="highlight"><pre><span class="nf">ANDS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>                       <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">AND</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>                    <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+<span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+</pre></div>
+<h2 id="shift-and-rotate-commands">Shift and Rotate Commands</h2>
+<h3 id="arithmetic-shift-right-asr">Arithmetic Shift Right (<code>ASR</code>)</h3>
+<h4 id="immediate_4">Immediate</h4>
+<p>Shifts a register right by an immediate value. Shifts in copies
+of it's <em>sign bit</em>.</p>
+<p>Can update flags.</p>
+<div class="highlight"><pre><span class="nf">ASRS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>    <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">ASR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>  <span class="o">/*</span><span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>
+<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>
+</pre></div>
+<h4 id="register_4">Register</h4>
+<p>Shifts a register by a variable number of bits, shifting in copies
+of it's sing flag. The number of bits
+to shift is read from the <em>bottom byte</em> of a register.</p>
+<p>Flags can be set.</p>
+<div class="highlight"><pre>ASRS&lt;Rdn&gt;,&lt;Rm&gt;             /* Outside IT block */
+ASR&lt;c&gt; &lt;Rdn&gt;,&lt;Rm&gt;          /* Inside IT block */
+ASR{S}&lt;c&gt;.W &lt;Rd&gt;,&lt;Rn&gt;,&lt;Rm&gt;
+ASR{S}&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;Rn&gt;, &lt;Rm&gt;
 </pre></div>
 <h2 id="other-commands">Other Commands</h2>
 <h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
 <p>Calculate <em>PC</em> relative address.</p>
 <p>Add immediate value to <em>PC</em> and store result in register.</p>
-<div class="highlight"><pre>ADR&lt;c&gt; &lt;Rd&gt;,&lt;label&gt;
-ADR&lt;c&gt;.W &lt;Rd&gt;,&lt;label&gt; /* &lt;label&gt; before current instruction */
-SUB &lt;Rd&gt;,PC,#0.       /* Special case for zero offset */
-ADR&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;label&gt; 
-ADD&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, PC,  #&lt;const&gt; 
-SUB&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, PC,  #&lt;const&gt; /* Special case */
+<div class="highlight"><pre><span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
+<span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span> <span class="nv">before</span> <span class="nv">current</span> <span class="nv">instruction</span> <span class="o">*/</span>
+<span class="nf">SUB</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nv">PC</span><span class="p">,</span><span class="err">#</span><span class="mi">0</span><span class="nv">.</span>       <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="nv">for</span> <span class="nv">zero</span> <span class="nv">offset</span> <span class="o">*/</span>
+<span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span> 
+<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> 
+<span class="nf">SUB</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="o">*/</span>
 </pre></div>
 <h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
 <p>The NOP does nothing.</p>
