@@ -229,7 +229,16 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 </ul>
 </li>
+<li><a href="#logical-commands">Logical Commands</a><ul>
+<li><a href="#and-and">And (AND)</a><ul>
+<li><a href="#immediate_3">Immediate</a></li>
+<li><a href="#register_3">Register</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#other-commands">Other Commands</a><ul>
+<li><a href="#calculate-address-adr">Calculate Address (ADR)</a></li>
 <li><a href="#no-operation-nop">No Operation (NOP)</a></li>
 </ul>
 </li>
@@ -1165,7 +1174,32 @@ writes the result to the destination register.</p>
 <span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span>  <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
+<h2 id="logical-commands">Logical Commands</h2>
+<h3 id="and-and">And (<code>AND</code>)</h3>
+<h4 id="immediate_3">Immediate</h4>
+<p>Bitwise <em>AND</em> of register and immediate value.</p>
+<div class="highlight"><pre>AND{S}&lt;c&gt;  &lt;Rd&gt;,&lt;Rn&gt;,#&lt;const&gt;
+AND{S}&lt;c&gt;&lt;q&gt; {&lt;Rd&gt;,} &lt;Rn&gt;,  #&lt;const&gt;
+</pre></div>
+<h4 id="register_3">Register</h4>
+<p>Bitwise <em>AND</em> of a register and a second (optionally-shifted) register.
+The flags can be updated based on the result.</p>
+<div class="highlight"><pre>ANDS&lt;Rdn&gt;,&lt;Rm&gt;                       /* Outside IT block */
+AND&lt;c&gt; &lt;Rdn&gt;,&lt;Rm&gt;                    /* Inside IT block */
+AND{S}&lt;c&gt;.W &lt;Rd&gt;,&lt;Rn&gt;,&lt;Rm&gt;{,&lt;shift&gt;}
+AND{S}&lt;c&gt;&lt;q&gt; {&lt;Rd&gt;,} &lt;Rn&gt;, &lt;Rm&gt; {,&lt;shift&gt;}
+</pre></div>
 <h2 id="other-commands">Other Commands</h2>
+<h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
+<p>Calculate <em>PC</em> relative address.</p>
+<p>Add immediate value to <em>PC</em> and store result in register.</p>
+<div class="highlight"><pre>ADR&lt;c&gt; &lt;Rd&gt;,&lt;label&gt;
+ADR&lt;c&gt;.W &lt;Rd&gt;,&lt;label&gt; /* &lt;label&gt; before current instruction */
+SUB &lt;Rd&gt;,PC,#0.       /* Special case for zero offset */
+ADR&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;label&gt; 
+ADD&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, PC,  #&lt;const&gt; 
+SUB&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, PC,  #&lt;const&gt; /* Special case */
+</pre></div>
 <h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
 <p>The NOP does nothing.</p>
 <div class="highlight"><pre><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>
