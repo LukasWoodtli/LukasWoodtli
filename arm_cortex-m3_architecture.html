@@ -237,12 +237,26 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 </ul>
 </li>
-<li><a href="#shift-and-rotate-commands">Shift and Rotate Commands</a><ul>
-<li><a href="#arithmetic-shift-right-asr">Arithmetic Shift Right (ASR)</a><ul>
+<li><a href="#bit-commands">Bit Commands</a><ul>
+<li><a href="#bit-field-clear-bfc">Bit Field Clear (BFC)</a></li>
+<li><a href="#bit-field-insert-bfi">Bit Field Insert (BFI)</a></li>
+<li><a href="#bit-clear-bic">Bit Clear (BIC)</a><ul>
 <li><a href="#immediate_4">Immediate</a></li>
 <li><a href="#register_4">Register</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#shift-and-rotate-commands">Shift and Rotate Commands</a><ul>
+<li><a href="#arithmetic-shift-right-asr">Arithmetic Shift Right (ASR)</a><ul>
+<li><a href="#immediate_5">Immediate</a></li>
+<li><a href="#register_5">Register</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#branching-and-jumping-commands">Branching and Jumping Commands</a><ul>
+<li><a href="#branch-b">Branch (B)</a></li>
 </ul>
 </li>
 <li><a href="#other-commands">Other Commands</a><ul>
@@ -1197,9 +1211,41 @@ The flags can be updated based on the result.</p>
 <span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
+<h2 id="bit-commands">Bit Commands</h2>
+<h3 id="bit-field-clear-bfc">Bit Field Clear (<code>BFC</code>)</h3>
+<p>Clear a number of adjacent bits in a register.</p>
+<div class="highlight"><pre><span class="nf">BFC</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">lsb</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">width</span><span class="o">&gt;</span>
+</pre></div>
+<p>Where:</p>
+<p><code>&lt;lsb&gt;</code>: The least significant bit that is cleared (Range: 0-31).</p>
+<p><code>&lt;width&gt;</code>: Number of bits to clear.</p>
+<h3 id="bit-field-insert-bfi">Bit Field Insert (<code>BFI</code>)</h3>
+<p>Insert given number of the lowest bits from source register to
+a given position in the destination register.</p>
+<div class="highlight"><pre><span class="nf">BFI</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">lsb</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">width</span><span class="o">&gt;</span>
+</pre></div>
+<p><code>&lt;lsb&gt;</code>: The least significant bit in destinatin where bits are copied to (Range: 0-31).</p>
+<p><code>&lt;width&gt;</code>: Number of bits to copy from source.</p>
+<h3 id="bit-clear-bic">Bit Clear (<code>BIC</code>)</h3>
+<h4 id="immediate_4">Immediate</h4>
+<p>Performs a bitwise <em>AND</em> of register and the complement of the immediate
+value.</p>
+<p>The flags can be updated.</p>
+<div class="highlight"><pre><span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+<span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+</pre></div>
+<h4 id="register_4">Register</h4>
+<p>Performs a bitwise <em>AND</em> one register and the complement of a second register.
+The second register can be shifted.</p>
+<p>The flags can be updated.</p>
+<div class="highlight"><pre><span class="nf">BICS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>    <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">BIC</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+<span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span>  <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+</pre></div>
 <h2 id="shift-and-rotate-commands">Shift and Rotate Commands</h2>
 <h3 id="arithmetic-shift-right-asr">Arithmetic Shift Right (<code>ASR</code>)</h3>
-<h4 id="immediate_4">Immediate</h4>
+<h4 id="immediate_5">Immediate</h4>
 <p>Shifts a register right by an immediate value. Shifts in copies
 of it's <em>sign bit</em>.</p>
 <p>Can update flags.</p>
@@ -1208,7 +1254,7 @@ of it's <em>sign bit</em>.</p>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>
 </pre></div>
-<h4 id="register_4">Register</h4>
+<h4 id="register_5">Register</h4>
 <p>Shifts a register by a variable number of bits, shifting in copies
 of it's sing flag. The number of bits
 to shift is read from the <em>bottom byte</em> of a register.</p>
@@ -1217,6 +1263,13 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">ASR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
+<h2 id="branching-and-jumping-commands">Branching and Jumping Commands</h2>
+<h3 id="branch-b">Branch (<code>B</code>)</h3>
+<p>Branch to a target addresd.</p>
+<div class="highlight"><pre><span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
+<span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
+<span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 </pre></div>
 <h2 id="other-commands">Other Commands</h2>
 <h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
