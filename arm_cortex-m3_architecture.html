@@ -258,6 +258,9 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#branching-and-jumping-commands">Branching and Jumping Commands</a><ul>
 <li><a href="#branch-b">Branch (B)</a></li>
 <li><a href="#branch-with-link-bl">Branch with Link (BL)</a></li>
+<li><a href="#branch-with-link-and-exchange-blx">Branch with Link and Exchange (BLX)</a></li>
+<li><a href="#branch-and-exchange-bx">Branch and Exchange (BX)</a></li>
+<li><a href="#compare-and-branch-on-non-zero-ans-compare-and-branch-on-zero-cbnzcbz">Compare and Branch on Non-Zero ans Compare and Branch on Zero (CBNZ,CBZ)</a></li>
 </ul>
 </li>
 <li><a href="#other-commands">Other Commands</a><ul>
@@ -1279,6 +1282,34 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 </pre></div>
 <p><code>&lt;label&gt;</code>: The label to jump to. The assembler calculates the offset
 of the <code>BL</code> instruction and the label.</p>
+<h3 id="branch-with-link-and-exchange-blx">Branch with Link and Exchange (<code>BLX</code>)</h3>
+<p>Calls a function at an address and instruction set specified in a register.</p>
+<p>It saves the next instruction (after <code>BLX</code>) in <em>LR</em>.</p>
+<blockquote>
+<p>Be aware that the Cortex-M3 only supports Thumb! An attempt to change to ARM Mode will
+cause an <em>UsageFault</em> exception.</p>
+</blockquote>
+<div class="highlight"><pre><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span><span class="nb">BL</span><span class="nv">X</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
+<p>Exceptions: UsageFault</p>
+<h3 id="branch-and-exchange-bx">Branch and Exchange (<code>BX</code>)</h3>
+<p>Calls a function at an address and instruction set specified in a register.</p>
+<p>It's the same as <code>BXL</code> but it <strong>doesn't save</strong> the next instruction in <em>LR</em>.</p>
+<blockquote>
+<p>Be aware that the Cortex-M3 only supports Thumb! (see <code>BLX</code>)</p>
+</blockquote>
+<div class="highlight"><pre><span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>   <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
+<p>Exceptions: UsageFault</p>
+<h3 id="compare-and-branch-on-non-zero-ans-compare-and-branch-on-zero-cbnzcbz">Compare and Branch on Non-Zero ans Compare and Branch on Zero (<code>CBNZ</code>,<code>CBZ</code>)</h3>
+<p>Compares the value in register with zero, and conditionally branches <em>forward</em> a constant value.
+The condition flags are not affected.</p>
+<div class="highlight"><pre><span class="nf">CB</span><span class="err">{</span><span class="nv">N</span><span class="err">}</span><span class="nv">Z</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>    <span class="o">/*</span> <span class="nv">Not</span> <span class="nv">permitted</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">CB</span><span class="err">{</span><span class="nv">N</span><span class="err">}</span><span class="nv">Z</span><span class="o">&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
+</pre></div>
+<p><code>&lt;label&gt;</code>: The assembler calculates the offset from the <code>CB{N}Z</code> instruction to the label.
+Permitted offsets are even numbers in the range 0 to 126.</p>
 <h2 id="other-commands">Other Commands</h2>
 <h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
 <p>Calculate <em>PC</em> relative address.</p>
