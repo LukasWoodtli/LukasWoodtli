@@ -257,10 +257,12 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 <li><a href="#branching-and-jumping-commands">Branching and Jumping Commands</a><ul>
 <li><a href="#branch-b">Branch (B)</a></li>
+<li><a href="#branch-with-link-bl">Branch with Link (BL)</a></li>
 </ul>
 </li>
 <li><a href="#other-commands">Other Commands</a><ul>
 <li><a href="#calculate-address-adr">Calculate Address (ADR)</a></li>
+<li><a href="#breakpoint-bkpt">Breakpoint (BKPT)</a></li>
 <li><a href="#no-operation-nop">No Operation (NOP)</a></li>
 </ul>
 </li>
@@ -1271,6 +1273,12 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 <span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 </pre></div>
+<h3 id="branch-with-link-bl">Branch with Link (<code>BL</code>)</h3>
+<p>Calls a function at PC-relative address.</p>
+<div class="highlight"><pre><span class="nf">BL</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
+</pre></div>
+<p><code>&lt;label&gt;</code>: The label to jump to. The assembler calculates the offset
+of the <code>BL</code> instruction and the label.</p>
 <h2 id="other-commands">Other Commands</h2>
 <h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
 <p>Calculate <em>PC</em> relative address.</p>
@@ -1282,6 +1290,15 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> 
 <span class="nf">SUB</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="o">*/</span>
 </pre></div>
+<h3 id="breakpoint-bkpt">Breakpoint (<code>BKPT</code>)</h3>
+<p>Causes a <em>DebugMonitor</em> exception or a debug halt.</p>
+<p>It is a unconditional instruction and can be executed inside or
+outside an <em>TI</em> block.</p>
+<div class="highlight"><pre><span class="nf">BKPT</span><span class="o">&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>
+</pre></div>
+<p><code>&lt;imm8&gt;</code> is a 8-bit value that is ignored by the hardware
+but can be used to store some information by a debugger.</p>
+<p>Exceptions: <em>DebugMonitor</em></p>
 <h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
 <p>The NOP does nothing.</p>
 <div class="highlight"><pre><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>
