@@ -260,8 +260,8 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#branch-commands">Branch Commands</a><ul>
 <li><a href="#branch-b">Branch (B)</a></li>
 <li><a href="#branch-with-link-bl">Branch with Link (BL)</a></li>
-<li><a href="#branch-with-link-and-exchange-blx">Branch with Link and Exchange (BLX)</a></li>
 <li><a href="#branch-and-exchange-bx">Branch and Exchange (BX)</a></li>
+<li><a href="#branch-with-link-and-exchange-blx">Branch with Link and Exchange (BLX)</a></li>
 </ul>
 </li>
 <li><a href="#conditional-branch-commands">Conditional Branch Commands</a><ul>
@@ -1302,16 +1302,6 @@ All other branch instructions can only be conditional inside an <em>IT</em> bloc
 </pre></div>
 <p><code>&lt;label&gt;</code>: The label to jump to. The assembler calculates the offset
 of the <code>BL</code> instruction and the label.</p>
-<h3 id="branch-with-link-and-exchange-blx">Branch with Link and Exchange (<code>BLX</code>)</h3>
-<p>Calls a function at an address and instruction set specified in a register.</p>
-<p>It saves the next instruction (after <code>BLX</code>) in <em>LR</em>.</p>
-<blockquote>
-<p>Be aware that the Cortex-M3 only supports Thumb! An attempt to change to ARM Mode will
-cause an <em>UsageFault</em> exception.</p>
-</blockquote>
-<div class="highlight"><pre><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span><span class="nb">BL</span><span class="nv">X</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
-</pre></div>
-<p>Exceptions: UsageFault</p>
 <h3 id="branch-and-exchange-bx">Branch and Exchange (<code>BX</code>)</h3>
 <p>Calls a function at an address and instruction set specified in a register.</p>
 <p>It's the same as <code>BXL</code> but it <strong>doesn't save</strong> the next instruction in <em>LR</em>.</p>
@@ -1320,6 +1310,16 @@ cause an <em>UsageFault</em> exception.</p>
 </blockquote>
 <div class="highlight"><pre><span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>   <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
+<p>Exceptions: UsageFault</p>
+<h3 id="branch-with-link-and-exchange-blx">Branch with Link and Exchange (<code>BLX</code>)</h3>
+<p>Calls a function at an address and instruction set specified in a register.</p>
+<p>It saves the next instruction (after <code>BLX</code>) in <em>LR</em>.</p>
+<blockquote>
+<p>Be aware that the Cortex-M3 only supports Thumb! An attempt to change to ARM Mode will
+cause an <em>UsageFault</em> exception.</p>
+</blockquote>
+<div class="highlight"><pre><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span><span class="nb">BL</span><span class="nv">X</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
 <p>Exceptions: UsageFault</p>
 <h2 id="conditional-branch-commands">Conditional Branch Commands</h2>
