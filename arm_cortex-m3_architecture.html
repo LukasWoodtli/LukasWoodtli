@@ -138,6 +138,8 @@
   <div id="article_content">
     <p>This page collects my notes about the Cortex-M3 architecture.
 In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter kit by Energy Micro.</p>
+<p>Most information on this page is taken from the
+<a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.cortexm.m3/index.html">documentation from ARM</a>.</p>
 <div class="toc">
 <ul>
 <li><a href="#general">General</a></li>
@@ -255,11 +257,14 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 </ul>
 </li>
-<li><a href="#branching-and-jumping-commands">Branching and Jumping Commands</a><ul>
+<li><a href="#branch-commands">Branch Commands</a><ul>
 <li><a href="#branch-b">Branch (B)</a></li>
 <li><a href="#branch-with-link-bl">Branch with Link (BL)</a></li>
 <li><a href="#branch-with-link-and-exchange-blx">Branch with Link and Exchange (BLX)</a></li>
 <li><a href="#branch-and-exchange-bx">Branch and Exchange (BX)</a></li>
+</ul>
+</li>
+<li><a href="#conditional-branch-commands">Conditional Branch Commands</a><ul>
 <li><a href="#compare-and-branch-on-non-zero-ans-compare-and-branch-on-zero-cbnzcbz">Compare and Branch on Non-Zero ans Compare and Branch on Zero (CBNZ,CBZ)</a></li>
 </ul>
 </li>
@@ -444,8 +449,9 @@ On function entry (BL) the return address is automatically saved on LR.</p>
 instruction (normally by 4).</p>
 <p>On reset, the processor loads the PC with the value of the reset vector, which is at address 0x00000004.</p>
 <blockquote>
-<p>The least-significant bit of each address loaded into <em>PC</em> must be 1 (indicating thumb mode).
-Otherwise an exception will occure on the Cortex-M3.</p>
+<p>The least-significant bit of each address loaded into <em>PC</em> (with <code>BX</code>, <code>BLX</code>, <code>LDM</code>, <code>LDR</code>, or <code>POP</code>)
+must be 1 (indicating thumb mode).</p>
+<p>Otherwise an exception will occure on the Cortex-M3.</p>
 </blockquote>
 <h2 id="program-status-registers">Program Status Registers</h2>
 <p>The special-purpose program status registers (<em>xPSR</em>) provide arithmethic and logic flags (zero and carry flag),
@@ -1140,7 +1146,7 @@ bottom half of the register is not written.</p>
 <h4 id="move-register-to-special-register-msr">Move Register to Special Register (<code>MSR</code>)</h4>
 <div class="highlight"><pre><span class="nf">MSR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">sp</span><span class="nv">ec_reg</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span>
 </pre></div>
-<p><code>MRS</code> is a system level instruction except when accessing the <em>APSR</em> or <em>CONTROL</em> register. </p>
+<p><code>MRS</code> is a system level instruction except when accessing the <em>APSR</em> or <em>CONTROL</em> register.</p>
 <!---### Move Data between Register and Memory
 
 The basic commands for moving data to and from memory are store and load.
@@ -1269,7 +1275,21 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-<h2 id="branching-and-jumping-commands">Branching and Jumping Commands</h2>
+<h2 id="branch-commands">Branch Commands</h2>
+<ul>
+<li><code>B</code>: Branch (immediate)</li>
+<li><code>BL</code>: Branch with link (immediate)</li>
+<li><code>BX</code>: Branch indirect (register)</li>
+<li><code>BLX</code>: Branch indirect with link (register)</li>
+</ul>
+<p>All these branch to a label, or to an address given by the operand.</p>
+<p>In addition:
+The <code>BL</code> and <code>BLX</code> instructions write the address of the next instruction to <em>LR</em>.</p>
+<blockquote>
+<p>The <code>BX</code> and <code>BLX</code> instructions result in a <em>UsageFault</em> exception if bit[0] of the target address is 0.</p>
+</blockquote>
+<p>`B is the only conditional instruction that can be inside or outside an <em>IT</em> block.
+All other branch instructions can only be conditional inside an <em>IT</em> block, and are always unconditional otherwise.</p>
 <h3 id="branch-b">Branch (<code>B</code>)</h3>
 <p>Branch to a target addresd.</p>
 <div class="highlight"><pre><span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
@@ -1302,6 +1322,7 @@ cause an <em>UsageFault</em> exception.</p>
 <span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
 <p>Exceptions: UsageFault</p>
+<h2 id="conditional-branch-commands">Conditional Branch Commands</h2>
 <h3 id="compare-and-branch-on-non-zero-ans-compare-and-branch-on-zero-cbnzcbz">Compare and Branch on Non-Zero ans Compare and Branch on Zero (<code>CBNZ</code>,<code>CBZ</code>)</h3>
 <p>Compares the value in register with zero, and conditionally branches <em>forward</em> a constant value.
 The condition flags are not affected.</p>
@@ -1317,8 +1338,8 @@ Permitted offsets are even numbers in the range 0 to 126.</p>
 <div class="highlight"><pre><span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 <span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span> <span class="nv">before</span> <span class="nv">current</span> <span class="nv">instruction</span> <span class="o">*/</span>
 <span class="nf">SUB</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nv">PC</span><span class="p">,</span><span class="err">#</span><span class="mi">0</span><span class="nv">.</span>       <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="nv">for</span> <span class="nv">zero</span> <span class="nv">offset</span> <span class="o">*/</span>
-<span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span> 
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> 
+<span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
+<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">SUB</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="o">*/</span>
 </pre></div>
 <h3 id="breakpoint-bkpt">Breakpoint (<code>BKPT</code>)</h3>
