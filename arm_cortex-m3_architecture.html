@@ -174,7 +174,10 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#dynamic-priority-setting">Dynamic Priority Setting</a></li>
 </ul>
 </li>
-<li><a href="#memory-layout">Memory Layout</a></li>
+<li><a href="#memory-layout">Memory Layout</a><ul>
+<li><a href="#bit-banding">Bit-Banding</a></li>
+</ul>
+</li>
 <li><a href="#bus-interfaces">Bus Interfaces</a></li>
 <li><a href="#data-types">Data Types</a></li>
 <li><a href="#exceptions">Exceptions</a><ul>
@@ -785,21 +788,49 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 </tr>
 </tbody>
 </table>
-<!-- ## Bit-Banding
+<h2 id="bit-banding">Bit-Banding</h2>
+<p>Bit-Banding is a feature that allows to access certain bits individually. The access to the bits are atomically.</p>
+<p>The access to the individual bits are accomplished by mapping each bit from the bit-banding region to an address
+in a region called bit-banding alias.</p>
+<ul>
+<li>Each bit-banding region is 1 MB big.</li>
+<li>The bit-banding alias regions are 32 MB big (but it addresses in total only the 1 MB of the bit-banding region).</li>
+</ul>
+<p>There are two bit-band region. One for memory and the other for peripherals.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Bit-Band region</th>
+<th>Bit-Band alias region</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory</td>
+<td>0x20000000 - 0x200FFFFF</td>
+<td>0x22000000 - 0x23FFFFF</td>
+</tr>
+<tr>
+<td>Peripherals</td>
+<td>0x40000000 - 0x400FFFFF</td>
+<td>0x42000000 - 0x43FFFFF</td>
+</tr>
+</tbody>
+</table>
+<p>To access one bit through the bit-banding alias the mapping is performed by this code:</p>
+<div class="highlight"><pre><span class="cp">#define BIT_BANDING_ALIAS_OFFSET(byteOffsetInBitBandRegion, bitNumber) \</span>
+<span class="cp">                                  ((byteOffsetInBitBandRegion * 32) + (bitNumber * 4))</span>
+<span class="cp">#define BIT_BANDING_MEMORY_ALIAS_BASE    0x20000000</span>
+<span class="cp">#define BIT_BANDING_PERIPERAL_ALIAS_BASE 0x22000000</span>
 
-Bit-Banding is a feature that allows to access certain bits individually. The access to the bits are atomically.
-
-The access to the individual bits are accomplished by mapping each bit from the bit-banding region to an address
-in a region called bit-band alias.
-
-There are two bit-band region. One for memory and the other for peripherals.
-
-|                     | Bit-Band region         | Bit-Band alias region       |
-|---------------------|-------------------------|-----------------------------|
-| Memory              | 0x20000000 - 0x200FFFFC | 0x22000000 - 0x23FFFFC      |
-| Peripherals         | 0x40000000 - 0x400FFFFC | 0x42000000 - 0x43FFFFC      |
-
--->
+<span class="cp">#define BIT_BANDING_MEMORY_TO_ALIAS(byte, bit)   \</span>
+<span class="cp">                           (BIT_BANDING_MEMORY_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
+<span class="cp">#define BIT_BANDING_PERIPHERAL_TO_ALIAS(byte, bit) \</span>
+<span class="cp">                           (BIT_BANDING_PERIPHERAL_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
+</pre></div>
+<p>It's also possible to calculate the address in the other direction from the alias region to the bit-banding region.
+But it's usually not nessecary to do the address translation in this direction.</p>
 <h1 id="bus-interfaces">Bus Interfaces</h1>
 <p>The Cortex-M3 has multiple bus interfaces:</p>
 <ul>
