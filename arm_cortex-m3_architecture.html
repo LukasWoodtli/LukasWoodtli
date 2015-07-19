@@ -251,12 +251,21 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#register_4">Register</a></li>
 </ul>
 </li>
+<li><a href="#count-leading-zeros-clz">Count Leading Zeros (CLZ)</a></li>
 </ul>
 </li>
 <li><a href="#shift-and-rotate-commands">Shift and Rotate Commands</a><ul>
 <li><a href="#arithmetic-shift-right-asr">Arithmetic Shift Right (ASR)</a><ul>
 <li><a href="#immediate_5">Immediate</a></li>
 <li><a href="#register_5">Register</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#compare-commands">Compare Commands</a><ul>
+<li><a href="#compare-negative-cmn">Compare Negative (CMN)</a><ul>
+<li><a href="#immediate_6">Immediate</a></li>
+<li><a href="#register_6">Register</a></li>
 </ul>
 </li>
 </ul>
@@ -1311,6 +1320,10 @@ The second register can be shifted.</p>
 <span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span>  <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
+<h3 id="count-leading-zeros-clz">Count Leading Zeros (<code>CLZ</code>)</h3>
+<p>Returns the number of leading zero bits of a register.</p>
+<div class="highlight"><pre><span class="nf">CLZ</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
 <h2 id="shift-and-rotate-commands">Shift and Rotate Commands</h2>
 <h3 id="arithmetic-shift-right-asr">Arithmetic Shift Right (<code>ASR</code>)</h3>
 <h4 id="immediate_5">Immediate</h4>
@@ -1331,6 +1344,22 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">ASR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+</pre></div>
+<h2 id="compare-commands">Compare Commands</h2>
+<h3 id="compare-negative-cmn">Compare Negative (<code>CMN</code>)</h3>
+<h4 id="immediate_6">Immediate</h4>
+<p>Compare values by <strong>adding</strong> a register and an immediate value.</p>
+<p>Updates the flags but discards result.</p>
+<div class="highlight"><pre><span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+<span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+</pre></div>
+<h4 id="register_6">Register</h4>
+<p>Compare values by <strong>adding</strong> to registers. The second register
+can be shifted.</p>
+<p>Updates the flags but discards result.</p>
+<div class="highlight"><pre><span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+<span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+<span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
 <h2 id="branch-commands">Branch Commands</h2>
 <ul>
@@ -1417,6 +1446,11 @@ but can be used to store some information by a debugger.</p>
 <div class="highlight"><pre><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>
 <span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span>
 </pre></div>
+<!-- TBD: Instructions have to be described later
+
+- CLREX 
+
+-->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
