@@ -137,9 +137,10 @@
 
   <div id="article_content">
     <p>This page collects my notes about the Cortex-M3 architecture.
-In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter kit by Energy Micro.</p>
+In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter kit by
+<a href="https://www.silabs.com/">Silicon Labs</a>.</p>
 <p>Most information on this page is taken from the
-<a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.cortexm.m3/index.html">documentation from ARM</a>.</p>
+<a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.cortexm.m3/index.html">documentation by ARM</a>.</p>
 <div class="toc">
 <ul>
 <li><a href="#general">General</a></li>
@@ -209,7 +210,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#move-data-between-registers-mov-mvn">Move Data between Registers (MOV, MVN)</a><ul>
 <li><a href="#immediate">Immediate</a></li>
 <li><a href="#register">Register</a></li>
-<li><a href="#move-to-top-halfword-of-register-movt">Move to top halfword of Register (MOVT)</a></li>
+<li><a href="#move-to-top-half-word-of-register-movt">Move to top half-word of Register (MOVT)</a></li>
 <li><a href="#move-special-register-to-register-mrs">Move Special Register to Register (MRS)</a></li>
 <li><a href="#move-register-to-special-register-msr">Move Register to Special Register (MSR)</a></li>
 </ul>
@@ -270,7 +271,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </li>
 <li><a href="#other-commands">Other Commands</a><ul>
 <li><a href="#calculate-address-adr">Calculate Address (ADR)</a></li>
-<li><a href="#breakpoint-bkpt">Breakpoint (BKPT)</a></li>
+<li><a href="#break-point-bkpt">Break-point (BKPT)</a></li>
 <li><a href="#no-operation-nop">No Operation (NOP)</a></li>
 </ul>
 </li>
@@ -416,7 +417,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </ul>
 <p>The two Stack Pointers are banked. Only one is visible at a time through R13.</p>
 <p>The lowest 2 bits of the stack pointers are always 0. So they are always word aligned.</p>
-<p>It's not nessecary to use both stack pointers (SP_main and SP_process). Simple applications use only SP_main.</p>
+<p>It's not necessary to use both stack pointers (SP_main and SP_process). Simple applications use only SP_main.</p>
 <p>PUSH and POP work with the actual <em>SP</em> (R13). The stack is 32-bit aligned.</p>
 <div class="highlight"><pre><span class="nf">PUSH</span> <span class="err">{</span><span class="nv">R3</span><span class="err">}</span>  <span class="c1">; R13 = R13-4, memory[R13] = R3</span>
 <span class="nf">POP</span> <span class="err">{</span><span class="nv">R3</span><span class="err">}</span>   <span class="c1">; R3 = memory[R13], R13 = R13+4</span>
@@ -445,16 +446,16 @@ On function entry (BL) the return address is automatically saved on LR.</p>
 <h2 id="program-counter-r15-pc">Program Counter (R15, PC)</h2>
 <p>This register holds the current program position.</p>
 <p>It can be written to for controlling the program flow (jumps). But then <em>LR</em> is not updated.</p>
-<p>Since the Cortex-M3 has a piplelined architecture the PC can be ahead of the actual executed
+<p>Since the Cortex-M3 has a pipelined architecture the PC can be ahead of the actual executed
 instruction (normally by 4).</p>
 <p>On reset, the processor loads the PC with the value of the reset vector, which is at address 0x00000004.</p>
 <blockquote>
 <p>The least-significant bit of each address loaded into <em>PC</em> (with <code>BX</code>, <code>BLX</code>, <code>LDM</code>, <code>LDR</code>, or <code>POP</code>)
 must be 1 (indicating thumb mode).</p>
-<p>Otherwise an exception will occure on the Cortex-M3.</p>
+<p>Otherwise an exception will occur on the Cortex-M3.</p>
 </blockquote>
 <h2 id="program-status-registers">Program Status Registers</h2>
-<p>The special-purpose program status registers (<em>xPSR</em>) provide arithmethic and logic flags (zero and carry flag),
+<p>The special-purpose program status registers (<em>xPSR</em>) provide arithmetic and logic flags (zero and carry flag),
 execution status and current executing IRQ number.</p>
 <table class="table table-hover table-striped">
 <thead>
@@ -538,9 +539,9 @@ execution status and current executing IRQ number.</p>
 <p>Flags that can be set by application code (unprivileged mode).</p>
 <ul>
 <li><strong>N (bit[31])</strong>: Negative condition flag. Set if result of instruction is negative.</li>
-<li><strong>Z (bit[30])</strong>: Zero condition flag. Set if result of instuction is zero (0).</li>
-<li><strong>C (bit[29])</strong>: Carry (or borrow) condition flag. Set if instrucion results in a carry condition (i.e unsigned overflow on addition)</li>
-<li><strong>V (bit[28])</strong>: Overflow condition flag. Set if the instuction results in a an overflow condition (i.e. signed overflow on addition)</li>
+<li><strong>Z (bit[30])</strong>: Zero condition flag. Set if result of instruction is zero (0).</li>
+<li><strong>C (bit[29])</strong>: Carry (or borrow) condition flag. Set if instruction results in a carry condition (i.e unsigned overflow on addition)</li>
+<li><strong>V (bit[28])</strong>: Overflow condition flag. Set if the instruction results in a an overflow condition (i.e. signed overflow on addition)</li>
 <li><strong>Q (bit[27])</strong>: Set if a <code>SSAT</code> or <code>USAT</code> instruction changes the input value for the signed/unsigned range of the result (saturation).</li>
 <li><strong>GE[3:0] (bits[19:16])</strong>: DSP extension only. Otherwise reserved.</li>
 </ul>
@@ -551,7 +552,7 @@ execution status and current executing IRQ number.</p>
 </ul>
 <h3 id="execution-program-status-register-epsr">Execution Program Status Register (EPSR)</h3>
 <ul>
-<li><strong>T bit[24]</strong>: Defines the instuction set. The Cortex-M3 supports only Thumb-2. So it must be 0. An fault is caused if this bit is set to 0.</li>
+<li><strong>T bit[24]</strong>: Defines the instruction set. The Cortex-M3 supports only Thumb-2. So it must be 0. An fault is caused if this bit is set to 0.</li>
 <li><strong>ICI/IT</strong>: TBD</li>
 </ul>
 <h3 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h3>
@@ -610,7 +611,7 @@ execution status and current executing IRQ number.</p>
 <p>This bit is only writable if in thread mode with privileged level.</p>
 <h3 id="switching-privilege-level">Switching Privilege Level</h3>
 <p>To switch from privileged level to user level the <em>Control bit[0]</em> can be written directly.</p>
-<p>The switch from user level to privilege level heeds to be performed within an exeption handler.</p>
+<p>The switch from user level to privilege level heeds to be performed within an exception handler.</p>
 <h2 id="reset-values-and-required-access-privileges">Reset Values and Required Access Privileges</h2>
 <table class="table table-hover table-striped">
 <thead>
@@ -733,10 +734,10 @@ execution status and current executing IRQ number.</p>
 <h1 id="nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (NVIC)</h1>
 <h2 id="nested">Nested</h2>
 <p>All external and some system interrupts can be assigned to different priority levels. Current
-handled interrupts can only be disruppted by interrupts of higher priority.</p>
+handled interrupts can only be disrupted by interrupts of higher priority.</p>
 <h2 id="vectored">Vectored</h2>
 <p>The addresses of the interrupt service routines (ISRs) are stored in a vector. If an interrupt
-occures the lookup of the routine is fast and the handling of the interrupt is not delayed by lookup
+occurs the look-up of the routine is fast and the handling of the interrupt is not delayed by look-up
 code.</p>
 <h2 id="dynamic-priority-setting">Dynamic Priority Setting</h2>
 <p>The priority of an interrupt can be changed at run time.</p>
@@ -784,6 +785,21 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 </tr>
 </tbody>
 </table>
+<!-- ## Bit-Banding
+
+Bit-Banding is a feature that allows to access certain bits individually. The access to the bits are atomically.
+
+The access to the individual bits are accomplished by mapping each bit from the bit-banding region to an address
+in a region called bit-band alias.
+
+There are two bit-band region. One for memory and the other for peripherals.
+
+|                     | Bit-Band region         | Bit-Band alias region       |
+|---------------------|-------------------------|-----------------------------|
+| Memory              | 0x20000000 - 0x200FFFFC | 0x22000000 - 0x23FFFFC      |
+| Peripherals         | 0x40000000 - 0x400FFFFC | 0x42000000 - 0x43FFFFC      |
+
+-->
 <h1 id="bus-interfaces">Bus Interfaces</h1>
 <p>The Cortex-M3 has multiple bus interfaces:</p>
 <ul>
@@ -795,7 +811,7 @@ memory address. Thus it's easy to access it in C/C++ code.</p>
 <p>Following data types are supported in memory:</p>
 <ul>
 <li>Byte: 8 bits.</li>
-<li>Halfword: 16 bits.</li>
+<li>Half-word: 16 bits.</li>
 <li>Word: 32 bits.</li>
 </ul>
 <p>The registers are 32 bit wide. The instruction set supports following data types in the registers:</p>
@@ -908,9 +924,9 @@ It can occur for data and instruction memory transactions.</p>
 <p>This fault can be disabled by software. Then a MemManage escalates to a HardFault.</p>
 <p>The priority can be configured.</p>
 <h2 id="busfault">BusFault</h2>
-<p>This are memory faults other than MemManage faults. They can occure
+<p>This are memory faults other than MemManage faults. They can occur
 for data and instruction transactions.
-They can occur synchronous or asynchronous and araise usually by errors
+They can occur synchronous or asynchronous and arise usually by errors
 on system buses.</p>
 <p>This fault can be disabled by software. Then a BusFault escalates to a HardFault.</p>
 <p>The priority can be configured.</p>
@@ -920,11 +936,11 @@ on system buses.</p>
 <li>Undefined instruction.</li>
 <li>Invalid state when executing instruction.</li>
 <li>Error on exception return.</li>
-<li>Attempt to access coprocessor when it's unsvailable (or disabled).</li>
+<li>Attempt to access co-processor when it's unavailable (or disabled).</li>
 </ul>
 <p>The reporting of the following UsageFaults can be activated:</p>
 <ul>
-<li>Word/halfword access on unaligned memory address.</li>
+<li>Word/half-word access on unaligned memory address.</li>
 <li>Division by zero.</li>
 </ul>
 <p>This fault can be disabled by software. Then a UsageFault escalates to a HardFault.</p>
@@ -934,7 +950,7 @@ on system buses.</p>
 It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 <p>The priority is configurable.</p>
 <blockquote>
-<p>A debug watchpoint is asynchronous and behaves as an interrupt.</p>
+<p>A debug watch-point is asynchronous and behaves as an interrupt.</p>
 </blockquote>
 <h2 id="svcall">SVCall</h2>
 <p>This exception is used as supervisor calls it's caused by the instruction SVC.</p>
@@ -1106,10 +1122,10 @@ suffixes can be used.</p>
 <h2 id="instruction-width-qualifier">Instruction Width Qualifier</h2>
 <p>This assembler qualifier is used to select a 16-bit
 or 32-bit instruction encoding.</p>
-<p><code>.N</code>: Narrow: Assembler must select a 16-bit istruction.</p>
-<p><code>.W</code>: Wide: Assembler must select a 32-bit istruction.</p>
+<p><code>.N</code>: Narrow: Assembler must select a 16-bit instruction.</p>
+<p><code>.W</code>: Wide: Assembler must select a 32-bit instruction.</p>
 <p>If the instruction is not available in the requested encoding the
-assembler prroduces an error.</p>
+assembler produces an error.</p>
 <p>If no qualifier is given the assembler selects the 16-bit encoding if it
 is available.</p>
 <p>In the instruction examples <code>&lt;q&gt;</code> is used to indicate that <code>.N</code> or <code>.W</code> can be used.</p>
@@ -1117,7 +1133,7 @@ is available.</p>
 <h3 id="move-data-between-registers-mov-mvn">Move Data between Registers (<code>MOV</code>, <code>MVN</code>)</h3>
 <p>Moves a value (or it's negated value) from one register to an other.</p>
 <p>Moving immediate value directly into a register is also possible.</p>
-<p>There are also command for movig shifted data. In this case
+<p>There are also command for moving shifted data. In this case
 the <code>MOV</code> commands are aliases for the shifting commands.</p>
 <h4 id="immediate">Immediate</h4>
 <div class="highlight"><pre><span class="nf">MOVS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>     <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
@@ -1134,7 +1150,7 @@ the <code>MOV</code> commands are aliases for the shifting commands.</p>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R2</span><span class="c1">; /* Move the value from R2 to R3 */</span>
 <span class="nf">MVN</span> <span class="nv">R5</span><span class="p">,</span> <span class="nv">R6</span><span class="c1">; /* Move the negated value of R6 to R5 */</span>
 </pre></div>
-<h4 id="move-to-top-halfword-of-register-movt">Move to top halfword of Register (<code>MOVT</code>)</h4>
+<h4 id="move-to-top-half-word-of-register-movt">Move to top half-word of Register (<code>MOVT</code>)</h4>
 <p>Moves an immediate value to the top half of the given register. The
 bottom half of the register is not written.</p>
 <div class="highlight"><pre><span class="nf">MOVT</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm16</span><span class="o">&gt;</span>
@@ -1171,7 +1187,7 @@ There are commands for storing or loading multiple registers at once.
 <span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
 <h4 id="register_1">Register</h4>
-<p>The second regisyer operand can be shifted.</p>
+<p>The second register operand can be shifted.</p>
 <div class="highlight"><pre><span class="nf">ADDS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>     <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>   <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
@@ -1210,12 +1226,12 @@ writes the result to the destination register.</p>
 <h2 id="logical-commands">Logical Commands</h2>
 <h3 id="and-and">And (<code>AND</code>)</h3>
 <h4 id="immediate_3">Immediate</h4>
-<p>Bitwise <em>AND</em> of register and immediate value.</p>
+<p>Bit-wise <em>AND</em> of register and immediate value.</p>
 <div class="highlight"><pre><span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
 <h4 id="register_3">Register</h4>
-<p>Bitwise <em>AND</em> of a register and a second (optionally-shifted) register.
+<p>Bit-wise <em>AND</em> of a register and a second (optionally-shifted) register.
 The flags can be updated based on the result.</p>
 <div class="highlight"><pre><span class="nf">ANDS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>                       <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">AND</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>                    <span class="o">/*</span> <span class="nv">Inside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
@@ -1235,18 +1251,18 @@ The flags can be updated based on the result.</p>
 a given position in the destination register.</p>
 <div class="highlight"><pre><span class="nf">BFI</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">lsb</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">width</span><span class="o">&gt;</span>
 </pre></div>
-<p><code>&lt;lsb&gt;</code>: The least significant bit in destinatin where bits are copied to (Range: 0-31).</p>
+<p><code>&lt;lsb&gt;</code>: The least significant bit in destination where bits are copied to (Range: 0-31).</p>
 <p><code>&lt;width&gt;</code>: Number of bits to copy from source.</p>
 <h3 id="bit-clear-bic">Bit Clear (<code>BIC</code>)</h3>
 <h4 id="immediate_4">Immediate</h4>
-<p>Performs a bitwise <em>AND</em> of register and the complement of the immediate
+<p>Performs a bit-wise <em>AND</em> of register and the complement of the immediate
 value.</p>
 <p>The flags can be updated.</p>
 <div class="highlight"><pre><span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
 <h4 id="register_4">Register</h4>
-<p>Performs a bitwise <em>AND</em> one register and the complement of a second register.
+<p>Performs a bit-wise <em>AND</em> one register and the complement of a second register.
 The second register can be shifted.</p>
 <p>The flags can be updated.</p>
 <div class="highlight"><pre><span class="nf">BICS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>    <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
@@ -1291,7 +1307,7 @@ The <code>BL</code> and <code>BLX</code> instructions write the address of the n
 <p><code>B</code> is the only conditional instruction that can be inside or outside an <em>IT</em> block.
 All other branch instructions can only be conditional inside an <em>IT</em> block, and are always unconditional otherwise.</p>
 <h3 id="branch-b">Branch (<code>B</code>)</h3>
-<p>Branch to a target addresd.</p>
+<p>Branch to a target addressed.</p>
 <div class="highlight"><pre><span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 <span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 <span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
@@ -1346,7 +1362,7 @@ Permitted offsets are even numbers in the range 0 to 126.</p>
 <span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">SUB</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="o">*/</span>
 </pre></div>
-<h3 id="breakpoint-bkpt">Breakpoint (<code>BKPT</code>)</h3>
+<h3 id="break-point-bkpt">Break-point (<code>BKPT</code>)</h3>
 <p>Causes a <em>DebugMonitor</em> exception or a debug halt.</p>
 <p>It is a unconditional instruction and can be executed inside or
 outside an <em>TI</em> block.</p>
