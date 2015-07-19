@@ -819,15 +819,12 @@ in a region called bit-banding alias.</p>
 </tbody>
 </table>
 <p>To access one bit through the bit-banding alias the mapping is performed by this code:</p>
-<div class="highlight"><pre><span class="cp">#define BIT_BANDING_ALIAS_OFFSET(byteOffsetInBitBandRegion, bitNumber) \</span>
-<span class="cp">                                  ((byteOffsetInBitBandRegion * 32) + (bitNumber * 4))</span>
+<div class="highlight"><pre><span class="cp">#define BIT_BANDING_ALIAS_OFFSET(byteOffsetInBitBandRegion, bitNumber)  ((byteOffsetInBitBandRegion * 32) + (bitNumber * 4))</span>
 <span class="cp">#define BIT_BANDING_MEMORY_ALIAS_BASE    0x20000000</span>
 <span class="cp">#define BIT_BANDING_PERIPERAL_ALIAS_BASE 0x22000000</span>
 
-<span class="cp">#define BIT_BANDING_MEMORY_TO_ALIAS(byte, bit)   \</span>
-<span class="cp">                           (BIT_BANDING_MEMORY_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
-<span class="cp">#define BIT_BANDING_PERIPHERAL_TO_ALIAS(byte, bit) \</span>
-<span class="cp">                           (BIT_BANDING_PERIPHERAL_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
+<span class="cp">#define BIT_BANDING_MEMORY_TO_ALIAS(byte, bit)  (BIT_BANDING_MEMORY_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
+<span class="cp">#define BIT_BANDING_PERIPHERAL_TO_ALIAS(byte, bit) (BIT_BANDING_PERIPHERAL_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
 </pre></div>
 <p>It's also possible to calculate the address in the other direction from the alias region to the bit-banding region.
 But it's usually not nessecary to do the address translation in this direction.</p>
