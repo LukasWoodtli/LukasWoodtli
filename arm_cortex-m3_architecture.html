@@ -263,9 +263,14 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </ul>
 </li>
 <li><a href="#compare-commands">Compare Commands</a><ul>
-<li><a href="#compare-negative-cmn">Compare Negative (CMN)</a><ul>
+<li><a href="#compare-cmp">Compare (CMP)</a><ul>
 <li><a href="#immediate_6">Immediate</a></li>
 <li><a href="#register_6">Register</a></li>
+</ul>
+</li>
+<li><a href="#compare-negative-cmn">Compare Negative (CMN)</a><ul>
+<li><a href="#immediate_7">Immediate</a></li>
+<li><a href="#register_7">Register</a></li>
 </ul>
 </li>
 </ul>
@@ -284,6 +289,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <li><a href="#other-commands">Other Commands</a><ul>
 <li><a href="#calculate-address-adr">Calculate Address (ADR)</a></li>
 <li><a href="#break-point-bkpt">Break-point (BKPT)</a></li>
+<li><a href="#debug-hint-dbg">Debug Hint (DBG)</a></li>
 <li><a href="#no-operation-nop">No Operation (NOP)</a></li>
 </ul>
 </li>
@@ -1346,14 +1352,30 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
 <h2 id="compare-commands">Compare Commands</h2>
-<h3 id="compare-negative-cmn">Compare Negative (<code>CMN</code>)</h3>
+<h3 id="compare-cmp">Compare (<code>CMP</code>)</h3>
 <h4 id="immediate_6">Immediate</h4>
+<p>Compare values by subtracting an immediate value from a register.</p>
+<p>Updates the flags but discards result.</p>
+<div class="highlight"><pre><span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>
+<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
+</pre></div>
+<h4 id="register_6">Register</h4>
+<p>Compare values by subtracting an (optionally shifted) register
+from an other register.</p>
+<p>Updates the flags but discards result.</p>
+<div class="highlight"><pre><span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>    <span class="o">/*</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span> <span class="nv">and</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="nv">both</span> <span class="nv">from</span> <span class="nv">R0</span><span class="o">-</span><span class="nv">R7</span> <span class="o">*/</span>
+<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
+</pre></div>
+<h3 id="compare-negative-cmn">Compare Negative (<code>CMN</code>)</h3>
+<h4 id="immediate_7">Immediate</h4>
 <p>Compare values by <strong>adding</strong> a register and an immediate value.</p>
 <p>Updates the flags but discards result.</p>
 <div class="highlight"><pre><span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-<h4 id="register_6">Register</h4>
+<h4 id="register_7">Register</h4>
 <p>Compare values by <strong>adding</strong> to registers. The second register
 can be shifted.</p>
 <p>Updates the flags but discards result.</p>
@@ -1441,6 +1463,12 @@ outside an <em>TI</em> block.</p>
 <p><code>&lt;imm8&gt;</code> is a 8-bit value that is ignored by the hardware
 but can be used to store some information by a debugger.</p>
 <p>Exceptions: <em>DebugMonitor</em></p>
+<h3 id="debug-hint-dbg">Debug Hint (<code>DBG</code>)</h3>
+<p>Provides a hint to debug and trace systems.
+The debug architecture defines the use (if any).</p>
+<div class="highlight"><pre><span class="kd">DB</span><span class="nv">G</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">option</span><span class="o">&gt;</span>
+<span class="err">//</span> <span class="nf">Any</span> <span class="nv">decoding</span> <span class="nv">of</span> <span class="s">'option'</span> <span class="nv">is</span> <span class="nb">sp</span><span class="nv">ecified</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">debug</span> <span class="nv">system</span>
+</pre></div>
 <h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
 <p>The NOP does nothing.</p>
 <div class="highlight"><pre><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>
@@ -1449,6 +1477,7 @@ but can be used to store some information by a debugger.</p>
 <!-- TBD: Instructions have to be described later
 
 - CLREX 
+- CPS
 
 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
