@@ -137,7 +137,7 @@
 
   <div id="article_content">
     <p>On this page I write down some notes about the Intel architecture (x86). I learned most of it in <a href="http://www.vdf.ethz.ch/info/showDetails.asp?isbnNr=3255">school</a> few years ago.</p>
-<p>I'ts mainly for Intel 80186. But I'll extend it with informations about modern <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">Intel processors</a> (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
+<p>It's mainly for Intel 80186. But I'll extend it with information about modern <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">Intel processors</a> (<a href="https://en.wikipedia.org/wiki/IA-32">IA-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
 <p>I'm trying to keep all code examples in <a href="http://www.nasm.us">NASM</a> syntax.</p>
 <p>There is a good overview of the <a href="https://en.wikipedia.org/wiki/X86_instruction_listings">x86 instructions</a> on Wikipedia.</p>
 <div class="toc">
@@ -152,7 +152,7 @@
 </li>
 <li><a href="#segmentation">Segmentation</a></li>
 <li><a href="#addressing">Addressing</a><ul>
-<li><a href="#imediate">Imediate</a></li>
+<li><a href="#immediate">Immediate</a></li>
 <li><a href="#implicit">Implicit</a></li>
 <li><a href="#register">Register</a></li>
 <li><a href="#direct">Direct</a></li>
@@ -226,7 +226,7 @@
 </ul>
 </li>
 <li><a href="#rotation-commands">Rotation Commands</a><ul>
-<li><a href="#roatate-rol-ror">Roatate (ROL, ROR)</a><ul>
+<li><a href="#rotate-rol-ror">Rotate (ROL, ROR)</a><ul>
 <li><a href="#affected-flags_11">Affected Flags</a></li>
 </ul>
 </li>
@@ -272,7 +272,7 @@
 <li><a href="#flag-oriented-jumps">Flag oriented Jumps</a></li>
 </ul>
 </li>
-<li><a href="#compairing-commands-cmp-test">Compairing Commands (CMP, TEST)</a></li>
+<li><a href="#comparing-commands-cmp-test">Comparing Commands (CMP, TEST)</a></li>
 </ul>
 </li>
 <li><a href="#loop-commands-loopx-jcxz">Loop Commands (LOOPx, JCXZ)</a><ul>
@@ -574,7 +574,7 @@
 </ul>
 <h1 id="addressing">Addressing</h1>
 <p>Intel processors have 5 different addressing modes.</p>
-<h2 id="imediate">Imediate</h2>
+<h2 id="immediate">Immediate</h2>
 <p>The operand (constant) is given with the command. i.e:</p>
 <pre>MOV CL, <strong>42</strong>; move the value 42 to register CL</pre>
 <h2 id="implicit">Implicit</h2>
@@ -598,7 +598,7 @@
 <p>The three possible address parts are:</p>
 <ol>
 <li>Basis Register (BX or BP): Contains usually the start address of a data structure. A segment prefix can be given.</li>
-<li>Index Register (SI or DI): Can contain an index (i.e Array index) that can be calculated at runtime. It's 16-bit unsigned.</li>
+<li>Index Register (SI or DI): Can contain an index (i.e Array index) that can be calculated at run-time. It's 16-bit unsigned.</li>
 <li>Displacement: A <em>signed</em> constant value (8-bit or 16-bit) that gives an offset.</li>
 </ol>
 <p>This addressing scheme gives a total of 27 addressing combinations. But only <em>24</em> combinations are allowed. The following three are <strong>not allowed</strong>:</p>
@@ -750,7 +750,7 @@ or the <strong>extended accumulator</strong> (<em>DX/AX</em>).</p>
 </pre></div>
 <h3 id="affected-flags_7">Affected Flags</h3>
 <ul>
-<li>Carry: set if operand extended acumulator is needed for saving result (<em>DX/AX</em>)</li>
+<li>Carry: set if operand extended accumulator is needed for saving result (<em>DX/AX</em>)</li>
 <li>Zero: changed (undefined)</li>
 <li>Sign: changed (undefined)</li>
 <li>Parity: changed (undefined)</li>
@@ -778,12 +778,12 @@ the size of the explicit operator.</p>
 If it is not handled the <strong>program can crash</strong> (undefined behaviour).</p>
 </blockquote>
 <h2 id="convert-operand-size-cbw-cwd">Convert Operand Size (<code>CBW</code>, <code>CWD</code>)</h2>
-<p>The commands <em>convert byte to word</em> (<code>CBW</code>) and <em>convert word to doubleword</em> (<code>CWD</code>) convert a <em>signed</em>
+<p>The commands <em>convert byte to word</em> (<code>CBW</code>) and <em>convert word to double-word</em> (<code>CWD</code>) convert a <em>signed</em>
 number to a number of the same value but twice the size. This is needed to keep the
 <a href="https://en.wikipedia.org/wiki/Two%27s_complement">two's complement</a> format.</p>
 <h1 id="logical-commands">Logical Commands</h1>
 <h2 id="and-or-and-xor-and-or-xor">And, Or and Xor (<code>AND</code>, <code>OR</code>, <code>XOR</code>)</h2>
-<p>Bitwise <strong>and</strong>, <strong>or</strong> or <strong>xor</strong>  operation. The first operand can be a register or a memory address. The second operand can
+<p>Bit-wise <strong>and</strong>, <strong>or</strong> or <strong>xor</strong>  operation. The first operand can be a register or a memory address. The second operand can
 be a register, a memory address or a constant.</p>
 <p>The first operand is overwritten with the result.</p>
 <h3 id="affected-flags_9">Affected Flags</h3>
@@ -792,14 +792,14 @@ be a register, a memory address or a constant.</p>
 <li>Zero and Sign: are set according to the result</li>
 </ul>
 <h2 id="not-not">Not (<code>NOT</code>)</h2>
-<p>Bitwise <strong>not</strong> (inverse) operation. The operand can be a register or a memory address.</p>
+<p>Bit-wise <strong>not</strong> (inverse) operation. The operand can be a register or a memory address.</p>
 <p>The operand is overwritten with the result.</p>
 <h3 id="affected-flags_10">Affected Flags</h3>
 <ul>
 <li><strong>No</strong> flags are changed</li>
 </ul>
 <h1 id="rotation-commands">Rotation Commands</h1>
-<h2 id="roatate-rol-ror">Roatate (<code>ROL</code>, <code>ROR</code>)</h2>
+<h2 id="rotate-rol-ror">Rotate (<code>ROL</code>, <code>ROR</code>)</h2>
 <p>Rotate left (<code>ROL</code>) or right (<code>ROR</code>).</p>
 <p>Rotates the first operand (memory or register) by the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>.</p>
 <div class="highlight"><pre><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
@@ -829,7 +829,7 @@ It is then rotated by the constant <strong>1</strong> (immediate) or by the valu
 </ul>
 <h1 id="manipulate-the-carry-flag-clc-stc-cmc">Manipulate the Carry Flag (<code>CLC</code>, <code>STC</code>, <code>CMC</code>)</h1>
 <p>Clear Carry Flag (<code>CLC</code>): CF = 0.</p>
-<p>Set Carry Flage (<code>STC</code>): CF = 1.</p>
+<p>Set Carry Flag (<code>STC</code>): CF = 1.</p>
 <p>Complement Carry Flag (<code>CMC</code>): CF = !CF.</p>
 <h1 id="shift-commands">Shift Commands</h1>
 <p>The shift commands can be used to multiply with or divide by a
@@ -910,7 +910,7 @@ is always inside the actual code segment (<em>CS</em>).</p>
 <ul>
 <li>8-bit displacement is added to <em>IP</em> as signed number:<pre><strong>JMP</strong> displ8</pre></li>
 <li>16-bit displacement is added to <em>IP</em> as unsigned number:<pre><strong>JMP</strong> displ16</pre></li>
-<li>The constant is the absolute 32-bit FAR-addresd:<pre><strong>JMP</strong> const32</pre></li>
+<li>The constant is the absolute 32-bit FAR-addressed:<pre><strong>JMP</strong> const32</pre></li>
 <li><em>IP</em> is loaded with the value of the register:<pre><strong>JMP</strong> reg16</pre></li>
 <li><em>IP</em> is loaded with the value given by the memory position:<pre><strong>JMP</strong> mem16</pre></li>
 <li><em>CS</em> and <em>IP</em> are loaded with the value at the memory position:<pre><strong>JMP</strong> mem32</pre></li>
@@ -1172,7 +1172,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </tr>
 </tbody>
 </table>
-<h2 id="compairing-commands-cmp-test">Compairing Commands (<code>CMP</code>, <code>TEST</code>)</h2>
+<h2 id="comparing-commands-cmp-test">Comparing Commands (<code>CMP</code>, <code>TEST</code>)</h2>
 <p>Since the different jump commands depend on flags set or not there
 are special commands that only affect the flags.</p>
 <ul>
@@ -1187,7 +1187,7 @@ or a constant as second operator.</p>
 <p>All loop commands accept an displacement operator (8-bit).</p>
 <p>None of the loop commands affects any flags!</p>
 <h2 id="loop-loop">Loop (<code>LOOP</code>)</h2>
-<p>Decremets <em>CX</em> by one (1). If <em>CX</em> is not zero (<em>CX</em> <span class="math">\(\neq\)</span> 0) it performs the jump.</p>
+<p>Decrements <em>CX</em> by one (1). If <em>CX</em> is not zero (<em>CX</em> <span class="math">\(\neq\)</span> 0) it performs the jump.</p>
 <h2 id="loop-while-equal-and-loop-while-zero-loope-loopz">Loop while equal and Loop while zero (<code>LOOPE</code>, <code>LOOPZ</code>)</h2>
 <p><code>LOOPE</code> and <code>LOOPZ</code> are different mnemonics for the same command.</p>
 <p>Decrements <em>CX</em> by one (1). Performs the jump if if Zero Flag is set and <em>CX</em> is not zero (0).</p>
@@ -1250,7 +1250,7 @@ and calls the function.</p>
 <ul>
 <li>Save old <em>BP</em> (push it on the stack).</li>
 <li>Assign <em>SP</em> to <em>BP</em> (<em>PB</em> = <em>SP</em>). So the <em>BP</em> points the the old <em>BP</em>.</li>
-<li>Save regisister contents to stack. So the registers can be used in the fuction.</li>
+<li>Save register contents to stack. So the registers can be used in the function.</li>
 <li>Allocate memory on stack for use in function.</li>
 </ul>
 <p>The the actual code of the function can run.</p>
@@ -1261,7 +1261,7 @@ This code is called function epilogue.</p>
 <p>The x86 architecture contains some commands that can be executed on consecutive memory location (strings, arrays...).</p>
 <p>This commands are powerful but not so easy to understand. <a href="http://www.oocities.org/codeteacher/x86asm/asml1013.html">Here</a> is a good explanation.</p>
 <h2 id="commands">Commands</h2>
-<p>Moslty <em>SI</em> is used for addressing the source operator and <em>DI</em> is used for addressing the destination operator. Hence the names.
+<p>Mostly <em>SI</em> is used for addressing the source operator and <em>DI</em> is used for addressing the destination operator. Hence the names.
 For some commands the accumulator (<em>AL</em>/<em>AX</em>) is used as operator.
 <em>SI</em> is <em>DS</em>-relative by default. But the segment can be overridden.
 <em>DI</em> is <em>ES</em>-relative by default. The segment can <strong>not</strong> be overridden.</p>
