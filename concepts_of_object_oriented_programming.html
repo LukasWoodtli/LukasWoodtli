@@ -241,6 +241,29 @@ objects of supertypes are expected</p>
 <li>Based on available methods and fields</li>
 <li>i.e. Python, Ruby, Smalltals</li>
 </ul>
+<h3 id="type-checking">Type Checking</h3>
+<h4 id="static-type-checking">Static Type Checking</h4>
+<ul>
+<li>Types of variables and methods are declared explicitly or inferred</li>
+<li>Types of expressions can be derived from the types of their constituents</li>
+<li>Type rules are used at compile time to check whether a program is correctly typed</li>
+</ul>
+<blockquote>
+<p>A programming language is called type-safe if its design prevents type errors</p>
+</blockquote>
+<h4 id="dynamic-type-checking">Dynamic Type Checking</h4>
+<ul>
+<li>Variables, methods, and expressions of a program are typically not typed</li>
+<li>Every object and value has a type</li>
+<li>Run-time system checks that operations are applied to expected arguments</li>
+</ul>
+<h3 id="overview-of-type-systems-in-oo-languages">Overview of Type Systems in OO-Languages</h3>
+<div class="highlight"><pre>       | Static                              | Dynamic                                        |
+</pre></div>
+<p>-----------|-------------------------------------|------------------------------------------------|
+Nominal    | C++, Java, Eiffel, Scala, C#        | certain features of statically-typed languages |
+Structural | Research languages: O'Caml, Moby... | Python, JavaScript, Ruby, Smalltalk            |</p>
+<p>Dynamic and Structural is often called "duck typing".</p>
   </div>
 
   <hr/>
