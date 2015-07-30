@@ -144,6 +144,15 @@
 <ul>
 <li><a href="#general">General</a></li>
 <li><a href="#operation-modes">Operation Modes</a></li>
+<li><a href="#memory-models-real-mode">Memory Models (Real Mode)</a><ul>
+<li><a href="#tiny">Tiny</a></li>
+<li><a href="#small">Small</a></li>
+<li><a href="#medium">Medium</a></li>
+<li><a href="#compact">Compact</a></li>
+<li><a href="#large">Large</a></li>
+<li><a href="#huge">Huge</a></li>
+</ul>
+</li>
 <li><a href="#registers">Registers</a><ul>
 <li><a href="#8-bit-registers">8-bit Registers</a></li>
 <li><a href="#values-after-reset">Values after Reset</a></li>
@@ -356,6 +365,29 @@
 </tr>
 </tbody>
 </table>
+<h1 id="memory-models-real-mode">Memory Models (Real Mode)</h1>
+<h2 id="tiny">Tiny</h2>
+<p>Code and data in the same segment (64 kB). Code starts at
+<code>0x100</code> relative to segment.</p>
+<p>Executable has ending <em>.com</em> (instead of <em>.exe</em>).</p>
+<h2 id="small">Small</h2>
+<p>One segment for code and one segment for data and stack.
+Both segments have max. size of 64 kB.</p>
+<h2 id="medium">Medium</h2>
+<p>The code can exceed 64 kB (multiple segments). <em>Far</em> function calls are needed.</p>
+<p>One segment (of max. 64 kB) for data and stack.</p>
+<h2 id="compact">Compact</h2>
+<p>Code is limited to one segment (64 kB).</p>
+<p>Stack is limited to one segment (64 kB).</p>
+<p>Data can exceed 64 kB. <em>Far</em> pointers are needed for data.</p>
+<h2 id="large">Large</h2>
+<p>Code can exceed 64 kB.</p>
+<p>Data can exceed 64 kB.</p>
+<p>Stack is limited to one segment (64 kB).</p>
+<p><em>Far</em> pointers are needed for code and data.</p>
+<h2 id="huge">Huge</h2>
+<p>Same as large. A data structure can exceed 64 kB by
+modifying segment and offset when a pointer is incremented.</p>
 <h1 id="registers">Registers</h1>
 <p>This are the 16-bit registers of Intel 8086, 8088,  80186 and 80188.</p>
 <table class="table table-hover table-striped">
