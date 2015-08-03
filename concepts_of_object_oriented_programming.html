@@ -213,6 +213,8 @@ objects of supertypes are expected</p>
 <h1 id="types-and-subtyping">Types and Subtyping</h1>
 <h2 id="types">Types</h2>
 <h3 id="weak-and-strong-type-systems">Weak and Strong Type Systems</h3>
+<p>How strongly or weakly typed a language is concerns casting (implicit and explicit).
+It's mainly used to compare languages to each other about the possible castings, type safety and information loss.</p>
 <h4 id="untyped-languages">Untyped Languages</h4>
 <ul>
 <li>Not classifying values into types</li>
@@ -292,6 +294,67 @@ objects of supertypes are expected</p>
 <li>
 <p>Semantic classification: Subtypes provide <em>at least the behaviour</em> of their supertypes.</p>
 </li>
+</ul>
+<h3 id="variance-covariance-contravariance-and-invariance">Variance (Covariance, Contravariance and Invariance)</h3>
+<p>Based on substitution principle.</p>
+<ul>
+<li>
+<p>Covariance: Ordering of types from more specific to more generic (in direction of inheritance hierarchy)</p>
+</li>
+<li>
+<p>Contravariance: Ordering of types from more generic to more specific (in oposite direction of inheritance hierarchy)</p>
+</li>
+</ul>
+<p>For OOP:</p>
+<ul>
+<li>Contravariance: Input Arguments</li>
+<li>Covariance: Return Values and Exceptions</li>
+<li>Invariance: In- and Output Arguments (Reference Arguments)</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Programming Language</th>
+<th>Argument Type</th>
+<th>Return Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C++, Java, Scala, D...</td>
+<td>Invariant</td>
+<td>Covariant</td>
+</tr>
+<tr>
+<td>Eiffel</td>
+<td>Covariant</td>
+<td>Covariant</td>
+</tr>
+<tr>
+<td>C#</td>
+<td>Invariant</td>
+<td>Invariant</td>
+</tr>
+</tbody>
+</table>
+<p>In Java and C# arrays are covariant!</p>
+<h3 id="behavioral-subtyping-contracts">Behavioral Subtyping (Contracts)</h3>
+<p>What are the <em>properties</em> shared by the values of a type?</p>
+<p><em>Properties</em> should also include the behavior of the object.
+This is expressed as interface specifications (contracts)</p>
+<ul>
+<li>Precondition: Have to hold before the method is executed</li>
+<li>Postcondition: Have to hold after the method has terminated</li>
+<li>Old-expressons: Can be used to refer to prestate values from the postcondition</li>
+<li>Invariant: Have to hold in al states in which an object can be accessed by other objects</li>
+</ul>
+<h4 id="subtyping-and-contracs">Subtyping and Contracs</h4>
+<ul>
+<li>Subtypes must fulfill contracts of supertypes</li>
+<li>Overriding method of subtypes may have <em>weaker preconditions</em> than the supertype method</li>
+<li>Overriding method of subtypes may have <em>stronger postconditions</em> than the supertype method</li>
+<li>Subtypes may have <em>stronger invariants</em> than supertypes</li>
+<li>Subtypes may have <em>stronger history constrains</em> than supertype</li>
 </ul>
   </div>
 
