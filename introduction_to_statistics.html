@@ -150,7 +150,7 @@
 <li><a href="#algorithm">Algorithm</a></li>
 </ul>
 </li>
-<li><a href="#probablity-distributions">Probablity Distributions</a><ul>
+<li><a href="#probability-distributions">Probability Distributions</a><ul>
 <li><a href="#density">Density</a></li>
 </ul>
 </li>
@@ -170,7 +170,7 @@
 <li><a href="#binomial-coefficients">Binomial Coefficients</a></li>
 <li><a href="#binomial-distribution">Binomial Distribution</a></li>
 <li><a href="#the-normal-distribution">The Normal Distribution</a><ul>
-<li><a href="#normalizer">Normalizer</a></li>
+<li><a href="#normaliser">Normaliser</a></li>
 </ul>
 </li>
 </ul>
@@ -181,7 +181,7 @@
 <ul>
 <li>Probability of Event: <span class="math">\(P\)</span></li>
 <li>Probability of opposite Event: <span class="math">\(1-P\)</span></li>
-<li>Probability of composit Events: <span class="math">\(P \cdot P \cdot ... \cdot P\)</span></li>
+<li>Probability of composite Events: <span class="math">\(P \cdot P \cdot ... \cdot P\)</span></li>
 </ul>
 <h1 id="dependent-events">Dependent Events</h1>
 <p><span class="math">\(P(A\mid B)\)</span>: Probability of Event <span class="math">\(A\)</span> when <span class="math">\(B\)</span> already occured.</p>
@@ -201,15 +201,15 @@
 <li>the quotient <span class="math">\(\frac{P(B \mid A)}{P(B)}\)</span> represents the support <span class="math">\(B\)</span> provides for <span class="math">\(A\)</span>.</li>
 </ul>
 <h2 id="algorithm">Algorithm</h2>
-<p>Imagine there is a disease. The posibility to get this particular desease is <span class="math">\(P(D)\)</span>.</p>
+<p>Imagine there is a disease. The possibility to get this particular disease is <span class="math">\(P(D)\)</span>.</p>
 <p>There is a test to check if someone has that disease. But the test is not completely reliable.</p>
 <p>Prior: <span class="math">\(P(D)\)</span>
 Sensitivity: <span class="math">\(P(Pos \mid D)\)</span>
-Specitivity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
+Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <p>The <strong>Prior</strong> says how many people have the disease.</p>
-<p>The <strong>Sensitivity</strong> says how many get a <strong>positive</strong> test if they <strong>have the desease</strong>.</p>
-<p>The <strong>Specitivity</strong> says how many get a <strong>negative</strong> test if they <strong>don't have the desease</strong>.</p>
-<p>Imagine someone get's a <strong>positive</strong> test result. How can we calculate the probability that this person has the desease?</p>
+<p>The <strong>Sensitivity</strong> says how many get a <strong>positive</strong> test if they <strong>have the disease</strong>.</p>
+<p>The <strong>Sensitivity</strong> says how many get a <strong>negative</strong> test if they <strong>don't have the disease</strong>.</p>
+<p>Imagine someone get's a <strong>positive</strong> test result. How can we calculate the probability that this person has the disease?</p>
 <p><img alt="Algorithm to calculate Bayes' rule" class="img-responsive" src="/images/bayes_algorithm.svg"/></p>
 <ol>
 <li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid D)\)</span> (Sensitivity) → <span class="math">\(P(Pos, D)\)</span>.</li>
@@ -221,17 +221,17 @@ Specitivity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 </ol>
 <p>Note: <span class="math">\(P(A, B) = P(B, A)\)</span></p>
 <p>The calculation for a <strong>negative</strong> test result are analogous. Just replace <span class="math">\(Pos\)</span> with <span class="math">\(Neg\)</span>.</p>
-<h1 id="probablity-distributions">Probablity Distributions</h1>
+<h1 id="probability-distributions">Probability Distributions</h1>
 <blockquote>
-<p>In <strong>Continous Distributions</strong> every outcome has the <strong>Probability</strong> <span class="math">\(0\)</span>.</p>
+<p>In <strong>Continuous Distributions</strong> every outcome has the <strong>Probability</strong> <span class="math">\(0\)</span>.</p>
 </blockquote>
 <h2 id="density">Density</h2>
 <p>PDF: Probability Density Function</p>
-<p>Probability for continous spaces. Density can be bigger than <span class="math">\(1\)</span>.</p>
+<p>Probability for continuous spaces. Density can be bigger than <span class="math">\(1\)</span>.</p>
 <p>Density:</p>
 <ul>
 <li>Always non-negative</li>
-<li>Doesn't need to be continous</li>
+<li>Doesn't need to be continuous</li>
 <li>Doesn't need to be smaller or equal than one</li>
 <li>Integrates to one</li>
 </ul>
@@ -249,11 +249,11 @@ Specitivity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <h1 id="averages">Averages</h1>
 <h2 id="mean">Mean</h2>
 <div class="math">$$\mu = \frac{1}{n} \sum_{i=1}^n{x_i}$$</div>
-<p>Sum up all elements and divide py the number of elements.</p>
+<p>Sum up all elements and divide by the number of elements.</p>
 <h2 id="median">Median</h2>
 <p>Sort all elements and take the one in the middle.</p>
 <h2 id="mode">Mode</h2>
-<p>The value of the elements that occure most in the data set.</p>
+<p>The value of the elements that occur most in the data set.</p>
 <h1 id="variance">Variance</h1>
 <p>Subtract the mean from every item. Then and up the squares of the subtractions.</p>
 <div class="math">$$Var(X) = \sigma^2_X = \frac{1}{n} \sum_{i}(x_i - \mu)^2$$</div>
@@ -268,7 +268,7 @@ elements):</p>
 <div class="math">$$\binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$$</div>
 <h1 id="binomial-distribution">Binomial Distribution</h1>
 <p>i.e. Flip a loaded coin:</p>
-<p><span class="math">\(p = P(heads)\)</span>: Probabilty to get a head from one coin flip.</p>
+<p><span class="math">\(p = P(heads)\)</span>: Probability to get a head from one coin flip.</p>
 <p>Flip coin <span class="math">\(n\)</span> times.</p>
 <p><span class="math">\(P(\#heads = k)\)</span>: Expectation to get <span class="math">\(k\)</span> heads from all the flips.</p>
 <div class="math">$$P(\#heads = k) = \frac{n!}{k! \cdot (n - k)!} \cdot p^k \cdot (1-p)^{n-k} = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}$$</div>
@@ -277,9 +277,9 @@ elements):</p>
 <p><span class="math">\(\sigma^2\)</span>: Variance</p>
 <p><span class="math">\(\sigma\)</span>: Standard Deviation</p>
 <div class="math">$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\cdot e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right)}$$</div>
-<h2 id="normalizer">Normalizer</h2>
-<p>The expression <span class="math">\(\frac{1}{\sqrt{2\pi\sigma^2}}\)</span> is needed to normalize the area underneath curve given by the rest of
-the formula (<span class="math">\(e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right\)</span>). Otherwise it would not add up to <span class="math">\(1\)</span>.</p>
+<h2 id="normaliser">Normaliser</h2>
+<p>The expression <span class="math">\(\frac{1}{\sqrt{2\pi\sigma^2}}\)</span> is needed to normalise the area underneath curve given by the rest of
+the formula: <span class="math">\(e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right\)</span>. Otherwise it would not add up to <span class="math">\(1\)</span>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
