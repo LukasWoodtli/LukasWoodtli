@@ -167,8 +167,10 @@
 </li>
 <li><a href="#variance">Variance</a></li>
 <li><a href="#standard-deviation">Standard Deviation</a></li>
-<li><a href="#binomial-coefficients">Binomial Coefficients</a><ul>
+<li><a href="#binomial-coefficients">Binomial Coefficients</a></li>
 <li><a href="#binomial-distribution">Binomial Distribution</a></li>
+<li><a href="#the-normal-distribution">The Normal Distribution</a><ul>
+<li><a href="#normalizer">Normalizer</a></li>
 </ul>
 </li>
 </ul>
@@ -264,12 +266,20 @@ Specitivity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 back elements and without caring about the order of the chosen
 elements):</p>
 <div class="math">$$\binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$$</div>
-<h2 id="binomial-distribution">Binomial Distribution</h2>
+<h1 id="binomial-distribution">Binomial Distribution</h1>
 <p>i.e. Flip a loaded coin:</p>
 <p><span class="math">\(p = P(heads)\)</span>: Probabilty to get a head from one coin flip.</p>
 <p>Flip coin <span class="math">\(n\)</span> times.</p>
 <p><span class="math">\(P(\#heads = k)\)</span>: Expectation to get <span class="math">\(k\)</span> heads from all the flips.</p>
 <div class="math">$$P(\#heads = k) = \frac{n!}{k! \cdot (n - k)!} \cdot p^k \cdot (1-p)^{n-k} = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}$$</div>
+<h1 id="the-normal-distribution">The Normal Distribution</h1>
+<p><span class="math">\(\mu\)</span>: Mean</p>
+<p><span class="math">\(\sigma^2\)</span>: Variance</p>
+<p><span class="math">\(\sigma\)</span>: Standard Deviation</p>
+<div class="math">$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\cdot e^{(-\frac{1}{2}\cdot\frac{(x-\mu)^2}{\sigma^2})}$$</div>
+<h2 id="normalizer">Normalizer</h2>
+<p>The expression <span class="math">\(\frac{1}{\sqrt{2\pi\sigma^2}}\)</span> is needed to normalize the area underneath the rest of
+the formula. Otherwise it would not add up to <span class="math">\(1\)</span>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
