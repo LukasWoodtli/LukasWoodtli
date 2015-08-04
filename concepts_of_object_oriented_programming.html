@@ -356,6 +356,21 @@ This is expressed as interface specifications (contracts)</p>
 <li>Subtypes may have <em>stronger invariants</em> than supertypes</li>
 <li>Subtypes may have <em>stronger history constrains</em> than supertype</li>
 </ul>
+<h2 id="inheritance">Inheritance</h2>
+<h3 id="difference-between-inheritance-and-subtyping">Difference between inheritance and subtyping</h3>
+<p>Inheritance allows to reuse the code inside a class 
+(member variables and method definitions).</p>
+<p>Subtyping supports reuse externally. It's used for polymorphism
+in form of the substitution principle.
+Subtypeing depends only on the interface of objects and not on their
+implementations.</p>
+<p>In most existing OOP languages inheritance also is subtyping.
+C++ allows private (or protected) inheritance which does not result
+in subtyping.
+With interfaces (Java, C++...) it's possible to create subtypes
+without inheritance (no reuse of code from parent class).
+Usually the term "inherit from an interface" is used even if it's
+not correct.</p>
   </div>
 
   <hr/>
