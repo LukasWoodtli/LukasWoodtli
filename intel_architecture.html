@@ -156,6 +156,17 @@
 </li>
 <li><a href="#protected-mode-memory-models-16-bit">Protected Mode Memory Models (16-bit)</a></li>
 <li><a href="#32-bit-memory-models">32-bit Memory Models</a></li>
+<li><a href="#64-bit-memory-models">64-bit Memory Models</a><ul>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#linux-snd-bsd">Linux snd BSD</a><ul>
+<li><a href="#small_1">Small</a></li>
+<li><a href="#medium_1">Medium</a></li>
+<li><a href="#large_1">Large</a></li>
+<li><a href="#kernel">Kernel</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#registers">Registers</a><ul>
@@ -400,13 +411,39 @@ modifying segment and offset when a pointer is incremented.</p>
 <p>Segment registers contain <em>Segment Selectors</em> instead of physical 
 addresses.</p>
 <p>To access data structures bigger than 64 kB the <em>8</em> has to be 
-added tonthe segment descriptor for each 64 kB increment.</p>
+added to the segment descriptor for each 64 kB increment.</p>
 <p>On a 32-bit processor a 32-bit offset is used.</p>
 <h2 id="32-bit-memory-models">32-bit Memory Models</h2>
 <p>32-bit OS's (Windows, Linux, BSD, Intel-Mac) use the <em>Flat</em> memory
-model. Application code uses only one (max. 32 GB) segment.</p>
+model. Application code uses only one (max. 2 GB) segment.</p>
 <p>Pointers are 32-bit <em>signed</em> addresses. Negative addresses are
 reseved for kernel and drivers.</p>
+<h2 id="64-bit-memory-models">64-bit Memory Models</h2>
+<h3 id="windows">Windows</h3>
+<p>The size of code and static data together is limited to 2 GB.
+So it's possible to use RIP-relative addresses.
+The image base of an executable binary is usually below <span class="math">\(2^{31}\)</span>.
+Absolute 32-bit addresses are not often used.</p>
+<p>Stack and dynamically allocated data (data on heap) can exceed 2 GB.</p>
+<p>Pointers are usually 64 bits (sometimes 32 bits).</p>
+<p>Negative addresses are reserved for the kernel.</p>
+<h3 id="linux-snd-bsd">Linux snd BSD</h3>
+<h4 id="small_1">Small</h4>
+<p>Code an static data is limited to 2 GB and stored at addresses below <span class="math">\(2^{31}\)</span>.
+The compiler can use absolte signed 32-bit addresses.</p>
+<p>Stack and dynamically allocated data can exceed 2 GB.</p>
+<p>Pointers are 64 bits.</p>
+<p>Default memory model in Linux (x64) and BSD.</p>
+<h4 id="medium_1">Medium</h4>
+<p>Static data bigger than the 'large-data-threshold' is stored in a
+data section that can exceed 2 GB.</p>
+<p>Code and smaller static data are limited to addresses below 
+<span class="math">\(2^{31}\)</span>.</p>
+<h4 id="large_1">Large</h4>
+<p>Code and data can exceed 2 GB. Addresses are 64 bits.</p>
+<h4 id="kernel">Kernel</h4>
+<p>Used to compile the kernel and device drivers.</p>
+<p>Addresses must be negative between <span class="math">\(-2^{31}\)</span> and <span class="math">\(0\)</span>.</p>
 <h1 id="registers">Registers</h1>
 <p>This are the 16-bit registers of Intel 8086, 8088,  80186 and 80188.</p>
 <table class="table table-hover table-striped">
