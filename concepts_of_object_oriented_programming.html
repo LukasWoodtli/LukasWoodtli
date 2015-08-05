@@ -358,11 +358,12 @@ This is expressed as interface specifications (contracts)</p>
 </ul>
 <h2 id="inheritance">Inheritance</h2>
 <h3 id="difference-between-inheritance-and-subtyping">Difference between inheritance and subtyping</h3>
-<p>Inheritance allows to reuse the code inside a class 
+<p>Inheritance allows to reuse the code (specialization) inside a class 
 (member variables and method definitions).</p>
 <p>Subtyping supports reuse externally. It's used for polymorphism
-in form of the substitution principle.
-Subtypeing depends only on the interface of objects and not on their
+in form of the substitution principle.</p>
+<p>Subtyping expresses classification.</p>
+<p>Subtypeing depends only on the interface of objects and not on their
 implementations.</p>
 <p>In most existing OOP languages inheritance also is subtyping.
 C++ allows private (or protected) inheritance which does not result
@@ -371,6 +372,25 @@ With interfaces (Java, C++...) it's possible to create subtypes
 without inheritance (no reuse of code from parent class).
 Usually the term "inherit from an interface" is used even if it's
 not correct.</p>
+<blockquote>
+<p>Subclassing = Subtyping + Inheritance</p>
+</blockquote>
+<p>Inheritance is <em>not</em> a core concept of OOP.</p>
+<p>OOP can do without inheritance, but not without subtyping!</p>
+<h2 id="aggregation-vs-private-inheritance-c">Aggregation vs. Private Inheritance (C++)</h2>
+<ul>
+<li>Both solutions allow code reuse without establishing a subtype relation</li>
+<li>No subtype polymorphism</li>
+<li>No behavioral subtyping  equirements</li>
+</ul>
+<p>Aggregation causes more overhead </p>
+<ul>
+<li>Two objects at run-time</li>
+<li>Boilerplate code for delegation</li>
+<li>Access methods for protected fields</li>
+</ul>
+<p>Private inheritance may lead to unnecessary multiple inheritance</p>
+<!-- ## Dynamic Method Binding -->
   </div>
 
   <hr/>
