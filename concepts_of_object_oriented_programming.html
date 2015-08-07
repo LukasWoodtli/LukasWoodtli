@@ -390,7 +390,25 @@ not correct.</p>
 <li>Access methods for protected fields</li>
 </ul>
 <p>Private inheritance may lead to unnecessary multiple inheritance</p>
-<!-- ## Dynamic Method Binding -->
+<h2 id="static-and-dynamic-method-binding">Static and Dynamic Method Binding</h2>
+<ul>
+<li>Static binding: Methods are selected based on the <em>static type</em> of the 
+receiver <em>at compile time</em></li>
+<li>Dynamic binding: Methods are selected based on the <em>dynamic type</em> of the
+receiver object <em>at run time</em></li>
+</ul>
+<p>Dynamic method binding enables specialization and subtype polymorphism</p>
+<p>Drawbacks</p>
+<ul>
+<li>Performance: Overhead of method look-up at run-time</li>
+<li>Versioning: Dynamic binding makes it harder to evolve code
+ without breaking subclasses</li>
+</ul>
+<p>Defaults</p>
+<ul>
+<li>Dynamic binding: Eiffel, Java, Scala, dynamically-typed languages</li>
+<li>Static  binding: C++, C# </li>
+</ul>
   </div>
 
   <hr/>
