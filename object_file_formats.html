@@ -145,7 +145,7 @@
 </thead>
 <tbody>
 <tr>
-<td>COFF</td>
+<td>COFF / PE</td>
 <td>Windows 32 (PE), Windows 64 (PE32+)</td>
 </tr>
 <tr>
@@ -162,6 +162,33 @@
 </tr>
 </tbody>
 </table>
+<h2 id="common-object-file-format-coff-pe">Common Object File Format (COFF, PE)</h2>
+<p>First used in UNIX System V, later superseeded by ELF.</p>
+<p>PE (Portable Executable) is a modified version of COFF from
+Microsoft that is used for Windows.</p>
+<p>The same format is used for object files and for executables.</p>
+<p>Compilers that use COFF / PE:</p>
+<ul>
+<li>Visual C++</li>
+<li>Intel (Win)</li>
+<li>GCC (Win)</li>
+</ul>
+<p>COFF uses many different data structures. This makes it difficult to handle.
+Alignment handlin of the data structures can be difficult.</p>
+<p>Properties: </p>
+<ul>
+<li>Can contain debug information</li>
+<li>Different implementations (COFF, PE, XCOFF, ECOFF) are not compatible</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>Segment word size: 32 or 64 bits.</li>
+<li>Max number of sections: 32k.</li>
+<li>Max file size: 4 GB.</li>
+<li>Max section size: 4 GB.</li>
+<li>Max relocations per section: 64k.</li>
+<li>Max library size: 4 GB.</li>
+</ul>
   </div>
 
   <hr/>
