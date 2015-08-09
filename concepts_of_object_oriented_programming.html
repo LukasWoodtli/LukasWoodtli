@@ -409,6 +409,18 @@ receiver object <em>at run time</em></li>
 <li>Dynamic binding: Eiffel, Java, Scala, dynamically-typed languages</li>
 <li>Static  binding: C++, C# </li>
 </ul>
+<h2 id="rules-for-proper-subclassing">Rules for proper Subclassing</h2>
+<ul>
+<li>Use subclassing only if there is an <em>'is-a'</em> relation <ul>
+<li>Syntactic and behavioral subtypes</li>
+</ul>
+</li>
+<li>Do not rely on implementation details</li>
+<li>Use precise documentation (<em>contracts</em> where possible)</li>
+<li>When evolving superclasses, <em>do not mess around with dynamically-bound methods</em></li>
+<li>Do not add or remove calls, or change order of calls</li>
+<li>Do not specialize superclasses that are expected to change often </li>
+</ul>
   </div>
 
   <hr/>
