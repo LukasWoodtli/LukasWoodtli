@@ -138,7 +138,65 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="the-object-model">The Object Model</h1>
+    <div class="toc">
+<ul>
+<li><a href="#the-object-model">The Object Model</a><ul>
+<li><a href="#interfaces-and-encapsulation">Interfaces and Encapsulation</a></li>
+<li><a href="#classification-and-polymorphism">Classification and Polymorphism</a><ul>
+<li><a href="#classification">Classification</a></li>
+<li><a href="#polymorphism">Polymorphism</a><ul>
+<li><a href="#subtype-polymorphism">Subtype Polymorphism</a></li>
+<li><a href="#parametric-polymorphism">Parametric Polymorphism</a></li>
+<li><a href="#method-overloading">Method Overloading</a></li>
+</ul>
+</li>
+<li><a href="#spezialization">Spezialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#types-and-subtyping">Types and Subtyping</a><ul>
+<li><a href="#types">Types</a><ul>
+<li><a href="#weak-and-strong-type-systems">Weak and Strong Type Systems</a><ul>
+<li><a href="#untyped-languages">Untyped Languages</a></li>
+<li><a href="#weakly-typed-languages">Weakly Typed Languages</a></li>
+<li><a href="#strongly-typed-languages">Strongly Typed Languages</a></li>
+</ul>
+</li>
+<li><a href="#nominal-and-structural-types">Nominal and Structural Types</a><ul>
+<li><a href="#nominal-types">Nominal Types</a></li>
+<li><a href="#structural-types">Structural Types</a></li>
+</ul>
+</li>
+<li><a href="#type-checking">Type Checking</a><ul>
+<li><a href="#static-type-checking">Static Type Checking</a></li>
+<li><a href="#dynamic-type-checking">Dynamic Type Checking</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-type-systems-in-oo-languages">Overview of Type Systems in OO-Languages</a></li>
+</ul>
+</li>
+<li><a href="#subtyping">Subtyping</a><ul>
+<li><a href="#variance-covariance-contravariance-and-invariance">Variance (Covariance, Contravariance and Invariance)</a></li>
+<li><a href="#behavioral-subtyping-contracts">Behavioral Subtyping (Contracts)</a><ul>
+<li><a href="#subtyping-and-contracs">Subtyping and Contracs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#inheritance">Inheritance</a><ul>
+<li><a href="#difference-between-inheritance-and-subtyping">Difference between inheritance and subtyping</a></li>
+</ul>
+</li>
+<li><a href="#aggregation-vs-private-inheritance-c">Aggregation vs. Private Inheritance (C++)</a></li>
+<li><a href="#static-and-dynamic-method-binding">Static and Dynamic Method Binding</a></li>
+<li><a href="#rules-for-proper-subclassing">Rules for proper Subclassing</a></li>
+</ul>
+</li>
+<li><a href="#binary-methods">Binary Methods</a></li>
+</ul>
+</div>
+<h1 id="the-object-model">The Object Model</h1>
 <ul>
 <li>A software system is a set of cooperating objects</li>
 <li>Objects have state (fields) and processing ability (methods)</li>
@@ -420,6 +478,22 @@ receiver object <em>at run time</em></li>
 <li>When evolving superclasses, <em>do not mess around with dynamically-bound methods</em></li>
 <li>Do not add or remove calls, or change order of calls</li>
 <li>Do not specialize superclasses that are expected to change often </li>
+</ul>
+<h1 id="binary-methods">Binary Methods</h1>
+<p>Binary methods take one explicit argument and receiver (this)</p>
+<p>Often behavior should be specialized depending on the dynamic types
+of <em>both</em> arguments.</p>
+<p>Recall that covariant parameter types are not statically type-safe! (?)</p>
+<ul>
+<li>Dynamic binding for specialization based on dynamic type of <em>receiver</em></li>
+<li>How to specialize on the dynamic type of the <em>explicit argument</em>?</li>
+<li>Visitor Pattern: tedious to write, requires modification of superclass</li>
+</ul>
+<p>Some Languages Support Multiple Dispatch:</p>
+<p>Method calls are bound on dynamic types of several arguments.</p>
+<ul>
+<li>Performance overhead</li>
+<li>Extra requirements are needed to ensure there is a “unique best method” for every call </li>
 </ul>
   </div>
 
