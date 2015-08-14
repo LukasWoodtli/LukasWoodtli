@@ -194,6 +194,11 @@
 </ul>
 </li>
 <li><a href="#binary-methods">Binary Methods</a></li>
+<li><a href="#multiple-inheritance">Multiple Inheritance</a><ul>
+<li><a href="#problems-with-multiple-inheritance">Problems with multiple inheritance</a></li>
+</ul>
+</li>
+<li><a href="#mixins-and-traits">Mixins and Traits</a></li>
 </ul>
 </div>
 <h1 id="the-object-model">The Object Model</h1>
@@ -495,6 +500,26 @@ of <em>both</em> arguments.</p>
 <li>Performance overhead</li>
 <li>Extra requirements are needed to ensure there is a “unique best method” for every call </li>
 </ul>
+<h1 id="multiple-inheritance">Multiple Inheritance</h1>
+<p>All OOP languages support multiple subtyping:</p>
+<ul>
+<li>One type can have several supertypes</li>
+<li>Subtype relation forms a DAG</li>
+</ul>
+<p>Some languages support multiple inheritance.</p>
+<h2 id="problems-with-multiple-inheritance">Problems with multiple inheritance</h2>
+<p>Ambiguities:</p>
+<ul>
+<li>Superclasses may contain fields and methods with identical names and signatures</li>
+<li>Which version should be available in the subclass?</li>
+</ul>
+<p>Repeated inheritance (diamonds):</p>
+<ul>
+<li>A class may inherit from a superclass more than once</li>
+<li>How many copies of the superclass members are there?</li>
+<li>How are the superclass fields initialized? </li>
+</ul>
+<h1 id="mixins-and-traits">Mixins and Traits</h1>
   </div>
 
   <hr/>
