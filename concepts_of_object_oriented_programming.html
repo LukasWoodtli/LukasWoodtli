@@ -368,6 +368,7 @@ It's mainly used to compare languages to each other about the possible castings,
 <p>Contravariance: Ordering of types from more generic to more specific (in oposite direction of inheritance hierarchy)</p>
 </li>
 </ul>
+<p><a href="https://class.coursera.org/progfun-005/lecture/83">Coursera:Scala</a></p>
 <p>For OOP:</p>
 <ul>
 <li>Contravariance: Input Arguments</li>
@@ -421,7 +422,7 @@ This is expressed as interface specifications (contracts)</p>
 </ul>
 <h2 id="inheritance">Inheritance</h2>
 <h3 id="difference-between-inheritance-and-subtyping">Difference between inheritance and subtyping</h3>
-<p>Inheritance allows to reuse the code (specialization) inside a class 
+<p>Inheritance allows to reuse the code (specialization) inside a class
 (member variables and method definitions).</p>
 <p>Subtyping supports reuse externally. It's used for polymorphism
 in form of the substitution principle.</p>
@@ -446,7 +447,7 @@ not correct.</p>
 <li>No subtype polymorphism</li>
 <li>No behavioral subtyping  equirements</li>
 </ul>
-<p>Aggregation causes more overhead </p>
+<p>Aggregation causes more overhead</p>
 <ul>
 <li>Two objects at run-time</li>
 <li>Boilerplate code for delegation</li>
@@ -455,7 +456,7 @@ not correct.</p>
 <p>Private inheritance may lead to unnecessary multiple inheritance</p>
 <h2 id="static-and-dynamic-method-binding">Static and Dynamic Method Binding</h2>
 <ul>
-<li>Static binding: Methods are selected based on the <em>static type</em> of the 
+<li>Static binding: Methods are selected based on the <em>static type</em> of the
 receiver <em>at compile time</em></li>
 <li>Dynamic binding: Methods are selected based on the <em>dynamic type</em> of the
 receiver object <em>at run time</em></li>
@@ -470,11 +471,11 @@ receiver object <em>at run time</em></li>
 <p>Defaults</p>
 <ul>
 <li>Dynamic binding: Eiffel, Java, Scala, dynamically-typed languages</li>
-<li>Static  binding: C++, C# </li>
+<li>Static  binding: C++, C#</li>
 </ul>
 <h2 id="rules-for-proper-subclassing">Rules for proper Subclassing</h2>
 <ul>
-<li>Use subclassing only if there is an <em>'is-a'</em> relation <ul>
+<li>Use subclassing only if there is an <em>'is-a'</em> relation<ul>
 <li>Syntactic and behavioral subtypes</li>
 </ul>
 </li>
@@ -482,7 +483,7 @@ receiver object <em>at run time</em></li>
 <li>Use precise documentation (<em>contracts</em> where possible)</li>
 <li>When evolving superclasses, <em>do not mess around with dynamically-bound methods</em></li>
 <li>Do not add or remove calls, or change order of calls</li>
-<li>Do not specialize superclasses that are expected to change often </li>
+<li>Do not specialize superclasses that are expected to change often</li>
 </ul>
 <h1 id="binary-methods">Binary Methods</h1>
 <p>Binary methods take one explicit argument and receiver (this)</p>
@@ -498,7 +499,7 @@ of <em>both</em> arguments.</p>
 <p>Method calls are bound on dynamic types of several arguments.</p>
 <ul>
 <li>Performance overhead</li>
-<li>Extra requirements are needed to ensure there is a “unique best method” for every call </li>
+<li>Extra requirements are needed to ensure there is a “unique best method” for every call</li>
 </ul>
 <h1 id="multiple-inheritance">Multiple Inheritance</h1>
 <p>All OOP languages support multiple subtyping:</p>
@@ -517,7 +518,7 @@ of <em>both</em> arguments.</p>
 <ul>
 <li>A class may inherit from a superclass more than once</li>
 <li>How many copies of the superclass members are there?</li>
-<li>How are the superclass fields initialized? </li>
+<li>How are the superclass fields initialized?</li>
 </ul>
 <h1 id="mixins-and-traits">Mixins and Traits</h1>
   </div>
