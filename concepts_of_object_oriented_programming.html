@@ -177,7 +177,12 @@
 </ul>
 </li>
 <li><a href="#subtyping">Subtyping</a><ul>
-<li><a href="#variance-covariance-contravariance-and-invariance">Variance (Covariance, Contravariance and Invariance)</a></li>
+<li><a href="#variance-covariance-contravariance-and-invariance">Variance (Covariance, Contravariance and Invariance)</a><ul>
+<li><a href="#covariance">Covariance</a></li>
+<li><a href="#contravariance">Contravariance</a></li>
+<li><a href="#variance-for-oop">Variance for OOP</a></li>
+</ul>
+</li>
 <li><a href="#behavioral-subtyping-contracts">Behavioral Subtyping (Contracts)</a><ul>
 <li><a href="#subtyping-and-contracs">Subtyping and Contracs</a></li>
 </ul>
@@ -360,16 +365,14 @@ It's mainly used to compare languages to each other about the possible castings,
 </ul>
 <h3 id="variance-covariance-contravariance-and-invariance">Variance (Covariance, Contravariance and Invariance)</h3>
 <p>Based on substitution principle.</p>
-<ul>
-<li>
-<p>Covariance: Ordering of types from more specific to more generic (in direction of inheritance hierarchy)</p>
-</li>
-<li>
-<p>Contravariance: Ordering of types from more generic to more specific (in oposite direction of inheritance hierarchy)</p>
-</li>
-</ul>
+<h4 id="covariance">Covariance</h4>
+<p>Ordering of types from more specific to more generic (in direction of inheritance hierarchy)</p>
+<p><img alt="Covariance" class="img-responsive" src="/images/covariance.svg"/></p>
+<h4 id="contravariance">Contravariance</h4>
+<p>Ordering of types from more generic to more specific (in oposite direction of inheritance hierarchy)</p>
+<p><img alt="Contravariance" class="img-responsive" src="/images/contravariance.svg"/></p>
+<h4 id="variance-for-oop">Variance for OOP</h4>
 <p><a href="https://class.coursera.org/progfun-005/lecture/83">Coursera:Scala</a></p>
-<p>For OOP:</p>
 <ul>
 <li>Contravariance: Input Arguments</li>
 <li>Covariance: Return Values and Exceptions</li>
