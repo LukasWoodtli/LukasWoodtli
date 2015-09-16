@@ -1404,9 +1404,11 @@ can be shifted.</p>
 <li><code>BLX</code>: Branch indirect with link (register)</li>
 </ul>
 <p>All these branch to a label, or to an address given by the operand.</p>
-<p>In addition:
-- The <code>BL</code> and <code>BLX</code> instructions write the address of the next instruction to <em>LR</em>.
-- The <code>BX</code> and <code>BLX</code> instructions can change the instruction set (ARM ↔ Thumb).</p>
+<p>In addition:</p>
+<ul>
+<li>The <code>BL</code> and <code>BLX</code> instructions write the address of the next instruction to <em>LR</em>.</li>
+<li>The <code>BX</code> and <code>BLX</code> instructions can change the instruction set (ARM ↔ Thumb).</li>
+</ul>
 <blockquote>
 <p>The <code>BX</code> and <code>BLX</code> instructions result in a <em>UsageFault</em> exception on the M3 if bit[0] of the target address is 0.</p>
 </blockquote>
