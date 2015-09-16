@@ -1405,9 +1405,10 @@ can be shifted.</p>
 </ul>
 <p>All these branch to a label, or to an address given by the operand.</p>
 <p>In addition:
-The <code>BL</code> and <code>BLX</code> instructions write the address of the next instruction to <em>LR</em>.</p>
+- The <code>BL</code> and <code>BLX</code> instructions write the address of the next instruction to <em>LR</em>.
+- The <code>BX</code> and <code>BLX</code> instructions can change the instruction set (ARM ↔ Thumb).</p>
 <blockquote>
-<p>The <code>BX</code> and <code>BLX</code> instructions result in a <em>UsageFault</em> exception if bit[0] of the target address is 0.</p>
+<p>The <code>BX</code> and <code>BLX</code> instructions result in a <em>UsageFault</em> exception on the M3 if bit[0] of the target address is 0.</p>
 </blockquote>
 <p><code>B</code> is the only conditional instruction that can be inside or outside an <em>IT</em> block.
 All other branch instructions can only be conditional inside an <em>IT</em> block, and are always unconditional otherwise.</p>
@@ -1424,7 +1425,7 @@ All other branch instructions can only be conditional inside an <em>IT</em> bloc
 <p><code>&lt;label&gt;</code>: The label to jump to. The assembler calculates the offset
 of the <code>BL</code> instruction and the label.</p>
 <h3 id="branch-and-exchange-bx">Branch and Exchange (<code>BX</code>)</h3>
-<p>Calls a function at an address and instruction set specified in a register.</p>
+<p>Calls a function at an address and instruction set (ARM/Thumb) specified in a register.</p>
 <p>It's the same as <code>BXL</code> but it <strong>doesn't save</strong> the next instruction in <em>LR</em>.</p>
 <blockquote>
 <p>Be aware that the Cortex-M3 only supports Thumb! (see <code>BLX</code>)</p>
@@ -1434,13 +1435,14 @@ of the <code>BL</code> instruction and the label.</p>
 </pre></div>
 <p>Exceptions: UsageFault</p>
 <h3 id="branch-with-link-and-exchange-blx">Branch with Link and Exchange (<code>BLX</code>)</h3>
-<p>Calls a function at an address and instruction set specified in a register.</p>
+<p>Calls a function at an address and instruction set (ARM/Thumb) specified in a register.</p>
 <p>It saves the next instruction (after <code>BLX</code>) in <em>LR</em>.</p>
 <blockquote>
 <p>Be aware that the Cortex-M3 only supports Thumb! An attempt to change to ARM Mode will
 cause an <em>UsageFault</em> exception.</p>
 </blockquote>
-<div class="highlight"><pre><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span><span class="nb">BL</span><span class="nv">X</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
+<span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
 <p>Exceptions: UsageFault</p>
 <h2 id="compare-and-branch-commands">Compare and Branch Commands</h2>
