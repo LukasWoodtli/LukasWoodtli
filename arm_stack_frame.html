@@ -182,13 +182,13 @@
 </ul>
 </li>
 <li><code>R13</code> (<code>SP</code>) contains the address of top of the stack (last filled poition)</li>
-<li>Stack is Full-Descending:<ul>
-<li><code>SP</code> points to the last filled location</li>
-<li>Stack grows downwards (from higher to lower addresses)</li>
-</ul>
-</li>
 <li>
-<p><code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</p>
+<p>Stack is Full-Descending:</p>
+<ul>
+<li><code>SP</code> points to the last filled location</li>
+<li>Stack grows downwards (from higher to lower addresses)
+<code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</li>
+</ul>
 <p>:::nasm
 LDMFD SP, {R0-R3}</p>
 </li>
@@ -199,23 +199,18 @@ LDMFD SP, {R0-R3}</p>
 <span class="nf">LDR</span> <span class="nv">R2</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">8</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R3</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">12</span><span class="p">]</span>
 </pre></div>
-<ul>
-<li>
 <p>To alter (update) <code>SP</code>:</p>
-<p>:::nasm
-LDMFD SP!, {R0-R3}</p>
-</li>
-<li>
+<div class="highlight"><pre><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
+</pre></div>
 <p><code>LR</code> needs to be saved on stack for <em>non</em>-leaf functions</p>
-<p>::: nasm
-_func:
-  STMFD SP!, {R4-R6, LR}
-  ; ... code of func
-  LDMFD SP!, {R4-R6, PC} ; Pushing stacked LR directly to PC =&gt; return to caller</p>
-</li>
-<li>
-<p>The order of registers in <code>STMFD</code> and <code>LDMFD</code> is always the same: lower regisers at lower addresses</p>
-</li>
+<div class="highlight"><pre><span class="err">:::</span> <span class="nf">nasm</span>
+<span class="nl">_func:</span>
+  <span class="nf">STMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R4</span><span class="o">-</span><span class="nv">R6</span><span class="p">,</span> <span class="nv">LR</span><span class="err">}</span>
+  <span class="c1">; ... code of func</span>
+  <span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R4</span><span class="o">-</span><span class="nv">R6</span><span class="p">,</span> <span class="nv">PC</span><span class="err">}</span> <span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span>
+</pre></div>
+<ul>
+<li>The order of registers in <code>STMFD</code> and <code>LDMFD</code> is always the same: lower regisers at lower addresses</li>
 </ul>
 <p><img alt="Order of Registers on Stack" class="img-responsive" src="/images/arm_stack_frame_example.png"/></p>
 <ul>
