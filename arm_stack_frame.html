@@ -182,17 +182,15 @@
 </ul>
 </li>
 <li><code>R13</code> (<code>SP</code>) contains the address of top of the stack (last filled poition)</li>
-<li>
-<p>Stack is Full-Descending:</p>
-<ul>
+<li>Stack is Full-Descending:<ul>
 <li><code>SP</code> points to the last filled location</li>
-<li>Stack grows downwards (from higher to lower addresses)
-<code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</li>
+<li>Stack grows downwards (from higher to lower addresses)</li>
 </ul>
-<p>:::nasm
-LDMFD SP, {R0-R3}</p>
 </li>
 </ul>
+<p><code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</p>
+<div class="highlight"><pre><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
+</pre></div>
 <p>is equvalent to:</p>
 <div class="highlight"><pre><span class="nf">LDR</span> <span class="nv">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R1</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">4</span><span class="p">]</span>
