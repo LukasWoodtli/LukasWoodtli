@@ -381,20 +381,35 @@ It's mainly used to compare languages to each other about the possible castings,
 <p><img alt="Contravariance" class="img-responsive" src="/images/contravariance.svg"/></p>
 <h4 id="variance-for-oop">Variance for OOP</h4>
 <p><a href="https://class.coursera.org/progfun-005/lecture/83">Coursera:Scala</a></p>
-<ul>
-<li>Contravariance: Input Arguments</li>
-<li>Covariance: Return Values and Exceptions</li>
-<li>
-<p>Invariance: In- and Output Arguments (Mutable Reference Arguments)</p>
-<p>:::cpp
-SuperReturnType Super::foo(SubParamType p); // |         ^ contra-
-//  ..                        ^             // |         | variant
-//   v                        ..            // | co-     |
-SubReturnType   Sub::foo(SuperParamType p); // v variant |</p>
-</li>
-</ul>
-<p><em>Super</em> is more general than <em>Sub</em>.</p>
-<p><em>Sub</em> is more specific than <em>Super</em>.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input Arguments</td>
+<td>Contravariant</td>
+</tr>
+<tr>
+<td>Return Values and Exceptions</td>
+<td>Covariant</td>
+</tr>
+<tr>
+<td>In- and Output Arguments (Mutable Reference Arguments)</td>
+<td>Nonvariant</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span class="n">SuperReturnType</span> <span class="n">Super</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SubParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// |         ^ contra-</span>
+<span class="c1">//  ..                        ^             // |         | variant</span>
+<span class="c1">//   v                        ..            // | co-     |</span>
+<span class="n">SubReturnType</span>   <span class="n">Sub</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SuperParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// v variant |</span>
+</pre></div>
+<p><em>Super</em> is more <strong>general</strong> than <em>Sub</em>.</p>
+<p><em>Sub</em> is more <strong>specific</strong> than <em>Super</em>.</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
