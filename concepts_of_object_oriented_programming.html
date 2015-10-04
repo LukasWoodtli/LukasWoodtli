@@ -280,6 +280,12 @@ objects of supertypes are expected</p>
 </ul>
 <h1 id="types-and-subtyping">Types and Subtyping</h1>
 <h2 id="types">Types</h2>
+<p>Type systems can be analyzed in three dimensions:</p>
+<ol>
+<li>Weak and Strong Type Systems</li>
+<li>Nominal and Structural Types</li>
+<li>Static and Dynamic Type Checking</li>
+</ol>
 <h3 id="weak-and-strong-type-systems">Weak and Strong Type Systems</h3>
 <p>How strongly or weakly typed a language is concerns casting (implicit and explicit).
 It's mainly used to compare languages to each other about the possible castings, type safety and information loss.</p>
@@ -376,8 +382,17 @@ It's mainly used to compare languages to each other about the possible castings,
 <ul>
 <li>Contravariance: Input Arguments</li>
 <li>Covariance: Return Values and Exceptions</li>
-<li>Invariance: In- and Output Arguments (Reference Arguments)</li>
+<li>
+<p>Invariance: In- and Output Arguments (Mutable Reference Arguments)</p>
+<p>:::CPP
+SuperReturnType Super::foo(SubParamType p); |         ^ contra-
+//   ..                       ^             |         | variant
+//   v                        ..            | co-     |
+SubReturnType   Sub::foo(SuperParamType p); v variant |</p>
+</li>
 </ul>
+<p><em>Super</em> is more general than <em>Sub</em>.</p>
+<p><em>Sub</em> is more specific than <em>Super</em>.</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
