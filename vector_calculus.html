@@ -141,6 +141,7 @@
 <ul>
 <li><a href="#nabla-operator-nabla">Nabla Operator (\(\nabla\))</a></li>
 <li><a href="#gradient-operatornamegrad">Gradient (\(\operatorname{grad}\))</a></li>
+<li><a href="#divergence-operatornamediv">Divergence (\(\operatorname{div}\))</a></li>
 </ul>
 </div>
 <h1 id="nabla-operator-nabla">Nabla Operator (<span class="math">\(\nabla\)</span>)</h1>
@@ -156,7 +157,13 @@
 The length (absolute value) of the gradient at that point is a measurement of the change (slope).</p>
 <div class="math">$$\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n$$</div>
 <p><span class="math">\(e_i\)</span>: The orthogonal unit vectors pointing in the coordinate directions</p>
-<!-- Divergence ($\operatorname{div}$) -->
+<h1 id="divergence-operatornamediv">Divergence (<span class="math">\(\operatorname{div}\)</span>)</h1>
+<p>The divergence is a vector operator that measures the <strong>magnitude</strong> of a vector field's source or sink. It is a
+scalar field with signed components (positive values for sources, negative values for sinks). </p>
+<p>Input: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a></p>
+<p>Output: A <a href="https://en.wikipedia.org/wiki/Scalar_field">Scalar field</a></p>
+<p>The divergence is the <em>scalar product</em> between the Nable operator (<span class="math">\(\nabla=(\tfrac{\partial}{\partial x_1},\ldots,\tfrac{\partial}{\partial x_n})\)</span> and the vector <span class="math">\(\vec F = (F^1,\ldots,F^n)\)</span>.</p>
+<div class="math">$$\operatorname{div}\,\mathbf{F} = \nabla\cdot\mathbf{F}=\frac{\partial F_1}{\partial x_1}+\frac{\partial F_2}{\partial x_2}+\cdots +\frac{\partial F_n}{\partial x_n} = \sum_{i=1}^n\frac{\partial}{\partial x_i}F^i$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
