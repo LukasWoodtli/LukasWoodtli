@@ -189,6 +189,7 @@
 <li><a href="#subtyping-and-contracs">Subtyping and Contracs</a></li>
 </ul>
 </li>
+<li><a href="#types-as-contracts">Types as Contracts</a></li>
 </ul>
 </li>
 <li><a href="#inheritance">Inheritance</a><ul>
@@ -454,6 +455,36 @@ This is expressed as interface specifications (contracts)</p>
 <li>Overriding method of subtypes may have <em>stronger postconditions</em> than the supertype method</li>
 <li>Subtypes may have <em>stronger invariants</em> than supertypes</li>
 <li>Subtypes may have <em>stronger history constrains</em> than supertype</li>
+</ul>
+<h3 id="types-as-contracts">Types as Contracts</h3>
+<p>Types can be seen as a kind of contracts.</p>
+<p>Overriding Methods must:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Behavioral Subtyping (contracts)</th>
+<th>Nominal/Structural Subtyping (variance)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weaker Preconditions</td>
+<td>Covariant Parameters</td>
+</tr>
+<tr>
+<td>Stronger Postconditions</td>
+<td>Covariant Results</td>
+</tr>
+<tr>
+<td>Stronger Invariants</td>
+<td>Nonvariant fields</td>
+</tr>
+</tbody>
+</table>
+<p>This doesn't apply exactlty to:</p>
+<ul>
+<li>Invariants/Fields</li>
+<li>History constraints</li>
 </ul>
 <h2 id="inheritance">Inheritance</h2>
 <h3 id="difference-between-inheritance-and-subtyping">Difference between inheritance and subtyping</h3>
