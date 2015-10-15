@@ -197,7 +197,10 @@
 </ul>
 </li>
 <li><a href="#aggregation-vs-private-inheritance-c">Aggregation vs. Private Inheritance (C++)</a></li>
-<li><a href="#static-and-dynamic-method-binding">Static and Dynamic Method Binding</a></li>
+<li><a href="#static-and-dynamic-method-binding">Static and Dynamic Method Binding</a><ul>
+<li><a href="#static-method-binding-in-java">Static Method binding in Java</a></li>
+</ul>
+</li>
 <li><a href="#rules-for-proper-subclassing">Rules for proper Subclassing</a></li>
 </ul>
 </li>
@@ -539,6 +542,13 @@ receiver object <em>at run time</em></li>
 <li>Dynamic binding: Eiffel, Java, Scala, dynamically-typed languages</li>
 <li>Static  binding: C++, C#</li>
 </ul>
+<h3 id="static-method-binding-in-java">Static Method binding in Java</h3>
+<p>Java binds methods statically in 3 cases:</p>
+<ol>
+<li>Static Methods</li>
+<li>Private Methods</li>
+<li>Method calls on <code>super</code></li>
+</ol>
 <h2 id="rules-for-proper-subclassing">Rules for proper Subclassing</h2>
 <ul>
 <li>Use subclassing only if there is an <em>'is-a'</em> relation<ul>
