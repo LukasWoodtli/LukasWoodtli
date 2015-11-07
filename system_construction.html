@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Distance Functions and Metrics · Lukas Woodtli</title>
+        <title>System Construction · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/distance_functions_and_metrics.html">Distance Functions and Metrics</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/system_construction.html">System Construction</a></h1>
     </div>
 
         </div>
@@ -120,13 +120,10 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/data_minig.html">Data Minig</a>
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">09</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">26</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month11">11</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month11">07</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -136,95 +133,155 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="distant-functions">Distant Functions</h1>
-<p>A distant function works on two elements (i.e. vectors, sets...).</p>
-<p>A given distance function <span class="math">\(d(s,t)\)</span> needs to fulfill properties:</p>
-<ol>
-<li><span class="math">\(d(s,t) \geq 0\)</span> (non-negative)</li>
-<li><span class="math">\(d(s,s) = 0\)</span> (distance to itself is zero)</li>
-<li><span class="math">\(d(s,t) = d(t,s)\)</span> (symmetric)</li>
-<li><span class="math">\(d(s,t) + d(t,r) \geq d(s,r)\)</span> (<a href="https://en.wikipedia.org/wiki/Triangle_inequality">triangle inequality</a>)</li>
-</ol>
-<h1 id="metric">Metric</h1>
-<p>A metric requires an additional property in addition to the four properties of a distant function:</p>
-<ul>
-<li><span class="math">\(d(x, y) = 0\)</span> if and only if  <span class="math">\(x = y\)</span> (coincidence axiom)</li>
-</ul>
-<blockquote>
-<p>Two given elements with no distance to each other must be the same element</p>
+    <blockquote>
+<p>My Notes for the <em>System Construction</em> Course at ETH</p>
 </blockquote>
-<h1 id="jaccard-similarity">Jaccard Similarity</h1>
-<p><span class="math">\(Sim(A,B) = \frac{|A \cap B|}{|A \cup B|}\)</span></p>
-<h1 id="jaccard-distance">Jaccard Distance</h1>
-<p><span class="math">\(d(A,B) = 1 - \frac{|A \cap B|}{|A \cup B|}\)</span></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+<div class="toc">
+<ul>
+<li><a href="#minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</a><ul>
+<li><a href="#arm-a7">ARM A7</a><ul>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#6-kinds-of-instructions">6 Kinds Of Instructions</a></li>
+<li><a href="#execution-modes">Execution Modes</a></li>
+<li><a href="#special-registers">Special Registers</a></li>
+<li><a href="#typical-procedure-call">Typical Procedure Call</a></li>
+<li><a href="#misc">Misc</a></li>
+</ul>
+</li>
+<li><a href="#raspberry-pi-2">Raspberry PI 2</a><ul>
+<li><a href="#booting">Booting</a></li>
+<li><a href="#mmu">MMU</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</h1>
+<h2 id="arm-a7">ARM A7</h2>
+<p>The ARM <em>Architecture</em> is not the same thing as the ARM <em>Processor-Families</em></p>
+<h3 id="documentation">Documentation</h3>
+<p>There is a lot of good documentation for the ARM processors available. But it's difficult to
+find the right documents.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Document</th>
+<th>Main Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ARM Architecture Referense Manual (ARMv7-AR, ARM ARM)</td>
+<td>Possibility of implementing the processor. For compilers and tools. Partly used for system programming</td>
+</tr>
+<tr>
+<td>ARM Technical System Reference (ARM Cortex-A7MPCore Family)</td>
+<td>Perticular Implementation. Some endundant information to ARM ARM.</td>
+</tr>
+<tr>
+<td>System On Chip Implementation Manual (BCM 2835)</td>
+<td>How the core is embedded on the chip with periperals. Address map. Peripheral information.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-kinds-of-instructions">6 Kinds Of Instructions</h3>
+<ol>
+<li>Data Processing</li>
+<li>Branch Instructions</li>
+<li>Status Register Transfer</li>
+<li>Load and Store (RISC)</li>
+<li>Generic Coprocessor Instructions</li>
+<li>Exception Generation</li>
+</ol>
+<ul>
+<li>Load-/Store: No memory operands (not as x86)</li>
+<li>Multiple-Data-Transfer commands ('stmdb sp!,{fp,lr}', '!': Write-Back)</li>
+<li>Link Register: 'bl': Branch-and-Link (stores PC in link register)</li>
+<li>PC-Relative Addressing: Loading large constants (that have no soace in instruction encoding) form code</li>
+</ul>
+<h3 id="execution-modes">Execution Modes</h3>
+<ul>
+<li>7 Modes</li>
+<li>for exception handling</li>
+<li>Processor starts in supervisor mode</li>
+<li>System Mode: priviledged but same registers as user mode</li>
+</ul>
+<h3 id="special-registers">Special Registers</h3>
+<ul>
+<li>R15: PC</li>
+<li>R14: LR</li>
+<li>R13: SP</li>
+<li>R12: FP (by convention)</li>
+<li>CPSR (Processor Status Register)<ul>
+<li>Mode Bits</li>
+<li>IRQ Disable</li>
+<li>Condition Flags</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h3 id="typical-procedure-call">Typical Procedure Call</h3>
+<ul>
+<li>
+<p>Caller</p>
+<ul>
+<li>Pushes parmams</li>
+<li>'BL #address': Stores PC of next instuction in LR</li>
+</ul>
+</li>
+<li>
+<p>Callee</p>
+<ul>
+<li>Save LR and FP on stack: 'stmdb sp!, {fp, lr}'</li>
+<li>Set new FP: 'mov fp, sp'</li>
+<li>Execute procedure content</li>
+<li>Reset stack pointer: 'mov lr, sp'</li>
+<li>Restore FP and jump back to caller address: 'ldmia sp!, {fp, pc}'</li>
+</ul>
+</li>
+<li>
+<p>Caller</p>
+<ul>
+<li>Clean up parameters from stack: 'add sp,sp, #n'</li>
+</ul>
+</li>
+</ul>
+<h3 id="misc">Misc</h3>
+<ul>
+<li>FIRQ is about having more stacked registers</li>
+<li>Return Link type: Different sizes because of pipe-line</li>
+</ul>
+<h2 id="raspberry-pi-2">Raspberry PI 2</h2>
+<ul>
+<li>Quad Core</li>
+<li>1 GB RAM</li>
+<li>40 Pin GPIO, ...</li>
+<li>UART, SPI, USB, Ethernet, ...</li>
+<li>Powered from MicroUSB</li>
+</ul>
+<h3 id="booting">Booting</h3>
+<ul>
+<li>Kernel is copied to address: '0x8000h' and branches there (instead to '0x00')</li>
+<li>MMU is disabled</li>
+<li>Only one core is running</li>
+</ul>
+<h3 id="mmu">MMU</h3>
+<ul>
+<li>Memory translation is complicated due to two different MMU's</li>
+<li>ARM's memory mapped registers sart from '0x3f000000', opposed to '0x7e000000' in BMC manual</li>
+</ul>
   </div>
 
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/system_construction.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/arm_stack_frame.html">
+          <a href="http://lukaswoodtli.github.io/distance_functions_and_metrics.html">
           Older &raquo;</a>
         </li>
       </ul>
