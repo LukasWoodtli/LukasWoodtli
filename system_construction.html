@@ -196,8 +196,8 @@ find the right documents.</p>
 </ol>
 <ul>
 <li>Load-/Store: No memory operands (not as x86)</li>
-<li>Multiple-Data-Transfer commands ('stmdb sp!,{fp,lr}', '!': Write-Back)</li>
-<li>Link Register: 'bl': Branch-and-Link (stores PC in link register)</li>
+<li>Multiple-Data-Transfer commands (<code>stmdb sp!,{fp,lr}</code>, <code>!</code>: Write-Back)</li>
+<li>Link Register: <code>bl</code>: Branch-and-Link (stores PC in link register)</li>
 <li>PC-Relative Addressing: Loading large constants (that have no soace in instruction encoding) form code</li>
 </ul>
 <h3 id="execution-modes">Execution Modes</h3>
@@ -227,23 +227,23 @@ find the right documents.</p>
 <p>Caller</p>
 <ul>
 <li>Pushes parmams</li>
-<li>'BL #address': Stores PC of next instuction in LR</li>
+<li><code>BL #address</code>: Stores PC of next instuction in LR</li>
 </ul>
 </li>
 <li>
 <p>Callee</p>
 <ul>
-<li>Save LR and FP on stack: 'stmdb sp!, {fp, lr}'</li>
-<li>Set new FP: 'mov fp, sp'</li>
+<li>Save LR and FP on stack: <code>stmdb sp!, {fp, lr}</code></li>
+<li>Set new FP: <code>mov fp, sp</code></li>
 <li>Execute procedure content</li>
-<li>Reset stack pointer: 'mov lr, sp'</li>
-<li>Restore FP and jump back to caller address: 'ldmia sp!, {fp, pc}'</li>
+<li>Reset stack pointer: <code>mov lr, sp</code></li>
+<li>Restore FP and jump back to caller address: <code>ldmia sp!, {fp, pc}</code></li>
 </ul>
 </li>
 <li>
 <p>Caller</p>
 <ul>
-<li>Clean up parameters from stack: 'add sp,sp, #n'</li>
+<li>Clean up parameters from stack: <code>add sp,sp, #n</code></li>
 </ul>
 </li>
 </ul>
@@ -262,14 +262,14 @@ find the right documents.</p>
 </ul>
 <h3 id="booting">Booting</h3>
 <ul>
-<li>Kernel is copied to address: '0x8000h' and branches there (instead to '0x00')</li>
+<li>Kernel is copied to address: <code>0x8000h</code> and branches there (instead to <code>0x00</code>)</li>
 <li>MMU is disabled</li>
 <li>Only one core is running</li>
 </ul>
 <h3 id="mmu">MMU</h3>
 <ul>
 <li>Memory translation is complicated due to two different MMU's</li>
-<li>ARM's memory mapped registers sart from '0x3f000000', opposed to '0x7e000000' in BMC manual</li>
+<li>ARM's memory mapped registers sart from <code>0x3f000000</code>, opposed to <code>0x7e000000</code> in BMC manual</li>
 </ul>
   </div>
 
