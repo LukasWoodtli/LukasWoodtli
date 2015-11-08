@@ -153,6 +153,7 @@
 <li><a href="#mmu">MMU</a></li>
 </ul>
 </li>
+<li><a href="#minos-and-modula">Minos and Modula</a></li>
 </ul>
 </li>
 </ul>
@@ -205,8 +206,63 @@ find the right documents.</p>
 <li>7 Modes</li>
 <li>for exception handling</li>
 <li>Processor starts in supervisor mode</li>
+<li>Registers are shadowed (banked) in different modes</li>
 <li>System Mode: priviledged but same registers as user mode</li>
 </ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Privilege Level</th>
+<th>Mode</th>
+<th>Description/Cause</th>
+<th>Exception/Normal Execution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>priviledged</td>
+<td>Supervisor</td>
+<td>Reset / Software Interrupt</td>
+<td>exception</td>
+</tr>
+<tr>
+<td>priviledged</td>
+<td>FIQ</td>
+<td>Fast Interrupt</td>
+<td>exception</td>
+</tr>
+<tr>
+<td>priviledged</td>
+<td>IRQ</td>
+<td>Normal Interrupt</td>
+<td>exception</td>
+</tr>
+<tr>
+<td>priviledged</td>
+<td>Abort</td>
+<td>Memory Access Violation</td>
+<td>exception</td>
+</tr>
+<tr>
+<td>priviledged</td>
+<td>Undef</td>
+<td>Undefined Instruction</td>
+<td>exception</td>
+</tr>
+<tr>
+<td>priviledged</td>
+<td>System</td>
+<td>Privileged Mode with same registers as in User Mode</td>
+<td>normal execution</td>
+</tr>
+<tr>
+<td><strong>un</strong>priviledged</td>
+<td>User</td>
+<td>Regular Application Mode</td>
+<td>normal execution</td>
+</tr>
+</tbody>
+</table>
 <h3 id="special-registers">Special Registers</h3>
 <ul>
 <li>R15: PC</li>
@@ -271,6 +327,8 @@ find the right documents.</p>
 <li>Memory translation is complicated due to two different MMU's</li>
 <li>ARM's memory mapped registers sart from <code>0x3f000000</code>, opposed to <code>0x7e000000</code> in BMC manual</li>
 </ul>
+<h2 id="minos-and-modula">Minos and Modula</h2>
+<p><img alt="Oberon Language and OS Family" class="img-responsive" src="/images/oberon_history.png"/></p>
   </div>
 
   <hr/>
