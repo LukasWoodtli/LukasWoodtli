@@ -158,6 +158,20 @@
 <li><a href="#minos-and-oberon">Minos and Oberon</a><ul>
 <li><a href="#history-of-oberon">History of Oberon</a></li>
 <li><a href="#oberon">Oberon</a><ul>
+<li><a href="#oberon07">Oberon07</a></li>
+<li><a href="#language-constructs">Language Constructs</a><ul>
+<li><a href="#program-units">Program Units</a></li>
+<li><a href="#data-types">Data Types</a></li>
+<li><a href="#structured-types">Structured Types</a></li>
+<li><a href="#control-structures">Control Structures</a><ul>
+<li><a href="#if">IF</a></li>
+<li><a href="#while">WHILE</a></li>
+<li><a href="#repeat">REPEAT</a></li>
+<li><a href="#for">FOR</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#modules">Modules</a></li>
 </ul>
 </li>
@@ -359,12 +373,57 @@ find the right documents.</p>
 <ul>
 <li>Modules can be compiled separately</li>
 <li>Strongly typed<ul>
-<li>Compiletime and runtime checks</li>
+<li>Static type checking at compile time</li>
+<li>Runtime support for type guards / tests</li>
 </ul>
 </li>
 <li>High Level (minimal Assembler code)</li>
 <li>Special low level functions in <code>SYSTEM</code> pseudo module (compiler directives)</li>
 </ul>
+<h4 id="oberon07">Oberon07</h4>
+<ul>
+<li>Minimal</li>
+<li>No type <code>OBJECT*</code> no member functions (methods)</li>
+</ul>
+<h4 id="language-constructs">Language Constructs</h4>
+<h5 id="program-units">Program Units</h5>
+<ul>
+<li><code>MODULE</code></li>
+<li><code>PROCEDURE</code><ul>
+<li>Value, <code>VAR</code> (in-out) and <code>CONST</code> parmaeters</li>
+</ul>
+</li>
+</ul>
+<h5 id="data-types">Data Types</h5>
+<ul>
+<li><code>BOOLEAN</code>, <code>CHAR</code>, <code>SHORTINT</code>, <code>INTEGER</code>, <code>LONGINT</code>, <code>HUGEINT</code>, <code>REAL</code>, <code>LONGREAL</code>, <code>SET</code>, <code>ADDRESS</code>, <code>SIZE</code></li>
+</ul>
+<h5 id="structured-types">Structured Types</h5>
+<ul>
+<li><code>ARRAY</code>, <code>POINTER TO ARRAY</code></li>
+<li><code>RECORD</code> (with type extension), <code>POINTER TO RECORD</code></li>
+</ul>
+<h5 id="control-structures">Control Structures</h5>
+<h6 id="if"><code>IF</code></h6>
+<div class="highlight"><pre><span class="kr">IF</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="kr">THEN</span>
+    <span class="cm">(* statement sequence *)</span>
+<span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<h6 id="while"><code>WHILE</code></h6>
+<div class="highlight"><pre><span class="kr">WHILE</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">n</span> <span class="kr">DO</span>
+    <span class="cm">(* statement sequence *)</span>
+<span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<h6 id="repeat"><code>REPEAT</code></h6>
+<div class="highlight"><pre><span class="kr">REPEAT</span>
+    <span class="cm">(* statement sequence *)</span>
+<span class="kr">UNTIL</span> <span class="n">x</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
+</pre></div>
+<h6 id="for"><code>FOR</code></h6>
+<div class="highlight"><pre><span class="kr">FOR</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="kr">TO</span> <span class="mi">100</span> <span class="kr">DO</span>
+    <span class="cm">(* statement seq *)</span>
+<span class="kr">END</span><span class="p">;</span>
+</pre></div>
 <h4 id="modules">Modules</h4>
 <ul>
 <li><code>PROCEDURE Write* ...</code>: Exported (<code>*</code>)</li>
