@@ -145,15 +145,24 @@
 <li><a href="#execution-modes">Execution Modes</a></li>
 <li><a href="#special-registers">Special Registers</a></li>
 <li><a href="#typical-procedure-call">Typical Procedure Call</a></li>
+<li><a href="#exceptions">Exceptions</a></li>
 <li><a href="#misc">Misc</a></li>
 </ul>
 </li>
 <li><a href="#raspberry-pi-2">Raspberry PI 2</a><ul>
 <li><a href="#booting">Booting</a></li>
 <li><a href="#mmu">MMU</a></li>
+<li><a href="#gpio">GPIO</a></li>
 </ul>
 </li>
-<li><a href="#minos-and-modula">Minos and Modula</a></li>
+<li><a href="#minos-and-oberon">Minos and Oberon</a><ul>
+<li><a href="#history-of-oberon">History of Oberon</a></li>
+<li><a href="#oberon">Oberon</a><ul>
+<li><a href="#modules">Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -303,6 +312,13 @@ find the right documents.</p>
 </ul>
 </li>
 </ul>
+<h3 id="exceptions">Exceptions</h3>
+<ul>
+<li>Interrupt: asynchronous event triggered by a device signal</li>
+<li>Trap / Syscall: intentional exception</li>
+<li>Fault: error condition that a handler might be able to correct</li>
+<li>Abort: error condition that cannot be corrected</li>
+</ul>
 <h3 id="misc">Misc</h3>
 <ul>
 <li>FIRQ is about having more stacked registers</li>
@@ -327,8 +343,50 @@ find the right documents.</p>
 <li>Memory translation is complicated due to two different MMU's</li>
 <li>ARM's memory mapped registers sart from <code>0x3f000000</code>, opposed to <code>0x7e000000</code> in BMC manual</li>
 </ul>
-<h2 id="minos-and-modula">Minos and Modula</h2>
+<h3 id="gpio">GPIO</h3>
+<ul>
+<li>Some GPIO Registers need Read-Modify-Write (i.e GPFSELn)</li>
+<li>Other Registers support setting or clearing single bits:<ul>
+<li>i.e Set GPIO Pin: GPSETn</li>
+<li>i.e Clear GPIO Pin: GPCLRn</li>
+</ul>
+</li>
+</ul>
+<h2 id="minos-and-oberon">Minos and Oberon</h2>
+<h3 id="history-of-oberon">History of Oberon</h3>
 <p><img alt="Oberon Language and OS Family" class="img-responsive" src="/images/oberon_history.png"/></p>
+<h3 id="oberon">Oberon</h3>
+<ul>
+<li>Modules can be compiled separately</li>
+<li>Strongly typed<ul>
+<li>Compiletime and runtime checks</li>
+</ul>
+</li>
+<li>High Level (minimal Assembler code)</li>
+<li>Special low level functions in <code>SYSTEM</code> pseudo module (compiler directives)</li>
+</ul>
+<h4 id="modules">Modules</h4>
+<ul>
+<li><code>PROCEDURE Write* ...</code>: Exported (<code>*</code>)</li>
+<li>Module body is executed first and only once</li>
+<li>Module can be loaded only once (keeps state, can be unloaded)</li>
+<li>Procedures without params can be executed as commands</li>
+<li>Comments: <code>(* ... *)</code></li>
+<li>Special Type: <code>SET</code> contains ints up to CPU bit size: i.e 1..32 (<code>{12, 5}</code>)</li>
+<li><code>SYSTEM</code> Pseudo Module<ul>
+<li>Unsafe!</li>
+<li>Memory Access</li>
+<li><code>SYSTEM.BYTE</code>: raw binary data (with length and bound checks)</li>
+<li>Type Casts: can be unsafe!</li>
+</ul>
+</li>
+<li>Procedure Flags:<ul>
+<li><code>INTERRUPT</code>: for ISR's</li>
+<li><code>PCOFFSET=k</code>: offset for returning from ISR</li>
+</ul>
+</li>
+<li>Unsafe Pointer: can write to memory address</li>
+</ul>
   </div>
 
   <hr/>
