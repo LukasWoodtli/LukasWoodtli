@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Category: Computer Science · Lukas Woodtli</title>
+        <title>Hardware-Software Codesign · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,51 +111,121 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/category/computer_science.html">Category: Computer Science</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/hardware-software_codesign.html">Hardware-Software Codesign</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="Computer Science" href="#Computer Science">Computer Science</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#Computer Sciencecollapse">
-          <span class="badge pull-right">5</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/computer_science.html">Computer Science</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/eth.html">ETH</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month11">11</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month11">15</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="Computer Sciencecollapse">
-        <a href="http://lukaswoodtli.github.io/hardware-software_codesign.html">
-          <li class="list-group-item">
-Hardware-Software Codesign</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/executable_loader.html">
-          <li class="list-group-item">
-Executable Loader</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/arm_cortex-m3_architecture.html">
-          <li class="list-group-item">
-ARM Cortex-M3 Architecture</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/intel_architecture.html">
-          <li class="list-group-item">
-Intel Architecture</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/modern_oss.html">
-          <li class="list-group-item">
-Modern OS's</li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <h1 id="1-introduction">1. Introduction</h1>
+<h2 id="system-design">System Design</h2>
+<ul>
+<li>Specifications and Models</li>
+<li>Design</li>
+<li>Estimation</li>
+</ul>
+<h2 id="embedded-systems">Embedded Systems</h2>
+<ul>
+<li>Information processing system embedded in a larger product</li>
+<li>Interface to outside world<ul>
+<li>external process</li>
+<li>Sensors, actors</li>
+<li>Human interface</li>
+</ul>
+</li>
+<li>Technical environment does not forgive errors</li>
+<li>Stricter requirements (usually update not possible)</li>
+</ul>
+<blockquote>
+<p>TODO: Difference Embedded Systems &lt;-&gt; General Purpose Computing</p>
+</blockquote>
+<ul>
+<li>Levels of abstraction (from higher to lower)<ul>
+<li>Transistors</li>
+<li>Gates</li>
+<li>Processor (Memory, Register, ALU, ...)</li>
+<li>Architecture (CPU, ASIC, FPGA, LAN, ...)</li>
+<li>Distributed System</li>
+</ul>
+</li>
+<li>Design aspects look similar in every level</li>
+<li>Design goes usually from higher abstraction level to lower level</li>
+<li>Abstraction: leave out (unimportant) details</li>
+<li>System level design:<ul>
+<li>SW Synthesis (compile)</li>
+<li>HW Synthesis</li>
+<li>Interfaces</li>
+</ul>
+</li>
+<li>Estimation<ul>
+<li>Different solutions for a specific task</li>
+<li>Precision of estimation is different on each level<ul>
+<li>Higher level estimation usually less precise than lower level</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Mapping</strong> parts of specification to different parts of the system<ul>
+<li>Similar to scheduling but bigger design space (including HW)</li>
+</ul>
+</li>
+<li>Specification: in embedded systems higher requirements to correctness</li>
+<li>Specific languages:<ol>
+<li>Developer is restricted (lesser errors)</li>
+<li>Better code generator/synthesizer</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Doing things right is difficult!</p>
+</blockquote>
+<ul>
+<li>Observer Oattern is not save!<ul>
+<li>Race conditions</li>
+<li>Dead-Locks</li>
+<li>Use non-locking algorithms!</li>
+</ul>
+</li>
+</ul>
+<!-- Week 05 - 14.10.15 -->
+<blockquote>
+<p>Mapping = Binding + Scheduling</p>
+</blockquote>
+<p>Binding: Bind SW (Application) to HW (Components)</p>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/system_construction.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
