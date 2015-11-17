@@ -136,7 +136,32 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="0-overview">0. Overview</h1>
+    <div class="toc">
+<ul>
+<li><a href="#0-overview">0. Overview</a></li>
+<li><a href="#1-introduction">1. Introduction</a><ul>
+<li><a href="#system-design">System Design</a></li>
+<li><a href="#embedded-systems">Embedded Systems</a><ul>
+<li><a href="#difference-embedded-systems-general-purpose-computing">Difference Embedded Systems ↔ General Purpose Computing</a></li>
+<li><a href="#levels-of-abstraction-from-higher-to-lower">Levels of abstraction (from higher to lower)</a></li>
+<li><a href="#design">Design</a></li>
+<li><a href="#estimation">Estimation</a></li>
+<li><a href="#mapping">Mapping</a></li>
+<li><a href="#specification">Specification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-models-of-computation">2. Models of Computation</a><ul>
+<li><a href="#state-charts">State Charts</a><ul>
+<li><a href="#evaluation-of-state-charts">Evaluation of State Charts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="0-overview">0. Overview</h1>
 <ul>
 <li>Specification and Models of Computation<ul>
 <li>State-Charts</li>
@@ -200,12 +225,13 @@
 </tbody>
 </table>
 <h3 id="levels-of-abstraction-from-higher-to-lower">Levels of abstraction (from higher to lower)</h3>
-<div class="highlight"><pre>- Transistors
-- Gates
-- Processor (Memory, Register, ALU, ...)
-- Architecture (CPU, ASIC, FPGA, LAN, ...)
-- Distributed System
-</pre></div>
+<ul>
+<li>Transistors</li>
+<li>Gates</li>
+<li>Processor (Memory, Register, ALU, ...)</li>
+<li>Architecture (CPU, ASIC, FPGA, LAN, ...)</li>
+<li>Distributed System</li>
+</ul>
 <h3 id="design">Design</h3>
 <ul>
 <li>Design aspects look similar in every level</li>
@@ -247,7 +273,7 @@
 <p>Doing things right is difficult!</p>
 </blockquote>
 <ul>
-<li>Observer Oattern is not save!<ul>
+<li>Observer Pattern is not save!<ul>
 <li>Race conditions</li>
 <li>Dead-Locks</li>
 <li>Use non-locking algorithms!</li>
