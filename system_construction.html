@@ -177,6 +177,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
 </ul>
 </li>
 </ul>
@@ -445,6 +446,16 @@ find the right documents.</p>
 </ul>
 </li>
 <li>Unsafe Pointer: can write to memory address</li>
+</ul>
+<!-- Week 8 -->
+<h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
+<p>Atomic operation implemented in processor.</p>
+<p>Compares memory location with an value. If it's same a new (given) value is written at the
+memory address. Returns the previous value at memory positin in any case.</p>
+<p><code>int CAS(int* a, int old, int new)</code></p>
+<ul>
+<li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>
+<li>Return previous value at <code>a</code> in any case</li>
 </ul>
   </div>
 
