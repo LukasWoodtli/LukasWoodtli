@@ -136,7 +136,28 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="1-introduction">1. Introduction</h1>
+    <h1 id="0-overview">0. Overview</h1>
+<ul>
+<li>Specification and Models of Computation<ul>
+<li>State-Charts</li>
+<li>Kahn Process Networks</li>
+</ul>
+</li>
+<li>Design Space Exploration<ul>
+<li>Mapping</li>
+<li>Partitioning</li>
+<li>Multi-Criteria Optimization</li>
+</ul>
+</li>
+<li>Performance Estimation<ul>
+<li>Simulation-based Methods</li>
+<li>Worst-Case Execution Time Analyis</li>
+<li>Performance Analysis of Distributed Systems</li>
+<li>Thermal-aware Design</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-introduction">1. Introduction</h1>
 <h2 id="system-design">System Design</h2>
 <ul>
 <li>Specifications and Models</li>
@@ -155,18 +176,38 @@
 <li>Technical environment does not forgive errors</li>
 <li>Stricter requirements (usually update not possible)</li>
 </ul>
-<blockquote>
-<p>TODO: Difference Embedded Systems &lt;-&gt; General Purpose Computing</p>
-</blockquote>
+<h3 id="difference-embedded-systems-general-purpose-computing">Difference Embedded Systems ↔ General Purpose Computing</h3>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Embedded Systems</th>
+<th>General Purpose Computing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Few Applications, knonw at design-time</td>
+<td>Broad class of applications</td>
+</tr>
+<tr>
+<td>Not programmable by end user</td>
+<td>Programmable by end user</td>
+</tr>
+<tr>
+<td>Fixed run-time requirement</td>
+<td>Faster is better</td>
+</tr>
+</tbody>
+</table>
+<h3 id="levels-of-abstraction-from-higher-to-lower">Levels of abstraction (from higher to lower)</h3>
+<div class="highlight"><pre>- Transistors
+- Gates
+- Processor (Memory, Register, ALU, ...)
+- Architecture (CPU, ASIC, FPGA, LAN, ...)
+- Distributed System
+</pre></div>
+<h3 id="design">Design</h3>
 <ul>
-<li>Levels of abstraction (from higher to lower)<ul>
-<li>Transistors</li>
-<li>Gates</li>
-<li>Processor (Memory, Register, ALU, ...)</li>
-<li>Architecture (CPU, ASIC, FPGA, LAN, ...)</li>
-<li>Distributed System</li>
-</ul>
-</li>
 <li>Design aspects look similar in every level</li>
 <li>Design goes usually from higher abstraction level to lower level</li>
 <li>Abstraction: leave out (unimportant) details</li>
@@ -176,18 +217,25 @@
 <li>Interfaces</li>
 </ul>
 </li>
-<li>Estimation<ul>
+</ul>
+<h3 id="estimation">Estimation</h3>
+<ul>
+<li>Reason about solution</li>
 <li>Different solutions for a specific task</li>
 <li>Precision of estimation is different on each level<ul>
 <li>Higher level estimation usually less precise than lower level</li>
 </ul>
 </li>
 </ul>
-</li>
+<h3 id="mapping">Mapping</h3>
+<ul>
 <li><strong>Mapping</strong> parts of specification to different parts of the system<ul>
 <li>Similar to scheduling but bigger design space (including HW)</li>
 </ul>
 </li>
+</ul>
+<h3 id="specification">Specification</h3>
+<ul>
 <li>Specification: in embedded systems higher requirements to correctness</li>
 <li>Specific languages:<ol>
 <li>Developer is restricted (lesser errors)</li>
@@ -206,11 +254,121 @@
 </ul>
 </li>
 </ul>
+<h1 id="2-models-of-computation">2. Models of Computation</h1>
+<ul>
+<li>Hierarchy<ul>
+<li>Behavioural</li>
+<li>Structural</li>
+</ul>
+</li>
+<li>Timing</li>
+<li>State oriented behaviour (micro controller, FPGA)</li>
+<li>Dataflow oriented behavour (DSP)</li>
+</ul>
+<p>...</p>
+<h2 id="state-charts">State Charts</h2>
+<ul>
+<li>Classical automata (Moore/Mealy): FSM</li>
+<li>State: <strong>Information</strong> needed to get (determin) the output form the input</li>
+<li>State Charts introduce hierarchy<ul>
+<li>Combining States with Sub-States in Super-States</li>
+<li>Active States</li>
+<li>Basic States (no Sub-States)</li>
+<li>Super-States (ancestor states): OR-Super-States (hierarchy)</li>
+<li>Default State, History State (can be combined)</li>
+<li>AND-Super-States (concurrency)</li>
+</ul>
+</li>
+<li>2 distinct features form FSM<ul>
+<li>Hierarchy</li>
+<li>Difference of Control-Path and Data-Path</li>
+</ul>
+</li>
+</ul>
+<div class="math">$$Control-Path \xtofrom[\text{action}]{\text{condition}} Data-Path$$</div>
+<ul>
+<li>Events, Conditions, Actions</li>
+</ul>
+<div class="math">$$\underrightarrow{event [condtition] / action}$$</div>
+<ul>
+<li>No storage of events (only available for next step)</li>
+<li>Events are global</li>
+</ul>
+<h3 id="evaluation-of-state-charts">Evaluation of State Charts</h3>
+<ul>
+<li>Evaluation is <strong>not</strong> trivial!</li>
+<li>Three phases<ol>
+<li>Event is emitted</li>
+<li>Transition is selected</li>
+<li>Simultaniously makte transition and apply the actions<ul>
+<li>Execute the right hand side of action simultaniously and assign then after</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
 <!-- Week 05 - 14.10.15 -->
 <blockquote>
 <p>Mapping = Binding + Scheduling</p>
 </blockquote>
 <p>Binding: Bind SW (Application) to HW (Components)</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
