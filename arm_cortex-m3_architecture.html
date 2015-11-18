@@ -299,7 +299,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </ul>
 </div>
 <h1 id="general">General</h1>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -322,7 +322,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </tbody>
 </table>
 <h1 id="efm32tg-overview">EFM32TG Overview</h1>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Feature</th>
@@ -394,7 +394,7 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 </table>
 <h1 id="registers">Registers</h1>
 <p>All registers are 32-bit wide.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -441,8 +441,6 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
 <div class="highlight"><pre><span class="nf">PUSH</span> <span class="err">{</span><span class="nv">R3</span><span class="err">}</span>  <span class="c1">; R13 = R13-4, memory[R13] = R3</span>
 <span class="nf">POP</span> <span class="err">{</span><span class="nv">R3</span><span class="err">}</span>   <span class="c1">; R3 = memory[R13], R13 = R13+4</span>
 </pre></div>
-
-
 <p>It's also possible to to push and pop multiple registers in one instruction.</p>
 <div class="highlight"><pre><span class="nf">my_function</span>
     <span class="nf">PUSH</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="p">,</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R7</span><span class="err">}</span> <span class="c1">; Save registers</span>
@@ -450,8 +448,6 @@ In particular I use the <em>EFM32TG840F32</em> processor on a STK3300 starter ki
     <span class="nf">POP</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="p">,</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R7</span><span class="err">}</span>  <span class="c1">; Restore registers</span>
     <span class="nf">BX</span> <span class="nv">R7</span>                <span class="c1">; Return to caller</span>
 </pre></div>
-
-
 <p>It's possible to use <em>SP</em> instead of <em>R13</em> for accessing the actual Stack Pointer.
 For accessing a particular Stack Pointer the mnemonic MSP (for SP_main) or PSP (for SP_process) exist.</p>
 <h2 id="link-register-r14-lr">Link Register (R14, LR)</h2>
@@ -466,8 +462,6 @@ On function entry (BL) the return address is automatically saved on LR.</p>
     <span class="nf">...</span>
     <span class="nf">BX</span> <span class="nv">LR</span> <span class="c1">; return to address in LR</span>
 </pre></div>
-
-
 <h2 id="program-counter-r15-pc">Program Counter (R15, PC)</h2>
 <p>This register holds the current program position.</p>
 <p>It can be written to for controlling the program flow (jumps). But then <em>LR</em> is not updated.</p>
@@ -482,7 +476,7 @@ must be 1 (indicating thumb mode).</p>
 <h2 id="program-status-registers">Program Status Registers</h2>
 <p>The special-purpose program status registers (<em>xPSR</em>) provide arithmetic and logic flags (zero and carry flag),
 execution status and current executing IRQ number.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th align="right">Bit</th>
@@ -582,7 +576,7 @@ execution status and current executing IRQ number.</p>
 </ul>
 <h3 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h3>
 <p>The commands <code>MSR</code> and <code>MRS</code> can use the mnemonics APSR, IPSR, and EPSR directly or combined mnemonics for the Program Status Registers.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Mnemonic</th>
@@ -638,7 +632,7 @@ execution status and current executing IRQ number.</p>
 <p>To switch from privileged level to user level the <em>Control bit[0]</em> can be written directly.</p>
 <p>The switch from user level to privilege level heeds to be performed within an exception handler.</p>
 <h2 id="reset-values-and-required-access-privileges">Reset Values and Required Access Privileges</h2>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Name</th>
@@ -734,7 +728,7 @@ execution status and current executing IRQ number.</p>
 <li>Privileged Level</li>
 </ul>
 <p>In Handler Mode only the Privileged Level is available.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -755,7 +749,7 @@ execution status and current executing IRQ number.</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="The ARM Cortex-M3 Modes and Levels" src="/images/arm_cortex_m3_modes_levels.svg" /></p>
+<p><img alt="The ARM Cortex-M3 Modes and Levels" class="img-responsive" src="/images/arm_cortex_m3_modes_levels.svg"/></p>
 <h1 id="nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (NVIC)</h1>
 <h2 id="nested">Nested</h2>
 <p>All external and some system interrupts can be assigned to different priority levels. Current
@@ -769,7 +763,7 @@ code.</p>
 <h1 id="memory-layout">Memory Layout</h1>
 <p>The Cortex-M3 has a defined memory map. So most built in peripherals are accessible by their
 memory address. Thus it's easy to access it in C/C++ code.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Address Range</th>
@@ -819,7 +813,7 @@ in a region called bit-banding alias.</p>
 <li>The bit-banding alias regions are 32 MB big (but it addresses in total only the 1 MB of the bit-banding region).</li>
 </ul>
 <p>There are two bit-band region. One for memory and the other for peripherals.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -848,8 +842,6 @@ in a region called bit-banding alias.</p>
 <span class="cp">#define BIT_BANDING_MEMORY_TO_ALIAS(byte, bit)  (BIT_BANDING_MEMORY_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
 <span class="cp">#define BIT_BANDING_PERIPHERAL_TO_ALIAS(byte, bit) (BIT_BANDING_PERIPHERAL_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
 </pre></div>
-
-
 <p>It's also possible to calculate the address in the other direction from the alias region to the bit-banding region.
 But it's usually not nessecary to do the address translation in this direction.</p>
 <p>Here is a small example:</p>
@@ -865,8 +857,6 @@ But it's usually not nessecary to do the address translation in this direction.<
 
 <span class="c1">// *pI == 4. The bit two ot *pI is now set</span>
 </pre></div>
-
-
 <h1 id="bus-interfaces">Bus Interfaces</h1>
 <p>The Cortex-M3 has multiple bus interfaces:</p>
 <ul>
@@ -891,7 +881,7 @@ But it's usually not nessecary to do the address translation in this direction.<
 </ul>
 <p>Signed data is represented using two's complement format.</p>
 <h1 id="exceptions">Exceptions</h1>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Exception number</th>
@@ -1040,7 +1030,7 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 </blockquote>
 <h1 id="the-vector-table">The Vector Table</h1>
 <p>The Vector Table contains the reset value of <em>SP_main</em> and the addresses of each exception handler function.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Offset in Table (32-bit words)</th>
@@ -1098,7 +1088,7 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 <p>For example <code>ADDS R0, R0, R1;</code> updates the flags.</p>
 <h3 id="conditional-suffixes">Conditional Suffixes</h3>
 <p>This suffixes can be used for branching instructions but also for conditional execution commands.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Suffix</th>
@@ -1208,39 +1198,27 @@ the <code>MOV</code> commands are aliases for the shifting commands.</p>
 <span class="nf">MOV</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">MOVW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm16</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register">Register</h4>
 <div class="highlight"><pre><span class="nf">MOV</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">MOVS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">MOV</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p>Examples:</p>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">R3</span><span class="p">,</span> <span class="nv">R2</span><span class="c1">; /* Move the value from R2 to R3 */</span>
 <span class="nf">MVN</span> <span class="nv">R5</span><span class="p">,</span> <span class="nv">R6</span><span class="c1">; /* Move the negated value of R6 to R5 */</span>
 </pre></div>
-
-
 <h4 id="move-to-top-half-word-of-register-movt">Move to top half-word of Register (<code>MOVT</code>)</h4>
 <p>Moves an immediate value to the top half of the given register. The
 bottom half of the register is not written.</p>
 <div class="highlight"><pre><span class="nf">MOVT</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm16</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="move-special-register-to-register-mrs">Move Special Register to Register (<code>MRS</code>)</h4>
 <div class="highlight"><pre><span class="nf">MRS</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nb">sp</span><span class="nv">ec_reg</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p><code>MRS</code> is a system level instruction except when accessing the <em>APSR</em> or <em>CONTROL</em> register.</p>
 <h4 id="move-register-to-special-register-msr">Move Register to Special Register (<code>MSR</code>)</h4>
 <div class="highlight"><pre><span class="nf">MSR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">sp</span><span class="nv">ec_reg</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p><code>MRS</code> is a system level instruction except when accessing the <em>APSR</em> or <em>CONTROL</em> register.</p>
 <!---### Move Data between Register and Memory
 
@@ -1252,7 +1230,6 @@ available it is optional.
 
 There are commands for storing or loading multiple registers at once.
 --->
-
 <h2 id="arithmetic-commands">Arithmetic Commands</h2>
 <h3 id="addition-add">Addition (<code>ADD</code>)</h3>
 <p>Adds two values.</p>
@@ -1266,8 +1243,6 @@ There are commands for storing or loading multiple registers at once.
 <span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_1">Register</h4>
 <p>The second register operand can be shifted.</p>
 <div class="highlight"><pre><span class="nf">ADDS</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>     <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
@@ -1276,8 +1251,6 @@ There are commands for storing or loading multiple registers at once.
 <span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span>  <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h4 id="sp-plus-immediate"><em>SP</em> plus Immediate</h4>
 <p>Adds an immediate value to the <em>SP</em>, writes the result to the destination register.</p>
 <div class="highlight"><pre><span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>
@@ -1287,8 +1260,6 @@ There are commands for storing or loading multiple registers at once.
 <span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="sp-plus-register"><em>SP</em> plus Register</h4>
 <p>Adds an (optionally-shifted) register value to the <em>SP</em>,
 writes the result to the destination register.</p>
@@ -1297,15 +1268,11 @@ writes the result to the destination register.</p>
 <span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="nb">SP</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h3 id="addition-with-carry-adc">Addition with Carry (<code>ADC</code>)</h3>
 <p>Adds values with carry.</p>
 <h4 id="immediate_2">Immediate</h4>
 <div class="highlight"><pre><span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_2">Register</h4>
 <p>The register operand can be shifted.</p>
 <div class="highlight"><pre><span class="nf">ADCS</span> <span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>     <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
@@ -1313,8 +1280,6 @@ writes the result to the destination register.</p>
 <span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span>  <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h3 id="multiply-mul">Multiply (<code>MUL</code>)</h3>
 <p>Multiplies two registers. The least significant 32-bits
 are copied to the destination register.</p>
@@ -1327,8 +1292,6 @@ are copied to the destination register.</p>
 <span class="nf">MUL</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">MUL</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h2 id="logical-commands">Logical Commands</h2>
 <h3 id="and-and">And (<code>AND</code>)</h3>
 <h4 id="immediate_3">Immediate</h4>
@@ -1336,8 +1299,6 @@ are copied to the destination register.</p>
 <div class="highlight"><pre><span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_3">Register</h4>
 <p>Bit-wise <em>AND</em> of a register and a second (optionally-shifted) register.
 The flags can be updated based on the result.</p>
@@ -1346,15 +1307,11 @@ The flags can be updated based on the result.</p>
 <span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h2 id="bit-commands">Bit Commands</h2>
 <h3 id="bit-field-clear-bfc">Bit Field Clear (<code>BFC</code>)</h3>
 <p>Clear a number of adjacent bits in a register.</p>
 <div class="highlight"><pre><span class="nf">BFC</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">lsb</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">width</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p>Where:</p>
 <p><code>&lt;lsb&gt;</code>: The least significant bit that is cleared (Range: 0-31).</p>
 <p><code>&lt;width&gt;</code>: Number of bits to clear.</p>
@@ -1363,8 +1320,6 @@ The flags can be updated based on the result.</p>
 a given position in the destination register.</p>
 <div class="highlight"><pre><span class="nf">BFI</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">lsb</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">width</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p><code>&lt;lsb&gt;</code>: The least significant bit in destination where bits are copied to (Range: 0-31).</p>
 <p><code>&lt;width&gt;</code>: Number of bits to copy from source.</p>
 <h3 id="bit-clear-bic">Bit Clear (<code>BIC</code>)</h3>
@@ -1375,8 +1330,6 @@ value.</p>
 <div class="highlight"><pre><span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_4">Register</h4>
 <p>Performs a bit-wise <em>AND</em> one register and the complement of a second register.
 The second register can be shifted.</p>
@@ -1386,14 +1339,10 @@ The second register can be shifted.</p>
 <span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span>  <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h3 id="count-leading-zeros-clz">Count Leading Zeros (<code>CLZ</code>)</h3>
 <p>Returns the number of leading zero bits of a register.</p>
 <div class="highlight"><pre><span class="nf">CLZ</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h2 id="shift-and-rotate-commands">Shift and Rotate Commands</h2>
 <h3 id="arithmetic-shift-right-asr">Arithmetic Shift Right (<code>ASR</code>)</h3>
 <h4 id="immediate_5">Immediate</h4>
@@ -1405,8 +1354,6 @@ of it's <em>sign bit</em>.</p>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">imm5</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_5">Register</h4>
 <p>Shifts a register by a variable number of bits, shifting in copies
 of it's sing flag. The number of bits
@@ -1417,8 +1364,6 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 <span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h2 id="compare-commands">Compare Commands</h2>
 <h3 id="compare-cmp">Compare (<code>CMP</code>)</h3>
 <h4 id="immediate_6">Immediate</h4>
@@ -1428,8 +1373,6 @@ to shift is read from the <em>bottom byte</em> of a register.</p>
 <span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_6">Register</h4>
 <p>Compare values by subtracting an (optionally shifted) register
 from an other register.</p>
@@ -1438,8 +1381,6 @@ from an other register.</p>
 <span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h3 id="compare-negative-cmn">Compare Negative (<code>CMN</code>)</h3>
 <h4 id="immediate_7">Immediate</h4>
 <p>Compare values by <strong>adding</strong> a register and an immediate value.</p>
@@ -1447,8 +1388,6 @@ from an other register.</p>
 <div class="highlight"><pre><span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h4 id="register_7">Register</h4>
 <p>Compare values by <strong>adding</strong> to registers. The second register
 can be shifted.</p>
@@ -1457,8 +1396,6 @@ can be shifted.</p>
 <span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 <span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span> <span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span>
 </pre></div>
-
-
 <h2 id="branch-commands">Branch Commands</h2>
 <ul>
 <li><code>B</code>: Branch (immediate)</li>
@@ -1470,7 +1407,7 @@ can be shifted.</p>
 <p>In addition:</p>
 <ul>
 <li>The <code>BL</code> and <code>BLX</code> instructions write the address of the next instruction to <em>LR</em>.</li>
-<li>The <code>BX</code> and <code>BLX</code> instructions can change the instruction set (ARM &harr; Thumb).</li>
+<li>The <code>BX</code> and <code>BLX</code> instructions can change the instruction set (ARM ↔ Thumb).</li>
 </ul>
 <blockquote>
 <p>The <code>BX</code> and <code>BLX</code> instructions result in a <em>UsageFault</em> exception on the M3 if bit[0] of the target address is 0.</p>
@@ -1483,14 +1420,10 @@ All other branch instructions can only be conditional inside an <em>IT</em> bloc
 <span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 <span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <h3 id="branch-with-link-bl">Branch with Link (<code>BL</code>)</h3>
 <p>Calls a function at PC-relative address.</p>
 <div class="highlight"><pre><span class="nf">BL</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p><code>&lt;label&gt;</code>: The label to jump to. The assembler calculates the offset
 of the <code>BL</code> instruction and the label.</p>
 <h3 id="branch-and-exchange-bx">Branch and Exchange (<code>BX</code>)</h3>
@@ -1502,8 +1435,6 @@ of the <code>BL</code> instruction and the label.</p>
 <div class="highlight"><pre><span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>   <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p>Exceptions: UsageFault</p>
 <h3 id="branch-with-link-and-exchange-blx">Branch with Link and Exchange (<code>BLX</code>)</h3>
 <p>Calls a function at an address and instruction set (ARM/Thumb) specified in a register.</p>
@@ -1515,8 +1446,6 @@ cause an <em>UsageFault</em> exception.</p>
 <div class="highlight"><pre><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>          <span class="o">/*</span> <span class="nv">Outside</span> <span class="nv">or</span> <span class="nv">last</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p>Exceptions: UsageFault</p>
 <h2 id="compare-and-branch-commands">Compare and Branch Commands</h2>
 <h3 id="compare-and-branch-on-non-zero-and-compare-and-branch-on-zero-cbnzcbz">Compare and Branch on Non-Zero and Compare and Branch on Zero (<code>CBNZ</code>,<code>CBZ</code>)</h3>
@@ -1528,8 +1457,6 @@ The condition flags are not affected.</p>
 <div class="highlight"><pre><span class="nf">CB</span><span class="err">{</span><span class="nv">N</span><span class="err">}</span><span class="nv">Z</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>    <span class="o">/*</span> <span class="nv">Not</span> <span class="nv">permitted</span> <span class="nv">in</span> <span class="nv">IT</span> <span class="nb">bl</span><span class="nv">ock</span> <span class="o">*/</span>
 <span class="nf">CB</span><span class="err">{</span><span class="nv">N</span><span class="err">}</span><span class="nv">Z</span><span class="o">&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p><code>&lt;Rn&gt;</code>: Register must be in range <em>R0</em> - <em>R7</em>.</p>
 <p><code>&lt;label&gt;</code>: The assembler calculates the offset from the <code>CB{N}Z</code> instruction to the label.
 Permitted offsets are even numbers in the range 0 to 126.</p>
@@ -1544,16 +1471,12 @@ Permitted offsets are even numbers in the range 0 to 126.</p>
 <span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span>
 <span class="nf">SUB</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">PC</span><span class="p">,</span>  <span class="err">#</span><span class="o">&lt;</span><span class="nv">const</span><span class="o">&gt;</span> <span class="o">/*</span> <span class="nb">Sp</span><span class="nv">ecial</span> <span class="nv">case</span> <span class="o">*/</span>
 </pre></div>
-
-
 <h3 id="break-point-bkpt">Break-point (<code>BKPT</code>)</h3>
 <p>Causes a <em>DebugMonitor</em> exception or a debug halt.</p>
 <p>It is a unconditional instruction and can be executed inside or
 outside an <em>TI</em> block.</p>
 <div class="highlight"><pre><span class="nf">BKPT</span><span class="o">&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">imm8</span><span class="o">&gt;</span>
 </pre></div>
-
-
 <p><code>&lt;imm8&gt;</code> is a 8-bit value that is ignored by the hardware
 but can be used to store some information by a debugger.</p>
 <p>Exceptions: <em>DebugMonitor</em></p>
@@ -1561,24 +1484,19 @@ but can be used to store some information by a debugger.</p>
 <p>Provides a hint to debug and trace systems.
 The debug architecture defines the use (if any).</p>
 <div class="highlight"><pre><span class="kd">DB</span><span class="nv">G</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="err">#</span><span class="o">&lt;</span><span class="nv">option</span><span class="o">&gt;</span>
-<span class="err">//</span> <span class="nf">Any</span> <span class="nv">decoding</span> <span class="nv">of</span> <span class="s">&#39;option&#39;</span> <span class="nv">is</span> <span class="nb">sp</span><span class="nv">ecified</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">debug</span> <span class="nv">system</span>
+<span class="err">//</span> <span class="nf">Any</span> <span class="nv">decoding</span> <span class="nv">of</span> <span class="s">'option'</span> <span class="nv">is</span> <span class="nb">sp</span><span class="nv">ecified</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">debug</span> <span class="nv">system</span>
 </pre></div>
-
-
 <h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
 <p>The NOP does nothing.</p>
 <div class="highlight"><pre><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span>
 <span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span>
 </pre></div>
-
-
 <!-- TBD: Instructions have to be described later
 
 - CLREX 
 - CPS
 
 -->
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

@@ -139,7 +139,7 @@
     <p>This page contains notes about the usual stack frame layout (calling convention) on ARM processors.</p>
 <p>Most information is taken from <a href="http://de.slideshare.net/StephanCadene/arm-procedure-calling-conventions-and-recursion">ARM procedure calling conventions and recursion </a>.</p>
 <p>The conventions are defined by ARM and are called <a href="http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042e/IHI0042E_aapcs.pdf">PCSAA</a>.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -191,21 +191,15 @@
 <p><code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</p>
 <div class="highlight"><pre><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
 </pre></div>
-
-
 <p>is equvalent to:</p>
 <div class="highlight"><pre><span class="nf">LDR</span> <span class="nv">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R1</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">4</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R2</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">8</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R3</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">12</span><span class="p">]</span>
 </pre></div>
-
-
 <p>To alter (update) <code>SP</code>:</p>
 <div class="highlight"><pre><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
 </pre></div>
-
-
 <p><code>LR</code> needs to be saved on stack for <em>non</em>-leaf functions</p>
 <div class="highlight"><pre><span class="err">:::</span> <span class="nf">nasm</span>
 <span class="nl">_func:</span>
@@ -213,16 +207,14 @@
   <span class="c1">; ... code of func</span>
   <span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R4</span><span class="o">-</span><span class="nv">R6</span><span class="p">,</span> <span class="nv">PC</span><span class="err">}</span> <span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span>
 </pre></div>
-
-
 <ul>
 <li>The order of registers in <code>STMFD</code> and <code>LDMFD</code> is always the same: lower regisers at lower addresses</li>
 </ul>
-<p><img alt="Order of Registers on Stack" src="/images/arm_stack_frame_example.png" /></p>
+<p><img alt="Order of Registers on Stack" class="img-responsive" src="/images/arm_stack_frame_example.png"/></p>
 <ul>
 <li>More general stack frame:</li>
 </ul>
-<p><img alt="General Stack Frame" src="/images/arm_stack_frame_general.png" /></p>
+<p><img alt="General Stack Frame" class="img-responsive" src="/images/arm_stack_frame_general.png"/></p>
 <ul>
 <li>Quick clear down of stack frame: <code>MOV SP, FP</code></li>
 </ul>
