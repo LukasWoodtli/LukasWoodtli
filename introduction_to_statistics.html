@@ -177,7 +177,7 @@
 </ul>
 </div>
 <h1 id="statistics-and-probability">Statistics and Probability</h1>
-<p><img alt="Statistics and Probability" class="img-responsive" src="/images/statistics_probability.svg"/></p>
+<p><img alt="Statistics and Probability" src="/images/statistics_probability.svg" /></p>
 <h1 id="independent-events">Independent Events</h1>
 <ul>
 <li>Probability of Event: <span class="math">\(P\)</span></li>
@@ -211,14 +211,14 @@ Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <p>The <strong>Sensitivity</strong> says how many get a <strong>positive</strong> test if they <strong>have the disease</strong>.</p>
 <p>The <strong>Sensitivity</strong> says how many get a <strong>negative</strong> test if they <strong>don't have the disease</strong>.</p>
 <p>Imagine someone get's a <strong>positive</strong> test result. How can we calculate the probability that this person has the disease?</p>
-<p><img alt="Algorithm to calculate Bayes' rule" class="img-responsive" src="/images/bayes_algorithm.svg"/></p>
+<p><img alt="Algorithm to calculate Bayes' rule" src="/images/bayes_algorithm.svg" /></p>
 <ol>
-<li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid D)\)</span> (Sensitivity) → <span class="math">\(P(Pos, D)\)</span>.</li>
-<li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid \lnot D)\)</span> → <span class="math">\(P(Pos, \lnot D)\)</span>.</li>
-<li>Add the results of 1. and 2. up → <span class="math">\(P(Pos)\)</span>.</li>
-<li>Divide the result from 1. <span class="math">\(P(Pos, D)\)</span> by the result of 3. <span class="math">\(P(Pos)\)</span> → <span class="math">\(P(D \mid Pos)\)</span>.</li>
-<li>Divide the result from 2. <span class="math">\(P(Pos, \lnot D)\)</span> by the result of 3. <span class="math">\(P(Pos)\)</span> → <span class="math">\(P(\lnot D \mid Pos)\)</span>.</li>
-<li>Check: add the results of 4. and 5. → <span class="math">\(1\)</span>.</li>
+<li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid D)\)</span> (Sensitivity) &rarr; <span class="math">\(P(Pos, D)\)</span>.</li>
+<li>Take the <strong>Prior</strong> and multiplicate it with <span class="math">\(P(Pos \mid \lnot D)\)</span> &rarr; <span class="math">\(P(Pos, \lnot D)\)</span>.</li>
+<li>Add the results of 1. and 2. up &rarr; <span class="math">\(P(Pos)\)</span>.</li>
+<li>Divide the result from 1. <span class="math">\(P(Pos, D)\)</span> by the result of 3. <span class="math">\(P(Pos)\)</span> &rarr; <span class="math">\(P(D \mid Pos)\)</span>.</li>
+<li>Divide the result from 2. <span class="math">\(P(Pos, \lnot D)\)</span> by the result of 3. <span class="math">\(P(Pos)\)</span> &rarr; <span class="math">\(P(\lnot D \mid Pos)\)</span>.</li>
+<li>Check: add the results of 4. and 5. &rarr; <span class="math">\(1\)</span>.</li>
 </ol>
 <p>Note: <span class="math">\(P(A, B) = P(B, A)\)</span></p>
 <p>The calculation for a <strong>negative</strong> test result are analogous. Just replace <span class="math">\(Pos\)</span> with <span class="math">\(Neg\)</span>.</p>
@@ -238,8 +238,8 @@ Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 </ul>
 <h1 id="estimation">Estimation</h1>
 <p>Estimation problem is:</p>
-<p>Data → P</p>
-<p>P → P(Data)</p>
+<p>Data &rarr; P</p>
+<p>P &rarr; P(Data)</p>
 <h2 id="maximum-likelihood-estimator-mle">Maximum Likelihood Estimator (MLE):</h2>
 <div class="math">$$\frac{1}{N} \cdot \sum_{i}^{} X_i$$</div>
 <p>The sum is always between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>.</p>
@@ -268,7 +268,7 @@ and devide the result by the number of data items.</p>
 <div class="math">$$\sigma_X = \sqrt{Var(X)}$$</div>
 <h1 id="overwiev-of-mean-variance-and-standard-deviation">Overwiev of Mean, Variance and Standard Deviation</h1>
 <p>This notes are taken from <a href="https://www.khanacademy.org/math/probability/descriptive-statistics/variance_std_deviation/v/statistics-standard-deviation">Khan Academy</a></p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Concept</th>

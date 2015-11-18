@@ -333,7 +333,7 @@
 </ul>
 </div>
 <h1 id="general">General</h1>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -356,7 +356,7 @@
 </tbody>
 </table>
 <h1 id="operation-modes">Operation Modes</h1>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Mode</th>
@@ -463,7 +463,7 @@ signed addresses relative to any reference point.</p>
 code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresses can be used.</p>
 <h1 id="registers">Registers</h1>
 <p>This are the 16-bit registers of Intel 8086, 8088,  80186 and 80188.</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Register</th>
@@ -548,7 +548,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 <p>Each of the <em>GPRs</em> can be accessed as two 8 bit registers. i. e:
 <em>BX's</em> high byte can be accessed as <em>BH</em> and low byte as <em>BL</em>.</p>
 <h2 id="values-after-reset">Values after Reset</h2>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Register</th>
@@ -580,7 +580,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 </table>
 <p>All other registers have a random value after reset.</p>
 <h2 id="flags-register">FLAGS Register</h2>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Bit</th>
@@ -682,20 +682,24 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 <h2 id="immediate">Immediate</h2>
 <p>The operand (constant) is given with the command. i.e:</p>
 <pre>MOV CL, <strong>42</strong>; move the value 42 to register CL</pre>
+
 <h2 id="implicit">Implicit</h2>
 <p>Some commands work always with the same register/address. i.e:</p>
 <p><code>PUSH</code>/<code>POP</code> work always with SP register.</p>
 <h2 id="register">Register</h2>
 <p>The operand is held in a register</p>
 <pre>INC <strong>CH</strong>; Increment value in CH register</pre>
+
 <h2 id="direct">Direct</h2>
 <p>The address of the operand value comes directly after the command. i. e:</p>
 <pre>MOV CX, <strong>counter</strong>; counter holds the address of the value</pre>
+
 <h2 id="register-indirect">Register-Indirect</h2>
 <p>The operand is given indirectly by one or two registers. A segment register and a constant offset value can be supplied.</p>
 <p>The calculated value acts as a pointer (address to a memory location).</p>
 <p>i.e:</p>
 <pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
+
 <h3 id="address">Address</h3>
 <p>To calculate an address the following scheme is used:</p>
 <div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
@@ -725,6 +729,8 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="kt">WORD</span> <span class="p">[</span><span class="nb">ES</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nb">AX</span><span class="c1">;</span>
 </pre></div>
+
+
 <h2 id="addressing-memory">Addressing Memory</h2>
 <p>For addressing the memory the immediate, direct and indirect method can be used.</p>
 <h1 id="data-transfer-commands">Data Transfer Commands</h1>
@@ -732,6 +738,8 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>Moves (copies) a value from a source to a destination.</p>
 <div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span><span class="c1">;</span>
 </pre></div>
+
+
 <ul>
 <li><code>dest</code> can be a memory variable or a register (but not CS or IP).</li>
 <li><code>src</code> can be a memory variable, a register or a constant.</li>
@@ -741,6 +749,8 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>Exchanges the values of the two operands (memory/registers).</p>
 <div class="highlight"><pre><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
 </pre></div>
+
+
 <ul>
 <li>Addressing memory/register is same as with <code>MOV</code>.</li>
 <li>Segment Register and Immediate addressing is not possible.</li>
@@ -754,6 +764,8 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <span class="nf">IN</span> <span class="nb">AX</span><span class="p">,</span> <span class="mh">42h</span><span class="c1">;</span>
 <span class="nf">OUT</span> <span class="mh">16h</span><span class="p">,</span> <span class="nb">AL</span><span class="c1">;</span>
 </pre></div>
+
+
 <p>It's not possible communicate directly between memory and ports. For this a DMA (Direct Memory Access) Hardware would be needed.</p>
 <h1 id="arithmetic-commands">Arithmetic Commands</h1>
 <ul>
@@ -849,10 +861,12 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>The explicit operand sets the size and defines the used implicit register. It can be either a register or a memory location.</p>
 <p>The result is always twice as big as the operands. It's either the accumulator (<em>AX</em>)
 or the <strong>extended accumulator</strong> (<em>DX/AX</em>).</p>
-<p><img alt="The x86 MUL/IMUL commands" class="img-responsive" src="/images/intel_mul.svg"/></p>
+<p><img alt="The x86 MUL/IMUL commands" src="/images/intel_mul.svg" /></p>
 <div class="highlight"><pre><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
 <span class="nf">IMUL</span> <span class="nb">BX</span> <span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span>
 </pre></div>
+
+
 <h3 id="affected-flags_7">Affected Flags</h3>
 <ul>
 <li>Carry: set if operand extended accumulator is needed for saving result (<em>DX/AX</em>)</li>
@@ -870,10 +884,12 @@ It can be a register or a memory location.</p>
 <p>The implicit operand is the accumulator (<em>AX</em>) or the extended accumulator (<em>DX/AX</em>), dependant on
 the size of the explicit operator.</p>
 <p>The result (quotient) is saved either in <em>AX</em> or <em>AL</em>. The remainder is saved in either <em>DX</em> or <em>AH</em>.</p>
-<p><img alt="The x86 MUL/IMUL commands" class="img-responsive" src="/images/intel_div.svg"/></p>
+<p><img alt="The x86 MUL/IMUL commands" src="/images/intel_div.svg" /></p>
 <div class="highlight"><pre><span class="nf">DIV</span> <span class="nb">BX</span> <span class="c1">; Use DX/AX  as implicit operand. Result is saved in AX. Remainder is saved in DX.</span>
 <span class="nf">IDIV</span> <span class="mh">0x34</span> <span class="c1">; Use AX as implicit operand. Result is saved in AL. Remainder is saved in AH.</span>
 </pre></div>
+
+
 <h3 id="affected-flags_8">Affected Flags</h3>
 <ul>
 <li><strong>All</strong> flags are changed to <em>undefined</em>!</li>
@@ -910,6 +926,8 @@ be a register, a memory address or a constant.</p>
 <div class="highlight"><pre><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
 <span class="nf">ROR</span> <span class="nb">AX</span><span class="p">,</span> <span class="nb">CL</span><span class="c1">; Rotate by value in CL.</span>
 </pre></div>
+
+
 <h3 id="affected-flags_11">Affected Flags</h3>
 <ul>
 <li>Overflow:<ul>
@@ -994,7 +1012,7 @@ performed if a check gives an expected result (i.e flags).</p>
 <li>Relative jumps: The target address is given relative to the actual position (<em>IP</em>)</li>
 </ul>
 <p>The 8086 has following possible jump commands:</p>
-<p><img alt="The Intel x86 jump commands" class="img-responsive" src="/images/intel_architecture_jump.svg"/></p>
+<p><img alt="The Intel x86 jump commands" src="/images/intel_architecture_jump.svg" /></p>
 <h2 id="intra-and-inter-segment-jumps">Intra- and Inter-Segment Jumps</h2>
 <p>All jumps change the <em>IP</em> register.</p>
 <p>Far jumps also change the <em>CS</em> register.</p>
@@ -1033,7 +1051,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 <h3 id="arithmetic-jumps">Arithmetic Jumps</h3>
 <p>The jump is performed if the size relation between two given operands is as expected.</p>
 <p>The relation is expressed differently for signed and unsigned operands:</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Relation</th>
@@ -1060,7 +1078,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </tbody>
 </table>
 <h4 id="arithmetic-unsigned-jumps">Arithmetic <em>"unsigned"</em> Jumps</h4>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Relation</th>
@@ -1133,7 +1151,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </tbody>
 </table>
 <h4 id="arithmetic-signed-jumps">Arithmetic <em>"signed"</em> Jumps</h4>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Relation</th>
@@ -1206,7 +1224,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </tbody>
 </table>
 <h3 id="flag-oriented-jumps">Flag oriented Jumps</h3>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Command</th>
@@ -1332,6 +1350,8 @@ the end of all the pop operations.</p>
 <span class="nf">PUSH</span> <span class="nv">tab</span><span class="p">[</span><span class="nb">SI</span><span class="p">]</span>  <span class="c1">; memory word at address tab[SI]</span>
 <span class="nf">POP</span> <span class="nb">AX</span>        <span class="c1">; value from stack to AX</span>
 </pre></div>
+
+
 <h2 id="call-and-ret"><code>CALL</code> and <code>RET</code></h2>
 <p><code>CALL</code> stores the return address (address of the instruction after <code>CALL</code>) on the stack, increments <em>SP</em> (by 2)
 and calls the function.</p>
@@ -1344,9 +1364,13 @@ and calls the function.</p>
 
 <span class="nf">ret</span>
 </pre></div>
+
+
 <p>For calling the function:</p>
 <div class="highlight"><pre><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span> <span class="c1">;</span>
 </pre></div>
+
+
 <p>The pseudo commands <code>PROC and</code>ENDP` (as in MASM/TASM) are not supported by NASM.</p>
 <h3 id="function-prologue">Function Prologue</h3>
 <p>At the beginning of each function some registers have to be saved. This code is called
@@ -1370,7 +1394,7 @@ This code is called function epilogue.</p>
 For some commands the accumulator (<em>AL</em>/<em>AX</em>) is used as operator.
 <em>SI</em> is <em>DS</em>-relative by default. But the segment can be overridden.
 <em>DI</em> is <em>ES</em>-relative by default. The segment can <strong>not</strong> be overridden.</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Command</th>

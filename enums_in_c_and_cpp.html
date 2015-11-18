@@ -162,10 +162,12 @@ For exampe:</p>
   <span class="kt">int</span> <span class="n">enum_var</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">enum_var</span> <span class="o">=</span> <span class="n">VAL_1</span><span class="p">;</span> <span class="n">enum_var</span> <span class="o">&lt;</span> <span class="n">VAL_NB</span><span class="p">;</span> <span class="o">++</span><span class="n">enum_var</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">enum_var</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">enum_var</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p><code>printf</code> is called 11 times with the values 10 to 20. That’s usually not what we want.</p>
 <p>So what's the solution? Don’t iterate over enums that have fixed values assigned. If you have to do it there is a trick called <strong>X Macros</strong> 
 that I’ll cover in another post.</p>
@@ -178,6 +180,8 @@ that I’ll cover in another post.</p>
     <span class="n">VAL_NB</span>
 <span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
 </pre></div>
+
+
 <p>If you call the same loop as above you’ll get calls to <code>printf</code> with the values:</p>
 <blockquote>
 <p>10 (VAL_1), 11 (VAL_2) and 12 (VAL_3).</p>
@@ -198,6 +202,8 @@ There are some language extension in different compilers to address this topic. 
 <div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="kt">uint8_t</span>
 <span class="p">{</span> <span class="n">VAL_1</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="cm">/* … */</span><span class="p">,</span> <span class="n">VAL_NB</span><span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
 </pre></div>
+
+
 <p>For platform independent code you can do: <code>#define ENUM_AS_UINT8 : uint8_t</code></p>
 <h1 id="romable-values">Romable values</h1>
 <p>Another use of enums is mainly used in embedded systems development. In embedded systems you are often concerned that a constant is stored in the program flash. Otherwise it has to be loaded from RAM at runtime (and even stored there at start time). The usual way is to use defines. 
@@ -213,8 +219,8 @@ But they are not really type safe. So for int-types it’s possible to use enums
 <li>If you need fixed enum values and you want to iterate over the values you need two enums. Use X Macros for it (there is going to be a feature post on that)</li>
 </ul>
 <h1 id="references">References</h1>
-<p><a href="http://en.wikipedia.org/wiki/Endianness">Endianness (Wikipedia)</a> <br/>
-<a href="http://stackoverflow.com/questions/7147008/the-usage-of-anonymous-enums">The usage of anonymous enums (Stack Overflow)</a> </p>
+<p><a href="http://en.wikipedia.org/wiki/Endianness">Endianness (Wikipedia)</a>  <br />
+<a href="http://stackoverflow.com/questions/7147008/the-usage-of-anonymous-enums">The usage of anonymous enums (Stack Overflow)</a>  </p>
   </div>
 
   <hr/>

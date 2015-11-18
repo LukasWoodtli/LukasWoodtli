@@ -151,7 +151,7 @@
 <li>v: takes a <code>va_list</code> instead <code>...</code> (ellipsis), can be combined with the other prefixes</li>
 </ul>
 <p>So we get following functions:</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Output</th>
@@ -172,8 +172,8 @@
 </tr>
 <tr>
 <td>char buffer</td>
-<td><del><code>sprintf</code>/del&gt;</del></td>
-<td><del><code>vsprintf</code>/del&gt;</del></td>
+<td><del><code>sprintf</code>/del&gt;</td>
+<td><del><code>vsprintf</code>/del&gt;</td>
 </tr>
 <tr>
 <td>char buffer with size</td>
@@ -187,7 +187,7 @@ suffer from string vulnerability.</p>
 <p>Use <code>snpritf</code> or <code>vsnprintf</code> instead.</p>
 <h1 id="openbsd">OpenBSD</h1>
 <p>The OpenBSD kernel library defines some additional functions that are safer than their counterparts in the standard library.</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -211,7 +211,7 @@ suffer from string vulnerability.</p>
 <h1 id="c-std-library">C Std Library</h1>
 <h2 id="buffer-overflows">Buffer Overflows</h2>
 <p>15 C functions suffer buffer overflow problems:</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Original</th>
@@ -315,7 +315,7 @@ suffer from string vulnerability.</p>
 </table>
 <h2 id="string-vulnerabilities">String Vulnerabilities</h2>
 <p>8 C functions suffer from format string vulnerabilities:</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Original</th>

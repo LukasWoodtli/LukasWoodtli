@@ -227,7 +227,7 @@
 <blockquote>
 <p>This overview Table is still work in progress!</p>
 </blockquote>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Kernel</th>
@@ -416,13 +416,13 @@ of using traps.</p>
 <h2 id="control-transfer">Control Transfer</h2>
 <h3 id="full-virtualization_1">Full virtualization</h3>
 <ul>
-<li>implicit (traps) guest → hypervisor</li>
-<li>software interrupts (events) hypervisor → guest</li>
+<li>implicit (traps) guest &rarr; hypervisor</li>
+<li>software interrupts (events) hypervisor &rarr; guest</li>
 </ul>
 <h3 id="para-virtualization_1">Para virtualization</h3>
 <ul>
-<li>explicit (hypercalls) guest → hypervisor</li>
-<li>software interrupts (events) hypervisor → guest</li>
+<li>explicit (hypercalls) guest &rarr; hypervisor</li>
+<li>software interrupts (events) hypervisor &rarr; guest</li>
 </ul>
 <blockquote>
 <p>Guest has control via hypercalls on when event notifications
@@ -435,7 +435,7 @@ of using traps.</p>
 </ul>
 <h3 id="para-virtualization-eg-xen">Para virtualization (e.g. Xen)</h3>
 <ul>
-<li>explicit ⇒ opportunity to innovate</li>
+<li>explicit &rArr; opportunity to innovate</li>
 </ul>
 <h4 id="xen-io-rings">Xen I/O-Rings</h4>
 <p>Xen uses a ring buffer for data transfer with producer-consumer pattern.
@@ -505,6 +505,8 @@ interwoven.</p>
 <div class="highlight"><pre>LOCK(L):
     WHILE(T+S(L) == locked);
 </pre></div>
+
+
 <p>Problems with this naive spinlock implementation:</p>
 <ul>
 <li>Too much contention: Every processor tries to access lock.</li>
@@ -519,6 +521,8 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
         IF(T+S(L) == locked) // Read L from memory (not cache).
             go back; // If it fails start spinning on cached L again.
 </pre></div>
+
+
 <ul>
 <li>Less traffic on bus.</li>
 <li>Disruptive.</li>
@@ -533,6 +537,8 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
     delay(d[Pi]); // when I get the lock I wait a while
 }
 </pre></div>
+
+
 <p>The delay time is dependent on the processor.</p>
 <h4 id="delay-with-exponential-backoff">Delay with exponential backoff</h4>
 <div class="highlight"><pre>WHILE(T+S(L) == locked) // not using chaching at all
@@ -541,6 +547,8 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
     d = d * 2;
 }
 </pre></div>
+
+
 <p>Every time when the lock is checked and not free the processor waits a longer time before trying again.
 T+S can be used because we wait before trying to quire the lock again. This reduces the contention.
 This algorithm works also on architecture without chaches (or cache coherent system in HW).</p>
@@ -563,7 +571,7 @@ array is equal to the number of processors.</p>
 <li>has-lock (<strong>hl</strong>)</li>
 <li>must-wait (<strong>mw</strong>)</li>
 </ul>
-<p><img alt="The flag array structure" class="img-responsive" src="/images/array_based_queuing_lock.png"/></p>
+<p><img alt="The flag array structure" src="/images/array_based_queuing_lock.png" /></p>
 <p>Only one slot can be marked as <strong>hl</strong>.</p>
 <p>The slots are not statically associated with a particular processor.</p>
 <div class="highlight"><pre>LOCK(L):
@@ -574,6 +582,8 @@ UNLOCK(L):
     flags[current mod N] = mw; // release lock for feature use
     flags[(current+1) mod N] = hl; // next processor in queue gets lock
 </pre></div>
+
+
 <ul>
 <li>Only one atomic operation needed per critical section</li>
 <li>Fairness: first-come, first-served</li>

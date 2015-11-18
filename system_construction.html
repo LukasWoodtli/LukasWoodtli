@@ -188,7 +188,7 @@
 <h3 id="documentation">Documentation</h3>
 <p>There is a lot of good documentation for the ARM processors available. But it's difficult to
 find the right documents.</p>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Document</th>
@@ -233,7 +233,7 @@ find the right documents.</p>
 <li>Registers are shadowed (banked) in different modes</li>
 <li>System Mode: priviledged but same registers as user mode</li>
 </ul>
-<table class="table table-hover table-striped">
+<table>
 <thead>
 <tr>
 <th>Privilege Level</th>
@@ -369,7 +369,7 @@ find the right documents.</p>
 </ul>
 <h2 id="minos-and-oberon">Minos and Oberon</h2>
 <h3 id="history-of-oberon">History of Oberon</h3>
-<p><img alt="Oberon Language and OS Family" class="img-responsive" src="/images/oberon_history.png"/></p>
+<p><img alt="Oberon Language and OS Family" src="/images/oberon_history.png" /></p>
 <h3 id="oberon">Oberon</h3>
 <ul>
 <li>Modules can be compiled separately</li>
@@ -410,21 +410,29 @@ find the right documents.</p>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
+
+
 <h6 id="while"><code>WHILE</code></h6>
 <div class="highlight"><pre><span class="kr">WHILE</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">n</span> <span class="kr">DO</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
+
+
 <h6 id="repeat"><code>REPEAT</code></h6>
 <div class="highlight"><pre><span class="kr">REPEAT</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">UNTIL</span> <span class="n">x</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
 </pre></div>
+
+
 <h6 id="for"><code>FOR</code></h6>
 <div class="highlight"><pre><span class="kr">FOR</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="kr">TO</span> <span class="mi">100</span> <span class="kr">DO</span>
     <span class="cm">(* statement seq *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
+
+
 <h4 id="modules">Modules</h4>
 <ul>
 <li><code>PROCEDURE Write* ...</code>: Exported (<code>*</code>)</li>
@@ -448,6 +456,7 @@ find the right documents.</p>
 <li>Unsafe Pointer: can write to memory address</li>
 </ul>
 <!-- Week 8 -->
+
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
 <p>Compares memory location with an value. If it's same a new (given) value is written at the
