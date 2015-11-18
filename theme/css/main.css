@@ -210,3 +210,7 @@ p {
 img {
   max-width: 100%;
 }
+
+.borderless td, .borderless th {
+    border: none;
+}
