@@ -610,31 +610,27 @@ of <em>both</em> arguments.</p>
 <li>Modular check of implementation</li>
 </ul>
 </li>
-<li>
-<p>Generics (in Java, C#) are non-variant</p>
-<ul>
+<li>Generics (in Java, C#) are non-variant<ul>
 <li>Covariance is unsafe when client <strong>writes</strong> to generic type argument ('input')<ul>
 <li>Mutable fields</li>
 <li>Method arguments</li>
 </ul>
 </li>
-<li>
-<p>Contravariance is unsafe when client <strong>reads</strong> from generic type argument ('output')</p>
-<ul>
+<li>Contravariance is unsafe when client <strong>reads</strong> from generic type argument ('output')<ul>
 <li>Fields</li>
 <li>Method results</li>
 </ul>
 </li>
-<li>
-<p>Non-variance is sometimes too restrictive</p>
+<li>Non-variance is sometimes too restrictive</li>
+</ul>
 </li>
-<li>Scala allows variance-annotation</li>
-<li>Positive positions ('output',covariant): <code>+</code><ul>
+<li>Scala allows variance-annotation<ul>
+<li>Positive positions ('output', <em>covariant</em>): <code>+</code><ul>
 <li>Result type</li>
 <li>Type of immutable fields</li>
 </ul>
 </li>
-<li>Negative positions ('input', contravariant): <code>-</code><ul>
+<li>Negative positions ('input', <em>contravariant</em>): <code>-</code><ul>
 <li>Parameter type</li>
 </ul>
 </li>
