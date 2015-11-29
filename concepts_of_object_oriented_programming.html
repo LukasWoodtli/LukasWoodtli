@@ -641,24 +641,40 @@ of <em>both</em> arguments.</p>
 <!-- 4.2 p 76 Working with Non-Variant Generics; Notes Week 8 -->
 <ul>
 <li>Methods can also have type arguments (i.e <code>static &lt;T&gt; void printAll(Collection&lt;T&gt; c) {...}</code>)</li>
-<li>
-<p>Wildcards</p>
-<ul>
-<li>Existential Type:</li>
+<li>Wildcards</li>
 </ul>
-<p>:::java
-static void printAll(Collection&lt;?&gt; c) {
-    for (Object e : c) {System.out.println(e);
-    }
-}</p>
-</li>
-</ul>
+<p>Wildcards can be seen as an <em>Existential Type</em>:</p>
+<div class="highlight"><pre><span class="kd">static</span> <span class="kt">void</span> <span class="nf">printAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">e</span> <span class="o">:</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
 <blockquote>
 <p>There exits a type argument <code>T</code> such that <code>c</code> has type <code>collection&lt;T&gt;</code></p>
 </blockquote>
 <ul>
-<li>Wildcards can have a <em>upper bounds</em> and <em>lower bounds</em></li>
+<li>
+<p>Wildcards can have a <em>upper bounds</em> and <em>lower bounds</em></p>
+<ul>
+<li>upper bound for <em>reading</em> and method invocation: <code>extends</code></li>
+<li>lower bound <em>writing</em>: <code>super</code> </li>
 </ul>
+</li>
+<li>
+<p>lower bounds are not supported on type parameters (only on wildcards) in Java</p>
+</li>
+</ul>
+<p>Instantiation of wildcards can change over time:</p>
+<div class="highlight"><pre><span class="kd">class</span> <span class="nc">Wrapper</span> <span class="o">{</span>
+    <span class="n">Cell</span><span class="o">&lt;?&gt;</span> <span class="n">data</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// client code:</span>
+<span class="n">Wrapper</span> <span class="n">w</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Wrapper</span><span class="o">();</span>
+<span class="n">w</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cell</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span> <span class="c1">// w.data has type Cell&lt;String&gt;</span>
+<span class="n">w</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span> <span class="c1">// now w.data has type Cell&lt;Object&gt;!</span>
+</pre></div>
+<!-- 4.2 p 97 Working with Non-Variant Generics; Notes Week 8 p 3 -->
   </div>
 
   <hr/>
