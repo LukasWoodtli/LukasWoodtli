@@ -607,7 +607,7 @@ of <em>both</em> arguments.</p>
 <li>Generics (Java, Scala, C#)</li>
 <li>Upper bounds (<code>extends</code>): Subtype of upper bound required<ul>
 <li>Guarantees that a specific method can be called</li>
-<li>Modular check of implementation</li>
+<li>Modular check of implementation of Generic code</li>
 </ul>
 </li>
 <li>Generics (in Java, C#) are non-variant<ul>
@@ -638,7 +638,27 @@ of <em>both</em> arguments.</p>
 </ul>
 </li>
 </ul>
-<!-- 4.2 76 Working  with Non-Variant  Generics; Notes Week 8 -->
+<!-- 4.2 p 76 Working with Non-Variant Generics; Notes Week 8 -->
+<ul>
+<li>Methods can also have type arguments (i.e <code>static &lt;T&gt; void printAll(Collection&lt;T&gt; c) {...}</code>)</li>
+<li>
+<p>Wildcards</p>
+<ul>
+<li>Existential Type:</li>
+</ul>
+<p>:::java
+static void printAll(Collection&lt;?&gt; c) {
+    for (Object e : c) {System.out.println(e);
+    }
+}</p>
+</li>
+</ul>
+<blockquote>
+<p>There exits a type argument <code>T</code> such that <code>c</code> has type <code>collection&lt;T&gt;</code></p>
+</blockquote>
+<ul>
+<li>Wildcards can have a <em>upper bounds</em> and <em>lower bounds</em></li>
+</ul>
   </div>
 
   <hr/>
