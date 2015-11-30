@@ -210,7 +210,11 @@
 </ul>
 </li>
 <li><a href="#mixins-and-traits">Mixins and Traits</a></li>
-<li><a href="#parametric-polymorphism_1">Parametric Polymorphism</a></li>
+<li><a href="#parametric-polymorphism_1">Parametric Polymorphism</a><ul>
+<li><a href="#java-c">Java, C#, ...</a></li>
+<li><a href="#c-templates">C++ Templates</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="the-object-model">The Object Model</h1>
@@ -601,7 +605,7 @@ of <em>both</em> arguments.</p>
 <p>TODO</p>
 <p>...</p>
 <h1 id="parametric-polymorphism_1">Parametric Polymorphism</h1>
-<!-- 4.2 29.10.15 -->
+<h2 id="java-c">Java, C#, ...</h2>
 <ul>
 <li>Subtype relation not always desiderable</li>
 <li>Generics (Java, Scala, C#)</li>
@@ -624,7 +628,9 @@ of <em>both</em> arguments.</p>
 <li>Non-variance is sometimes too restrictive</li>
 </ul>
 </li>
-<li>Scala allows variance-annotation<ul>
+<li>
+<p>Scala allows variance-annotation</p>
+<ul>
 <li>Positive positions ('output', <em>covariant</em>): <code>+</code><ul>
 <li>Result type</li>
 <li>Type of immutable fields</li>
@@ -637,10 +643,9 @@ of <em>both</em> arguments.</p>
 <li>C# uses keywords <code>in</code> and <code>out</code></li>
 </ul>
 </li>
-</ul>
-<!-- 4.2 p 76 Working with Non-Variant Generics; Notes Week 8 -->
-<ul>
-<li>Methods can also have type arguments (i.e <code>static &lt;T&gt; void printAll(Collection&lt;T&gt; c) {...}</code>)</li>
+<li>
+<p>Methods can also have type arguments (i.e <code>static &lt;T&gt; void printAll(Collection&lt;T&gt; c) {...}</code>)</p>
+</li>
 <li>Wildcards</li>
 </ul>
 <p>Wildcards can be seen as an <em>Existential Type</em>:</p>
@@ -682,7 +687,7 @@ of <em>both</em> arguments.</p>
 </ul>
 </li>
 <li>
-<p>Type Erasure (Java)</p>
+<p>Type Erasure (Java, Scala)</p>
 <ul>
 <li>For backwards compatibility (in JVM)</li>
 <li>Generic type information is erased in compiler (not available in bytecode anymore)<ul>
@@ -705,6 +710,28 @@ of <em>both</em> arguments.</p>
 </li>
 </ul>
 <!-- 4.2 p 105 (64) C++ Templates; Notes Week 8 p 5 -->
+<h2 id="c-templates">C++ Templates</h2>
+<ul>
+<li>Classes and Methods (Functions) can be parametrized</li>
+<li>Also value types can be used as templates paramters</li>
+<li>Instantiation generates (internally) a new class</li>
+<li>Type checking is done on of the generated class, not on the template (different to Java, C#, ...)<ul>
+<li>Type check only of the parts of code that are used</li>
+<li>Type errors are not detectes before instantination</li>
+<li>No bounds needed</li>
+</ul>
+</li>
+<li>No subtype releation between instantiations of a template</li>
+<li>No run-time support needed (templates are a compilation concept)</li>
+<li>Improvement for feature C++ standard (C++17): <a href="https://en.wikipedia.org/wiki/Concepts_%28C%2B%2B%29">Concepts Lite</a><ul>
+<li><em>Structural</em> upper bounds (C++ type system is nominal)</li>
+</ul>
+</li>
+<li>Template Meta Programming<ul>
+<li>Is touring-complete</li>
+</ul>
+</li>
+</ul>
   </div>
 
   <hr/>
