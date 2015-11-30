@@ -654,10 +654,10 @@ of <em>both</em> arguments.</p>
 </blockquote>
 <ul>
 <li>
-<p>Wildcards can have a <em>upper bounds</em> and <em>lower bounds</em></p>
+<p>Wildcards can have a <em>upper bounds</em> and <em>lower bounds</em> (correspond to <em>co- and contravariance</em>)</p>
 <ul>
 <li>upper bound for <em>reading</em> and method invocation: <code>extends</code></li>
-<li>lower bound <em>writing</em>: <code>super</code> </li>
+<li>lower bound <em>writing</em>: <code>super</code></li>
 </ul>
 </li>
 <li>
@@ -674,7 +674,37 @@ of <em>both</em> arguments.</p>
 <span class="n">w</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cell</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span> <span class="c1">// w.data has type Cell&lt;String&gt;</span>
 <span class="n">w</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span> <span class="c1">// now w.data has type Cell&lt;Object&gt;!</span>
 </pre></div>
-<!-- 4.2 p 97 Working with Non-Variant Generics; Notes Week 8 p 3 -->
+<ul>
+<li>
+<p>Generics with wildcards (and possibly with bounds) have a subtype relation if the type parameters have a relation</p>
+<ul>
+<li>See <a href="https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html">Java documentation</a></li>
+</ul>
+</li>
+<li>
+<p>Type Erasure (Java)</p>
+<ul>
+<li>For backwards compatibility (in JVM)</li>
+<li>Generic type information is erased in compiler (not available in bytecode anymore)<ul>
+<li><code>C&lt;T&gt;</code> is translated to <code>C</code></li>
+<li><code>T</code> is translated to its <em>upper bound</em></li>
+<li>Casts are added wher nessecary (i.e reading values from generic type)</li>
+<li>Only one classfile and one class object for all instantiations of a generic class</li>
+<li>Run-time type information (<code>instanceof</code>, <code>List&lt;String&gt;.class</code>) is <em>missing</em></li>
+<li>Arrays of generic types are <em>not possible</em> (<code>new List&lt;String&gt;[10]</code>)</li>
+<li>Static fields are shared by all instantiations of a generic class</li>
+<li>Lower bounds for type parameters would require support in JVM (bytecode verification)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>No Type Erasure in C#<ul>
+<li>Run-type type information is available</li>
+<li>Arrays of generic types are possible</li>
+</ul>
+</li>
+</ul>
+<!-- 4.2 p 105 (64) C++ Templates; Notes Week 8 p 5 -->
   </div>
 
   <hr/>
