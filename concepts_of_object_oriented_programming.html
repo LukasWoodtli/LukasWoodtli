@@ -218,6 +218,18 @@
 <li><a href="#c-templates">C++ Templates</a></li>
 </ul>
 </li>
+<li><a href="#information-hiding-and-encapsulation">Information Hiding and Encapsulation</a><ul>
+<li><a href="#information-hiding">Information Hiding</a><ul>
+<li><a href="#client-interface-of-a-class">Client Interface of a Class</a></li>
+<li><a href="#other-interfaces">Other Interfaces</a></li>
+<li><a href="#java-access-modifiers">Java Access Modifiers</a></li>
+<li><a href="#safe-changes">Safe Changes</a></li>
+<li><a href="#exchanging-implementation">Exchanging Implementation</a></li>
+<li><a href="#bug-method-selection-in-java">Bug: Method Selection in Java</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
 <li><a href="#object-initialization">Object Initialization</a></li>
 </ul>
@@ -731,6 +743,7 @@ of <em>both</em> arguments.</p>
 </li>
 <li>No subtype releation between instantiations of a template</li>
 <li>No run-time support needed (templates are a compilation concept)</li>
+<li>Templates can be specialized</li>
 <li>Improvement for feature C++ standard (C++17): <a href="https://en.wikipedia.org/wiki/Concepts_%28C%2B%2B%29">Concepts Lite</a><ul>
 <li><em>Structural</em> upper bounds (C++ type system is nominal)</li>
 </ul>
@@ -742,7 +755,93 @@ of <em>both</em> arguments.</p>
 </ul>
 <!-- End of Slides 4.2 -->
 <!-- End of Notes Week 8 -->
-<p>...</p>
+<h1 id="information-hiding-and-encapsulation">Information Hiding and Encapsulation</h1>
+<p><!-- Beginning of Slides 5 -->
+<!-- Beginning of Notes Week 9 --></p>
+<h2 id="information-hiding">Information Hiding</h2>
+<blockquote>
+<p>Information hiding is used to reduce dependencies between modules. The client is
+provided only the information needed.</p>
+</blockquote>
+<ul>
+<li>Concerns static parts of program (code)</li>
+<li>Syntactic and semantic: Contracts are part of the exported interfaces</li>
+<li>Reduce dependencies<ul>
+<li>Classes can be studied in isolation</li>
+<li>Classes only interact in well-defined ways</li>
+</ul>
+</li>
+</ul>
+<h3 id="client-interface-of-a-class">Client Interface of a Class</h3>
+<ul>
+<li>Class Name</li>
+<li>Type parameters (Generics) and their bounds</li>
+<li>Super-interfaces</li>
+<li>Signatures of exported methonds and fields</li>
+<li>Client interface of <em>direct</em> superclass</li>
+</ul>
+<h3 id="other-interfaces">Other Interfaces</h3>
+<ul>
+<li>Subclass interface (i.e <code>protected</code>)</li>
+<li>Friend interface (<code>friend</code> in C++, default access in Java)</li>
+<li>Inner classes</li>
+<li>...</li>
+</ul>
+<h3 id="java-access-modifiers">Java Access Modifiers</h3>
+<ul>
+<li><code>public</code>: client interface</li>
+<li><code>protected</code>: subclass and <em>friend</em> interface</li>
+<li>default access: friend interface</li>
+<li><code>private</code>: implementation</li>
+</ul>
+<h3 id="safe-changes">Safe Changes</h3>
+<ul>
+<li>Renaming of hidden elements</li>
+<li>Modification of hidden implementation (functionally needs to be preserved)</li>
+<li>Access modifiers specify what classes might be affected by a change</li>
+</ul>
+<h3 id="exchanging-implementation">Exchanging Implementation</h3>
+<ul>
+<li>Behaviour needs to be preserved</li>
+<li>Exported fields limit modification<ul>
+<li>Use getters and setters</li>
+<li>Uniform access (Eiffel, Scala)</li>
+</ul>
+</li>
+<li>Modification is critical: Fragile baseclass problem!</li>
+<li>Object structures</li>
+</ul>
+<h3 id="bug-method-selection-in-java">Bug: Method Selection in Java</h3>
+<ul>
+<li>
+<p>Bug was present in JSL1. It's fixed now!</p>
+</li>
+<li>
+<p>Compile time:</p>
+<ol>
+<li>Determin static declaration (find the method in the receiver class, method can be inherited)</li>
+<li>Check accessibility</li>
+<li>Determine invocation mode (virtual / non-virtual)</li>
+</ol>
+</li>
+<li>
+<p>At run-time:</p>
+<ol>
+<li>Compute receiver reference</li>
+<li>Locate method to invoke (based on dynamic type of receiver object) that overwrites </li>
+</ol>
+</li>
+<li>
+<p>Rules for overriding</p>
+<ul>
+<li>Access modifier of overriding method must provide at least as much access as the overridden method</li>
+<li>default access → <code>protected</code> → <code>public</code></li>
+<li><code>private</code> methods can't be overridden → Hiding</li>
+</ul>
+</li>
+</ul>
+<!-- Slides 5.1 p. 15 -->
+<!-- Notes Week 9 39:55 -->
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
 <h1 id="initialization-and-null-references">Initialization and Null-References</h1>
@@ -823,6 +922,21 @@ of <em>both</em> arguments.</p>
 </ul>
 </li>
 </ul>
+<!--
+Initialization Phases:
+
+    :::
+    Object created          Object constructed completely
+        |                     |
+        v                     v
+        |---------------------|----------------->
+<div class="highlight"><pre>                                    time
+    \--------------------/\-----------------...
+         free type             committed type
+    \---------------------------------------...
+                     unclassified type
+</pre></div>
+<p>--&gt;</p>
 <!-- End Notes Week 11 -->
 <!-- Slides 7.2 p. 71 -->
   </div>
