@@ -218,6 +218,10 @@
 <li><a href="#c-templates">C++ Templates</a></li>
 </ul>
 </li>
+<li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
+<li><a href="#object-initialization">Object Initialization</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="the-object-model">The Object Model</h1>
@@ -738,6 +742,89 @@ of <em>both</em> arguments.</p>
 </ul>
 <!-- End of Slides 4.2 -->
 <!-- End of Notes Week 8 -->
+<p>...</p>
+<!-- Beginning of Slides 7 -->
+<!-- Beginning of Notes Week 11 p. 6 -->
+<h1 id="initialization-and-null-references">Initialization and Null-References</h1>
+<ul>
+<li>Main Usages of Null-References<ul>
+<li>Terminate recursion, list, ...</li>
+<li>Initialization (i.e lazy initialization)</li>
+<li>'Result not found' as a return value of a function (absence of an object)</li>
+</ul>
+</li>
+<li>Most (80%) of all variables in an OOP programm are <em>non-null</em> after initalization</li>
+<li>Real need for null value is rare</li>
+<li>Theoretical type system:<ul>
+<li>Non-null tye: <code>T!</code> (references to <code>T</code>-Object)</li>
+<li>Possibly-null type: <code>T?</code> (references to <code>T</code>-Object plus <strong>null</strong>)</li>
+<li>Subtype relations (S &lt;: T)<ul>
+<li>S! &lt;: T!</li>
+<li>S? &lt;: T?</li>
+<li>T! &lt;: T?</li>
+<li>Dereferencing only possible with non-null type (<code>T!</code>)</li>
+<li>Possible casts:<ul>
+<li>Implicit: From non-null to possibly-null (<code>T! nn = ...; T? pn = nn;</code>)</li>
+<li>Downcasts (explicit) are possible but need <em>run-time</em> checks (<code>T? pn = ...; T! nn = (T!)pn;</code> Shortcut for <code>(T!)</code>: <code>(!)</code>)</li>
+<li>Additional type rules (compared to Java): Expressions whose value gets dereferenced need <em>non-null</em> type<ul>
+<li>Receiver of: field access, array access, method call</li>
+<li>Expressions of a <code>throw</code> statement</li>
+</ul>
+</li>
+<li>Dataflow Analysis<ul>
+<li>Check if a value at a given position in code can or can't be <em>null</em></li>
+<li>Tracks values of local variables but not of objects on the <em>heap</em><ul>
+<li>Tracking heap locations is non-moduler</li>
+<li>Other threads could modify heap locations</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="object-initialization">Object Initialization</h2>
+<ul>
+<li>All fields are initialized to null (Java, C#, ...)</li>
+<li>Invariant of non-null types is violated at beginning of constructor (it's initialized to <code>null</code> by default)<ul>
+<li>Make sure that all non-null fields are initialized when constructor terminates<ul>
+<li>Similar to <em>Definite Assignment Rule</em> that check that local variables are assigned before first use (Java, C#)</li>
+<li>Needes checks:<ul>
+<li>Dereferces</li>
+<li>non-null fields have non-null types</li>
+<li>non-null arguments are passed non-null method parameters</li>
+</ul>
+</li>
+<li>Not possible to check for all cases: <em>escaping the constructor</em><ul>
+<li>The simple <em>Definite Assignement Rule</em> is only sound if <em>partly-initialized object do not escape</em> from constructor</li>
+<li>Overly restrictive: on <em>partly-initialzed objects</em><ul>
+<li>Dont call methods</li>
+<li>Don't pass as argument to methods</li>
+<li>Dont's store in fields or an array</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Better type-system: track initialization<ul>
+<li>Initialization Phases (3 types per class/interface)<ul>
+<li><em>free type</em>: objects under construction (free to violate invariants, free to have null in non-null variables)</li>
+<li><em>committed type</em>: object construction is completed (type of object is chaged at run-time when object is fully constructed)</li>
+<li><em>unclassified type</em>: super-type of <em>free type</em> and <em>committed type</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- End Notes Week 11 -->
+<!-- Slides 7.2 p. 71 -->
   </div>
 
   <hr/>
