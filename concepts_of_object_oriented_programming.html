@@ -235,6 +235,28 @@
 </li>
 </ul>
 </li>
+<li><a href="#object-structures">Object Structures</a><ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#aliasing">Aliasing</a><ul>
+<li><a href="#intended-aliasing">Intended Aliasing</a></li>
+<li><a href="#unintended-aliasing">Unintended Aliasing</a><ul>
+<li><a href="#capturing">Capturing</a></li>
+<li><a href="#leaking">Leaking</a></li>
+<li><a href="#problems-with-aliasing">Problems with Aliasing</a></li>
+<li><a href="#consistency-of-object-structures">Consistency of Object Structures</a></li>
+<li><a href="#other-problems-with-aliasing">Other Problems with Aliasing</a></li>
+<li><a href="#alias-control-in-java">Alias Control in Java</a><ul>
+<li><a href="#linkedlist">LinkedList:</a></li>
+<li><a href="#string">String</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#readonly-types">Readonly Types</a></li>
+</ul>
+</li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
 <li><a href="#object-initialization">Object Initialization</a></li>
 </ul>
@@ -895,7 +917,117 @@ provided only the information needed.</p>
 </li>
 </ol>
 <!-- End of Slides 5 -->
-<!-- Notes Week 9 01:26:41 -->
+<h1 id="object-structures">Object Structures</h1>
+<!-- Beginnning of Slides 6 -->
+<blockquote>
+<p>An object structure is a set of objects that are connected via references.</p>
+</blockquote>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>Array-Based Lists</li>
+<li>Doubly-Linked Lists (<code>java.util</code>)</li>
+</ul>
+<h2 id="aliasing">Aliasing</h2>
+<ul>
+<li>
+<p>A reference to memory location</p>
+<ul>
+<li>Aliasing occures if more than one variable allows access to the same memory location</li>
+</ul>
+</li>
+<li>
+<p>Static/Dynamic Aliases</p>
+<ul>
+<li>Static alias: all involved variables are in the heap</li>
+<li>Dynamic aliasing: some involved variables are stack-allocated (others can be in the heap)</li>
+</ul>
+</li>
+</ul>
+<h3 id="intended-aliasing">Intended Aliasing</h3>
+<ul>
+<li>Efficiency<ul>
+<li>Objects need not to be copied, when passed or modified</li>
+</ul>
+</li>
+<li>Sharing<ul>
+<li>Share the same object between different places</li>
+<li>Consequence of objects identity</li>
+</ul>
+</li>
+</ul>
+<h3 id="unintended-aliasing">Unintended Aliasing</h3>
+<h4 id="capturing">Capturing</h4>
+<ul>
+<li>Get a reference from outside and store it<ul>
+<li>Often in constructors that take reference arguments</li>
+</ul>
+</li>
+</ul>
+<h4 id="leaking">Leaking</h4>
+<ul>
+<li>
+<p>Passing a reference to an (internal) data structure to the outside</p>
+</li>
+<li>
+<p>More frequent then capturing</p>
+</li>
+</ul>
+<h4 id="problems-with-aliasing">Problems with Aliasing</h4>
+<ul>
+<li>Aliases can be used to by-pass interface</li>
+<li>Interfaces and contracts remains unchanged but observable behaviour can change!</li>
+</ul>
+<h4 id="consistency-of-object-structures">Consistency of Object Structures</h4>
+<ul>
+<li>Consistency of object structures debend on several fields (not only one)</li>
+<li>Checking invariance on beginning and end of method is not enough<ul>
+<li>State can be changed in between by an alias</li>
+</ul>
+</li>
+</ul>
+<h4 id="other-problems-with-aliasing">Other Problems with Aliasing</h4>
+<ul>
+<li>Synchronization in concurrent programs<ul>
+<li>Lock protects data structure</li>
+<li>Locking a reference dosen't lock aliases</li>
+</ul>
+</li>
+<li>Distributed programming<ul>
+<li>i.e Remote Method Invocation</li>
+<li>References (intended aliases) are lost</li>
+</ul>
+</li>
+<li>Optimizations<ul>
+<li>i.e Inlining is not possible for aliased objects</li>
+</ul>
+</li>
+</ul>
+<h4 id="alias-control-in-java">Alias Control in Java</h4>
+<h5 id="linkedlist"><code>LinkedList</code>:</h5>
+<ul>
+<li>All fields are <code>private</code></li>
+<li><code>Entry</code> is <em>private inner class</em> of <code>LinkedList</code><ul>
+<li>References are not passed out</li>
+<li>Subclasses cannot manipulate or leak <code>Entry</code> objects</li>
+</ul>
+</li>
+<li><code>ListItr</code> is <em>private inner class</em> of <code>LinkedList</code><ul>
+<li>Interface <code>ListIterator</code> provides controlled access to <code>ListItr</code> objects</li>
+<li><code>ListItr</code>objects are passed out in a controlled way</li>
+<li>Subclasses cannot manipulate or lead <code>ListItr</code> objects</li>
+</ul>
+</li>
+<li>Subclassing is restricted!</li>
+</ul>
+<h5 id="string"><code>String</code></h5>
+<ul>
+<li>All fields are <code>private</code></li>
+<li>References to internal char-array are not passed out</li>
+<li>Subclassing is prohibited (<code>final</code>)</li>
+</ul>
+<!-- End Notes Week 9 -->
+<h2 id="readonly-types">Readonly Types</h2>
+<!-- Beginning of Notes Week 10 -->
 <p>....</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
