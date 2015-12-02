@@ -228,6 +228,11 @@
 <li><a href="#bug-method-selection-in-java">Bug: Method Selection in Java</a></li>
 </ul>
 </li>
+<li><a href="#encapsulation">Encapsulation</a><ul>
+<li><a href="#levels-of-encapsulation">Levels of Encapsulation</a></li>
+<li><a href="#achieving-consistency-of-objects">Achieving Consistency of Objects</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
@@ -758,6 +763,8 @@ of <em>both</em> arguments.</p>
 <h1 id="information-hiding-and-encapsulation">Information Hiding and Encapsulation</h1>
 <p><!-- Beginning of Slides 5 -->
 <!-- Beginning of Notes Week 9 --></p>
+<p>In the literature Information Hiding and Encapsulation are often used synonymously.
+But they are distinct but related.</p>
 <h2 id="information-hiding">Information Hiding</h2>
 <blockquote>
 <p>Information hiding is used to reduce dependencies between modules. The client is
@@ -836,12 +843,60 @@ provided only the information needed.</p>
 <ul>
 <li>Access modifier of overriding method must provide at least as much access as the overridden method</li>
 <li>default access → <code>protected</code> → <code>public</code></li>
-<li><code>private</code> methods can't be overridden → Hiding</li>
+<li><code>private</code> methods can't be overridden: Hiding</li>
 </ul>
 </li>
 </ul>
-<!-- Slides 5.1 p. 15 -->
-<!-- Notes Week 9 39:55 -->
+<h2 id="encapsulation">Encapsulation</h2>
+<blockquote>
+<p>Encapsulation is used to guarantee that data and structural consistency by capsules with well defined interfaces.</p>
+</blockquote>
+<ul>
+<li>Data consistency: i.e value is not negatice, ...</li>
+<li>
+<p>Structural consistency: i.e tree is balanced, list is doubly linked, ...</p>
+</li>
+<li>
+<p>Concerns dynamic parts of code (execution)</p>
+</li>
+<li>Context of a module can be changed but module behaves same</li>
+</ul>
+<h3 id="levels-of-encapsulation">Levels of Encapsulation</h3>
+<p>Capsules can be:</p>
+<ul>
+<li>Individual objects</li>
+<li>Object structures: i.e doubly-linked list</li>
+<li>A class (with all its objects): i.e all threads in Java</li>
+<li>All classes of a subtype hierarchy</li>
+<li>A package with all of its classes and their objects)</li>
+<li>Several packages</li>
+</ul>
+<p>Internal representation of capsule that needs to be proteced:</p>
+<ul>
+<li>invariant</li>
+<li>or history constraint</li>
+</ul>
+<p>Hiding fields are useful for:</p>
+<ul>
+<li>Information Hiding</li>
+<li>Encapsulation</li>
+</ul>
+<h3 id="achieving-consistency-of-objects">Achieving Consistency of Objects</h3>
+<ol>
+<li>Apply information hiding wherever possible</li>
+<li>Make consistency criteria explicit<ul>
+<li>Contracts</li>
+<li>Informal documentation</li>
+</ul>
+</li>
+<li>Check interfaces (also subclass methods, i.e <code>protected</code>)<ul>
+<li>Make sure they preserve documented consistency criteria</li>
+</ul>
+</li>
+</ol>
+<!-- End of Slides 5 -->
+<!-- Notes Week 9 01:26:41 -->
+<p>....</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
 <h1 id="initialization-and-null-references">Initialization and Null-References</h1>
