@@ -260,7 +260,10 @@
 <li><a href="#requirements-for-readonly-access">Requirements for Readonly Access</a></li>
 <li><a href="#pure-methods">Pure Methods</a></li>
 <li><a href="#readwrite-and-readonly-types">Readwrite and Readonly Types</a></li>
-<li><a href="#transitivity-of-readonly-types">Transitivity of Readonly Types</a></li>
+<li><a href="#transitivity-of-readonly-types">Transitivity of Readonly Types</a><ul>
+<li><a href="#type-rules-readonly-access">Type Rules: Readonly Access</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1094,11 +1097,11 @@ provided only the information needed.</p>
 <li>Array access</li>
 <li>Method invocation</li>
 </ul>
-<p>is determined by type combinator: &amp;#9658</p>
+<p>is determined by type combinator: ►</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
-<th>&amp;#9658</th>
+<th>►</th>
 <th>rw T</th>
 <th>ro T</th>
 </tr>
@@ -1116,7 +1119,7 @@ provided only the information needed.</p>
 </tr>
 </tbody>
 </table>
-<!-- #### Type Rules: Readonly Access -->
+<h4 id="type-rules-readonly-access">Type Rules: Readonly Access</h4>
 <p>....</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
