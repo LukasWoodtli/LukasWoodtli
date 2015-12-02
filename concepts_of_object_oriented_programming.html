@@ -271,6 +271,10 @@
 <li><a href="#roles-in-object-structures">Roles in Object Structures</a></li>
 <li><a href="#ownership-model">Ownership Model</a></li>
 <li><a href="#ownership-types_1">Ownership Types</a></li>
+<li><a href="#type-safety">Type Safety</a></li>
+<li><a href="#subtyp-relation-between-ownership-types">Subtyp Relation between Ownership Types</a></li>
+<li><a href="#viewpoint-adaption">Viewpoint Adaption</a></li>
+<li><a href="#read-vs-write-access">Read vs. Write Access</a></li>
 </ul>
 </li>
 </ul>
@@ -877,7 +881,7 @@ provided only the information needed.</p>
 <p>At run-time:</p>
 <ol>
 <li>Compute receiver reference</li>
-<li>Locate method to invoke (based on dynamic type of receiver object) that overwrites </li>
+<li>Locate method to invoke (based on dynamic type of receiver object) that overwrites</li>
 </ol>
 </li>
 <li>
@@ -1143,7 +1147,7 @@ provided only the information needed.</p>
 <h2 id="ownership-types">Ownership Types</h2>
 <p>Prevents capturing.</p>
 <h3 id="object-topologies">Object Topologies</h3>
-<p>Distinguish *internal" references from other references.</p>
+<p>Distinguish <em>internal</em> references from other references.</p>
 <h4 id="roles-in-object-structures">Roles in Object Structures</h4>
 <ul>
 <li>Interface objects: used to access the structure</li>
@@ -1156,22 +1160,107 @@ provided only the information needed.</p>
 <li>An object belongs to the internal representation of the owner</li>
 <li>Ownership relation is acyclic (forrest of ownership trees)</li>
 <li>Context: all objects that have the same owner</li>
+<li>Ownership relation is <em>not</em> transitive</li>
 </ul>
 <h4 id="ownership-types_1">Ownership Types</h4>
 <ul>
-<li><strong>peer</strong>: in the same context, same owner as <em>this</em></li>
+<li><strong>peer</strong>: in the same context, same owner as owner of <em>this</em></li>
 <li><strong>rep</strong>: references to objects owned by <em>this</em> (in the context of <em>this</em>)</li>
-<li><strong>any</strong>: in any context (not known)</li>
+<li><strong>any</strong>: in any context (I don't care)</li>
+<li><strong>lost</strong>: specific owner but not known (I care but don't know)</li>
 </ul>
+<p><strong>lost</strong> and <strong>self</strong> are internal (hidden) tyoe modifiers. No keywords.</p>
 <p>Traversing hierarchy:</p>
 <ul>
 <li><strong>rep</strong>: go down in herarchy</li>
 <li><strong>peer</strong>: go across on same level in hierarchy</li>
 <li><strong>any</strong>: jump somewhere, could even be outside of hierarchy</li>
 </ul>
+<h4 id="type-safety">Type Safety</h4>
+<ul>
+<li>RTTI contains:<ul>
+<li>The class of each object</li>
+<li>The <em>owner</em> of <em>each object</em></li>
+</ul>
+</li>
+<li>Type invariant:<ul>
+<li>static ownership reflects run-time owner</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><em>any</em> and <em>lost</em> are extistential types.</p>
+</blockquote>
+<div class="highlight"><pre><span class="n">any</span> <span class="n">T</span> <span class="n">o</span><span class="o">;</span>
+</pre></div>
+<p>There exitst an owner such that o ist an istance of T and has that owner.</p>
+<h4 id="subtyp-relation-between-ownership-types">Subtyp Relation between Ownership Types</h4>
+<p><strong>rep</strong> types and <strong>peer</strong> types are subtypes of corresponsing <strong>any</strong> types.</p>
+<ul>
+<li><strong>rep</strong> T &lt;: <strong>any</strong> T</li>
+<li><strong>peer</strong> T &lt;: <strong>any</strong> T</li>
+</ul>
+<p>Casts:</p>
+<ul>
+<li><strong>any</strong> can be cast to <strong>rep</strong> or <strong>peer</strong> (with runtime checks)</li>
+</ul>
+<h4 id="viewpoint-adaption">Viewpoint Adaption</h4>
+<ul>
+<li>Ownership relation is expressed relative to <em>this</em>.</li>
+<li>If <em>this</em> object (viewpoint) changes, the ownership changes.</li>
+<li>When creating an object the ownership has to be set<ul>
+<li><code>new rep Entry()</code></li>
+<li><code>new peer Entry()</code></li>
+<li><strong>any</strong> is not allowed for <code>new</code></li>
+<li>Ownership can't be changed later</li>
+</ul>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>►</th>
+<th>peer T</th>
+<th>rep T</th>
+<th>any T</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>peer S</td>
+<td>peer T</td>
+<td>lost T</td>
+<td>any T</td>
+</tr>
+<tr>
+<td>rep S</td>
+<td>rep T</td>
+<td>lost T</td>
+<td>any T</td>
+</tr>
+<tr>
+<td>any S</td>
+<td>lost T</td>
+<td>lost T</td>
+<td>any T</td>
+</tr>
+<tr>
+<td>lost S</td>
+<td>lost T</td>
+<td>lost T</td>
+<td>any T</td>
+</tr>
+<tr>
+<td>self S</td>
+<td>peer T</td>
+<td>rep T</td>
+<td>any T</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Ownership Types Hierarchy" class="img-responsive" src="/images/coop_ownership_types_hierarchy.svg"/></p>
+<h4 id="read-vs-write-access">Read vs. Write Access</h4>
 <!-- Slides 6.4 p. 55; Notes Week 10 01:09:33 -->
-<!-- #### Type Safety -->
-<p>....</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
 <h1 id="initialization-and-null-references">Initialization and Null-References</h1>
@@ -1259,14 +1348,13 @@ Initialization Phases:
     Object created          Object constructed completely
         |                     |
         v                     v
-        |---------------------|----------------->
-<div class="highlight"><pre>                                    time
-    \--------------------/\-----------------...
-         free type             committed type
-    \---------------------------------------...
-                     unclassified type
-</pre></div>
-<p>--&gt;</p>
+        |---------------------|---------------- ->
+                                        time
+        \--------------------/\-----------------...
+             free type             committed type
+        \---------------------------------------...
+                         unclassified type
+-->
 <!-- End Notes Week 11 -->
 <!-- Slides 7.2 p. 71 -->
   </div>
