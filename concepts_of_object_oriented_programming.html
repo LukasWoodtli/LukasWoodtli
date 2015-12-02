@@ -266,6 +266,15 @@
 </li>
 </ul>
 </li>
+<li><a href="#ownership-types">Ownership Types</a><ul>
+<li><a href="#object-topologies">Object Topologies</a><ul>
+<li><a href="#roles-in-object-structures">Roles in Object Structures</a></li>
+<li><a href="#ownership-model">Ownership Model</a></li>
+<li><a href="#ownership-types_1">Ownership Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
@@ -1113,13 +1122,55 @@ provided only the information needed.</p>
 <td>ro T</td>
 </tr>
 <tr>
-<td>r0 S</td>
-<td>r0 T</td>
+<td>ro S</td>
+<td>ro T</td>
 <td>ro T</td>
 </tr>
 </tbody>
 </table>
 <h4 id="type-rules-readonly-access">Type Rules: Readonly Access</h4>
+<p>Readonly types can't be receiver of:</p>
+<ul>
+<li>Field update</li>
+<li>Array update</li>
+<li>Invocation of pure method</li>
+</ul>
+<p>Readonly types must not be cast to readwrite types.</p>
+<ul>
+<li>Leaking can be prevented</li>
+<li>Capturing can still occure</li>
+</ul>
+<h2 id="ownership-types">Ownership Types</h2>
+<p>Prevents capturing.</p>
+<h3 id="object-topologies">Object Topologies</h3>
+<p>Distinguish *internal" references from other references.</p>
+<h4 id="roles-in-object-structures">Roles in Object Structures</h4>
+<ul>
+<li>Interface objects: used to access the structure</li>
+<li>Internal representation: must not be exposed to outside (clients)</li>
+<li><em>Arguments</em> of the object structure: must not be modified by the structure (i.e entries in a list)</li>
+</ul>
+<h4 id="ownership-model">Ownership Model</h4>
+<ul>
+<li>Each object has one (or zero) owner</li>
+<li>An object belongs to the internal representation of the owner</li>
+<li>Ownership relation is acyclic (forrest of ownership trees)</li>
+<li>Context: all objects that have the same owner</li>
+</ul>
+<h4 id="ownership-types_1">Ownership Types</h4>
+<ul>
+<li><strong>peer</strong>: in the same context, same owner as <em>this</em></li>
+<li><strong>rep</strong>: references to objects owned by <em>this</em> (in the context of <em>this</em>)</li>
+<li><strong>any</strong>: in any context (not known)</li>
+</ul>
+<p>Traversing hierarchy:</p>
+<ul>
+<li><strong>rep</strong>: go down in herarchy</li>
+<li><strong>peer</strong>: go across on same level in hierarchy</li>
+<li><strong>any</strong>: jump somewhere, could even be outside of hierarchy</li>
+</ul>
+<!-- Slides 6.4 p. 55; Notes Week 10 01:09:33 -->
+<!-- #### Type Safety -->
 <p>....</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
