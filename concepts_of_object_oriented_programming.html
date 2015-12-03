@@ -274,7 +274,7 @@
 <li><a href="#type-safety">Type Safety</a></li>
 <li><a href="#subtyp-relation-between-ownership-types">Subtyp Relation between Ownership Types</a></li>
 <li><a href="#viewpoint-adaption">Viewpoint Adaption</a></li>
-<li><a href="#read-vs-write-access">Read vs. Write Access</a></li>
+<li><a href="#aliasing_1">Aliasing</a></li>
 </ul>
 </li>
 </ul>
@@ -1077,7 +1077,7 @@ provided only the information needed.</p>
 </li>
 </ul>
 <blockquote>
-<p>Readonly access in C++ is not transitive</p>
+<p>Readonly access in C++ (<code>const</code>) is not transitive</p>
 </blockquote>
 <h3 id="pure-methods">Pure Methods</h3>
 <p>Pure methods are side-effect free.</p>
@@ -1168,8 +1168,9 @@ provided only the information needed.</p>
 <li><strong>rep</strong>: references to objects owned by <em>this</em> (in the context of <em>this</em>)</li>
 <li><strong>any</strong>: in any context (I don't care)</li>
 <li><strong>lost</strong>: specific owner but not known (I care but don't know)</li>
+<li><strong>self</strong>: only for the <code>this</code> literal (special because ownership relative to <code>this</code>)</li>
 </ul>
-<p><strong>lost</strong> and <strong>self</strong> are internal (hidden) tyoe modifiers. No keywords.</p>
+<p><strong>lost</strong> and <strong>self</strong> are internal (hidden) type modifiers. No keywords.</p>
 <p>Traversing hierarchy:</p>
 <ul>
 <li><strong>rep</strong>: go down in herarchy</li>
@@ -1259,8 +1260,34 @@ provided only the information needed.</p>
 </tbody>
 </table>
 <p><img alt="Ownership Types Hierarchy" class="img-responsive" src="/images/coop_ownership_types_hierarchy.svg"/></p>
-<h4 id="read-vs-write-access">Read vs. Write Access</h4>
-<!-- Slides 6.4 p. 55; Notes Week 10 01:09:33 -->
+<h4 id="aliasing_1">Aliasing</h4>
+<ul>
+<li><strong>rep</strong>: internal representation<ul>
+<li>no unwanted sharing</li>
+<li>leaking as <strong>rep</strong>: viewpoint-adaptation in client gets <strong>lost</strong></li>
+<li>method argument <strong>rep</strong></li>
+<li>capturing as <strong>rep</strong>: gets <strong>lost</strong>, can't assign to <strong>lost</strong></li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">rep</span> <span class="n">Address</span> <span class="n">addr</span><span class="o">;</span> <span class="c1">// part of internal representation</span>
+  <span class="kd">public</span> <span class="n">rep</span> <span class="n">Address</span> <span class="nf">getAddr</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">addr</span><span class="o">;</span> <span class="c1">// clients get lost-reference</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAddr</span><span class="o">(</span><span class="n">rep</span> <span class="n">Address</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// cannot be called by clients (lost) only by this bject</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAddr</span><span class="o">(</span><span class="n">any</span> <span class="n">Address</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">rep</span> <span class="nf">Address</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// cloning necessary, can't assign any to rep</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<!-- End of Notes Week 10 -->
+<!-- Slides 6.4 p. 64 !!! repeat -->
+<!-- Beginning of Notes Week 11 -->
+<p>....</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
 <h1 id="initialization-and-null-references">Initialization and Null-References</h1>
