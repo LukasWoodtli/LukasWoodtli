@@ -1268,11 +1268,13 @@ provided only the information needed.</p>
 </pre></div>
 <p>Is correctly typed if:</p>
 <div class="math">$$\tau(v) :&gt; \tau(e) \blacktriangleright \tau(f)$$</div>
-<p>Field <strong>Write</strong> or Method <strong>*Result</strong>:</p>
+<p>Field <strong>Write</strong> or Method <strong>Result</strong>:</p>
 <div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
 </pre></div>
 <div class="math">$$\tau(e) \blacktriangleright \tau(f) :&gt; \tau(v)$$</div>
-<p>And <span class="math">\(\tau(e) \blacktriangleright \tau(f)\)</span> is <strong>not lost</strong>.</p>
+<p>And</p>
+<div class="math">$$\tau(e) \blacktriangleright \tau(f)$$</div>
+<p>is <strong>not lost</strong>.</p>
 <h4 id="aliasing_1">Aliasing</h4>
 <ul>
 <li><strong>rep</strong>: internal representation<ul>
