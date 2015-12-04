@@ -274,6 +274,7 @@
 <li><a href="#type-safety">Type Safety</a></li>
 <li><a href="#subtyp-relation-between-ownership-types">Subtyp Relation between Ownership Types</a></li>
 <li><a href="#viewpoint-adaption">Viewpoint Adaption</a></li>
+<li><a href="#field-access-and-method-invocation-type-rules">Field Access and Method Invocation (Type Rules)</a></li>
 <li><a href="#aliasing_1">Aliasing</a></li>
 </ul>
 </li>
@@ -1059,7 +1060,7 @@ provided only the information needed.</p>
 </ul>
 <h3 id="requirements-for-readonly-access">Requirements for Readonly Access</h3>
 <ul>
-<li>Mutabla objects<ul>
+<li>Mutable objects<ul>
 <li>Only some clients can mutate object</li>
 <li>Access restrictions apply to references (not whole objects)</li>
 </ul>
@@ -1260,6 +1261,18 @@ provided only the information needed.</p>
 </tbody>
 </table>
 <p><img alt="Ownership Types Hierarchy" class="img-responsive" src="/images/coop_ownership_types_hierarchy.svg"/></p>
+<h4 id="field-access-and-method-invocation-type-rules">Field Access and Method Invocation (Type Rules)</h4>
+<p><span class="math">\(\tau(a)\)</span>: Type of a</p>
+<p>Field <strong>Read</strong> or Method <strong>Parameters</strong>:</p>
+<div class="highlight"><pre><span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+</pre></div>
+<p>Is correctly typed if:</p>
+<div class="math">$$\tau(v) :&gt; \tau(e) \blacktriangleright \tau(f)$$</div>
+<p>Field <strong>Write</strong> or Method <strong>*Result</strong>:</p>
+<div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
+</pre></div>
+<div class="math">$$\tau(e) \blacktriangleright \tau(f) :&gt; \tau(v)$$</div>
+<p>And <span class="math">\(\tau(e) \blacktriangleright \tau(f)\)</span> is <strong>not lost</strong>.</p>
 <h4 id="aliasing_1">Aliasing</h4>
 <ul>
 <li><strong>rep</strong>: internal representation<ul>
@@ -1285,7 +1298,6 @@ provided only the information needed.</p>
 <span class="o">}</span>
 </pre></div>
 <!-- End of Notes Week 10 -->
-<!-- Slides 6.4 p. 64 !!! repeat -->
 <!-- Beginning of Notes Week 11 -->
 <p>....</p>
 <!-- Beginning of Slides 7 -->
@@ -1384,6 +1396,63 @@ Initialization Phases:
 -->
 <!-- End Notes Week 11 -->
 <!-- Slides 7.2 p. 71 -->
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
