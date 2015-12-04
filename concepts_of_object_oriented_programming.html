@@ -280,6 +280,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#owner-as-modifier">Owner-as-Modifier</a></li>
 </ul>
 </li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
@@ -1057,6 +1058,10 @@ provided only the information needed.</p>
 <li>Restrict access to shared objects</li>
 <li>Common: grant read-only access</li>
 <li>Cloning can prevent aliasing in some cases (but is inefficient)</li>
+<li>The reference can be marked as readonly<ul>
+<li>The object itself is not readonly</li>
+</ul>
+</li>
 </ul>
 <h3 id="requirements-for-readonly-access">Requirements for Readonly Access</h3>
 <ul>
@@ -1301,7 +1306,28 @@ provided only the information needed.</p>
 </pre></div>
 <!-- End of Notes Week 10 -->
 <!-- Beginning of Notes Week 11 -->
-<p>....</p>
+<h2 id="owner-as-modifier">Owner-as-Modifier</h2>
+<ul>
+<li>Readonly Typesystem: leaking is safe (only readonly leaking)</li>
+<li>Ownership Typesystem: capturing is safe (declaring internal references as <strong>rep</strong>)<ul>
+<li>leaking can happen only as <strong>any</strong> or <strong>lost</strong></li>
+</ul>
+</li>
+<li>
+<p>Combining both Typesystem</p>
+</li>
+<li>
+<p><strong>any</strong> and <strong>lost</strong>: Readonly</p>
+</li>
+</ul>
+<p>Additional enforced rules:</p>
+<ul>
+<li>Field write <code>e.f = v;</code> is valid <em>only</em> if <span class="math">\(\tau(e)\)</span> is <strong>self</strong>, <strong>peer</strong> or <strong>rep</strong></li>
+<li>Method call <code>e.m(...);</code> is valid <em>only</em> if <span class="math">\(\tau(e)\)</span> is <strong>self</strong>, <strong>peer</strong> or <strong>rep</strong>, or called method is <strong>pure</strong></li>
+</ul>
+<!-- Slides 6.4 p.71 -->
+<!-- Notes Week 11 24:00 -->
+<p>...</p>
 <!-- Beginning of Slides 7 -->
 <!-- Beginning of Notes Week 11 p. 6 -->
 <h1 id="initialization-and-null-references">Initialization and Null-References</h1>
