@@ -280,7 +280,10 @@
 </li>
 </ul>
 </li>
-<li><a href="#owner-as-modifier">Owner-as-Modifier</a></li>
+<li><a href="#owner-as-modifier">Owner-as-Modifier</a><ul>
+<li><a href="#achievements">Achievements</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
@@ -1325,11 +1328,44 @@ provided only the information needed.</p>
 <li>Field write <code>e.f = v;</code> is valid <em>only</em> if <span class="math">\(\tau(e)\)</span> is <strong>self</strong>, <strong>peer</strong> or <strong>rep</strong></li>
 <li>Method call <code>e.m(...);</code> is valid <em>only</em> if <span class="math">\(\tau(e)\)</span> is <strong>self</strong>, <strong>peer</strong> or <strong>rep</strong>, or called method is <strong>pure</strong></li>
 </ul>
-<!-- Slides 6.4 p.71 -->
-<!-- Notes Week 11 24:00 -->
-<p>...</p>
+<blockquote>
+<p>A method can modify directly at most all the objects that have the same owner as <code>this</code>. Everything further down in the hierarchy can only be changed indirectly (via method calls).</p>
+</blockquote>
+<ul>
+<li>
+<p>When debugging: if an object changes the changing method is going to be on the call stack</p>
+<ul>
+<li>Changing methods need to go through all the owners transitively</li>
+<li>Owner is like a <em>gate keeper</em> (interface object)</li>
+</ul>
+</li>
+<li>
+<p>Stronger concept for encapsulation than private-protected-public</p>
+</li>
+<li>
+<p>leaking only happens as readonly ('something' ► <strong>rep</strong>: <strong>lost</strong>)</p>
+</li>
+<li>Standard (Java): default modifier would be <strong>peer</strong>, flat datastructures</li>
+<li>'shared ownership' is not possible. i.e List owns nodes and modifying Iterator would need readwrite access to nodes.<ul>
+<li>List would need</li>
+</ul>
+</li>
+<li>The system can be combined with Generics: <code>rep List&lt;peer Address&gt;</code></li>
+<li>Also possible: merge <em>entire contexts</em> to new owner. i.e concat two lists.</li>
+</ul>
+<h3 id="achievements">Achievements</h3>
+<ul>
+<li>Encapsulate whole object structures</li>
+<li>Can not be violated</li>
+<li>Subclassing is no restriction</li>
+<li>Invariants of object <em>o</em> can depend on:<ul>
+<li>Encapsulated fields of <em>o</em> (as usual)</li>
+<li>Fields of objects transitively owned by <em>o</em></li>
+</ul>
+</li>
+</ul>
+<!-- End of Slides 6 -->
 <!-- Beginning of Slides 7 -->
-<!-- Beginning of Notes Week 11 p. 6 -->
 <h1 id="initialization-and-null-references">Initialization and Null-References</h1>
 <ul>
 <li>Main Usages of Null-References<ul>
