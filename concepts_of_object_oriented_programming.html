@@ -288,6 +288,11 @@
 </li>
 <li><a href="#initialization-and-null-references">Initialization and Null-References</a><ul>
 <li><a href="#object-initialization">Object Initialization</a></li>
+<li><a href="#type-rules">Type Rules</a></li>
+<li><a href="#local-initialization">Local Initialization</a></li>
+<li><a href="#transitive-initialization">Transitive Initialization</a></li>
+<li><a href="#cyclic-structures">Cyclic Structures</a></li>
+<li><a href="#field-write">Field Write</a></li>
 </ul>
 </li>
 </ul>
@@ -1471,7 +1476,7 @@ provided only the information needed.</p>
 </li>
 </ul>
 </li>
-<li>Better type-system: track initialization<ul>
+<li>Better type-system: track initialization (construction types)<ul>
 <li>Initialization Phases (3 types per class/interface)<ul>
 <li><em>free type</em>: objects under construction (free to violate invariants, free to have null in non-null variables)</li>
 <li><em>committed type</em>: object construction is completed (type of object is chaged at run-time when object is fully constructed)</li>
@@ -1485,21 +1490,137 @@ provided only the information needed.</p>
 </ul>
 </li>
 </ul>
-<!--
-Initialization Phases:
-
-    :::
-    Object created          Object constructed completely
-        |                     |
-        v                     v
-        |---------------------|---------------- ->
-                                        time
-        \--------------------/\-----------------...
-             free type             committed type
-        \---------------------------------------...
-                         unclassified type
--->
 <!-- End Notes Week 11 -->
+<!-- Beginning Notes Week 12 -->
+<h2 id="type-rules">Type Rules</h2>
+<ul>
+<li>Most type rules of Java remain unchanged</li>
+<li>Additional requirement: dereferencing needs a non-null type<ul>
+<li>Receiver of field access</li>
+<li>Receiver of array access</li>
+<li>Receiver of method call</li>
+<li>Expression of a <code>throw</code> statement</li>
+</ul>
+</li>
+<li>Dereferencing of a non-null type can be checked statically (compile time)</li>
+<li>Escaping constructor is an issue</li>
+<li>Combining non-null type system with construction types<ul>
+<li>6 types</li>
+</ul>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>non-null</th>
+<th>possibly-null</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comitted</td>
+<td><code>T!</code></td>
+<td><code>T?</code></td>
+</tr>
+<tr>
+<td>free</td>
+<td><code>free T!</code></td>
+<td><code>free T?</code></td>
+</tr>
+<tr>
+<td>unclassified</td>
+<td><code>unc T!</code></td>
+<td><code>unc T?</code></td>
+</tr>
+</tbody>
+</table>
+<p>No downcasts from unclassified to free or committed (no reasonable run-time checks).</p>
+<h2 id="local-initialization">Local Initialization</h2>
+<ul>
+<li>An object is locally initialized: all non-null fields have non-null values</li>
+<li>
+<p>Static type <em>committed</em>: locally initialized at run-time</p>
+<p>:::java
+e.f</p>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Field access</th>
+<th>f: <code>!</code></th>
+<th>f: <code>?</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e: <code>commited</code></td>
+<td><code>!</code></td>
+<td><code>?</code></td>
+</tr>
+<tr>
+<td>e: <code>free</code></td>
+<td><code>?</code></td>
+<td><code>?</code></td>
+</tr>
+<tr>
+<td>e: <code>unc</code></td>
+<td><code>?</code></td>
+<td><code>?</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="transitive-initialization">Transitive Initialization</h2>
+<ul>
+<li><em>Committed</em> has to be transitive</li>
+<li>An object is <em>transitively initialized</em> if all reachable objecs are <em>localy initialized</em></li>
+<li>static type <em>committed</em>: transitively initialized at run-time</li>
+</ul>
+<h2 id="cyclic-structures">Cyclic Structures</h2>
+<ul>
+<li>In initialization code (i.e constructor) it's allowed to assign <em>committed</em> types to <em>free</em> types</li>
+</ul>
+<h2 id="field-write">Field Write</h2>
+<ul>
+<li>A field write <code>a.f = b</code> is well-typed if<ul>
+<li><code>a</code> and <code>b</code> are well-typed</li>
+<li><code>a</code>'s type is a non-null type (<code>!</code>)</li>
+<li><code>b</code>'s class and non-null type conforms to <code>a.f</code></li>
+<li><strong><code>a</code>'s type is <em>free</em> or <code>b</code>'s type is *committed</strong>*</li>
+</ul>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>type of <code>a</code> \ type of <code>b</code></th>
+<th>committed</th>
+<th>free</th>
+<th>unc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>committed</td>
+<td>✓</td>
+<td>✘</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>free</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>unc</td>
+<td>✓</td>
+<td>✘</td>
+<td>✘</td>
+</tr>
+</tbody>
+</table>
 <!-- Slides 7.2 p. 71 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
