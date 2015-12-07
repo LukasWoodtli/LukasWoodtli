@@ -297,6 +297,10 @@
 <li><a href="#field-read">Field Read</a></li>
 <li><a href="#consturctors">Consturctors</a></li>
 <li><a href="#method-calls">Method Calls</a></li>
+<li><a href="#object-construction">Object Construction</a><ul>
+<li><a href="#new-expression">new Expression</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1682,6 +1686,7 @@ provided only the information needed.</p>
 <li>Constructor signatures: each parameter has declared construction-type (default: <em>committed</em>) and null-ness type</li>
 <li><code>this</code> in cunstruction has implicitly: <em>free non-null</em></li>
 <li>Definite assignment check for complete constructor</li>
+<li>Constructors are <em>free</em> by default</li>
 </ul>
 <h3 id="method-calls">Method Calls</h3>
 <ul>
@@ -1694,8 +1699,42 @@ provided only the information needed.</p>
 <span class="o">}</span>
 </pre></div>
 <ul>
-<li>Overriding requires usual co- and contravariant rules</li>
+<li>Overriding requires usual co- and contravariant rules<ul>
+<li>The receiver (<code>this</code>) counts as parameter</li>
 </ul>
+</li>
+</ul>
+<h3 id="object-construction">Object Construction</h3>
+<ul>
+<li>At the end of a constructor the object is not nessecary fully initialized (i.e constructors of deriving classes are not run yet)</li>
+<li>End of a <code>new</code> expression: constructed object might not yet be fully constructed</li>
+<li><code>new</code> expressions can have only references to committed objects outside of the <code>new</code> expression<ul>
+<li>committed reference to the <code>new</code> expression is not possible<ul>
+<li><code>new</code> not yet finished (not <em>committed</em>, <em>free</em>)</li>
+<li>But committed objects can't have pointers to <em>free</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nested <code>new</code> expression:</li>
+<li>if the 'inner' <code>new</code> expression is fully (transitively) initialized reference <em>to</em> and <em>from</em> the outside</li>
+<li>the 'outer' <code>new</code> expression can point to the 'inner' <code>new</code> expression</li>
+</ul>
+<h4 id="new-expression"><code>new</code> Expression</h4>
+<blockquote>
+<p>After 'outer' <code>new</code> expression (only committed arguments) finishes all 'inner' <code>new</code> expressions have references to locally initialized objects.
+All references inside the 'outer' <code>new</code> expression point to transitively initialized objects.</p>
+</blockquote>
+<ul>
+<li>The type of a <code>new</code> expression is <em>committed</em> if the static types of all arguments of the constuctor are <em>committed</em><ul>
+<li>Otherwise it's <em>free</em></li>
+<li>It's not relevant what the declared types of the constructor arguments are! It depends on the <code>new</code> expression</li>
+</ul>
+</li>
+<li>It's almost not possible to create uninitialized objects</li>
+</ul>
+<!-- Sides 7.2 p. 160 -->
+<!-- Notes Week 12 p. 6, 01:49:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
