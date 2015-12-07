@@ -292,7 +292,13 @@
 <li><a href="#local-initialization">Local Initialization</a></li>
 <li><a href="#transitive-initialization">Transitive Initialization</a></li>
 <li><a href="#cyclic-structures">Cyclic Structures</a></li>
+<li><a href="#type-rules_1">Type Rules</a><ul>
 <li><a href="#field-write">Field Write</a></li>
+<li><a href="#field-read">Field Read</a></li>
+<li><a href="#consturctors">Consturctors</a></li>
+<li><a href="#method-calls">Method Calls</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1539,12 +1545,11 @@ provided only the information needed.</p>
 <h2 id="local-initialization">Local Initialization</h2>
 <ul>
 <li>An object is locally initialized: all non-null fields have non-null values</li>
-<li>
-<p>Static type <em>committed</em>: locally initialized at run-time</p>
-<p>:::java
-e.f</p>
-</li>
+<li>Static type <em>committed</em>: locally initialized at run-time</li>
 </ul>
+<p>Field access:</p>
+<div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span>
+</pre></div>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -1581,13 +1586,28 @@ e.f</p>
 <ul>
 <li>In initialization code (i.e constructor) it's allowed to assign <em>committed</em> types to <em>free</em> types</li>
 </ul>
-<h2 id="field-write">Field Write</h2>
+<h2 id="type-rules_1">Type Rules</h2>
+<ul>
+<li>Field declaration has no consturction-type modifier<ul>
+<li>non-null (<code>!</code>) or possibly-null (<code>?</code>) modifiers are possible</li>
+<li>It's determined if it's <em>free</em> or <em>committed</em> when dereferencing (<code>e.f</code>)</li>
+<li>Field declaration is the only place in a programm that has not construction-type modifier</li>
+</ul>
+</li>
+<li><em>committed</em> is transitive!</li>
+<li>It's not allowed to have a <em>committed</em> and a <em>free</em> reference to the same object (no cross-type aliases)<ul>
+<li>The <em>free</em> reference could assign a pointer in the object to an uninitialized field</li>
+</ul>
+</li>
+<li>It's critical when an reference changes from <em>free</em> to <em>committed</em></li>
+</ul>
+<h3 id="field-write">Field Write</h3>
 <ul>
 <li>A field write <code>a.f = b</code> is well-typed if<ul>
 <li><code>a</code> and <code>b</code> are well-typed</li>
 <li><code>a</code>'s type is a non-null type (<code>!</code>)</li>
 <li><code>b</code>'s class and non-null type conforms to <code>a.f</code></li>
-<li><strong><code>a</code>'s type is <em>free</em> or <code>b</code>'s type is *committed</strong>*</li>
+<li><strong><code>a</code>'s type is <em>free</em> or <code>b</code>'s type is <em>committed</em> </strong></li>
 </ul>
 </li>
 </ul>
@@ -1621,7 +1641,61 @@ e.f</p>
 </tr>
 </tbody>
 </table>
-<!-- Slides 7.2 p. 71 -->
+<h3 id="field-read">Field Read</h3>
+<ul>
+<li>A field read <code>e.f</code>is well-typed if:<ul>
+<li><code>e</code> is well-typed</li>
+<li><code>e</code>'s type is a non-null type (<code>!</code>)</li>
+<li>Field (<code>f</code>) has no construction-type modifier</li>
+</ul>
+</li>
+</ul>
+<p>The type of <code>e.f</code> is:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>type of e \ type of f</th>
+<th><code>T!</code></th>
+<th><code>T?</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>S!</code></td>
+<td><code>T!</code></td>
+<td><code>T?</code></td>
+</tr>
+<tr>
+<td><code>free S!</code></td>
+<td><code>unc T?</code></td>
+<td><code>unc T?</code></td>
+</tr>
+<tr>
+<td><code>unc S!</code></td>
+<td><code>unc T?</code></td>
+<td><code>unc T?</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="consturctors">Consturctors</h3>
+<ul>
+<li>Constructor signatures: each parameter has declared construction-type (default: <em>committed</em>) and null-ness type</li>
+<li><code>this</code> in cunstruction has implicitly: <em>free non-null</em></li>
+<li>Definite assignment check for complete constructor</li>
+</ul>
+<h3 id="method-calls">Method Calls</h3>
+<ul>
+<li>Method signatures: each parameter has declared construction-type (and null-ness type)</li>
+<li>Method signatures can contain construction-type for <code>this</code></li>
+</ul>
+<p>Construction-type for <code>this</code>:</p>
+<div class="highlight"><pre><span class="n">String</span><span class="o">!</span> <span class="n">free</span> <span class="nf">getId</span><span class="o">(</span><span class="n">String</span><span class="o">!</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">...;</span>
+<span class="o">}</span>
+</pre></div>
+<ul>
+<li>Overriding requires usual co- and contravariant rules</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
