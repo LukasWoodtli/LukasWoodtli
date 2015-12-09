@@ -301,8 +301,11 @@
 <li><a href="#new-expression">new Expression</a></li>
 </ul>
 </li>
+<li><a href="#lazy-initialization">Lazy Initialization</a></li>
 </ul>
 </li>
+<li><a href="#arrays">Arrays</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -1733,8 +1736,63 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 </li>
 <li>It's almost not possible to create uninitialized objects</li>
 </ul>
-<!-- Sides 7.2 p. 160 -->
-<!-- Notes Week 12 p. 6, 01:49:00 -->
+<h3 id="lazy-initialization">Lazy Initialization</h3>
+<ul>
+<li>Access lazy initialized field always through getter method</li>
+</ul>
+<p>i.e</p>
+<div class="highlight"><pre><span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">Vector</span><span class="o">?</span> <span class="n">data</span><span class="o">;</span> <span class="c1">// possibly-null</span>
+  <span class="kd">public</span> <span class="n">Vector</span><span class="o">!</span> <span class="n">getData</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// getter guarantees for non-null</span>
+    <span class="n">Vectror</span><span class="o">?</span> <span class="n">d</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span> <span class="c1">// needed for data flow analysis</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">();</span> <span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">d</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<h2 id="arrays">Arrays</h2>
+<div class="highlight"><pre><span class="c1">// Elements</span>
+<span class="c1">//    |</span>
+<span class="c1">//    v</span>
+<span class="n">Person</span><span class="o">!</span> <span class="o">[]!</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// Non-null array with non-null elements</span>
+<span class="n">Person</span><span class="o">?</span> <span class="o">[]!</span> <span class="n">b</span><span class="o">;</span> <span class="c1">// Non-null array with possibly-null elements</span>
+<span class="n">Person</span><span class="o">!</span> <span class="o">[]?</span> <span class="n">c</span><span class="o">;</span> <span class="c1">// Possibly-null array with non-null elements</span>
+<span class="n">Person</span><span class="o">?</span> <span class="o">[]?</span> <span class="n">d</span><span class="o">;</span> <span class="c1">// Possibly-null array with possibly-null elements (default in Java)</span>
+<span class="c1">//        ^</span>
+<span class="c1">//        |</span>
+<span class="c1">//      Array</span>
+</pre></div>
+<ul>
+<li>Arrays have no constructors</li>
+<li>Problem: Array initialization is often done with loops<ul>
+<li>Definite assignment cannot be checked by compiler</li>
+</ul>
+</li>
+<li>Possible solutions:<ul>
+<li>Array initializers (<code>String! []! s = {"Array", "of", "non-null", "Strings"};</code>)</li>
+<li>Eiffel: pre-filling array (default objects not better than <code>null</code>)</li>
+<li>Run time assert provided by programmer (Spec#)<ul>
+<li><code>NonNullType.AssertInitialized(arr);</code> (run time assert function)</li>
+<li>Only committed elements can be stored in array</li>
+<li>Data flow analysis knows semantic of run time assert function</li>
+<li>Run time assert function changes type from <strong>free</strong> to <strong>committed</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Can be combined with Generics</li>
+<li>Invariant: non-nullness</li>
+<li>Avoid calling virtual methods on this in uninitialized objects (constructors, init methods)</li>
+<li>Don't let escape uninitialized objects</li>
+<li>At end of constructor: object might not yet be constructed (i.e subclass constructors)</li>
+</ul>
+<!-- End of Notes Week 12 -->
+<!-- Slides 7.3 p. 194 (~53) -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
