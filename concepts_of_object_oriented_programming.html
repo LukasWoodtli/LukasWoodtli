@@ -144,6 +144,7 @@
   <div id="article_content">
     <div class="toc">
 <ul>
+<li><a href="#core-requirements-to-oop-languages">Core Requirements to OOP Languages</a></li>
 <li><a href="#the-object-model">The Object Model</a><ul>
 <li><a href="#interfaces-and-encapsulation">Interfaces and Encapsulation</a></li>
 <li><a href="#classification-and-polymorphism">Classification and Polymorphism</a><ul>
@@ -310,6 +311,13 @@
 </li>
 </ul>
 </div>
+<h1 id="core-requirements-to-oop-languages">Core Requirements to OOP Languages</h1>
+<ul>
+<li>Highly dynamic execution model</li>
+<li>Cooperating program parts with well defined interfaces</li>
+<li>Classification (hierarchy) and specialisation (reuse)</li>
+<li>Quality/Correctness</li>
+</ul>
 <h1 id="the-object-model">The Object Model</h1>
 <ul>
 <li>A software system is a set of cooperating objects</li>
@@ -324,6 +332,10 @@
 <li>Location</li>
 <li>Behavior</li>
 </ul>
+<blockquote>
+<p>Objects are different form values!</p>
+</blockquote>
+<p>Values don't have the above properties.</p>
 <h2 id="interfaces-and-encapsulation">Interfaces and Encapsulation</h2>
 <ul>
 <li>Objects have well-defined interfaces<ul>
@@ -340,7 +352,7 @@
 </ul>
 <h2 id="classification-and-polymorphism">Classification and Polymorphism</h2>
 <ul>
-<li>Classification: Hierarchical structuring of objects</li>
+<li>Classification: Hierarchical structuring of objects ('is-a'-Relation)</li>
 <li>Objects belong to different classes simultaneously</li>
 <li><em>Substitution principle</em>: Subtype objects can be used wherever supertype objects are expected</li>
 </ul>
@@ -368,12 +380,12 @@ objects of supertypes are expected</p>
 <li>Uses <em>type parameters</em></li>
 <li>One implementation can be used for different types</li>
 <li>Type missmatch detected at compile time</li>
-<li>i.e C++ Templates</li>
+<li>C++ Templates, Generics (Java, C#)</li>
 </ul>
 <h4 id="method-overloading">Method Overloading</h4>
 <ul>
 <li>Ad-Hoc Polymorphism</li>
-<li>Methods with same name but different arguments</li>
+<li>Overloading: Methods with same name but different arguments </li>
 </ul>
 <h3 id="spezialization">Spezialization</h3>
 <ul>
@@ -381,6 +393,7 @@ objects of supertypes are expected</p>
 <li>Extend these objecs (fields and methods)</li>
 <li>Behaviour of specialized objects need to be compliant to more general objects! (Substitution Principle)</li>
 <li>Progam parts that work for the genral objects work also for specialized objects</li>
+<li>Methods can be <em>overridden</em></li>
 </ul>
 <h1 id="types-and-subtyping">Types and Subtyping</h1>
 <h2 id="types">Types</h2>
