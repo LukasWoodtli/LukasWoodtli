@@ -583,6 +583,7 @@ It's mainly used to compare languages to each other about the possible castings,
 </tr>
 </tbody>
 </table>
+<!-- End of Notes Week 2 -->
 <p>In Java and C# arrays are covariant!</p>
 <h3 id="behavioral-subtyping-contracts">Behavioral Subtyping (Contracts)</h3>
 <p>What are the <em>properties</em> shared by the values of a type?</p>
@@ -1275,6 +1276,10 @@ provided only the information needed.</p>
 <li>Context: all objects that have the same owner</li>
 <li>Ownership relation is <em>not</em> transitive</li>
 </ul>
+<p>Type Invariant:</p>
+<blockquote>
+<p>The <em>static</em> ownership information (declared in code) reflects the <em>run-time</em> ownership of the referenced object</p>
+</blockquote>
 <h4 id="ownership-types_1">Ownership Types</h4>
 <ul>
 <li><strong>peer</strong>: in the same context, same owner as owner of <em>this</em></li>
@@ -1548,6 +1553,11 @@ provided only the information needed.</p>
 </ul>
 </li>
 </ul>
+<p>Type Invariant:</p>
+<blockquote>
+<p>An object is initialized if all fields have non-null values (transitively).</p>
+</blockquote>
+<p>There could also be other invariants that have to hold after object is initialized, but can be broken before the object is fully initialized.</p>
 <!-- End Notes Week 11 -->
 <!-- Beginning Notes Week 12 -->
 <h2 id="type-rules">Type Rules</h2>
@@ -1837,7 +1847,9 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <li>At end of constructor: object might not yet be constructed (i.e subclass constructors)</li>
 </ul>
 <!-- End of Notes Week 12 -->
-<!-- Slides 7.3 p. 194 (~53) -->
+<!-- Beginning of Notes Week 13 -->
+<!-- Slides 7.3 p. 194 (~53)
+## Initialization of Global Data  -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
