@@ -403,25 +403,32 @@ objects of supertypes are expected</p>
 <li>Nominal and Structural Types</li>
 <li>Static and Dynamic Type Checking</li>
 </ol>
+<p>Definition:</p>
+<blockquote>
+<p>A type is a set of values sharing some properties. A value <em>v</em> has type <em>T</em> if <em>v</em> is an element of <em>T</em>.</p>
+</blockquote>
+<p><em>T</em> is a set that contains all possible values <em>v</em>.</p>
 <h3 id="weak-and-strong-type-systems">Weak and Strong Type Systems</h3>
 <p>How strongly or weakly typed a language is concerns casting (implicit and explicit).
 It's mainly used to compare languages to each other about the possible castings, type safety and information loss.</p>
 <h4 id="untyped-languages">Untyped Languages</h4>
 <ul>
-<li>Not classifying values into types</li>
+<li>Not classifying values into types, just bit patterns</li>
 <li>i.e. Assembler</li>
 </ul>
 <h4 id="weakly-typed-languages">Weakly Typed Languages</h4>
 <ul>
 <li>Classifying values into types</li>
-<li>No strict enforcement of restrictions</li>
+<li>No strict enforcement of restrictions, i.e Multiplying two pointers is possible</li>
 <li>i.e. C, C++</li>
 </ul>
 <h4 id="strongly-typed-languages">Strongly Typed Languages</h4>
 <ul>
+<li>Classify values into types</li>
 <li>Enforcing that all operations are applied to values of appropriate type</li>
 <li>Strongly-typed languages prevent certain erroneous or undesirable program behavior</li>
 <li>i.e. Java, Python, Scala, Smalltalk, Eiffel, C#</li>
+<li>Most Dynamic Languages (i.e Python, JavaScript) are Strongly Typed</li>
 </ul>
 <h3 id="nominal-and-structural-types">Nominal and Structural Types</h3>
 <h4 id="nominal-types">Nominal Types</h4>
@@ -435,21 +442,40 @@ It's mainly used to compare languages to each other about the possible castings,
 <li>i.e. Python, Ruby, Smalltals</li>
 </ul>
 <h3 id="type-checking">Type Checking</h3>
+<p>Type checking prevents certain errors in programm.</p>
+<p>When happens the type checking?</p>
+<ul>
+<li>Static: Compile time</li>
+<li>Dynamic: Run time</li>
+</ul>
 <h4 id="static-type-checking">Static Type Checking</h4>
 <ul>
 <li>Types of variables and methods are declared explicitly or inferred</li>
 <li>Types of expressions can be derived from the types of their constituents</li>
-<li>Type rules are used at compile time to check whether a program is correctly typed</li>
+<li>Type rules are used at <em>compile time</em> to check whether a program is correctly typed</li>
 </ul>
 <blockquote>
 <p>A programming language is called type-safe if its design prevents type errors</p>
 </blockquote>
+<p>Pros:</p>
+<ul>
+<li>Static safety</li>
+<li>Readability (type annotations are a good documentation)</li>
+<li>Efficiency</li>
+</ul>
 <h4 id="dynamic-type-checking">Dynamic Type Checking</h4>
 <ul>
-<li>Variables, methods, and expressions of a program are typically not typed</li>
+<li>Variables, methods, and expressions of a program are typically not typed (types not declared)</li>
 <li>Every object and value has a type</li>
-<li>Run-time system checks that operations are applied to expected arguments</li>
-<li>Static languages need to performe some checks dynamically at run-time (i.e type-casting)</li>
+<li><em>Run-time system checks</em> that operations are applied to expected arguments</li>
+<li>Also static languages need to performe some checks dynamically at run-time (i.e type-casting)</li>
+<li>Dynamic languages are usually more expressive (no type annotations)</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Expressiveness</li>
+<li>Low overhead (no type annotations)</li>
+<li>Much simpler</li>
 </ul>
 <h3 id="overview-of-type-systems-in-oo-languages">Overview of Type Systems in OO-Languages</h3>
 <table class="table table-hover table-striped">
@@ -476,15 +502,21 @@ It's mainly used to compare languages to each other about the possible castings,
 <p>Dynamic and Structural is often called "duck typing".</p>
 <h2 id="subtyping">Subtyping</h2>
 <blockquote>
-<p>Substitution  principle Objects of subtypes can be used wherever objects of supertypes are expected</p>
+<p>Substitution principle Objects of subtypes can be used wherever objects of supertypes are expected</p>
 </blockquote>
 <ul>
-<li>
-<p>Syntactic classification: Subtypes understand <em>at least the messages</em> of their supertypes.</p>
+<li>Syntactic classification: Subtypes understand <em>at least the messages</em> of their supertypes.<ul>
+<li>Nominal languages: Subtype has a <em>wider</em> (or same) interface as supertype</li>
+<li>Overriding methods must not be less accessible</li>
+</ul>
 </li>
-<li>
-<p>Semantic classification: Subtypes provide <em>at least the behaviour</em> of their supertypes.</p>
-</li>
+<li>Semantic classification: Subtypes provide <em>at least the behaviour</em> of their supertypes.</li>
+</ul>
+<p>A type is a <em>set</em> of values. <em>Subtype relation</em> corresponds to <em>subset relation</em>.</p>
+<p><img alt="Subtyping and Sets" class="img-responsive" src="/images/coop_subtyping_and_sets.svg"/></p>
+<ul>
+<li>In <em>nominal</em> programming languages the <em>programmer</em> decides about subtype relation</li>
+<li>In <em>structural</em> programming languages the <em>type checker</em> decides about subtype relation</li>
 </ul>
 <h3 id="variance-covariance-contravariance-and-invariance">Variance (Covariance, Contravariance and Invariance)</h3>
 <p>Based on substitution principle.</p>
@@ -514,7 +546,7 @@ It's mainly used to compare languages to each other about the possible castings,
 </tr>
 <tr>
 <td>In- and Output Arguments (Mutable Reference Arguments)</td>
-<td>Invariant</td>
+<td>Nonvariant</td>
 </tr>
 </tbody>
 </table>
@@ -536,7 +568,7 @@ It's mainly used to compare languages to each other about the possible castings,
 <tbody>
 <tr>
 <td>C++, Java, Scala, D...</td>
-<td>Invariant</td>
+<td>Nonvariant</td>
 <td>Covariant</td>
 </tr>
 <tr>
@@ -546,8 +578,8 @@ It's mainly used to compare languages to each other about the possible castings,
 </tr>
 <tr>
 <td>C#</td>
-<td>Invariant</td>
-<td>Invariant</td>
+<td>Nonvariant</td>
+<td>Nonvariant</td>
 </tr>
 </tbody>
 </table>
