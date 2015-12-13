@@ -190,7 +190,7 @@
 </li>
 <li><a href="#behavioral-subtyping-contracts">Behavioral Subtyping (Contracts)</a><ul>
 <li><a href="#subtyping-and-contracs">Subtyping and Contracs</a></li>
-<li><a href="#behavioral-subtyping">Behavioral Subtyping</a></li>
+<li><a href="#specification-inheritance-inherit-contracts-from-subtypes">Specification Inheritance (Inherit Contracts from Subtypes)</a></li>
 </ul>
 </li>
 <li><a href="#types-as-contracts">Types as Contracts</a></li>
@@ -594,7 +594,7 @@ This is expressed as interface specifications (contracts)</p>
 <li>Precondition: Have to hold before the method is executed</li>
 <li>Postcondition: Have to hold after the method has terminated</li>
 <li>Old-expressons: Can be used to refer to prestate values from the postcondition</li>
-<li>Invariant: Have to hold in al states in which an object can be accessed by other objects</li>
+<li>Invariant: Have to hold in all states in which an object can be accessed by other objects</li>
 </ul>
 <h4 id="subtyping-and-contracs">Subtyping and Contracs</h4>
 <ul>
@@ -604,7 +604,8 @@ This is expressed as interface specifications (contracts)</p>
 <li>Subtypes may have <em>stronger invariants</em> than supertypes</li>
 <li>Subtypes may have <em>stronger history constrains</em> than supertype</li>
 </ul>
-<h4 id="behavioral-subtyping">Behavioral Subtyping</h4>
+<!-- Beginning of Notes Week 4 -->
+<h4 id="specification-inheritance-inherit-contracts-from-subtypes">Specification Inheritance (Inherit Contracts from Subtypes)</h4>
 <ul>
 <li>Subtype needs to satisfy the contract of the supertype (inheriting contracts)</li>
 <li><em>Invariant</em> inheritance: Conjunction (AND) of own contract and contracts of all supertypes</li>
@@ -618,7 +619,7 @@ This is expressed as interface specifications (contracts)</p>
 </ul>
 </li>
 </ul>
-<div class="math">$$PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) &amp;&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) ...$$</div>
+<div class="math">$$PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) \&amp;\&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) ...$$</div>
 <h3 id="types-as-contracts">Types as Contracts</h3>
 <p>Types can be seen as a kind of contracts.</p>
 <p>Overriding Methods must:</p>
