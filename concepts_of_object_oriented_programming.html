@@ -619,7 +619,7 @@ This is expressed as interface specifications (contracts)</p>
 </ul>
 </li>
 </ul>
-<div class="math">$$PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) \&amp;\&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) ...$$</div>
+<div class="math">$$PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) \&amp;\&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) \&amp;\&amp; ...$$</div>
 <h3 id="types-as-contracts">Types as Contracts</h3>
 <p>Types can be seen as a kind of contracts.</p>
 <p>Overriding Methods must:</p>
@@ -1663,7 +1663,7 @@ provided only the information needed.</p>
 </ul>
 <h2 id="cyclic-structures">Cyclic Structures</h2>
 <ul>
-<li>In initialization code (i.e constructor) it's allowed to assign <em>committed</em> types to <em>free</em> types</li>
+<li>In initialization code (i.e constructor) it's allowed to assign <em>committed</em> types to <strong>fields</strong> of  <em>free</em> types</li>
 </ul>
 <h2 id="type-rules_1">Type Rules</h2>
 <ul>
@@ -1681,15 +1681,14 @@ provided only the information needed.</p>
 <li>It's critical when an reference changes from <em>free</em> to <em>committed</em></li>
 </ul>
 <h3 id="field-write">Field Write</h3>
-<ul>
-<li>A field write <code>a.f = b</code> is well-typed if<ul>
-<li><code>a</code> and <code>b</code> are well-typed</li>
-<li><code>a</code>'s type is a non-null type (<code>!</code>)</li>
-<li><code>b</code>'s class and non-null type conforms to <code>a.f</code></li>
-<li><strong><code>a</code>'s type is <em>free</em> or <code>b</code>'s type is <em>committed</em> </strong></li>
-</ul>
-</li>
-</ul>
+<p>A field write</p>
+<div class="highlight"><pre><span class="n">a</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">b</span>
+</pre></div>
+<p>is well-typed if
+- <code>a</code> and <code>b</code> are well-typed
+- <code>a</code>'s type is a non-null type (<code>!</code>)
+- <code>b</code>'s class and non-null type conforms to <code>a.f</code>
+- <strong><code>a</code>'s type is <em>free</em> or <code>b</code>'s type is <em>committed</em> </strong></p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
