@@ -190,6 +190,7 @@
 </li>
 <li><a href="#behavioral-subtyping-contracts">Behavioral Subtyping (Contracts)</a><ul>
 <li><a href="#subtyping-and-contracs">Subtyping and Contracs</a></li>
+<li><a href="#behavioral-subtyping">Behavioral Subtyping</a></li>
 </ul>
 </li>
 <li><a href="#types-as-contracts">Types as Contracts</a></li>
@@ -603,6 +604,21 @@ This is expressed as interface specifications (contracts)</p>
 <li>Subtypes may have <em>stronger invariants</em> than supertypes</li>
 <li>Subtypes may have <em>stronger history constrains</em> than supertype</li>
 </ul>
+<h4 id="behavioral-subtyping">Behavioral Subtyping</h4>
+<ul>
+<li>Subtype needs to satisfy the contract of the supertype (inheriting contracts)</li>
+<li><em>Invariant</em> inheritance: Conjunction (AND) of own contract and contracts of all supertypes</li>
+<li><em>History</em> inheritance: same as for <em>invariants</em></li>
+<li><em>Precondition</em> inheritance: Disjunctions (OR) of own contract and contracts of all supertypes</li>
+</ul>
+<div class="math">$$PreEff_{S.m} = Pre_{S.m} || Pre_{T.m} || Pre_{T’.m} || ...$$</div>
+<ul>
+<li><em>Postcondition</em> inheritance: Satisfy <em>each</em> postcondition for which the corresponding precondition holds<ul>
+<li>Precondition needs to be evaluated with <em>old</em> state</li>
+</ul>
+</li>
+</ul>
+<div class="math">$$PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) &amp;&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) ...$$</div>
 <h3 id="types-as-contracts">Types as Contracts</h3>
 <p>Types can be seen as a kind of contracts.</p>
 <p>Overriding Methods must:</p>
