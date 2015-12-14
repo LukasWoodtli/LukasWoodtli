@@ -308,6 +308,14 @@
 </li>
 <li><a href="#arrays">Arrays</a></li>
 <li><a href="#summary">Summary</a></li>
+<li><a href="#initialization-of-global-data">Initialization of Global Data</a><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#c">C++</a></li>
+<li><a href="#java-similar-in-c">Java (similar in C#)</a></li>
+<li><a href="#scala">Scala</a></li>
+<li><a href="#summary_1">Summary</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1864,8 +1872,49 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 </ul>
 <!-- End of Notes Week 12 -->
 <!-- Beginning of Notes Week 13 -->
-<!-- Slides 7.3 p. 194 (~53)
-## Initialization of Global Data  -->
+<h2 id="initialization-of-global-data">Initialization of Global Data</h2>
+<ul>
+<li>OO-Programs have also global data</li>
+<li>i.e Flightweight-Pattern, Singleton, Caches...</li>
+</ul>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Must be initialized before first use (non-nullness)</li>
+<li>Handle mutual dependencies</li>
+<li>Lazy initialization</li>
+</ul>
+<h3 id="c">C++</h3>
+<ul>
+<li>Global vars can have initializers</li>
+<li>Initializers are executed before <code>main</code> function<ul>
+<li>Implicitely called by run-time system</li>
+<li>No support for lazy initialization</li>
+</ul>
+</li>
+<li>Order of execution as in apearance in code</li>
+<li>No mechanism for dependancies (has to be donne by programmer)</li>
+</ul>
+<h3 id="java-similar-in-c">Java (similar in C#)</h3>
+<ul>
+<li>Static initializer for static fields</li>
+<li>Lazy initialized</li>
+<li>No mechanism for mutual dependencies (call to not initialized reference possible)</li>
+<li>Static initializer can have side effects (no modular reasoning about initialization)</li>
+</ul>
+<h3 id="scala">Scala</h3>
+<ul>
+<li>Language support for singletons</li>
+<li>Singletons can extend classes and traits but <em>can't be specialized</em></li>
+<li>Internally translated to Java initialization</li>
+</ul>
+<h3 id="summary_1">Summary</h3>
+<ul>
+<li>No solution really guarantees that global data is initialized before use</li>
+<li>No solution handles dependancies</li>
+<li>Carefull with global data (as programmer)!</li>
+</ul>
+<!-- End of Slides 7 -->
+<!-- Beginning of Slides 8 # Reflections -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
