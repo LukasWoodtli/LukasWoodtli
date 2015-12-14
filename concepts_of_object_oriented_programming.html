@@ -318,6 +318,10 @@
 </li>
 </ul>
 </li>
+<li><a href="#reflections">Reflections</a><ul>
+<li><a href="#introspection">Introspection</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="core-requirements-to-oop-languages">Core Requirements to OOP Languages</h1>
@@ -1914,7 +1918,25 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <li>Carefull with global data (as programmer)!</li>
 </ul>
 <!-- End of Slides 7 -->
-<!-- Beginning of Slides 8 # Reflections -->
+<!-- Beginning of Slides 8 -->
+<h1 id="reflections">Reflections</h1>
+<ul>
+<li>Program can observe and modify its structure and behavioral at run-time</li>
+<li>Simples form: RTTI (i.e for casting)</li>
+</ul>
+<h2 id="introspection">Introspection</h2>
+<ul>
+<li>Get methods, fields... from classes (or individual objects)</li>
+<li>Checks are done at run-time instead of compile-time (exceptions)<ul>
+<li>Type checking</li>
+<li>Accessibility checks</li>
+</ul>
+</li>
+<li>Accessibity / information hiding can be weakend (security issue)</li>
+<li>Helpful for debugging</li>
+<li>JUnit's test driver works with introspection</li>
+<li>Visitor pattern is much simpler with introspection</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
