@@ -668,7 +668,9 @@ This is expressed as interface specifications (contracts)</p>
 <li>Invariants/Fields</li>
 <li>History constraints</li>
 </ul>
+<!-- End of Slides 2 -->
 <h2 id="inheritance">Inheritance</h2>
+<!-- Notes Week 4 01:18:05  p. 4 -->
 <h3 id="difference-between-inheritance-and-subtyping">Difference between inheritance and subtyping</h3>
 <p>Inheritance allows to reuse the code (specialization) inside a class
 (member variables and method definitions).</p>
@@ -1780,6 +1782,10 @@ provided only the information needed.</p>
 <li><code>this</code> in cunstruction has implicitly: <em>free non-null</em></li>
 <li>Definite assignment check for complete constructor</li>
 <li>Constructors are <em>free</em> by default</li>
+<li>The most permessive type for <em>arguments in a constructor</em> declaration is <em>unc</em><ul>
+<li>This should be chosen if possible</li>
+</ul>
+</li>
 </ul>
 <h3 id="method-calls">Method Calls</h3>
 <ul>
@@ -1794,6 +1800,10 @@ provided only the information needed.</p>
 <ul>
 <li>Overriding requires usual co- and contravariant rules<ul>
 <li>The receiver (<code>this</code>) counts as parameter</li>
+<li>Method arguments should not be declared as <em>unclassified</em> if possible<ul>
+<li>otherwise overriding methods need to cope with <em>unclassified</em> too</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
