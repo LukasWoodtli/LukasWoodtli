@@ -121,6 +121,11 @@
     <span id="article_info">
     <a class="label label-primary" 
       href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/eth.html">ETH</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/assembler.html">Assembler</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month11">11</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month11">07</a>
@@ -170,6 +175,7 @@
 <li><a href="#for">FOR</a></li>
 </ul>
 </li>
+<li><a href="#builtin-functions">Builtin Functions</a></li>
 </ul>
 </li>
 <li><a href="#modules">Modules</a></li>
@@ -424,6 +430,54 @@ find the right documents.</p>
 <div class="highlight"><pre><span class="kr">FOR</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="kr">TO</span> <span class="mi">100</span> <span class="kr">DO</span>
     <span class="cm">(* statement seq *)</span>
 <span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<h5 id="builtin-functions">Builtin Functions</h5>
+<p>Increment and decrement</p>
+<div class="highlight"><pre><span class="k-Pervasive">INC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="k-Pervasive">DEC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="k-Pervasive">INC</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="k-Pervasive">DEC</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+</pre></div>
+<p>Sets</p>
+<div class="highlight"><pre><span class="k-Pervasive">INCL</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">element</span><span class="p">);</span>
+<span class="k-Pervasive">EXCL</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">element</span><span class="p">);</span>
+</pre></div>
+<p>Assert and Halt</p>
+<div class="highlight"><pre><span class="n">ASSERT</span><span class="p">(</span><span class="n">b</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">);</span>
+<span class="k-Pervasive">HALT</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+<p>Allocation</p>
+<div class="highlight"><pre><span class="k-Pervasive">NEW</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">..</span><span class="p">.);</span>
+</pre></div>
+<p>Shifts</p>
+<div class="highlight"><pre><span class="n">ASH</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">LSH</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">ROT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</pre></div>
+<p>Conversion</p>
+<div class="highlight"><pre><span class="n">SHORT</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">LONG</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="k-Pervasive">ORD</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+<span class="k-Pervasive">CHR</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="n">ENTIER</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+</pre></div>
+<p>Arrays</p>
+<div class="highlight"><pre><span class="n">LEN</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">LEN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">DIM</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</pre></div>
+<p>Misc</p>
+<div class="highlight"><pre><span class="k-Pervasive">ABS</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="k-Pervasive">MAX</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+<span class="k-Pervasive">MIN</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+<span class="k-Pervasive">ODD</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="k-Pervasive">CAP</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+<p>Addresses and Sizes</p>
+<div class="highlight"><pre><span class="n">ADDRESS</span> <span class="kr">OF</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">ADDRESSOF</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="k-Pervasive">SIZE</span> <span class="kr">OF</span> <span class="n">t</span><span class="p">;</span>
+<span class="n">SIZEOF</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 </pre></div>
 <h4 id="modules">Modules</h4>
 <ul>

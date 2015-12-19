@@ -75,6 +75,24 @@
                   </li>
                 </ul>
               </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
                 <li >
                   <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
                 </li>
@@ -102,26 +120,26 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/Programming.html">Programming</a>
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/C.html">C</a>
+          href="http://lukaswoodtli.github.io/tag/c.html">C</a>
         <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/C++.html">C++</a>
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month05">05</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month05">15</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/Lukas Woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
-    <h1>Macro Tricks</h1>
-<h2>Stringification</h2>
+    <h1 id="macro-tricks">Macro Tricks</h1>
+<h2 id="stringification">Stringification</h2>
 <p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
 <div class="highlight"><pre><span class="cp">#define stringize(s) _stringize(s)</span>
 <span class="cp">#define _stringize(s) #s</span>
@@ -141,7 +159,7 @@
 <p>_stringize(4)  </p>
 <p>"4"  </p>
 </blockquote>
-<h2>Concatenation</h2>
+<h2 id="concatenation">Concatenation</h2>
 <p>With the <code>##</code> operator in a preprocessor macro it's possible to combine two tokens.</p>
 <div class="highlight"><pre><span class="cp">#define CREATE_ID(name) ID_##name</span>
 
@@ -150,7 +168,7 @@
 <blockquote>
 <p>ID_IMPORTANT_THING</p>
 </blockquote>
-<h2>Further Reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 <p>There is a good explanation in the GCC online docs:
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Macros.html#Macros">Macros</a></p>
   </div>
@@ -158,8 +176,8 @@
   <hr/>
 
       <ul class="pager">
-        <li class="previous disabled">
-          <a >
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/introduction_to_statistics.html">
           &laquo; Newer</a>
         </li>
         <li class="next">
