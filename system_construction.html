@@ -181,6 +181,8 @@
 <li><a href="#modules">Modules</a></li>
 <li><a href="#pseudo-module-system">Pseudo Module SYSTEM</a><ul>
 <li><a href="#system-arm-specific">SYSTEM: ARM Specific</a></li>
+<li><a href="#interrupt-procedures">Interrupt Procedures</a></li>
+<li><a href="#special-flags-and-features">Special Flags and Features</a></li>
 </ul>
 </li>
 </ul>
@@ -547,6 +549,34 @@ find the right documents.</p>
 <p>Floating Point</p>
 <div class="highlight"><pre><span class="n">SYSTEM</span><span class="p">.</span><span class="n">NULL</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="n">SYSTEM</span><span class="p">.</span><span class="n">MULD</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+<h5 id="interrupt-procedures">Interrupt Procedures</h5>
+<div class="highlight"><pre><span class="kr">PROCEDURE</span> <span class="n">Handler</span> <span class="p">{</span><span class="n">INTERRUPT</span><span class="p">,</span> <span class="n">PCOFFSET</span><span class="o">=</span><span class="n">k</span><span class="p">};</span>
+<span class="kr">BEGIN</span> <span class="cm">(* k is the offset to the next instruction</span>
+<span class="cm">         cf. table of exceptions *)</span>
+<span class="kr">END</span> <span class="n">Handler</span><span class="p">;</span>
+</pre></div>
+<h5 id="special-flags-and-features">Special Flags and Features</h5>
+<p>Procedure without activation frame</p>
+<div class="highlight"><pre><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">NOTAG</span><span class="p">}</span>
+</pre></div>
+<p>Procedure that is linked to the beginning of a kernel</p>
+<div class="highlight"><pre><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">INITIAL</span><span class="p">}</span>
+</pre></div>
+<p>Inline assembler block</p>
+<div class="highlight"><pre><span class="n">CODE</span> <span class="o">..</span><span class="p">.</span> <span class="kr">END</span>
+</pre></div>
+<p>Alignment of a symbol (i. e variable)</p>
+<div class="highlight"><pre><span class="n">symbol</span> <span class="p">{</span><span class="n">ALIGNED</span><span class="p">(</span><span class="mi">32</span><span class="p">)}</span>
+</pre></div>
+<p>Pinning of a symbol</p>
+<div class="highlight"><pre><span class="n">symbol</span> <span class="p">{</span><span class="n">FIXED</span><span class="p">(</span><span class="mi">0</span><span class="n">x8000</span><span class="p">))</span>
+</pre></div>
+<p>Unsafe pointer that is assignment compatible with type <code>ADDRESS</code></p>
+<div class="highlight"><pre><span class="kr">POINTER</span> <span class="p">{</span><span class="n">UNSAFE</span><span class="p">}</span> <span class="kr">TO</span> <span class="o">..</span><span class="p">.</span>
+</pre></div>
+<p>Symbol that is invisible to a Garbage Collector</p>
+<div class="highlight"><pre><span class="n">symbol</span> <span class="p">{</span><span class="n">UNTRACED</span><span class="p">}</span>
 </pre></div>
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
