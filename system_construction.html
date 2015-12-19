@@ -179,6 +179,10 @@
 </ul>
 </li>
 <li><a href="#modules">Modules</a></li>
+<li><a href="#pseudo-module-system">Pseudo Module SYSTEM</a><ul>
+<li><a href="#system-arm-specific">SYSTEM: ARM Specific</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -501,6 +505,49 @@ find the right documents.</p>
 </li>
 <li>Unsafe Pointer: can write to memory address</li>
 </ul>
+<h4 id="pseudo-module-system">Pseudo Module <code>SYSTEM</code></h4>
+<p>Direct Memory Access Functions</p>
+<div class="highlight"><pre><span class="n">SYSTEM</span><span class="p">.</span><span class="n">PUT</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">GET</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">PUT8</span><span class="p">|</span><span class="mi">16</span><span class="p">|</span><span class="mi">32</span><span class="p">|</span><span class="mi">64</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">:=</span> <span class="n">SYSTEM</span><span class="p">.</span><span class="n">GET8</span><span class="p">|</span><span class="mi">16</span><span class="p">|</span><span class="mi">32</span><span class="p">|</span><span class="mi">64</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">MOVE</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+</pre></div>
+<p>Data Type</p>
+<div class="highlight"><pre><span class="n">SYSTEM</span><span class="p">.</span><span class="n">BYTE</span>
+</pre></div>
+<p>Type Cast</p>
+<div class="highlight"><pre><span class="n">b</span> <span class="o">:=</span> <span class="n">SYSTEM</span><span class="p">.</span><span class="k-Pervasive">VAL</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</pre></div>
+<p>Example of Low-Level access</p>
+<div class="highlight"><pre><span class="kr">IMPORT</span> <span class="n">SYSTEM</span><span class="p">;</span>
+
+<span class="kr">PROCEDURE</span> <span class="n">LetThereBeLight</span><span class="p">;</span>
+<span class="kr">CONST</span> <span class="n">GPSET0</span> <span class="o">=</span> <span class="mh">03F20001C</span><span class="n">H</span><span class="p">;</span>
+<span class="kr">BEGIN</span>
+    <span class="n">SYSTEM</span><span class="p">.</span><span class="n">PUT</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">,</span> <span class="p">{</span><span class="mi">21</span><span class="p">});</span>
+<span class="kr">END</span> <span class="n">LetThereBeLight</span><span class="p">;</span>
+</pre></div>
+<h5 id="system-arm-specific"><code>SYSTEM</code>: ARM Specific</h5>
+<p>Register Access</p>
+<div class="highlight"><pre><span class="n">SYSTEM</span><span class="p">.</span><span class="n">SP</span><span class="p">();</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">FP</span><span class="p">();</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">LNK</span><span class="p">();</span>
+
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">SETSP</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">SETFP</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">SETLR</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">LDPSR</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">STPSR</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">LDCPR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">STCPR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">FLUSH</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+<p>Floating Point</p>
+<div class="highlight"><pre><span class="n">SYSTEM</span><span class="p">.</span><span class="n">NULL</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">SYSTEM</span><span class="p">.</span><span class="n">MULD</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
