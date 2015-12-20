@@ -194,6 +194,10 @@
 <li><a href="#bootfile">Bootfile</a></li>
 </ul>
 </li>
+<li><a href="#minos-kernel">Minos Kernel</a><ul>
+<li><a href="#system-startup">System Startup</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
@@ -681,6 +685,40 @@ Start address: <code>108000H</code>
 Image file name: <code>kernel.img</code>
 Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <!-- Beginning of Slides Week 3 -->
+<h3 id="minos-kernel">Minos Kernel</h3>
+<h4 id="system-startup">System Startup</h4>
+<ul>
+<li>
+<p>Firmware (RPI2, GPU)</p>
+<ol>
+<li>Initialize HW</li>
+<li>Copy boot image to RAM</li>
+<li>Jump to boot image (initializer)</li>
+</ol>
+</li>
+<li>
+<p>Initializer</p>
+<ol>
+<li>Set <em>stack registers</em> for all processor modes</li>
+<li>Setup <em>free heap</em> and <em>module</em> list</li>
+<li>Initialize <em>MMU</em> and <em>page table</em></li>
+<li>Setup <em>interrupt handler</em> and <em>vectors</em></li>
+<li>Start <em>timer</em> and <em>enable interrupts</em></li>
+<li>Initialize UARTs, RAM disks, ...</li>
+<li>Enter scheduling loop on OS</li>
+</ol>
+</li>
+</ul>
+<p>The Minos Kernal is modular:</p>
+<ul>
+<li>Minos: Command interpreter and scheduler</li>
+<li>Modules: Module loader, dynamic linker</li>
+<li>File System: RamVolumes, OFS, ...</li>
+<li>Kernel: Memory management, device drivers</li>
+<li>I/O: Kernel logging, ...</li>
+<li>Runtime: Memory allocation (heaps), FPU emulation, ...</li>
+</ul>
+<!-- Slides Week 3 09-29 p. 84 (6) -->
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
