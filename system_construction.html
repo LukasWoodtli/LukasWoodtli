@@ -183,8 +183,15 @@
 <li><a href="#system-arm-specific">SYSTEM: ARM Specific</a></li>
 <li><a href="#interrupt-procedures">Interrupt Procedures</a></li>
 <li><a href="#special-flags-and-features">Special Flags and Features</a></li>
+<li><a href="#type-declarations">Type Declarations</a></li>
+<li><a href="#inheritance">Inheritance</a></li>
+<li><a href="#runtime-support-for-inheritance">Runtime Support for Inheritance</a></li>
 </ul>
 </li>
+<li><a href="#module-loading-and-commands">Module Loading and Commands</a></li>
+<li><a href="#compilation-and-linknig">Compilation and Linknig</a></li>
+<li><a href="#object-file-format">Object File Format</a></li>
+<li><a href="#bootfile">Bootfile</a></li>
 </ul>
 </li>
 </ul>
@@ -381,7 +388,7 @@ find the right documents.</p>
 </ul>
 <h2 id="minos-and-oberon">Minos and Oberon</h2>
 <h3 id="history-of-oberon">History of Oberon</h3>
-<p><img alt="Oberon Language and OS Family" class="img-responsive" src="/images/oberon_history.png"/></p>
+<p><img alt="Oberon Language and OS Family" class="img-responsive" src="/images/syscon_oberon_history.png"/></p>
 <h3 id="oberon">Oberon</h3>
 <ul>
 <li>Modules can be compiled separately</li>
@@ -578,6 +585,102 @@ find the right documents.</p>
 <p>Symbol that is invisible to a Garbage Collector</p>
 <div class="highlight"><pre><span class="n">symbol</span> <span class="p">{</span><span class="n">UNTRACED</span><span class="p">}</span>
 </pre></div>
+<h5 id="type-declarations">Type Declarations</h5>
+<div class="highlight"><pre><span class="kr">TYPE</span>
+
+<span class="n">Device</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">DeviceDesc</span><span class="p">;</span>  <span class="cm">(* Pointer to record (reference type)*)</span>
+<span class="n">DeviceDesc</span><span class="o">*</span> <span class="o">=</span> <span class="kr">RECORD</span>              <span class="cm">(* Record: Value type *)</span>
+    <span class="n">id</span><span class="o">*</span><span class="p">:</span> <span class="k-Pervasive">INTEGER</span><span class="p">;</span>
+    <span class="n">Open</span><span class="o">*</span><span class="p">:</span> <span class="kr">PROCEDURE</span><span class="p">(</span><span class="n">dev</span><span class="p">:</span> <span class="n">Device</span><span class="p">);</span>
+    <span class="n">Close</span><span class="o">*</span><span class="p">:</span> <span class="kr">PROCEDURE</span><span class="p">(</span><span class="n">dev</span><span class="p">:</span> <span class="n">Device</span><span class="p">);</span>
+    <span class="n">next</span><span class="o">*</span><span class="p">:</span> <span class="n">Device</span><span class="p">;</span>
+<span class="kr">END</span><span class="p">;</span>
+
+<span class="cm">(* Procedure type with signature *)</span>
+<span class="n">TrapHandler</span><span class="o">*</span> <span class="o">=</span> <span class="kr">PROCEDURE</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="k-Pervasive">INTEGER</span><span class="p">;</span> <span class="kr">VAR</span> <span class="n">res</span><span class="p">:</span> <span class="k-Pervasive">INTEGER</span><span class="p">);</span>
+
+<span class="n">NumberType</span><span class="o">*</span> <span class="o">=</span> <span class="k-Pervasive">REAL</span><span class="p">;</span> <span class="cm">(* Type alias *)</span>
+
+<span class="n">DeviceName</span><span class="o">*</span> <span class="kr">ARRAY</span> <span class="n">DeviceNameLength</span> <span class="kr">OF</span> <span class="k-Pervasive">CHAR</span><span class="p">;</span> <span class="cm">(* Array Type *)</span>
+
+<span class="n">Data</span><span class="o">*</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="kr">ARRAY</span> <span class="kr">OF</span> <span class="k-Pervasive">CHAR</span><span class="p">;</span> <span class="cm">(* Dynamic array type *)</span>
+</pre></div>
+<h5 id="inheritance">Inheritance</h5>
+<div class="highlight"><pre><span class="n">Task</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">TaskDesc</span><span class="p">;</span>
+<span class="n">TaskDesc</span><span class="o">*</span> <span class="o">=</span> <span class="kr">RECORD</span>
+    <span class="n">task</span> <span class="n">task</span> <span class="n">task</span>
+    <span class="n">task</span> <span class="n">task</span>
+    <span class="n">proc</span><span class="p">:</span><span class="kr">PROCEDURE</span><span class="p">(</span><span class="n">me</span><span class="p">:</span><span class="n">Task</span><span class="p">);</span> <span class="cm">(* This procedure is executed in the task *)</span>
+    <span class="n">next</span><span class="p">:</span> <span class="n">Task</span><span class="p">;</span>              <span class="cm">(* The next task in the list of tasks *)</span>
+<span class="kr">END</span><span class="p">;</span>
+
+<span class="n">PeriodicTask</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">PeriodicTaskDesc</span><span class="p">;</span>
+<span class="n">PeriodicTaskDesc</span><span class="o">*</span> <span class="o">=</span> <span class="kr">RECORD</span> <span class="p">(</span><span class="n">TaskDesc</span><span class="p">)</span> <span class="cm">(* inherits TaskDesc *)</span>
+    <span class="n">priority</span><span class="p">:</span> <span class="k-Pervasive">LONGINT</span><span class="p">;</span> <span class="cm">(* The priority determines the execution order *)</span>
+    <span class="n">interval</span><span class="p">:</span> <span class="k-Pervasive">LONGINT</span><span class="p">;</span> <span class="cm">(* The task is executed every "interval" msecs *)</span>
+<span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<p>Type Test</p>
+<div class="highlight"><pre><span class="kr">IF</span> <span class="n">task</span> <span class="n">IS</span> <span class="n">PeriodicTask</span> <span class="kr">THEN</span> <span class="o">..</span><span class="p">.</span> <span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<p>Type Guard (cast)</p>
+<div class="highlight"><pre><span class="kr">IF</span> <span class="n">task</span><span class="p">(</span><span class="n">PeriodicTask</span><span class="p">).</span><span class="n">priority</span> <span class="o">=</span> <span class="mi">1</span> <span class="kr">THEN</span> <span class="o">..</span><span class="p">.</span> <span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<p>Type Test and Guard</p>
+<div class="highlight"><pre><span class="kr">WITH</span> <span class="n">task</span><span class="p">:</span> <span class="n">PeriodicTask</span> <span class="kr">DO</span> <span class="o">..</span><span class="p">.</span> <span class="kr">END</span><span class="p">;</span>
+</pre></div>
+<h5 id="runtime-support-for-inheritance">Runtime Support for Inheritance</h5>
+<ul>
+<li>RTTI is supported</li>
+<li>Each type gets an unique type descriptor (<code>LONGINT</code>)</li>
+<li>The variables contain an array of up to 3 tags</li>
+<li>The tags point to the type descriptors</li>
+<li>Inheritance level is restricted to 3</li>
+</ul>
+<h4 id="module-loading-and-commands">Module Loading and Commands</h4>
+<ul>
+<li>Modules are loaded on demand (first use)</li>
+<li>Statically linked modules are loaded at boot-time</li>
+<li>Exported Procedures without parameters act as commands</li>
+<li>Modification of modules needs reloading</li>
+<li>Unloading possible, if no other loaded module (static or dynamic) depends on it</li>
+<li>If a command of a not loaded module is executed the module is loaded first</li>
+</ul>
+<h4 id="compilation-and-linknig">Compilation and Linknig</h4>
+<ul>
+<li>A module (.mod) is compiled to an executable file / object file (.arm) and a symbol file (.smb)</li>
+<li>The executable file contains a fingerprint</li>
+<li>The linker adds fingerprint to dependant object files (fixup)</li>
+</ul>
+<h4 id="object-file-format">Object File Format</h4>
+<p>Compiler flags:</p>
+<div class="highlight"><pre>Compiler.Compile -b=ARM --objectFile=Minos
+</pre></div>
+<ul>
+<li>The object file is very compact</li>
+<li>Key: Fingerprint</li>
+<li>Fixups → Fixup-root (relocation table) linked list to fixups</li>
+<li>Downsides:<ul>
+<li>Module file is limited</li>
+<li>Not very maintainable</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Minos Object Files" class="img-responsive" src="/images/syscon_minos_object_file.png"/></p>
+<p>This image is taken from the lecture slides provided by Felix Friedrich</p>
+<h4 id="bootfile">Bootfile</h4>
+<ul>
+<li>Linked Modules of Kernel files (hierarchy)</li>
+<li>Predefined loading address and entry point (0x8000 for RPI2)</li>
+</ul>
+<p>Boot-Linking command in host system</p>
+<div class="highlight"><pre>MinosLinker.Link minimalinit.img 108000H kernel.img OFSRamVolumes SerialLog Minos  ~
+</pre></div>
+<p>Image header: <code>minimalinit.img</code>
+Start address: <code>108000H</code>
+Image file name: <code>kernel.img</code>
+Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
+<!-- Beginning of Slides Week 3 -->
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
