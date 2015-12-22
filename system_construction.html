@@ -196,6 +196,11 @@
 </li>
 <li><a href="#minos-kernel">Minos Kernel</a><ul>
 <li><a href="#system-startup">System Startup</a></li>
+<li><a href="#initialization-of-interrupts">Initialization of Interrupts</a></li>
+<li><a href="#task-scheduling-minos">Task Scheduling (Minos)</a><ul>
+<li><a href="#stack-minos">Stack (Minos)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -719,6 +724,57 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Runtime: Memory allocation (heaps), FPU emulation, ...</li>
 </ul>
 <!-- Slides Week 3 09-29 p. 84 (6) -->
+<p>...</p>
+<!-- Slides and Notes Week 4 -->
+<h4 id="initialization-of-interrupts">Initialization of Interrupts</h4>
+<ol>
+<li>Set handlers of IRQ's<ul>
+<li>Write handlers for needed interrupts</li>
+<li>Put jumps to handlers into interrupt table</li>
+</ul>
+</li>
+<li>Enable IRQ's</li>
+</ol>
+<p>Usually Interrupts need to be configured in 3 parts:</p>
+<ul>
+<li>CPU (enable, masking...)</li>
+<li>Interrupt Controller</li>
+<li>Device</li>
+</ul>
+<p>The RPI2 has 3 memory-mapped IRQ registers (32-bit):</p>
+<ul>
+<li><em>Pending Bits</em> indicate which interrupts are pending</li>
+<li>Need to be checked in the <em>IRQ Trap Handler</em> (1st level handler)</li>
+<li>Call <em>IRQ Handler</em> (2nd level) depending on pending bits</li>
+</ul>
+<h4 id="task-scheduling-minos">Task Scheduling (Minos)</h4>
+<p>3 Task types:</p>
+<ul>
+<li>High Priority (every 5 ms)</li>
+<li>Low Priority (every 20 ms)</li>
+<li>Background tasks</li>
+</ul>
+<p>Preemption:</p>
+<ul>
+<li>High priority tasks preempt low priority and background tasks</li>
+<li>Low priority tasks preempt only low priority tasks</li>
+<li>Background tasks don't preempt any tasks</li>
+</ul>
+<p>Task Descriptors for</p>
+<ul>
+<li>Synchronous (periodic) tasks</li>
+<li>Asynchronous (background) tasks</li>
+</ul>
+<h5 id="stack-minos">Stack (Minos)</h5>
+<ul>
+<li>One stack for all processes</li>
+<li>Every task needs to run to completion</li>
+<li>Preemtion is possible<ul>
+<li>Preemting task needs to be completed before returning</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 4 49:00 -->
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
