@@ -214,6 +214,21 @@
 <li><a href="#uart">UART</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#a2-case-study-2">A2 (Case Study 2)</a><ul>
+<li><a href="#intel-x86">Intel x86</a><ul>
+<li><a href="#resources-x86-compatible-hw">Resources (x86 compatible HW)</a></li>
+<li><a href="#interrupt-system-x86">Interrupt System (x86)</a><ul>
+<li><a href="#apic">APIC</a></li>
+<li><a href="#multiprocessor-specification">MultiProcessor Specification</a></li>
+<li><a href="#exception-numbers">Exception Numbers</a></li>
+<li><a href="#configuring-apic">Configuring APIC</a></li>
+</ul>
+</li>
+<li><a href="#pci-local-bus">PCI Local Bus</a></li>
+</ul>
+</li>
 <li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
 </ul>
 </li>
@@ -892,6 +907,151 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 <!-- End of Week 5 -->
 <!-- Beginning of Week 6 -->
+<h1 id="a2-case-study-2">A2 (Case Study 2)</h1>
+<h2 id="intel-x86">Intel x86</h2>
+<ul>
+<li>Shared Memory (for all processors)</li>
+<li>Symmetrical Multiple Processors (SMP)</li>
+</ul>
+<h3 id="resources-x86-compatible-hw">Resources (x86 compatible HW)</h3>
+<p><a href="http://wiki.osdev.org">osdev.org</a></p>
+<ul>
+<li>SDM: Intel® 64 and IA-32 Architectures Software Developer’s Manual (4000 p., 3 volumes)<ol>
+<li>Architecture</li>
+<li>Instruction Set Reference</li>
+<li>System Programming Guide</li>
+</ol>
+</li>
+<li>MP Spec: Intel Multiprocessor Specification, version 1.4 (100 p.)</li>
+<li>ACPI Spec: Advanced Configuration and Power Interface Specification (1000 p.)</li>
+<li>PCI Spec: PCI Local Bus Specification Rev. 2.2 (322 p.)</li>
+</ul>
+<h3 id="interrupt-system-x86">Interrupt System (x86)</h3>
+<ul>
+<li>External IRQ's (asynchronous)<ul>
+<li>I/O Devices</li>
+<li>Timer</li>
+<li>Inter-processor interrupts</li>
+</ul>
+</li>
+<li>Software IRQ's (synchronous)<ul>
+<li>Traps/Syscall: special instructions</li>
+</ul>
+</li>
+<li>Processor exceptions (synchronous)<ul>
+<li>Faults (restartable): i.e page fault</li>
+<li>Aborts (Fatal): i.e machine check</li>
+</ul>
+</li>
+</ul>
+<h4 id="apic">APIC</h4>
+<ul>
+<li>Each CPU has local APIC (local interrupts)</li>
+<li>
+<p>I/O APIC for all CPU's (external interrupts)</p>
+</li>
+<li>
+<p>Messages to processors</p>
+<ul>
+<li>Start Processor: Activation and Initialization of individual processors</li>
+<li>Halt Processor: Deactivation of individual processors</li>
+<li>Halt Process, schedule new process: Interrupt in order to transfer control to scheduler</li>
+</ul>
+</li>
+<li>Local timers<ul>
+<li>Periodical interrupts</li>
+</ul>
+</li>
+</ul>
+<h4 id="multiprocessor-specification">MultiProcessor Specification</h4>
+<ul>
+<li>Standard by Intel (MP Spec 1.4)</li>
+<li>Hardware Specification<ul>
+<li>Memory Map</li>
+<li>APIC</li>
+<li>Interrupt Modes</li>
+</ul>
+</li>
+<li>MP Configuration Table<ul>
+<li>Processor, Bus, I/O APIC</li>
+<li>Table address searched via "floating pointer structure"</li>
+</ul>
+</li>
+</ul>
+<h4 id="exception-numbers">Exception Numbers</h4>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Vector #</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Div error</td>
+<td>div / idiv instruction</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Debug</td>
+<td>Code / data reference</td>
+</tr>
+<tr>
+<td>2</td>
+<td>NMI</td>
+<td>Non maskable external IRQ</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Breakpoint</td>
+<td>int 3 instruction</td>
+</tr>
+<tr>
+<td>4 – 19</td>
+<td>Other processor exceptions</td>
+<td>E.g. page fault etc.</td>
+</tr>
+<tr>
+<td>20-31</td>
+<td>reserved</td>
+<td></td>
+</tr>
+<tr>
+<td>32-255</td>
+<td>Maskable Interrupts</td>
+<td>External Interrupts from <code>INTR</code> pin <code>INT</code> n instruction</td>
+</tr>
+</tbody>
+</table>
+<h4 id="configuring-apic">Configuring APIC</h4>
+<ul>
+<li>Local Vector Table (for local interrupt sources)<ul>
+<li>Vector Number, Trigger Mode, Status, Interrupt Vector Mask</li>
+<li>Timer Mode (one shot / periodic)</li>
+</ul>
+</li>
+<li>Command Register: Inter Processor Interrupt with<ul>
+<li>vector number,</li>
+<li>delivery mode: fixed, nmi, init, startup (..)</li>
+<li>logical / physical destination (including self and broadcasts with / without self</li>
+</ul>
+</li>
+</ul>
+<h3 id="pci-local-bus">PCI Local Bus</h3>
+<ul>
+<li>Connect Peripheral Components</li>
+<li>Standardized Configuration Address Space for all PCI Devices</li>
+<li>Interrupt Routing Configuration</li>
+</ul>
+<p>Access mechanism</p>
+<ul>
+<li>PCI BIOS – offers functionality such as "find device by classcode". Presence determined by floating data structure in BIOS ROM</li>
+<li>Addressable via in / out instructions operating on separate I/O memory address space</li>
+<li>PCI Express now Memory Mapped I/O</li>
+</ul>
+<!-- Notes Week 6 35:10 -->
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
