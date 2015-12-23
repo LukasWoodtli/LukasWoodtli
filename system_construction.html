@@ -199,6 +199,7 @@
 <li><a href="#initialization-of-interrupts">Initialization of Interrupts</a></li>
 <li><a href="#task-scheduling-minos">Task Scheduling (Minos)</a><ul>
 <li><a href="#stack-minos">Stack (Minos)</a></li>
+<li><a href="#scheduler-minos">Scheduler (Minos)</a></li>
 </ul>
 </li>
 </ul>
@@ -248,7 +249,11 @@ find the right documents.</p>
 <li>Exception Generation</li>
 </ol>
 <ul>
-<li>Load-/Store: No memory operands (not as x86)</li>
+<li>Load-/Store: No memory operands (not as x86)<ul>
+<li>Load: from memory to register</li>
+<li>Store: from register to memory</li>
+</ul>
+</li>
 <li>Multiple-Data-Transfer commands (<code>stmdb sp!,{fp,lr}</code>, <code>!</code>: Write-Back)</li>
 <li>Link Register: <code>bl</code>: Branch-and-Link (stores PC in link register)</li>
 <li>PC-Relative Addressing: Loading large constants (that have no soace in instruction encoding) form code</li>
@@ -317,10 +322,10 @@ find the right documents.</p>
 </table>
 <h3 id="special-registers">Special Registers</h3>
 <ul>
-<li>R15: PC</li>
-<li>R14: LR</li>
-<li>R13: SP</li>
-<li>R12: FP (by convention)</li>
+<li>R15: PC (Programm Counter)</li>
+<li>R14: LR (Return address for procedure)</li>
+<li>R13: SP ('top' of the stack)</li>
+<li>R12: FP (by convention, stored SP before procedure call)</li>
 <li>CPSR (Processor Status Register)<ul>
 <li>Mode Bits</li>
 <li>IRQ Disable</li>
@@ -774,7 +779,24 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<!-- Notes Week 4 49:00 -->
+<h5 id="scheduler-minos">Scheduler (Minos)</h5>
+<p>Recursive interrupt procedure</p>
+<ul>
+<li>Prolog: Interrupts masked</li>
+<li>Scheduling: Interrupts allowed</li>
+<li>Epilog: Interrupts masked</li>
+</ul>
+<p>Scheduler procedure must be <em>reentrant</em></p>
+<ul>
+<li>Register values on stack</li>
+<li>Private variables</li>
+</ul>
+<p>Assumptions for scheduler</p>
+<ul>
+<li>Linked list stores tasks sorted by period and priority</li>
+<li>Tasks run to completion within given period</li>
+</ul>
+<!-- End of Week 4 -->
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
