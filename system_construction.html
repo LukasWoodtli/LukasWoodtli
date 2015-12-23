@@ -206,6 +206,14 @@
 </li>
 </ul>
 </li>
+<li><a href="#serial-communtication">Serial Communtication</a><ul>
+<li><a href="#spi">SPI</a><ul>
+<li><a href="#setup">Setup</a></li>
+</ul>
+</li>
+<li><a href="#uart">UART</a></li>
+</ul>
+</li>
 <li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
 </ul>
 </li>
@@ -797,6 +805,93 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Tasks run to completion within given period</li>
 </ul>
 <!-- End of Week 4 -->
+<!-- Beginning of Week 5 -->
+<h2 id="serial-communtication">Serial Communtication</h2>
+<ul>
+<li>Directionally<ul>
+<li>Simplex</li>
+<li>Half duplex</li>
+<li>Full duplex</li>
+</ul>
+</li>
+<li>Synchrony<ul>
+<li>Synchronous</li>
+<li>Asynchronous</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>RS-232</li>
+<li>RS-458</li>
+<li>SPI (SSP, Microwire)</li>
+<li>I<span class="math">\(^2\)</span>C</li>
+<li>1-Wire</li>
+<li>USB</li>
+</ul>
+<h3 id="spi">SPI</h3>
+<ul>
+<li>Very simple</li>
+<li>4 Wires:<ul>
+<li>SCLK: Serial bit-rate Clock</li>
+<li>MOSI: Master data Output, Slave data Input</li>
+<li>MISO: Master data Input, Slave data Output</li>
+<li>SS: Slave Select</li>
+</ul>
+</li>
+<li>Configurations:<ul>
+<li>Single slave mode: 1 Master, 1 Slave</li>
+<li>multiple slave mode: 1 Master, N Slaves</li>
+</ul>
+</li>
+<li>Synchronous bidirectional data transfer</li>
+<li>Data transfer initiated by master</li>
+<li>Bandwidth some KBits/s up to several MBits/s</li>
+<li>Simple implementation in software possible (bit-banging)</li>
+<li>Master and Slave have shift registers for data (in and output)<ul>
+<li>During communicaion data 'circles arround' between the two shift registers</li>
+</ul>
+</li>
+</ul>
+<p>Communication</p>
+<ol>
+<li>Master pulls SS to low</li>
+<li>Master pushed data out of shift register</li>
+<li>Slave pushes data out of shift register at the same time</li>
+<li>Sampling happens at SCLK</li>
+<li>To finish communication master stops SCLK</li>
+</ol>
+<ul>
+<li>No acknowledgement mechanism</li>
+<li>No device interrupts</li>
+</ul>
+<h4 id="setup">Setup</h4>
+<ul>
+<li>Polarity (SCLK):<ul>
+<li>0: Sampling happens on rising SCLK edge</li>
+<li>1: Sampling gappens on falling SCLK edge</li>
+</ul>
+</li>
+<li>Phase (SCLK):<ul>
+<li>0: Rising SCLK edge in the middle of data</li>
+<li>1: Rising SCLK enge on beginning of data</li>
+</ul>
+</li>
+</ul>
+<h3 id="uart">UART</h3>
+<ul>
+<li>Serial transmission (least significant bit first)</li>
+<li>Configurable<ul>
+<li>Number of data bits: 5, 6, 7, 8</li>
+<li>Parity: odd, even, none</li>
+<li>Stopbits: 1, 1.5, 2</li>
+<li>Transfer rate (bits per second): 75, 110, 300, ..., 115200</li>
+<li>Flow control exists in some implementations</li>
+</ul>
+</li>
+</ul>
+<!-- End of Week 5 -->
+<!-- Beginning of Week 6 -->
 <!-- Week 8 -->
 <h2 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h2>
 <p>Atomic operation implemented in processor.</p>
@@ -807,6 +902,63 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>
 <li>Return previous value at <code>a</code> in any case</li>
 </ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
