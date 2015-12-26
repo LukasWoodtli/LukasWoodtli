@@ -247,6 +247,12 @@
 <li><a href="#implementation-of-a-spinlock-using-cas">Implementation of a spinlock using CAS</a></li>
 </ul>
 </li>
+<li><a href="#boot-procedure-a2">Boot Procedure (A2)</a><ul>
+<li><a href="#processor-startup">Processor Startup</a></li>
+</ul>
+</li>
+<li><a href="#a2-activities-states">A2 Activities States</a></li>
+<li><a href="#runtime-data-structures">Runtime Data Structures</a></li>
 </ul>
 </li>
 </ul>
@@ -1263,6 +1269,93 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </pre></div>
 <!-- End of Notes Week 6 -->
 <!-- Beginning of Notes Week 7 -->
+<h3 id="boot-procedure-a2">Boot Procedure (A2)</h3>
+<ul>
+<li>Start BIOS Firmware</li>
+<li>Load A2 Bootfile</li>
+<li>Initialize modules<ul>
+<li>Module <em>Machine</em></li>
+<li>Module <em>Heaps</em></li>
+<li>...</li>
+<li>Module <em>Objects</em><ul>
+<li>Setup scheduler and self process</li>
+</ul>
+</li>
+<li>Module <em>Kernel</em><ul>
+<li>Start all processors</li>
+</ul>
+</li>
+<li>...</li>
+<li>Module Bootconsole<ul>
+<li>read configuration and execute boot commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>This all happens on the Boot Processor (BP)</p>
+</blockquote>
+<h4 id="processor-startup">Processor Startup</h4>
+<ul>
+<li>Start processor <strong>P</strong> (Bootprocessor)<ol>
+<li>Setup boot program (<code>Machine.InitProcessors</code>)</li>
+<li>Enter processor IDs into table (<code>Machine.InitBootPage</code>)</li>
+<li>Send <em>startup</em> message to <strong>P</strong> via APIC (<code>Machine.ParseMPConfig</code>)</li>
+<li>Wait with timeout on <em>started</em> flag by P (<code>Machine.StartProcessor</code>)</li>
+</ol>
+</li>
+<li>Boot program (For each processor)<ol>
+<li>Set 32-bit runtime environment (<code>Machine.EnterMP</code>)</li>
+<li>Initialize control registers, memory management, interrupt handling, APIC</li>
+<li>Set <em>started</em> flag (<code>Machine.StartMP</code>)</li>
+<li>Setup Scheduler (<code>Objects.Start</code>)</li>
+<li>Bootprocessor proceeds with boot console</li>
+</ol>
+</li>
+</ul>
+<h3 id="a2-activities-states">A2 Activities States</h3>
+<ul>
+<li>Ready: ready to be scheduled</li>
+<li>Running: currently scheduled</li>
+<li>Waiting<ul>
+<li>Condition (<code>AWAIT</code>): waiting until condition is met</li>
+<li>Lock (<code>EXCLUSIVE</code>): waiting to enter monitor</li>
+</ul>
+</li>
+<li>Terminated: Activity finished executing</li>
+</ul>
+<blockquote>
+<p>Java doesn't make difference between waiting on a condition or a lock.</p>
+</blockquote>
+<p><img alt="A2 Activities States" class="img-responsive" src="/images/syscon_a2_activieties_states.png"/></p>
+<h3 id="runtime-data-structures">Runtime Data Structures</h3>
+<ul>
+<li>Running Array<ul>
+<li>One entry for each processor</li>
+<li>Index: id of processor</li>
+</ul>
+</li>
+<li>Object header<ul>
+<li>List of condtitions</li>
+<li>List of locks</li>
+</ul>
+</li>
+<li>Ready Queues Array<ul>
+<li>Idle</li>
+<li>Low</li>
+<li>Medium</li>
+<li>High</li>
+<li>Garbage Collector (GC)</li>
+<li>Realtime (RT)</li>
+</ul>
+</li>
+<li>Interrupt Array<ul>
+<li>Index: IRQ number</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 7 18:30 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
