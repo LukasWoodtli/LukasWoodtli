@@ -253,6 +253,8 @@
 </li>
 <li><a href="#a2-activities-states">A2 Activities States</a></li>
 <li><a href="#runtime-data-structures">Runtime Data Structures</a></li>
+<li><a href="#stack-management">Stack Management</a></li>
+<li><a href="#context-switch">Context Switch</a></li>
 </ul>
 </li>
 </ul>
@@ -1331,17 +1333,17 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <p><img alt="A2 Activities States" class="img-responsive" src="/images/syscon_a2_activieties_states.png"/></p>
 <h3 id="runtime-data-structures">Runtime Data Structures</h3>
 <ul>
-<li>Running Array<ul>
+<li>Running Array/List<ul>
 <li>One entry for each processor</li>
 <li>Index: id of processor</li>
 </ul>
 </li>
-<li>Object header<ul>
-<li>List of condtitions</li>
-<li>List of locks</li>
+<li>Object header (for each object)<ul>
+<li>List of condtitions (for each condition)</li>
+<li>List of locks (for each monitor)</li>
 </ul>
 </li>
-<li>Ready Queues Array<ul>
+<li>Ready Queues/Heap<ul>
 <li>Idle</li>
 <li>Low</li>
 <li>Medium</li>
@@ -1350,69 +1352,36 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Realtime (RT)</li>
 </ul>
 </li>
-<li>Interrupt Array<ul>
+<li>Interrupt Array (first level IRQ's)<ul>
 <li>Index: IRQ number</li>
 </ul>
 </li>
 </ul>
-<!-- Notes Week 7 18:30 -->
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+<h3 id="stack-management">Stack Management</h3>
+<ul>
+<li>Virtual addressing</li>
+<li>Allocation in page units</li>
+<li>Page fault for detecting stack overflow</li>
+<li>Deallocate process stack via garbage collector (in process finalizer)</li>
+<li>Life cycle:<ul>
+<li>CreateProcess: Allocate first frame</li>
+<li>Page fault: Allocate another frame</li>
+<li>Finalize: Deallocate all frames</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Active Oberon has one shared memory for all processes!</p>
+</blockquote>
+<ul>
+<li>One Heap for all processes (no heavy-weight processes)</li>
+<li>Each proces has own stack</li>
+<li>All processes share same address space</li>
+<li>8'000 processes can be allocated<ul>
+<li>4 GB address space</li>
+<li>4 kB pages</li>
+<li>1024 pages per process</li>
+<li>&amp;#</li></ul></li></ul>
   </div>
 
   <hr/>
