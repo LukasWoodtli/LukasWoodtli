@@ -1132,21 +1132,21 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </li>
 </ul>
 <p>Active Oberon:</p>
-<div class="highlight"><pre><span class="n">Semaphore</span> <span class="o">=</span> <span class="n">object</span>
+<div class="highlight"><pre><span class="n">Semaphore</span> <span class="o">=</span> <span class="n">OBJECT</span>
     <span class="n">number</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">:</span> <span class="n">longint</span><span class="p">;</span>
 
-    <span class="n">procedure</span> <span class="n">enter</span><span class="p">;</span>
-    <span class="n">begin</span><span class="p">{</span><span class="n">exclusive</span><span class="p">}</span>
-        <span class="n">await</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">dec</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-    <span class="n">end</span> <span class="n">enter</span><span class="p">;</span>
+    <span class="kr">PROCEDURE</span> <span class="n">enter</span><span class="p">;</span>
+    <span class="kr">BEGIN</span><span class="p">{</span><span class="n">EXCLUSIVE</span><span class="p">}</span>
+        <span class="n">AWAIT</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k-Pervasive">DEC</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="kr">END</span> <span class="n">enter</span><span class="p">;</span>
 
-    <span class="n">procedure</span> <span class="n">exit</span><span class="p">;</span>
-    <span class="n">begin</span><span class="p">{</span><span class="n">exclusive</span><span class="p">}</span>
-        <span class="n">inc</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-    <span class="n">end</span> <span class="n">exit</span><span class="p">;</span>
+    <span class="kr">PROCEDURE</span> <span class="n">exit</span><span class="p">;</span>
+    <span class="kr">BEGIN</span><span class="p">{</span><span class="n">EXCLUSIVE</span><span class="p">}</span>
+        <span class="k-Pervasive">INC</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="kr">END</span> <span class="n">exit</span><span class="p">;</span>
 
-<span class="n">end</span> <span class="n">Semaphore</span><span class="p">;</span>
+<span class="kr">END</span> <span class="n">Semaphore</span><span class="p">;</span>
 </pre></div>
 <p>Equivalent Java code:</p>
 <div class="highlight"><pre><span class="kd">class</span> <span class="nc">Semaphore</span><span class="o">{</span>
@@ -1246,17 +1246,18 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Return previous value at <code>a</code> in any case</li>
 </ul>
 <h4 id="implementation-of-a-spinlock-using-cas">Implementation of a spinlock using CAS</h4>
-<div class="highlight"><pre><span class="n">Init</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
+<div class="highlight"><pre><span class="cm">(* Initialization *)</span>
+<span class="n">Init</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 
-<span class="o">::</span><span class="p">:</span><span class="n">modula2</span>
+<span class="cm">(* Aquire Lock *)</span>
 <span class="n">Acquire</span> <span class="p">(</span><span class="n">var</span> <span class="n">lock</span><span class="p">:</span> <span class="n">word</span><span class="p">)</span>
     <span class="n">repeat</span>
         <span class="n">res</span> <span class="o">:=</span> <span class="n">CAS</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">until</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="o">::</span><span class="p">:</span><span class="n">modula2</span>
+<span class="cm">(* Release Lock *)</span>
 <span class="n">Release</span> <span class="p">(</span><span class="n">var</span> <span class="n">lock</span><span class="p">:</span> <span class="n">word</span><span class="p">)</span>
     <span class="n">CAS</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">(* atomicy not needed but visibility/ordering *)</span>
 </pre></div>
