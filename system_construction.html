@@ -234,14 +234,17 @@
 <li><a href="#threads-vs-active-objects">Threads vs. Active Objects</a></li>
 <li><a href="#object-model-active-oberon">Object Model (Active Oberon)</a></li>
 <li><a href="#signal-wait-implementations">Signal-Wait Implementations</a></li>
+<li><a href="#monitors-in-active-oberon">Monitors in Active Oberon</a></li>
 </ul>
 </li>
 <li><a href="#active-object-system-a2">Active Object System (A2)</a><ul>
+<li><a href="#modular-kernel-structure">Modular Kernel Structure</a></li>
 <li><a href="#atomic-operations-hw-support">Atomic Operations (HW Support)</a><ul>
-<li><a href="#intel-x86-cmpxchg-mem-reg">Intel (x86): CMPXCHG mem, reg</a></li>
+<li><a href="#intel-x86_1">Intel (x86)</a></li>
 <li><a href="#arm">ARM</a></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
+<li><a href="#implementation-of-a-spinlock-using-cas">Implementation of a spinlock using CAS</a></li>
 </ul>
 </li>
 </ul>
@@ -1161,20 +1164,42 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
             <span class="n">notify</span><span class="o">();</span>  <span class="cm">/* notifyAll() needed if different threads</span>
 <span class="cm">                          evaluate different conditions */</span>
     <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
-<p>}</p>
+<h3 id="monitors-in-active-oberon">Monitors in Active Oberon</h3>
+<ul>
+<li>No <em>notify()</em> (or <em>notifyAll()</em>): Every <code>EXCLUSIVE</code> procedure triggers reevaluation of <code>AWAIT</code> when it returns</li>
+<li>Downsides of Monitors:<ul>
+<li>Wasting of processor time on looping on 'locks'</li>
+<li>Ordering can not be influenced</li>
+</ul>
+</li>
+</ul>
 <h2 id="active-object-system-a2">Active Object System (A2)</h2>
+<h3 id="modular-kernel-structure">Modular Kernel Structure</h3>
+<ul>
+<li>Cover: Kernel</li>
+<li>Activity Scheduler: Objects</li>
+<li>Module Loader (Memory Management): Modules, Heaps</li>
+<li>Hardware Abstraction: Machine</li>
+</ul>
 <h3 id="atomic-operations-hw-support">Atomic Operations (HW Support)</h3>
 <p>The supported operations are typically a lot slower than simple read and write operations.</p>
-<h4 id="intel-x86-cmpxchg-mem-reg">Intel (x86): <code>CMPXCHG mem, reg</code></h4>
+<h4 id="intel-x86_1">Intel (x86)</h4>
 <p>From AMD64 Architecture Programmer’s Manual:</p>
+<ul>
+<li><code>CMPXCHG mem, reg</code></li>
+</ul>
 <p>"compares the value in Register A with the value in a memory location If the two values are equal,
 the instruction copies the value in the second operand to the first operand and sets the ZF flag
 in the flag regsiters to 1. Otherwise it copies the value in the first operand to A register and
 clears ZF flag to 0"</p>
+<ul>
+<li>Lock Prefix</li>
+</ul>
 <p>"The lock prefix causes certain kinds of memory read-modify- write instructions to occur atomically"</p>
 <h4 id="arm">ARM</h4>
-<p>From ARM Architecture Reference Manual</p>
+<p>From ARM Architecture Reference Manual:</p>
 <ul>
 <li><code>LDREX &lt;rd&gt;, &lt;rn&gt;</code></li>
 </ul>
@@ -1203,6 +1228,13 @@ exclusive access to the memory addressed"</p>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>These hardware instructions are often much slower than simple read and write.
+Caches can't be exploited (direct access to memory)!</p>
+</blockquote>
+<ul>
+<li>Compare-And-Swap is the most universal instruction</li>
+</ul>
 <h4 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h4>
 <p>Atomic operation implemented in processor.</p>
 <p>Compares memory location with an value. If it's same a new (given) value is written at the
@@ -1213,7 +1245,23 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>
 <li>Return previous value at <code>a</code> in any case</li>
 </ul>
-<!-- Notes Week 6 01:10:00 -->
+<h4 id="implementation-of-a-spinlock-using-cas">Implementation of a spinlock using CAS</h4>
+<div class="highlight"><pre><span class="n">Init</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+
+<span class="o">::</span><span class="p">:</span><span class="n">modula2</span>
+<span class="n">Acquire</span> <span class="p">(</span><span class="n">var</span> <span class="n">lock</span><span class="p">:</span> <span class="n">word</span><span class="p">)</span>
+    <span class="n">repeat</span>
+        <span class="n">res</span> <span class="o">:=</span> <span class="n">CAS</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">until</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="o">::</span><span class="p">:</span><span class="n">modula2</span>
+<span class="n">Release</span> <span class="p">(</span><span class="n">var</span> <span class="n">lock</span><span class="p">:</span> <span class="n">word</span><span class="p">)</span>
+    <span class="n">CAS</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">(* atomicy not needed but visibility/ordering *)</span>
+</pre></div>
+<!-- End of Notes Week 6 -->
+<!-- Beginning of Notes Week 7 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
