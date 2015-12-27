@@ -254,7 +254,17 @@
 <li><a href="#a2-activities-states">A2 Activities States</a></li>
 <li><a href="#runtime-data-structures">Runtime Data Structures</a></li>
 <li><a href="#stack-management">Stack Management</a></li>
-<li><a href="#context-switch">Context Switch</a></li>
+<li><a href="#context-switch">Context Switch</a><ul>
+<li><a href="#coroutines-synchronous">Coroutines (Synchronous)</a></li>
+<li><a href="#asynchronous-context-switch">Asynchronous Context Switch</a></li>
+</ul>
+</li>
+<li><a href="#synchronization">Synchronization</a><ul>
+<li><a href="#object-locking">Object Locking</a></li>
+<li><a href="#priority-inversion">Priority Inversion</a></li>
+<li><a href="#priority-inheritance">Priority Inheritance</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1395,7 +1405,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </li>
 <li>Implicit<ul>
 <li>Mutual exclusion</li>
-<li><code>Await</code></li>
+<li><code>AWAIT</code></li>
 </ul>
 </li>
 </ul>
@@ -1409,7 +1419,89 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </ul>
 </li>
 </ul>
-<!-- Notes Week 7 36:00 -->
+<h4 id="coroutines-synchronous">Coroutines (Synchronous)</h4>
+<ul>
+<li>Synchronous context switch</li>
+<li>Contex switch:<ul>
+<li>Replace <em>SP</em> and <em>FP</em> of old process with <em>SP</em> and <em>FP</em> of new process</li>
+<li><em>PC</em> needs also to be adjusted</li>
+</ul>
+</li>
+<li>Stack can be used to identify process</li>
+</ul>
+<h4 id="asynchronous-context-switch">Asynchronous Context Switch</h4>
+<ul>
+<li>Needs to save much more than for a synchronous context switch</li>
+<li>Save <em>all registers</em> (copy state)</li>
+</ul>
+<h3 id="synchronization">Synchronization</h3>
+<h4 id="object-locking">Object Locking</h4>
+<ul>
+<li>
+<p>Object descriptors (added by system): Object with mutual exclusion contain additional fields</p>
+<ul>
+<li><code>headerLock: BOOLEAN;</code></li>
+<li><code>lockedBy: Process;</code></li>
+<li><code>awaitingLock: ProcessQueue;</code></li>
+<li><code>awaitingCondition: ProcessQueue;</code></li>
+</ul>
+</li>
+<li>
+<p>Locking (Procedure <code>Lock</code>)</p>
+<ul>
+<li>Try to acquire object<ul>
+<li>when we have it, we can change the data structure</li>
+<li>if we don't have it (we need to give up controll)<ul>
+<li>Synchronous switching to an other process</li>
+<li><code>Select</code> and <code>SwitchTo</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unlocking (Procedure <code>Unlock</code>)<ul>
+<li>When giving up a lock all conditions need to be evaluated again (signal-and-exit)</li>
+<li>Otherwise the oposite of locking</li>
+</ul>
+</li>
+<li>Wait Conditions (<code>AWAIT</code>)<ul>
+<li>Internally boxed into a procedure (<code>PROCEDURE $Condition(fp: ADDRESS): BOOLEAN;</code>)</li>
+<li>Stack frame is needed in condigion: <em>FP</em> </li>
+<li><code>AWAIT</code> code: put condition on await queue</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Sideeffects in <code>AWAIT</code> conditions are dangerous!</p>
+</blockquote>
+<h4 id="priority-inversion">Priority Inversion</h4>
+<p>Example:</p>
+<ul>
+<li>3 processes, 1 shared resource<ul>
+<li>P1: low</li>
+<li>P2: high</li>
+<li>P3: medium</li>
+<li>R: shared resource</li>
+</ul>
+</li>
+<li>P1 locks R</li>
+<li>P2 tries to lock R (needs to wait)</li>
+<li>P3 preempts P1<ul>
+<li>P1 can't release R</li>
+<li>P2 can't continue until P1 releases R</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Priority Inversion" class="img-responsive" src="/images/syscon_priority_inversion.png"/></p>
+<p>This image is taken from the lecture slides provided by Felix Friedrich</p>
+<h4 id="priority-inheritance">Priority Inheritance</h4>
+<ul>
+<li>One possibility to cope with priority inversion</li>
+<li>The priority of each process holding a lock to a resource is increased to the highest priority of all waiting processes (for the lock)</li>
+<li>Need to walk the graph of locks and processes</li>
+</ul>
+<!-- End of Notes Week 7 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
