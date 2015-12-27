@@ -175,7 +175,7 @@
 <li><a href="#for">FOR</a></li>
 </ul>
 </li>
-<li><a href="#builtin-functions">Builtin Functions</a></li>
+<li><a href="#built-in-functions">Built-in Functions</a></li>
 </ul>
 </li>
 <li><a href="#modules">Modules</a></li>
@@ -185,18 +185,18 @@
 <li><a href="#special-flags-and-features">Special Flags and Features</a></li>
 <li><a href="#type-declarations">Type Declarations</a></li>
 <li><a href="#inheritance">Inheritance</a></li>
-<li><a href="#runtime-support-for-inheritance">Runtime Support for Inheritance</a></li>
+<li><a href="#run-time-support-for-inheritance">Run-time Support for Inheritance</a></li>
 </ul>
 </li>
 <li><a href="#module-loading-and-commands">Module Loading and Commands</a></li>
-<li><a href="#compilation-and-linknig">Compilation and Linknig</a></li>
+<li><a href="#compilation-and-linking">Compilation and Linking</a></li>
 <li><a href="#object-file-format">Object File Format</a></li>
-<li><a href="#bootfile">Bootfile</a></li>
+<li><a href="#boot-file">Boot-file</a></li>
 </ul>
 </li>
 <li><a href="#minos-kernel">Minos Kernel</a><ul>
-<li><a href="#system-startup">System Startup</a></li>
-<li><a href="#initialization-of-interrupts">Initialization of Interrupts</a></li>
+<li><a href="#system-start-up">System Start-up</a></li>
+<li><a href="#initialisation-of-interrupts">Initialisation of Interrupts</a></li>
 <li><a href="#task-scheduling-minos">Task Scheduling (Minos)</a><ul>
 <li><a href="#stack-minos">Stack (Minos)</a></li>
 <li><a href="#scheduler-minos">Scheduler (Minos)</a></li>
@@ -206,7 +206,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#serial-communtication">Serial Communtication</a><ul>
+<li><a href="#serial-communication">Serial Communication</a><ul>
 <li><a href="#spi">SPI</a><ul>
 <li><a href="#setup">Setup</a></li>
 </ul>
@@ -244,7 +244,7 @@
 <li><a href="#arm">ARM</a></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
-<li><a href="#implementation-of-a-spinlock-using-cas">Implementation of a spinlock using CAS</a></li>
+<li><a href="#implementation-of-a-spinal-using-cas">Implementation of a spinal using CAS</a></li>
 </ul>
 </li>
 <li><a href="#boot-procedure-a2">Boot Procedure (A2)</a><ul>
@@ -252,17 +252,27 @@
 </ul>
 </li>
 <li><a href="#a2-activities-states">A2 Activities States</a></li>
-<li><a href="#runtime-data-structures">Runtime Data Structures</a></li>
+<li><a href="#runtier-data-structures">Runtier Data Structures</a></li>
 <li><a href="#stack-management">Stack Management</a></li>
 <li><a href="#context-switch">Context Switch</a><ul>
 <li><a href="#coroutines-synchronous">Coroutines (Synchronous)</a></li>
 <li><a href="#asynchronous-context-switch">Asynchronous Context Switch</a></li>
 </ul>
 </li>
-<li><a href="#synchronization">Synchronization</a><ul>
+<li><a href="#synchronisation">Synchronisation</a><ul>
 <li><a href="#object-locking">Object Locking</a></li>
 <li><a href="#priority-inversion">Priority Inversion</a></li>
 <li><a href="#priority-inheritance">Priority Inheritance</a></li>
+</ul>
+</li>
+<li><a href="#lock-free-programming">Lock-Free Programming</a><ul>
+<li><a href="#a2">A2</a><ul>
+<li><a href="#goals">Goals</a></li>
+<li><a href="#guiding-principles">Guiding Principles</a></li>
+<li><a href="#lock-free-kernel">Lock-Free Kernel</a></li>
+<li><a href="#memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -286,16 +296,16 @@ find the right documents.</p>
 </thead>
 <tbody>
 <tr>
-<td>ARM Architecture Referense Manual (ARMv7-AR, ARM ARM)</td>
+<td>ARM Architecture Reference Manual (ARMv7-AR, ARM ARM)</td>
 <td>Possibility of implementing the processor. For compilers and tools. Partly used for system programming</td>
 </tr>
 <tr>
 <td>ARM Technical System Reference (ARM Cortex-A7MPCore Family)</td>
-<td>Perticular Implementation. Some endundant information to ARM ARM.</td>
+<td>Particular Implementation. Some redundant information to ARM ARM.</td>
 </tr>
 <tr>
 <td>System On Chip Implementation Manual (BCM 2835)</td>
-<td>How the core is embedded on the chip with periperals. Address map. Peripheral information.</td>
+<td>How the core is embedded on the chip with peripherals. Address map. Peripheral information.</td>
 </tr>
 </tbody>
 </table>
@@ -316,7 +326,7 @@ find the right documents.</p>
 </li>
 <li>Multiple-Data-Transfer commands (<code>stmdb sp!,{fp,lr}</code>, <code>!</code>: Write-Back)</li>
 <li>Link Register: <code>bl</code>: Branch-and-Link (stores PC in link register)</li>
-<li>PC-Relative Addressing: Loading large constants (that have no soace in instruction encoding) form code</li>
+<li>PC-Relative Addressing: Loading large constants (that have no space in instruction encoding) form code</li>
 </ul>
 <h3 id="execution-modes">Execution Modes</h3>
 <ul>
@@ -324,7 +334,7 @@ find the right documents.</p>
 <li>for exception handling</li>
 <li>Processor starts in supervisor mode</li>
 <li>Registers are shadowed (banked) in different modes</li>
-<li>System Mode: priviledged but same registers as user mode</li>
+<li>System Mode: privileged but same registers as user mode</li>
 </ul>
 <table class="table table-hover table-striped">
 <thead>
@@ -337,43 +347,43 @@ find the right documents.</p>
 </thead>
 <tbody>
 <tr>
-<td>priviledged</td>
+<td>privileged</td>
 <td>Supervisor</td>
 <td>Reset / Software Interrupt</td>
 <td>exception</td>
 </tr>
 <tr>
-<td>priviledged</td>
+<td>privileged</td>
 <td>FIQ</td>
 <td>Fast Interrupt</td>
 <td>exception</td>
 </tr>
 <tr>
-<td>priviledged</td>
+<td>privileged</td>
 <td>IRQ</td>
 <td>Normal Interrupt</td>
 <td>exception</td>
 </tr>
 <tr>
-<td>priviledged</td>
+<td>privileged</td>
 <td>Abort</td>
 <td>Memory Access Violation</td>
 <td>exception</td>
 </tr>
 <tr>
-<td>priviledged</td>
+<td>privileged</td>
 <td>Undef</td>
 <td>Undefined Instruction</td>
 <td>exception</td>
 </tr>
 <tr>
-<td>priviledged</td>
+<td>privileged</td>
 <td>System</td>
 <td>Privileged Mode with same registers as in User Mode</td>
 <td>normal execution</td>
 </tr>
 <tr>
-<td><strong>un</strong>priviledged</td>
+<td><strong>un</strong>privileged</td>
 <td>User</td>
 <td>Regular Application Mode</td>
 <td>normal execution</td>
@@ -382,7 +392,7 @@ find the right documents.</p>
 </table>
 <h3 id="special-registers">Special Registers</h3>
 <ul>
-<li>R15: PC (Programm Counter)</li>
+<li>R15: PC (Program Counter)</li>
 <li>R14: LR (Return address for procedure)</li>
 <li>R13: SP ('top' of the stack)</li>
 <li>R12: FP (by convention, stored SP before procedure call)</li>
@@ -399,8 +409,8 @@ find the right documents.</p>
 <li>
 <p>Caller</p>
 <ul>
-<li>Pushes parmams</li>
-<li><code>BL #address</code>: Stores PC of next instuction in LR</li>
+<li>Pushes params</li>
+<li><code>BL #address</code>: Stores PC of next instruction in LR</li>
 </ul>
 </li>
 <li>
@@ -449,7 +459,7 @@ find the right documents.</p>
 <h3 id="mmu">MMU</h3>
 <ul>
 <li>Memory translation is complicated due to two different MMU's</li>
-<li>ARM's memory mapped registers sart from <code>0x3f000000</code>, opposed to <code>0x7e000000</code> in BMC manual</li>
+<li>ARM's memory mapped registers start from <code>0x3f000000</code>, opposed to <code>0x7e000000</code> in BMC manual</li>
 </ul>
 <h3 id="gpio">GPIO</h3>
 <ul>
@@ -468,7 +478,7 @@ find the right documents.</p>
 <li>Modules can be compiled separately</li>
 <li>Strongly typed<ul>
 <li>Static type checking at compile time</li>
-<li>Runtime support for type guards / tests</li>
+<li>Run-time support for type guards / tests</li>
 </ul>
 </li>
 <li>High Level (minimal Assembler code)</li>
@@ -484,7 +494,7 @@ find the right documents.</p>
 <ul>
 <li><code>MODULE</code></li>
 <li><code>PROCEDURE</code><ul>
-<li>Value, <code>VAR</code> (in-out) and <code>CONST</code> parmaeters</li>
+<li>Value, <code>VAR</code> (in-out) and <code>CONST</code> parameters</li>
 </ul>
 </li>
 </ul>
@@ -518,7 +528,7 @@ find the right documents.</p>
     <span class="cm">(* statement seq *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
-<h5 id="builtin-functions">Builtin Functions</h5>
+<h5 id="built-in-functions">Built-in Functions</h5>
 <p>Increment and decrement</p>
 <div class="highlight"><pre><span class="k-Pervasive">INC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="k-Pervasive">DEC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
@@ -703,7 +713,7 @@ find the right documents.</p>
 <p>Type Test and Guard</p>
 <div class="highlight"><pre><span class="kr">WITH</span> <span class="n">task</span><span class="p">:</span> <span class="n">PeriodicTask</span> <span class="kr">DO</span> <span class="o">..</span><span class="p">.</span> <span class="kr">END</span><span class="p">;</span>
 </pre></div>
-<h5 id="runtime-support-for-inheritance">Runtime Support for Inheritance</h5>
+<h5 id="run-time-support-for-inheritance">Run-time Support for Inheritance</h5>
 <ul>
 <li>RTTI is supported</li>
 <li>Each type gets an unique type descriptor (<code>LONGINT</code>)</li>
@@ -720,11 +730,11 @@ find the right documents.</p>
 <li>Unloading possible, if no other loaded module (static or dynamic) depends on it</li>
 <li>If a command of a not loaded module is executed the module is loaded first</li>
 </ul>
-<h4 id="compilation-and-linknig">Compilation and Linknig</h4>
+<h4 id="compilation-and-linking">Compilation and Linking</h4>
 <ul>
 <li>A module (.mod) is compiled to an executable file / object file (.arm) and a symbol file (.smb)</li>
 <li>The executable file contains a fingerprint</li>
-<li>The linker adds fingerprint to dependant object files (fixup)</li>
+<li>The linker adds fingerprint to dependant object files (fix-up)</li>
 </ul>
 <h4 id="object-file-format">Object File Format</h4>
 <p>Compiler flags:</p>
@@ -733,7 +743,7 @@ find the right documents.</p>
 <ul>
 <li>The object file is very compact</li>
 <li>Key: Fingerprint</li>
-<li>Fixups → Fixup-root (relocation table) linked list to fixups</li>
+<li>Fix-ups → Fix-up-root (relocation table) linked list to fix-ups</li>
 <li>Downsides:<ul>
 <li>Module file is limited</li>
 <li>Not very maintainable</li>
@@ -742,7 +752,7 @@ find the right documents.</p>
 </ul>
 <p><img alt="Minos Object Files" class="img-responsive" src="/images/syscon_minos_object_file.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
-<h4 id="bootfile">Bootfile</h4>
+<h4 id="boot-file">Boot-file</h4>
 <ul>
 <li>Linked Modules of Kernel files (hierarchy)</li>
 <li>Predefined loading address and entry point (0x8000 for RPI2)</li>
@@ -756,12 +766,12 @@ Image file name: <code>kernel.img</code>
 Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <!-- Beginning of Slides Week 3 -->
 <h3 id="minos-kernel">Minos Kernel</h3>
-<h4 id="system-startup">System Startup</h4>
+<h4 id="system-start-up">System Start-up</h4>
 <ul>
 <li>
 <p>Firmware (RPI2, GPU)</p>
 <ol>
-<li>Initialize HW</li>
+<li>Initialise HW</li>
 <li>Copy boot image to RAM</li>
 <li>Jump to boot image (initializer)</li>
 </ol>
@@ -771,27 +781,27 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <ol>
 <li>Set <em>stack registers</em> for all processor modes</li>
 <li>Setup <em>free heap</em> and <em>module</em> list</li>
-<li>Initialize <em>MMU</em> and <em>page table</em></li>
+<li>Initialise <em>MMU</em> and <em>page table</em></li>
 <li>Setup <em>interrupt handler</em> and <em>vectors</em></li>
 <li>Start <em>timer</em> and <em>enable interrupts</em></li>
-<li>Initialize UARTs, RAM disks, ...</li>
+<li>Initializer UARTs, RAM disks, ...</li>
 <li>Enter scheduling loop on OS</li>
 </ol>
 </li>
 </ul>
-<p>The Minos Kernal is modular:</p>
+<p>The Minos Kernel is modular:</p>
 <ul>
 <li>Minos: Command interpreter and scheduler</li>
 <li>Modules: Module loader, dynamic linker</li>
 <li>File System: RamVolumes, OFS, ...</li>
 <li>Kernel: Memory management, device drivers</li>
 <li>I/O: Kernel logging, ...</li>
-<li>Runtime: Memory allocation (heaps), FPU emulation, ...</li>
+<li>Run-time: Memory allocation (heaps), FPU emulation, ...</li>
 </ul>
 <!-- Slides Week 3 09-29 p. 84 (6) -->
 <p>...</p>
 <!-- Slides and Notes Week 4 -->
-<h4 id="initialization-of-interrupts">Initialization of Interrupts</h4>
+<h4 id="initialisation-of-interrupts">Initialisation of Interrupts</h4>
 <ol>
 <li>Set handlers of IRQ's<ul>
 <li>Write handlers for needed interrupts</li>
@@ -834,8 +844,8 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <ul>
 <li>One stack for all processes</li>
 <li>Every task needs to run to completion</li>
-<li>Preemtion is possible<ul>
-<li>Preemting task needs to be completed before returning</li>
+<li>Preemption is possible<ul>
+<li>Preempting task needs to be completed before returning</li>
 </ul>
 </li>
 </ul>
@@ -844,7 +854,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <ul>
 <li>Prolog: Interrupts masked</li>
 <li>Scheduling: Interrupts allowed</li>
-<li>Epilog: Interrupts masked</li>
+<li>Epilogue: Interrupts masked</li>
 </ul>
 <p>Scheduler procedure must be <em>reentrant</em></p>
 <ul>
@@ -858,7 +868,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 <!-- End of Week 4 -->
 <!-- Beginning of Week 5 -->
-<h2 id="serial-communtication">Serial Communtication</h2>
+<h2 id="serial-communication">Serial Communication</h2>
 <ul>
 <li>Directionally<ul>
 <li>Simplex</li>
@@ -901,7 +911,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Bandwidth some KBits/s up to several MBits/s</li>
 <li>Simple implementation in software possible (bit-banging)</li>
 <li>Master and Slave have shift registers for data (in and output)<ul>
-<li>During communicaion data 'circles arround' between the two shift registers</li>
+<li>During communication data 'circles around' between the two shift registers</li>
 </ul>
 </li>
 </ul>
@@ -921,12 +931,12 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <ul>
 <li>Polarity (SCLK):<ul>
 <li>0: Sampling happens on rising SCLK edge</li>
-<li>1: Sampling gappens on falling SCLK edge</li>
+<li>1: Sampling happens on falling SCLK edge</li>
 </ul>
 </li>
 <li>Phase (SCLK):<ul>
 <li>0: Rising SCLK edge in the middle of data</li>
-<li>1: Rising SCLK enge on beginning of data</li>
+<li>1: Rising SCLK edge on beginning of data</li>
 </ul>
 </li>
 </ul>
@@ -936,7 +946,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Configurable<ul>
 <li>Number of data bits: 5, 6, 7, 8</li>
 <li>Parity: odd, even, none</li>
-<li>Stopbits: 1, 1.5, 2</li>
+<li>Stop-bits: 1, 1.5, 2</li>
 <li>Transfer rate (bits per second): 75, 110, 300, ..., 115200</li>
 <li>Flow control exists in some implementations</li>
 </ul>
@@ -990,7 +1000,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>
 <p>Messages to processors</p>
 <ul>
-<li>Start Processor: Activation and Initialization of individual processors</li>
+<li>Start Processor: Activation and Initialisation of individual processors</li>
 <li>Halt Processor: Deactivation of individual processors</li>
 <li>Halt Process, schedule new process: Interrupt in order to transfer control to scheduler</li>
 </ul>
@@ -1079,7 +1089,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <h3 id="pci-local-bus">PCI Local Bus</h3>
 <ul>
 <li>Connect Peripheral Components</li>
-<li>Standardized Configuration Address Space for all PCI Devices</li>
+<li>Standardised Configuration Address Space for all PCI Devices</li>
 <li>Interrupt Routing Configuration</li>
 </ul>
 <p>Access mechanism</p>
@@ -1098,7 +1108,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </li>
 <li>Monitor based<ul>
 <li>locks code (methods) that access shared data</li>
-<li>No direct locking of datastructures needes</li>
+<li>No direct locking of data structures needed</li>
 </ul>
 </li>
 </ul>
@@ -1140,18 +1150,18 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <ul>
 <li>Signal-and-Continue<ul>
 <li>Java uses this</li>
-<li>Race conditions can occure</li>
+<li>Race conditions can occur</li>
 </ul>
 </li>
 <li>Signal-and-Exit<ul>
-<li>Active oberon uses this</li>
+<li>Active Oberon uses this</li>
 <li>Can be achieved in Java by looping on wait condition</li>
 </ul>
 </li>
 </ul>
 <p>Active Oberon:</p>
 <div class="highlight"><pre><span class="n">Semaphore</span> <span class="o">=</span> <span class="n">OBJECT</span>
-    <span class="n">number</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">:</span> <span class="n">longint</span><span class="p">;</span>
+    <span class="n">number</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">:</span> <span class="k-Pervasive">LONGINT</span><span class="p">;</span>
 
     <span class="kr">PROCEDURE</span> <span class="n">enter</span><span class="p">;</span>
     <span class="kr">BEGIN</span><span class="p">{</span><span class="n">EXCLUSIVE</span><span class="p">}</span>
@@ -1210,7 +1220,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 <p>"compares the value in Register A with the value in a memory location If the two values are equal,
 the instruction copies the value in the second operand to the first operand and sets the ZF flag
-in the flag regsiters to 1. Otherwise it copies the value in the first operand to A register and
+in the flag registers to 1. Otherwise it copies the value in the first operand to A register and
 clears ZF flag to 0"</p>
 <ul>
 <li>Lock Prefix</li>
@@ -1256,20 +1266,20 @@ Caches can't be exploited (direct access to memory)!</p>
 <h4 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h4>
 <p>Atomic operation implemented in processor.</p>
 <p>Compares memory location with an value. If it's same a new (given) value is written at the
-memory address. Returns the previous value at memory positin in any case.</p>
+memory address. Returns the previous value at memory position in any case.</p>
 <div class="highlight"><pre><span class="kt">int</span> <span class="n">CAS</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">old</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new</span><span class="p">)</span>
 </pre></div>
 <ul>
 <li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>
 <li>Return previous value at <code>a</code> in any case</li>
 </ul>
-<h4 id="implementation-of-a-spinlock-using-cas">Implementation of a spinlock using CAS</h4>
-<div class="highlight"><pre><span class="cm">(* Initialization *)</span>
+<h4 id="implementation-of-a-spinal-using-cas">Implementation of a spinal using CAS</h4>
+<div class="highlight"><pre><span class="cm">(* Initialisation *)</span>
 <span class="n">Init</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 
-<span class="cm">(* Aquire Lock *)</span>
+<span class="cm">(* Acquire Lock *)</span>
 <span class="n">Acquire</span> <span class="p">(</span><span class="n">var</span> <span class="n">lock</span><span class="p">:</span> <span class="n">word</span><span class="p">)</span>
     <span class="n">repeat</span>
         <span class="n">res</span> <span class="o">:=</span> <span class="n">CAS</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
@@ -1284,8 +1294,8 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <h3 id="boot-procedure-a2">Boot Procedure (A2)</h3>
 <ul>
 <li>Start BIOS Firmware</li>
-<li>Load A2 Bootfile</li>
-<li>Initialize modules<ul>
+<li>Load A2 Boot-file</li>
+<li>Initialise modules<ul>
 <li>Module <em>Machine</em></li>
 <li>Module <em>Heaps</em></li>
 <li>...</li>
@@ -1298,7 +1308,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </ul>
 </li>
 <li>...</li>
-<li>Module Bootconsole<ul>
+<li>Module Boot-console<ul>
 <li>read configuration and execute boot commands</li>
 </ul>
 </li>
@@ -1310,7 +1320,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </blockquote>
 <h4 id="processor-startup">Processor Startup</h4>
 <ul>
-<li>Start processor <strong>P</strong> (Bootprocessor)<ol>
+<li>Start processor <strong>P</strong> (Boot-processor)<ol>
 <li>Setup boot program (<code>Machine.InitProcessors</code>)</li>
 <li>Enter processor IDs into table (<code>Machine.InitBootPage</code>)</li>
 <li>Send <em>startup</em> message to <strong>P</strong> via APIC (<code>Machine.ParseMPConfig</code>)</li>
@@ -1318,11 +1328,11 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </ol>
 </li>
 <li>Boot program (For each processor)<ol>
-<li>Set 32-bit runtime environment (<code>Machine.EnterMP</code>)</li>
-<li>Initialize control registers, memory management, interrupt handling, APIC</li>
+<li>Set 32-bit run-time environment (<code>Machine.EnterMP</code>)</li>
+<li>Initializer control registers, memory management, interrupt handling, APIC</li>
 <li>Set <em>started</em> flag (<code>Machine.StartMP</code>)</li>
 <li>Setup Scheduler (<code>Objects.Start</code>)</li>
-<li>Bootprocessor proceeds with boot console</li>
+<li>Boot-processor proceeds with boot console</li>
 </ol>
 </li>
 </ul>
@@ -1341,7 +1351,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <p>Java doesn't make difference between waiting on a condition or a lock.</p>
 </blockquote>
 <p><img alt="A2 Activities States" class="img-responsive" src="/images/syscon_a2_activieties_states.png"/></p>
-<h3 id="runtime-data-structures">Runtime Data Structures</h3>
+<h3 id="runtier-data-structures">Runtier Data Structures</h3>
 <ul>
 <li>Running Array/List<ul>
 <li>One entry for each processor</li>
@@ -1349,7 +1359,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </ul>
 </li>
 <li>Object header (for each object)<ul>
-<li>List of condtitions (for each condition)</li>
+<li>List of conditions (for each condition)</li>
 <li>List of locks (for each monitor)</li>
 </ul>
 </li>
@@ -1359,7 +1369,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Medium</li>
 <li>High</li>
 <li>Garbage Collector (GC)</li>
-<li>Realtime (RT)</li>
+<li>Real-time (RT)</li>
 </ul>
 </li>
 <li>Interrupt Array (first level IRQ's)<ul>
@@ -1385,7 +1395,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </blockquote>
 <ul>
 <li>One Heap for all processes (no heavy-weight processes)</li>
-<li>Each proces has own stack</li>
+<li>Each process has own stack</li>
 <li>All processes share same address space</li>
 <li>8'000 processes can be allocated<ul>
 <li>4 GB address space</li>
@@ -1400,7 +1410,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Synchronous<ul>
 <li>Explicit<ul>
 <li>A process terminates</li>
-<li><code>Yield</code> </li>
+<li><code>Yield</code></li>
 </ul>
 </li>
 <li>Implicit<ul>
@@ -1413,7 +1423,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Asynchronous<ul>
 <li>Preemption<ul>
 <li>Priority handling</li>
-<li>Timeslicing</li>
+<li>Time-slicing</li>
 </ul>
 </li>
 </ul>
@@ -1422,7 +1432,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <h4 id="coroutines-synchronous">Coroutines (Synchronous)</h4>
 <ul>
 <li>Synchronous context switch</li>
-<li>Contex switch:<ul>
+<li>Context switch:<ul>
 <li>Replace <em>SP</em> and <em>FP</em> of old process with <em>SP</em> and <em>FP</em> of new process</li>
 <li><em>PC</em> needs also to be adjusted</li>
 </ul>
@@ -1434,7 +1444,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Needs to save much more than for a synchronous context switch</li>
 <li>Save <em>all registers</em> (copy state)</li>
 </ul>
-<h3 id="synchronization">Synchronization</h3>
+<h3 id="synchronisation">Synchronisation</h3>
 <h4 id="object-locking">Object Locking</h4>
 <ul>
 <li>
@@ -1451,7 +1461,7 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <ul>
 <li>Try to acquire object<ul>
 <li>when we have it, we can change the data structure</li>
-<li>if we don't have it (we need to give up controll)<ul>
+<li>if we don't have it (we need to give up control)<ul>
 <li>Synchronous switching to an other process</li>
 <li><code>Select</code> and <code>SwitchTo</code></li>
 </ul>
@@ -1462,18 +1472,18 @@ memory address. Returns the previous value at memory positin in any case.</p>
 </li>
 <li>Unlocking (Procedure <code>Unlock</code>)<ul>
 <li>When giving up a lock all conditions need to be evaluated again (signal-and-exit)</li>
-<li>Otherwise the oposite of locking</li>
+<li>Otherwise the opposite of locking</li>
 </ul>
 </li>
 <li>Wait Conditions (<code>AWAIT</code>)<ul>
 <li>Internally boxed into a procedure (<code>PROCEDURE $Condition(fp: ADDRESS): BOOLEAN;</code>)</li>
-<li>Stack frame is needed in condigion: <em>FP</em> </li>
+<li>Stack frame is needed in condition: <em>FP</em></li>
 <li><code>AWAIT</code> code: put condition on await queue</li>
 </ul>
 </li>
 </ul>
 <blockquote>
-<p>Sideeffects in <code>AWAIT</code> conditions are dangerous!</p>
+<p>Side-effects in <code>AWAIT</code> conditions are dangerous!</p>
 </blockquote>
 <h4 id="priority-inversion">Priority Inversion</h4>
 <p>Example:</p>
@@ -1502,6 +1512,108 @@ memory address. Returns the previous value at memory positin in any case.</p>
 <li>Need to walk the graph of locks and processes</li>
 </ul>
 <!-- End of Notes Week 7 -->
+<!-- Beginning of Notes Week 8 -->
+<h3 id="lock-free-programming">Lock-Free Programming</h3>
+<p>Problems with Locks</p>
+<ul>
+<li>Deadlocks</li>
+<li>Livelocks</li>
+<li>Starvation</li>
+</ul>
+<p>Different Goals</p>
+<ul>
+<li>Parallelism</li>
+<li>Progress Guarantees</li>
+<li>Reentrancy</li>
+<li>Granularity</li>
+<li>Fault Tolerance</li>
+</ul>
+<p>Definition of Lock-Freedom</p>
+<blockquote>
+<p>At least one algorithm (process, thread) makes progress, even if others run concurrently, fail or get suspended.</p>
+</blockquote>
+<ul>
+<li>Starvation can still happen</li>
+</ul>
+<p>Definition of Wait-Freedom</p>
+<blockquote>
+<p>Each algorithm makes eventually progress.</p>
+</blockquote>
+<ul>
+<li>Implies freedom from starvation</li>
+</ul>
+<p>Progress Conditions:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Blocking</th>
+<th>Non-Blocking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Someone make progress</td>
+<td>Deadlock-free</td>
+<td>Lock-free</td>
+</tr>
+<tr>
+<td>Everyone makes progress</td>
+<td>Starvation-free</td>
+<td>Wait-free</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Lock-free programming basically makes loop around CAS</li>
+</ul>
+<h4 id="a2">A2</h4>
+<h5 id="goals">Goals</h5>
+<ul>
+<li>Lock Freedom<ul>
+<li>Progress Guarantees</li>
+<li>Reentrant Algorithms</li>
+</ul>
+</li>
+<li>Portability<ul>
+<li>Hardware Independence</li>
+<li>Simplicity, Maintenance</li>
+</ul>
+</li>
+</ul>
+<h5 id="guiding-principles">Guiding Principles</h5>
+<ul>
+<li>Use <em>implicit cooperative multitasking</em></li>
+<li>no virtual memory</li>
+<li>possible optmizations are limited</li>
+<li>Co-design of OS, Compiler and Programming Language</li>
+</ul>
+<h5 id="lock-free-kernel">Lock-Free Kernel</h5>
+<ul>
+<li>Needs lock-free queue</li>
+<li>Compare-And-Swap (CAS) is implemented <em>wait-free</em> in hardware</li>
+</ul>
+<h5 id="memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</h5>
+<ol>
+<li>Data shared between two or more activities at the same time has to be either<ul>
+<li>protected by <code>EXCLISIVE</code> blocks or </li>
+<li>read or modified using the <em>compare-and-swap</em> operation</li>
+</ul>
+</li>
+<li>Changed shared data is visible to other activities after<ul>
+<li>leaving an <code>EXCLUSIVE</code> block or</li>
+<li>executing a <em>compare-and-swap</em> operation</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><code>CAS</code> is an operation in the programming language</p>
+<p>:::modula2
+PROCEDURE CAS(variable, old, new: BaseType): BaseType</p>
+</li>
+</ul>
+<!-- Notes Week 8 24:58 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
