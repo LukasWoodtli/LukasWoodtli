@@ -273,6 +273,10 @@
 <li><a href="#memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</a></li>
 </ul>
 </li>
+<li><a href="#aba-problem">ABA Problem</a><ul>
+<li><a href="#hazard-pointers">Hazard Pointers</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1566,6 +1570,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </table>
 <ul>
 <li>Lock-free programming basically makes loop around CAS</li>
+<li>Overflows (i.e INTEGER) is critical</li>
 </ul>
 <h4 id="a2">A2</h4>
 <h5 id="goals">Goals</h5>
@@ -1596,7 +1601,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <h5 id="memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</h5>
 <ol>
 <li>Data shared between two or more activities at the same time has to be either<ul>
-<li>protected by <code>EXCLISIVE</code> blocks or </li>
+<li>protected by <code>EXCLUSIVE</code> blocks or </li>
 <li>read or modified using the <em>compare-and-swap</em> operation</li>
 </ul>
 </li>
@@ -1612,8 +1617,43 @@ memory address. Returns the previous value at memory position in any case.</p>
 <p>:::modula2
 PROCEDURE CAS(variable, old, new: BaseType): BaseType</p>
 </li>
+<li>
+<p>Performance of <code>CAS</code></p>
+<ul>
+<li>On the HW level <code>CAS</code> triggers a memory barrier</li>
+<li>Performance suffers with increasing number of contenders (contention)</li>
 </ul>
-<!-- Notes Week 8 24:58 -->
+</li>
+</ul>
+<h4 id="aba-problem">ABA Problem</h4>
+<p>The <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA Problem</a> occurs when one thread
+fails to recognise that a memory location was
+modified temporarily by another thread and therefore erroneously assumes
+that the overal state has not been changed.</p>
+<p><img alt="ABA Problem" class="img-responsive" src="/images/syscon_aba_problem.png"/></p>
+<p>This image is taken from the lecture slides provided by Felix Friedrich</p>
+<ul>
+<li>The ABA Problem makes it difficult to reuse nodes in a stack structure<ul>
+<li>Possible to allocate always new memory, but it's expensive</li>
+</ul>
+</li>
+<li>Solution: hazard pointers</li>
+</ul>
+<h5 id="hazard-pointers">Hazard Pointers</h5>
+<ul>
+<li>ABA Problem because of reuse of pointers<ul>
+<li>Pointer <em>P</em> that has been read by one thread <em>X</em> but not yet written by same thread</li>
+<li>Pointer <em>P</em> is written by other thread <em>Y</em> between reading and writing of first thread <em>X</em></li>
+</ul>
+</li>
+<li>[Hazard pointers](https://en.wikipedia.org/wiki/Hazard_pointer:<ul>
+<li>Each lock-free datastructure has an array (hazard array) of the size of number of threads (n=number of threads)</li>
+<li>Before <em>X</em> reads <em>P</em>, it marks it hazarduous in the hazard array of data structure (e.g. the stack)</li>
+<li>When finished (after the <code>CAS</code>), process <em>X</em> removes <em>P</em> from the hazard array</li>
+<li>Before a process <em>Y</em> tries to reuse <em>P</em>, it checks all entries of the hazard array</li>
+</ul>
+</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
