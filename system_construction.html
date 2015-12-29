@@ -281,6 +281,11 @@
 </li>
 <li><a href="#cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</a><ul>
 <li><a href="#interrupts">Interrupts</a></li>
+<li><a href="#queue-data-structures">Queue Data Structures</a><ul>
+<li><a href="#task-switch-finalizer">Task Switch Finalizer</a></li>
+</ul>
+</li>
+<li><a href="#stack-management_1">Stack Management</a></li>
 </ul>
 </li>
 </ul>
@@ -1671,21 +1676,17 @@ that the overal state has not been changed.</p>
 <h3 id="cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</h3>
 <ul>
 <li>Compiler automatically inserts code for cooperatice multitasking (implicit)</li>
-<li>
-<p>Each process has a quantum</p>
-<ul>
-<li>At regular intervals, the compiler inserts code to decrease the quantum and calls the scheduler if necessary</li>
+<li>Each process has a quantum</li>
 </ul>
-<p>:::nasm
-   sub    [rcx + 88], 10   ; decrement quantum by 10
-   jge    skip             ; check if it is negative (jump if greater)
-   call   Switch           ; perform task switch
-skip:
-   ; ...</p>
-</li>
-<li>
-<p>Uncooperative block (<code>UNCOOPERATIVE</code>): Guarantee that no scheduling happens</p>
+<p>At regular intervals, the compiler inserts code to decrease the quantum and calls the scheduler if necessary</p>
+<div class="highlight"><pre>   <span class="nf">sub</span>    <span class="p">[</span><span class="nb">rcx</span> <span class="o">+</span> <span class="mi">88</span><span class="p">],</span> <span class="mi">10</span>   <span class="c1">; decrement quantum by 10</span>
+   <span class="nf">jge</span>    <span class="nv">skip</span>             <span class="c1">; check if it is negative (jump if greater)</span>
+   <span class="nf">call</span>   <span class="nv">Switch</span>           <span class="c1">; perform task switch</span>
+<span class="nl">skip:</span>
+   <span class="c1">; ...</span>
+</pre></div>
 <ul>
+<li>Uncooperative block (<code>UNCOOPERATIVE</code>): Guarantee that no scheduling happens<ul>
 <li>Not like a <em>lock</em> different processors can execute the code in parallel</li>
 <li>like disabling interrupts</li>
 </ul>
@@ -1708,6 +1709,39 @@ skip:
 <li>M = # of physical processors + # of potentially concurrent interrupts</li>
 </ul>
 <!-- End of Week 8 -->
+<!-- Beginning of Week 9 -->
+<h4 id="queue-data-structures">Queue Data Structures</h4>
+<p><img alt="Queue Datat Structures" class="img-responsive" src="/images/syscon_queue_data_structure.png"/></p>
+<p>This image is taken from the lecture slides provided by Felix Friedrich</p>
+<ul>
+<li>Hazard Pointers: in use (writing)</li>
+<li>Pool: Reuse nodes that are not used anymore</li>
+<li>Lock-free but not wait-free (starvation possible)</li>
+<li>if not possible to en-/dequeue: help other threads (processors)</li>
+</ul>
+<h5 id="task-switch-finalizer">Task Switch Finalizer</h5>
+<p>Finest granular protection makes <strong>races</strong> possible that did not occur previously:</p>
+<div class="highlight"><pre><span class="n">current</span> <span class="o">:=</span> <span class="n">GetCurrentTask</span><span class="p">()</span>
+<span class="n">next</span> <span class="o">:=</span> <span class="n">Dequeue</span><span class="p">(</span><span class="n">readyqueue</span><span class="p">)</span>
+<span class="n">Enqueue</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">readyqueue</span><span class="p">)</span>
+<span class="cm">(* Here an other thread can dequeue and run (on the stack of)</span>
+<span class="cm">   the currently executing thread! *)</span>
+<span class="n">SwitchTo</span><span class="p">(</span><span class="n">next</span><span class="p">)</span>
+</pre></div>
+<ul>
+<li>When switching to new thread<ul>
+<li>Enqueue runs on new thread</li>
+<li>Call finalizer of previous thread</li>
+</ul>
+</li>
+</ul>
+<h4 id="stack-management_1">Stack Management</h4>
+<ul>
+<li>Stacks organized as Heap Blocks</li>
+<li>Stack check instrumented at beginning of procedure</li>
+<li>Stack expansion is possible</li>
+</ul>
+<!-- Notes Week 9 00:30:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
