@@ -252,7 +252,7 @@
 </ul>
 </li>
 <li><a href="#a2-activities-states">A2 Activities States</a></li>
-<li><a href="#runtier-data-structures">Runtier Data Structures</a></li>
+<li><a href="#run-time-data-structures">Run-Time Data Structures</a></li>
 <li><a href="#stack-management">Stack Management</a></li>
 <li><a href="#context-switch">Context Switch</a><ul>
 <li><a href="#coroutines-synchronous">Coroutines (Synchronous)</a></li>
@@ -277,6 +277,10 @@
 <li><a href="#hazard-pointers">Hazard Pointers</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</a><ul>
+<li><a href="#interrupts">Interrupts</a></li>
 </ul>
 </li>
 </ul>
@@ -1355,7 +1359,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <p>Java doesn't make difference between waiting on a condition or a lock.</p>
 </blockquote>
 <p><img alt="A2 Activities States" class="img-responsive" src="/images/syscon_a2_activieties_states.png"/></p>
-<h3 id="runtier-data-structures">Runtier Data Structures</h3>
+<h3 id="run-time-data-structures">Run-Time Data Structures</h3>
 <ul>
 <li>Running Array/List<ul>
 <li>One entry for each processor</li>
@@ -1601,7 +1605,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <h5 id="memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</h5>
 <ol>
 <li>Data shared between two or more activities at the same time has to be either<ul>
-<li>protected by <code>EXCLUSIVE</code> blocks or </li>
+<li>protected by <code>EXCLUSIVE</code> blocks or</li>
 <li>read or modified using the <em>compare-and-swap</em> operation</li>
 </ul>
 </li>
@@ -1653,7 +1657,57 @@ that the overal state has not been changed.</p>
 <li>Before a process <em>Y</em> tries to reuse <em>P</em>, it checks all entries of the hazard array</li>
 </ul>
 </li>
+<li>Hazard pointers don't solve problem when several pointers need to be changed at same time<ul>
+<li>i.e Enqueue/Dequeue</li>
+<li>Solution: use <em>sentinel</em><ul>
+<li>Notion of helping other threads</li>
+<li>Employ Hazard pointers
+<!-- See Notes Week 8 p. 3 45:00 --></li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</h3>
+<ul>
+<li>Compiler automatically inserts code for cooperatice multitasking (implicit)</li>
+<li>
+<p>Each process has a quantum</p>
+<ul>
+<li>At regular intervals, the compiler inserts code to decrease the quantum and calls the scheduler if necessary</li>
+</ul>
+<p>:::nasm
+   sub    [rcx + 88], 10   ; decrement quantum by 10
+   jge    skip             ; check if it is negative (jump if greater)
+   call   Switch           ; perform task switch
+skip:
+   ; ...</p>
+</li>
+<li>
+<p>Uncooperative block (<code>UNCOOPERATIVE</code>): Guarantee that no scheduling happens</p>
+<ul>
+<li>Not like a <em>lock</em> different processors can execute the code in parallel</li>
+<li>like disabling interrupts</li>
+</ul>
+</li>
+<li>Cons<ul>
+<li>Small overhead of inserted code</li>
+<li>Sacrifice register (<code>rcx</code>)</li>
+</ul>
+</li>
+<li>Guarantees<ul>
+<li>Max number of parallel execution of uncooperative code is number of processors</li>
+<li>Hazard pointer can be associated with processor (instead of processes)</li>
+<li>Search time constant: thread-local storage → processor local storage</li>
+</ul>
+</li>
+</ul>
+<h4 id="interrupts">Interrupts</h4>
+<ul>
+<li>Interrupt handlers are moddeled as <em>virtual</em> processors</li>
+<li>M = # of physical processors + # of potentially concurrent interrupts</li>
+</ul>
+<!-- End of Week 8 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
