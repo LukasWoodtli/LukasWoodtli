@@ -298,7 +298,11 @@
 </li>
 </ul>
 </li>
-<li><a href="#oberon-system-risc">Oberon System (RISC)</a></li>
+<li><a href="#oberon-risc-case-study-3">Oberon RISC (Case Study 3)</a></li>
+<li><a href="#active-cells-case-study-4">Active Cells (Case Study 4)</a><ul>
+<li><a href="#tiny-register-machine-trm">Tiny Register Machine (TRM)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</h1>
@@ -754,7 +758,7 @@ find the right documents.</p>
 <ul>
 <li>A module (.mod) is compiled to an executable file / object file (.arm) and a symbol file (.smb)</li>
 <li>The executable file contains a fingerprint</li>
-<li>The linker adds fingerprint to dependant object files (fix-up)</li>
+<li>The linker adds fingerprint to dependent object files (fix-up)</li>
 </ul>
 <h4 id="object-file-format">Object File Format</h4>
 <p>Compiler flags:</p>
@@ -944,7 +948,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>To finish communication master stops SCLK</li>
 </ol>
 <ul>
-<li>No acknowledgement mechanism</li>
+<li>No acknowledgment mechanism</li>
 <li>No device interrupts</li>
 </ul>
 <h4 id="setup">Setup</h4>
@@ -1645,7 +1649,7 @@ PROCEDURE CAS(variable, old, new: BaseType): BaseType</p>
 <p>The <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA Problem</a> occurs when one thread
 fails to recognise that a memory location was
 modified temporarily by another thread and therefore erroneously assumes
-that the overal state has not been changed.</p>
+that the overall state has not been changed.</p>
 <p><img alt="ABA Problem" class="img-responsive" src="/images/syscon_aba_problem.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <ul>
@@ -1663,8 +1667,8 @@ that the overal state has not been changed.</p>
 </ul>
 </li>
 <li>[Hazard pointers](https://en.wikipedia.org/wiki/Hazard_pointer:<ul>
-<li>Each lock-free datastructure has an array (hazard array) of the size of number of threads (n=number of threads)</li>
-<li>Before <em>X</em> reads <em>P</em>, it marks it hazarduous in the hazard array of data structure (e.g. the stack)</li>
+<li>Each lock-free data structure has an array (hazard array) of the size of number of threads (n=number of threads)</li>
+<li>Before <em>X</em> reads <em>P</em>, it marks it hazardous in the hazard array of data structure (e.g. the stack)</li>
 <li>When finished (after the <code>CAS</code>), process <em>X</em> removes <em>P</em> from the hazard array</li>
 <li>Before a process <em>Y</em> tries to reuse <em>P</em>, it checks all entries of the hazard array</li>
 </ul>
@@ -1682,7 +1686,7 @@ that the overal state has not been changed.</p>
 </ul>
 <h3 id="cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</h3>
 <ul>
-<li>Compiler automatically inserts code for cooperatice multitasking (implicit)</li>
+<li>Compiler automatically inserts code for cooperative multitasking (implicit)</li>
 <li>Each process has a quantum</li>
 </ul>
 <p>At regular intervals, the compiler inserts code to decrease the quantum and calls the scheduler if necessary</p>
@@ -1712,13 +1716,13 @@ that the overal state has not been changed.</p>
 </ul>
 <h4 id="interrupts">Interrupts</h4>
 <ul>
-<li>Interrupt handlers are moddeled as <em>virtual</em> processors</li>
+<li>Interrupt handlers are modeled as <em>virtual</em> processors</li>
 <li>M = # of physical processors + # of potentially concurrent interrupts</li>
 </ul>
 <!-- End of Week 8 -->
 <!-- Beginning of Week 9 -->
 <h4 id="queue-data-structures">Queue Data Structures</h4>
-<p><img alt="Queue Datat Structures" class="img-responsive" src="/images/syscon_queue_data_structure.png"/></p>
+<p><img alt="Queue Data Structures" class="img-responsive" src="/images/syscon_queue_data_structure.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <ul>
 <li>Hazard Pointers: in use (writing)</li>
@@ -1762,9 +1766,9 @@ that the overal state has not been changed.</p>
 <li>Stacks organized as Heap Blocks</li>
 <li>Stack check instrumented at beginning of procedure</li>
 <li>Stack expansion is possible</li>
-<li>Possiblities to expand stack:<ol>
+<li>Possibilities to expand stack:<ol>
 <li>Allocate more memory for stack, copy old stack to beginning of new (pointers to stack need to be updated <code>VAR</code> parameters)</li>
-<li>Manage stack in a linked list, link to new portion of stack from the old one: <code>ReturnToStackSegment</code> funtion needed to go back to previous stack segment</li>
+<li>Manage stack in a linked list, link to new portion of stack from the old one: <code>ReturnToStackSegment</code> function needed to go back to previous stack segment</li>
 </ol>
 </li>
 </ul>
@@ -1783,16 +1787,18 @@ that the overal state has not been changed.</p>
         <span class="n">previousHandlers</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">(</span><span class="n">index</span><span class="p">)</span>
     <span class="kr">END</span><span class="p">;</span>
     <span class="n">Activities</span><span class="p">.</span><span class="n">CallVirtual</span><span class="p">(</span><span class="n">NotifyNext</span><span class="p">,</span>
+                           <span class="n">ADDRESS</span> <span class="kr">OF</span> <span class="n">awaitingQueues</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+                           <span class="n">processors</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
 <span class="kr">END</span> <span class="n">Handle</span><span class="p">;</span>
 </pre></div>
 <ul>
 <li>Very powerful to write IRQ handlers in to levels</li>
-<li>Possible with cooperative multi tasking</li>
+<li>Possible with cooperative multitasking</li>
 </ul>
 <h5 id="lock-free-memory-management">Lock-Free Memory Management</h5>
 <ul>
 <li>Allocation/Deallocation by lock-free algorithms</li>
-<li>Buddy system: old apporach but simple when returning blocks and merging them in free memory</li>
+<li>Buddy system: old approach but simple when returning blocks and merging them in free memory</li>
 <li>Mark-and-sweep<ol>
 <li>Traverse heap and mark used blocks</li>
 <li>Remove all unmarked blocks</li>
@@ -1860,7 +1866,7 @@ that the overal state has not been changed.</p>
 </ul>
 <!-- End of Notes Week 9 -->
 <!-- Beginning of Notes Week 10 -->
-<h1 id="oberon-system-risc">Oberon System (RISC)</h1>
+<h1 id="oberon-risc-case-study-3">Oberon RISC (Case Study 3)</h1>
 <p><a href="http://www.projectoberon.com/">Project Oberon</a></p>
 <ul>
 <li>RISC architecture</li>
@@ -1870,15 +1876,15 @@ that the overal state has not been changed.</p>
 <li>Commercial systems are far from perfect</li>
 <li>Need good tools for programming</li>
 <li>Competence for building from Scratch: HW, application, how it really works</li>
-<li>'lean systems' aproach</li>
+<li>'lean systems' approach</li>
 <li>Build from scratch<ul>
-<li>reduce complexity: ne 'baggage'</li>
+<li>reduce complexity: no 'baggage'</li>
 <li>choices of different implementation</li>
 <li>design based only on problem domain and experience</li>
 <li>less surprises!</li>
 <li>flexible solutions</li>
 <li>more than customer needs</li>
-<li>competitve advantages</li>
+<li>competitive advantages</li>
 </ul>
 </li>
 <li>Why not build from scratch<ul>
@@ -1901,7 +1907,7 @@ that the overal state has not been changed.</p>
 <li>Simulation / Synthesis</li>
 <li>Verilog / VHDL</li>
 <li>Developed at ETH: Lola, ActiveCells</li>
-<li>Verry different from Programming Languages</li>
+<li>Very different from Programming Languages</li>
 <li>Things happen in parallel (not serial)!</li>
 <li>Very difficult for high frequencies</li>
 </ul>
@@ -1915,7 +1921,7 @@ that the overal state has not been changed.</p>
 <li>Registers vs. Stack Machine</li>
 <li>FPU</li>
 <li>ALU</li>
-<li>Shifter (Barell-Shifter)</li>
+<li>Shifter (Barrel-Shifter)</li>
 <li>Implemented in Verilog</li>
 <li>3 kinds of instructions
         - arithmetic/logic
@@ -1947,7 +1953,7 @@ that the overal state has not been changed.</p>
 <!-- End of Notes Week 10 -->
 <!-- Beginning of Notes Week 11 -->
 <ul>
-<li>Codesign: OS/HW/Compiler</li>
+<li>Co-design: OS/HW/Compiler</li>
 <li>Minimalistic</li>
 <li>Best practices from CS</li>
 <li>Architecture/Features<ul>
@@ -1959,7 +1965,7 @@ that the overal state has not been changed.</p>
 </ul>
 </li>
 <li>User Interface<ul>
-<li>Mous oriented, three buttons, "interclicking"</li>
+<li>Mouse oriented, three buttons, "interclicking"</li>
 </ul>
 </li>
 <li>Oberon Core System<ul>
@@ -1967,7 +1973,7 @@ that the overal state has not been changed.</p>
 <li>File system: FileDir, File</li>
 <li>Networking</li>
 <li>Outer core: input, viewers, fonts, text, ...</li>
-<li>Compiler: recursive descent, singel pass</li>
+<li>Compiler: recursive descent, single pass</li>
 <li>RS-232, SCC, Net</li>
 <li>no memory protection</li>
 <li>possible to draw over other windows</li>
@@ -1982,6 +1988,117 @@ that the overal state has not been changed.</p>
 <li><a href="https://github.com/pdewacht/oberon-risc-emu">RISC emulator</a> available</li>
 </ul>
 <!-- End of Notes Week 11 -->
+<!-- Beginning of Notes Week 12 -->
+<h1 id="active-cells-case-study-4">Active Cells (Case Study 4)</h1>
+<ul>
+<li>
+<p>Custom design of Multi-Processor System</p>
+<ul>
+<li>Cores</li>
+<li>Caches</li>
+<li>Bus</li>
+<li>Memory</li>
+</ul>
+</li>
+<li>
+<p>Each process owns it's core</p>
+<ul>
+<li>Scheduling unnecessary</li>
+<li>Caches unnecessary</li>
+<li>some restrictions / some improvements</li>
+</ul>
+</li>
+<li>
+<p>Tiny Register Machines (TRM)</p>
+<ul>
+<li>TRM interconnects</li>
+<li>SW/HW Co-design</li>
+<li>Active Cells Tool-chain</li>
+</ul>
+</li>
+<li>Multi-core Systems Challenges<ul>
+<li>Cache coherence</li>
+<li>Shared memory communication bottleneck</li>
+<li>Thread synchronization overhead</li>
+<li>Difficult to predict behaviour and timing</li>
+<li>Hard to scale</li>
+<li><a href="https://de.wikipedia.org/wiki/Partitioned_Global_Address_Space">Partitioned Global Address Space</a></li>
+</ul>
+</li>
+<li>Operating System Challenges<ul>
+<li>Processor Time Sharing<ul>
+<li>Interrupts</li>
+<li>Context Switches</li>
+<li>Thread Synchronisation</li>
+</ul>
+</li>
+<li>Memory Sharing<ul>
+<li>Inter-process: Paging</li>
+<li>Intra-process, Inter-Thread: Monitors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Project Supercomputer in the Pocket<ul>
+<li>Focus: Streaming Applications (i.e ECG)</li>
+<li>Stream Parallelism (pipelining)</li>
+<li>Task parallelism / data parallelism</li>
+</ul>
+</li>
+<li>On-chip distributed system<ul>
+<li>Replace shared memory by local memory<ul>
+<li>Message passing for interaction between processes</li>
+</ul>
+</li>
+<li>Separate processor for each process<ul>
+<li>Very simple processors</li>
+<li>No scheduling, no interrupts</li>
+<li>Application-aware processors</li>
+</ul>
+</li>
+<li>Minimal operating system</li>
+<li>Conceptually no memory bottleneck</li>
+<li>Higher reliability and predictability by design</li>
+</ul>
+</li>
+</ul>
+<h2 id="tiny-register-machine-trm">Tiny Register Machine (TRM)</h2>
+<ul>
+<li>Extremely simple porcessor on FPGA</li>
+<li>Hardware architecture</li>
+<li>Two-stage pipeline</li>
+<li>Each TRM contains<ul>
+<li>ALU and shifter</li>
+<li>32-bit operands and results stored in a bonak of 2 * 8 registers</li>
+<li>Local data memory: d * 512 words of 32 bits</li>
+<li>Local program memory: i * 1024 instructions with 32 bits </li>
+<li>7 general purpose registers</li>
+<li>Register <em>H</em> for storing the high 32 bits of a product</li>
+<li>4 conditional registers: <em>C</em>, <em>N</em>, <em>V</em>, <em>Z</em></li>
+<li>no chaches
+TRM Machine Language</li>
+</ul>
+</li>
+<li>Machine language: binary representation of instructions</li>
+<li>18-bit instructions</li>
+<li>Three instruction types:<ol>
+<li>Type a: arithmetical and logical operations</li>
+<li>Type b: load and store instructions</li>
+<li>Type c: branch instructions (for jumping)</li>
+</ol>
+</li>
+<li>Variants of TRMs<ul>
+<li>FTRM: includes FPU</li>
+<li>VTRM: includes vector processing unit<ul>
+<li>8 x 8-words registers</li>
+<li>available with/without FPU</li>
+</ul>
+</li>
+<li>TRM with SW configurable instruction width</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 12 30:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
