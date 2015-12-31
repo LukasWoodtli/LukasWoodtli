@@ -282,12 +282,18 @@
 <li><a href="#cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</a><ul>
 <li><a href="#interrupts">Interrupts</a></li>
 <li><a href="#queue-data-structures">Queue Data Structures</a><ul>
+<li><a href="#scheduling-activities">Scheduling (Activities)</a></li>
 <li><a href="#task-switch-finalizer">Task Switch Finalizer</a></li>
 </ul>
 </li>
-<li><a href="#stack-management_1">Stack Management</a></li>
+<li><a href="#stack-management_1">Stack Management</a><ul>
+<li><a href="#interrupts_1">Interrupts</a></li>
+<li><a href="#lock-free-memory-management">Lock-Free Memory Management</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#portability">Portability</a></li>
 </ul>
 </li>
 </ul>
@@ -1719,8 +1725,18 @@ that the overal state has not been changed.</p>
 <li>Lock-free but not wait-free (starvation possible)</li>
 <li>if not possible to en-/dequeue: help other threads (processors)</li>
 </ul>
+<h5 id="scheduling-activities">Scheduling (Activities)</h5>
+<div class="highlight"><pre><span class="kr">TYPE</span> <span class="n">Activity</span><span class="o">*</span> <span class="o">=</span> <span class="n">OBJECT</span> <span class="p">{</span><span class="n">DISPOSABLE</span><span class="p">}</span> <span class="p">(</span><span class="n">Queues</span><span class="p">.</span><span class="n">Item</span><span class="p">)</span> <span class="cm">(* Queues.Item accessed via activity register *)</span>
+<span class="kr">VAR</span>
+    <span class="cm">(* access to current processor *)</span>
+    <span class="cm">(* stack management *)</span>
+    <span class="cm">(* quantum and scheduling *)</span>
+    <span class="cm">(* active object *)</span>
+<span class="kr">END</span> <span class="n">Activity</span><span class="p">;</span>
+</pre></div>
 <h5 id="task-switch-finalizer">Task Switch Finalizer</h5>
 <p>Finest granular protection makes <strong>races</strong> possible that did not occur previously:</p>
+<p>Need to pass information to the new thread.</p>
 <div class="highlight"><pre><span class="n">current</span> <span class="o">:=</span> <span class="n">GetCurrentTask</span><span class="p">()</span>
 <span class="n">next</span> <span class="o">:=</span> <span class="n">Dequeue</span><span class="p">(</span><span class="n">readyqueue</span><span class="p">)</span>
 <span class="n">Enqueue</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">readyqueue</span><span class="p">)</span>
@@ -1735,13 +1751,113 @@ that the overal state has not been changed.</p>
 </ul>
 </li>
 </ul>
+<p>Solution with finalizer:</p>
+<div class="highlight"><pre><span class="n">SwitchTo</span> <span class="p">(</span><span class="n">nextActivity</span><span class="p">,</span> <span class="n">Enqueue</span><span class="p">,</span>  <span class="cm">(* Enqueue runs on new thread *)</span>
+          <span class="n">ADDRESS</span> <span class="kr">OF</span> <span class="n">readyQueue</span><span class="p">[</span><span class="n">currentActivity</span><span class="p">.</span><span class="n">priority</span><span class="p">]);</span>
+<span class="n">FinalizeSwitch</span><span class="p">;</span> <span class="cm">(* Calls finalizer of previous thread *)</span>
+</pre></div>
 <h4 id="stack-management_1">Stack Management</h4>
 <ul>
 <li>Stacks organized as Heap Blocks</li>
 <li>Stack check instrumented at beginning of procedure</li>
 <li>Stack expansion is possible</li>
+<li>Possiblities to expand stack:<ol>
+<li>Allocate more memory for stack, copy old stack to beginning of new (pointers to stack need to be updated <code>VAR</code> parameters)</li>
+<li>Manage stack in a linked list, link to new portion of stack from the old one: <code>ReturnToStackSegment</code> funtion needed to go back to previous stack segment</li>
+</ol>
+</li>
 </ul>
-<!-- Notes Week 9 00:30:00 -->
+<h5 id="interrupts_1">Interrupts</h5>
+<ul>
+<li>First Level IRQ by non-portable CPU module</li>
+<li>Second level IRQ handling with activities</li>
+</ul>
+<p>Wait for interrupt:</p>
+<div class="highlight"><pre><span class="n">Interrupts</span><span class="p">.</span><span class="n">Await</span><span class="p">(</span><span class="n">interrupt</span><span class="p">);</span>
+</pre></div>
+<p>First level IRQ code affecting scheduler queues runs on a virtual processor</p>
+<div class="highlight"><pre><span class="kr">PROCEDURE</span> <span class="n">Handle</span> <span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="k-Pervasive">SIZE</span><span class="p">);</span>
+<span class="kr">BEGIN</span> <span class="p">{</span><span class="n">UNCOOPERATIVE</span><span class="p">,</span> <span class="n">UNCHECKED</span><span class="p">}</span>
+    <span class="kr">IF</span> <span class="n">previousHandlers</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">#</span> <span class="k-Pervasive">NIL</span> <span class="kr">THEN</span>
+        <span class="n">previousHandlers</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">(</span><span class="n">index</span><span class="p">)</span>
+    <span class="kr">END</span><span class="p">;</span>
+    <span class="n">Activities</span><span class="p">.</span><span class="n">CallVirtual</span><span class="p">(</span><span class="n">NotifyNext</span><span class="p">,</span>
+<span class="kr">END</span> <span class="n">Handle</span><span class="p">;</span>
+</pre></div>
+<ul>
+<li>Very powerful to write IRQ handlers in to levels</li>
+<li>Possible with cooperative multi tasking</li>
+</ul>
+<h5 id="lock-free-memory-management">Lock-Free Memory Management</h5>
+<ul>
+<li>Allocation/Deallocation by lock-free algorithms</li>
+<li>Buddy system: old apporach but simple when returning blocks and merging them in free memory</li>
+<li>Mark-and-sweep<ol>
+<li>Traverse heap and mark used blocks</li>
+<li>Remove all unmarked blocks</li>
+</ol>
+</li>
+<li>Multiple garbage collectors can run in parallel</li>
+<li>Precise: doesn't delete used blocks by accident (can happen in GC with heuristics)</li>
+<li>Optional</li>
+<li>Incremental: Possible to run on a subset all blocks (on different parts of heap)</li>
+<li>Concurrent: GC can run in concurrency of a mutating thread</li>
+<li>Parallel: Several instances of the GC can run at once</li>
+</ul>
+<p>Data Structures:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Global</th>
+<th>Per Object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mark Bit</td>
+<td>Cycle Count</td>
+<td>Cycle Count</td>
+</tr>
+<tr>
+<td>Marklist</td>
+<td>Marked First</td>
+<td>Next Marked</td>
+</tr>
+<tr>
+<td>Watchlist</td>
+<td>Watched First</td>
+<td>Next Watched</td>
+</tr>
+<tr>
+<td>Root Set</td>
+<td>Global References</td>
+<td>Local Refcount</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Cycle Count: used to mark visited objects</li>
+<li>Mark List: all objects that were marked previously</li>
+<li>Watch List: all candidates that could be garbage collected</li>
+<li>Root Set: where to start to find all reachable object</li>
+</ul>
+<h3 id="portability">Portability</h3>
+<ul>
+<li>Lock-free A2 kernel written exclusively in a high-level language</li>
+<li>No timer interrupt required (cooperative multitasking): scheduler hardware independent</li>
+<li>No virtual memory<ul>
+<li>no separate address spaces</li>
+<li>everything runs in user mode, all the time</li>
+</ul>
+</li>
+<li>Hardware-dependent functions (CAS) are pushed into the language</li>
+<li>Almost completely portable:<ul>
+<li>Some minimal stub written in assembly code to initialize memory mappings and initialize all processors</li>
+</ul>
+</li>
+</ul>
+<!-- End of Notes Week 9 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
