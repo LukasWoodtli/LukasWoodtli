@@ -298,6 +298,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#oberon-system-risc">Oberon System (RISC)</a></li>
 </ul>
 </div>
 <h1 id="minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</h1>
@@ -1858,6 +1859,129 @@ that the overal state has not been changed.</p>
 </li>
 </ul>
 <!-- End of Notes Week 9 -->
+<!-- Beginning of Notes Week 10 -->
+<h1 id="oberon-system-risc">Oberon System (RISC)</h1>
+<p><a href="http://www.projectoberon.com/">Project Oberon</a></p>
+<ul>
+<li>RISC architecture</li>
+<li>Oberon OS</li>
+<li>Motivation: Build system from scratch</li>
+<li>Understanding a big amount of details</li>
+<li>Commercial systems are far from perfect</li>
+<li>Need good tools for programming</li>
+<li>Competence for building from Scratch: HW, application, how it really works</li>
+<li>'lean systems' aproach</li>
+<li>Build from scratch<ul>
+<li>reduce complexity: ne 'baggage'</li>
+<li>choices of different implementation</li>
+<li>design based only on problem domain and experience</li>
+<li>less surprises!</li>
+<li>flexible solutions</li>
+<li>more than customer needs</li>
+<li>competitve advantages</li>
+</ul>
+</li>
+<li>Why not build from scratch<ul>
+<li>re-inventing the wheel</li>
+<li>fundamental knowledge required</li>
+<li>more actual work (the first time)</li>
+<li>restricted component choices</li>
+<li>not for short-term!</li>
+<li>team work: communication!</li>
+</ul>
+</li>
+<li>Configurable Hardware<ul>
+<li>PAL's / GAL's / CPLD's</li>
+<li>LUT and interconnect</li>
+<li>Current: FPGA</li>
+<li>loadable configuration (not like ASIC/VLSI)</li>
+</ul>
+</li>
+<li>Introduction to HDL:<ul>
+<li>Simulation / Synthesis</li>
+<li>Verilog / VHDL</li>
+<li>Developed at ETH: Lola, ActiveCells</li>
+<li>Verry different from Programming Languages</li>
+<li>Things happen in parallel (not serial)!</li>
+<li>Very difficult for high frequencies</li>
+</ul>
+</li>
+<li>RISC architecture (overview)<ul>
+<li><a href="https://www.inf.ethz.ch/personal/wirth/FPGA-relatedWork/RISC-Arch.pdf">Documentation</a></li>
+<li>Developed by N. Wirth</li>
+<li>Used for book "Compiler Construction" by N. Wirth</li>
+<li>RISC vs. CISC</li>
+<li>Harward vs. Von Neumann</li>
+<li>Registers vs. Stack Machine</li>
+<li>FPU</li>
+<li>ALU</li>
+<li>Shifter (Barell-Shifter)</li>
+<li>Implemented in Verilog</li>
+<li>3 kinds of instructions
+        - arithmetic/logic
+        - load/store
+        - floating-point</li>
+<li>RISC processor executes SW</li>
+<li>RISC0:<ul>
+<li>Memory addressed as words</li>
+</ul>
+</li>
+<li>RISC5:<ul>
+<li>Memory can be addressed as bytes</li>
+<li>Adds external static RAM</li>
+<li>FPU</li>
+<li>SPI, PS/2, GPIO, RS-233, 1 ms timer</li>
+</ul>
+</li>
+<li>Top of stack: -64</li>
+<li>Flags:<ul>
+<li>Not equal</li>
+<li>Zero</li>
+<li>Carry/Borrow</li>
+<li>Overflow</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- End of Notes Week 10 -->
+<!-- Beginning of Notes Week 11 -->
+<ul>
+<li>Codesign: OS/HW/Compiler</li>
+<li>Minimalistic</li>
+<li>Best practices from CS</li>
+<li>Architecture/Features<ul>
+<li>Fast file system, module loader, garbage collector</li>
+<li>High-level, type-save language</li>
+<li>files</li>
+<li><code>Module.Command[params]</code> execution from any visual text</li>
+<li>self hosted, small (~200kB)</li>
+</ul>
+</li>
+<li>User Interface<ul>
+<li>Mous oriented, three buttons, "interclicking"</li>
+</ul>
+</li>
+<li>Oberon Core System<ul>
+<li>Inner/Outer core</li>
+<li>File system: FileDir, File</li>
+<li>Networking</li>
+<li>Outer core: input, viewers, fonts, text, ...</li>
+<li>Compiler: recursive descent, singel pass</li>
+<li>RS-232, SCC, Net</li>
+<li>no memory protection</li>
+<li>possible to draw over other windows</li>
+<li>no auto save</li>
+</ul>
+</li>
+<li>Boot loader<ul>
+<li>loads boot file (inner core) form SD-card (or serial port)</li>
+</ul>
+</li>
+<li>Simple to build own tools build on Oberon System</li>
+<li><a href="https://github.com/pdewacht/oberon-risc-emu">RISC emulator</a> available</li>
+</ul>
+<!-- End of Notes Week 11 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
