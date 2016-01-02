@@ -302,6 +302,11 @@
 <li><a href="#active-cells-case-study-4">Active Cells (Case Study 4)</a><ul>
 <li><a href="#tiny-register-machine-trm">Tiny Register Machine (TRM)</a></li>
 <li><a href="#active-cells">Active Cells</a></li>
+<li><a href="#programming-language-vs-hdl">Programming Language vs. HDL</a><ul>
+<li><a href="#programming-language">Programming Language</a></li>
+<li><a href="#hardware-description-language">Hardware Description Language</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2185,13 +2190,13 @@ TRM Machine Language</li>
 </pre></div>
 <p>Cells can be parametrized with capabilities or non-default values:</p>
 <div class="highlight"><pre><span class="kr">TYPE</span>
-     <span class="cm">(* Cell is a VectorTRM with 2k of Data Memory and has access to DDR2 memory *)</span>
-    <span class="n">Filter</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">{</span><span class="n">Vector</span><span class="p">,</span> <span class="n">DataMemory</span><span class="p">(</span><span class="mi">2048</span><span class="p">),</span> <span class="n">DDR2</span><span class="p">}</span> <span class="p">(</span><span class="n">in</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span> <span class="p">(</span><span class="mi">64</span><span class="p">);</span> <span class="n">result</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">);</span>
-                                              <span class="cm">(* in port is implemented with width of 64 bits *)</span>
-    <span class="kr">VAR</span> <span class="o">..</span><span class="p">.</span>
-    <span class="kr">BEGIN</span>
-        <span class="cm">(* ... filter action ... *)</span>
-    <span class="kr">END</span> <span class="n">Filter</span><span class="p">;</span>
+  <span class="cm">(* Cell is a VectorTRM with 2k of Data Memory and has access to DDR2 memory *)</span>
+  <span class="n">Filter</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">{</span><span class="n">Vector</span><span class="p">,</span> <span class="n">DataMemory</span><span class="p">(</span><span class="mi">2048</span><span class="p">),</span> <span class="n">DDR2</span><span class="p">}</span> <span class="p">(</span><span class="n">in</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span> <span class="p">(</span><span class="mi">64</span><span class="p">);</span> <span class="n">result</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">);</span>
+                                         <span class="cm">(* in port is implemented with width of 64 bits *)</span>
+  <span class="kr">VAR</span> <span class="o">..</span><span class="p">.</span>
+  <span class="kr">BEGIN</span>
+      <span class="cm">(* ... filter action ... *)</span>
+  <span class="kr">END</span> <span class="n">Filter</span><span class="p">;</span>
 </pre></div>
 <ul>
 <li>Hierarchic Composition: Cell Nets<ul>
@@ -2202,25 +2207,25 @@ TRM Machine Language</li>
 </ul>
 </li>
 </ul>
-<p>Terminal Cellnet Example
-    :::modula2
-    cellnet Example;
-    import RS232;
-    TYPE
-        UserInterface = cell {RS232}(out1, out2: port out; in: port in)
-        (<em> ... </em>)
-        END UserInterface;</p>
-<div class="highlight"><pre>    <span class="nt">Adder</span> <span class="o">=</span> <span class="nt">cell</span><span class="o">(</span><span class="nt">in1</span><span class="o">,</span> <span class="nt">in2</span><span class="o">:</span> <span class="nt">port</span> <span class="nt">in</span><span class="o">;</span> <span class="nt">out</span><span class="o">:</span> <span class="nt">port</span> <span class="nt">out</span><span class="o">)</span>
-    <span class="o">(*</span> <span class="o">...</span> <span class="o">*)</span>
-    <span class="nt">END</span> <span class="nt">Adder</span><span class="o">;</span>
-    <span class="nt">VAR</span> <span class="nt">interface</span><span class="o">:</span> <span class="nt">UserInterface</span><span class="o">;</span> <span class="nt">adder</span><span class="o">:</span> <span class="nt">Adder</span>
-    <span class="nt">BEGIN</span>
-        <span class="nt">new</span><span class="o">(</span><span class="nt">interface</span><span class="o">);</span>
-        <span class="nt">new</span><span class="o">(</span><span class="nt">adder</span><span class="o">);</span>
-        <span class="nt">connect</span><span class="o">(</span><span class="nt">interface</span><span class="nc">.out1</span><span class="o">,</span> <span class="nt">adder</span><span class="nc">.in1</span><span class="o">);</span>
-        <span class="nt">connect</span><span class="o">(</span><span class="nt">interface</span><span class="nc">.out2</span><span class="o">,</span> <span class="nt">adder</span><span class="nc">.in2</span><span class="o">);</span>
-        <span class="nt">connect</span><span class="o">(</span><span class="nt">adder</span><span class="nc">.result</span><span class="o">,</span> <span class="nt">interface</span><span class="nc">.in</span><span class="o">);</span>
-<span class="nt">END</span> <span class="nt">Example</span><span class="o">.</span>
+<p>Terminal Cellnet Example</p>
+<div class="highlight"><pre><span class="n">cellnet</span> <span class="n">Example</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">RS232</span><span class="p">;</span>
+<span class="kr">TYPE</span>
+    <span class="n">UserInterface</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">{</span><span class="n">RS232</span><span class="p">}(</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">;</span> <span class="n">in</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span><span class="p">)</span>
+    <span class="cm">(* ... *)</span>
+    <span class="kr">END</span> <span class="n">UserInterface</span><span class="p">;</span>
+
+    <span class="n">Adder</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span> <span class="n">in2</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span><span class="p">;</span> <span class="n">out</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">)</span>
+    <span class="cm">(* ... *)</span>
+    <span class="kr">END</span> <span class="n">Adder</span><span class="p">;</span>
+    <span class="kr">VAR</span> <span class="n">interface</span><span class="p">:</span> <span class="n">UserInterface</span><span class="p">;</span> <span class="n">adder</span><span class="p">:</span> <span class="n">Adder</span>
+    <span class="kr">BEGIN</span>
+        <span class="n">new</span><span class="p">(</span><span class="n">interface</span><span class="p">);</span>
+        <span class="n">new</span><span class="p">(</span><span class="n">adder</span><span class="p">);</span>
+        <span class="n">connect</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">out1</span><span class="p">,</span> <span class="n">adder</span><span class="p">.</span><span class="n">in1</span><span class="p">);</span>
+        <span class="n">connect</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">out2</span><span class="p">,</span> <span class="n">adder</span><span class="p">.</span><span class="n">in2</span><span class="p">);</span>
+        <span class="n">connect</span><span class="p">(</span><span class="n">adder</span><span class="p">.</span><span class="n">result</span><span class="p">,</span> <span class="n">interface</span><span class="p">.</span><span class="n">in</span><span class="p">);</span>
+<span class="kr">END</span> <span class="n">Example</span><span class="p">.</span>
 </pre></div>
 <ul>
 <li>Communication between cells (CSP)<ul>
@@ -2249,6 +2254,37 @@ TRM Machine Language</li>
         - SPI, I2C controller
         - VGA, DVI controller</p>
 <!-- End of Notes Week 12 -->
+<!-- Beginning of Notes Week 13 -->
+<h2 id="programming-language-vs-hdl">Programming Language vs. HDL</h2>
+<h3 id="programming-language">Programming Language</h3>
+<ul>
+<li>Sequential execution</li>
+<li>No notion of time</li>
+</ul>
+<p>Example:
+    :::modula2
+    VAR a,b,c: INTEGER;
+    a := 1;      (<em> unknown </em>)
+    b := 2;      (<em> mapping to </em>)
+    c := a + b;  (<em> machine cycles </em>)</p>
+<h3 id="hardware-description-language">Hardware Description Language</h3>
+<p>Continuous execution (combinational logic):</p>
+<div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+<span class="k">assign</span> <span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="c1">// no</span>
+<span class="k">assign</span> <span class="n">a</span><span class="o">=</span><span class="mh">1</span><span class="p">;</span>   <span class="c1">// memory</span>
+<span class="k">assign</span> <span class="n">b</span><span class="o">=</span><span class="mh">2</span><span class="p">;</span>   <span class="c1">// associated</span>
+</pre></div>
+<p>Synchronous execution (register transfer):</p>
+<div class="highlight"><pre><span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+
+<span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
+<span class="k">begin</span>
+    <span class="n">a</span> <span class="o">&lt;=</span> <span class="mh">1</span><span class="p">;</span>    <span class="c1">// synchronous at</span>
+    <span class="n">b</span> <span class="o">&lt;=</span> <span class="mh">2</span><span class="p">;</span>    <span class="c1">// rising edge</span>
+    <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// of the clock</span>
+<span class="k">end</span><span class="p">;</span>
+</pre></div>
+<!-- Notes Week 13 20:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
