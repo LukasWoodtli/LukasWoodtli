@@ -307,6 +307,23 @@
 <li><a href="#hardware-description-language">Hardware Description Language</a></li>
 </ul>
 </li>
+<li><a href="#singleczcle-datapath-trm">Single/Czcle Datapath (TRM)</a><ul>
+<li><a href="#instruction-fetch">Instruction Fetch</a></li>
+<li><a href="#register-read">Register Read</a></li>
+<li><a href="#alu">ALU</a></li>
+<li><a href="#control-path">Control Path</a></li>
+<li><a href="#write-result-back-to-rd">Write Result Back to Rd</a></li>
+<li><a href="#trm-stalling">TRM Stalling</a></li>
+<li><a href="#laod-ld">Laod (LD)</a></li>
+<li><a href="#store-st">Store (ST)</a></li>
+<li><a href="#set-flag-registers">Set Flag Registers</a></li>
+<li><a href="#branch-instructions">Branch instructions</a></li>
+<li><a href="#separate-compilation-trm">Separate Compilation (TRM)</a><ul>
+<li><a href="#compilation-steps">Compilation Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2284,7 +2301,247 @@ TRM Machine Language</li>
     <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// of the clock</span>
 <span class="k">end</span><span class="p">;</span>
 </pre></div>
-<!-- Notes Week 13 20:00 -->
+<h2 id="singleczcle-datapath-trm">Single/Czcle Datapath (TRM)</h2>
+<h3 id="instruction-fetch">Instruction Fetch</h3>
+<ul>
+<li>Get value of <em>PC</em></li>
+<li>Get data from instruction memory (36-bit)<ul>
+<li>keep only upper or lower part (16-bit)</li>
+<li>depending on value of <em>PC</em></li>
+</ul>
+</li>
+<li>On clock<ul>
+<li>if reset: <em>PC</em> := 0</li>
+<li>if stall: <em>PC</em> := <em>PC</em></li>
+<li>else: <em>PC</em> := <em>pcmux</em> (set new <em>PC</em>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="register-read">Register Read</h3>
+<p>Read source operands from register file</p>
+<div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">rd</span><span class="p">,</span> <span class="n">rs</span><span class="p">;</span>
+<span class="kt">wire</span> <span class="n">regWr</span><span class="p">;</span>
+<span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">rdOut</span><span class="p">,</span> <span class="n">rsOut</span><span class="p">;</span>
+<span class="n">source</span> <span class="n">register</span>
+
+<span class="c1">// register file</span>
+<span class="c1">// ...</span>
+
+<span class="k">assign</span> <span class="n">irs</span> <span class="o">=</span> <span class="no">IR</span><span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>      <span class="c1">// source register</span>
+<span class="k">assign</span> <span class="n">ird</span> <span class="o">=</span> <span class="no">IR</span><span class="p">[</span><span class="mh">13</span><span class="o">:</span><span class="mh">11</span><span class="p">];</span>
+<span class="k">assign</span> <span class="n">dst</span> <span class="o">=</span> <span class="p">(</span><span class="no">BL</span><span class="p">)</span><span class="o">?</span> <span class="mh">7</span><span class="o">:</span> <span class="n">ird</span><span class="p">;</span> <span class="c1">// destination register</span>
+</pre></div>
+<ul>
+<li>For <code>BL</code> the destination register is always the link register (7)</li>
+<li>Otherwise the registers are read from the instuction register (<em>IR</em>)</li>
+</ul>
+<h3 id="alu">ALU</h3>
+<p>Compute the result via ALU</p>
+<div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="no">AA</span><span class="p">,</span> <span class="no">A</span><span class="p">,</span> <span class="no">B</span><span class="p">,</span> <span class="n">imm</span><span class="p">;</span>
+<span class="kt">wire</span> <span class="p">[</span><span class="mh">32</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">aluRes</span><span class="p">;</span>
+
+<span class="k">assign</span> <span class="no">A</span> <span class="o">=</span> <span class="p">(</span><span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">])</span><span class="o">?</span> <span class="nl">AA:</span> <span class="p">{</span><span class="mh">22</span><span class="err">’</span><span class="n">b0</span><span class="p">,</span> <span class="n">imm</span><span class="p">};</span> <span class="c1">// bit 10: immediate or register</span>
+
+<span class="k">assign</span> <span class="n">minusA</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="err">‘</span><span class="n">b0</span><span class="p">,</span> <span class="o">~</span><span class="no">A</span><span class="p">}</span> <span class="o">+</span> <span class="mh">33</span><span class="err">‘</span><span class="n">d1</span><span class="p">;</span>
+<span class="k">assign</span> <span class="n">aluRes</span> <span class="o">=</span>
+<span class="p">(</span><span class="no">MOV</span><span class="p">)</span><span class="o">?</span> <span class="nl">A:</span>
+<span class="p">(</span><span class="no">ADD</span><span class="p">)</span><span class="o">?</span> <span class="p">{</span><span class="mh">1</span><span class="err">‘</span><span class="n">b0</span><span class="p">,</span> <span class="no">B</span><span class="p">}</span> <span class="o">+</span> <span class="p">{</span><span class="mh">1</span><span class="err">‘</span><span class="n">b0</span><span class="p">,</span> <span class="no">A</span><span class="p">}</span> <span class="o">:</span>
+<span class="p">(</span><span class="no">SUB</span><span class="p">)</span><span class="o">?</span> <span class="p">{</span><span class="mh">1</span><span class="err">‘</span><span class="n">b0</span><span class="p">,</span> <span class="no">B</span><span class="p">}</span> <span class="o">+</span> <span class="n">minusA</span> <span class="o">:</span>
+<span class="p">(</span><span class="no">AND</span><span class="p">)</span><span class="o">?</span> <span class="no">B</span> <span class="o">&amp;</span> <span class="no">A</span> <span class="o">:</span>
+<span class="p">(</span><span class="no">BIC</span><span class="p">)</span><span class="o">?</span> <span class="no">B</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">A</span> <span class="o">:</span>
+<span class="p">(</span><span class="no">OR</span><span class="p">)</span><span class="o">?</span> <span class="no">B</span> <span class="o">|</span> <span class="no">A</span> <span class="o">:</span>
+<span class="p">(</span><span class="no">XOR</span><span class="p">)</span><span class="o">?</span> <span class="no">B</span> <span class="o">^</span> <span class="no">A</span> <span class="o">:</span>
+<span class="o">~</span><span class="no">A</span><span class="p">;</span>
+</pre></div>
+<h3 id="control-path">Control Path</h3>
+<div class="highlight"><pre><span class="n">Control</span> <span class="n">Path</span>
+<span class="k">assign</span> <span class="n">vector</span> <span class="o">=</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">8</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">7</span><span class="p">];</span>
+<span class="k">assign</span> <span class="n">op</span> <span class="o">=</span> <span class="no">IR</span><span class="p">[</span><span class="mh">17</span><span class="o">:</span><span class="mh">14</span><span class="p">];</span>
+
+<span class="k">assign</span> <span class="no">MOV</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">0</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">NOT</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">1</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">ADD</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">2</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">SUB</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">3</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">AND</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">4</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">BIC</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">5</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">OR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">6</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">XOR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">7</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">MUL</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">|</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]);</span> <span class="k">assign</span> <span class="no">ROR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">10</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">BR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">11</span><span class="p">)</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">];</span> <span class="k">assign</span> <span class="no">LDR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">12</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">ST</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">13</span><span class="p">);</span>
+<span class="k">assign</span> <span class="n">Bc</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">14</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">BL</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">15</span><span class="p">);</span>
+<span class="k">assign</span> <span class="no">LDH</span> <span class="o">=</span> <span class="no">MOV</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">3</span><span class="p">];</span> <span class="k">assign</span> <span class="no">BLR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">11</span><span class="p">)</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">];</span>
+</pre></div>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>IR[17:14]</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000</td>
+<td>B := A</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>B := ~A</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>B := B + A</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>B := B – A</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>B := B &amp; A</td>
+</tr>
+<tr>
+<td>0101</td>
+<td>B := B &amp; ~A</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>B := B</td>
+</tr>
+<tr>
+<td>0111</td>
+<td>B := B ^ A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="write-result-back-to-rd">Write Result Back to <code>Rd</code></h3>
+<div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">regmux</span><span class="p">;</span> <span class="kt">wire</span> <span class="n">regwr</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+
+<span class="k">assign</span> <span class="n">regwr</span> <span class="o">=</span> <span class="p">(</span><span class="no">BL</span> <span class="o">|</span> <span class="no">BLR</span> <span class="o">|</span> <span class="no">LDR</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">|</span>
+    <span class="o">~</span><span class="p">(</span><span class="no">IR</span><span class="p">[</span><span class="mh">17</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">16</span><span class="p">])</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">BR</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">vector</span><span class="p">))</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">stall0</span><span class="p">;</span>
+
+<span class="k">assign</span> <span class="n">regmux</span> <span class="o">=</span>
+<span class="p">(</span><span class="no">BL</span> <span class="o">|</span> <span class="no">BLR</span><span class="p">)</span> <span class="o">?</span> <span class="p">{{{</span><span class="mh">32</span><span class="o">-</span><span class="no">PAW</span><span class="p">}{</span><span class="mh">1</span><span class="mb">'b0</span><span class="p">}},</span> <span class="n">nxpc</span><span class="p">}</span><span class="o">:</span>
+<span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">IoenbReg</span><span class="p">)</span> <span class="o">?</span> <span class="nl">dmout:</span>  <span class="c1">// data memory out</span>
+<span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="n">IoenbReg</span><span class="p">)</span><span class="o">?</span> <span class="nl">InbusReg:</span> <span class="c1">//f rom IO</span>
+<span class="p">(</span><span class="no">MUL</span><span class="p">)</span> <span class="o">?</span> <span class="n">mulRes</span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="o">:</span>
+<span class="p">(</span><span class="no">ROR</span><span class="p">)</span> <span class="o">?</span> <span class="nl">s3:</span>
+<span class="p">(</span><span class="no">LDH</span><span class="p">)</span> <span class="o">?</span> <span class="nl">H:</span>
+<span class="n">aluRes</span><span class="p">;</span>
+</pre></div>
+<h3 id="trm-stalling">TRM Stalling</h3>
+<ul>
+<li>Stop fetching next instruction, <em>pcmux</em> keeps the current value</li>
+<li>Disable register file write enable and memory write enable signals to avoid changing the state of the processor</li>
+<li>Only <code>LD</code> and <code>MUL</code> instructions stall the processor</li>
+<li><em>dmwe</em> signal is not affected</li>
+<li><em>regwr</em> signal is affected</li>
+</ul>
+<h3 id="laod-ld">Laod (<code>LD</code>)</h3>
+<div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmout</span><span class="p">;</span>
+<span class="kt">wire</span> <span class="p">[</span><span class="nl">DAW:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmadr</span><span class="p">;</span>
+<span class="kt">wire</span> <span class="p">[</span><span class="mh">6</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">offset</span><span class="p">;</span>
+<span class="kt">reg</span> <span class="n">IoenbReg</span><span class="p">;</span>
+
+<span class="c1">// register file</span>
+<span class="c1">// ...</span>
+               <span class="c1">// src register = lr (7) ignored: harward architecture</span>
+<span class="n">Assign</span> <span class="n">dmadr</span> <span class="o">=</span> <span class="p">(</span><span class="n">irs</span> <span class="o">==</span> <span class="mh">7</span><span class="p">)</span> <span class="o">?</span> <span class="p">{{{</span><span class="no">DAW</span><span class="o">-</span><span class="mh">6</span><span class="p">}{</span><span class="mh">1</span><span class="mb">'b0</span><span class="p">}},</span> <span class="n">offset</span><span class="p">}</span> <span class="o">:</span>
+                  <span class="p">(</span><span class="no">AA</span><span class="p">[</span><span class="nl">DAW:</span><span class="mh">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">{{{</span><span class="no">DAW</span><span class="o">-</span><span class="mh">6</span><span class="p">}{</span><span class="mh">1</span><span class="mb">'b0</span><span class="p">}},</span> <span class="n">offset</span><span class="p">});</span>
+<span class="k">assign</span> <span class="n">ioenb</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">dmadr</span><span class="p">[</span><span class="nl">DAW:</span><span class="mh">6</span><span class="p">]);</span> <span class="c1">// I/O space: uppermost 2^6 bytes in data memory</span>
+<span class="k">assign</span> <span class="n">rfWd</span> <span class="o">=</span> <span class="p">...</span>
+    <span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">IoenbReg</span><span class="p">)</span><span class="o">?</span> <span class="nl">dmout:</span>
+    <span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="n">IoenbReg</span><span class="p">)</span><span class="o">?</span> <span class="nl">InbusReg:</span> <span class="c1">//from IO</span>
+    <span class="p">...;</span>
+
+<span class="k">always</span> <span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
+    <span class="n">IoenbReg</span> <span class="o">&lt;=</span> <span class="n">ioenb</span><span class="p">;</span>
+</pre></div>
+<h3 id="store-st">Store (<code>ST</code>)</h3>
+<div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmin</span><span class="p">;</span>
+<span class="kt">wire</span> <span class="n">dmwr</span><span class="p">;</span>
+<span class="c1">// register file</span>
+<span class="c1">// ...</span>
+
+<span class="no">DM</span> <span class="p">#(.</span><span class="no">BN</span><span class="p">(</span><span class="no">DMB</span><span class="p">))</span> <span class="n">dmx</span> <span class="p">(.</span><span class="n">clk</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span>
+    <span class="p">.</span><span class="n">wrDat</span><span class="p">(</span><span class="n">dmin</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">wrAdr</span><span class="p">({{{</span><span class="mh">31</span><span class="o">-</span><span class="no">DAW</span><span class="p">}{</span><span class="mh">1</span><span class="mb">'b0</span><span class="p">}},</span><span class="n">dmadr</span><span class="p">}),</span>
+        <span class="p">.</span><span class="n">rdAdr</span><span class="p">({{{</span><span class="mh">31</span><span class="o">-</span><span class="no">DAW</span><span class="p">}{</span><span class="mh">1</span><span class="mb">'b0</span><span class="p">}},</span><span class="n">dmadr</span><span class="p">}),</span>
+        <span class="p">.</span><span class="n">wrEnb</span><span class="p">(</span><span class="n">dmwe</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">rdDat</span><span class="p">(</span><span class="n">dmout</span><span class="p">));</span>
+
+<span class="k">assign</span> <span class="n">dmwe</span> <span class="o">=</span> <span class="no">ST</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">ioenb</span><span class="p">;</span>
+<span class="k">assign</span> <span class="n">dmin</span> <span class="o">=</span> <span class="no">B</span><span class="p">;</span>
+</pre></div>
+<h3 id="set-flag-registers">Set Flag Registers</h3>
+<div class="highlight"><pre><span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">,</span> <span class="k">negedge</span> <span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="c1">// flags handling</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="no">N</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="no">Z</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="no">C</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="no">V</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">else</span> <span class="k">begin</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">regwr</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="no">N</span> <span class="o">&lt;=</span> <span class="n">aluRes</span><span class="p">[</span><span class="mh">31</span><span class="p">];</span>
+        <span class="no">Z</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">aluRes</span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0</span><span class="p">);</span>
+        <span class="no">C</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="no">ROR</span> <span class="o">&amp;</span> <span class="n">s3</span><span class="p">[</span><span class="mh">0</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="o">~</span><span class="no">ROR</span> <span class="o">&amp;</span> <span class="n">aluRes</span><span class="p">[</span><span class="mh">32</span><span class="p">]);</span>
+        <span class="no">V</span> <span class="o">&lt;=</span> <span class="no">ADD</span> <span class="o">&amp;</span> <span class="p">((</span><span class="o">~</span><span class="no">A</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">B</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">aluRes</span><span class="p">[</span><span class="mh">31</span><span class="p">])</span>
+            <span class="o">|</span> <span class="p">(</span><span class="no">A</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">B</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">aluRes</span><span class="p">[</span><span class="mh">31</span><span class="p">]))</span>
+            <span class="o">|</span> <span class="no">SUB</span> <span class="o">&amp;</span> <span class="p">((</span><span class="o">~</span><span class="no">B</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">A</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">aluRes</span><span class="p">[</span><span class="mh">31</span><span class="p">])</span>
+            <span class="o">|</span> <span class="p">(</span><span class="no">B</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">A</span><span class="p">[</span><span class="mh">31</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">aluRes</span><span class="p">[</span><span class="mh">31</span><span class="p">]));</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<h3 id="branch-instructions">Branch instructions</h3>
+<ul>
+<li><em>PC</em> &lt;= <em>PC</em> + 1 + off</li>
+<li><em>PC</em> &lt;= <em>Rs</em></li>
+<li><em>PC</em> &lt;= <em>PC</em> + 1 (by default)</li>
+<li><em>PC</em> &lt;= <em>PC</em> (if stall)</li>
+<li><em>PC</em> &lt;= 0 (reset)</li>
+</ul>
+<p>Code:</p>
+<div class="highlight"><pre><span class="c1">// pcmux logic</span>
+<span class="k">assign</span> <span class="n">pcmux</span> <span class="o">=</span>
+    <span class="p">(</span><span class="o">~</span><span class="n">rst</span><span class="p">)</span> <span class="o">?</span> <span class="mh">0</span> <span class="o">:</span>
+    <span class="p">(</span><span class="n">stall0</span><span class="p">)</span> <span class="o">?</span> <span class="nl">PC:</span>
+    <span class="p">(</span><span class="no">BL</span><span class="p">)</span><span class="o">?</span> <span class="p">{{</span><span class="mh">10</span><span class="p">{</span><span class="no">IR</span><span class="p">[</span><span class="no">BLS</span><span class="o">-</span><span class="mh">1</span><span class="p">]}},</span><span class="no">IR</span><span class="p">[</span><span class="no">BLS</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span> <span class="mh">0</span><span class="p">]}</span><span class="o">+</span> <span class="n">nxpc</span> <span class="o">:</span>
+    <span class="p">(</span><span class="n">Bc</span> <span class="o">&amp;</span> <span class="n">cond</span><span class="p">)</span> <span class="o">?</span> <span class="p">{{{</span><span class="no">PAW</span><span class="o">-</span><span class="mh">10</span><span class="p">}{</span><span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]}},</span> <span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="o">:</span><span class="mh">0</span><span class="p">]}</span> <span class="o">+</span> <span class="n">nxpc</span> <span class="o">:</span> <span class="p">(</span><span class="no">BLR</span> <span class="o">|</span> <span class="no">BR</span> <span class="p">)</span> <span class="o">?</span> <span class="no">A</span><span class="p">[</span><span class="no">PAW</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">:</span>
+    <span class="n">nxpc</span><span class="p">;</span>
+</pre></div>
+<h3 id="separate-compilation-trm">Separate Compilation (TRM)</h3>
+<ul>
+<li>Development environment with separate compilation<ul>
+<li>important for commercial products</li>
+<li>state of the art</li>
+</ul>
+</li>
+<li>Very limited architecture<ul>
+<li>18-bit instructions</li>
+<li>10-bit immediates</li>
+<li>7-bit memory offset</li>
+<li>10bit (signed) conditional branch offset</li>
+<li>14-bit (+/- 8k) Branch&amp;Link</li>
+<li>long jumps (chained)</li>
+<li>immediates -&gt; expressed by several instructions or put to memory (fixups)</li>
+<li>fixups, problematic if large global variables are allocated
+-far procedure calls</li>
+</ul>
+</li>
+<li>Solution: Compilation to Intermediate Code, backend application at link time</li>
+</ul>
+<h4 id="compilation-steps">Compilation Steps</h4>
+<ol>
+<li>Scanner &amp; Parser</li>
+<li>Checker</li>
+<li>Intermediate Backend</li>
+<li>Intermediate Object File</li>
+<li>Active Cells Backend</li>
+<li>Active Cells Specification, Intermediate Assembler</li>
+<li>Target Backend</li>
+<li>Generic Object File Linker</li>
+</ol>
+<!-- End Notes Week 13 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
