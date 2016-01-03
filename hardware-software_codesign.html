@@ -157,6 +157,26 @@
 <li><a href="#evaluation-of-state-charts">Evaluation of State Charts</a></li>
 </ul>
 </li>
+<li><a href="#specification-and-description-language-sdl">Specification and Description Language (SDL)</a></li>
+<li><a href="#dataflow-languages">Dataflow Languages</a><ul>
+<li><a href="#kahn-process-networks">Kahn Process Networks</a><ul>
+<li><a href="#determinacy">Determinacy</a></li>
+<li><a href="#adding-non-determinacy">Adding Non-Determinacy</a></li>
+</ul>
+</li>
+<li><a href="#synchronous-dataflow-sdf">Synchronous Dataflow (SDF)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-mapping-application-to-architecture">3. Mapping Application to Architecture</a><ul>
+<li><a href="#specification-examples">Specification Examples</a><ul>
+<li><a href="#data-flow-graph-dfg">Data-Flow Graph (DFG)</a></li>
+<li><a href="#control-flow-graph-cfg">Control-Flow Graph (CFG)</a></li>
+</ul>
+</li>
+<li><a href="#architecture-specification">Architecture Specification</a></li>
+<li><a href="#mapping-specification">Mapping Specification</a></li>
 </ul>
 </li>
 </ul>
@@ -291,7 +311,6 @@
 <li>State oriented behaviour (micro controller, FPGA)</li>
 <li>Dataflow oriented behavour (DSP)</li>
 </ul>
-<p>...</p>
 <h2 id="state-charts">State Charts</h2>
 <ul>
 <li>Classical automata (Moore/Mealy): FSM</li>
@@ -341,11 +360,140 @@
 </ol>
 </li>
 </ul>
+<h2 id="specification-and-description-language-sdl">Specification and Description Language (SDL)</h2>
+<ul>
+<li>Targeted at unambiguous specification and despription of systems</li>
+<li><em>Asynchrnous</em> message passing</li>
+<li>Appropriate also for distributed systems</li>
+<li>Communication between FSMs (or processes)<ul>
+<li>meassge passing with FIFO queues</li>
+<li>FIFOs can be indefinitely large</li>
+</ul>
+</li>
+<li>Each process fetches entry from FIFO<ul>
+<li>if input enables transition it takes place</li>
+<li>otherwise discard input</li>
+</ul>
+</li>
+<li>All orders of events are legal: different correct behaviour in simulators (not deterministic)</li>
+</ul>
+<h2 id="dataflow-languages">Dataflow Languages</h2>
+<ul>
+<li>Imperative language style (<em>program counter</em>)</li>
+<li>Movement of data is priority</li>
+<li>
+<p>Scheduling: responsibility of the system (not the programmer)</p>
+</li>
+<li>
+<p>Basic characteristics:</p>
+<ul>
+<li>all processes run 'simultaneously'</li>
+<li>Processes can be described with imperative code</li>
+<li>Processes can <strong>only</strong> communicate through buffers</li>
+<li>Sequence of read tokens is same as of read tokens</li>
+</ul>
+</li>
+<li>Useful for applications that deal with streams of data<ul>
+<li>Concurrent: maps to parallel hardware</li>
+<li>Perfect for block-diagram specifications (control systems, signal processing)</li>
+</ul>
+</li>
+</ul>
+<h3 id="kahn-process-networks">Kahn Process Networks</h3>
+<ul>
+<li>General-purpose scheme for parallel programming<ul>
+<li><em>read</em>: destructive and blocking (reading empty channel blocks until data is available)</li>
+<li><em>write</em>: non-blocking</li>
+<li><em>FIFO</em>: infinite size</li>
+</ul>
+</li>
+<li>Unique attribute: <em>determinate</em></li>
+</ul>
+<h4 id="determinacy">Determinacy</h4>
+<ul>
+<li>Random: knowing about system and inputs is not sufficient to determin output</li>
+<li>Determinate: the histories of <em>all channels</em> depend only on the histories of the <em>input channels</em></li>
+<li>Importence<ul>
+<li>Functional behaviour is independent of timing (scheduling, communication time, execution time of processes)</li>
+<li>Separation of functional properties and timing</li>
+</ul>
+</li>
+</ul>
+<h4 id="adding-non-determinacy">Adding Non-Determinacy</h4>
+<ul>
+<li>Several possibilities<ul>
+<li>Allow processes to test for empty queues</li>
+<li>Allow multiple processes to write to or read from one channel</li>
+<li>Allow processes to share a variable (memory)</li>
+</ul>
+</li>
+</ul>
+<h3 id="synchronous-dataflow-sdf">Synchronous Dataflow (SDF)</h3>
+<ul>
+<li>Restriction of Kahn Networks to allow compile-time scheduling</li>
+<li>Each process reads and writes a <em>fixed number of tokens</em> each time it fires</li>
+<li>Firing is an atomic process</li>
+<li>Schedule can be determined completely at compile-time</li>
+<li>Steps:<ol>
+<li>Establish relative execution rates (solving a system of linar blancing equations)</li>
+<li>Determine periodic schedule by simulating system for a single round</li>
+</ol>
+</li>
+</ul>
 <!-- Week 05 - 14.10.15 -->
+<!-- Beginning of Notes Week 5 -->
+<!-- Beginning of Slides 3 -->
+<h1 id="3-mapping-application-to-architecture">3. Mapping Application to Architecture</h1>
+<p>System synthesis from specification</p>
+<ul>
+<li>Allocation: Select components (HW)</li>
+<li>Binding: Bind SW (Application) to HW (Components)</li>
+<li>Scheduling: Executing code</li>
+</ul>
 <blockquote>
 <p>Mapping = Binding + Scheduling</p>
 </blockquote>
-<p>Binding: Bind SW (Application) to HW (Components)</p>
+<h2 id="specification-examples">Specification Examples</h2>
+<h3 id="data-flow-graph-dfg">Data-Flow Graph (DFG)</h3>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">3</span><span class="n">a</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+</pre></div>
+<ul>
+<li>no loops</li>
+<li>parallelism</li>
+</ul>
+<h3 id="control-flow-graph-cfg">Control-Flow Graph (CFG)</h3>
+<div class="highlight"><pre><span class="n">what_is_this</span> <span class="p">{</span>
+    <span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="n">repeat</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">done</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">until</span> <span class="n">done</span><span class="p">;</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<ul>
+<li>State machine</li>
+<li>Contional branches</li>
+</ul>
+<h2 id="architecture-specification">Architecture Specification</h2>
+<ul>
+<li>Reflects structure and properties of underlying platform</li>
+<li>Can be done at different abstraction levels</li>
+</ul>
+<h2 id="mapping-specification">Mapping Specification</h2>
+<p>Mapping: application and architecture specification</p>
+<ul>
+<li><em>binds</em> processes to proressors</li>
+<li><em>binds</em> communication between processes to architecture communication paths</li>
+<li>specifies <em>resource sharing</em> and <em>scheduling</em></li>
+</ul>
+<!-- 10:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
