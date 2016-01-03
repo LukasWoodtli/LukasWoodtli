@@ -307,14 +307,14 @@
 <li><a href="#hardware-description-language">Hardware Description Language</a></li>
 </ul>
 </li>
-<li><a href="#singleczcle-datapath-trm">Single/Czcle Datapath (TRM)</a><ul>
+<li><a href="#singlecycle-datapath-trm">Single/Cycle Datapath (TRM)</a><ul>
 <li><a href="#instruction-fetch">Instruction Fetch</a></li>
 <li><a href="#register-read">Register Read</a></li>
 <li><a href="#alu">ALU</a></li>
 <li><a href="#control-path">Control Path</a></li>
 <li><a href="#write-result-back-to-rd">Write Result Back to Rd</a></li>
 <li><a href="#trm-stalling">TRM Stalling</a></li>
-<li><a href="#laod-ld">Laod (LD)</a></li>
+<li><a href="#load-ld">Load (LD)</a></li>
 <li><a href="#store-st">Store (ST)</a></li>
 <li><a href="#set-flag-registers">Set Flag Registers</a></li>
 <li><a href="#branch-instructions">Branch instructions</a></li>
@@ -324,6 +324,12 @@
 </li>
 </ul>
 </li>
+<li><a href="#problems-with-active-cells-1">Problems with Active Cells 1</a><ul>
+<li><a href="#generic-communication-interface">Generic Communication Interface</a></li>
+</ul>
+</li>
+<li><a href="#active-cells-2">Active Cells 2</a></li>
+<li><a href="#active-cells-3">Active Cells 3</a></li>
 </ul>
 </li>
 </ul>
@@ -2087,12 +2093,12 @@ that the overall state has not been changed.</p>
 </ul>
 <h2 id="tiny-register-machine-trm">Tiny Register Machine (TRM)</h2>
 <ul>
-<li>Extremely simple porcessor on FPGA</li>
+<li>Extremely simple processor on FPGA</li>
 <li>Hardware architecture</li>
 <li>Two-stage pipeline</li>
 <li>Each TRM contains<ul>
 <li>ALU and shifter</li>
-<li>32-bit operands and results stored in a bonak of 2 * 8 registers</li>
+<li>32-bit operands and results stored in a bank of 2 * 8 registers</li>
 <li>Local data memory: d * 512 words of 32 bits</li>
 <li>Local program memory: i * 1024 instructions with 32 bits</li>
 <li>7 general purpose registers</li>
@@ -2143,11 +2149,11 @@ TRM Machine Language</li>
 <li>Computing model, programming language</li>
 <li>Compiler, synthesizer, hardware library, simulator</li>
 <li>Programmable HW (FPGA)</li>
-<li>One toolchain for SW and HW</li>
+<li>One tool-chain for SW and HW</li>
 <li>Consequences<ul>
 <li>No global memory</li>
 <li>No processor sharing</li>
-<li>No pecularites of specific processor</li>
+<li>No peculiarities of specific processor</li>
 <li>No predefined topology (NoC)</li>
 <li>No interrupts</li>
 <li>No operation system</li>
@@ -2220,7 +2226,7 @@ TRM Machine Language</li>
 <li>Allocation of cells: <code>new</code> statement</li>
 <li>Connection of cells: <code>connect</code> statement</li>
 <li>Ports of cells can be delegated to the ports of the net: <code>delegate</code> statement</li>
-<li>Terminal or closed Cellnets (i.e Cellnets witout ports) can be deployed to hardware</li>
+<li>Terminal or closed Cellnets (i.e Cellnets without ports) can be deployed to hardware</li>
 </ul>
 </li>
 </ul>
@@ -2263,7 +2269,7 @@ TRM Machine Language</li>
         - 32, 64, 128, 1k * 32
     - Storage Components
         - DDR2 controller
-        - configurable BRAMs
+        - configurable DRAMs
         - CF controller
     - I/O Components
         - UART controller
@@ -2301,7 +2307,7 @@ TRM Machine Language</li>
     <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// of the clock</span>
 <span class="k">end</span><span class="p">;</span>
 </pre></div>
-<h2 id="singleczcle-datapath-trm">Single/Czcle Datapath (TRM)</h2>
+<h2 id="singlecycle-datapath-trm">Single/Cycle Datapath (TRM)</h2>
 <h3 id="instruction-fetch">Instruction Fetch</h3>
 <ul>
 <li>Get value of <em>PC</em></li>
@@ -2426,7 +2432,7 @@ TRM Machine Language</li>
 <span class="k">assign</span> <span class="n">regmux</span> <span class="o">=</span>
 <span class="p">(</span><span class="no">BL</span> <span class="o">|</span> <span class="no">BLR</span><span class="p">)</span> <span class="o">?</span> <span class="p">{{{</span><span class="mh">32</span><span class="o">-</span><span class="no">PAW</span><span class="p">}{</span><span class="mh">1</span><span class="mb">'b0</span><span class="p">}},</span> <span class="n">nxpc</span><span class="p">}</span><span class="o">:</span>
 <span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">IoenbReg</span><span class="p">)</span> <span class="o">?</span> <span class="nl">dmout:</span>  <span class="c1">// data memory out</span>
-<span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="n">IoenbReg</span><span class="p">)</span><span class="o">?</span> <span class="nl">InbusReg:</span> <span class="c1">//f rom IO</span>
+<span class="p">(</span><span class="no">LDR</span> <span class="o">&amp;</span> <span class="n">IoenbReg</span><span class="p">)</span><span class="o">?</span> <span class="nl">InbusReg:</span> <span class="c1">// from IO</span>
 <span class="p">(</span><span class="no">MUL</span><span class="p">)</span> <span class="o">?</span> <span class="n">mulRes</span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="o">:</span>
 <span class="p">(</span><span class="no">ROR</span><span class="p">)</span> <span class="o">?</span> <span class="nl">s3:</span>
 <span class="p">(</span><span class="no">LDH</span><span class="p">)</span> <span class="o">?</span> <span class="nl">H:</span>
@@ -2440,7 +2446,7 @@ TRM Machine Language</li>
 <li><em>dmwe</em> signal is not affected</li>
 <li><em>regwr</em> signal is affected</li>
 </ul>
-<h3 id="laod-ld">Laod (<code>LD</code>)</h3>
+<h3 id="load-ld">Load (<code>LD</code>)</h3>
 <div class="highlight"><pre><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmout</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="nl">DAW:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmadr</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="mh">6</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">offset</span><span class="p">;</span>
@@ -2528,20 +2534,55 @@ TRM Machine Language</li>
 -far procedure calls</li>
 </ul>
 </li>
-<li>Solution: Compilation to Intermediate Code, backend application at link time</li>
+<li>Solution: Compilation to Intermediate Code, back-end application at link time</li>
 </ul>
 <h4 id="compilation-steps">Compilation Steps</h4>
 <ol>
 <li>Scanner &amp; Parser</li>
 <li>Checker</li>
-<li>Intermediate Backend</li>
+<li>Intermediate Back-end</li>
 <li>Intermediate Object File</li>
-<li>Active Cells Backend</li>
+<li>Active Cells Back-end</li>
 <li>Active Cells Specification, Intermediate Assembler</li>
-<li>Target Backend</li>
+<li>Target Back-end</li>
 <li>Generic Object File Linker</li>
 </ol>
 <!-- End Notes Week 13 -->
+<!-- Beginning of Notes Week 14 -->
+<h2 id="problems-with-active-cells-1">Problems with Active Cells 1</h2>
+<ul>
+<li>What if several same HW components available?</li>
+<li>How to extend HW without rewriting compiler each time?</li>
+</ul>
+<h3 id="generic-communication-interface">Generic Communication Interface</h3>
+<ul>
+<li>Peer-to-Peer</li>
+<li>Use of <em>AXI4 Stream</em> interconnect standard from ARM</li>
+<li>Generic, flexible</li>
+<li>Non-redundant</li>
+</ul>
+<h2 id="active-cells-2">Active Cells 2</h2>
+<ul>
+<li>Flexible parameterization of the components using interpreted code in the component specification</li>
+<li>XML-based specification (object persistency)</li>
+</ul>
+<h2 id="active-cells-3">Active Cells 3</h2>
+<ul>
+<li>Parameterization and Description of Hardware completely in one programming language</li>
+</ul>
+<ol>
+<li>Platform specific settings clock sources, pin locations etc</li>
+<li>Component specific settings:<ul>
+<li>dependencies (Verilog-Files) parameters</li>
+<li>port names</li>
+<li>Can be made very generic with plugins</li>
+</ul>
+</li>
+</ol>
+<p><img alt="Active Cells 3 Toolchain" class="img-responsive" src="/images/syscon_active_cells_3_toolchain.png"/></p>
+<p>This image is taken from the lecture slides provided by Felix Friedrich</p>
+<!-- End of Notes Week 14 -->
+<!-- End of Course -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
