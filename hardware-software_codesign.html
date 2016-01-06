@@ -179,6 +179,18 @@
 <li><a href="#mapping-specification">Mapping Specification</a></li>
 </ul>
 </li>
+<li><a href="#4-system-partitioning">4. System Partitioning</a><ul>
+<li><a href="#mapping-at-different-levels">Mapping at different Levels</a><ul>
+<li><a href="#low-level">Low Level</a></li>
+<li><a href="#high-level">High Level</a></li>
+</ul>
+</li>
+<li><a href="#cost-functions">Cost Functions</a><ul>
+<li><a href="#estimation_1">Estimation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="0-overview">0. Overview</h1>
@@ -463,6 +475,7 @@
 <li>no loops</li>
 <li>parallelism</li>
 </ul>
+<p><a href="https://en.wikipedia.org/wiki/Data_flow_diagram">Data Flow Graph on Wikipeida</a></p>
 <h3 id="control-flow-graph-cfg">Control-Flow Graph (CFG)</h3>
 <div class="highlight"><pre><span class="n">what_is_this</span> <span class="p">{</span>
     <span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
@@ -481,6 +494,7 @@
 <li>State machine</li>
 <li>Contional branches</li>
 </ul>
+<p><a href="https://en.wikipedia.org/wiki/Control_flow_graph">Control Flow Graph on Wikipedia</a></p>
 <h2 id="architecture-specification">Architecture Specification</h2>
 <ul>
 <li>Reflects structure and properties of underlying platform</li>
@@ -493,7 +507,51 @@
 <li><em>binds</em> communication between processes to architecture communication paths</li>
 <li>specifies <em>resource sharing</em> and <em>scheduling</em></li>
 </ul>
-<!-- 10:00 -->
+<p><img alt="Partitioning and Mapping" class="img-responsive" src="/images/hscd_partitioning_mapping.svg"/></p>
+<!-- TODO: Repeat Slides 3-10 to 3-14 -->
+<h1 id="4-system-partitioning">4. System Partitioning</h1>
+<h2 id="mapping-at-different-levels">Mapping at different Levels</h2>
+<h3 id="low-level">Low Level</h3>
+<ul>
+<li>Register Transfer Level (RTL) or Netlist Level</li>
+<li>Split a digital circuit and map it to several devices (FPGAs, ASICs)</li>
+<li>System parameters (e.g., area, delay) relatively easy to determine</li>
+</ul>
+<h3 id="high-level">High Level</h3>
+<ul>
+<li>System Level</li>
+<li>Comparison of design alternatives for optimality (design space exploration)</li>
+<li>System parameters are unknown and difficult to determine<ul>
+<li>to be estimated via analysis, simulation, (rapid) prototyping</li>
+</ul>
+</li>
+</ul>
+<h2 id="cost-functions">Cost Functions</h2>
+<ul>
+<li>system cost (<em>C[$]</em>)</li>
+<li>latency (<em>L[sec]</em>)</li>
+<li>power consumption (<em>P[W]</em>)</li>
+<li>...</li>
+</ul>
+<h3 id="estimation_1">Estimation</h3>
+<p>Estimation is required to find <em>C</em>, <em>L</em>, <em>P</em> values, for each design point</p>
+<p>i.e</p>
+<div class="math">$$f(C,L,P)= k_1 \cdot h_C(C,C_{max})+ k_2 \cdot h_L(L,L_{max})+ k_3 \cdot h_P(P,P_{max})$$</div>
+<ul>
+<li><span class="math">\(h_C\)</span>, <span class="math">\(h_L\)</span>, <span class="math">\(h_P\)</span>: denote how strong <span class="math">\(C\)</span>, <span class="math">\(L\)</span>, <span class="math">\(P\)</span> violate design constraints <span class="math">\(C_{max}\)</span>, <span class="math">\(L_{max}\)</span>, <span class="math">\(P_{max}\)</span></li>
+<li><span class="math">\(k_1\)</span>, <span class="math">\(k_2\)</span>, <span class="math">\(k_3\)</span>: weighting and normalization</li>
+</ul>
+<!-- Slides 4-8
+     Notes Week 5 48:00 -->
+<!--
+
+Topics
+------
+- Architecture Graph (problem Graph)
+- Specification Graph
+- Closeness Function
+
+-->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
