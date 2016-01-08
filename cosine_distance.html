@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>L2-Norm · Lukas Woodtli</title>
+        <title>Cosine Distance · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/l2-norm.html">L2-Norm</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/cosine_distance.html">Cosine Distance</a></h1>
     </div>
 
         </div>
@@ -138,14 +138,23 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="l2-norm">L2-Norm</h1>
-<p>A vector <span class="math">\(\vec a\)</span> has the <span class="math">\(L_2\)</span>-Norm: </p>
-<div class="math">$$\left \| \vec a \right \|_{2} = \sqrt{\sum_{k=1}^n|a_k|^2}$$</div>
-<p><span class="math">\(n\)</span>: Dimensions
-<span class="math">\(a_k\)</span>: <span class="math">\(k\)</span>-th element of <span class="math">\(a\)</span></p>
-<h1 id="l2-distance">L2-Distance</h1>
-<p>The <span class="math">\(L_2\)</span>-Distance between two vectors <span class="math">\(\vec a\)</span> and <span class="math">\(\vec b\)</span> is:</p>
-<div class="math">$$d \left ( \vec a, \vec b  \right ) = \sqrt{\sum_{k=1}^n|a_k - b_k|^2}$$</div>
+    <ul>
+<li>useful in spaces that have dimensions<ul>
+<li>Euclidian spaces</li>
+<li>Discrete euclidian spaces (i.e vectors of integers, vector of bools)</li>
+<li>...</li>
+</ul>
+</li>
+<li>Points are thought as <em>directions</em></li>
+<li>No distinction between a vector and a multiple of it</li>
+</ul>
+<blockquote>
+<p>The Cosine Distance between two points is the <em>angle</em> that the vectors to these points make</p>
+</blockquote>
+<ul>
+<li>The angle will be between <span class="math">\(0^{\circ}\)</span> and <span class="math">\(180^{\circ}\)</span> regardless of <em>how many dimensions</em> the space has</li>
+</ul>
+<div class="math">$$d_{cos}(\vec a, \vec b) = arcos  \left ( \frac{\vec a \cdot \vec b}{\left \| \vec a \right \|_2 \cdot \left \| \vec b \right \|_2}  \right )  = arcos  \left ( \frac{\sum_{i=1}^na_i \cdot b_i}{\left \| \vec a \right \| \cdot \left \| \vec b \right \|} \right )$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -208,12 +217,12 @@
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/cosine_distance.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/git_commit_a_older_version_to_head.html">
+          <a href="http://lukaswoodtli.github.io/l2-norm.html">
           Older &raquo;</a>
         </li>
       </ul>
