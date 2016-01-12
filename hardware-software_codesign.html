@@ -187,6 +187,13 @@
 </li>
 <li><a href="#cost-functions">Cost Functions</a><ul>
 <li><a href="#estimation_1">Estimation</a></li>
+<li><a href="#the-formal-partitioning-problem">The Formal Partitioning Problem</a></li>
+<li><a href="#exact-vs-heuristic-methods">Exact vs. Heuristic Methods</a></li>
+<li><a href="#integer-linear-programming-ilp">Integer Linear Programming (ILP)</a></li>
+<li><a href="#constructive-methods">Constructive Methods</a><ul>
+<li><a href="#hierarchical-clustering">Hierarchical Clustering</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -541,8 +548,43 @@
 <li><span class="math">\(h_C\)</span>, <span class="math">\(h_L\)</span>, <span class="math">\(h_P\)</span>: denote how strong <span class="math">\(C\)</span>, <span class="math">\(L\)</span>, <span class="math">\(P\)</span> violate design constraints <span class="math">\(C_{max}\)</span>, <span class="math">\(L_{max}\)</span>, <span class="math">\(P_{max}\)</span></li>
 <li><span class="math">\(k_1\)</span>, <span class="math">\(k_2\)</span>, <span class="math">\(k_3\)</span>: weighting and normalization</li>
 </ul>
-<!-- Slides 4-8
-     Notes Week 5 48:00 -->
+<h3 id="the-formal-partitioning-problem">The Formal Partitioning Problem</h3>
+<p>Assign <span class="math">\(n\)</span> objects <span class="math">\(O= \{  o_1, \cdots , o_n \}\)</span> to <span class="math">\(m\)</span> blocks (also called partitions)
+<span class="math">\(P= \{  p_1, \cdots , p_m \}\)</span>, such that</p>
+<ul>
+<li><span class="math">\(p_1 \cup p_2 \cup \cdots \cup p_m = O\)</span> (all objects are assigned - mapped)</li>
+<li><span class="math">\(p_i \cap p_j = \{ \}\; \forall i,j:i\neq j\)</span> (an object is not assigend or mapped twice)</li>
+<li>and costs <span class="math">\(c(P)\)</span> are minimized</li>
+</ul>
+<h3 id="exact-vs-heuristic-methods">Exact vs. Heuristic Methods</h3>
+<ul>
+<li>Exact provides optimal solution (or set of solutions)</li>
+<li>Heuristic provides a 'good' solution but not best</li>
+</ul>
+<h3 id="integer-linear-programming-ilp">Integer Linear Programming (ILP)</h3>
+<ul>
+<li>Exact method</li>
+<li>Objective function</li>
+<li>Constraints</li>
+</ul>
+<p>Objective:</p>
+<div class="math">$$C = \sum_{x_i\in X}a_ix_i\; with\; a_i \in \mathbb{R}, x_i \in \mathbb{N}$$</div>
+<p>Constraints:</p>
+<div class="math">$$\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}$$</div>
+<p>Integer programming problem:
+- Minimize objective function subject to constraints</p>
+<h3 id="constructive-methods">Constructive Methods</h3>
+<ul>
+<li>Heuristic</li>
+</ul>
+<h4 id="hierarchical-clustering">Hierarchical Clustering</h4>
+<ul>
+<li>Combine always 2 nodes</li>
+<li>Then recalculate</li>
+<li>Repeat until goal achieved</li>
+<li>Steps can be visualized in a tree diagram</li>
+</ul>
+<!-- End of Notes Week 5 -->
 <!--
 
 Topics
@@ -550,6 +592,7 @@ Topics
 - Architecture Graph (problem Graph)
 - Specification Graph
 - Closeness Function
+
 
 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
