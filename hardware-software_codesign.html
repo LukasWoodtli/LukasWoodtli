@@ -194,7 +194,7 @@
 </li>
 <li><a href="#integer-linear-programming-ilp">Integer Linear Programming (ILP)</a><ul>
 <li><a href="#example-for-partitioning">Example for Partitioning</a></li>
-<li><a href="#aproaches">Aproaches</a></li>
+<li><a href="#approaches">Approaches</a></li>
 <li><a href="#solutions">Solutions</a></li>
 </ul>
 </li>
@@ -219,7 +219,7 @@
 </li>
 <li>Performance Estimation<ul>
 <li>Simulation-based Methods</li>
-<li>Worst-Case Execution Time Analyis</li>
+<li>Worst-Case Execution Time Analysis</li>
 <li>Performance Analysis of Distributed Systems</li>
 <li>Thermal-aware Design</li>
 </ul>
@@ -254,7 +254,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Few Applications, knonw at design-time</td>
+<td>Few Applications, known at design-time</td>
 <td>Broad class of applications</td>
 </tr>
 <tr>
@@ -326,18 +326,18 @@
 <h1 id="2-models-of-computation">2. Models of Computation</h1>
 <ul>
 <li>Hierarchy<ul>
-<li>Behavioural</li>
+<li>Behavioral</li>
 <li>Structural</li>
 </ul>
 </li>
 <li>Timing</li>
 <li>State oriented behaviour (micro controller, FPGA)</li>
-<li>Dataflow oriented behavour (DSP)</li>
+<li>Dataflow oriented behaviour (DSP)</li>
 </ul>
 <h2 id="state-charts">State Charts</h2>
 <ul>
 <li>Classical automata (Moore/Mealy): FSM</li>
-<li>State: <strong>Information</strong> needed to get (determin) the output form the input</li>
+<li>State: <strong>Information</strong> needed to get (determine) the output form the input</li>
 <li>State Charts introduce hierarchy<ul>
 <li>Combining States with Sub-States in Super-States</li>
 <li>Active States</li>
@@ -376,8 +376,8 @@
 <li>Three phases<ol>
 <li>Event is emitted</li>
 <li>Transition is selected</li>
-<li>Simultaniously makte transition and apply the actions<ul>
-<li>Execute the right hand side of action simultaniously and assign then after</li>
+<li>Simultaneously make transition and apply the actions<ul>
+<li>Execute the right hand side of action simultaneously and assign then after</li>
 </ul>
 </li>
 </ol>
@@ -385,11 +385,11 @@
 </ul>
 <h2 id="specification-and-description-language-sdl">Specification and Description Language (SDL)</h2>
 <ul>
-<li>Targeted at unambiguous specification and despription of systems</li>
-<li><em>Asynchrnous</em> message passing</li>
+<li>Targeted at unambiguous specification and description of systems</li>
+<li><em>Asynchronous</em> message passing</li>
 <li>Appropriate also for distributed systems</li>
 <li>Communication between FSMs (or processes)<ul>
-<li>meassge passing with FIFO queues</li>
+<li>message passing with FIFO queues</li>
 <li>FIFOs can be indefinitely large</li>
 </ul>
 </li>
@@ -434,9 +434,9 @@
 </ul>
 <h4 id="determinacy">Determinacy</h4>
 <ul>
-<li>Random: knowing about system and inputs is not sufficient to determin output</li>
+<li>Random: knowing about system and inputs is not sufficient to determine output</li>
 <li>Determinate: the histories of <em>all channels</em> depend only on the histories of the <em>input channels</em></li>
-<li>Importence<ul>
+<li>Importance<ul>
 <li>Functional behaviour is independent of timing (scheduling, communication time, execution time of processes)</li>
 <li>Separation of functional properties and timing</li>
 </ul>
@@ -458,7 +458,7 @@
 <li>Firing is an atomic process</li>
 <li>Schedule can be determined completely at compile-time</li>
 <li>Steps:<ol>
-<li>Establish relative execution rates (solving a system of linar blancing equations)</li>
+<li>Establish relative execution rates (solving a system of linear balancing equations)</li>
 <li>Determine periodic schedule by simulating system for a single round</li>
 </ol>
 </li>
@@ -486,7 +486,7 @@
 <li>no loops</li>
 <li>parallelism</li>
 </ul>
-<p><a href="https://en.wikipedia.org/wiki/Data_flow_diagram">Data Flow Graph on Wikipeida</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Data_flow_diagram">Data Flow Graph on Wikipedia</a></p>
 <h3 id="control-flow-graph-cfg">Control-Flow Graph (CFG)</h3>
 <div class="highlight"><pre><span class="n">what_is_this</span> <span class="p">{</span>
     <span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
@@ -503,7 +503,7 @@
 </pre></div>
 <ul>
 <li>State machine</li>
-<li>Contional branches</li>
+<li>Conditional branches</li>
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Control_flow_graph">Control Flow Graph on Wikipedia</a></p>
 <h2 id="architecture-specification">Architecture Specification</h2>
@@ -514,7 +514,7 @@
 <h2 id="mapping-specification">Mapping Specification</h2>
 <p>Mapping: application and architecture specification</p>
 <ul>
-<li><em>binds</em> processes to proressors</li>
+<li><em>binds</em> processes to processors</li>
 <li><em>binds</em> communication between processes to architecture communication paths</li>
 <li>specifies <em>resource sharing</em> and <em>scheduling</em></li>
 </ul>
@@ -561,7 +561,7 @@
 <span class="math">\(P= \{  p_1, \cdots , p_m \}\)</span>, such that</p>
 <ul>
 <li><span class="math">\(p_1 \cup p_2 \cup \cdots \cup p_m = O\)</span> (all objects are assigned - mapped)</li>
-<li><span class="math">\(p_i \cap p_j = \{ \}\; \forall i,j:i\neq j\)</span> (an object is not assigend or mapped twice)</li>
+<li><span class="math">\(p_i \cap p_j = \{ \}\; \forall i,j:i\neq j\)</span> (an object is not assigned or mapped twice)</li>
 <li>and costs <span class="math">\(c(P)\)</span> are minimized</li>
 </ul>
 <h3 id="partitioning-methods">Partitioning Methods</h3>
@@ -570,18 +570,28 @@
 <li>Exact provides optimal solution (or set of solutions)</li>
 <li>Heuristic provides a 'good' solution but not best</li>
 </ul>
-<p>Overview: 
-- Exact Methods
-    - Enumeration
-    - Integer linear programs (ILP)
-- Heuristic
-    - Constructive Methods
-        - Random mapping
-        - Hierarchical clustering
-    - Iterative methods
-        - Kerninghan-Lin algorithm
-        - Simulated annealing
-        - Evolutionary algorithm</p>
+<p>Overview:</p>
+<ul>
+<li>Exact Methods<ul>
+<li>Enumeration</li>
+<li>Integer linear programs (ILP)</li>
+</ul>
+</li>
+<li>Heuristic<ul>
+<li>Constructive Methods<ul>
+<li>Random mapping</li>
+<li>Hierarchical clustering</li>
+</ul>
+</li>
+<li>Iterative methods<ul>
+<li>Kerninghan-Lin algorithm</li>
+<li>Simulated annealing</li>
+<li>Evolutionary algorithm</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h4 id="hierarchical-clustering">Hierarchical Clustering</h4>
 <ul>
 <li>Combine always 2 nodes</li>
@@ -599,8 +609,10 @@
 <div class="math">$$C = \sum_{x_i\in X}a_ix_i\; with\; a_i \in \mathbb{R}, x_i \in \mathbb{N}$$</div>
 <p>Constraints:</p>
 <div class="math">$$\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}$$</div>
-<p>Integer programming problem:
-- Minimize objective function subject to constraints</p>
+<p>Integer programming problem:</p>
+<ul>
+<li>Minimize objective function subject to constraints</li>
+</ul>
 <!-- End of Notes Week 5 -->
 <!-- Beginning of Notes Week 6 -->
 <h4 id="example-for-partitioning">Example for Partitioning</h4>
@@ -680,33 +692,33 @@ x_{1,0} + x_{1,1} = 1\\
 \cdots
 \end{matrix}\right\}
 \sum_{k=0}^1 x_{k,i} = 1\; \forall\; 0 \leq i \leq 3$$</div>
-<h4 id="aproaches">Aproaches</h4>
+<h4 id="approaches">Approaches</h4>
 <ol>
-<li>Aproach:</li>
+<li>Approach:</li>
 </ol>
 <div class="math">$$min\left \{ \sum_{i=0}^3 \sum_{k=0}^1 c_{i,k} x_{i,k} \right \}$$</div>
-<p>2. Aproach:</p>
+<p>2. Approach:</p>
 <div class="math">$$min\left \{ \left | \sum_{i=0}^3  c_{i,0} x_{i,0} - \sum_{i=0}^3 c_{i,1} x_{i,1} \right |\right \}$$</div>
 <p>This is not a linear problem!</p>
 <h4 id="solutions">Solutions</h4>
 <p>1. Solution:</p>
-<p>Solving 2 linear problems: split aproach 2 into 2 linear problems:</p>
+<p>Solving 2 linear problems: split approach 2 into 2 linear problems:</p>
 <div class="math">$$min \left \{ \left | \underbrace{\sum_{i=0}^3  c_{i,0} x_{i,0}}_{l_1} - \underbrace{\sum_{i=0}^3 c_{i,1} x_{i,1}}_{l_2} \right | \right \}$$</div>
 <p>Becomes:</p>
 <div class="math">$$\begin{matrix}
 l_0 \geq l_1: min\left \{ l_0 - l_1 \right \} \\
-l_1 \geq l_0: min\left \{ l_1 - l_0 \right \} 
+l_1 \geq l_0: min\left \{ l_1 - l_0 \right \}
 \end{matrix}$$</div>
 <p>2. Solution:</p>
-<p>Empirical aproach: Run code and measure execution time and try to minimize it.</p>
+<p>Empirical approach: Run code and measure execution time and try to minimize it.</p>
 <p>Move tasks to different processors.</p>
 <div class="math">$$\begin{matrix}
-l_0 = \sum_{(i)}  c_{i,0} x_{i,0}\\ 
+l_0 = \sum_{(i)}  c_{i,0} x_{i,0}\\
 l_1 = \sum_{(i)}  c_{i,1} x_{i,1}
 \end{matrix}$$</div>
 <div class="math">$$min{B}$$</div>
 <div class="math">$$\begin{matrix}
-B \geq l_0 \\ 
+B \geq l_0 \\
 B \geq l_1
 \end{matrix}
 $$</div>
