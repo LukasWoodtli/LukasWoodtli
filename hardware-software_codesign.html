@@ -188,13 +188,16 @@
 <li><a href="#cost-functions">Cost Functions</a><ul>
 <li><a href="#estimation_1">Estimation</a></li>
 <li><a href="#the-formal-partitioning-problem">The Formal Partitioning Problem</a></li>
-<li><a href="#exact-vs-heuristic-methods">Exact vs. Heuristic Methods</a></li>
-<li><a href="#integer-linear-programming-ilp">Integer Linear Programming (ILP)</a></li>
-<li><a href="#constructive-methods">Constructive Methods</a><ul>
+<li><a href="#partitioning-methods">Partitioning Methods</a><ul>
 <li><a href="#hierarchical-clustering">Hierarchical Clustering</a></li>
 </ul>
 </li>
+<li><a href="#integer-linear-programming-ilp">Integer Linear Programming (ILP)</a><ul>
 <li><a href="#example-for-partitioning">Example for Partitioning</a></li>
+<li><a href="#aproaches">Aproaches</a></li>
+<li><a href="#solutions">Solutions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -561,10 +564,30 @@
 <li><span class="math">\(p_i \cap p_j = \{ \}\; \forall i,j:i\neq j\)</span> (an object is not assigend or mapped twice)</li>
 <li>and costs <span class="math">\(c(P)\)</span> are minimized</li>
 </ul>
-<h3 id="exact-vs-heuristic-methods">Exact vs. Heuristic Methods</h3>
+<h3 id="partitioning-methods">Partitioning Methods</h3>
+<p>Exact vs. Heuristic Methods:</p>
 <ul>
 <li>Exact provides optimal solution (or set of solutions)</li>
 <li>Heuristic provides a 'good' solution but not best</li>
+</ul>
+<p>Overview: 
+- Exact Methods
+    - Enumeration
+    - Integer linear programs (ILP)
+- Heuristic
+    - Constructive Methods
+        - Random mapping
+        - Hierarchical clustering
+    - Iterative methods
+        - Kerninghan-Lin algorithm
+        - Simulated annealing
+        - Evolutionary algorithm</p>
+<h4 id="hierarchical-clustering">Hierarchical Clustering</h4>
+<ul>
+<li>Combine always 2 nodes</li>
+<li>Then recalculate</li>
+<li>Repeat until goal achieved</li>
+<li>Steps can be visualized in a tree diagram</li>
 </ul>
 <h3 id="integer-linear-programming-ilp">Integer Linear Programming (ILP)</h3>
 <ul>
@@ -578,20 +601,9 @@
 <div class="math">$$\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}$$</div>
 <p>Integer programming problem:
 - Minimize objective function subject to constraints</p>
-<h3 id="constructive-methods">Constructive Methods</h3>
-<ul>
-<li>Heuristic</li>
-</ul>
-<h4 id="hierarchical-clustering">Hierarchical Clustering</h4>
-<ul>
-<li>Combine always 2 nodes</li>
-<li>Then recalculate</li>
-<li>Repeat until goal achieved</li>
-<li>Steps can be visualized in a tree diagram</li>
-</ul>
 <!-- End of Notes Week 5 -->
 <!-- Beginning of Notes Week 6 -->
-<h3 id="example-for-partitioning">Example for Partitioning</h3>
+<h4 id="example-for-partitioning">Example for Partitioning</h4>
 <ul>
 <li>optimize for a load balanced system</li>
 </ul>
@@ -639,7 +651,7 @@
 <td>Processor0</td>
 <td>5</td>
 <td>15</td>
-<td>01</td>
+<td>10</td>
 <td>30</td>
 </tr>
 <tr>
@@ -651,7 +663,7 @@
 </tr>
 </tbody>
 </table>
-<p>Cost $c_{i,k}:</p>
+<p>Cost <span class="math">\(c_{i,k}\)</span>:</p>
 <div class="math">$$\left.\begin{matrix}
 c_{0,0} = 5\\
 c_{0,1} = 10\\
@@ -668,6 +680,43 @@ x_{1,0} + x_{1,1} = 1\\
 \cdots
 \end{matrix}\right\}
 \sum_{k=0}^1 x_{k,i} = 1\; \forall\; 0 \leq i \leq 3$$</div>
+<h4 id="aproaches">Aproaches</h4>
+<ol>
+<li>Aproach:</li>
+</ol>
+<div class="math">$$min\left \{ \sum_{i=0}^3 \sum_{k=0}^1 c_{i,k} x_{i,k} \right \}$$</div>
+<ol>
+<li>Aproach:</li>
+</ol>
+<div class="math">$$min\left \{ \left | \sum_{i=0}^3  c_{i,0} x_{i,0} - \sum_{i=0}^3 c_{i,1} x_{i,1} \right |\right \}$$</div>
+<p>This is not a linear problem!</p>
+<h4 id="solutions">Solutions</h4>
+<ol>
+<li>Solution:</li>
+</ol>
+<p>Solving 2 linear problems: split aproach 2 into 2 linear problems:</p>
+<div class="math">$$min\left \{ \left | \underbrace{\sum_{i=0}^3  c_{i,0} x_{i,0}}_{l_1} - \underbrace{\sum_{i=0}^3 c_{i,1} x_{i,1}}_{l_2} \right |\right \}$$</div>
+<p>Becomes:</p>
+<div class="math">$$\begin{matrix}
+l_0 \geq l_1: min\left \{ l_0 - l_1 \right \} \\
+l_1 \geq l_0: min\left \{ l_1 - l_0 \right \} 
+\end{matrix}$$</div>
+<ol>
+<li>Solution:</li>
+</ol>
+<p>Empirical aproach: Run code and measure execution time and try to minimize it.</p>
+<p>Move tasks to different processors.</p>
+<div class="math">$$\begin{matrix}
+l_0 = \sum_{(i)}  c_{i,0} x_{i,0}\\ 
+l_1 = \sum_{(i)}  c_{i,1} x_{i,1}
+\end{matrix}$$</div>
+<div class="math">$$min{B}$$</div>
+<div class="math">$$\begin{matrix}
+B \geq l_0 \\ 
+B \geq l_1
+\end{matrix}
+$$</div>
+<!-- Notes Week 6 30:00 -->
 <!--
 
 Topics
