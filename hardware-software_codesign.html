@@ -198,6 +198,10 @@
 <li><a href="#solutions">Solutions</a></li>
 </ul>
 </li>
+<li><a href="#iterative-methods">Iterative Methods</a><ul>
+<li><a href="#kernighan-lin">Kernighan-Lin</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -722,6 +726,51 @@ B \geq l_0 \\
 B \geq l_1
 \end{matrix}
 $$</div>
+<h3 id="iterative-methods">Iterative Methods</h3>
+<p>Often used principle:</p>
+<ul>
+<li>Start with some initial configuration (partitioning)</li>
+<li>search neighborhood (similar partitions)<ul>
+<li>select a neghbor as candidate</li>
+</ul>
+</li>
+<li>evaluate <em>fitness</em> (cost) function of candidate<ul>
+<li>accepr candidate using acceptance rule</li>
+<li>if not, select another neighbor</li>
+</ul>
+</li>
+<li>Stop if:<ul>
+<li>Quality is sufficient or</li>
+<li>no improvement can be found or</li>
+<li>after a fixed time</li>
+</ul>
+</li>
+</ul>
+<p>Ingredients:</p>
+<ul>
+<li>initial configuration</li>
+<li>function to find a neighbor as candidate</li>
+<li>cost function</li>
+<li>acceptance rule</li>
+<li>stop criterion</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>local optimum as best result</li>
+<li>local optimum depends on initial configuration</li>
+<li>generally no upper bound on iteration length</li>
+</ul>
+<h4 id="kernighan-lin">Kernighan-Lin</h4>
+<ul>
+<li>as long as a better partition is found<ul>
+<li>from all possible pairs of objects: <em>virtually</em> re-group the 'best' (lowest cost of resultion partition)</li>
+<li>from the remaining (not yet touched) objects: <em>virtually</em> re-group the 'best' pair</li>
+<li>continue until all objects have been re-grouped</li>
+<li>from these n/2 partitions, take the one with smallest cost and <em>actually</em> perform the corresponding re-group operation</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 6 40:00 -->
 <!-- Notes Week 6 30:00 -->
 <!--
 
