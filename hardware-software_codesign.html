@@ -902,14 +902,20 @@ all objectives, i.e:</p>
 </ul>
 <p>→ Decision making is done after the optimization</p>
 <h3 id="evolutionary-algorithms">Evolutionary Algorithms</h3>
-<p>Basic scheme (many variations exist):
-1. A set of initial solution (initial population is chosen (usually at random). This set is called <em>parent</em> set.
-2. Solutions form <em>parent</em> set are selected (<em>mating selection</em>)
-3. Solutions from <em>mating selection</em> are changed using neighborhood operators (<em>cross-over</em> and <em>mutation</em> operators). The resulting set is called <em>children</em> set.
-4. Determine union of the <em>parent</em> and the <em>children</em> sets
-5. Solutions of the set from 4. are selected based on their merit to construct the new <em>parent</em> set (<em>environmental selection</em>).
-6. continue at 2.</p>
-<p><img alt="Evolutionary Algorithm" class="img-responsive" src="/images/hscd_evolutionary_algorithm.svg"/></p>
+<p>Basic scheme (many variations exist):</p>
+<ol>
+<li>A set of initial solution (initial population is chosen (usually at random). This set is called <em>parent</em> set.</li>
+<li>Solutions form <em>parent</em> set are selected (<em>mating selection</em>)</li>
+<li>Solutions from <em>mating selection</em> are changed using neighborhood operators (<em>cross-over</em> and <em>mutation</em> operators). The resulting set is called <em>children</em> set.</li>
+<li>Determine union of the <em>parent</em> and the <em>children</em> sets</li>
+<li>Solutions of the set from 4. are selected based on their merit to construct the new <em>parent</em> set (<em>environmental selection</em>).</li>
+<li>continue at 2.</li>
+</ol>
+<p><img alt="Evolutionary Algorithm" class="img-responsive" src="/images/hscd_evolutionary_algorithm.svg" style="float:right"/></p>
+<ul>
+<li>Cross-over operator: Take best parts of two solutions</li>
+<li>Mutation operator: same as in simulated annealing (make small variations)</li>
+</ul>
 <!--
 
 Topics
