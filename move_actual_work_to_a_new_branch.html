@@ -148,23 +148,23 @@ graph looks like this:</p>
 </pre></div>
 <p>Then you separate out your work with the following set of commands
 (where the diagrams show how the state has changed after them):</p>
-<div class="highlight"><pre><span class="nv">$ </span>git branch dubious-experiment
+<div class="highlight"><pre>$ git branch dubious-experiment
 
   M---N-----O----P---Q <span class="o">(</span><span class="s2">"master"</span> and <span class="s2">"dubious-experiment"</span><span class="o">)</span>
 
-<span class="nv">$ </span>git checkout master
-  <span class="c"># Be careful with this next command: make sure "git status" is</span>
-  <span class="c"># clean, you're definitely on "master" and the</span>
-  <span class="c"># "dubious-experiment" branch has the commits you were working</span>
-  <span class="c"># on first...</span>
+$ git checkout master
+  <span class="c1"># Be careful with this next command: make sure "git status" is</span>
+  <span class="c1"># clean, you're definitely on "master" and the</span>
+  <span class="c1"># "dubious-experiment" branch has the commits you were working</span>
+  <span class="c1"># on first...</span>
 
-<span class="nv">$ </span>git reset --hard &lt;SHA1sum of commit N&gt;
+$ git reset --hard &lt;SHA1sum of commit N&gt;
 
        <span class="o">(</span><span class="s2">"master"</span><span class="o">)</span>
   M---N-------------O----P---Q <span class="o">(</span><span class="s2">"dubious-experiment"</span><span class="o">)</span>
 
-<span class="nv">$ </span>git pull <span class="c"># Or something that updates "master" from</span>
-           <span class="c"># somewhere else...</span>
+$ git pull <span class="c1"># Or something that updates "master" from</span>
+           <span class="c1"># somewhere else...</span>
 
   M--N----R---S <span class="o">(</span><span class="s2">"master"</span><span class="o">)</span>
       <span class="se">\</span>

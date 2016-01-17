@@ -207,6 +207,10 @@
 </li>
 </ul>
 </li>
+<li><a href="#5-multi-criteria-optimization">5. Multi-Criteria Optimization</a><ul>
+<li><a href="#example-network-processors">Example: Network Processors</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="0-overview">0. Overview</h1>
@@ -499,7 +503,7 @@
     <span class="n">repeat</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span>
             <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span>
             <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">;</span>
         <span class="k">else</span> <span class="n">done</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
     <span class="p">}</span> <span class="n">until</span> <span class="n">done</span><span class="p">;</span>
@@ -825,6 +829,31 @@ $$</div>
 <code>Equilibrium()</code>, <code>DecreaseTemp()</code> and <code>Frozen()</code>.</li>
 </ul>
 <!-- End of Slides 4 -->
+<!-- Beginning of Slides 5 -->
+<h1 id="5-multi-criteria-optimization">5. Multi-Criteria Optimization</h1>
+<h2 id="example-network-processors">Example: Network Processors</h2>
+<p>Network processor: High-performance, programmable device designed to efficiently execute communication workloads</p>
+<ul>
+<li>Given:<ol>
+<li>Specification of the task structure (task model): tasks to be executed for each flow</li>
+<li>Different usage scenarios (flow model): sets of flows</li>
+</ol>
+</li>
+<li>Sought:<ul>
+<li>Network processor implementation: architecture + task mapping + scheduling</li>
+</ul>
+</li>
+<li>Objectives:<ol>
+<li>Maximize performance</li>
+<li>Minimize cost</li>
+</ol>
+</li>
+<li>Subject to:<ol>
+<li>Memory constraint</li>
+<li>Delay constraint</li>
+</ol>
+</li>
+</ul>
 <!--
 
 Topics

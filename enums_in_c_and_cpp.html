@@ -155,7 +155,7 @@ For exampe:</p>
   <span class="n">VAL_2</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
   <span class="n">VAL_3</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
   <span class="n">VAL_NB</span>
-<span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">my_enum_t</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -176,7 +176,7 @@ that I’ll cover in another post.</p>
     <span class="n">VAL_2</span><span class="p">,</span>
     <span class="n">VAL_3</span><span class="p">,</span>
     <span class="n">VAL_NB</span>
-<span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">my_enum_t</span><span class="p">;</span>
 </pre></div>
 <p>If you call the same loop as above you’ll get calls to <code>printf</code> with the values:</p>
 <blockquote>
@@ -196,7 +196,7 @@ the used platform.</p>
 <p>The size (and endianness) of a enum variable depends on the compiler and on the target platform. So if you write platform independent code (and you should always do that) take care of this.
 There are some language extension in different compilers to address this topic. For example in Visual Studio:</p>
 <div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="kt">uint8_t</span>
-<span class="p">{</span> <span class="n">VAL_1</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="cm">/* … */</span><span class="p">,</span> <span class="n">VAL_NB</span><span class="p">}</span> <span class="kt">my_enum_t</span><span class="p">;</span>
+<span class="p">{</span> <span class="n">VAL_1</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="cm">/* … */</span><span class="p">,</span> <span class="n">VAL_NB</span><span class="p">}</span> <span class="n">my_enum_t</span><span class="p">;</span>
 </pre></div>
 <p>For platform independent code you can do: <code>#define ENUM_AS_UINT8 : uint8_t</code></p>
 <h1 id="romable-values">Romable values</h1>
