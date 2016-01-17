@@ -209,6 +209,12 @@
 </li>
 <li><a href="#5-multi-criteria-optimization">5. Multi-Criteria Optimization</a><ul>
 <li><a href="#example-network-processors">Example: Network Processors</a></li>
+<li><a href="#basic-definition">Basic Definition</a></li>
+<li><a href="#pareto-dominance">Pareto Dominance</a><ul>
+<li><a href="#optimization-alternatives">Optimization Alternatives</a></li>
+<li><a href="#evolutionary-algorithms">Evolutionary Algorithms</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -854,6 +860,56 @@ $$</div>
 </ol>
 </li>
 </ul>
+<h2 id="basic-definition">Basic Definition</h2>
+<ul>
+<li>We intend to minimize a <em>vector-valued</em> <strong><em>objective function</em></strong></li>
+</ul>
+<div class="math">$$f= (f_1; f_2; ... ; f_n): X \rightarrow R^n$$</div>
+<ul>
+<li><span class="math">\(X\)</span> denotes the <strong>decision space</strong>. i.e the feasible set of alternatives for the optimization problem</li>
+<li>The image of the decision space <span class="math">\(X\)</span> using the objective function <span class="math">\(f\)</span> is denoted as the <strong>objective space</strong> <span class="math">\(Z \subset R^n\)</span> with</li>
+</ul>
+<div class="math">$$Z = \{f(x) |x \in X  \}$$</div>
+<ul>
+<li>A single alternative <span class="math">\(x \in X\)</span> is (sometimes) named <em>solution</em> and the corresponding object value <span class="math">\(z = f(x) \in Z\)</span> is named <em>objective vector</em></li>
+</ul>
+<p>Basic question:</p>
+<p>How do we define the minimum of a vector-valued function?</p>
+<h2 id="pareto-dominance">Pareto Dominance</h2>
+<p>Definition:</p>
+<p>A solution <span class="math">\(a \in X\)</span> weakly <em>Pareto-dominates</em> a solution <span class="math">\(b \in X\)</span>, denoted as <span class="math">\(a \preceq  b\)</span>, if it is at least as good in
+all objectives, i.e:</p>
+<div class="math">$$f_i(a) \leq f_i(b)\; \forall 1 \leq i \leq n$$</div>
+<ul>
+<li>Dominance is transitive</li>
+<li>A solution is named <em>Pareto-optimal</em>, if it's not Pareto-dominated by any other solution in <span class="math">\(X\)</span></li>
+</ul>
+<h3 id="optimization-alternatives">Optimization Alternatives</h3>
+<ul>
+<li>Classical single objective optimization methods<ul>
+<li>Simulated annealing</li>
+<li>Integer linear program</li>
+<li>other costructive or iterative heuristic methods</li>
+</ul>
+</li>
+</ul>
+<p>→ Decision making is done before the optimization</p>
+<ul>
+<li>Population based optimization methods<ul>
+<li>Evolutionary / genetic algorithms</li>
+</ul>
+</li>
+</ul>
+<p>→ Decision making is done after the optimization</p>
+<h3 id="evolutionary-algorithms">Evolutionary Algorithms</h3>
+<p>Basic scheme (many variations exist):
+1. A set of initial solution (initial population is chosen (usually at random). This set is called <em>parent</em> set.
+2. Solutions form <em>parent</em> set are selected (<em>mating selection</em>)
+3. Solutions from <em>mating selection</em> are changed using neighborhood operators (<em>cross-over</em> and <em>mutation</em> operators). The resulting set is called <em>children</em> set.
+4. Determine union of the <em>parent</em> and the <em>children</em> sets
+5. Solutions of the set from 4. are selected based on their merit to construct the new <em>parent</em> set (<em>environmental selection</em>).
+6. continue at 2.</p>
+<p><img alt="Evolutionary Algorithm" class="img-responsive" src="/images/hscd_evolutionary_algorithm.svg"/></p>
 <!--
 
 Topics
