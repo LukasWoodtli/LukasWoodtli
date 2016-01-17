@@ -200,6 +200,7 @@
 </li>
 <li><a href="#iterative-methods">Iterative Methods</a><ul>
 <li><a href="#kernighan-lin">Kernighan-Lin</a></li>
+<li><a href="#simulated-annealing">Simulated Annealing</a></li>
 </ul>
 </li>
 </ul>
@@ -770,8 +771,60 @@ $$</div>
 </ul>
 </li>
 </ul>
-<!-- Notes Week 6 40:00 -->
-<!-- Notes Week 6 30:00 -->
+<h4 id="simulated-annealing">Simulated Annealing</h4>
+<ul>
+<li>inspired by physical process</li>
+<li>replace existing solutiony by (random) new feasible solutions form neighborhood</li>
+<li>always accept better solutions but allow for a guided acceptance for worse neighbors</li>
+<li>gradually cooling: gradually decrease the probability of accepting worse solutions</li>
+</ul>
+<p>Advantage:
+- Allowance for 'uphill' moves potentially avoids local optima</p>
+<p>Possible implementation:</p>
+<div class="highlight"><pre><span class="n">temp</span> <span class="o">=</span> <span class="n">temp_start</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">Frozen</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+    <span class="k">while</span> <span class="n">Equilibrium</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+        <span class="n">P_new</span> <span class="o">=</span> <span class="n">RandomMove</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+        <span class="n">cost_new</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="n">P_new</span><span class="p">)</span>
+        <span class="n">deltacost</span> <span class="o">=</span> <span class="n">cost_new</span> <span class="o">-</span> <span class="n">cost</span>
+        <span class="k">if</span> <span class="n">Accept</span><span class="p">(</span><span class="n">deltacost</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="n">P_new</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_new</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">DecreaseTemp</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+<p>Functions:</p>
+<p><code>RandomMove(P)</code>:</p>
+<ul>
+<li>Choose a random solution in the neighborhood of <code>P</code></li>
+</ul>
+<p><code>DecreaseTemp()</code>, <code>Frozen()</code>:</p>
+<ul>
+<li>Cooling down. There are different choices. For example:<ul>
+<li>initially: <code>temp := 1.0</code></li>
+<li>in any iteration: <code>temp := alpha * temp</code> (typically: 0.8 <span class="math">\(\leq\)</span> <code>alpha</code> <span class="math">\(\leq\)</span> 0.99)</li>
+</ul>
+</li>
+<li>Frozen<ul>
+<li>after a given time or</li>
+<li>if there is not further improvement</li>
+</ul>
+</li>
+</ul>
+<p><code>Equilibrium()</code>:</p>
+<ul>
+<li>Usually after a defined number of iterations</li>
+</ul>
+<p><code>Accept(deltacost, temp)</code>:</p>
+<ul>
+<li><span class="math">\(e^{- \frac{deltacost}{k \cdot temp}}\)</span></li>
+</ul>
+<p>Complexity:</p>
+<ul>
+<li>From exponential to constant depending on
+<code>Equilibrium()</code>, <code>DecreaseTemp()</code> and <code>Frozen()</code>.</li>
+</ul>
+<!-- End of Slides 4 -->
 <!--
 
 Topics
