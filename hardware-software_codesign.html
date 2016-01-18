@@ -212,7 +212,12 @@
 <li><a href="#basic-definition">Basic Definition</a></li>
 <li><a href="#pareto-dominance">Pareto Dominance</a><ul>
 <li><a href="#optimization-alternatives">Optimization Alternatives</a></li>
-<li><a href="#evolutionary-algorithms">Evolutionary Algorithms</a></li>
+<li><a href="#evolutionary-algorithms">Evolutionary Algorithms</a><ul>
+<li><a href="#hypervolume-indicator">Hypervolume Indicator</a></li>
+<li><a href="#representation-and-neigborhood">Representation and Neigborhood</a></li>
+<li><a href="#handling-constraints">Handling Constraints</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -915,7 +920,60 @@ all objectives, i.e:</p>
 <ul>
 <li>Cross-over operator: Take best parts of two solutions</li>
 <li>Mutation operator: same as in simulated annealing (make small variations)</li>
+<li>How to choose solutions that should be removed from the population<ul>
+<li>Solutions should be 'close' to the (unknown) Pareto-optimal front (optimality)</li>
+<li>Solutions should cover large parts of the objective space (diversity)</li>
 </ul>
+</li>
+</ul>
+<h4 id="hypervolume-indicator">Hypervolume Indicator</h4>
+<ul>
+<li>Environmental selection:<ul>
+<li>Select subset of solutions that <em>maximizes hypervolume indicator</em></li>
+</ul>
+</li>
+</ul>
+<p>Given a set of solutions <span class="math">\(A \subseteq X\)</span> and a set of <em>reference points</em> <span class="math">\(R \subset \mathbb{R}^n\)</span>. Then the
+<em>hypervolume indicator</em> <span class="math">\(I_H(A,R)\)</span> of <span class="math">\(A\)</span> with respect to <span class="math">\(R\)</span> is defined as</p>
+<div class="math">$$I_H(A,R) = \int_{z \in H(A,R)} dz$$</div>
+<p>where <span class="math">\(H(A,R)\)</span> id the dominated space of <span class="math">\(A\)</span> regarding <span class="math">\(R\)</span>:</p>
+<div class="math">$$H(A,R) = \{ z \in \mathbb{R}^n | \exists a \in A : \exists r \in R : (f(a) \leq z \leq r) \}$$</div>
+<p><span class="math">\(z\)</span>: Objective</p>
+<ul>
+<li>The hypervolume indicator leads to <em>diversity</em> and <em>optimality</em></li>
+</ul>
+<h4 id="representation-and-neigborhood">Representation and Neigborhood</h4>
+<ul>
+<li>A <em>representation</em> corresponds to an <em>abstract data</em> that encodes a <em>solution</em></li>
+<li><em>Neighborhood operators</em> work on <em>representations</em></li>
+</ul>
+<p>Issues:</p>
+<ul>
+<li>Each solution has an encoding (completeness)</li>
+<li>All solutions are represented equally often (uniformity)</li>
+<li>Each encoding maps to a feasible solution (feasibility)</li>
+</ul>
+<!-- End of Notes Week 7 -->
+<h4 id="handling-constraints">Handling Constraints</h4>
+<p>Constraint: <span class="math">\(g(x) \geq 0\)</span></p>
+<ul>
+<li>Feasible: <span class="math">\(g \geq 0\)</span></li>
+<li>Infeasible: <span class="math">\(g &lt; 0\)</span></li>
+</ul>
+<p>Approaches:</p>
+<ol>
+<li>Representation is chosen such that decoding always yields a feasible solution</li>
+<li>Construct initialization and neighborhood operators such that infeaslible solutions are not generated</li>
+<li>Add only feasible solutions to children population</li>
+<li>Preferably select feasible solutions in environmental selection</li>
+<li>Penalty function:<ul>
+<li>Calculate constraint violation <span class="math">\(g(x)\)</span> and incorporate it into objective function</li>
+<li>$penalty(x) &gt; 0 if g(x) &lt; 0, penalty(x) = 0 if g(x) \geq 0</li>
+<li>i.e add penalty function to every objective</li>
+</ul>
+</li>
+<li>Include the constraints as new objectives</li>
+</ol>
 <!--
 
 Topics

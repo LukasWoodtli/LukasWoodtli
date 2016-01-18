@@ -1661,14 +1661,13 @@ memory address. Returns the previous value at memory position in any case.</p>
 </li>
 </ol>
 <ul>
-<li>
-<p><code>CAS</code> is an operation in the programming language</p>
-<p>:::modula2
-PROCEDURE CAS(variable, old, new: BaseType): BaseType</p>
-</li>
-<li>
-<p>Performance of <code>CAS</code></p>
+<li><code>CAS</code> is an operation in the programming language</li>
+</ul>
+<p>Declaration:</p>
+<div class="highlight"><pre><span class="kr">PROCEDURE</span> <span class="bp">CAS</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">BaseType</span><span class="p">):</span> <span class="n">BaseType</span>
+</pre></div>
 <ul>
+<li>Performance of <code>CAS</code><ul>
 <li>On the HW level <code>CAS</code> triggers a memory barrier</li>
 <li>Performance suffers with increasing number of contenders (contention)</li>
 </ul>
