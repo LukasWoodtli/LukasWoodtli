@@ -214,7 +214,7 @@
 <li><a href="#optimization-alternatives">Optimization Alternatives</a></li>
 <li><a href="#evolutionary-algorithms">Evolutionary Algorithms</a><ul>
 <li><a href="#hypervolume-indicator">Hypervolume Indicator</a></li>
-<li><a href="#representation-and-neigborhood">Representation and Neigborhood</a></li>
+<li><a href="#representation-and-neighborhood">Representation and Neighborhood</a></li>
 <li><a href="#tree-representation">Tree Representation</a></li>
 <li><a href="#handling-constraints">Handling Constraints</a></li>
 </ul>
@@ -231,7 +231,7 @@
 <li><a href="#simulation">Simulation</a></li>
 <li><a href="#discrete-event-modeling-and-simulation">Discrete-Event Modeling and Simulation</a><ul>
 <li><a href="#components-of-discrete-event-simulation">Components of Discrete-Event Simulation</a></li>
-<li><a href="#simuletion-engine">Simuletion Engine</a></li>
+<li><a href="#simulation-engine">Simulation Engine</a></li>
 </ul>
 </li>
 </ul>
@@ -369,8 +369,8 @@
 </ul>
 </li>
 <li>Timing</li>
-<li>State oriented behaviour (micro controller, FPGA)</li>
-<li>Dataflow oriented behaviour (DSP)</li>
+<li>State oriented behavior (micro controller, FPGA)</li>
+<li>Dataflow oriented behavior (DSP)</li>
 </ul>
 <h2 id="state-charts">State Charts</h2>
 <ul>
@@ -436,7 +436,7 @@
 <li>otherwise discard input</li>
 </ul>
 </li>
-<li>All orders of events are legal: different correct behaviour in simulators (not deterministic)</li>
+<li>All orders of events are legal: different correct behavior in simulators (not deterministic)</li>
 </ul>
 <h2 id="dataflow-languages">Dataflow Languages</h2>
 <ul>
@@ -475,7 +475,7 @@
 <li>Random: knowing about system and inputs is not sufficient to determine output</li>
 <li>Determinate: the histories of <em>all channels</em> depend only on the histories of the <em>input channels</em></li>
 <li>Importance<ul>
-<li>Functional behaviour is independent of timing (scheduling, communication time, execution time of processes)</li>
+<li>Functional behavior is independent of timing (scheduling, communication time, execution time of processes)</li>
 <li>Separation of functional properties and timing</li>
 </ul>
 </li>
@@ -765,11 +765,11 @@ $$</div>
 <ul>
 <li>Start with some initial configuration (partitioning)</li>
 <li>search neighborhood (similar partitions)<ul>
-<li>select a neghbor as candidate</li>
+<li>select a neighbor as candidate</li>
 </ul>
 </li>
 <li>evaluate <em>fitness</em> (cost) function of candidate<ul>
-<li>accepr candidate using acceptance rule</li>
+<li>accept candidate using acceptance rule</li>
 <li>if not, select another neighbor</li>
 </ul>
 </li>
@@ -797,7 +797,7 @@ $$</div>
 <h4 id="kernighan-lin">Kernighan-Lin</h4>
 <ul>
 <li>as long as a better partition is found<ul>
-<li>from all possible pairs of objects: <em>virtually</em> re-group the 'best' (lowest cost of resultion partition)</li>
+<li>from all possible pairs of objects: <em>virtually</em> re-group the 'best' (lowest cost of resulting partition)</li>
 <li>from the remaining (not yet touched) objects: <em>virtually</em> re-group the 'best' pair</li>
 <li>continue until all objects have been re-grouped</li>
 <li>from these n/2 partitions, take the one with smallest cost and <em>actually</em> perform the corresponding re-group operation</li>
@@ -807,7 +807,7 @@ $$</div>
 <h4 id="simulated-annealing">Simulated Annealing</h4>
 <ul>
 <li>inspired by physical process</li>
-<li>replace existing solutiony by (random) new feasible solutions form neighborhood</li>
+<li>replace existing solutions by (random) new feasible solutions form neighborhood</li>
 <li>always accept better solutions but allow for a guided acceptance for worse neighbors</li>
 <li>gradually cooling: gradually decrease the probability of accepting worse solutions</li>
 </ul>
@@ -919,7 +919,7 @@ all objectives, i.e:</p>
 <li>Classical single objective optimization methods<ul>
 <li>Simulated annealing</li>
 <li>Integer linear program</li>
-<li>other costructive or iterative heuristic methods</li>
+<li>other constructive or iterative heuristic methods</li>
 </ul>
 </li>
 </ul>
@@ -967,7 +967,7 @@ all objectives, i.e:</p>
 <ul>
 <li>The hypervolume indicator leads to <em>diversity</em> and <em>optimality</em></li>
 </ul>
-<h4 id="representation-and-neigborhood">Representation and Neigborhood</h4>
+<h4 id="representation-and-neighborhood">Representation and Neighborhood</h4>
 <ul>
 <li>A <em>representation</em> corresponds to an <em>abstract data</em> that encodes a <em>solution</em></li>
 <li><em>Neighborhood operators</em> work on <em>representations</em></li>
@@ -1001,13 +1001,13 @@ all objectives, i.e:</p>
 <p>Approaches:</p>
 <ol>
 <li>Representation is chosen such that decoding always yields a feasible solution</li>
-<li>Construct initialization and neighborhood operators such that infeaslible solutions are not generated</li>
+<li>Construct initialization and neighborhood operators such that Infeasible solutions are not generated</li>
 <li>Add only feasible solutions to children population</li>
 <li>Preferably select feasible solutions in environmental selection</li>
 <li>Penalty function:<ul>
 <li>Calculate constraint violation <span class="math">\(g(x)\)</span> and incorporate it into objective function</li>
 <li><span class="math">\(penalty(x) &gt; 0\; if g(x) &lt; 0,\; penalty(x) = 0\; if g(x) \geq 0\)</span></li>
-<li>i.e add penalty function to every objective (increase 'price' for infeasible solutions)</li>
+<li>i.e add penalty function to every objective (increase 'price' for Infeasible solutions)</li>
 </ul>
 </li>
 <li>Include the constraints as new objectives</li>
@@ -1022,7 +1022,7 @@ all objectives, i.e:</p>
 </ul>
 <h2 id="state">State</h2>
 <ul>
-<li>Contains all information of the system at <span class="math">\(t_0\)</span> that is nessecary to determine the output (for <span class="math">\(t \geq t_0\)</span>) from the input (at (at <span class="math">\(t \geq t_0\)</span>).</li>
+<li>Contains all information of the system at <span class="math">\(t_0\)</span> that is necessary to determine the output (for <span class="math">\(t \geq t_0\)</span>) from the input (at (at <span class="math">\(t \geq t_0\)</span>).</li>
 </ul>
 <blockquote>
 <p>Input + State = Output</p>
@@ -1054,7 +1054,7 @@ all objectives, i.e:</p>
 <li>Discrete time systems<ul>
 <li>Digital clocked system</li>
 <li>Equidistant sampling (z-transform)</li>
-<li>Sysnchronous system models</li>
+<li>Synchronous system models</li>
 </ul>
 </li>
 </ul>
@@ -1072,8 +1072,8 @@ all objectives, i.e:</p>
 <li>
 <p>DES is an event-driven system</p>
 <ul>
-<li>Depends entirely on occurence of discrete events</li>
-<li>Does <em>not</em> depent on evolution of time</li>
+<li>Depends entirely on occurrence of discrete events</li>
+<li>Does <em>not</em> depend on evolution of time</li>
 </ul>
 </li>
 <li>Can be defined in <em>continuous</em> of <em>discrete time</em></li>
@@ -1111,10 +1111,10 @@ all objectives, i.e:</p>
 <h4 id="discrete-event-modeling-and-simulation">Discrete-Event Modeling and Simulation</h4>
 <ul>
 <li>Concurrent processes are modeled using modules<ul>
-<li><em>Behaviour</em> described as logic/algebraic expressions</li>
+<li><em>Behavior</em> described as logic/algebraic expressions</li>
 <li><em>State</em> described using persistent variables (inside module)</li>
-<li><em>Communication</em> between modules throug ports, via signals</li>
-<li><em>Synchrnization</em> throug abstract events</li>
+<li><em>Communication</em> between modules through ports, via signals</li>
+<li><em>Synchronization</em> through abstract events</li>
 </ul>
 </li>
 <li>Modules can be hierarchical</li>
@@ -1122,7 +1122,7 @@ all objectives, i.e:</p>
 </ul>
 <h5 id="components-of-discrete-event-simulation">Components of Discrete-Event Simulation</h5>
 <ul>
-<li>Simultion time<ul>
+<li>Simulation time<ul>
 <li>Simulation clock represents the current value of simulation time</li>
 <li>In discrete-event simulations the clock advances to the <em>next event start-time</em> during simulation</li>
 </ul>
@@ -1135,11 +1135,11 @@ all objectives, i.e:</p>
 </li>
 <li>System modules<ul>
 <li>Model subsystems of simulated system</li>
-<li>Are called by simulation engine if a relevent event is scheduled</li>
+<li>Are called by simulation engine if a relevant event is scheduled</li>
 </ul>
 </li>
 </ul>
-<h5 id="simuletion-engine">Simuletion Engine</h5>
+<h5 id="simulation-engine">Simulation Engine</h5>
 <ol>
 <li>Initialization routine<ul>
 <li>Initialize the simulation model;<ul>
@@ -1160,8 +1160,8 @@ all objectives, i.e:</p>
 </li>
 </ol>
 <ul>
-<li>In a simulation cycle 'cause' and 'effect' can share the same time of occurence<ul>
-<li>Use <em>zero duration virtual time interval</em> called *<em>delte cycle</em> (<span class="math">\(\delta\)</span>)</li>
+<li>In a simulation cycle 'cause' and 'effect' can share the same time of occurrence<ul>
+<li>Use <em>zero duration virtual time interval</em> called <strong>delta cycle</strong> (<span class="math">\(\delta\)</span>)</li>
 </ul>
 </li>
 </ul>
