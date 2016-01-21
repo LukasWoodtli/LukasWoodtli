@@ -238,6 +238,15 @@
 </li>
 </ul>
 </li>
+<li><a href="#systemc">SystemC</a><ul>
+<li><a href="#language-architecture">Language Architecture</a></li>
+<li><a href="#processes">Processes</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#inter-process-communication">Inter Process Communication</a></li>
+<li><a href="#wait-and-notify">Wait and Notify</a></li>
+</ul>
+</li>
+<li><a href="#levels-of-abstractions">Levels of Abstractions</a></li>
 </ul>
 </li>
 </ul>
@@ -1166,6 +1175,144 @@ all objectives, i.e:</p>
 </li>
 </ul>
 <!-- End of Notes Week 8 (morning) -->
+<!-- Beginning of Notes Week 8 (afternoon) -->
+<h2 id="systemc">SystemC</h2>
+<ul>
+<li>System-level modeling language<ul>
+<li>Several levels of abstractions<ul>
+<li>from purely functional</li>
+<li>to cycle-accurate/pin-accurate</li>
+</ul>
+</li>
+<li>Special attention to systems with embedded software</li>
+</ul>
+</li>
+<li>C++ library for modeling concurrent systems<ul>
+<li>HW-oriented data types</li>
+<li>Communication mechanisms</li>
+<li>Concurrency modeling</li>
+</ul>
+</li>
+<li><em>Event-driven</em> simulation kernel for executing models</li>
+<li>Free (open source)</li>
+<li>For Windows, Linux, OS X...</li>
+</ul>
+<h3 id="language-architecture">Language Architecture</h3>
+<ul>
+<li>Core language<ul>
+<li>Minimal set of modeling constructs<ul>
+<li>structural description</li>
+<li>concurrency</li>
+<li>communication</li>
+<li>synchronization</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data types (separated from core language)</li>
+<li>On top of core language<ul>
+<li>Cummunication mechanism (signals, FIFO...)</li>
+<li>Models of Computation (MoCs)</li>
+</ul>
+</li>
+<li>Layer (tier) architecture</li>
+</ul>
+<h3 id="processes">Processes</h3>
+<p>Processes are the basic units of functionality.</p>
+<ul>
+<li><code>SC_THREAD</code>s<ul>
+<li>Typically called once, run forever (ina <code>while(true)</code> loop)</li>
+<li>Can be suspended by calling <code>wait()</code></li>
+<li>Keep the state of execution implicitly</li>
+</ul>
+</li>
+<li><code>SC_METHOD</code>s<ul>
+<li>Execute repeatedly from the beginning to end</li>
+<li>Simulate faster</li>
+<li>Do <em>not</em> keep the state of execution implicitely</li>
+</ul>
+</li>
+<li>Processes must be contained in a module<ul>
+<li>Bun not every member function is a process</li>
+</ul>
+</li>
+</ul>
+<h3 id="modules">Modules</h3>
+<ul>
+<li>Building blocks of models<ul>
+<li>Hierarchy</li>
+<li>Abstraction</li>
+<li>IP reuse</li>
+</ul>
+</li>
+</ul>
+<h3 id="inter-process-communication">Inter Process Communication</h3>
+<ul>
+<li>Processes can communicate directly trough <em>signals</em></li>
+<li><em>Events</em>: Flexible, low-level synchronization primitive</li>
+<li><em>Channel</em>:<ul>
+<li>Container for <em>communication</em> and <em>synchronization</em><ul>
+<li>can have state (private data), transport data, transport events</li>
+</ul>
+</li>
+<li>Implement one or more <em>interfaces</em></li>
+</ul>
+</li>
+<li><em>Interface</em>:<ul>
+<li>Set of access methods to the channel</li>
+<li>Interface methods need to be implemented</li>
+</ul>
+</li>
+</ul>
+<h3 id="wait-and-notify">Wait and Notify</h3>
+<ul>
+<li><code>wait</code>: halt process until an exent is raised<ul>
+<li><code>wait()</code> with arguments → dynamic sensitivity<ul>
+<li><code>wait(sc_event)</code></li>
+<li><code>wait(time)</code></li>
+<li><code>wait(timeout, sc_event)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>notify</code>: rise an event<ul>
+<li><code>notify()</code> with arguments → delayed notification<ul>
+<li><code>my_event.notify();</code>: notify immediately</li>
+<li><code>my_event.notify(SC_ZERO_TIME);</code>: notify next delta cycle</li>
+<li><code>my_event.notify(time);</code>: notify after 'time'</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="levels-of-abstractions">Levels of Abstractions</h2>
+<p>Simulation can be done on different levels of abstraction.</p>
+<ul>
+<li>Functional level (untimed/timed)<ul>
+<li>Use: Model (un-)timed functionality</li>
+<li>Communication: shared variables, messages</li>
+<li>Typical languages: C/C++, Matlab</li>
+</ul>
+</li>
+<li>Transaction level<ul>
+<li>Use:<ul>
+<li>MPSoC architecture analyis</li>
+<li>Early SW development</li>
+<li>Timing estimation</li>
+</ul>
+</li>
+<li>Communication: method calls to channels</li>
+<li>Typical languages: SystemC</li>
+</ul>
+</li>
+<li>Register transfer level / Pin level<ul>
+<li>Use: HW design and verification</li>
+<li>Communication: wires and registers</li>
+<li>Typical languages: Verilog, VHDL</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 8 (afternoon) 44:00 -->
 <!--
 
 Topics
