@@ -249,6 +249,25 @@
 <li><a href="#levels-of-abstractions">Levels of Abstractions</a></li>
 </ul>
 </li>
+<li><a href="#7-design-space-exploration">7. Design Space Exploration</a><ul>
+<li><a href="#example-network-processor-np">Example: Network Processor (NP)</a><ul>
+<li><a href="#optimal-design-of-network-processor">Optimal Design of Network Processor</a><ul>
+<li><a href="#design-constraints">Design constraints</a></li>
+</ul>
+</li>
+<li><a href="#np-design-space-exploration">NP Design Space Exploration</a></li>
+</ul>
+</li>
+<li><a href="#performance-estimation">Performance Estimation</a><ul>
+<li><a href="#metric">Metric</a></li>
+<li><a href="#method">Method</a></li>
+<li><a href="#abstraction-level">Abstraction Level</a></li>
+<li><a href="#subsystem-to-analyze">Subsystem to Analyze</a></li>
+</ul>
+</li>
+<li><a href="#performance-estimation-in-design-flow">Performance Estimation in Design Flow</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="0-overview">0. Overview</h1>
@@ -371,6 +390,9 @@
 </li>
 </ul>
 <h1 id="2-models-of-computation">2. Models of Computation</h1>
+<blockquote>
+<p>Model of computation = Components + Communication</p>
+</blockquote>
 <ul>
 <li>Hierarchy<ul>
 <li>Behavioral</li>
@@ -1312,13 +1334,118 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<!-- Notes Week 8 (afternoon) 44:00 -->
+<h1 id="7-design-space-exploration">7. Design Space Exploration</h1>
+<h2 id="example-network-processor-np">Example: Network Processor (NP)</h2>
+<ul>
+<li>Different processing units: ARM9, DSP, ...</li>
+<li>Streams: ordered sequence of tasks</li>
+</ul>
+<h3 id="optimal-design-of-network-processor">Optimal Design of Network Processor</h3>
+<p><span class="math">\(T\)</span>: Tasks
+<span class="math">\(w\)</span>: Requests
+<span class="math">\(M\)</span>: Mapping
+<span class="math">\(R\)</span>: Resources
+<span class="math">\(c\)</span>: Cost</p>
+<ul>
+<li>Mappings: <span class="math">\(M \subseteq T \times R\)</span> all possible bindings of tasks<ul>
+<li>i.e if <span class="math">\((t,r) \in M\)</span> then task <span class="math">\(t\)</span> could be executed on resource <span class="math">\(r\)</span></li>
+</ul>
+</li>
+<li>Request <span class="math">\(w(r,t) \geq 0\)</span><ul>
+<li>i.e execution of one packet in <span class="math">\(t\)</span> would use <span class="math">\(w\)</span> computing units of <span class="math">\(r\)</span></li>
+</ul>
+</li>
+<li>Resource allocation cost <span class="math">\(c(r) \geq 0\)</span></li>
+<li>Binding <span class="math">\(Z\)</span> of tasks to resources <span class="math">\(Z \subseteq M\)</span><ul>
+<li>leading to actual implementation</li>
+<li>Subset of mappings <span class="math">\(M\)</span> s.t every task <span class="math">\(t \in T\)</span> is bound to <em>exactly one</em> allocated resource<ul>
+<li><span class="math">\(e \in R alloc(r) = 1\)</span> and</li>
+<li><span class="math">\(r = bind(t)\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="design-constraints">Design constraints</h4>
+<ul>
+<li>Delay constraints: e.g max time a packet is processed within network processor</li>
+<li>Throughput maximization: e.g packets per second</li>
+<li>Cost minimization: implementing with small amount of resources (processing units, memory, networks...)</li>
+<li>And conflicting usage scenarios ...</li>
+</ul>
+<h3 id="np-design-space-exploration">NP Design Space Exploration</h3>
+<ul>
+<li>Allocation: determine HW components</li>
+<li>Binding: For each SW process choose allocated HW unit</li>
+<li>Scheduling: For tasks on specific resources choose scheduling policy</li>
+</ul>
+<h2 id="performance-estimation">Performance Estimation</h2>
+<p>Global Picture</p>
+<h3 id="metric">Metric</h3>
+<ul>
+<li>Time</li>
+<li>Power</li>
+<li>Area (integration on silicon)</li>
+<li>Cost</li>
+<li>Quality</li>
+<li>SNR</li>
+<li>...</li>
+</ul>
+<h3 id="method">Method</h3>
+<ul>
+<li>Analytic</li>
+<li>Simulation</li>
+<li>Statistic</li>
+</ul>
+<h3 id="abstraction-level">Abstraction Level</h3>
+<ul>
+<li>Low-level: Register Transfer Level, Instruction Set Architecture</li>
+<li>Intermediary-level: Transaction Level-Model, Operating System, already linked to HW</li>
+<li>High-level: Functional, High-level language, independant of HW</li>
+</ul>
+<h3 id="subsystem-to-analyze">Subsystem to Analyze</h3>
+<ul>
+<li>HW subsystem</li>
+<li>CPU subsystem</li>
+<li>Interconnect subsystem</li>
+<li>Multiprocessor System-on-Chip (MPSoC)</li>
+</ul>
+<h2 id="performance-estimation-in-design-flow">Performance Estimation in Design Flow</h2>
+<ul>
+<li>High-level<ul>
+<li>Advantages:<ul>
+<li>Short estimation time (fast)</li>
+<li>Implementation details not necessary</li>
+</ul>
+</li>
+<li>Drawbacks:<ul>
+<li>Limited accuracy</li>
+<li>e.g no information about timing</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Low-level<ul>
+<li>Advantages:<ul>
+<li>Higher accuracy</li>
+</ul>
+</li>
+<li>Drawbacks:<ul>
+<li>Long estimation time (slow)</li>
+<li>Many implementation details need to be known</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!--  Notes Week 10 46:15 -->
 <!--
 
 Topics
 ------
-- Architecture Graph (problem Graph)
 - Specification Graph
+    - Architecture Graph (problem Graph)
+    - Dataflow Graph
 - Closeness Function
 
 
