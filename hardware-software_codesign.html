@@ -307,7 +307,10 @@
 </li>
 </ul>
 </li>
-<li><a href="#abstact-interpretation-ai">Abstact Interpretation (AI)</a></li>
+<li><a href="#abstact-interpretation-ai">Abstact Interpretation (AI)</a><ul>
+<li><a href="#value-analysis">Value Analysis</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1854,7 +1857,7 @@ d9 = d10 = x_7
 <p>The more information the better the result</p>
 <h5 id="integer-linear-program-for-wcet-calculation">Integer Linear Program for <strong>WCET</strong> Calculation</h5>
 <p>ILP with structural and additional constraings</p>
-<div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{structural constraints} \;\land \;\text{additional constraints} \right \}$$</div>
+<div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{\text{structural constraints}} \;\land \;\text{additional constraints} \right \}$$</div>
 <h3 id="abstact-interpretation-ai">Abstact Interpretation (AI)</h3>
 <ul>
 <li>Semantics-based method for static program analysis</li>
@@ -1885,6 +1888,15 @@ d9 = d10 = x_7
 </ul>
 </li>
 </ul>
+<h4 id="value-analysis">Value Analysis</h4>
+<p>Motivation:
+- Provide access information to data-cache/pipeline analysis
+- Detect infeasible paths
+- Derive loop bounds</p>
+<p>Method:</p>
+<p>Calculate intervals at all program points. Lower and upper bounds for the set of possible values
+occuring in ther programm (addresses, register contents, local and global variables).</p>
+<!-- End of Notes Week 11 -->
 <!--
 
 Topics
