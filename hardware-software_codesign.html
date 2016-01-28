@@ -1750,15 +1750,15 @@ for other components.</p>
 <h3 id="calculating-upper-bounds">Calculating Upper Bounds</h3>
 <p><span class="math">\(ub(s)\)</span>: Upper bound for statement <span class="math">\(s\)</span></p>
 <h4 id="sequence-of-statements">Sequence of Statements</h4>
-<p><span class="math">\($A \equiv A1;A2\)</span></p>
+<div class="math">$$A \equiv A1;A2$$</div>
 <p>Constituents of <span class="math">\(A\)</span>: <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
 <p>Upper bound for <span class="math">\(A\)</span> is the sum of the upper bounds for <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
 <div class="math">$$ub(A) = ub(A1) + ub(A2)$$</div>
 <h4 id="conditional-statement">Conditional Statement</h4>
 <div class="math">$$\begin{align*}
-A \equiv\; &amp; if \; B \\
- &amp; then \;A1 \\
- &amp; else\; A2
+A \equiv \; &amp; if \; B \\
+ &amp; then \; A1 \\
+ &amp; else \; A2
 \end{align}$$</div>
 <p>Constituents of <span class="math">\(A\)</span>:</p>
 <ol>
@@ -1835,13 +1835,15 @@ and exits at the end, without stopping in-between or branching (except at the en
 <p><img alt="WCET Calculation" class="img-responsive" src="/images/hscd_wcet_calculation.png"/></p>
 <p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
 <p>Flow Equations (sum of incomming edges equals summ of outgoing edges)</p>
-<p><span class="math">\(d1 = d2 = x_1\)</span>
-<span class="math">\(d2 + d8 = d3 + d9 = x_2\)</span>
-<span class="math">\(d3 = d4 + d5 = x_3\)</span>
-<span class="math">\(d4 = d6 = x_4\)</span>
-<span class="math">\(d5 = d7 = x_5\)</span>
-<span class="math">\(d6 + d7 = d8 = x_6\)</span>
-<span class="math">\(d9 = d10 = x_7\)</span></p>
+<div class="math">$$\begin{align*}
+d1 = d2 = x_1 \\
+d2 + d8 = d3 + d9 = x_2 \\
+d3 = d4 + d5 = x_3 \\
+d4 = d6 = x_4 \\
+d5 = d7 = x_5 \\
+d6 + d7 = d8 = x_6 \\
+d9 = d10 = x_7
+\end{align*}$$</div>
 <p>Additional Constraints</p>
 <ul>
 <li>Execute the program only once: <span class="math">\(d1 = 1\)</span></li>
