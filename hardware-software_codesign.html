@@ -289,6 +289,28 @@
 </li>
 </ul>
 </li>
+<li><a href="#9-worst-case-execution-time-analysis">9. Worst Case Execution Time Analysis</a><ul>
+<li><a href="#hard-real-time-systems">Hard Real-Time Systems</a></li>
+<li><a href="#industrys-best-practice">Industry's Best Practice</a><ul>
+<li><a href="#calculating-upper-bounds">Calculating Upper Bounds</a><ul>
+<li><a href="#sequence-of-statements">Sequence of Statements</a></li>
+<li><a href="#conditional-statement">Conditional Statement</a></li>
+<li><a href="#loops">Loops</a></li>
+</ul>
+</li>
+<li><a href="#modern-hardware-features">Modern Hardware Features</a></li>
+<li><a href="#program-path-analysis">Program Path Analysis</a><ul>
+<li><a href="#basic-blocks">Basic Blocks</a></li>
+<li><a href="#calculation-of-the-wcet">Calculation of the WCET</a><ul>
+<li><a href="#integer-linear-program-for-wcet-calculation">Integer Linear Program for WCET Calculation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="0-overview">0. Overview</h1>
@@ -1607,7 +1629,7 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<p><a href="Markov property">Markovian (exponential) distribution</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Markov_chain">Markovian (exponential) distribution</a></p>
 <h4 id="worst-casebest-case-queuing-systems">Worst-Case/Best-Case Queuing Systems</h4>
 <ul>
 <li>A worst-/best-case queuing system is described by worst-/best-case bounds on system properties<ul>
@@ -1671,6 +1693,165 @@ for other components.</p>
 </li>
 </ul>
 <!-- End of Slides 8 -->
+<!-- End of Notes Week 10 -->
+<!-- Beginning of Slides 9 -->
+<!-- Beginning of Notes Week 11 -->
+<h1 id="9-worst-case-execution-time-analysis">9. Worst Case Execution Time Analysis</h1>
+<ul>
+<li>Calculation not simulation</li>
+<li>Measurement of running task</li>
+<li>Simulation would need accurate model</li>
+<li>Worst case formal analysis</li>
+<li>Program path analysis</li>
+</ul>
+<h2 id="hard-real-time-systems">Hard Real-Time Systems</h2>
+<ul>
+<li>Often in safety-critical applications<ul>
+<li>Aeronautics</li>
+<li>Automotive</li>
+<li>Train industries</li>
+<li>Manufacturing control</li>
+</ul>
+</li>
+<li>Embedded controllers are expected to finish tasks reliably within time bounds</li>
+<li>Task scheduling must be performed</li>
+<li>Execution time bounds<ul>
+<li>Worst-Case Execution Time (<strong>WCET</strong>)</li>
+<li>Best-Case Execution Time (<strong>BCET</strong>)</li>
+</ul>
+</li>
+<li>Works if:<ul>
+<li>Worst-case input can be determined or</li>
+<li>Exhaustive measurement is performed</li>
+</ul>
+</li>
+<li>Otherwise:<ul>
+<li>Determine upper bound from execution times of instructions</li>
+</ul>
+</li>
+</ul>
+<h2 id="industrys-best-practice">Industry's Best Practice</h2>
+<ul>
+<li>Mesurements: determine execution times directly by observing the execution of a simulation on a set of inputs<ul>
+<li>Does not guarantee an upper bound to all executions in general</li>
+<li>Exhaustive execution in general not possible<ul>
+<li>Too large space: 'Input Domain' <span class="math">\(\times\)</span> 'Initial execution states'</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Compute upper bounds along the structure of the program<ul>
+<li>Programs are hierarchically structured</li>
+<li>Statements are nested inside statements</li>
+<li>So compute upper bound of a statements from the upper bounds of its constituents</li>
+</ul>
+</li>
+</ul>
+<h3 id="calculating-upper-bounds">Calculating Upper Bounds</h3>
+<p><span class="math">\(ub(s)\)</span>: Upper bound for statement <span class="math">\(s\)</span></p>
+<h4 id="sequence-of-statements">Sequence of Statements</h4>
+<p><span class="math">\($A \equiv A1;A2\)</span></p>
+<p>Constituents of <span class="math">\(A\)</span>: <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
+<p>Upper bound for <span class="math">\(A\)</span> is the sum of the upper bounds for <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
+<div class="math">$$ub(A) = ub(A1) + ub(A2)$$</div>
+<h4 id="conditional-statement">Conditional Statement</h4>
+<div class="math">$$\begin{align*}
+A \equiv\; &amp; if \; B \\
+ &amp; then \;A1 \\
+ &amp; else\; A2
+\end{align}$$</div>
+<p>Constituents of <span class="math">\(A\)</span>:</p>
+<ol>
+<li>Condition <span class="math">\(B\)</span></li>
+<li>Statements <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></li>
+</ol>
+<div class="math">$$ub(A) = ub(b) + \mathbf{max}(ub(A1), ub(A2))$$</div>
+<h4 id="loops">Loops</h4>
+<div class="math">$$\begin{align*}
+ A \equiv for\; &amp; i \leftarrow 1\; to\; 100\; do \\
+ &amp; A1
+\end{align*}$$</div>
+<p>Precondition: Nuber of loops needs to be known (e.g 100)</p>
+<div class="math">$$ub(A) = ub(i \leftarrow) + 100 \times (ub(i \leq 100) + ub(A1))+ ub(i\leq100)$$</div>
+<h3 id="modern-hardware-features">Modern Hardware Features</h3>
+<ul>
+<li>Modern processors increase performance by using<ul>
+<li>Caches</li>
+<li>Pipelines</li>
+<li>Branch prediction</li>
+<li>Speculation</li>
+</ul>
+</li>
+<li>These features make <strong>WCET</strong> computation difficult (execution times of instructions vary widely)<ul>
+<li>Best case: everything goes right: no chache miss, operands ready, resources free, branch predicted correctly</li>
+<li>Worst case: everything goes wrong: all loads miss cache, resources occupied operands not ready</li>
+</ul>
+</li>
+<li>Span may be several hundert (even thousand) cycles</li>
+</ul>
+<h3 id="program-path-analysis">Program Path Analysis</h3>
+<ul>
+<li>Which sequence of instructions is executed in the worst-case (longest run time)?</li>
+<li>Probelm: The number of possible program paths grow with the length of the program</li>
+<li>Number of loop iteration must be bounded</li>
+<li>Must be done at machine code instruction level</li>
+</ul>
+<h4 id="basic-blocks">Basic Blocks</h4>
+<p>A basic block is a sequence of instruction where the control flow enters at the beginning
+and exits at the end, without stopping in-between or branching (except at the end).</p>
+<p>The branch instruction at the end of a basic block belongs to that block!</p>
+<div class="highlight"><pre><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
+<span class="nl">t2</span> <span class="p">:</span><span class="o">=</span> <span class="n">e</span> <span class="o">*</span> <span class="n">t1</span>
+<span class="nl">t3</span> <span class="p">:</span><span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">t1</span>
+<span class="nl">t4</span> <span class="p">:</span><span class="o">=</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t3</span>
+<span class="k">if</span> <span class="n">t4</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">goto</span> <span class="n">L</span>
+</pre></div>
+<p>Determine basic blocks of a program</p>
+<ol>
+<li>Determine the first instructions of blocks:<ul>
+<li>The first instruction</li>
+<li>Targets of jumps (conditional/unconditional)</li>
+<li>Instructions that <em>follow</em> jumps (conditional/unconditional)</li>
+</ul>
+</li>
+<li>Determine the basic blocks<ul>
+<li>There is a basic block for each block beginning</li>
+<li>The basic block consists of the block beginning and runs until the next block beginning (exclusive) or until the end of the program</li>
+</ul>
+</li>
+</ol>
+<h4 id="calculation-of-the-wcet">Calculation of the <strong>WCET</strong></h4>
+<p>A program consists of <span class="math">\(N\)</span> basic blocks, where each basic block <span class="math">\(B_i\)</span> has a worst-case execution time <span class="math">\(c_i\)</span> and is
+ executed for exactly <span class="math">\(x_i\)</span> times:</p>
+<div class="math">$$WCET = \sum_{i=1}^N c_i \cdot x_i$$</div>
+<ul>
+<li>The <span class="math">\(c_i\)</span> values are determined using the static analysis</li>
+<li>Determine <span class="math">\(x_i\)</span><ul>
+<li>Structural constraint given by the program structure</li>
+<li>Additional constraints provided by the programmer (e.g bounds for loop counters...)</li>
+</ul>
+</li>
+</ul>
+<p><img alt="WCET Calculation" class="img-responsive" src="/images/hscd_wcet_calculation.png"/></p>
+<p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
+<p>Flow Equations (sum of incomming edges equals summ of outgoing edges)</p>
+<p><span class="math">\(d1 = d2 = x_1\)</span>
+<span class="math">\(d2 + d8 = d3 + d9 = x_2\)</span>
+<span class="math">\(d3 = d4 + d5 = x_3\)</span>
+<span class="math">\(d4 = d6 = x_4\)</span>
+<span class="math">\(d5 = d7 = x_5\)</span>
+<span class="math">\(d6 + d7 = d8 = x_6\)</span>
+<span class="math">\(d9 = d10 = x_7\)</span></p>
+<p>Additional Constraints</p>
+<ul>
+<li>Execute the program only once: <span class="math">\(d1 = 1\)</span></li>
+<li>loop is executed at most 10 times: <span class="math">\(x_3 \leq 10 \cdot x_1\)</span></li>
+<li>Block 5 is executed at most one time: <span class="math">\(x_5 &lt;leq 1 \cdot x_1\)</span></li>
+</ul>
+<p>The more information the better the result</p>
+<h5 id="integer-linear-program-for-wcet-calculation">Integer Linear Program for <strong>WCET</strong> Calculation</h5>
+<p>ILP with structural and additional constraings</p>
+<div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{structural constraints} \;\land \;\text{additional constraints} \right \}$$</div>
 <!--
 
 Topics
