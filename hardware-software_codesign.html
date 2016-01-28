@@ -307,6 +307,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#abstact-interpretation-ai">Abstact Interpretation (AI)</a></li>
 </ul>
 </li>
 </ul>
@@ -1854,6 +1855,36 @@ d9 = d10 = x_7
 <h5 id="integer-linear-program-for-wcet-calculation">Integer Linear Program for <strong>WCET</strong> Calculation</h5>
 <p>ILP with structural and additional constraings</p>
 <div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{structural constraints} \;\land \;\text{additional constraints} \right \}$$</div>
+<h3 id="abstact-interpretation-ai">Abstact Interpretation (AI)</h3>
+<ul>
+<li>Semantics-based method for static program analysis</li>
+<li>Basic idea<ul>
+<li>Perform programs comutations using value descriptions (or abstract values)</li>
+<li>Start with the description of all possible inputs</li>
+</ul>
+</li>
+<li>AI supports crrrectness proofs</li>
+</ul>
+<p>Ingredients:</p>
+<ul>
+<li>Abstract domain: related to concrete domain (by abstraction and concretizstion functions)<ul>
+<li>e.g <span class="math">\(L \rightarrow \text{Intervals}\)</span></li>
+<li>where: <span class="math">\(\text{Intervals} = LB \times UB, LB = UB = Int \cup \{-\infty, \infty\}\)</span></li>
+<li>instead of: <span class="math">\(L \rightarrow Int\)</span></li>
+</ul>
+</li>
+<li>Abstract transfer functions: for each statement type (abstract versions of their semantics)<ul>
+<li>e.g <span class="math">\(+ : Invervals \times Intervals \rightarrow Intervals\)</span></li>
+<li>where: <span class="math">\([a,b] + [c,d] = [a+c,b+d]\)</span></li>
+<li>with: <span class="math">\(+\)</span> extends to <span class="math">\(-\infty, \infty\)</span></li>
+</ul>
+</li>
+<li>A join functin combining abstract values from different control-flow paths<ul>
+<li>e.g <span class="math">\(\cup : Interval \times Interval \rightarrow Interval\)</span></li>
+<li>where: <span class="math">\([a,b] \cup [c,d] = [min(a,c),max(b,d)]\)</span></li>
+</ul>
+</li>
+</ul>
 <!--
 
 Topics
