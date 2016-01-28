@@ -266,6 +266,27 @@
 </ul>
 </li>
 <li><a href="#performance-estimation-in-design-flow">Performance Estimation in Design Flow</a></li>
+<li><a href="#multi-processor-system-on-chip">Multi-Processor System-on-Chip</a><ul>
+<li><a href="#communication">Communication</a></li>
+<li><a href="#computation-and-memory">Computation and Memory</a></li>
+<li><a href="#scheduling-and-arbitration">Scheduling and Arbitration</a></li>
+<li><a href="#difficulty">Difficulty</a></li>
+</ul>
+</li>
+<li><a href="#abstraction">Abstraction</a></li>
+<li><a href="#performance-estimation-methods">Performance Estimation Methods</a><ul>
+<li><a href="#static-analysis-models">Static Analysis Models</a></li>
+<li><a href="#dynamic-analytic-models">Dynamic Analytic Models</a><ul>
+<li><a href="#stochastic-queuing-systems">Stochastic Queuing Systems</a></li>
+<li><a href="#worst-casebest-case-queuing-systems">Worst-Case/Best-Case Queuing Systems</a></li>
+</ul>
+</li>
+<li><a href="#simulation_1">Simulation</a><ul>
+<li><a href="#trace-based-simulation">Trace-Based Simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1233,7 +1254,7 @@ all objectives, i.e:</p>
 </li>
 <li>Data types (separated from core language)</li>
 <li>On top of core language<ul>
-<li>Cummunication mechanism (signals, FIFO...)</li>
+<li>Communication mechanism (signals, FIFO...)</li>
 <li>Models of Computation (MoCs)</li>
 </ul>
 </li>
@@ -1243,7 +1264,7 @@ all objectives, i.e:</p>
 <p>Processes are the basic units of functionality.</p>
 <ul>
 <li><code>SC_THREAD</code>s<ul>
-<li>Typically called once, run forever (ina <code>while(true)</code> loop)</li>
+<li>Typically called once, run forever (in a <code>while(true)</code> loop)</li>
 <li>Can be suspended by calling <code>wait()</code></li>
 <li>Keep the state of execution implicitly</li>
 </ul>
@@ -1251,7 +1272,7 @@ all objectives, i.e:</p>
 <li><code>SC_METHOD</code>s<ul>
 <li>Execute repeatedly from the beginning to end</li>
 <li>Simulate faster</li>
-<li>Do <em>not</em> keep the state of execution implicitely</li>
+<li>Do <em>not</em> keep the state of execution implicitly</li>
 </ul>
 </li>
 <li>Processes must be contained in a module<ul>
@@ -1288,7 +1309,7 @@ all objectives, i.e:</p>
 </ul>
 <h3 id="wait-and-notify">Wait and Notify</h3>
 <ul>
-<li><code>wait</code>: halt process until an exent is raised<ul>
+<li><code>wait</code>: halt process until an extent is raised<ul>
 <li><code>wait()</code> with arguments → dynamic sensitivity<ul>
 <li><code>wait(sc_event)</code></li>
 <li><code>wait(time)</code></li>
@@ -1318,7 +1339,7 @@ all objectives, i.e:</p>
 </li>
 <li>Transaction level<ul>
 <li>Use:<ul>
-<li>MPSoC architecture analyis</li>
+<li>MPSoC architecture analysis</li>
 <li>Early SW development</li>
 <li>Timing estimation</li>
 </ul>
@@ -1401,7 +1422,7 @@ all objectives, i.e:</p>
 <ul>
 <li>Low-level: Register Transfer Level, Instruction Set Architecture</li>
 <li>Intermediary-level: Transaction Level-Model, Operating System, already linked to HW</li>
-<li>High-level: Functional, High-level language, independant of HW</li>
+<li>High-level: Functional, High-level language, independent of HW</li>
 </ul>
 <h3 id="subsystem-to-analyze">Subsystem to Analyze</h3>
 <ul>
@@ -1438,7 +1459,218 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<!--  Notes Week 10 46:15 -->
+<h2 id="multi-processor-system-on-chip">Multi-Processor System-on-Chip</h2>
+<p>Simulation should be divided in to independent modules.
+So they can be exchanged.</p>
+<p>Composable in terms of:</p>
+<ul>
+<li>Subsystems</li>
+<li>Interactions</li>
+<li>Computation</li>
+<li>Communication</li>
+<li>Memory</li>
+<li>Scheduling</li>
+</ul>
+<p>Estimation should cover different metrics e.g:</p>
+<ul>
+<li>Delays</li>
+<li>Throughput</li>
+<li>Memory consumption</li>
+<li>Power</li>
+<li>Energy</li>
+<li>Temperature</li>
+<li>Cost</li>
+<li>...</li>
+</ul>
+<h3 id="communication">Communication</h3>
+<ul>
+<li>Bus</li>
+<li>Network</li>
+<li>Hierarchical Bus</li>
+</ul>
+<h3 id="computation-and-memory">Computation and Memory</h3>
+<ul>
+<li>DRAM</li>
+<li>SDRAM</li>
+<li>DSP</li>
+<li>RISC</li>
+<li>FPGA</li>
+<li>muC</li>
+<li>HW</li>
+</ul>
+<h3 id="scheduling-and-arbitration">Scheduling and Arbitration</h3>
+<ul>
+<li>TDMA</li>
+<li>EDF</li>
+<li>FCFS</li>
+<li>proportional share</li>
+<li>fixed priority</li>
+<li>static</li>
+</ul>
+<h3 id="difficulty">Difficulty</h3>
+<p>Why is MPSoC performance estimation difficult?</p>
+<ul>
+<li>Computation, communication and memory<ul>
+<li>Non-deterministic computation in processing nodes</li>
+<li>Non-deterministic communication delays</li>
+<li>Non-deterministic memory access</li>
+<li>Complex resource interaction via scheduling/arbitration</li>
+</ul>
+</li>
+<li>Cyclic timing dependencies<ul>
+<li>Internal data streams interact on computation and communication resources</li>
+<li>Interaction determines stream characteristics</li>
+</ul>
+</li>
+<li>Uncertain environment<ul>
+<li>Different load scenarios</li>
+<li>Unknown, worst case inputs</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Making one component faster can make the complete system slower!</p>
+</blockquote>
+<p>If a component is replaced with a faster one it could block shared resources (e.g bus)
+for other components.</p>
+<h2 id="abstraction">Abstraction</h2>
+<ul>
+<li>Technology: transistors, layouts</li>
+<li>Signal: gate, schematic, RTL</li>
+<li>Transaction: SW, HW systems</li>
+<li>Tokens: SW tasks, comm. backbones, IPs</li>
+<li>Simulators:<ul>
+<li>SPICE</li>
+<li>VHDL</li>
+<li>SystemC / Instruction Set Simulator</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h2 id="performance-estimation-methods">Performance Estimation Methods</h2>
+<p>How to evaluate a system?</p>
+<ul>
+<li>Measurements<ul>
+<li>Use existing instance of the system to measure performance</li>
+</ul>
+</li>
+<li>Simulation<ul>
+<li>Develop a program which implements a model of the system and evaluate performance by running the program</li>
+</ul>
+</li>
+<li>Statistics<ul>
+<li>Develop a statistical abstraction of the system and derive statistic performance via analysis or simulation</li>
+</ul>
+</li>
+<li>Formal analysis<ul>
+<li>Develop a mathematical abstraction of the system and compute formulas which describe the system performance</li>
+</ul>
+</li>
+</ul>
+<h3 id="static-analysis-models">Static Analysis Models</h3>
+<ul>
+<li>Describe computing, communication and memory resources by <em>algebraic equations</em></li>
+<li>Describe system properties by <em>parameters</em> (e.g data rate)</li>
+<li>Combine relations</li>
+</ul>
+<div class="math">$$comm\_delay= \left \lceil \frac{\# words}{burst\_size}  \right \rceil \cdot comm\_time$$</div>
+<ul>
+<li>Fast and simple estimation</li>
+<li>But generally inaccurate modeling (e.g resource sharing not modeled)</li>
+</ul>
+<h3 id="dynamic-analytic-models">Dynamic Analytic Models</h3>
+<ul>
+<li>Combination between<ul>
+<li><em>Static models</em> possibly extended by non-determinism in run-time and event processing</li>
+<li><em>Dynamic models</em> for describing e.g resource sharing mechanism (scheduling and arbitration)</li>
+</ul>
+</li>
+<li>Existing approaches<ul>
+<li>Classical real-time scheduling theory</li>
+<li>Stochastic queuing theory (statistical bounds)</li>
+<li>Analytic (non-deterministic) queuing theory (worst-/best-case bounds)</li>
+</ul>
+</li>
+</ul>
+<h4 id="stochastic-queuing-systems">Stochastic Queuing Systems</h4>
+<ul>
+<li>A stochastic model for queuing systems is described by probability density functions (distributions) of<ul>
+<li>Arrival rates</li>
+<li>Service mechanisms</li>
+<li>Queuing disciplines</li>
+</ul>
+</li>
+<li>Performance measures are stochastic values (functions)<ul>
+<li>Average delays in queue</li>
+<li>Time-average number of customers in queue</li>
+<li>Proportion of time servers is busy</li>
+</ul>
+</li>
+</ul>
+<p><a href="Markov property">Markovian (exponential) distribution</a></p>
+<h4 id="worst-casebest-case-queuing-systems">Worst-Case/Best-Case Queuing Systems</h4>
+<ul>
+<li>A worst-/best-case queuing system is described by worst-/best-case bounds on system properties<ul>
+<li>worst-/best-case bounds on arrival times</li>
+<li>worst-/best-case on server behavior</li>
+<li>resource interaction</li>
+</ul>
+</li>
+<li>Performance measures<ul>
+<li>worst-/best-case delay in queue</li>
+<li>worst-/best-case number of customers in queue</li>
+<li>worst-/best-case system delay</li>
+</ul>
+</li>
+</ul>
+<h3 id="simulation_1">Simulation</h3>
+<ul>
+<li>Model<ul>
+<li>Program implementing a model of the system (application, hardware, platform, mapping)</li>
+<li>Performance is evaluated by running the program</li>
+</ul>
+</li>
+<li>Simulation<ul>
+<li>Considers HW platform and mapping of application on that platform (virtual platform)</li>
+<li>Combines functional simulation and performance data</li>
+<li>Evaluates behavior for one simulation scenario</li>
+</ul>
+</li>
+<li>Typically complex set-up and extensive run-times</li>
+<li>Accurate results and good debugging possibilities</li>
+</ul>
+<h4 id="trace-based-simulation">Trace-Based Simulation</h4>
+<ul>
+<li>Abstract system-level simulation (without timing)<ul>
+<li>Faster than low-level simulation</li>
+<li>But still based on a single input trace</li>
+</ul>
+</li>
+<li>Abstraction<ul>
+<li>Application: abstract execution traces<ul>
+<li>→ Graph of events: <strong>read</strong>, <strong>write</strong> and <strong>execute</strong></li>
+</ul>
+</li>
+<li>Architecture: 'virtual machines' and 'virtual channels'<ul>
+<li>→ Calibrated with non-functional properties (timing, power, energy)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Trace-based simulation steps<ul>
+<li>Build application abstract model<ul>
+<li>→ execution trace determined by functional application simulation</li>
+</ul>
+</li>
+<li>Extending abstract model with architecture and mapping<ul>
+<li>→ Event graph extended by non-functional properties of virtual architecture elements</li>
+</ul>
+</li>
+<li>Simulation of extended model</li>
+</ul>
+</li>
+</ul>
+<!-- End of Slides 8 -->
 <!--
 
 Topics
