@@ -2193,28 +2193,24 @@ occuring in ther programm (addresses, register contents, local and global variab
 </ul>
 <p><img alt="Plus-times calculus" class="img-responsive" src="/images/hscd_plus_times.svg"/></p>
 <div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
+<div class="highlight"><pre><span class="x">- </span><span class="p">$</span><span class="nv">f</span><span class="p">(</span><span class="err">t</span><span class="p">)$</span><span class="x">: Signals</span>
+<span class="x">- </span><span class="p">$</span><span class="nv">g</span><span class="p">(</span><span class="err">t</span><span class="p">)$</span><span class="x">: Impulse response</span>
+<span class="x">- </span><span class="p">$(</span><span class="err">f*g</span><span class="p">)$</span><span class="x">: Convolution</span>
+<span class="x">- </span><span class="p">$</span><span class="nv">t</span><span class="p">$</span><span class="x">: Time domain</span>
+</pre></div>
 <ul>
-<li><span class="math">\(f(t)\)</span>: Signals</li>
-<li><span class="math">\(g(t)\)</span>: Impulse response</li>
-<li><span class="math">\((f*g)\)</span>: Convolution</li>
-<li>
-<p><span class="math">\(t\)</span>: Time domain</p>
-</li>
-<li>
-<p>Min-plus system theory</p>
-<ul>
+<li>Min-plus system theory<ul>
 <li>streams, variability curves, time-interval domain, convolution</li>
 </ul>
 </li>
 </ul>
 <p><img alt="Min-plus calculus" class="img-responsive" src="/images/hscd_min_plus.svg"/></p>
 <div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
-<ul>
-<li><span class="math">\(R(t)\)</span>: Streams</li>
-<li><span class="math">\(g(\Delta)\)</span>: Variability curves</li>
-<li><span class="math">\(\Delta\)</span>: Time-interval domain</li>
-<li><span class="math">\((R\otimes g)\)</span>: Convolution</li>
-</ul>
+<div class="highlight"><pre><span class="x">- </span><span class="p">$</span><span class="nv">R</span><span class="p">(</span><span class="err">t</span><span class="p">)$</span><span class="x">: Streams</span>
+<span class="x">- </span><span class="p">$</span><span class="nv">g</span><span class="p">(</span><span class="err">\Delta</span><span class="p">)$</span><span class="x">: Variability curves</span>
+<span class="x">- </span><span class="p">$</span><span class="x">\Delta</span><span class="p">$</span><span class="x">: Time-interval domain</span>
+<span class="x">- </span><span class="p">$(</span><span class="err">R\otimes</span> <span class="err">g</span><span class="p">)$</span><span class="x">: Convolution</span>
+</pre></div>
 <!--
 
 Topics
