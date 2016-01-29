@@ -2191,14 +2191,30 @@ occuring in ther programm (addresses, register contents, local and global variab
 </ul>
 </li>
 </ul>
+<p><img alt="Plus-times calculus" class="img-responsive" src="/images/hscd_plus_times.svg"/></p>
 <div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
 <ul>
-<li>Min-plus system theory<ul>
+<li><span class="math">\(f(t)\)</span>: Signals</li>
+<li><span class="math">\(g(t)\)</span>: Impulse response</li>
+<li><span class="math">\((f*g)\)</span>: Convolution</li>
+<li>
+<p><span class="math">\(t\)</span>: Time domain</p>
+</li>
+<li>
+<p>Min-plus system theory</p>
+<ul>
 <li>streams, variability curves, time-interval domain, convolution</li>
 </ul>
 </li>
 </ul>
+<p><img alt="Min-plus calculus" class="img-responsive" src="/images/hscd_min_plus.svg"/></p>
 <div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
+<ul>
+<li><span class="math">\(R(t)\)</span>: Streams</li>
+<li><span class="math">\(g(\Delta)\)</span>: Variability curves</li>
+<li><span class="math">\(\Delta\)</span>: Time-interval domain</li>
+<li><span class="math">\((R\otimes g)\)</span>: Convolution</li>
+</ul>
 <!--
 
 Topics
