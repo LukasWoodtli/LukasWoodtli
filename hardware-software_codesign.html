@@ -309,8 +309,23 @@
 </li>
 <li><a href="#abstact-interpretation-ai">Abstact Interpretation (AI)</a><ul>
 <li><a href="#value-analysis">Value Analysis</a></li>
+<li><a href="#caches">Caches</a></li>
+<li><a href="#cache-analysis">Cache Analysis</a><ul>
+<li><a href="#must-cache">Must Cache</a></li>
+<li><a href="#may-cache">May Cache</a></li>
+<li><a href="#cache-contribution-to-wcet">Cache Contribution to WCET</a></li>
 </ul>
 </li>
+<li><a href="#pipelines">Pipelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#10-performance-analysis-of-distributed-embedded-systems">10 Performance Analysis of Distributed Embedded Systems</a><ul>
+<li><a href="#real-time-calculus">Real-Time Calculus</a><ul>
+<li><a href="#algebraic-structure">Algebraic Structure</a></li>
 </ul>
 </li>
 </ul>
@@ -1897,6 +1912,232 @@ d9 = d10 = x_7
 <p>Calculate intervals at all program points. Lower and upper bounds for the set of possible values
 occuring in ther programm (addresses, register contents, local and global variables).</p>
 <!-- End of Notes Week 11 -->
+<!-- Beginning of Notes Week 12 -->
+<h4 id="caches">Caches</h4>
+<ul>
+<li>Main memory to slow</li>
+<li>Speed gap between CPU and memory too large (and increasing)</li>
+<li>
+<p>Caches work well in the average case:</p>
+<ul>
+<li>Programs access data locally (many hits)</li>
+<li>Programs reuse items (instructions, data)</li>
+<li>Access patterns are distributet evenly across the cache</li>
+</ul>
+</li>
+<li>
+<p>Caches: fast, small, expensive</p>
+</li>
+<li>Memory: relatively slow (bottle neck), large, cheap</li>
+<li>Access cycles:<ul>
+<li>CPU ↔ Cache: ~1 cycle</li>
+<li>Cache ↔ Memory: ~100 cycles</li>
+</ul>
+</li>
+</ul>
+<p>How caches work:</p>
+<ul>
+<li>CPU wants to access (read/write) at memory address <strong>a</strong></li>
+<li>Caches:<ul>
+<li>Block <strong>m</strong> containing <strong>a</strong> is in the cache (<em>hit</em>):<ul>
+<li>Request for <strong>a</strong> is served in next cycle</li>
+</ul>
+</li>
+<li>Block <strong>m</strong> is not in the chache(<em>miss</em>):<ul>
+<li><strong>m</strong> is transfered from main memory to the cache</li>
+<li><strong>m</strong> may replace some block in the cache</li>
+<li>Request for <strong>a</strong> is served as soon as possible (while tranfer still continues)</li>
+</ul>
+</li>
+<li>Several replacement strategies:<ul>
+<li>LRU: Least Recently Used</li>
+<li>PLRU: Pseudo-LRU</li>
+<li>FIFO</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="cache-analysis">Cache Analysis</h4>
+<p>Statically precompute cache contents:</p>
+<div class="highlight"><pre>- Must Analysis
+    - For each program point (and calling context) find out which blocks *are in the cache*
+    - Determines safe information about cache hits
+    - Predicted cache hit *reduces* **WCET**
+- May Analysis
+    - For each program point (and calling context) find out which blocks *may be in the cache*
+    - *Complement* says what is **not** in the cache
+    - Determines safe information about cache misses
+    - Each predicted cache miss *increases* **BCET**
+</pre></div>
+<h5 id="must-cache">Must Cache</h5>
+<ul>
+<li>Only variables that are in all caches</li>
+<li>Order: worst age (oldest)</li>
+<li>
+<p>Number of variables in cache <span class="math">\(\leq\)</span> numbers of places in cache</p>
+</li>
+<li>
+<p>Join</p>
+<ul>
+<li>Intersection + maximal age</li>
+<li>Interpretation:<ul>
+<li>Memory block <strong>a</strong> is definitely in the cache</li>
+<li>Always a hit</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="may-cache">May Cache</h5>
+<ul>
+<li>All variables that <em>could be in cache</em></li>
+<li>Minimal age</li>
+<li>Join<ul>
+<li>Union</li>
+<li>Minimal age</li>
+<li>Interpretation:<ul>
+<li>All block may be in cache</li>
+<li>None is definitely <em>not</em> in cache</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="cache-contribution-to-wcet">Cache Contribution to <strong>WCET</strong></h5>
+<p>Reference to variable <strong>s</strong> in code:</p>
+<ul>
+<li>if <strong>s</strong> is in <em>must-cache</em>:<ul>
+<li><span class="math">\(t_{WCET} = t_{hit}\)</span></li>
+</ul>
+</li>
+<li>otherwise<ul>
+<li><span class="math">\(t_{WCET} = t_{miss}\)</span></li>
+</ul>
+</li>
+<li>if <strong>s</strong> is in <em>may-cache</em>:<ul>
+<li><span class="math">\(t_{BCET} = t_{hit}\)</span></li>
+</ul>
+</li>
+<li>otherwise<ul>
+<li><span class="math">\(t_{BCET} = t_{miss}\)</span></li>
+</ul>
+</li>
+</ul>
+<p>Reference to variable <strong>s</strong> in loop body (max <span class="math">\(n\)</span> iterations):</p>
+<ul>
+<li>First time miss, then always hit</li>
+<li>
+<p>Loop unfolding</p>
+</li>
+<li>
+<p>within loop</p>
+<ul>
+<li><span class="math">\(n \cdot t_{miss}\)</span></li>
+<li><span class="math">\(n \cdot t_{hit}\)</span></li>
+<li><span class="math">\(t_{miss} + (n - 1) \cdot t_{hit}\)</span></li>
+<li><span class="math">\(t_{hit}  + (n - 1) \cdot t_{miss}\)</span></li>
+</ul>
+</li>
+</ul>
+<h4 id="pipelines">Pipelines</h4>
+<ul>
+<li>Different stages in parallel<ul>
+<li>Fetch</li>
+<li>Decode</li>
+<li>Execute</li>
+<li>...</li>
+</ul>
+</li>
+<li>Pipeline hazards<ul>
+<li>Data hazard: Operands not yet available</li>
+<li>Resource hazard: Consecutive instructions use same resource</li>
+<li>Control hazard: Conditional branch</li>
+<li>Instuction-cache hazard: Instruction fetch causes cache miss</li>
+</ul>
+</li>
+<li>CPU as State Machine: Abstract Pipeline for basic blocks</li>
+</ul>
+<!-- End of Slides 9 -->
+<!-- Beginning of Slides 10 -->
+<h1 id="10-performance-analysis-of-distributed-embedded-systems">10 Performance Analysis of Distributed Embedded Systems</h1>
+<blockquote>
+<p>Embedded System = Computation + Communication + Resource Interaction</p>
+</blockquote>
+<ul>
+<li>
+<p>Analysis ↔ Design</p>
+<ul>
+<li>Analysis: infer system properties from subsystem properties</li>
+<li>Design: build system from subsystems while meeting requirements</li>
+</ul>
+</li>
+<li>
+<p>Abstract model</p>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Concrete instance (real world)</th>
+<th>Abstract representation (model)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input stream</td>
+<td>Load model</td>
+</tr>
+<tr>
+<td>Processor</td>
+<td>Service model</td>
+</tr>
+<tr>
+<td>Task(s) running on processor</td>
+<td>Processing model</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>System view<ul>
+<li>Modular Performance Analysis (MPA)</li>
+</ul>
+</li>
+<li>Mathematical view<ul>
+<li>Real-Time Calculus (RTC)</li>
+<li>Min-Plus Calculus, Max-Plus Calculus</li>
+</ul>
+</li>
+</ul>
+<h2 id="real-time-calculus">Real-Time Calculus</h2>
+<ul>
+<li>Real-Time Calculus can be regarded as a worst-/best-case variant of classical queuing theory</li>
+<li>It's a formal method for the analysis of distributed real-time (embedded) systems</li>
+</ul>
+<h3 id="algebraic-structure">Algebraic Structure</h3>
+<ul>
+<li>Set of elements <span class="math">\(S\)</span><ul>
+<li>One ore more operators defined on elements of this set</li>
+</ul>
+</li>
+<li>Algebraic structures with <em>two operators</em>: <span class="math">\(\boxplus\)</span>, <span class="math">\(\boxdot\)</span><ul>
+<li>plus-times: <span class="math">\((S, \boxplus, \boxdot) = (R, +, \times)\)</span></li>
+<li>min-plus: <span class="math">\((S, \boxplus, \boxdot) = (R \cup \{ + \infty \}, inf, +)\)</span></li>
+</ul>
+</li>
+<li><strong>Infimum</strong><ul>
+<li>The infimum of a subset (of some set) is the greates element (not necessary in the subset)
+  that is less than or equal to all other elements of the subset</li>
+<li><span class="math">\(<div class="math">\begin{matrix}S_1 \subseteq S \\  inf(S_1) = \underset{i}{max}\{i \in S : i \leq s\; \forall s \in S_1\}\end{matrix}</div>S\)</span></li>
+<li>Examples:<ul>
+<li><span class="math">\(inf\{[3,4]\}=3\)</span> and <span class="math">\(min\{[3,4]\}=3\)</span></li>
+<li><span class="math">\(inf\{(3,4]\}=3\)</span> but <span class="math">\(min\{(3,4]\} \text{not defined}\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!--
 
 Topics
