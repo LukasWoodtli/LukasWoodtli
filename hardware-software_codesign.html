@@ -326,6 +326,7 @@
 <li><a href="#10-performance-analysis-of-distributed-embedded-systems">10 Performance Analysis of Distributed Embedded Systems</a><ul>
 <li><a href="#real-time-calculus">Real-Time Calculus</a><ul>
 <li><a href="#algebraic-structure">Algebraic Structure</a></li>
+<li><a href="#system-theories">System Theories</a></li>
 </ul>
 </li>
 </ul>
@@ -2122,14 +2123,24 @@ occuring in ther programm (addresses, register contents, local and global variab
 </ul>
 </li>
 <li>Algebraic structures with <em>two operators</em>: <span class="math">\(\boxplus\)</span>, <span class="math">\(\boxdot\)</span><ul>
-<li>plus-times: <span class="math">\((S, \boxplus, \boxdot) = (R, +, \times)\)</span></li>
-<li>min-plus: <span class="math">\((S, \boxplus, \boxdot) = (R \cup \{ + \infty \}, inf, +)\)</span></li>
+<li>plus-times:<ul>
+<li><span class="math">\((S, \boxplus, \boxdot) = (R, +, \times)\)</span></li>
+<li>Our 'normal' algebra</li>
+</ul>
+</li>
+<li>min-plus:<ul>
+<li><span class="math">\((S, \boxplus, \boxdot) = (R \cup \{ + \infty \}, inf, +)\)</span></li>
+<li>Used for Real-Time calculus</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>Infimum</strong><ul>
 <li>The infimum of a subset (of some set) is the greates element (not necessary in the subset)
   that is less than or equal to all other elements of the subset</li>
-<li><span class="math">\(<div class="math">\begin{matrix}S_1 \subseteq S \\  inf(S_1) = \underset{i}{max}\{i \in S : i \leq s\; \forall s \in S_1\}\end{matrix}</div>S\)</span></li>
+<li>
+<div class="math">$$\begin{matrix}S_1 \subseteq S \\  inf(S_1) = \underset{i}{max}\{i \in S : i \leq s\; \forall s \in S_1\}\end{matrix}$$</div>
+</li>
 <li>Examples:<ul>
 <li><span class="math">\(inf\{[3,4]\}=3\)</span> and <span class="math">\(min\{[3,4]\}=3\)</span></li>
 <li><span class="math">\(inf\{(3,4]\}=3\)</span> but <span class="math">\(min\{(3,4]\} \text{not defined}\)</span></li>
@@ -2137,7 +2148,57 @@ occuring in ther programm (addresses, register contents, local and global variab
 </li>
 </ul>
 </li>
+<li>
+<p>Joint properties of <span class="math">\(\boxdot\)</span>:</p>
+<ul>
+<li>Closure: <span class="math">\(a \boxdot b \in S\)</span></li>
+<li>Associativity: <span class="math">\(a \boxdot (b \boxdot c) = (a \boxdot b) \boxdot c\)</span></li>
+<li>Commutativity <span class="math">\(a \boxdot b = b \boxdot a\)</span></li>
+<li>Existence of identity element: <span class="math">\(\exists v: a \boxdot v = a\)</span></li>
+<li>Existence of negative element: <span class="math">\(\exists a^{-1}: a \boxdot a^{-1} = v\)</span></li>
+<li>Identity element of <span class="math">\(\boxplus\)</span> absorbing for <span class="math">\(\boxdot\)</span>: <span class="math">\(a\boxdot \epsilon = \epsilon\)</span></li>
+<li>Distributivity of <span class="math">\(\boxdot\)</span> w.r.t. <span class="math">\(\boxplus\)</span>: <span class="math">\(a \boxdot (b \boxplus c) = (a\boxdot b) \boxplus (a \boxdot c)\)</span></li>
 </ul>
+</li>
+<li>
+<p>Joint properties of <span class="math">\(\boxplus\)</span>:</p>
+<ul>
+<li>Closure: <span class="math">\(a \boxplus b \in S\)</span></li>
+<li>Associativity: <span class="math">\(a \boxplus (b  \boxplus c) = (a  \boxplus b)  \boxplus c\)</span></li>
+<li>Commutativity: <span class="math">\(a \boxplus b = b \boxplus a\)</span></li>
+<li>Existence of identity element: <span class="math">\(\exists \epsilon : a  \boxplus \epsilon = a\)</span></li>
+</ul>
+</li>
+<li>
+<p>Differences <span class="math">\(\boxplus\)</span>:</p>
+<ul>
+<li><em>plus-times</em>: Existence of negative element for <span class="math">\(\boxplus\)</span>: <span class="math">\(\exists (-a): a \boxplus (-a) = \epsilon\)</span></li>
+<li><em>min-plus</em>: Idempotency: <span class="math">\(a \boxplus a = a\)</span></li>
+</ul>
+</li>
+<li>
+<p>Example:</p>
+<ul>
+<li>plus-times: <span class="math">\(a \times (b + c) = a \times b + a \times c\)</span></li>
+<li>min-plus: <span class="math">\(a + inf\{b,c\} = inf\{a+b,a+c\}\)</span></li>
+</ul>
+</li>
+</ul>
+<h3 id="system-theories">System Theories</h3>
+<ul>
+<li>Plus-times system theory:<ul>
+<li>signals, impulse response, convolution, time-domain</li>
+</ul>
+</li>
+</ul>
+<div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
+<ul>
+<li>Min-plus system theory<ul>
+<li>streams, variability curves, time-interval domain, convolution</li>
+</ul>
+</li>
+</ul>
+<div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
 <!--
 
 Topics
