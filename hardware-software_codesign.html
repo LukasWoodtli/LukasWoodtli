@@ -327,6 +327,7 @@
 <li><a href="#real-time-calculus">Real-Time Calculus</a><ul>
 <li><a href="#algebraic-structure">Algebraic Structure</a></li>
 <li><a href="#system-theories">System Theories</a></li>
+<li><a href="#from-streams-to-cumulative-functions">From Streams to Cumulative Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -2221,6 +2222,21 @@ occuring in ther programm (addresses, register contents, local and global variab
 </ul>
 <p><img alt="Min-plus calculus" class="img-responsive" src="/images/hscd_min_plus.svg"/></p>
 <div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
+<!-- End of Notes Week 12 -->
+<!-- Beginning of Notes Week 13 -->
+<h3 id="from-streams-to-cumulative-functions">From Streams to Cumulative Functions</h3>
+<ul>
+<li>Event streams → <strong>Arrival Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
+<li>Event stream: number of events in <span class="math">\(t=[0 .. T]\)</span></li>
+<li>Arrival Curves <span class="math">\(\alpha = [\alpha', \alpha^u]\)</span>: maximum and minimum arriving events in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
+</ul>
+</li>
+<li>Resources → <strong>Service Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
+<li>Resource Availibility: available servise in <span class="math">\(t=[0 .. T]\)</span></li>
+<li>Service Curves <span class="math">\(\beta = [\beta', \beta^u]\)</span>: maximum and minimum available service in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
+</ul>
+</li>
+</ul>
 <!--
 
 Topics
