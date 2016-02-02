@@ -307,7 +307,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#abstact-interpretation-ai">Abstact Interpretation (AI)</a><ul>
+<li><a href="#abstract-interpretation-ai">Abstract Interpretation (AI)</a><ul>
 <li><a href="#value-analysis">Value Analysis</a></li>
 <li><a href="#caches">Caches</a></li>
 <li><a href="#cache-analysis">Cache Analysis</a><ul>
@@ -332,6 +332,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#overview-of-methods-and-algorithms">Overview of Methods and Algorithms</a></li>
 </ul>
 </div>
 <h1 id="0-overview">0. Overview</h1>
@@ -1753,7 +1754,7 @@ for other components.</p>
 </ul>
 <h2 id="industrys-best-practice">Industry's Best Practice</h2>
 <ul>
-<li>Mesurements: determine execution times directly by observing the execution of a simulation on a set of inputs<ul>
+<li>Measurements: determine execution times directly by observing the execution of a simulation on a set of inputs<ul>
 <li>Does not guarantee an upper bound to all executions in general</li>
 <li>Exhaustive execution in general not possible<ul>
 <li>Too large space: 'Input Domain' <span class="math">\(\times\)</span> 'Initial execution states'</li>
@@ -1792,7 +1793,7 @@ A \equiv \; &amp; if \; B \\
  A \equiv for\; &amp; i \leftarrow 1\; to\; 100\; do \\
  &amp; A1
 \end{align*}$$</div>
-<p>Precondition: Nuber of loops needs to be known (e.g 100)</p>
+<p>Precondition: Number of loops needs to be known (e.g 100)</p>
 <div class="math">$$ub(A) = ub(i \leftarrow) + 100 \times (ub(i \leq 100) + ub(A1))+ ub(i\leq100)$$</div>
 <h3 id="modern-hardware-features">Modern Hardware Features</h3>
 <ul>
@@ -1804,16 +1805,16 @@ A \equiv \; &amp; if \; B \\
 </ul>
 </li>
 <li>These features make <strong>WCET</strong> computation difficult (execution times of instructions vary widely)<ul>
-<li>Best case: everything goes right: no chache miss, operands ready, resources free, branch predicted correctly</li>
+<li>Best case: everything goes right: no cache miss, operands ready, resources free, branch predicted correctly</li>
 <li>Worst case: everything goes wrong: all loads miss cache, resources occupied operands not ready</li>
 </ul>
 </li>
-<li>Span may be several hundert (even thousand) cycles</li>
+<li>Span may be several hundred (even thousand) cycles</li>
 </ul>
 <h3 id="program-path-analysis">Program Path Analysis</h3>
 <ul>
 <li>Which sequence of instructions is executed in the worst-case (longest run time)?</li>
-<li>Probelm: The number of possible program paths grow with the length of the program</li>
+<li>Problem: The number of possible program paths grow with the length of the program</li>
 <li>Number of loop iteration must be bounded</li>
 <li>Must be done at machine code instruction level</li>
 </ul>
@@ -1855,7 +1856,7 @@ and exits at the end, without stopping in-between or branching (except at the en
 </ul>
 <p><img alt="WCET Calculation" class="img-responsive" src="/images/hscd_wcet_calculation.png"/></p>
 <p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
-<p>Flow Equations (sum of incomming edges equals summ of outgoing edges)</p>
+<p>Flow Equations (sum of incoming edges equals sum of outgoing edges)</p>
 <div class="math">$$\begin{align*}
 d1 = d2 = x_1 \\
 d2 + d8 = d3 + d9 = x_2 \\
@@ -1873,33 +1874,33 @@ d9 = d10 = x_7
 </ul>
 <p>The more information the better the result</p>
 <h5 id="integer-linear-program-for-wcet-calculation">Integer Linear Program for <strong>WCET</strong> Calculation</h5>
-<p>ILP with structural and additional constraings</p>
+<p>ILP with structural and additional constraints</p>
 <div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{\text{structural constraints}} \;\land \;\text{additional constraints} \right \}$$</div>
-<h3 id="abstact-interpretation-ai">Abstact Interpretation (AI)</h3>
+<h3 id="abstract-interpretation-ai">Abstract Interpretation (AI)</h3>
 <ul>
 <li>Semantics-based method for static program analysis</li>
 <li>Basic idea<ul>
-<li>Perform programs comutations using value descriptions (or abstract values)</li>
+<li>Perform programs computations using value descriptions (or abstract values)</li>
 <li>Start with the description of all possible inputs</li>
 </ul>
 </li>
-<li>AI supports crrrectness proofs</li>
+<li>AI supports correctness proofs</li>
 </ul>
 <p>Ingredients:</p>
 <ul>
-<li>Abstract domain: related to concrete domain (by abstraction and concretizstion functions)<ul>
+<li>Abstract domain: related to concrete domain (by abstraction and concretization functions)<ul>
 <li>e.g <span class="math">\(L \rightarrow \text{Intervals}\)</span></li>
 <li>where: <span class="math">\(\text{Intervals} = LB \times UB, LB = UB = Int \cup \{-\infty, \infty\}\)</span></li>
 <li>instead of: <span class="math">\(L \rightarrow Int\)</span></li>
 </ul>
 </li>
 <li>Abstract transfer functions: for each statement type (abstract versions of their semantics)<ul>
-<li>e.g <span class="math">\(+ : Invervals \times Intervals \rightarrow Intervals\)</span></li>
+<li>e.g <span class="math">\(+ : Intervals \times Intervals \rightarrow Intervals\)</span></li>
 <li>where: <span class="math">\([a,b] + [c,d] = [a+c,b+d]\)</span></li>
 <li>with: <span class="math">\(+\)</span> extends to <span class="math">\(-\infty, \infty\)</span></li>
 </ul>
 </li>
-<li>A join functin combining abstract values from different control-flow paths<ul>
+<li>A join function combining abstract values from different control-flow paths<ul>
 <li>e.g <span class="math">\(\cup : Interval \times Interval \rightarrow Interval\)</span></li>
 <li>where: <span class="math">\([a,b] \cup [c,d] = [min(a,c),max(b,d)]\)</span></li>
 </ul>
@@ -1908,11 +1909,11 @@ d9 = d10 = x_7
 <h4 id="value-analysis">Value Analysis</h4>
 <p>Motivation:
 - Provide access information to data-cache/pipeline analysis
-- Detect infeasible paths
+- Detect Infeasible paths
 - Derive loop bounds</p>
 <p>Method:</p>
 <p>Calculate intervals at all program points. Lower and upper bounds for the set of possible values
-occuring in ther programm (addresses, register contents, local and global variables).</p>
+occurring in the program (addresses, register contents, local and global variables).</p>
 <!-- End of Notes Week 11 -->
 <!-- Beginning of Notes Week 12 -->
 <h4 id="caches">Caches</h4>
@@ -1924,7 +1925,7 @@ occuring in ther programm (addresses, register contents, local and global variab
 <ul>
 <li>Programs access data locally (many hits)</li>
 <li>Programs reuse items (instructions, data)</li>
-<li>Access patterns are distributet evenly across the cache</li>
+<li>Access patterns are distributed evenly across the cache</li>
 </ul>
 </li>
 <li>
@@ -1945,10 +1946,10 @@ occuring in ther programm (addresses, register contents, local and global variab
 <li>Request for <strong>a</strong> is served in next cycle</li>
 </ul>
 </li>
-<li>Block <strong>m</strong> is not in the chache(<em>miss</em>):<ul>
-<li><strong>m</strong> is transfered from main memory to the cache</li>
+<li>Block <strong>m</strong> is not in the cache(<em>miss</em>):<ul>
+<li><strong>m</strong> is transferred from main memory to the cache</li>
 <li><strong>m</strong> may replace some block in the cache</li>
-<li>Request for <strong>a</strong> is served as soon as possible (while tranfer still continues)</li>
+<li>Request for <strong>a</strong> is served as soon as possible (while transfer still continues)</li>
 </ul>
 </li>
 <li>Several replacement strategies:<ul>
@@ -2056,7 +2057,7 @@ occuring in ther programm (addresses, register contents, local and global variab
 <li>Data hazard: Operands not yet available</li>
 <li>Resource hazard: Consecutive instructions use same resource</li>
 <li>Control hazard: Conditional branch</li>
-<li>Instuction-cache hazard: Instruction fetch causes cache miss</li>
+<li>Instruction-cache hazard: Instruction fetch causes cache miss</li>
 </ul>
 </li>
 <li>CPU as State Machine: Abstract Pipeline for basic blocks</li>
@@ -2137,7 +2138,7 @@ occuring in ther programm (addresses, register contents, local and global variab
 </ul>
 </li>
 <li><strong>Infimum</strong><ul>
-<li>The infimum of a subset (of some set) is the greates element (not necessary in the subset)
+<li>The infimum of a subset (of some set) is the greatest element (not necessary in the subset)
   that is less than or equal to all other elements of the subset</li>
 <li>
 <div class="math">$$\begin{matrix}S_1 \subseteq S \\  inf(S_1) = \underset{i}{max}\{i \in S : i \leq s\; \forall s \in S_1\}\end{matrix}$$</div>
@@ -2232,22 +2233,59 @@ occuring in ther programm (addresses, register contents, local and global variab
 </ul>
 </li>
 <li>Resources → <strong>Service Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
-<li>Resource Availibility: available servise in <span class="math">\(t=[0 .. T]\)</span></li>
+<li>Resource Availability: available service in <span class="math">\(t=[0 .. T]\)</span></li>
 <li>Service Curves <span class="math">\(\beta = [\beta', \beta^u]\)</span>: maximum and minimum available service in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
 </ul>
 </li>
+<li>Arrival and Service Curves work on <em>time intervals</em> as domain (<span class="math">\(\Delta\)</span>)</li>
 </ul>
-<!--
-
-Topics
-------
-- Specification Graph
-    - Architecture Graph (problem Graph)
-    - Dataflow Graph
-- Closeness Function
-
-
--->
+<h1 id="overview-of-methods-and-algorithms">Overview of Methods and Algorithms</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Domain</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hierarchical Clustering</td>
+<td>Partitioning</td>
+<td></td>
+</tr>
+<tr>
+<td>Integer Linear Programming</td>
+<td>Partitioning</td>
+<td></td>
+</tr>
+<tr>
+<td>Simulated Annealing</td>
+<td>Partitioning</td>
+<td></td>
+</tr>
+<tr>
+<td>Trace Based Simulation</td>
+<td>Estimation</td>
+<td></td>
+</tr>
+<tr>
+<td>Evolutionary Algorithms</td>
+<td>Partitioning</td>
+<td>Multi Objective Optimization</td>
+</tr>
+<tr>
+<td>Tom Parks Algorithm</td>
+<td>Kahn Process Networks</td>
+<td></td>
+</tr>
+<tr>
+<td>Kerninghan Lin</td>
+<td>Partitioning</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
