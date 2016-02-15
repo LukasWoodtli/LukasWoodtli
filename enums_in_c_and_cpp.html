@@ -149,7 +149,7 @@ Even if enums are a simple language construct there are special precautions that
 <h1 id="iterating-over-enums">Iterating over enums</h1>
 <p>Be careful if you iterate over an enum. If the enum is not continuously defined your code is probably doing some things you don’t want it to do.
 For exampe:</p>
-<div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span>
 <span class="p">{</span>
   <span class="n">VAL_1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
   <span class="n">VAL_2</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
@@ -170,7 +170,7 @@ For exampe:</p>
 <p>So what's the solution? Don’t iterate over enums that have fixed values assigned. If you have to do it there is a trick called <strong>X Macros</strong> 
 that I’ll cover in another post.</p>
 <p>There is one exception. You can assign a value to the first enum type:</p>
-<div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span>
 <span class="p">{</span>
     <span class="n">VAL_1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">VAL_2</span><span class="p">,</span>
@@ -195,7 +195,7 @@ the used platform.</p>
 <h1 id="size-and-endianness">Size and endianness</h1>
 <p>The size (and endianness) of a enum variable depends on the compiler and on the target platform. So if you write platform independent code (and you should always do that) take care of this.
 There are some language extension in different compilers to address this topic. For example in Visual Studio:</p>
-<div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="kt">uint8_t</span>
+<div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="kt">uint8_t</span>
 <span class="p">{</span> <span class="n">VAL_1</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="cm">/* … */</span><span class="p">,</span> <span class="n">VAL_NB</span><span class="p">}</span> <span class="n">my_enum_t</span><span class="p">;</span>
 </pre></div>
 <p>For platform independent code you can do: <code>#define ENUM_AS_UINT8 : uint8_t</code></p>

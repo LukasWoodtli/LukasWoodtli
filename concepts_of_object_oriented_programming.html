@@ -569,7 +569,7 @@ It's mainly used to compare languages to each other about the possible castings,
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span class="n">SuperReturnType</span> <span class="n">Super</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SubParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// |         ^ contra-</span>
+<div class="highlight"><pre><span></span><span class="n">SuperReturnType</span> <span class="n">Super</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SubParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// |         ^ contra-</span>
 <span class="c1">//  ..                        ^             // |         | variant</span>
 <span class="c1">//   v                        ..            // | co-     |</span>
 <span class="n">SubReturnType</span>   <span class="n">Sub</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SuperParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// v variant |</span>
@@ -827,7 +827,7 @@ of <em>both</em> arguments.</p>
 </ul>
 <h3 id="wildcards">Wildcards</h3>
 <p>Wildcards can be seen as an <a href="https://en.wikipedia.org/wiki/Type_system#Existential_types">Existential Type</a>:</p>
-<div class="highlight"><pre><span class="kd">static</span> <span class="kt">void</span> <span class="nf">printAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">printAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">e</span> <span class="o">:</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -848,7 +848,7 @@ of <em>both</em> arguments.</p>
 </li>
 </ul>
 <p>Instantiation of wildcards can change over time:</p>
-<div class="highlight"><pre><span class="kd">class</span> <span class="nc">Wrapper</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Wrapper</span> <span class="o">{</span>
     <span class="n">Cell</span><span class="o">&lt;?&gt;</span> <span class="n">data</span><span class="o">;</span>
 <span class="o">}</span>
 
@@ -1347,7 +1347,7 @@ provided only the information needed.</p>
 <blockquote>
 <p><em>any</em> and <em>lost</em> are extistential types.</p>
 </blockquote>
-<div class="highlight"><pre><span class="n">any</span> <span class="n">T</span> <span class="n">o</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><span class="n">any</span> <span class="n">T</span> <span class="n">o</span><span class="o">;</span>
 </pre></div>
 <p>There exitst an owner such that o ist an istance of T and has that owner.</p>
 <h4 id="subtyp-relation-between-ownership-types">Subtyp Relation between Ownership Types</h4>
@@ -1418,12 +1418,12 @@ provided only the information needed.</p>
 <h4 id="field-access-and-method-invocation-type-rules">Field Access and Method Invocation (Type Rules)</h4>
 <p><span class="math">\(\tau(a)\)</span>: Type of a</p>
 <p>Field <strong>Read</strong> or Method <strong>Parameters</strong>:</p>
-<div class="highlight"><pre><span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
 </pre></div>
 <p>Is correctly typed if:</p>
 <div class="math">$$\tau(v) :&gt; \tau(e) \blacktriangleright \tau(f)$$</div>
 <p>Field <strong>Write</strong> or Method <strong>Result</strong>:</p>
-<div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
 </pre></div>
 <div class="math">$$\tau(e) \blacktriangleright \tau(f) :&gt; \tau(v)$$</div>
 <p>And</p>
@@ -1440,7 +1440,7 @@ provided only the information needed.</p>
 </li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
   <span class="kd">private</span> <span class="n">rep</span> <span class="n">Address</span> <span class="n">addr</span><span class="o">;</span> <span class="c1">// part of internal representation</span>
   <span class="kd">public</span> <span class="n">rep</span> <span class="n">Address</span> <span class="nf">getAddr</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">addr</span><span class="o">;</span> <span class="c1">// clients get lost-reference</span>
@@ -1648,7 +1648,7 @@ provided only the information needed.</p>
 <li>Static type <em>committed</em>: locally initialized at run-time</li>
 </ul>
 <p>Field access:</p>
-<div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span>
+<div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="na">f</span>
 </pre></div>
 <table class="table table-hover table-striped">
 <thead>
@@ -1703,7 +1703,7 @@ provided only the information needed.</p>
 </ul>
 <h3 id="field-write">Field Write</h3>
 <p>A field write</p>
-<div class="highlight"><pre><span class="n">a</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">b</span>
+<div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">b</span>
 </pre></div>
 <p>is well-typed if
 - <code>a</code> and <code>b</code> are well-typed
@@ -1793,7 +1793,7 @@ provided only the information needed.</p>
 <li>Method signatures can contain construction-type for <code>this</code></li>
 </ul>
 <p>Construction-type for <code>this</code>:</p>
-<div class="highlight"><pre><span class="n">String</span><span class="o">!</span> <span class="n">free</span> <span class="nf">getId</span><span class="o">(</span><span class="n">String</span><span class="o">!</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="n">String</span><span class="o">!</span> <span class="n">free</span> <span class="nf">getId</span><span class="o">(</span><span class="n">String</span><span class="o">!</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">...;</span>
 <span class="o">}</span>
 </pre></div>
@@ -1841,7 +1841,7 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <li>Access lazy initialized field always through getter method</li>
 </ul>
 <p>i.e</p>
-<div class="highlight"><pre><span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
   <span class="kd">private</span> <span class="n">Vector</span><span class="o">?</span> <span class="n">data</span><span class="o">;</span> <span class="c1">// possibly-null</span>
   <span class="kd">public</span> <span class="n">Vector</span><span class="o">!</span> <span class="n">getData</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// getter guarantees for non-null</span>
     <span class="n">Vectror</span><span class="o">?</span> <span class="n">d</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span> <span class="c1">// needed for data flow analysis</span>
@@ -1853,7 +1853,7 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <span class="o">}</span>
 </pre></div>
 <h2 id="arrays">Arrays</h2>
-<div class="highlight"><pre><span class="c1">// Elements</span>
+<div class="highlight"><pre><span></span><span class="c1">// Elements</span>
 <span class="c1">//    |</span>
 <span class="c1">//    v</span>
 <span class="n">Person</span><span class="o">!</span> <span class="o">[]!</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// Non-null array with non-null elements</span>
@@ -1959,7 +1959,7 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 </li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span class="kd">public</span> <span class="n">T</span> <span class="nf">newInstance</span><span class="o">(</span> <span class="o">)</span> <span class="kd">throws</span> <span class="n">InstantiationException</span><span class="o">,</span> <span class="n">IllegalAccessException</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">T</span> <span class="nf">newInstance</span><span class="o">(</span> <span class="o">)</span> <span class="kd">throws</span> <span class="n">InstantiationException</span><span class="o">,</span> <span class="n">IllegalAccessException</span><span class="o">;</span>
 </pre></div>
 <p>If the constructor called internally by <code>newInstance</code> throws an exception (even a checked exception)
 it gets swalowed and rethrown as an unchecked exception.</p>

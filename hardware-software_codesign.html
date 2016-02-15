@@ -612,7 +612,7 @@
 </blockquote>
 <h2 id="specification-examples">Specification Examples</h2>
 <h3 id="data-flow-graph-dfg">Data-Flow Graph (DFG)</h3>
-<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">3</span><span class="n">a</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">3</span><span class="n">a</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
 </pre></div>
@@ -622,7 +622,7 @@
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Data_flow_diagram">Data Flow Graph on Wikipedia</a></p>
 <h3 id="control-flow-graph-cfg">Control-Flow Graph (CFG)</h3>
-<div class="highlight"><pre><span class="n">what_is_this</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="n">what_is_this</span> <span class="p">{</span>
     <span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
     <span class="n">done</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
     <span class="n">repeat</span> <span class="p">{</span>
@@ -910,7 +910,7 @@ $$</div>
 <p>Advantage:
 - Allowance for 'uphill' moves potentially avoids local optima</p>
 <p>Possible implementation:</p>
-<div class="highlight"><pre><span class="n">temp</span> <span class="o">=</span> <span class="n">temp_start</span>
+<div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp_start</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
 <span class="k">while</span> <span class="n">Frozen</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
     <span class="k">while</span> <span class="n">Equilibrium</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
@@ -1822,7 +1822,7 @@ A \equiv \; &amp; if \; B \\
 <p>A basic block is a sequence of instruction where the control flow enters at the beginning
 and exits at the end, without stopping in-between or branching (except at the end).</p>
 <p>The branch instruction at the end of a basic block belongs to that block!</p>
-<div class="highlight"><pre><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
+<div class="highlight"><pre><span></span><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
 <span class="nl">t2</span> <span class="p">:</span><span class="o">=</span> <span class="n">e</span> <span class="o">*</span> <span class="n">t1</span>
 <span class="nl">t3</span> <span class="p">:</span><span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">t1</span>
 <span class="nl">t4</span> <span class="p">:</span><span class="o">=</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t3</span>
@@ -1964,7 +1964,7 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 <h4 id="cache-analysis">Cache Analysis</h4>
 <p>Statically precompute cache contents:</p>
-<div class="highlight"><pre>- Must Analysis
+<div class="highlight"><pre><span></span>- Must Analysis
     - For each program point (and calling context) find out which blocks *are in the cache*
     - Determines safe information about cache hits
     - Predicted cache hit *reduces* **WCET**

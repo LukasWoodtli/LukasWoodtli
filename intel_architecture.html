@@ -719,7 +719,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>In some cases the size of an operand can be given (for some cases it is even mandatory). Size types:</p>
 <p><code>BYTE</code>, <code>WORD</code>, <code>DWORD</code>, <code>QWORD</code>, <code>TBYTE</code>, <code>FAR</code>...</p>
 <h4 id="examples">Examples</h4>
-<div class="highlight"><pre><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
+<div class="highlight"><pre><span></span><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">CS</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
@@ -730,7 +730,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <h1 id="data-transfer-commands">Data Transfer Commands</h1>
 <h2 id="move-command-mov">Move Command (<code>MOV</code>)</h2>
 <p>Moves (copies) a value from a source to a destination.</p>
-<div class="highlight"><pre><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span><span class="c1">;</span>
+<div class="highlight"><pre><span></span><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span><span class="c1">;</span>
 </pre></div>
 <ul>
 <li><code>dest</code> can be a memory variable or a register (but not CS or IP).</li>
@@ -739,7 +739,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 </ul>
 <h2 id="exchange-command-xchg">Exchange Command (<code>XCHG</code>)</h2>
 <p>Exchanges the values of the two operands (memory/registers).</p>
-<div class="highlight"><pre><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+<div class="highlight"><pre><span></span><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
 </pre></div>
 <ul>
 <li>Addressing memory/register is same as with <code>MOV</code>.</li>
@@ -749,7 +749,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>For reading and writing data to/from ports</p>
 <p>Input/Output can only be done with accumulator register (AX/AL).</p>
 <p>Port address needs to be written to DX before calling the IN-/OUT-Command. As special case a 8-bit port address can be given directly.</p>
-<div class="highlight"><pre><span class="nf">IN</span> <span class="nb">AL</span><span class="p">,</span> <span class="nb">DX</span><span class="c1">;</span>
+<div class="highlight"><pre><span></span><span class="nf">IN</span> <span class="nb">AL</span><span class="p">,</span> <span class="nb">DX</span><span class="c1">;</span>
 <span class="nf">OUT</span> <span class="nb">DX</span><span class="p">,</span> <span class="nb">AX</span><span class="c1">;</span>
 <span class="nf">IN</span> <span class="nb">AX</span><span class="p">,</span> <span class="mh">42h</span><span class="c1">;</span>
 <span class="nf">OUT</span> <span class="mh">16h</span><span class="p">,</span> <span class="nb">AL</span><span class="c1">;</span>
@@ -850,7 +850,7 @@ Default for most registers is DS. But for BP the default is SS.</p>
 <p>The result is always twice as big as the operands. It's either the accumulator (<em>AX</em>)
 or the <strong>extended accumulator</strong> (<em>DX/AX</em>).</p>
 <p><img alt="The x86 MUL/IMUL commands" class="img-responsive" src="/images/intel_mul.svg"/></p>
-<div class="highlight"><pre><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
+<div class="highlight"><pre><span></span><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
 <span class="nf">IMUL</span> <span class="nb">BX</span> <span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span>
 </pre></div>
 <h3 id="affected-flags_7">Affected Flags</h3>
@@ -871,7 +871,7 @@ It can be a register or a memory location.</p>
 the size of the explicit operator.</p>
 <p>The result (quotient) is saved either in <em>AX</em> or <em>AL</em>. The remainder is saved in either <em>DX</em> or <em>AH</em>.</p>
 <p><img alt="The x86 MUL/IMUL commands" class="img-responsive" src="/images/intel_div.svg"/></p>
-<div class="highlight"><pre><span class="nf">DIV</span> <span class="nb">BX</span> <span class="c1">; Use DX/AX  as implicit operand. Result is saved in AX. Remainder is saved in DX.</span>
+<div class="highlight"><pre><span></span><span class="nf">DIV</span> <span class="nb">BX</span> <span class="c1">; Use DX/AX  as implicit operand. Result is saved in AX. Remainder is saved in DX.</span>
 <span class="nf">IDIV</span> <span class="mh">0x34</span> <span class="c1">; Use AX as implicit operand. Result is saved in AL. Remainder is saved in AH.</span>
 </pre></div>
 <h3 id="affected-flags_8">Affected Flags</h3>
@@ -907,7 +907,7 @@ be a register, a memory address or a constant.</p>
 <h2 id="rotate-rol-ror">Rotate (<code>ROL</code>, <code>ROR</code>)</h2>
 <p>Rotate left (<code>ROL</code>) or right (<code>ROR</code>).</p>
 <p>Rotates the first operand (memory or register) by the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>.</p>
-<div class="highlight"><pre><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
+<div class="highlight"><pre><span></span><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
 <span class="nf">ROR</span> <span class="nb">AX</span><span class="p">,</span> <span class="nb">CL</span><span class="c1">; Rotate by value in CL.</span>
 </pre></div>
 <h3 id="affected-flags_11">Affected Flags</h3>
@@ -1327,7 +1327,7 @@ the end of all the pop operations.</p>
 <h3 id="pushf-and-popf"><code>PUSHF</code> and <code>POPF</code></h3>
 <p><code>PUSHF</code> and <code>POPF</code> push and pop the flag register to/from the stack.</p>
 <h3 id="examples_1">Examples</h3>
-<div class="highlight"><pre><span class="nf">PUSH</span> <span class="nv">result</span>   <span class="c1">; variable result</span>
+<div class="highlight"><pre><span></span><span class="nf">PUSH</span> <span class="nv">result</span>   <span class="c1">; variable result</span>
 <span class="nf">PUSH</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span>   <span class="c1">; memory word at address [BX+7]</span>
 <span class="nf">PUSH</span> <span class="nv">tab</span><span class="p">[</span><span class="nb">SI</span><span class="p">]</span>  <span class="c1">; memory word at address tab[SI]</span>
 <span class="nf">POP</span> <span class="nb">AX</span>        <span class="c1">; value from stack to AX</span>
@@ -1338,14 +1338,14 @@ and calls the function.</p>
 <p><code>RET</code> returns from the function by loading the stored address in to <em>IP</em> and decrements <em>SP</em> (by 2).</p>
 <h2 id="defining-a-function">Defining a Function</h2>
 <p>In <a href="http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/">NASM</a> a function is defined as follows:</p>
-<div class="highlight"><pre><span class="nl">my_func:</span>
+<div class="highlight"><pre><span></span><span class="nl">my_func:</span>
 
 <span class="c1">; code of the function...</span>
 
 <span class="nf">ret</span>
 </pre></div>
 <p>For calling the function:</p>
-<div class="highlight"><pre><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span> <span class="c1">;</span>
+<div class="highlight"><pre><span></span><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span> <span class="c1">;</span>
 </pre></div>
 <p>The pseudo commands <code>PROC and</code>ENDP` (as in MASM/TASM) are not supported by NASM.</p>
 <h3 id="function-prologue">Function Prologue</h3>

@@ -189,19 +189,19 @@
 </li>
 </ul>
 <p><code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</p>
-<div class="highlight"><pre><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
 </pre></div>
 <p>is equvalent to:</p>
-<div class="highlight"><pre><span class="nf">LDR</span> <span class="nv">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="nf">LDR</span> <span class="nv">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R1</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">4</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R2</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">8</span><span class="p">]</span>
 <span class="nf">LDR</span> <span class="nv">R3</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">12</span><span class="p">]</span>
 </pre></div>
 <p>To alter (update) <code>SP</code>:</p>
-<div class="highlight"><pre><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
 </pre></div>
 <p><code>LR</code> needs to be saved on stack for <em>non</em>-leaf functions</p>
-<div class="highlight"><pre><span class="err">:::</span> <span class="nf">nasm</span>
+<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="nf">nasm</span>
 <span class="nl">_func:</span>
   <span class="nf">STMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R4</span><span class="o">-</span><span class="nv">R6</span><span class="p">,</span> <span class="nv">LR</span><span class="err">}</span>
   <span class="c1">; ... code of func</span>
