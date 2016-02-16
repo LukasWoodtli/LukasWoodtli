@@ -141,10 +141,21 @@
     <blockquote>
 <p>This page is work in progress!</p>
 </blockquote>
-<p>SystemC is a C++ library that is used to evaluate and simulate systems.</p>
+<p>SystemC is a system-level modeling language.</p>
+<p>It's implemented as a C++ library.</p>
 <p>It's open source and platform independent.</p>
-<p>(Accellera)[http://accellera.org/] is the main resource about SystemC.</p>
+<p>It contains an event-driven simulation kernel for executing models.</p>
+<p>(Accellera)[http://accellera.org/] is the main resource for SystemC.</p>
 <h1 id="constructs">Constructs</h1>
+<h2 id="modules">Modules</h2>
+<p>Building blocks of SystemC models.</p>
+<ul>
+<li>Hierarchy (subsystems)</li>
+<li>Abstraction</li>
+<li>IP reuse</li>
+</ul>
+<p>Modules are called by the simulation engine if an relevant event is scheduled.</p>
+<p>Modules process events, manipulate the event queue and contain (and manipulate) the system state.</p>
 <h2 id="processes">Processes</h2>
 <p>Processes must be contained in a module.</p>
 <ul>
@@ -161,12 +172,27 @@
 </ul>
 </li>
 </ul>
-<h2 id="modules">Modules</h2>
-<p>Building blocks of SystemC models.</p>
+<h3 id="wait-and-notify">Wait and Notify</h3>
 <ul>
-<li>Hierarchy</li>
-<li>Abstraction</li>
-<li>IP reuse</li>
+<li>wait: halt process execution until an event is raised<ul>
+<li><code>wait()</code></li>
+<li>wait with arguments: dynamic sensitivity<ul>
+<li><code>wait(sc_event)</code></li>
+<li><code>wait(time)</code></li>
+<li><code>wait(time_out, sc_event)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>notify: raise an event<ul>
+<li><code>my_event.notify()</code></li>
+<li>notify with arguments: delayed notification<ul>
+<li><code>my_event.notify(SC_ZERO_TIME)</code>: notify next delta cycle</li>
+<li><code>my_event.notify(time)</code>: notify after <em>time</em></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="communication">Communication</h2>
 <ul>
@@ -193,6 +219,35 @@
 </ul>
 <p>Other communication and synchronization models can be built
 based on these primitives.</p>
+<h3 id="channels">Channels</h3>
+<ul>
+<li>Separating communication from behavior</li>
+<li>Interfaces define access to channel</li>
+<li>Ports are used to access the channel</li>
+</ul>
+<h1 id="simulation">Simulation</h1>
+<p>SystemC is a discrete-event driven simulation.</p>
+<p>The simulation clock represents the current value of the simulation time.</p>
+<p><img alt="Simulation Engine" class="img-responsive" src="/images/systemc_simulation_engine.svg" style="float:right"/></p>
+<ul>
+<li>Initialization of simulation model<ul>
+<li>Set initial states of subsystem modules</li>
+<li>Fill event queue with initial events</li>
+</ul>
+</li>
+<li>Timing routine<ul>
+<li>Determine <em>next</em> event from event queue</li>
+<li>Advance simulation clock to the time when the event is to occur</li>
+</ul>
+</li>
+<li>Event routine<ul>
+<li>Update the system state when a particular type of event occurs</li>
+</ul>
+</li>
+</ul>
+<h1 id="delta-cycle">Delta Cycle</h1>
+<p>Within the same simulation cycle <em>cause</em> and <em>effect</em> events may share the same time of occurrence.</p>
+<p>The simulator uses a zero duration <em>virtual time interval</em>: delta cycle</p>
   </div>
 
   <hr/>
