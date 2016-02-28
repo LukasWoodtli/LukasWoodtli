@@ -133,10 +133,136 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">August</a>
+        <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">September</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle1">
+        <span class="pull-right badge">
+          #18
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://lukaswoodtli.github.io/vector_calculus.html">
+          <li class="list-group-item">
+            <h1>Vector Calculus</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/calculus.html">Calculus</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">09</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">09</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
+
+            <a class="pull-right" href="http://lukaswoodtli.github.io/vector_calculus.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p>Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl.</p>
+<div class="toc">
+<ul>
+<li><a href="#nabla-operator-nabla">Nabla Operator (\(\nabla\))</a></li>
+<li><a href="#gradient-operatornamegrad">Gradient (\(\operatorname{grad}\))</a></li>
+<li><a href="#divergence-operatornamediv">Divergence (\(\operatorname{div}\))</a></li>
+</ul>
+</div>
+<h1 id="nabla-operator-nabla">Nabla Operator (<span class="math">\(\nabla\)</span>)</h1>
+<div class="math">$$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$</div>
+<p>For a 3-dimensional cartesian coordinate system:</p>
+<div class="math">$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}$$ ...</div><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script></li>
+         <!-- <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://lukaswoodtli.github.io/vector_calculus.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="vector_calculus">
+                </span></a>
+              <a class="btn btn-primary" href="http://lukaswoodtli.github.io/vector_calculus.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://lukaswoodtli.github.io/vector_calculus.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li> -->
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
         <span class="pull-right badge">
           #17
         </span>
@@ -154,7 +280,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -201,7 +327,7 @@
         <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #16
         </span>
@@ -219,7 +345,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -287,7 +413,7 @@
         <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #15
         </span>
@@ -305,7 +431,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -425,7 +551,7 @@
         <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month07">July</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #14
         </span>
@@ -443,7 +569,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -509,74 +635,6 @@
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li> -->
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a> - <a href="http://lukaswoodtli.github.io/archives.html#Year2015Month07">July</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #13
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">
-          <li class="list-group-item">
-            <h1>Arrays in C and C++</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/c.html">C</a>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month07">07</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month07">15</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
-  </span>
-
-            <a class="pull-right" href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p>Arrays are simple but quite powerful constructs in C/C++.
-They are merely a representation of consecutive data in memory.</p>
-<p>They don't contain any meta data (like size). But since they are
-stored in memory in such a simple manner processors can handle
-them very efficiently.</p>
-<div class="highlight"><pre><span></span><span class="c1">//     rows  columns</span>
-<span class="c1">//        |  |   </span>
-<span class="c1">//        v ...</span></pre></div></li>
-         <!-- <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="arrays_in_c_and_cpp">
-                </span></a>
-              <a class="btn btn-primary" href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li> -->
