@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Principles of Distributed Computing · Lukas Woodtli</title>
+        <title>Models of Comutation · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/principles_of_distributed_computing.html">Principles of Distributed Computing</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/models_of_comutation.html">Models of Comutation</a></h1>
     </div>
 
         </div>
@@ -126,7 +126,7 @@
           href="http://lukaswoodtli.github.io/tag/eth.html">ETH</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">28</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">29</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -136,45 +136,106 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="vertex-coloring">Vertex Coloring</h1>
+    <h1 id="boolean-circuits">Boolean Circuits</h1>
 <ul>
-<li>Application: Allocate frequencies to nodes</li>
-<li>Model system as a graph</li>
+<li>AND/OR/NOT gates</li>
+<li>Gate: function</li>
+<li>Inputs: arguments to function</li>
+<li>In-/Outputs: wires</li>
+<li>Circuits: combination of gates</li>
+<li>Truth table: all possible combination (look-up table)</li>
 </ul>
-<p>Task:
-Color the nodes of the graph such that <em>no</em> two neighbors share the same color.</p>
+<h2 id="xor">XOR</h2>
 <ul>
-<li>Symmetry breaking problem</li>
-<li>Each node can communicate with its neighbors</li>
-<li>Initially nodes have ID's: <span class="math">\(\log n\)</span> bits</li>
+<li>Parity: odd/even<ul>
+<li>0: even</li>
+<li>1: odd</li>
+<li>0 is even number, 1 is odd number</li>
 </ul>
-<p>Definitions:</p>
+</li>
+<li>works with more than 2 inputs</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>X</th>
+<th>Y</th>
+<th>Z</th>
+<th>XOR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><span class="math">\(n\)</span>: Number of nodes</li>
-<li><span class="math">\(m\)</span>: Number of edges</li>
-<li><span class="math">\(\delta\)</span>: Degree, number of edges for a node</li>
-<li><span class="math">\(\Delta\)</span>: max <span class="math">\(\delta\)</span></li>
-<li><span class="math">\(\chi (G)\)</span>: Chromatic number, min number of colors needed to color the graph</li>
+<li>Cost of circuit: number of<ul>
+<li>AND gates and</li>
+<li>OR gates</li>
+<li>usually NOT gates are not counted (they are too simple)</li>
 </ul>
-<h2 id="synchronous-model">Synchronous Model</h2>
-<ol>
-<li>send message to neighbors (messages should be small <span class="math">\(\approx \log n\)</span> bits)</li>
-<li>receive message from neighbors</li>
-<li>compute! (reasonable computation)</li>
-</ol>
+</li>
+</ul>
+<p>Truth table:</p>
 <ul>
-<li>Begin again at 1.</li>
+<li>for <span class="math">\(n\)</span> inputs: <span class="math">\(2^n\)</span> combinations</li>
 </ul>
-<p>Speed is everything!</p>
-<blockquote>
-<p>Time complexity: number of rounds</p>
-</blockquote>
-<h2 id="tree-coloring">Tree Coloring</h2>
-<p>Tree: Graph with no cycles</p>
-<p>Root trees: one 'starting' node</p>
-<blockquote>
-<p><span class="math">\(\chi (G) = 2\)</span></p>
-</blockquote>
+<p>Number of functions:</p>
+<ul>
+<li>for <span class="math">\(n\)</span> inputs: <span class="math">\(2^{2^n}\)</span> functions (circuits)</li>
+</ul>
+<p>General of <strong>XOR</strong>:</p>
+<ul>
+<li>for <span class="math">\(n\)</span> inputs <span class="math">\(2^{n-1}+1\)</span> gates needed</li>
+</ul>
+<!-- Notes Week 1 40:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -237,12 +298,12 @@ Color the nodes of the graph such that <em>no</em> two neighbors share the same 
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/models_of_comutation.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/systemc.html">
+          <a href="http://lukaswoodtli.github.io/principles_of_distributed_computing.html">
           Older &raquo;</a>
         </li>
       </ul>
