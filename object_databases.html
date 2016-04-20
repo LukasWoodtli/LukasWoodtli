@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Principles of Distributed Computing · Lukas Woodtli</title>
+        <title>Object Databases · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/principles_of_distributed_computing.html">Principles of Distributed Computing</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/object_databases.html">Object Databases</a></h1>
     </div>
 
         </div>
@@ -120,13 +120,15 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/computer_science.html">Computer Science</a>
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
       <b> · </b>
         <a class="label label-primary" 
           href="http://lukaswoodtli.github.io/tag/eth.html">ETH</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/oop.html">OOP</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">28</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">20</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -136,113 +138,150 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="vertex-coloring">Vertex Coloring</h1>
+    <!-- Lecture 1 Slides Start -->
+<h1 id="motivation">Motivation</h1>
 <ul>
-<li>Application: Allocate frequencies to nodes</li>
-<li>Model system as a graph</li>
+<li>Information Systems Design<ul>
+<li>Conceptual Design -&gt; Technical Design -&gt; Implementation</li>
 </ul>
-<p>Task:
-Color the nodes of the graph such that <em>no</em> two neighbors share the same color.</p>
+</li>
+</ul>
+<h2 id="orthogonal-persistance">Orthogonal Persistance</h2>
+<p>Data has to outlive the execution of the program</p>
 <ul>
-<li>Symmetry breaking problem</li>
-<li>Each node can communicate with its neighbors</li>
-<li>Initially nodes have ID's: <span class="math">\(\log n\)</span> bits</li>
+<li><strong>Independence</strong> of longelivety of data</li>
+<li><strong>Data Type Orthogonality</strong> all data objects should be allowed to be persistent (long-lived, transient)</li>
+<li><strong>Identification</strong>: mechanism for identifying persistent object not related to the type system</li>
 </ul>
-<p>Definitions:</p>
+<h2 id="develop-own-database">Develop own Database</h2>
 <ul>
-<li><span class="math">\(n\)</span>: Number of nodes</li>
-<li><span class="math">\(m\)</span>: Number of edges</li>
-<li><span class="math">\(\delta\)</span>: Degree, number of edges for a node</li>
-<li><span class="math">\(\Delta\)</span>: max <span class="math">\(\delta\)</span></li>
-<li><span class="math">\(\chi (G)\)</span>: Chromatic number, min number of colors needed to color the graph</li>
+<li>Support application development (programming language)</li>
+<li>Support persistent data management</li>
+<li>One data model (OOP)</li>
+<li>One language (Java?)</li>
 </ul>
-<h2 id="synchronous-model">Synchronous Model</h2>
-<ol>
-<li>send message to neighbors (messages should be small <span class="math">\(\approx \log n\)</span> bits)</li>
-<li>receive message from neighbors</li>
-<li>compute! (reasonable computation)</li>
-</ol>
+<h2 id="sql">SQL</h2>
+<h3 id="data-definition-language-ddl">Data Definition Language (DDL)</h3>
+<p>Definition of data models</p>
 <ul>
-<li>Begin again at 1.</li>
+<li>Concepts<ul>
+<li>Relations</li>
+<li>Relation attributes and domains</li>
+<li>Primary and foreign key</li>
 </ul>
-<p>Speed is everything!</p>
-<blockquote>
-<p>Time complexity: number of rounds</p>
-</blockquote>
-<h2 id="tree-coloring">Tree Coloring</h2>
-<p>Tree: Graph with no cycles</p>
-<p>Root trees: one 'starting' node</p>
-<blockquote>
-<p><span class="math">\(\chi (G) = 2\)</span></p>
-</blockquote>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+</li>
+<li>Operations<ul>
+<li>Create tables</li>
+<li>Declare relation attributes</li>
+<li>Declare primary and foreign keys</li>
+<li>Alter tables</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-manipulation-language-dml">Data Manipulation Language (DML)</h3>
+<p>Creation and management of data</p>
+<ul>
+<li>Concepts<ul>
+<li>Relation tuple</li>
+<li>Predicate</li>
+</ul>
+</li>
+<li>Operations<ul>
+<li>Insert</li>
+<li>Update</li>
+<li>Delete</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-language-ql">Query Language (QL)</h3>
+<p>Retrieval of data</p>
+<ul>
+<li>Concepts<ul>
+<li>Query</li>
+<li>Predicate</li>
+<li>Query result</li>
+</ul>
+</li>
+<li>Operations (Relational Algebra)<ul>
+<li>Project</li>
+<li>Join</li>
+<li>Select</li>
+</ul>
+</li>
+</ul>
+<h2 id="ddl-dml-and-ql-in-java">DDL, DML and QL in Java</h2>
+<p>DD, DM supported in Java. Querying is very limited.</p>
+<h3 id="dd">DD</h3>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<h2 id="dm">DM</h2>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">Person</span><span class="o">()</span>
+<span class="n">p</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"Bill Stinnet"</span>
+</pre></div>
+<h2 id="querying">Querying</h2>
+<div class="highlight"><pre><span></span><span class="o">...</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">name</span>
+</pre></div>
+<p>LINQ is a powerful and compile time safe support for querying.</p>
+<h2 id="learning-goals">Learning Goals</h2>
+<ul>
+<li>Motivation for Database technologies (not relational)<ul>
+<li>Design- and runtime</li>
+<li>Complex application domains</li>
+<li>Schema and data evolution</li>
+</ul>
+</li>
+<li>Understanding of object-oriented data model<ul>
+<li>what is oop?</li>
+<li>ODMG</li>
+</ul>
+</li>
+<li>New and alternative concepts and applications</li>
+<li>Develop an object database<ul>
+<li>Requirements</li>
+<li>Challenges<ul>
+<li>integration with application</li>
+<li>duplicate objects</li>
+<li>OO-specific indexing</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Object database technolologies<ul>
+<li>Products<ul>
+<li>db4o</li>
+<li>Object Store</li>
+<li>Objectivity</li>
+<li>Versant</li>
+</ul>
+</li>
+<li>General concepts</li>
+<li>Solutions to the challenges</li>
+</ul>
+</li>
+<li>Comparison to other database technologies<ul>
+<li>Android SDK</li>
+<li>Hibernate</li>
+<li>Django</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<!-- Lecture 1 Slides End -->
   </div>
 
   <hr/>
 
       <ul class="pager">
         <li class="previous">
-          <a href="http://lukaswoodtli.github.io/models_of_comutation.html">
+          <a href="http://lukaswoodtli.github.io/principles_of_distributed_computing.html">
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/object_databases.html">
+          <a href="http://lukaswoodtli.github.io/systemc.html">
           Older &raquo;</a>
         </li>
       </ul>
