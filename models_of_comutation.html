@@ -236,6 +236,52 @@
 <li>for <span class="math">\(n\)</span> inputs <span class="math">\(2^{n-1}+1\)</span> gates needed</li>
 </ul>
 <!-- Notes Week 1 40:00 -->
+<!-- TODO -->
+<!-- Notes Week 7 Start -->
+<h1 id="lambda-calculus">Lambda Calculus</h1>
+<ul>
+<li>Meta-Mathematics</li>
+<li>Turing Machines simulate a person that calculate (State: Mind, Tape: Paper)</li>
+<li>Lambda Calculus: about functions</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<p>Traditional Syntax:</p>
+<div class="math">$$f(x) = \frac{e^x - sin(x)}{x+3}$$</div>
+<p>Lambda Syntax:</p>
+<div class="math">$$\lambda x.  \frac{e^x - sin(x)}{x+3}$$</div>
+<ul>
+<li>
+<p>Functions in lambda calculus don't have names</p>
+<ul>
+<li>Just put the function completely, where it is used</li>
+<li>Anomunous functions</li>
+</ul>
+</li>
+<li>
+<p>Functions: 'Plugging in' arguments</p>
+</li>
+<li>Functions return other functions (Currying)</li>
+</ul>
+<p>For example:</p>
+<div class="math">$$((\lambda xy. 2x + y) 2 ) 3 = (\lambda y. 4 + y) 3 = 4 + 3 = 7$$</div>
+<ul>
+<li>Can get rid of<ul>
+<li>function names</li>
+<li>multi-argument functions</li>
+</ul>
+</li>
+</ul>
+<h2 id="chruch-numerals">Chruch Numerals</h2>
+<p>Numbers can be encoded as functions</p>
+<p>0: <span class="math">\(\lambda fx. x\)</span>
+1: <span class="math">\(\lambda fx. f x\)</span>
+2: <span class="math">\(\lambda fx. f f x\)</span>
+3: <span class="math">\(\lambda fx. f f f x\)</span>
+...</p>
+<ul>
+<li>What can be done with this numbers?</li>
+</ul>
+<!-- Notes Week 7 30:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
