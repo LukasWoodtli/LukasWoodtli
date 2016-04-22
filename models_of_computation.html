@@ -272,19 +272,70 @@
 </li>
 </ul>
 <h2 id="chruch-numerals">Chruch Numerals</h2>
-<p>Numbers can be encoded as functions</p>
+<ul>
+<li>Numbers can be encoded as functions</li>
+<li>Arbitary encoding of numbers suggested by church</li>
+</ul>
+<p>Each number is a function that takes 2 arguments: <span class="math">\(f\)</span> and <span class="math">\(x\)</span>:</p>
 <div class="math">$$\begin{align*}
-0 :&amp;= \lambda f.\lambda x. x\\ 
-1 :&amp;= \lambda f.\lambda x. f x\\ 
-2 :&amp;= \lambda f.\lambda x. f (f x)\\ 
-3 :&amp;= \lambda f.\lambda x. f (f (f x))\\ 
+0 :&amp;= \lambda f.\lambda x. x\\
+1 :&amp;= \lambda f.\lambda x. f x\\
+2 :&amp;= \lambda f.\lambda x. f (f x)\\
+3 :&amp;= \lambda f.\lambda x. f (f (f x))\\
 \cdots \\
 n :&amp;= \lambda f.\lambda x. f^n x
 \end{align*}$$</div>
+<blockquote>
+<p>The number <span class="math">\(n\)</span> is a function that takes a function <span class="math">\(f\)</span> as argument and applies it <span class="math">\(n\)</span>-times to the second argument <span class="math">\(x\)</span></p>
+</blockquote>
+<p>Example: <span class="math">\((5 inc) x\)</span>: apply function <span class="math">\(inc\)</span> <span class="math">\(5\)</span>-times to <span class="math">\(x\)</span></p>
+<p><img alt="Church Numerals" class="img-responsive" src="/images/lambda_calculus/church_numerals.png"/></p>
+<h2 id="lambda-calculus-expressions">Lambda Calculus Expressions</h2>
 <ul>
-<li>What can be done with this numbers?</li>
+<li>Using just <em>substitution step</em> to calculate<ul>
+<li>seems complex, but only one operation needed: substitution</li>
 </ul>
-<!-- Notes Week 7 30:00 -->
+</li>
+</ul>
+<h3 id="variables">Variables</h3>
+<ul>
+<li><span class="math">\(a\)</span>, <span class="math">\(b\)</span>, <span class="math">\(c\)</span> ...</li>
+<li>representing functions</li>
+</ul>
+<h3 id="function-application">Function Application</h3>
+<p><span class="math">\((a b)\)</span>: <span class="math">\(a\)</span> applied to <span class="math">\(b\)</span></p>
+<p><img alt="Function Application" class="img-responsive" src="/images/lambda_calculus/function_application.png"/></p>
+<h3 id="function-creation">Function Creation</h3>
+<p><span class="math">\(\lambda a. aa\)</span></p>
+<p><img alt="Function Creation" class="img-responsive" src="/images/lambda_calculus/function_creation.png"/></p>
+<h3 id="evaluation">Evaluation</h3>
+<p><img alt="Evaluation" class="img-responsive" src="/images/lambda_calculus/function_evaluation.png"/></p>
+<p>Example:</p>
+<p><img alt="Evaluation Example" class="img-responsive" src="/images/lambda_calculus/function_evaluation_example.png"/></p>
+<h3 id="examples">Examples</h3>
+<h4 id="increment">Increment</h4>
+<div class="math">$$\lambda k f x. f ( k f x)$$</div>
+<p>Example:</p>
+<p>increment <span class="math">\(2\)</span></p>
+<div class="math">$$
+\begin{align*}
+\underbrace{(\lambda k f x. f ( k f x))}_{inc}\underbrace{(\lambda f x. f ( f x))}_{2} &amp;= \\
+(\lambda f x. f ( (\lambda f x. f ( f x)) f x)) &amp;= \\
+(\lambda f x. f ( f ( f x)))
+\end{align*}
+$$</div>
+<p><img alt="Increment" class="img-responsive" src="/images/lambda_calculus/increment.png"/></p>
+<h4 id="addition">Addition</h4>
+<p><img alt="Addition" class="img-responsive" src="/images/lambda_calculus/addition.png"/></p>
+<h4 id="multiplication">Multiplication</h4>
+<p><img alt="Multiplication" class="img-responsive" src="/images/lambda_calculus/multiplication.png"/></p>
+<h4 id="boolean-logic">Boolean Logic</h4>
+<p><img alt="Boolean Logic" class="img-responsive" src="/images/lambda_calculus/boolean_logic.png"/></p>
+<h4 id="if-then-else">If-Then-Else</h4>
+<p><img alt="If Then Else" class="img-responsive" src="/images/lambda_calculus/if_then_else.png"/></p>
+<h4 id="pair">Pair</h4>
+<p><img alt="Pair" class="img-responsive" src="/images/lambda_calculus/pair.png"/></p>
+<p><img alt="Shift Pair" class="img-responsive" src="/images/lambda_calculus/pair_shifting.png"/></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
