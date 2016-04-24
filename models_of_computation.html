@@ -271,6 +271,12 @@
 </ul>
 </li>
 </ul>
+<h2 id="main-operations">Main Operations</h2>
+<ul>
+<li><span class="math">\(\beta\)</span>-reduction: apply a function to an argument using substitution</li>
+<li><span class="math">\(\alpha\)</span>-conversion: changing a functions 'argument symbol' (<span class="math">\(\lambda x.x \equiv \lambda y.y\)</span>)</li>
+<li><span class="math">\(\eta\)</span>-conversion: <span class="math">\(\lambda v. f v \equiv f\)</span> because <span class="math">\((\lambda v. f v) a \equiv f a\)</span></li>
+</ul>
 <h2 id="chruch-numerals">Chruch Numerals</h2>
 <ul>
 <li>Numbers can be encoded as functions</li>
@@ -343,6 +349,37 @@ $$</div>
 <li>Data has to be run, can't be examined</li>
 </ul>
 <!-- Notes Week 7 End -->
+<h2 id="recursion">Recursion</h2>
+<ul>
+<li>in <span class="math">\(\lambda\)</span>-calculus a function can't reference (call) itself since there are no names for functions</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Tail_call">Tail-call</a> recursion: in some cases the same stack frame can be reused for recursive functions</p>
+</li>
+<li>
+<p>How can we build an infinite loop (recursion)?</p>
+</li>
+</ul>
+<p>This structure rebuilds itself infinitely:</p>
+<div class="math">$$\Omega = (\lambda w. w w) (\lambda w. w w)$$</div>
+<h3 id="y-combinator">Y-Combinator</h3>
+<p>See <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed_point_combinators_in_lambda_calculus">Wikipedia</a></p>
+<p>and <a href="https://medium.com/@ayanonagon/the-y-combinator-no-not-that-one-7268d8d9c46#.c11j5arpk">The Y Combinator (no, not that one)</a>.</p>
+<div class="math">$$Y = \lambda f. (\lambda x. f (x x))(\lambda x. f (x x))$$</div>
+<p>Beta recursion gives:</p>
+<div class="math">$$\begin{align*}
+Y g &amp;= \lambda f. (\lambda x. f (x x))(\lambda x. f (x x)) g \\
+ &amp;= (\lambda x. g (x x)) (\lambda x. g (x x)) \\ 
+ &amp;= g ((\lambda x. g (x x)) (\lambda x. g (x x)))  \\ 
+ &amp;= g (Y g)
+\end{align*}$$</div>
+<ul>
+<li>Only way to do a loop if you don't know in advance how many iterations the loop needs to be done</li>
+<li>Functions can't see their own structure<ul>
+<li>Needs to be provided as argument so the function can reproduce itself: 'twin'-functions</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 8 40:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
