@@ -151,7 +151,7 @@
 <li><a href="#query-language-ql">Query Language (QL)</a></li>
 </ul>
 </li>
-<li><a href="#ddl-dml-and-ql-in-java">DDL, DML and QL in Java</a><ul>
+<li><a href="#ddl-dml-and-ql-in-sql-and-java">DDL, DML and QL in SQL and Java</a><ul>
 <li><a href="#dd">DD</a></li>
 </ul>
 </li>
@@ -174,12 +174,30 @@
 </ul>
 <h2 id="orthogonal-persistence">Orthogonal Persistence</h2>
 <p>Data has to outlive the execution of the program</p>
-<!-- TODO!!!! Lecture Notes Week 1 01:15 -->
 <ul>
-<li><strong>Independence</strong> of longelivety of data</li>
-<li><strong>Data Type Orthogonality</strong> all data objects should be allowed to be persistent (long-lived, transient)</li>
-<li><strong>Identification</strong>: mechanism for identifying persistent object not related to the type system</li>
+<li><strong>Independence</strong> of longelivety of data<ul>
+<li>How much code needs to be written for persistence<ul>
+<li>None at all would be nice but not realistic (GUI objects usually don't need storing...)</li>
 </ul>
+</li>
+<li>Data is stored automatically</li>
+</ul>
+</li>
+<li><strong>Data Type Orthogonality</strong> all data objects should be allowed to be persistent (long-lived, transient)<ul>
+<li>The data types do not need to be modified (implicitly or explicitly) to allow persistence</li>
+<li>e.g Serializable interface in Java does not satisfy this criteria (classes that don't implement the interface can't be stored)</li>
+</ul>
+</li>
+<li><strong>Identification</strong>: mechanism for identifying persistent object not related to the type system<ul>
+<li>Transfering data from persistence storage to memory</li>
+<li>e.g specify which classes/objects should be stored persistence</li>
+<li>separation of concerns</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>No commercial DB system fully satisfies the above criteria</p>
+</blockquote>
 <h2 id="impedance-missmatch">Impedance Missmatch</h2>
 <ul>
 <li>Difference between models</li>
@@ -220,7 +238,10 @@
 </ul>
 <h2 id="develop-own-database">Develop own Database</h2>
 <ul>
-<li>Support application development (programming language)</li>
+<li>Support application development (programming language)<ul>
+<li>Clients of the DB system are developers (not end user)</li>
+</ul>
+</li>
 <li>Support persistent data management</li>
 <li>One data model (OOP)</li>
 <li>One language (Java?)</li>
@@ -274,19 +295,31 @@
 </ul>
 </li>
 </ul>
-<h2 id="ddl-dml-and-ql-in-java">DDL, DML and QL in Java</h2>
+<h2 id="ddl-dml-and-ql-in-sql-and-java">DDL, DML and QL in SQL and Java</h2>
 <p>DD, DM supported in Java. Querying is very limited.</p>
 <h3 id="dd">DD</h3>
+<p>SQL</p>
+<div class="highlight"><pre><span></span>CREATE TABLE name ...
+</pre></div>
+<p>Java</p>
 <div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
     <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
     <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
 <span class="o">}</span>
 </pre></div>
 <h2 id="dm">DM</h2>
-<div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">Person</span><span class="o">()</span>
-<span class="n">p</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"Bill Stinnet"</span>
+<p>SQL</p>
+<div class="highlight"><pre><span></span>UPDATE name ...
 </pre></div>
+<p>Java
+    :::java
+    new Person()
+    p.name = "Bill Stinnet"</p>
 <h2 id="querying">Querying</h2>
+<p>SQL</p>
+<div class="highlight"><pre><span></span>SELECT col_name ...
+</pre></div>
+<p>Java</p>
 <div class="highlight"><pre><span></span><span class="o">...</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">name</span>
 </pre></div>
 <p>LINQ is a powerful and compile time safe support for querying.</p>
@@ -336,13 +369,15 @@
 </li>
 </ul>
 <!-- Lecture 1 Slides End -->
+<!-- Lecture 1 Notes End -->
 <h1 id="object-database-systems">Object Database Systems</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>System</th>
 <th>db4o</th>
-<th>...</th>
+<th>Object Store</th>
+<th>Versant</th>
 <th>Objectivity</th>
 </tr>
 </thead>
@@ -352,9 +387,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Orthogonal Persistence (independence)</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -364,9 +401,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>OSs</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
