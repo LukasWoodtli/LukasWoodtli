@@ -138,7 +138,33 @@
   <hr/>
 
   <div id="article_content">
-    <!-- Lecture 1 Slides Start -->
+    <div class="toc">
+<ul>
+<li><a href="#motivation">Motivation</a><ul>
+<li><a href="#orthogonal-persistence">Orthogonal Persistence</a></li>
+<li><a href="#impedance-missmatch">Impedance Missmatch</a></li>
+<li><a href="#relational-databases">Relational Databases</a></li>
+<li><a href="#develop-own-database">Develop own Database</a></li>
+<li><a href="#sql">SQL</a><ul>
+<li><a href="#data-definition-language-ddl">Data Definition Language (DDL)</a></li>
+<li><a href="#data-manipulation-language-dml">Data Manipulation Language (DML)</a></li>
+<li><a href="#query-language-ql">Query Language (QL)</a></li>
+</ul>
+</li>
+<li><a href="#ddl-dml-and-ql-in-java">DDL, DML and QL in Java</a><ul>
+<li><a href="#dd">DD</a></li>
+</ul>
+</li>
+<li><a href="#dm">DM</a></li>
+<li><a href="#querying">Querying</a></li>
+<li><a href="#learning-goals">Learning Goals</a></li>
+</ul>
+</li>
+<li><a href="#object-database-systems">Object Database Systems</a></li>
+</ul>
+</div>
+<!-- Lecture 1 Slides Start -->
+<!-- Lecture 1 Notes Start -->
 <h1 id="motivation">Motivation</h1>
 <ul>
 <li>Information Systems Design<ul>
@@ -146,12 +172,51 @@
 </ul>
 </li>
 </ul>
-<h2 id="orthogonal-persistance">Orthogonal Persistance</h2>
+<h2 id="orthogonal-persistence">Orthogonal Persistence</h2>
 <p>Data has to outlive the execution of the program</p>
+<!-- TODO!!!! Lecture Notes Week 1 01:15 -->
 <ul>
 <li><strong>Independence</strong> of longelivety of data</li>
 <li><strong>Data Type Orthogonality</strong> all data objects should be allowed to be persistent (long-lived, transient)</li>
 <li><strong>Identification</strong>: mechanism for identifying persistent object not related to the type system</li>
+</ul>
+<h2 id="impedance-missmatch">Impedance Missmatch</h2>
+<ul>
+<li>Difference between models</li>
+<li>OOP Languages<ul>
+<li>Difference between attributes and relationships not clear</li>
+<li>Both are (usually) reference types in a class</li>
+</ul>
+</li>
+<li>Different models because there are different requirements</li>
+<li>Mapping code between the two models needed<ul>
+<li>A lot of solutions available</li>
+<li>Affects run-time (and often development)</li>
+</ul>
+</li>
+<li>Inheritance (OOP) is difficult to model in relational DBs<ul>
+<li>Objects spread over several tables (other approaches possible)</li>
+</ul>
+</li>
+</ul>
+<h2 id="relational-databases">Relational Databases</h2>
+<ul>
+<li>Tables, Rows, Columns...<ul>
+<li>Table: Relation (similar to class)</li>
+<li>Columns: Relation attributes (correspond to class attributes)</li>
+<li>Keys: Pointers (relationships)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>It's difficult to match the relational database model to the object oriented model</p>
+</blockquote>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-relational mapping</a> can help<ul>
+<li>But it's not a very good approach</li>
+<li>There are a lot of solutions: Hibernate, <a href="http://www.qxorm.com/qxorm_en/home.html">QxOrm</a>, ...</li>
+</ul>
+</li>
 </ul>
 <h2 id="develop-own-database">Develop own Database</h2>
 <ul>
@@ -182,7 +247,7 @@
 <p>Creation and management of data</p>
 <ul>
 <li>Concepts<ul>
-<li>Relation tuple</li>
+<li>Relation touple</li>
 <li>Predicate</li>
 </ul>
 </li>
@@ -228,13 +293,13 @@
 <h2 id="learning-goals">Learning Goals</h2>
 <ul>
 <li>Motivation for Database technologies (not relational)<ul>
-<li>Design- and runtime</li>
+<li>Design- and run-time</li>
 <li>Complex application domains</li>
 <li>Schema and data evolution</li>
 </ul>
 </li>
 <li>Understanding of object-oriented data model<ul>
-<li>what is oop?</li>
+<li>what is OOP?</li>
 <li>ODMG</li>
 </ul>
 </li>
@@ -250,7 +315,7 @@
 </li>
 </ul>
 </li>
-<li>Object database technolologies<ul>
+<li>Object database technologies<ul>
 <li>Products<ul>
 <li>db4o</li>
 <li>Object Store</li>
@@ -271,6 +336,43 @@
 </li>
 </ul>
 <!-- Lecture 1 Slides End -->
+<h1 id="object-database-systems">Object Database Systems</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>System</th>
+<th>db4o</th>
+<th>...</th>
+<th>Objectivity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data-type Orthogonality</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Orthogonal Persistence (independence)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Programming Languages</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OSs</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
   </div>
 
   <hr/>
