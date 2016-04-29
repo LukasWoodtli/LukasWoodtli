@@ -161,6 +161,22 @@
 </ul>
 </li>
 <li><a href="#object-database-systems">Object Database Systems</a></li>
+<li><a href="#odmg-standard">ODMG Standard</a><ul>
+<li><a href="#object-data-management-group-odmg">Object Data Management Group (ODMG)</a><ul>
+<li><a href="#object-model">Object Model</a><ul>
+<li><a href="#types">Types</a></li>
+<li><a href="#type-specifications">Type Specifications</a></li>
+<li><a href="#type-implementation">Type Implementation</a></li>
+<li><a href="#subtyping-and-inheritance">Subtyping and Inheritance</a></li>
+</ul>
+</li>
+<li><a href="#object-definition-language-odl">Object Definition Language (ODL)</a></li>
+<li><a href="#object-query-language-oql">Object Query Language (OQL)</a></li>
+<li><a href="#language-bindings">Language Bindings</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <!-- Lecture 1 Slides Start -->
@@ -189,7 +205,7 @@
 </ul>
 </li>
 <li><strong>Identification</strong>: mechanism for identifying persistent object not related to the type system<ul>
-<li>Transfering data from persistence storage to memory</li>
+<li>Transferring data from persistence storage to memory</li>
 <li>e.g specify which classes/objects should be stored persistence</li>
 <li>separation of concerns</li>
 </ul>
@@ -412,6 +428,187 @@
 </tr>
 </tbody>
 </table>
+<!-- Lecture 2 Slides Start -->
+<!-- Lecture 2 Notes Start -->
+<h1 id="odmg-standard">ODMG Standard</h1>
+<ul>
+<li>What is an object?<ul>
+<li>Something that can be pointed to?</li>
+<li>Can be passed on as a reference?</li>
+<li>Distinct from single values</li>
+</ul>
+</li>
+</ul>
+<p>Examples in Java:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Simple</th>
+<th>Complex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reference</td>
+<td><code>Integer</code></td>
+<td><code>Object</code></td>
+</tr>
+<tr>
+<td>Value</td>
+<td><code>int</code></td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>In some languages (PHP, JavaScript, ...) Objects and Associative Arrays are the same (or similar).</p>
+<ul>
+<li>
+<p>Some constructs can be extended over time</p>
+<ul>
+<li>possible with map (add key/value)</li>
+<li><em>not</em> possible with <em>class</em> in Java</li>
+</ul>
+</li>
+<li>
+<p>Object Orientation needs a broader definition!</p>
+<ul>
+<li>not coupled to a specific programming language</li>
+</ul>
+</li>
+<li>
+<p>Most database systems often independent of programming languages</p>
+<ul>
+<li>e.g SQL very different from the language where the DB is used (independent of language)</li>
+</ul>
+</li>
+<li>Object database systems are more coupled to one (or multiple) programming language</li>
+</ul>
+<h2 id="object-data-management-group-odmg">Object Data Management Group (ODMG)</h2>
+<h3 id="object-model">Object Model</h3>
+<ul>
+<li>Based on <a href="https://en.wikipedia.org/wiki/Object_Management_Group">OMG</a> object model</li>
+<li>Basic modeling primitives<ul>
+<li><strong>object</strong>: unique identifier (identity)</li>
+<li><strong>literal</strong>: no identifier</li>
+</ul>
+</li>
+<li>Object state defined by the values (properties)<ul>
+<li>attributes</li>
+<li>relationships</li>
+</ul>
+</li>
+<li>
+<p>Object behavior</p>
+<ul>
+<li>set of operations (can be executed)</li>
+</ul>
+</li>
+<li>
+<p>Objects and literals are categorized by their type</p>
+<ul>
+<li>A type defines common properties and common behavior</li>
+</ul>
+</li>
+</ul>
+<h4 id="types">Types</h4>
+<ul>
+<li>Specification<ul>
+<li>properties<ul>
+<li>attributes</li>
+<li>relationships</li>
+</ul>
+</li>
+<li>operations</li>
+<li>exceptions</li>
+</ul>
+</li>
+<li>Implementation<ul>
+<li>language binding</li>
+<li>a specification can have more than one implementation</li>
+</ul>
+</li>
+<li>Similar to C++<ul>
+<li>Header-File: Specification</li>
+<li>Source-File: Implementation</li>
+</ul>
+</li>
+</ul>
+<h4 id="type-specifications">Type Specifications</h4>
+<ul>
+<li>Interface<ul>
+<li>defines only abstract behavior</li>
+<li><code>interface Employee {...};</code></li>
+</ul>
+</li>
+<li>Class<ul>
+<li>defines both abstract behavior and abstract state</li>
+<li><code>class Person {...};</code></li>
+</ul>
+</li>
+<li>Literal<ul>
+<li>defines abstract state</li>
+<li><code>struct Complex { float real; float imaginary; };</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="type-implementation">Type Implementation</h4>
+<ul>
+<li>Representation<ul>
+<li>data structure</li>
+<li>derived from type's abstract state by the language binding</li>
+<li>for each property contained in the abstract state there is an instance variable of an appropriate type defined</li>
+</ul>
+</li>
+<li>Methods<ul>
+<li>procedure bodies</li>
+<li>derived from type's abstract behavior by the language binding</li>
+<li>also private methods with no counterpart in specification</li>
+</ul>
+</li>
+</ul>
+<h4 id="subtyping-and-inheritance">Subtyping and Inheritance</h4>
+<ul>
+<li>
+<p>Two types of inheritance relationships</p>
+<ol>
+<li>IS-A relationship<ul>
+<li>inheritance of behaviour</li>
+<li>multiple inheritance, name overloading disallowed</li>
+<li><code>interface Professor : Employee {...};</code></li>
+</ul>
+</li>
+<li><strong>EXTENDS</strong> relationship<ul>
+<li>inheritance of state and behaviour</li>
+<li>single inheritance</li>
+<li><code>class EmplPers extends Person : Employee {...};</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Co- and Contravariant rules must hold</p>
+<ul>
+<li>Input Arguments: Contravariant</li>
+<li>Return Values (and Exceptions): Covariant</li>
+</ul>
+</li>
+</ul>
+<h3 id="object-definition-language-odl">Object Definition Language (ODL)</h3>
+<p>...</p>
+<h3 id="object-query-language-oql">Object Query Language (OQL)</h3>
+<p>Based on ODMG Object Model and SQL-92</p>
+<div class="highlight"><pre><span></span>select  list_of_values
+from    list_of_collections_and_typical_members
+where   condition
+</pre></div>
+<h3 id="language-bindings">Language Bindings</h3>
+<ul>
+<li>C++</li>
+<li>Java</li>
+<li>Smalltalk</li>
+<li>...</li>
+</ul>
   </div>
 
   <hr/>
