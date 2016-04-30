@@ -136,7 +136,25 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="boolean-circuits">Boolean Circuits</h1>
+    <div class="toc">
+<ul>
+<li><a href="#boolean-circuits">Boolean Circuits</a><ul>
+<li><a href="#xor">XOR</a></li>
+</ul>
+</li>
+<li><a href="#lambda-calculus">Lambda Calculus</a><ul>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#main-operations">Main Operations</a></li>
+<li><a href="#recursion">Recursion</a><ul>
+<li><a href="#y-combinator">Y-Combinator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#numbers">Numbers</a></li>
+</ul>
+</div>
+<h1 id="boolean-circuits">Boolean Circuits</h1>
 <ul>
 <li>AND/OR/NOT gates</li>
 <li>Gate: function</li>
@@ -254,7 +272,7 @@
 <p>Functions in lambda calculus don't have names</p>
 <ul>
 <li>Just put the function completely, where it is used</li>
-<li>Anomunous functions</li>
+<li>Anonymous functions</li>
 </ul>
 </li>
 <li>
@@ -273,82 +291,11 @@
 </ul>
 <h2 id="main-operations">Main Operations</h2>
 <ul>
-<li><span class="math">\(\beta\)</span>-reduction: apply a function to an argument using substitution</li>
-<li><span class="math">\(\alpha\)</span>-conversion: changing a functions 'argument symbol' (<span class="math">\(\lambda x.x \equiv \lambda y.y\)</span>)</li>
-<li><span class="math">\(\eta\)</span>-conversion: <span class="math">\(\lambda v. f v \equiv f\)</span> because <span class="math">\((\lambda v. f v) a \equiv f a\)</span></li>
-</ul>
-<h2 id="chruch-numerals">Chruch Numerals</h2>
-<ul>
-<li>Numbers can be encoded as functions</li>
-<li>Arbitary encoding of numbers suggested by church</li>
-</ul>
-<p>Each number is a function that takes 2 arguments: <span class="math">\(f\)</span> and <span class="math">\(x\)</span>:</p>
-<div class="math">$$\begin{align*}
-0 :&amp;= \lambda f.\lambda x. x\\
-1 :&amp;= \lambda f.\lambda x. f x\\
-2 :&amp;= \lambda f.\lambda x. f (f x)\\
-3 :&amp;= \lambda f.\lambda x. f (f (f x))\\
-\cdots \\
-n :&amp;= \lambda f.\lambda x. f^n x
-\end{align*}$$</div>
-<blockquote>
-<p>The number <span class="math">\(n\)</span> is a function that takes a function <span class="math">\(f\)</span> as argument and applies it <span class="math">\(n\)</span>-times to the second argument <span class="math">\(x\)</span></p>
-</blockquote>
-<p>Example: <span class="math">\((5 inc) x\)</span>: apply function <span class="math">\(inc\)</span> <span class="math">\(5\)</span>-times to <span class="math">\(x\)</span></p>
-<p><img alt="Church Numerals" class="img-responsive" src="/images/lambda_calculus/church_numerals.png"/></p>
-<h2 id="lambda-calculus-expressions">Lambda Calculus Expressions</h2>
-<ul>
-<li>Using just <em>substitution step</em> to calculate<ul>
-<li>seems complex, but only one operation needed: substitution</li>
+<li><span class="math">\(\beta\)</span>-reduction: apply a function to an argument using substitution<ul>
+<li>Reduction is an optimistic term since the result of the <span class="math">\(\beta\)</span>-reduction can be bigger then the expression before<!-- Notes Week 8 Start --></li>
 </ul>
 </li>
 </ul>
-<h3 id="variables">Variables</h3>
-<ul>
-<li><span class="math">\(a\)</span>, <span class="math">\(b\)</span>, <span class="math">\(c\)</span> ...</li>
-<li>representing functions</li>
-</ul>
-<h3 id="function-application">Function Application</h3>
-<p><span class="math">\((a b)\)</span>: <span class="math">\(a\)</span> applied to <span class="math">\(b\)</span></p>
-<p><img alt="Function Application" class="img-responsive" src="/images/lambda_calculus/function_application.png"/></p>
-<h3 id="function-creation">Function Creation</h3>
-<p><span class="math">\(\lambda a. aa\)</span></p>
-<p><img alt="Function Creation" class="img-responsive" src="/images/lambda_calculus/function_creation.png"/></p>
-<h3 id="evaluation">Evaluation</h3>
-<p><img alt="Evaluation" class="img-responsive" src="/images/lambda_calculus/function_evaluation.png"/></p>
-<p>Example:</p>
-<p><img alt="Evaluation Example" class="img-responsive" src="/images/lambda_calculus/function_evaluation_example.png"/></p>
-<h3 id="examples">Examples</h3>
-<h4 id="increment">Increment</h4>
-<div class="math">$$\lambda k f x. f ( k f x)$$</div>
-<p>Example:</p>
-<p>increment <span class="math">\(2\)</span></p>
-<div class="math">$$
-\begin{align*}
-\underbrace{(\lambda k f x. f ( k f x))}_{inc}\underbrace{(\lambda f x. f ( f x))}_{2} &amp;= \\
-(\lambda f x. f ( (\lambda f x. f ( f x)) f x)) &amp;= \\
-(\lambda f x. f ( f ( f x)))
-\end{align*}
-$$</div>
-<p><img alt="Increment" class="img-responsive" src="/images/lambda_calculus/increment.png"/></p>
-<h4 id="addition">Addition</h4>
-<p><img alt="Addition" class="img-responsive" src="/images/lambda_calculus/addition.png"/></p>
-<h4 id="multiplication">Multiplication</h4>
-<p><img alt="Multiplication" class="img-responsive" src="/images/lambda_calculus/multiplication.png"/></p>
-<h4 id="boolean-logic">Boolean Logic</h4>
-<p><img alt="Boolean Logic" class="img-responsive" src="/images/lambda_calculus/boolean_logic.png"/></p>
-<h4 id="if-then-else">If-Then-Else</h4>
-<p><img alt="If Then Else" class="img-responsive" src="/images/lambda_calculus/if_then_else.png"/></p>
-<h4 id="pair">Pair</h4>
-<p><img alt="Pair" class="img-responsive" src="/images/lambda_calculus/pair.png"/></p>
-<p><img alt="Shift Pair" class="img-responsive" src="/images/lambda_calculus/pair_shifting.png"/></p>
-<h2 id="conclusion">Conclusion</h2>
-<ul>
-<li>No distinction between code and data: everything is code!</li>
-<li>No structure is safe from substitution (safety issue)</li>
-<li>Data has to be run, can't be examined</li>
-</ul>
-<!-- Notes Week 7 End -->
 <h2 id="recursion">Recursion</h2>
 <ul>
 <li>in <span class="math">\(\lambda\)</span>-calculus a function can't reference (call) itself since there are no names for functions</li>
@@ -364,13 +311,13 @@ $$</div>
 <h3 id="y-combinator">Y-Combinator</h3>
 <p>See <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed_point_combinators_in_lambda_calculus">Wikipedia</a></p>
 <p>and <a href="https://medium.com/@ayanonagon/the-y-combinator-no-not-that-one-7268d8d9c46#.c11j5arpk">The Y Combinator (no, not that one)</a>.</p>
-<div class="math">$$Y = \lambda f. (\lambda x. f (x x))(\lambda x. f (x x))$$</div>
+<div class="math">$$Y = \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x \;x))$$</div>
 <p>Beta recursion gives:</p>
 <div class="math">$$\begin{align*}
-Y g &amp;= \lambda f. (\lambda x. f (x x))(\lambda x. f (x x)) g \\
- &amp;= (\lambda x. g (x x)) (\lambda x. g (x x)) \\ 
- &amp;= g ((\lambda x. g (x x)) (\lambda x. g (x x)))  \\ 
- &amp;= g (Y g)
+Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
+ &amp;= (\lambda x. g (x\; x)) (\lambda x. g (x\; x)) \\ 
+ &amp;= g ((\lambda x. g (x\; x)) (\lambda x. g (x\; x)))  \\ 
+ &amp;= g (Y\; g)
 \end{align*}$$</div>
 <ul>
 <li>Only way to do a loop if you don't know in advance how many iterations the loop needs to be done</li>
@@ -379,7 +326,35 @@ Y g &amp;= \lambda f. (\lambda x. f (x x))(\lambda x. f (x x)) g \\
 </ul>
 </li>
 </ul>
-<!-- Notes Week 8 40:00 -->
+<h1 id="numbers">Numbers</h1>
+<ul>
+<li>Numbers are an abstract concept</li>
+<li>It's only possible to manipulate <em>representations</em> of numbers</li>
+</ul>
+<p>There Are a lot of different representations of numbers.</p>
+<p>Each representation has it's pros and cons.</p>
+<ul>
+<li>Decimal</li>
+<li>Roman Numerals</li>
+<li>Binary</li>
+<li><a href="https://en.wikipedia.org/wiki/Two's_complement">Two's complement</a></li>
+<li><a href="Redundant binary representation">Binary with digits up to 2</a><ul>
+<li>Addition can be faster</li>
+<li>Logical operation are slower</li>
+</ul>
+</li>
+<li>Ternary</li>
+<li>Church Numerals</li>
+<li>Prime Factorization: <span class="math">\(1, 2, 3, 2^2, 5, 2\cdot 3, 7, 2^3, 3^2, \ldots\)</span><ul>
+<li>Multiplication and Factorization is easy</li>
+<li>Increment by one is hard</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">Chinese remainder theorem</a><ul>
+<li>Comparing two numbers is hard</li>
+</ul>
+</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
