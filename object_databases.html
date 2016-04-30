@@ -170,8 +170,18 @@
 <li><a href="#subtyping-and-inheritance">Subtyping and Inheritance</a></li>
 </ul>
 </li>
+<li><a href="#object-query-language-oql">Object Query Language (OQL)</a><ul>
+<li><a href="#extents">Extents</a></li>
+</ul>
+</li>
+<li><a href="#collections">Collections</a><ul>
+<li><a href="#sub-collections">Sub-collections</a></li>
+</ul>
+</li>
+<li><a href="#relationships">Relationships</a></li>
+<li><a href="#persistence">Persistence</a></li>
+<li><a href="#other-concepts-supported">Other Concepts Supported</a></li>
 <li><a href="#object-definition-language-odl">Object Definition Language (ODL)</a></li>
-<li><a href="#object-query-language-oql">Object Query Language (OQL)</a></li>
 <li><a href="#language-bindings">Language Bindings</a></li>
 </ul>
 </li>
@@ -573,13 +583,13 @@
 <p>Two types of inheritance relationships</p>
 <ol>
 <li>IS-A relationship<ul>
-<li>inheritance of behaviour</li>
+<li>inheritance of behavior</li>
 <li>multiple inheritance, name overloading disallowed</li>
 <li><code>interface Professor : Employee {...};</code></li>
 </ul>
 </li>
 <li><strong>EXTENDS</strong> relationship<ul>
-<li>inheritance of state and behaviour</li>
+<li>inheritance of state and behavior</li>
 <li>single inheritance</li>
 <li><code>class EmplPers extends Person : Employee {...};</code></li>
 </ul>
@@ -594,15 +604,139 @@
 </ul>
 </li>
 </ul>
-<h3 id="object-definition-language-odl">Object Definition Language (ODL)</h3>
-<p>...</p>
 <h3 id="object-query-language-oql">Object Query Language (OQL)</h3>
 <p>Based on ODMG Object Model and SQL-92</p>
 <div class="highlight"><pre><span></span>select  list_of_values
 from    list_of_collections_and_typical_members
 where   condition
 </pre></div>
-<!-- Lecture Notes Week 2 40:00 -->
+<ul>
+<li><code>SELECT</code>: Get attributes</li>
+<li><code>FROM</code>: The base population of potential results to search in</li>
+<li><code>WHERE</code>: Predicates (conditions) that have to be true so that the results are selected as result</li>
+</ul>
+<p>Mapping to OOP not obvious.</p>
+<p>Table in relational DBs has tow roles:
+1. Defining Type
+2. Container of all values (of that type)</p>
+<p>In OOP 2. is missing. A class just defines a type but is not a container of all instances of that class.</p>
+<p>ODMG defines Extents.</p>
+<h4 id="extents">Extents</h4>
+<ul>
+<li>Extent of a type is the set (collection) of all active instances<ul>
+<li><code>class Person</code>: extent of class Person would be the set of all person objects in the data management system</li>
+</ul>
+</li>
+<li>Extents can be maintained automatically</li>
+</ul>
+<h3 id="collections">Collections</h3>
+<p>OMDG supports collections:</p>
+<ul>
+<li>set: un-ordered, no duplicates</li>
+<li>bag: un-ordered, duplicates</li>
+<li>list: ordered, elements can be inserted</li>
+<li>array: ordered, elements can be replaced</li>
+<li>dictionary: maps keys to values</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Single elements</th>
+<th>Duplicates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordered</td>
+<td>? (heap)</td>
+<td>list</td>
+</tr>
+<tr>
+<td>Un-ordered</td>
+<td>set</td>
+<td>bag</td>
+</tr>
+</tbody>
+</table>
+<p>Support for objects and literals:</p>
+<ul>
+<li>Collection objects: <code>Set&lt;t&gt;</code>, <code>Bag&lt;t&gt;</code>, <code>List&lt;t&gt;</code>, <code>Array&lt;t&gt;</code>, <code>Dictionary&lt;t,v&gt;</code></li>
+<li>Collection literals: <code>set&lt;t&gt;</code>, <code>bag&lt;t&gt;</code>, <code>list&lt;t&gt;</code>, <code>array&lt;t&gt;</code>, <code>dictionary&lt;t,v&gt;</code></li>
+</ul>
+<h4 id="sub-collections">Sub-collections</h4>
+<p>OMDG supports sub-collections</p>
+<h3 id="relationships">Relationships</h3>
+<ul>
+<li>All relationships are binary<ul>
+<li>many-to-many</li>
+<li>many-to-one</li>
+<li>one-to-one</li>
+</ul>
+</li>
+<li>No support for ternary (or higher) relationships<ul>
+<li>can be simulated by creating classes to represent relationship touple</li>
+</ul>
+</li>
+<li>
+<p>System maintains referential integrity!</p>
+</li>
+<li>
+<p>Keywords for attributes and relationships</p>
+<ul>
+<li><code>attribute</code>: for normal class attributes</li>
+<li><code>relationship</code>: for relationship references (integrity checks can be performed)</li>
+</ul>
+</li>
+</ul>
+<h3 id="persistence">Persistence</h3>
+<ul>
+<li>Persistence by reachability<ul>
+<li>not necessary the best option</li>
+</ul>
+</li>
+<li>Database gives access to global names<ul>
+<li>explicitly named root objects</li>
+<li>types defined in schema</li>
+<li>named extents of types</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-concepts-supported">Other Concepts Supported</h3>
+<ul>
+<li>Database operations</li>
+<li>Locking and concurrency control</li>
+<li>Transactions</li>
+<li>Access to metadata</li>
+<li>Built-in structured literals and objects<ul>
+<li>dates</li>
+<li>times</li>
+<li>timestamps</li>
+<li>intervals</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h3 id="object-definition-language-odl">Object Definition Language (ODL)</h3>
+<ul>
+<li>programming language independent, extensible and practical</li>
+<li>
+<p>compatible to OMG Interface Definition Language (IDL)</p>
+<p>:::java
+class name [ ( extent name, key name ) ] {
+  { exception name { { type name } } }
+  { attribute type name }
+  { relationship type name inverse relationship }
+  { type name({ (in|out|inout) type name })[raises ({ exception })] }
+}</p>
+</li>
+<li>
+<p>extent and key of a class can be specified optionally</p>
+</li>
+<li>relationships specify inverse to maintain referential integrity</li>
+<li>methodS signatures are implemented by language binding</li>
+</ul>
+<!-- Lecture Notes Week 2 01:28::00 Object Query Language -->
 <h3 id="language-bindings">Language Bindings</h3>
 <ul>
 <li>C++</li>
