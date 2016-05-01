@@ -171,6 +171,8 @@
 </ul>
 </li>
 <li><a href="#object-query-language-oql">Object Query Language (OQL)</a><ul>
+<li><a href="#difference-to-sql">Difference to SQL</a></li>
+<li><a href="#return-types">Return Types</a></li>
 <li><a href="#extents">Extents</a></li>
 </ul>
 </li>
@@ -182,6 +184,7 @@
 <li><a href="#persistence">Persistence</a></li>
 <li><a href="#other-concepts-supported">Other Concepts Supported</a></li>
 <li><a href="#object-definition-language-odl">Object Definition Language (ODL)</a></li>
+<li><a href="#collection-expressions">Collection Expressions</a></li>
 <li><a href="#language-bindings">Language Bindings</a></li>
 </ul>
 </li>
@@ -621,6 +624,42 @@ where   condition
 2. Container of all values (of that type)</p>
 <p>In OOP 2. is missing. A class just defines a type but is not a container of all instances of that class.</p>
 <p>ODMG defines Extents.</p>
+<h4 id="difference-to-sql">Difference to SQL</h4>
+<p>This is illegal as the “dot” operator cannot be applied to a collection of objects:
+    :::SqlLexer
+    select a.authors.title
+    from   Authors a
+    where  a.name = "Tilmann Zaeschke"</p>
+<p>Correct solution based on <em>correlated</em> variables:</p>
+<div class="highlight"><pre><span></span>select p.title
+from Authors a, a.authors p
+where a.name = "Tilmann Zaeschke"
+</pre></div>
+<h4 id="return-types">Return Types</h4>
+<ul>
+<li>Queries return sets, bags or lists</li>
+</ul>
+<p>As a default, queries return a <em>bag</em></p>
+<div class="highlight"><pre><span></span>select first: p.authored_by[1], p.title, p.year
+from   Publications p
+
+:::java
+Bag&lt;Struct { Author first, string title, integer year }&gt;
+</pre></div>
+<p>Queries with <code>DISTINCT</code> return a <em>set</em></p>
+<div class="highlight"><pre><span></span>select distinct a.name
+from   Authors a
+
+:::java
+Set&lt;Struct { string name }&gt;
+</pre></div>
+<p>Queries with <code>ORDER BY</code> return a <em>list</em></p>
+<div class="highlight"><pre><span></span>select p.title
+from Publications s order by p.year desc
+
+:::java
+List&lt;Struct { string name }&gt;
+</pre></div>
 <h4 id="extents">Extents</h4>
 <ul>
 <li>Extent of a type is the set (collection) of all active instances<ul>
@@ -707,11 +746,11 @@ where   condition
 <li>Database operations</li>
 <li>Locking and concurrency control</li>
 <li>Transactions</li>
-<li>Access to metadata</li>
+<li>Access to meta-data</li>
 <li>Built-in structured literals and objects<ul>
 <li>dates</li>
 <li>times</li>
-<li>timestamps</li>
+<li>time-stamps</li>
 <li>intervals</li>
 <li>...</li>
 </ul>
@@ -720,23 +759,39 @@ where   condition
 <h3 id="object-definition-language-odl">Object Definition Language (ODL)</h3>
 <ul>
 <li>programming language independent, extensible and practical</li>
-<li>
-<p>compatible to OMG Interface Definition Language (IDL)</p>
-<p>:::java
-class name [ ( extent name, key name ) ] {
-  { exception name { { type name } } }
-  { attribute type name }
-  { relationship type name inverse relationship }
-  { type name({ (in|out|inout) type name })[raises ({ exception })] }
-}</p>
-</li>
-<li>
-<p>extent and key of a class can be specified optionally</p>
-</li>
-<li>relationships specify inverse to maintain referential integrity</li>
-<li>methodS signatures are implemented by language binding</li>
+<li>compatible to OMG Interface Definition Language (IDL)</li>
 </ul>
-<!-- Lecture Notes Week 2 01:28::00 Object Query Language -->
+<p>ODL Syntax:</p>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">name</span> <span class="o">[</span> <span class="o">(</span> <span class="n">extent</span> <span class="n">name</span><span class="o">,</span> <span class="n">key</span> <span class="n">name</span> <span class="o">)</span> <span class="o">]</span> <span class="o">{</span>
+  <span class="o">{</span> <span class="n">exception</span> <span class="n">name</span> <span class="o">{</span> <span class="o">{</span> <span class="n">type</span> <span class="n">name</span> <span class="o">}</span> <span class="o">}</span> <span class="o">}</span>
+  <span class="o">{</span> <span class="n">attribute</span> <span class="n">type</span> <span class="n">name</span> <span class="o">}</span>
+  <span class="o">{</span> <span class="n">relationship</span> <span class="n">type</span> <span class="n">name</span> <span class="n">inverse</span> <span class="n">relationship</span> <span class="o">}</span>
+  <span class="o">{</span> <span class="n">type</span> <span class="nf">name</span><span class="o">({</span> <span class="o">(</span><span class="n">in</span><span class="o">|</span><span class="n">out</span><span class="o">|</span><span class="n">inout</span><span class="o">)</span> <span class="n">type</span> <span class="n">name</span> <span class="o">})[</span><span class="n">raises</span> <span class="o">({</span> <span class="n">exception</span> <span class="o">})]</span> <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<ul>
+<li>extent and key of a class can be specified optionally</li>
+<li>relationships specify inverse to maintain referential integrity</li>
+<li>method signatures are implemented by language binding</li>
+</ul>
+<h3 id="collection-expressions">Collection Expressions</h3>
+<ul>
+<li>Aggregate operators<ul>
+<li><code>AVG</code>, <code>SUM</code>, <code>MIN</code>, <code>MAX</code>, and <code>COUNT</code> apply to collections that have a compatible member type</li>
+</ul>
+</li>
+<li>Operations for sets and bags<ul>
+<li><code>UNION</code>, <code>INTERSECTION</code> and <code>EXCEPT</code></li>
+<li>inclusion tests (subset, super-set)</li>
+</ul>
+</li>
+<li>Special operations for lists<ul>
+<li>Simple coercions</li>
+<li>a collection of one element can be coerced to that element using the <code>ELEMENT</code> operator</li>
+</ul>
+</li>
+<li>Flattening a collection of collections</li>
+</ul>
 <h3 id="language-bindings">Language Bindings</h3>
 <ul>
 <li>C++</li>
