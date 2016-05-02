@@ -188,6 +188,14 @@
 <li><a href="#hibernate">Hibernate</a><ul>
 <li><a href="#object-relational-mappings">Object-Relational Mappings</a></li>
 <li><a href="#main-concepts">Main Concepts</a></li>
+<li><a href="#mapping-associations">Mapping Associations</a></li>
+<li><a href="#mapping-inheritance">Mapping Inheritance</a></li>
+<li><a href="#annotations">Annotations</a></li>
+</ul>
+</li>
+<li><a href="#google-android">Google Android</a><ul>
+<li><a href="#application-component-model">Application component model</a></li>
+<li><a href="#data-management">Data Management</a></li>
 </ul>
 </li>
 </ul>
@@ -818,7 +826,7 @@ List&lt;Struct { string name }&gt;
 <ul>
 <li>Problems of Object Identity<ul>
 <li>Two object graphs can point to same objects</li>
-<li>Douplicates can be created When deserialized</li>
+<li>Duplicates can be created When deserialized</li>
 <li>Programmer must take care to avoid multiplicity!</li>
 </ul>
 </li>
@@ -930,7 +938,130 @@ List&lt;Struct { string name }&gt;
 </ul>
 </li>
 </ul>
-<!-- Slides 03 p. 17 -->
+<h2 id="mapping-associations">Mapping Associations</h2>
+<ul>
+<li>Uni- and bidirectional associations</li>
+<li>Unordered and ordered associations</li>
+<li>Association cardanality types<ul>
+<li>one-to-one</li>
+<li>many-to-one</li>
+<li>one-to-many</li>
+<li>many-to-many</li>
+</ul>
+</li>
+<li>Join Tables to map complex associations</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span>CREATE TABLE AUTHOR(AUTHOR_ID BIGINT NOT NULL PRIMARY KEY, ...)
+CREATE TABLE AUTHORSPUBLICATIONS(
+  AUTHOR_ID BIGINT NOT NULL,
+  PUBLICATION_ID BIGINT NOT NULL,
+  PRIMARY KEY(AUTHOR_ID, PUBLICATION_ID))
+CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
+</pre></div>
+<h2 id="mapping-inheritance">Mapping Inheritance</h2>
+<ul>
+<li>Multiple strategies<ul>
+<li>One table per class hierarchy</li>
+<li>One table per subclass</li>
+<li>One table per concrete class</li>
+</ul>
+</li>
+<li>Mapping strategies can be mixed<ul>
+<li>Different parts of inheritance hierarchy can have different strategy</li>
+</ul>
+</li>
+<li>Implicit polymorphism<ul>
+<li>One table per concrete class</li>
+<li>Common interface <em>not</em> mentioned in the mapping</li>
+<li>Common properties are mapped in <em>every</em> table</li>
+</ul>
+</li>
+</ul>
+<h2 id="annotations">Annotations</h2>
+<ul>
+<li>Since Java 5</li>
+<li>Java Persistence API (JPA, Enterprise Java Beans 3.0)</li>
+<li>Annotations instead of XML for mapping</li>
+<li>Standardizes ORM</li>
+<li>Hibernate implements JPA</li>
+</ul>
+<h1 id="google-android">Google Android</h1>
+<ul>
+<li>Linux based OS</li>
+<li>Default applications: Search, Maps, Mail, Calendar, Contacts...</li>
+<li>Java SDK</li>
+<li>Support for persistent data management</li>
+</ul>
+<h2 id="application-component-model">Application component model</h2>
+<ul>
+<li>Activity (UI)</li>
+<li>Service (API, Computation)</li>
+<li>Broadcast Receiver (Events)</li>
+<li>
+<p>Content Provider (Data Management)</p>
+</li>
+<li>
+<p>Manifest</p>
+<ul>
+<li>lists the application components</li>
+<li>sets activity to be shown at startup</li>
+<li>components can be made available to other applications</li>
+</ul>
+</li>
+<li>Intent: request the use of application components<ul>
+<li>showing activities</li>
+<li>using content provides</li>
+<li>listening to events</li>
+<li>starting services</li>
+<li>...</li>
+</ul>
+</li>
+<li><a href="http://developer.android.com/guide/components/activities.html">Application Life-cycle</a><ul>
+<li>States: New Activity, Running, Paused, Stopped, Destroyed</li>
+<li>Extend <code>Activity</code></li>
+<li>Application can react to state changes</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-management">Data Management</h2>
+<ul>
+<li>Low-level: SQL</li>
+<li>High-level: Content Provider</li>
+<li>Database Instance<ul>
+<li>SQLite</li>
+<li><strong>CRUD</strong><ul>
+<li><strong>C</strong>reate (Insert)</li>
+<li><strong>R</strong>ead (Retrieve, Query)</li>
+<li><strong>U</strong>pdate</li>
+<li><strong>D</strong>elete</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Cursor</p>
+<ul>
+<li>Iterator over result</li>
+<li>Methods <code>isLast()</code> and <code>moveToNext()</code></li>
+<li>Type specific getter methods (e.g <code>getInt(3)</code>)</li>
+<li>Access with index</li>
+<li>Index can be retrieved <code>getColumnIndex(String colName)</code></li>
+</ul>
+</li>
+<li>
+<p>Content Provider</p>
+<ul>
+<li>Abstract class implemented by application</li>
+<li>Uses<ul>
+<li>Cursor</li>
+<li>URI</li>
+<li>ContentValue</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
   </div>
 
   <hr/>
