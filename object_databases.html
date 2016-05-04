@@ -155,6 +155,7 @@
 <li><a href="#learning-goals">Learning Goals</a></li>
 </ul>
 </li>
+<li><a href="#crud-and-acid">CRUD and ACID</a></li>
 <li><a href="#object-database-systems">Object Database Systems</a></li>
 <li><a href="#odmg-standard">ODMG Standard</a><ul>
 <li><a href="#object-data-management-group-odmg">Object Data Management Group (ODMG)</a><ul>
@@ -196,6 +197,26 @@
 <li><a href="#google-android">Google Android</a><ul>
 <li><a href="#application-component-model">Application component model</a></li>
 <li><a href="#data-management">Data Management</a></li>
+</ul>
+</li>
+<li><a href="#object-oriented-databases-object-database-manifesto">Object-Oriented Databases: Object Database Manifesto</a><ul>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#types-and-classes">Types and Classes</a></li>
+<li><a href="#generalization-hierarchies">Generalization Hierarchies</a></li>
+<li><a href="#durability-and-efficiency">Durability and Efficiency</a></li>
+<li><a href="#concurrency-control-and-recovery">Concurrency Control and Recovery</a></li>
+<li><a href="#declarative-query-language">Declarative Query Language</a></li>
+</ul>
+</li>
+<li><a href="#db4o">db4o</a><ul>
+<li><a href="#object-container">Object Container</a></li>
+<li><a href="#storing-objects">Storing Objects</a></li>
+<li><a href="#retrieving-objects">Retrieving Objects</a><ul>
+<li><a href="#soda-queries">SODA Queries</a></li>
+</ul>
+</li>
+<li><a href="#updating-objects">Updating Objects</a></li>
+<li><a href="#deleting-objects">Deleting Objects</a></li>
 </ul>
 </li>
 </ul>
@@ -413,6 +434,27 @@
 </ul>
 <!-- Lecture 1 Slides End -->
 <!-- Lecture 1 Notes End -->
+<h1 id="crud-and-acid">CRUD and ACID</h1>
+<ul>
+<li>
+<p>The acronym <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> stands for the basic functions of a database system</p>
+<ul>
+<li>Create</li>
+<li>Read</li>
+<li>Update</li>
+<li>Delete</li>
+</ul>
+</li>
+<li>
+<p>The acronym <a href="https://en.wikipedia.org/wiki/ACID">ACID</a> stands for the properties that allow for concurrent database transactions</p>
+<ul>
+<li>Atomicity</li>
+<li>Consistency</li>
+<li>Isolation</li>
+<li>Durability</li>
+</ul>
+</li>
+</ul>
 <h1 id="object-database-systems">Object Database Systems</h1>
 <table class="table table-hover table-striped">
 <thead>
@@ -427,7 +469,7 @@
 <tbody>
 <tr>
 <td>Data-type Orthogonality</td>
-<td></td>
+<td>No changes to classes to make objects persistent</td>
 <td></td>
 <td></td>
 <td></td>
@@ -1062,6 +1104,318 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
+<h1 id="object-oriented-databases-object-database-manifesto">Object-Oriented Databases: Object Database Manifesto</h1>
+<ul>
+<li>Avoid impedance mismatch</li>
+<li>Provide uniform datamodel</li>
+<li>
+<p>Combine features of</p>
+<ul>
+<li>OOP</li>
+<li>Database Management Systems</li>
+</ul>
+</li>
+<li>
+<p>The object-oriented database manifesto</p>
+<ul>
+<li>13 mandatory features</li>
+<li>5 optional characteristics</li>
+<li>4 open choices</li>
+<li>several important topics not addressed</li>
+</ul>
+</li>
+<li>
+<p>Object-oriented systems</p>
+<ul>
+<li>1. Complex objects</li>
+<li>2. Object identity</li>
+<li>3. Encapsulation</li>
+<li>4. Types and classes</li>
+<li>5. Type and class hierarchies</li>
+<li>6. Overriding, overloading and late binding 7. Computational completeness</li>
+<li>8. Extensibility</li>
+</ul>
+</li>
+<li>
+<p>Database management systems</p>
+<ul>
+<li>9. Persistence</li>
+<li>10. Efficiency</li>
+<li>11. Concurrency</li>
+<li>12. Reliability</li>
+<li>13. Declarative query language</li>
+</ul>
+</li>
+</ul>
+<h2 id="objects">Objects</h2>
+<ul>
+<li>Complex objects<ul>
+<li>build from simpler objects (constructor)</li>
+<li>collections</li>
+</ul>
+</li>
+<li>Object identity and equality<ul>
+<li>Object ID (OID)<ul>
+<li>unique and immutable</li>
+</ul>
+</li>
+<li>sharing of objects (references)</li>
+<li><em>identical</em> objects have same OID</li>
+<li><em>equal</em> objects have same state</li>
+<li>shallow and deep equality</li>
+</ul>
+</li>
+<li>Tuples: entities and their attributes</li>
+<li>Sets: collections of entities</li>
+<li>
+<p>Lists: order</p>
+</li>
+<li>
+<p>Constructor orthogonality</p>
+<ul>
+<li>supports arbitrary nesting such as<ul>
+<li>sets of sets</li>
+<li>set of records</li>
+<li>records containing records</li>
+<li>...</li>
+</ul>
+</li>
+<li>In contrast, relational databases only support<ul>
+<li>sets of records (relation with tuples) and</li>
+<li>tuples containing atomic values</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Complex objects also require<ul>
+<li>transitive retrieval and deletion of objects</li>
+<li>deep and shallow copying</li>
+<li>...</li>
+</ul>
+</li>
+<li>Encapsulation<ul>
+<li>interface<ul>
+<li>signatures of public methods</li>
+</ul>
+</li>
+<li>implementation<ul>
+<li>includes data and methods</li>
+</ul>
+</li>
+<li>object state modification only through public methods</li>
+<li>object data structure may be <em>exposed</em> for <em>declarative queries</em>!</li>
+</ul>
+</li>
+</ul>
+<h2 id="types-and-classes">Types and Classes</h2>
+<ul>
+<li>Data types<ul>
+<li>definition of object properties</li>
+<li>static part: object structure</li>
+<li>dynamic part: object behavior</li>
+<li>separation of interface and implementation</li>
+<li>Check of correctness at compile time</li>
+</ul>
+</li>
+<li>Object classes<ul>
+<li>container for objects of the same type</li>
+<li>objects can be added and removed</li>
+<li>used to add, remove and iterate over all existing objects<ul>
+<li>to present, manipulate ... them</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="generalization-hierarchies">Generalization Hierarchies</h2>
+<ul>
+<li>Powerful modeling tool</li>
+<li>Reuse (specification and implementation)</li>
+<li>Inheritance<ul>
+<li>Substitution principle</li>
+<li>Inherited attributes and methods (from super-class)</li>
+<li>New attributes and methods can be added (in subclass)</li>
+</ul>
+</li>
+<li>Migration between classes<ul>
+<li>move objects between hierarchy levels</li>
+<li>object specialization and generalization</li>
+</ul>
+</li>
+</ul>
+<h2 id="durability-and-efficiency">Durability and Efficiency</h2>
+<ul>
+<li>Persistence<ul>
+<li>data has to survive the program execution</li>
+<li>orthogonal persistence</li>
+<li>implicit persistence</li>
+</ul>
+</li>
+<li>
+<p>Secondary storage management</p>
+<ul>
+<li>index management</li>
+<li>data clustering</li>
+<li>data buffering</li>
+<li>access path selection</li>
+<li>query optimisation</li>
+</ul>
+</li>
+<li>
+<p>Orthogonality</p>
+<ul>
+<li>Persistance applicable to all objects of any type</li>
+<li>No additional code necessary</li>
+<li>Moving objects between persistent and memory representation is not needed </li>
+</ul>
+</li>
+<li>
+<p>Similar requirements for  secondary storage management</p>
+<ul>
+<li>As a rule of thumb:<ul>
+<li>a database should work without it, but with it, it should perform better</li>
+</ul>
+</li>
+<li>If this requirement is met, a complete separation of the logical and physical level is achieved</li>
+</ul>
+</li>
+</ul>
+<h2 id="concurrency-control-and-recovery">Concurrency Control and Recovery</h2>
+<ul>
+<li>Concurrency<ul>
+<li>management of multiple users concurrently interacting</li>
+<li>atomicity, consistency, isolation and durability</li>
+<li>serialisability of operations</li>
+</ul>
+</li>
+<li>Reliability<ul>
+<li>resiliency to user, software and hardware failures</li>
+<li>transactions can be committed or aborted</li>
+<li>restore previous coherent state of data</li>
+<li>redoing and undoing of transactions</li>
+<li>logging of operations</li>
+</ul>
+</li>
+</ul>
+<h2 id="declarative-query-language">Declarative Query Language</h2>
+<ul>
+<li>High-level language<ul>
+<li>express non-trivial queries concisely</li>
+<li>text-based or graphical interface</li>
+<li>declarative</li>
+</ul>
+</li>
+<li>Efficient execution<ul>
+<li>possibility for query optimisation</li>
+<li>Application independent</li>
+<li>work on any possible database</li>
+<li>no need for additional methods on user-defined types</li>
+</ul>
+</li>
+</ul>
+<!-- Lecture 5 Start -->
+<h1 id="db4o">db4o</h1>
+<ul>
+<li>Open Source project<ul>
+<li>Java and .NET</li>
+</ul>
+</li>
+<li>Features<ul>
+<li>No conversion of mapping needed</li>
+<li>Classes don't need to be changed to make them persistent</li>
+<li>One line of code to store (complex) objects</li>
+<li>local or client/server mode</li>
+<li>ACID transaction model</li>
+<li>Automatic management and versioning of database schema</li>
+<li>Small memory foot-print (single 2Mb library)</li>
+</ul>
+</li>
+</ul>
+<h2 id="object-container">Object Container</h2>
+<ul>
+<li>Represents db4o databases<ul>
+<li>local file mode or</li>
+<li>client connections to db4o server</li>
+</ul>
+</li>
+<li>Owns one transaction<ul>
+<li>operations are executed transactional</li>
+<li>transaction is started when object container is opened</li>
+<li>after commit/rollback next transaction is started automatically</li>
+</ul>
+</li>
+<li>Manages link between stored and instantiated objects<ul>
+<li>object indentities</li>
+<li>loading, updating, unloading</li>
+</ul>
+</li>
+</ul>
+<h2 id="storing-objects">Storing Objects</h2>
+<ul>
+<li>Store objects with method <code>ObjectContainer.store(...)</code></li>
+<li>Arbitrary complex objects can be stored</li>
+<li>Persistance by reachability</li>
+</ul>
+<h2 id="retrieving-objects">Retrieving Objects</h2>
+<ul>
+<li>3 Query languages<ol>
+<li>Query by Example<ul>
+<li>simple</li>
+<li>based on prototype objects</li>
+<li>selects <em>exact</em> matches only</li>
+</ul>
+</li>
+<li>Native Queries<ul>
+<li>expressed in application programming language</li>
+<li>type safe</li>
+<li>transformed to SODA (optimized)</li>
+</ul>
+</li>
+<li>Simple Object Data Access (SODA)<ul>
+<li>query API based on query grah</li>
+<li>methods for descending graph and applying constraints</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="soda-queries">SODA Queries</h3>
+<ul>
+<li>Expressed using <code>Query</code> objects<ul>
+<li><code>descend</code> adds or traverses a node in the query tree</li>
+<li><code>constrain</code> adds a constraint to a node in the query tree</li>
+<li><code>sortBy</code> sorts the result set</li>
+<li><code>orderAscending</code> and <code>orderDescending</code></li>
+<li><code>execute</code> executes the query</li>
+</ul>
+</li>
+<li>Interface Constraint<ul>
+<li><code>greater</code> and <code>smaller</code> comparison modes</li>
+<li><code>identity</code>, <code>equal</code> and <code>like</code> evaluation modes</li>
+<li><code>and</code>, <code>or</code> and <code>not</code> operators</li>
+<li><code>startsWith</code> and <code>endsWith</code> string comparisons</li>
+<li><code>contains</code> to test collection membership</li>
+</ul>
+</li>
+</ul>
+<h2 id="updating-objects">Updating Objects</h2>
+<ul>
+<li>Update procedure for persistent object<ul>
+<li>retrieve desired object from the database</li>
+<li>perform the required changes/modifications</li>
+<li>store object back to the database (calling <code>store</code> method)</li>
+</ul>
+</li>
+<li>db4o uses IDs to connect in-memory objects with stored objects</li>
+<li>IDs are cached</li>
+</ul>
+<h2 id="deleting-objects">Deleting Objects</h2>
+<ul>
+<li>similar to updating objects</li>
+<li>Method <code>ObjectContainer.delete(...)</code> removes objects</li>
+</ul>
+<!-- ## Simple Structured Objects -->
+<!-- TODO 06-0-db4o-part-1.pdf p. 20 -->
   </div>
 
   <hr/>
