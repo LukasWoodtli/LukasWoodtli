@@ -217,6 +217,12 @@
 </li>
 <li><a href="#updating-objects">Updating Objects</a></li>
 <li><a href="#deleting-objects">Deleting Objects</a></li>
+<li><a href="#simple-structured-objects">Simple Structured Objects</a><ul>
+<li><a href="#updating-simple-structured-objects">Updating Simple Structured Objects</a></li>
+<li><a href="#deleting-simple-structured-objects">Deleting Simple Structured Objects</a></li>
+</ul>
+</li>
+<li><a href="#object-hierarchies">Object Hierarchies</a></li>
 </ul>
 </li>
 </ul>
@@ -484,6 +490,13 @@
 <tr>
 <td>Programming Languages</td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Peristence Depth</td>
+<td>persistence by reachability</td>
 <td></td>
 <td></td>
 <td></td>
@@ -1266,7 +1279,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>Persistance applicable to all objects of any type</li>
 <li>No additional code necessary</li>
-<li>Moving objects between persistent and memory representation is not needed </li>
+<li>Moving objects between persistent and memory representation is not needed</li>
 </ul>
 </li>
 <li>
@@ -1414,8 +1427,72 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>similar to updating objects</li>
 <li>Method <code>ObjectContainer.delete(...)</code> removes objects</li>
 </ul>
-<!-- ## Simple Structured Objects -->
-<!-- TODO 06-0-db4o-part-1.pdf p. 20 -->
+<h2 id="simple-structured-objects">Simple Structured Objects</h2>
+<ul>
+<li>New objects are stored using the <code>store</code> method<ul>
+<li>Persistence by reachability<ul>
+<li>Object graph is traversed, each referenced object is stored</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Updating objects with <code>store</code> method<ul>
+<li>Update depth <em>1</em> by default</li>
+<li>Only primitives and strings are updated</li>
+<li>No traversal of object graph (performance)</li>
+</ul>
+</li>
+<li>Deleting objects with <code>delete</code> method<ul>
+<li>Not cascaded by default</li>
+<li>Referenced objects have to be deleted manually</li>
+<li>Cascading delete can be configured for individual classes</li>
+</ul>
+</li>
+</ul>
+<h3 id="updating-simple-structured-objects">Updating Simple Structured Objects</h3>
+<ul>
+<li>Cascading updates are configured per class with <code>ObjectClass.cascadeOnUpdate(..)</code></li>
+<li>Update depth can be configured<ul>
+<li><code>ExtObjectContainer.store(object, depth)</code> updates referenced objects to given depth</li>
+<li><code>ObjectClass.updateDepth(depth)</code> defines update depth for a class (and all its objects)</li>
+<li><code>Configuration.updateDepth(depth)</code> sets global update depth for all objects</li>
+</ul>
+</li>
+</ul>
+<h3 id="deleting-simple-structured-objects">Deleting Simple Structured Objects</h3>
+<ul>
+<li>Cascading deletes similar to cascading updates<ul>
+<li>configured per object class</li>
+<li><code>CommonConfiguration.objectClass (...)</code></li>
+<li><code>ObjectClass.cascadeOnDelete(..)</code></li>
+<li>What happens if deleted objects referenced elsewhere???</li>
+<li>Cache and disk can become inconsistent when deleting objects<ul>
+<li><code>ExtObjectContainer.refresh(..)</code> syncs objects</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="object-hierarchies">Object Hierarchies</h2>
+<ul>
+<li>Complex object structures are handled automatically<ul>
+<li>hierarchies, composite hierarchies</li>
+<li>inverse associations</li>
+<li>inheritance and interfaces</li>
+<li>multi-valued attributes, arrays and collections</li>
+</ul>
+</li>
+<li>db4o database-aware collections<ul>
+<li><code>ArrayList4</code> and <code>ArrayMap4</code> implement Collections API</li>
+<li>as part of transparent persistence/activation framework</li>
+<li><code>ActivatableArrayList</code>, <code>ActivatableHashMap</code>, ...</li>
+<li>complex object implementation becomes db4o dependant</li>
+</ul>
+</li>
+</ul>
+<!-- ## Transparent Persistence
+06-0-db4o-part-1.pdf
+-->
   </div>
 
   <hr/>
