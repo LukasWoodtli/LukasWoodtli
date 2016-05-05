@@ -223,6 +223,12 @@
 </ul>
 </li>
 <li><a href="#object-hierarchies">Object Hierarchies</a></li>
+<li><a href="#transparent-persistence">Transparent Persistence</a></li>
+<li><a href="#activation">Activation</a><ul>
+<li><a href="#transparent-activation">Transparent Activation</a></li>
+</ul>
+</li>
+<li><a href="#db4o-transactions">db4o Transactions</a></li>
 </ul>
 </li>
 </ul>
@@ -1486,13 +1492,92 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li><code>ArrayList4</code> and <code>ArrayMap4</code> implement Collections API</li>
 <li>as part of transparent persistence/activation framework</li>
 <li><code>ActivatableArrayList</code>, <code>ActivatableHashMap</code>, ...</li>
-<li>complex object implementation becomes db4o dependant</li>
+<li>complex object implementation becomes <em>db4o dependant</em></li>
 </ul>
 </li>
 </ul>
-<!-- ## Transparent Persistence
-06-0-db4o-part-1.pdf
--->
+<h2 id="transparent-persistence">Transparent Persistence</h2>
+<ul>
+<li>Persistance should be transparent to application logic<ul>
+<li>Store objects in database <em>once</em> (<code>store</code> method)</li>
+<li>avoid multiple calls of <code>store</code></li>
+</ul>
+</li>
+<li>Logic of transparent persistence framework<ul>
+<li><code>Activatable</code> interface</li>
+<li>objects are made persistent by <code>store</code> method</li>
+<li>objects bound to transparent persistence framework with <code>bind</code>method</li>
+<li>commit: transparent persistent framework scans for modified objects and invokes <code>store</code></li>
+</ul>
+</li>
+</ul>
+<p>Enabling transparent persistence</p>
+<div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TransparentPersistenceSupport</span><span class="o">());</span>
+</pre></div>
+<h2 id="activation">Activation</h2>
+<ul>
+<li>Activation controls depth of loaded fields<ul>
+<li>filed values (objects) are loaded in memory to a certain depth when query retrieves objects</li>
+<li>activation depth: length of reference chain</li>
+<li>fields beyond activation depth: default value (e.g <code>null</code>)</li>
+</ul>
+</li>
+<li>Activation cases<ul>
+<li><code>ObjectSet.next(...)</code> called on an query result</li>
+<li>explicit <code>ObjectContainer.activate(...)</code></li>
+<li>db4o collection element accessed</li>
+<li>members of Java collections are activated automatically when collection is activated</li>
+</ul>
+</li>
+<li>Controlling activation<ul>
+<li>default depth: 5</li>
+<li><code>ObjectContainer.activate(..)</code> and <code>ObjectContainer.deactivate()</code></li>
+</ul>
+</li>
+<li>per class configuration</li>
+</ul>
+<p>Methods for per class configuration of activation depth</p>
+<div class="highlight"><pre><span></span><span class="n">ObjectClass</span><span class="err">#</span><span class="n">minimumActivationDepth</span><span class="o">(</span><span class="n">minDepth</span><span class="o">)</span>
+<span class="n">ObjectClass</span><span class="err">#</span><span class="n">maximumActivationDepth</span><span class="o">(</span><span class="n">maxDepth</span><span class="o">)</span>
+<span class="n">ObjectClass</span><span class="err">#</span><span class="n">cascadeOnActivate</span><span class="o">(</span><span class="n">bool</span><span class="o">)</span>
+<span class="n">ObjectClass</span><span class="err">#</span><span class="n">objectField</span><span class="o">(...).</span><span class="na">cascadeOnActivate</span><span class="o">(</span><span class="n">bool</span><span class="o">)</span>
+</pre></div>
+<h3 id="transparent-activation">Transparent Activation</h3>
+<ul>
+<li>Make activation transparent to application logic<ul>
+<li>activate fields automatically when accessed</li>
+</ul>
+</li>
+<li>Logic of transparent activation framework<ul>
+<li><code>Activable</code> interface</li>
+<li>at object instantiation db registers itself in object with <code>bind(..)</code></li>
+</ul>
+</li>
+</ul>
+<p>Enabling the transparent activation framework</p>
+<div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TransparentActivationSupport</span><span class="o">());</span>
+</pre></div>
+<h2 id="db4o-transactions">db4o Transactions</h2>
+<ul>
+<li>ACID</li>
+<li>Data transaction journaling<ul>
+<li>no data loss in case of system failure</li>
+<li>automatic data recovery after system failure</li>
+</ul>
+</li>
+<li>thread-safe for simultaneous interactions</li>
+<li>all work in <code>ObjectContainer</code>is transactional<ul>
+<li>transaction started when container opened</li>
+<li>current transaction committed when container closed</li>
+<li>explicit commit and rollback possible<ul>
+<li><code>ObjectContainer.commit(...)</code></li>
+<li><code>ObjectContainer.rollback(...)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- 07-0-db4o-part-2 -->
   </div>
 
   <hr/>
