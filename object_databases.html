@@ -229,6 +229,8 @@
 </ul>
 </li>
 <li><a href="#db4o-transactions">db4o Transactions</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#external-tools">External tools</a></li>
 </ul>
 </li>
 </ul>
@@ -1577,7 +1579,46 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<!-- 07-0-db4o-part-2 -->
+<h2 id="configuration">Configuration</h2>
+<ul>
+<li>Embedded<ul>
+<li><code>Db4oEmbedded.newConfiguration()</code></li>
+</ul>
+</li>
+<li>Client/Server<ul>
+<li><code>Db4oClientServer.newClientConfiguration()</code></li>
+<li><code>Db4oClientServer.newServerConfiguration()</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="external-tools">External tools</h2>
+<ul>
+<li>performance tuning</li>
+<li>database diagnostics</li>
+<li>Indexes<ul>
+<li>optimise query evaluation</li>
+</ul>
+</li>
+<li>Defragment<ul>
+<li>removes unused fields, classes, management information</li>
+<li>compacts db file, faster access</li>
+<li>command line interface or from application</li>
+</ul>
+</li>
+<li>Statistics<ul>
+<li>queries</li>
+<li>objects: stored, retrieved, activated, ...</li>
+<li>I/O, Network, ...</li>
+</ul>
+</li>
+<li>Logger<ul>
+<li>logs objects in db</li>
+<li>logs objects of a given class</li>
+<li>run from command line</li>
+</ul>
+</li>
+</ul>
+<!-- 07-0-db4o-part-2.pdf p 5 -->
   </div>
 
   <hr/>
