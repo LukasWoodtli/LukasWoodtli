@@ -479,19 +479,25 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
 <li>removes <em>2</em> symbols at the beginning of the tape</li>
 </ol>
 <h3 id="example-test-for-oddeven-number">Example: Test for odd/even number</h3>
-<div class="highlight"><pre><span></span><span class="x">- Alphabet: </span><span class="p">$</span><span class="x">\Sigma = \</span><span class="err">{</span><span class="x">C_1, C_2,C_3\}</span><span class="p">$</span><span class="x"></span>
-<span class="x">- Rules:</span>
-<span class="x">    - </span><span class="p">$</span><span class="nv">C_3</span><span class="x"> \rightarrow \epsilon</span><span class="p">$</span><span class="x"></span>
-<span class="x">    - </span><span class="p">$</span><span class="nv">C_1</span><span class="x"> \rightarrow C_2 \; O</span><span class="p">$</span><span class="x"></span>
-<span class="x">    - </span><span class="p">$</span><span class="nv">C_2</span><span class="x"> \rightarrow E</span><span class="p">$</span><span class="x"></span>
-<span class="x">- </span><span class="p">$</span><span class="x">\epsilon</span><span class="p">$</span><span class="x">: empty word</span>
-<span class="x">- </span><span class="p">$</span><span class="nv">O</span><span class="p">$</span><span class="x">: Odd</span>
-<span class="x">- </span><span class="p">$</span><span class="nv">E</span><span class="p">$</span><span class="x">: Even</span>
-
-<span class="x">- </span><span class="p">$</span><span class="nv">C_1</span><span class="x"> \; C_1 \; (C_3)^x</span><span class="p">$</span><span class="x"></span>
-<span class="x">- </span><span class="p">$</span><span class="nv">a</span><span class="x">^x</span><span class="p">$</span><span class="x">: symbol a is repeated </span><span class="p">$</span><span class="nv">x</span><span class="p">$</span><span class="x"> times</span>
-<span class="x">- the given rules show if </span><span class="p">$</span><span class="nv">x</span><span class="p">$</span><span class="x"> is odd or even</span>
-</pre></div>
+<ul>
+<li>Alphabet: <span class="math">\(\Sigma = \{C_1, C_2,C_3\}\)</span></li>
+<li>Rules:<ul>
+<li><span class="math">\(C_3 \rightarrow \epsilon\)</span></li>
+<li><span class="math">\(C_1 \rightarrow C_2 \; O\)</span></li>
+<li><span class="math">\(C_2 \rightarrow E\)</span></li>
+</ul>
+</li>
+<li><span class="math">\(\epsilon\)</span>: empty word</li>
+<li><span class="math">\(O\)</span>: Odd</li>
+<li>
+<p><span class="math">\(E\)</span>: Even</p>
+</li>
+<li>
+<p><span class="math">\(C_1 \; C_1 \; (C_3)^x\)</span></p>
+</li>
+<li><span class="math">\(a^x\)</span>: symbol a is repeated <span class="math">\(x\)</span> times</li>
+<li>the given rules show if <span class="math">\(x\)</span> is odd or even</li>
+</ul>
 <p>Example even:
 </p>
 <div class="math">$$\begin{align*}
