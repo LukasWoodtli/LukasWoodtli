@@ -234,6 +234,8 @@
 <li><a href="#indexes">Indexes</a></li>
 <li><a href="#tuning-for-speed">Tuning for Speed</a></li>
 <li><a href="#distribution-and-replication">Distribution and Replication</a></li>
+<li><a href="#callbacks">Callbacks</a></li>
+<li><a href="#object-instantiation">Object Instantiation</a></li>
 </ul>
 </li>
 </ul>
@@ -506,7 +508,7 @@
 <td></td>
 </tr>
 <tr>
-<td>Peristence Depth</td>
+<td>Persistence Depth</td>
 <td>persistence by reachability</td>
 <td></td>
 <td></td>
@@ -866,7 +868,7 @@ List&lt;Struct { string name }&gt;
 </ul>
 </li>
 <li>Special operations for lists<ul>
-<li>Simple coercions</li>
+<li>Simple coercion</li>
 <li>a collection of one element can be coerced to that element using the <code>ELEMENT</code> operator</li>
 </ul>
 </li>
@@ -1282,13 +1284,13 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>data clustering</li>
 <li>data buffering</li>
 <li>access path selection</li>
-<li>query optimisation</li>
+<li>query optimization</li>
 </ul>
 </li>
 <li>
 <p>Orthogonality</p>
 <ul>
-<li>Persistance applicable to all objects of any type</li>
+<li>Persistence applicable to all objects of any type</li>
 <li>No additional code necessary</li>
 <li>Moving objects between persistent and memory representation is not needed</li>
 </ul>
@@ -1330,7 +1332,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Efficient execution<ul>
-<li>possibility for query optimisation</li>
+<li>possibility for query optimization</li>
 <li>Application independent</li>
 <li>work on any possible database</li>
 <li>no need for additional methods on user-defined types</li>
@@ -1369,7 +1371,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Manages link between stored and instantiated objects<ul>
-<li>object indentities</li>
+<li>object identities</li>
 <li>loading, updating, unloading</li>
 </ul>
 </li>
@@ -1378,7 +1380,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>Store objects with method <code>ObjectContainer.store(...)</code></li>
 <li>Arbitrary complex objects can be stored</li>
-<li>Persistance by reachability</li>
+<li>Persistence by reachability</li>
 </ul>
 <h2 id="retrieving-objects">Retrieving Objects</h2>
 <ul>
@@ -1396,7 +1398,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Simple Object Data Access (SODA)<ul>
-<li>query API based on query grah</li>
+<li>query API based on query graph</li>
 <li>methods for descending graph and applying constraints</li>
 </ul>
 </li>
@@ -1497,13 +1499,13 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li><code>ArrayList4</code> and <code>ArrayMap4</code> implement Collections API</li>
 <li>as part of transparent persistence/activation framework</li>
 <li><code>ActivatableArrayList</code>, <code>ActivatableHashMap</code>, ...</li>
-<li>complex object implementation becomes <em>db4o dependant</em></li>
+<li>complex object implementation becomes <em>db4o dependent</em></li>
 </ul>
 </li>
 </ul>
 <h2 id="transparent-persistence">Transparent Persistence</h2>
 <ul>
-<li>Persistance should be transparent to application logic<ul>
+<li>Persistence should be transparent to application logic<ul>
 <li>Store objects in database <em>once</em> (<code>store</code> method)</li>
 <li>avoid multiple calls of <code>store</code></li>
 </ul>
@@ -1599,7 +1601,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>performance tuning</li>
 <li>database diagnostics</li>
 <li>Indexes<ul>
-<li>optimise query evaluation</li>
+<li>optimize query evaluation</li>
 </ul>
 </li>
 <li>Defragment<ul>
@@ -1625,7 +1627,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>Trade-off between<ul>
 <li>increased query performance</li>
-<li>decreased storage, update und delete performance</li>
+<li>decreased storage, update and delete performance</li>
 </ul>
 </li>
 <li>Set by configuration or annotation (<code>@indexed</code>)</li>
@@ -1651,12 +1653,12 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 <li>Database tests<ul>
 <li>disable detection of schema changes</li>
-<li>disable instantiation tests of persistance classes at start-up</li>
+<li>disable instantiation tests of persistence classes at start-up</li>
 </ul>
 </li>
 <li>Query evaluation<ul>
 <li>set field indexes on most used objects to improve searches</li>
-<li>optimise native queries</li>
+<li>optimize native queries</li>
 </ul>
 </li>
 </ul>
@@ -1664,7 +1666,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>Embedded mode<ul>
 <li>DB accessed by clients in same <em>JVM</em></li>
-<li>direct file acces: 1 user and 1 thread at a time</li>
+<li>direct file access: 1 user and 1 thread at a time</li>
 <li>client session: 1 user and multiple threads</li>
 <li>Database file opened, locked and accessed directly<ul>
 <li><code>Db4oEmbedded.openFile(configuration, name)</code></li>
@@ -1709,7 +1711,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Transactional Replication<ul>
-<li>Changes synchronised after transaction</li>
+<li>Changes synchronized after transaction</li>
 <li>operation based</li>
 <li>changes replicated immediately</li>
 <li>Single object replication with <code>ReplicationSession</code></li>
@@ -1719,7 +1721,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Changes from clients merged to central server</li>
 <li>Other clients updated to reflect changes</li>
 <li>Transactionally of on a periodic basis</li>
-<li>Typically if subscribers are occasionaly offline</li>
+<li>Typically if subscribers are occasionally offline</li>
 </ul>
 </li>
 </ul>
@@ -1749,15 +1751,102 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li><code>ReplicationSession.setDirection(from, to)</code></li>
 </ul>
 </li>
-<li><code>ReplicationSession.replicate(object)</code> newer object transfered to DB</li>
+<li><code>ReplicationSession.replicate(object)</code> newer object transferred to DB</li>
 <li>Object granularity</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<!-- 07-0-db4o-part-2.pdf p. 20
-  ## Callbakcs -->
+<h2 id="callbacks">Callbacks</h2>
+<ul>
+<li>Called in response to events<ul>
+<li>activate</li>
+<li>deactivate</li>
+<li>new</li>
+<li>update</li>
+<li>delete</li>
+</ul>
+</li>
+<li>Methods called before and after event<ul>
+<li><code>can...</code> called <em>before</em> event</li>
+<li><code>on...</code> called <em>after</em> event</li>
+</ul>
+</li>
+<li>Interface <code>ObjectCallbacks</code></li>
+<li>Use Cases<ul>
+<li>Recording or preventing updates<ul>
+<li><code>canUpdate()</code> and <code>onUpdate()</code></li>
+</ul>
+</li>
+<li>Setting default values after <em>refactoring</em><ul>
+<li><code>canNew()</code></li>
+</ul>
+</li>
+<li>Checking object integrity before storing objects<ul>
+<li><code>canNew()</code> and <code>canUpdate()</code></li>
+</ul>
+</li>
+<li>Restoring state when objects activated<ul>
+<li>Update UI, restore network connections, ...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="object-instantiation">Object Instantiation</h2>
+<ul>
+<li>Three different techniques for instantiation<ol>
+<li>Constructor</li>
+<li>Bypassing Constructor</li>
+<li>Translator</li>
+</ol>
+</li>
+<li>Bypassing Constructor is default (if available)</li>
+<li>Can be configured globally or per class</li>
+<li>Constructors<ul>
+<li>db4o tries first default constructor</li>
+<li>if not public default constructor available<ul>
+<li>all constructors are tested to create instance</li>
+<li>default values (e. g <code>null</code>) passed as arguments</li>
+<li>first successfully tested constructor is used</li>
+<li>if no instance of a class can be created, object can't be stored</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Configuration interface:</p>
+<div class="highlight"><pre><span></span><span class="c1">// global setting (default: depends on environment)</span>
+<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">callConstructors</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="c1">// per class setting (default: depends on environment)</span>
+<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">objectClass</span><span class="o">(...).</span><span class="na">callConstructors</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="c1">// exceptions for debugging (default: true)</span>
+<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">exceptionsOnNotStorable</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</pre></div>
+<ul>
+<li>Bypassing Constructors<ul>
+<li>Constructors that cannot handle default values or <code>null</code> must be bypassed</li>
+<li>platform specific mechanism</li>
+<li>Not all environments support this feature</li>
+<li>Default setting (if supported by environment)</li>
+<li>Breaks classes that rely on constructors being executed</li>
+</ul>
+</li>
+<li>Translators<ul>
+<li>needed if neither Constructors nor Bypassing Constructors can be used</li>
+<li>if constructor needed to populate transient members</li>
+<li>if constructor fails when called with default values</li>
+<li>Interfaces <code>ObjectTranslator</code> and <code>ObjectConstructor</code></li>
+</ul>
+</li>
+<li>Type Handles<ul>
+<li>instead of Translators at lower level</li>
+<li>type handler registered for class that it handles</li>
+<li>write to and read from byte-arrays</li>
+</ul>
+</li>
+</ul>
   </div>
 
   <hr/>
