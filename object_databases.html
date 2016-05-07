@@ -231,6 +231,9 @@
 <li><a href="#db4o-transactions">db4o Transactions</a></li>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#external-tools">External tools</a></li>
+<li><a href="#indexes">Indexes</a></li>
+<li><a href="#tuning-for-speed">Tuning for Speed</a></li>
+<li><a href="#distribution-and-replication">Distribution and Replication</a></li>
 </ul>
 </li>
 </ul>
@@ -1618,7 +1621,143 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<!-- 07-0-db4o-part-2.pdf p 5 -->
+<h2 id="indexes">Indexes</h2>
+<ul>
+<li>Trade-off between<ul>
+<li>increased query performance</li>
+<li>decreased storage, update und delete performance</li>
+</ul>
+</li>
+<li>Set by configuration or annotation (<code>@indexed</code>)</li>
+</ul>
+<h2 id="tuning-for-speed">Tuning for Speed</h2>
+<ul>
+<li>Heuristic to improve performance<ul>
+<li>weak references</li>
+<li>BTree node size</li>
+<li>free-space manager</li>
+<li>locking</li>
+<li>flushing</li>
+<li>callbacks</li>
+<li>caches</li>
+<li>...</li>
+</ul>
+</li>
+<li>Object loading<ul>
+<li>use appropriate activation depth</li>
+<li>use multiple object or session containers</li>
+<li>disable weak references if not required</li>
+</ul>
+</li>
+<li>Database tests<ul>
+<li>disable detection of schema changes</li>
+<li>disable instantiation tests of persistance classes at start-up</li>
+</ul>
+</li>
+<li>Query evaluation<ul>
+<li>set field indexes on most used objects to improve searches</li>
+<li>optimise native queries</li>
+</ul>
+</li>
+</ul>
+<h2 id="distribution-and-replication">Distribution and Replication</h2>
+<ul>
+<li>Embedded mode<ul>
+<li>DB accessed by clients in same <em>JVM</em></li>
+<li>direct file acces: 1 user and 1 thread at a time</li>
+<li>client session: 1 user and multiple threads</li>
+<li>Database file opened, locked and accessed directly<ul>
+<li><code>Db4oEmbedded.openFile(configuration, name)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Client/Server mode<ul>
+<li>Clients in multiple <em>JVMs</em></li>
+<li>DB access on server</li>
+<li>Client opens TCP/IP connection to server<ul>
+<li><code>Db4oClientServer.openServer(filename, port)</code></li>
+<li><code>Db4oClientServer.openClient(host, port, user, pass)</code></li>
+</ul>
+</li>
+<li>Client sends query, insert, update and delete instructions to server</li>
+<li>Client receives data from the server</li>
+</ul>
+</li>
+<li>Replication<ul>
+<li>redundant copies of database on multiple servers</li>
+<li>changes replicated form <em>master</em> to <em>client</em> servers</li>
+<li>several forms of replication supported<ul>
+<li>snapshot replication</li>
+<li>transactional replication</li>
+<li>merge replication</li>
+</ul>
+</li>
+<li>needs to be coded into application<ul>
+<li>cannot be configured on admin level</li>
+<li>replication only on demand</li>
+<li>client/server semantics introduced by developer</li>
+<li>one interface for all forms of replication</li>
+</ul>
+</li>
+<li>Replication Modes<ul>
+<li>Snapshot Replication<ul>
+<li>Snapshots of master replicated to client</li>
+<li>state-based</li>
+<li>periodical schedule</li>
+<li>special SODA query to detect all new and updated objects</li>
+</ul>
+</li>
+<li>Transactional Replication<ul>
+<li>Changes synchronised after transaction</li>
+<li>operation based</li>
+<li>changes replicated immediately</li>
+<li>Single object replication with <code>ReplicationSession</code></li>
+</ul>
+</li>
+<li>Merge Replication<ul>
+<li>Changes from clients merged to central server</li>
+<li>Other clients updated to reflect changes</li>
+<li>Transactionally of on a periodic basis</li>
+<li>Typically if subscribers are occasionaly offline</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Replication System<ul>
+<li>Separated from db4o core</li>
+<li>uni- or bidirectional replication</li>
+<li>Replication of relational databases based on Hibernate</li>
+<li>Supported replication providers<ul>
+<li>db4o → db4o</li>
+<li>db4o → Hibernate</li>
+<li>Hibernate → db4o</li>
+<li>Hibernate → Hibernate</li>
+</ul>
+</li>
+<li>3 steps required<ol>
+<li>Generating unique IDs and version numbers</li>
+<li>Creating a <code>ReplicationSession</code></li>
+<li>Replicating objects</li>
+</ol>
+</li>
+<li>Mode dependent on implementation</li>
+<li>Bidirectional by default<ul>
+<li>Unidirectional can be configured<ul>
+<li><code>ReplicationSession.setDirection(from, to)</code></li>
+</ul>
+</li>
+<li><code>ReplicationSession.replicate(object)</code> newer object transfered to DB</li>
+<li>Object granularity</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- 07-0-db4o-part-2.pdf p. 20
+  ## Callbakcs -->
   </div>
 
   <hr/>
