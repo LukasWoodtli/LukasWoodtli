@@ -170,7 +170,7 @@
 </ul>
 </li>
 <li><a href="#numbers">Numbers</a></li>
-<li><a href="#tag-system">Tag System</a><ul>
+<li><a href="#tag-systems">Tag Systems</a><ul>
 <li><a href="#2-tag-system">2-Tag System</a><ul>
 <li><a href="#example-test-for-oddeven-number">Example: Test for odd/even number</a></li>
 <li><a href="#example-power-of-two">Example: Power of Two</a></li>
@@ -463,7 +463,7 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
 </ul>
 <!-- Notes Week 8 End -->
 <!-- Notes Week 10 Begin -->
-<h1 id="tag-system">Tag System</h1>
+<h1 id="tag-systems">Tag Systems</h1>
 <ul>
 <li>Tape with a starting string</li>
 <li>Reading and deleting at the beginning (left)</li>
@@ -473,7 +473,7 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
 <ol>
 <li>reads <em>1</em> symbol at the beginning of the tape</li>
 <li>appends a string at the end of the type<ul>
-<li>appendet string depends on read symbol</li>
+<li>appended string depends on read symbol</li>
 </ul>
 </li>
 <li>removes <em>2</em> symbols at the beginning of the tape</li>
@@ -524,7 +524,22 @@ C_3 &amp;\rightarrow C_3 \\
 C_4 &amp;\rightarrow C_4 C_5 \\ 
 C_5 &amp;\rightarrow C_6
 \end{align*}</div>
-<!-- Notes Week 10 00:07:00 -->
+<p>Starting with:</p>
+<div class="math">$$(C_3)^{2n}C_1C_1 \rightarrow (C_6)^n$$</div>
+<p>For <span class="math">\(n=2\)</span>:</p>
+<div class="math">$$\begin{align*}
+C_3 C_3 C_3 C_3 C_1 C_1 \rightarrow \\
+C_3 C_3 C_1 C_1 C_3 \rightarrow \\
+C_1 C_1 C_3 C_3 \rightarrow \\
+C_3 C_3 C_1 C_2 C_4 C_5\rightarrow \\
+C_1 C_2 C_4 C_5 C_3 \rightarrow \\
+C_4 C_5 C_3 C_1 C_2 C_4 C_5 \rightarrow \\
+C_2 C_4 C_5 C_4 C_5 C_3 \rightarrow \\
+C_5 C_4 C_5 C_3 \rightarrow \\
+C_5 C_3 C_6 \rightarrow \\
+C_6 C_6
+\end{align*}$$</div>
+<!-- Notes Week 10 ~00:10:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
