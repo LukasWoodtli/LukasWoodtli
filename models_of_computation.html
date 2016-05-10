@@ -175,6 +175,7 @@
 <li><a href="#example-test-for-oddeven-number">Example: Test for odd/even number</a></li>
 <li><a href="#example-power-of-two">Example: Power of Two</a></li>
 <li><a href="#simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</a></li>
+<li><a href="#cyclic-tag-systems">Cyclic Tag Systems</a></li>
 </ul>
 </li>
 </ul>
@@ -607,7 +608,24 @@ C_6 C_6
 <li>Convert each Turing Machine rule into a Tag Systems that rewrites the current string in the expected way</li>
 <li>Combine all the Tag Systems to make a large one thet simulates every rule of the Turing Machine</li>
 </ol>
-<!-- Notes Week 10 ~00:25:00 -->
+<h3 id="cyclic-tag-systems">Cyclic Tag Systems</h3>
+<p>This are simplified Tag Systems</p>
+<ul>
+<li>The tape is allowed only to have 2 symbols <span class="math">\(0\)</span> and <span class="math">\(1\)</span></li>
+<li>A string is only appended if a <span class="math">\(1\)</span> is read</li>
+<li>The rules for appending strings is ordered</li>
+<li>The deletion number is <span class="math">\(1\)</span></li>
+</ul>
+<p>Algorithm:</p>
+<p>In each round:
+- Read next rule in rule-set
+- Read next symbol on tape
+    - if <span class="math">\(1\)</span>: append the string from the rule set to the tape
+    - if <span class="math">\(0\)</span>: ignore the rule
+- Remove the last read symbol from the tape
+- Start from the beginning with reading the next rule</p>
+<p>A Cyclic Tag System can simulate a normal Tag System. See 'Understanding Computation' by Tom Stuart on how to do that.</p>
+<!-- End Notes Week 10 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
