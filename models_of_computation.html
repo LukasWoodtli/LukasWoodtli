@@ -174,6 +174,7 @@
 <li><a href="#2-tag-system">2-Tag System</a><ul>
 <li><a href="#example-test-for-oddeven-number">Example: Test for odd/even number</a></li>
 <li><a href="#example-power-of-two">Example: Power of Two</a></li>
+<li><a href="#simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</a></li>
 </ul>
 </li>
 </ul>
@@ -539,7 +540,74 @@ C_5 C_4 C_5 C_3 \rightarrow \\
 C_5 C_3 C_6 \rightarrow \\
 C_6 C_6
 \end{align*}$$</div>
-<!-- Notes Week 10 ~00:10:00 -->
+<h3 id="simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</h3>
+<p>Some of the notes here are taken from 'Understanding Computation' by Tom Stuart.</p>
+<ol>
+<li>Tape uses only 2 characters: <span class="math">\(0\)</span> and <span class="math">\(1\)</span><ul>
+<li><span class="math">\(0\)</span> is the blank character</li>
+</ul>
+</li>
+<li>Split the tape into two pieces<ul>
+<li>left part<ul>
+<li>character under the head</li>
+<li>all characters left of the head</li>
+</ul>
+</li>
+<li>right part<ul>
+<li>all characters right of the head</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Interprete left part as binary number</li>
+<li>Interprete right part as binary number written <em>backwards</em></li>
+<li>Encode those 2 numbers as string (suitable to be used for Tag System)</li>
+<li>Simple operations:<ul>
+<li>Simulate<ul>
+<li><em>reading</em> from tape</li>
+<li><em>writing</em> to tape</li>
+<li><em>moving</em> the head</li>
+</ul>
+</li>
+<li>with simple operations<ul>
+<li>doubling / halfing</li>
+<li>incrementing / decrementing</li>
+<li>odd / even (parity) check</li>
+<li>...</li>
+</ul>
+</li>
+<li>e.g<ul>
+<li>move head to right:<ul>
+<li>doubling left number</li>
+<li>halving right number</li>
+</ul>
+</li>
+<li>reading from tape<ul>
+<li>check if left number is even/odd</li>
+</ul>
+</li>
+<li>writing<ul>
+<li><span class="math">\(1\)</span>: incrementing number</li>
+<li><span class="math">\(0\)</span>: decrementing number</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Current <em>state</em> of simulated Turing machine represented by different encodings<ul>
+<li>e. g<ul>
+<li>State 1: use <em>a</em>, <em>b</em>, <em>c</em></li>
+<li>State 2: use <em>d</em>, <em>e</em>, <em>f</em></li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Convert each Turing Machine rule into a Tag Systems that rewrites the current string in the expected way</li>
+<li>Combine all the Tag Systems to make a large one thet simulates every rule of the Turing Machine</li>
+</ol>
+<!-- Notes Week 10 ~00:25:00 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
