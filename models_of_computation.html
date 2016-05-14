@@ -142,11 +142,17 @@
 <li><a href="#xor">XOR</a></li>
 </ul>
 </li>
-<li><a href="#finite-state-machines">Finite State Machines</a></li>
+<li><a href="#finite-state-machines-fsm">Finite State Machines (FSM)</a><ul>
+<li><a href="#deterministic-non-deterministic-fsm">Deterministic / Non-Deterministic FSM</a></li>
+<li><a href="#acceptor-recognizer">Acceptor (Recognizer)</a></li>
+<li><a href="#classifier">Classifier</a></li>
+<li><a href="#transducer">Transducer</a></li>
+</ul>
+</li>
 <li><a href="#lambda-calculus">Lambda Calculus</a><ul>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#main-operations">Main Operations</a></li>
-<li><a href="#chruch-numerals">Chruch Numerals</a></li>
+<li><a href="#church-numerals">Church Numerals</a></li>
 <li><a href="#lambda-calculus-expressions">Lambda Calculus Expressions</a><ul>
 <li><a href="#variables">Variables</a></li>
 <li><a href="#function-application">Function Application</a></li>
@@ -283,19 +289,63 @@
 <li>for <span class="math">\(n\)</span> inputs <span class="math">\(2^{n-1}+1\)</span> gates needed</li>
 </ul>
 <!-- Notes Week 1 End -->
-<!-- TODO -->
 <!-- Notes Week 2 Start -->
-<h1 id="finite-state-machines">Finite State Machines</h1>
-<!-- TODO Lecture Notes -->
+<h1 id="finite-state-machines-fsm">Finite State Machines (FSM)</h1>
+<ul>
+<li>Also called Finite State Automaton (FSA)</li>
+</ul>
 <p>See also <a href="http://www.tutorialspoint.com/automata_theory/automata_theory_introduction.htm">Tutorialspoint</a></p>
-<p>Can be represented as a 5-tuple <span class="math">\((Q, \Sigma, \delta, q_0, F)\)</span>:</p>
+<p>Can be represented as a 5-touple <span class="math">\((Q, \Sigma, \delta, q_0, F)\)</span>:</p>
 <ul>
 <li><span class="math">\(Q\)</span>: finite set of states</li>
 <li><span class="math">\(\Sigma\)</span>: alphabet (finite set of symbols)</li>
-<li><span class="math">\(\delta\)</span>: trasition function</li>
+<li><span class="math">\(\delta\)</span>: transition function</li>
 <li><span class="math">\(q_0\)</span>: initial state (<span class="math">\(q_0 \in Q\)</span>)</li>
 <li><span class="math">\(F\)</span>: set of final states (<span class="math">\(F \subseteq  Q\)</span>)</li>
 </ul>
+<h2 id="deterministic-non-deterministic-fsm">Deterministic / Non-Deterministic FSM</h2>
+<ul>
+<li>Deterministic<ul>
+<li>For each arriving event it's clear what the next state is</li>
+</ul>
+</li>
+<li>
+<p>Non-deterministic</p>
+<ul>
+<li>For some (or all) events the next state can be more than one (it's not clear to which state the machine will change)</li>
+</ul>
+</li>
+<li>
+<p>Any non-deterministic FSM can be turned into a deterministic FSM</p>
+</li>
+</ul>
+<h2 id="acceptor-recognizer">Acceptor (Recognizer)</h2>
+<ul>
+<li>Calculates a Boolean function</li>
+<li>All states are either <em>accepting</em> or <em>rejecting</em> for a given input</li>
+<li>In graphical notation the <em>accepting</em> states have a double circle</li>
+<li>Non-deterministic Acceptor<ul>
+<li>accepts if there is <em>any</em> way to accept</li>
+<li>methodically try all possibilities</li>
+<li>'Parallel World' - try all possibilities <em>simultaneously</em> in separate copies of the machine (for complexity theory)</li>
+</ul>
+</li>
+</ul>
+<h2 id="classifier">Classifier</h2>
+<ul>
+<li>Has more than two final states</li>
+<li>gives single output when it terminates</li>
+</ul>
+<h2 id="transducer">Transducer</h2>
+<ul>
+<li>Produces outputs based on current input and on previous state</li>
+<li>2 different types<ul>
+<li>Mealy Machine: output depends only on <em>current state</em></li>
+<li>Moore Machine: output depends on <em>current state</em> and <em>current input</em></li>
+</ul>
+</li>
+</ul>
+<!-- TODO Notes Week 2 0:25:00 -->
 <!-- Notes Week 7 Start -->
 <h1 id="lambda-calculus">Lambda Calculus</h1>
 <ul>
@@ -339,10 +389,10 @@
 <li><span class="math">\(\alpha\)</span>-conversion: changing a functions 'argument symbol' (<span class="math">\(\lambda x.x \equiv \lambda y.y\)</span>)</li>
 <li><span class="math">\(\eta\)</span>-conversion: <span class="math">\(\lambda v. f v \equiv f\)</span> because <span class="math">\((\lambda v. f v) a \equiv f a\)</span></li>
 </ul>
-<h2 id="chruch-numerals">Chruch Numerals</h2>
+<h2 id="church-numerals">Church Numerals</h2>
 <ul>
 <li>Numbers can be encoded as functions</li>
-<li>Arbitary encoding of numbers suggested by church</li>
+<li>Arbitrary encoding of numbers suggested by church</li>
 </ul>
 <p>Each number is a function that takes 2 arguments: <span class="math">\(f\)</span> and <span class="math">\(x\)</span>:</p>
 <div class="math">$$\begin{align*}
@@ -572,8 +622,8 @@ C_6 C_6
 </li>
 </ul>
 </li>
-<li>Interprete left part as binary number</li>
-<li>Interprete right part as binary number written <em>backwards</em></li>
+<li>Interpret left part as binary number</li>
+<li>Interpret right part as binary number written <em>backwards</em></li>
 <li>Encode those 2 numbers as string (suitable to be used for Tag System)</li>
 <li>Simple operations:<ul>
 <li>Simulate<ul>
@@ -608,7 +658,7 @@ C_6 C_6
 </li>
 </ul>
 </li>
-<li>Current <em>state</em> of simulated Turing machine represented by different encodings<ul>
+<li>Current <em>state</em> of simulated Turing machine represented by different encoding<ul>
 <li>e. g<ul>
 <li>State 1: use <em>a</em>, <em>b</em>, <em>c</em></li>
 <li>State 2: use <em>d</em>, <em>e</em>, <em>f</em></li>
@@ -618,7 +668,7 @@ C_6 C_6
 </ul>
 </li>
 <li>Convert each Turing Machine rule into a Tag Systems that rewrites the current string in the expected way</li>
-<li>Combine all the Tag Systems to make a large one thet simulates every rule of the Turing Machine</li>
+<li>Combine all the Tag Systems to make a large one the simulates every rule of the Turing Machine</li>
 </ol>
 <h3 id="cyclic-tag-systems">Cyclic Tag Systems</h3>
 <p>This are simplified Tag Systems</p>
