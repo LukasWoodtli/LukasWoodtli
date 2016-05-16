@@ -149,6 +149,7 @@
 <li><a href="#transducer">Transducer</a></li>
 </ul>
 </li>
+<li><a href="#register-machines">Register Machines</a></li>
 <li><a href="#lambda-calculus">Lambda Calculus</a><ul>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#main-operations">Main Operations</a></li>
@@ -342,10 +343,113 @@
 <li>2 different types<ul>
 <li>Mealy Machine: output depends only on <em>current state</em></li>
 <li>Moore Machine: output depends on <em>current state</em> and <em>current input</em></li>
+<li>They can be transformed into each other</li>
 </ul>
 </li>
 </ul>
-<!-- TODO Notes Week 2 0:25:00 -->
+<h1 id="register-machines">Register Machines</h1>
+<ul>
+<li>A register machine has multiple registers that store positive integers</li>
+<li>There are only two possible operations on these registers<ol>
+<li>incrementing (<span class="math">\(+1\)</span>)</li>
+<li>decrementing (<span class="math">\(-1\)</span>)
+- Decrementing a register that holds <span class="math">\(0\)</span> fails</li>
+</ol>
+</li>
+<li>There are other (slightly different) definitions of register machines that allow different operations (e.g checking for <span class="math">\(0\)</span>)</li>
+<li>Register Machines can be graphically represented like FSMs or as a simple list of instructions (programming language)</li>
+</ul>
+<p>Example of list of instructions for a Register Machine:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Action</th>
+<th>Next Instruction</th>
+<th>Alternative Instruction (if actual instruction fails)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>x-</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>y+</td>
+<td>3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>x-</td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>y-</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>x+</td>
+<td>4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6.</td>
+<td>x-</td>
+<td>7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>7.</td>
+<td>x-</td>
+<td>9</td>
+<td>HALT</td>
+</tr>
+<tr>
+<td>8.</td>
+<td>y-</td>
+<td>9</td>
+<td>3</td>
+</tr>
+<tr>
+<td>9.</td>
+<td>x+</td>
+<td>10</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10.</td>
+<td>x+</td>
+<td>11</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11.</td>
+<td>x+</td>
+<td>8</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Register Machines and Turing Machines can simulate each other in polynomial time</li>
+<li>For each Register Machine with more than 2 registers (<span class="math">\(N\)</span>) there is an equivalent Register Machine with only 2 registers<ul>
+<li>The <span class="math">\(N\)</span> registers need to be encoded</li>
+</ul>
+</li>
+<li>Whenever a loop ends (in a 2 Register Machine)<ul>
+<li>one register is <span class="math">\(0\)</span></li>
+<li>in the other register is some information available</li>
+</ul>
+</li>
+</ul>
 <!-- Notes Week 7 Start -->
 <h1 id="lambda-calculus">Lambda Calculus</h1>
 <ul>
@@ -481,8 +585,8 @@ $$</div>
 <p>Beta recursion gives:</p>
 <div class="math">$$\begin{align*}
 Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
- &amp;= (\lambda x. g (x\; x)) (\lambda x. g (x\; x)) \\ 
- &amp;= g ((\lambda x. g (x\; x)) (\lambda x. g (x\; x)))  \\ 
+ &amp;= (\lambda x. g (x\; x)) (\lambda x. g (x\; x)) \\
+ &amp;= g ((\lambda x. g (x\; x)) (\lambda x. g (x\; x)))  \\
  &amp;= g (Y\; g)
 \end{align*}$$</div>
 <ul>
@@ -565,7 +669,7 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
 <p>Example even:
 </p>
 <div class="math">$$\begin{align*}
-C_1 C_1 C_3 C_3 C_3 C_3 \rightarrow  \\ 
+C_1 C_1 C_3 C_3 C_3 C_3 \rightarrow  \\
 C_3 C_3 C_3 C_3 C_2 O \rightarrow \\
 C_3 C_3 C_2 O \rightarrow \\
 C_2 O \rightarrow \\
@@ -574,18 +678,18 @@ E
 <p>Example odd:
 </p>
 <div class="math">\begin{align*}
-C_1 C_1 C_3 C_3 C_3 \rightarrow  \\ 
+C_1 C_1 C_3 C_3 C_3 \rightarrow  \\
 C_3 C_3 C_3 C_2 O \rightarrow \\
 C_3 C_2 O \rightarrow \\
 O
 \end{align*}</div>
 <h3 id="example-power-of-two">Example: Power of Two</h3>
 <div class="math">\begin{align*}
-2^n &amp;\rightarrow  n \\ 
+2^n &amp;\rightarrow  n \\
 C_1 &amp;\rightarrow C_1 C_2 C_4 C_5 \\
-C_2 &amp;\rightarrow \epsilon \\ 
-C_3 &amp;\rightarrow C_3 \\ 
-C_4 &amp;\rightarrow C_4 C_5 \\ 
+C_2 &amp;\rightarrow \epsilon \\
+C_3 &amp;\rightarrow C_3 \\
+C_4 &amp;\rightarrow C_4 C_5 \\
 C_5 &amp;\rightarrow C_6
 \end{align*}</div>
 <p>Starting with:</p>
