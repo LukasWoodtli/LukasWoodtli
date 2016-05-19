@@ -144,6 +144,7 @@
 <li><a href="#orthogonal-persistence">Orthogonal Persistence</a></li>
 <li><a href="#impedance-missmatch">Impedance Missmatch</a></li>
 <li><a href="#relational-databases">Relational Databases</a></li>
+<li><a href="#object-relational-mapping-orm">Object-relational mapping (ORM)</a></li>
 <li><a href="#develop-own-database">Develop own Database</a></li>
 <li><a href="#sql">SQL</a><ul>
 <li><a href="#data-definition-language-ddl">Data Definition Language (DDL)</a></li>
@@ -277,7 +278,11 @@
 </blockquote>
 <h2 id="impedance-missmatch">Impedance Missmatch</h2>
 <ul>
-<li>Difference between models</li>
+<li>Difference between models<ul>
+<li>OOP data model is based on object trees</li>
+<li><a href="https://en.wikipedia.org/wiki/Relational_model">The Relational Model</a> is based on tables</li>
+</ul>
+</li>
 <li>OOP Languages<ul>
 <li>Difference between attributes and relationships not clear</li>
 <li>Both are (usually) reference types in a class</li>
@@ -294,6 +299,37 @@
 </ul>
 </li>
 </ul>
+<p>An overview of the mismatch is shown on <a href="http://www.tutorialspoint.com/hibernate/orm_overview.htm">Tutorialspoint</a></p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Mismatch</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Granularity</td>
+<td>An object model can have more classes than the number of corresponding tables in the DB.</td>
+</tr>
+<tr>
+<td>Inheritance</td>
+<td>In OOP inheritance is a base concept. The Relational Model doesn't support this directly.</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>The Relational Model defines identity. In OOP there is often a difference between equality and identity.</td>
+</tr>
+<tr>
+<td>Association</td>
+<td>OOP uses references. The Relational Model uses foreign keys.</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td>OOP uses following references in object tree. The Relational Model uses queries.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="relational-databases">Relational Databases</h2>
 <ul>
 <li>Tables, Rows, Columns...<ul>
@@ -306,8 +342,9 @@
 <blockquote>
 <p>It's difficult to match the relational database model to the object oriented model</p>
 </blockquote>
+<h2 id="object-relational-mapping-orm">Object-relational mapping (ORM)</h2>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-relational mapping</a> can help<ul>
+<li><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-relational mapping</a> can be used against object-relational miss-match<ul>
 <li>But it's not a very good approach</li>
 <li>There are a lot of solutions: Hibernate, <a href="http://www.qxorm.com/qxorm_en/home.html">QxOrm</a>, ...</li>
 </ul>
@@ -939,19 +976,59 @@ List&lt;Struct { string name }&gt;
 </ul>
 <h2 id="main-concepts">Main Concepts</h2>
 <ul>
-<li>Configuration<ul>
+<li><code>Configuration</code><ul>
 <li>Connection to database (hibernate.properties or hibernate.cfg.xml)</li>
 <li>Which DBMS? (MySQL, HSQL, ...)</li>
 <li>Which DB Instance? (Database Name)</li>
-<li>Mappings</li>
-</ul>
-</li>
-<li>SessionFactory<ul>
-<li>Using the configuration, a SessionFactory is created</li>
-<li>Using this SessionFactory, Session objects can be created</li>
+<li>Mappings between classes and database tables</li>
+<li>The Configuration object is created at first<ul>
+<li>usually created only once during application initialization</li>
 </ul>
 </li>
 </ul>
+</li>
+<li><code>SessionFactory</code><ul>
+<li>Created by using the configuration object</li>
+<li>Session objects can be created and supplied with configuration</li>
+<li>Heavyweight object: create during start up and keep for later use</li>
+<li>multiple databases require multiple <code>SessionFactory</code> objects</li>
+</ul>
+</li>
+<li><code>Session</code> object<ul>
+<li>Used to get physical connection to the database</li>
+<li>leightweight</li>
+<li>desigend to be instatiated each time an interatcion with the DB is needed</li>
+<li>Persistent objects are <em>stored</em> and <em>retrieved</em> through <code>Session</code> object</li>
+<li>should not be kept open for al long time<ul>
+<li>usually not thread safe</li>
+<li>create before use</li>
+<li>destroy after use</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Transaction</code> object<ul>
+<li>represent a unit of work with the DB</li>
+<li>handled by underlying tansaction manager and transaction (JDBC or JTA)</li>
+<li>optional object<ul>
+<li>transactions can be managed in own application code</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Query</code> object<ul>
+<li>SQL or Hibernate Query Language (HQL)</li>
+<li>bind query parameters</li>
+<li>limit number of results</li>
+<li>execute query</li>
+</ul>
+</li>
+<li><code>Criteria</code> object<ul>
+<li>used to create and execute <em>object oriented</em> criteria queries to retrieve objects</li>
+</ul>
+</li>
+</ul>
+<!-- TODO Hibernate Tutorial http://www.tutorialspoint.com/hibernate/hibernate_environment.htm  -->
 <p>Example:</p>
 <div class="highlight"><pre><span></span><span class="n">SessionFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">().</span><span class="na">buildSessionFactory</span><span class="o">();</span>
 </pre></div>
@@ -1133,7 +1210,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <h1 id="object-oriented-databases-object-database-manifesto">Object-Oriented Databases: Object Database Manifesto</h1>
 <ul>
 <li>Avoid impedance mismatch</li>
-<li>Provide uniform datamodel</li>
+<li>Provide uniform data model</li>
 <li>
 <p>Combine features of</p>
 <ul>
@@ -1191,7 +1268,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>shallow and deep equality</li>
 </ul>
 </li>
-<li>Tuples: entities and their attributes</li>
+<li>Touple: entities and their attributes</li>
 <li>Sets: collections of entities</li>
 <li>
 <p>Lists: order</p>
@@ -1207,8 +1284,8 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>In contrast, relational databases only support<ul>
-<li>sets of records (relation with tuples) and</li>
-<li>tuples containing atomic values</li>
+<li>sets of records (relation with touple) and</li>
+<li>touple containing atomic values</li>
 </ul>
 </li>
 </ul>
@@ -1365,7 +1442,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Owns one transaction<ul>
-<li>operations are executed transactional</li>
+<li>operations are executed transactions</li>
 <li>transaction is started when object container is opened</li>
 <li>after commit/rollback next transaction is started automatically</li>
 </ul>
@@ -1524,7 +1601,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <h2 id="activation">Activation</h2>
 <ul>
 <li>Activation controls depth of loaded fields<ul>
-<li>fieled values (objects) are loaded in memory to a certain depth when query retrieves objects</li>
+<li>field values (objects) are loaded in memory to a certain depth when query retrieves objects</li>
 <li>activation depth: length of reference chain</li>
 <li>fields beyond activation depth: default value (e.g <code>null</code>)</li>
 </ul>
