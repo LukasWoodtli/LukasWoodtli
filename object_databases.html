@@ -1524,7 +1524,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <h2 id="activation">Activation</h2>
 <ul>
 <li>Activation controls depth of loaded fields<ul>
-<li>filed values (objects) are loaded in memory to a certain depth when query retrieves objects</li>
+<li>fieled values (objects) are loaded in memory to a certain depth when query retrieves objects</li>
 <li>activation depth: length of reference chain</li>
 <li>fields beyond activation depth: default value (e.g <code>null</code>)</li>
 </ul>
@@ -1630,7 +1630,8 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>decreased storage, update and delete performance</li>
 </ul>
 </li>
-<li>Set by configuration or annotation (<code>@indexed</code>)</li>
+<li>Set by configuration or annotation (<code>@Indexed</code>)</li>
+<li>B-Tree based indexes on single object fields</li>
 </ul>
 <h2 id="tuning-for-speed">Tuning for Speed</h2>
 <ul>
