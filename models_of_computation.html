@@ -809,8 +809,8 @@ C_6 C_6
 <tr>
 <th>Function</th>
 <th>Name</th>
-<th>Definition (<span class="math">\(if n=0\)</span>)</th>
-<th>Definition (<span class="math">\(if n=S(m)\)</span>)</th>
+<th>Definition (<span class="math">\(\text{if } n=0\)</span>)</th>
+<th>Definition (<span class="math">\(\text{if } n=S(m)\)</span>)</th>
 </tr>
 </thead>
 <tbody>
@@ -866,7 +866,7 @@ C_6 C_6
 <td><span class="math">\(C(n,a)=\prod_{i=2}^{n+1} a \bmod i\)</span></td>
 <td>'mod Product'</td>
 <td><span class="math">\(0\)</span></td>
-<td>$M(C(m,a),R(a,(S(S(m)))))</td>
+<td><span class="math">\(M(C(m,a),R(a,(S(S(m)))))\)</span></td>
 </tr>
 <tr>
 <td>$Z(n)=<div class="math">\begin{cases}1 &amp; \text{ if } n \text{ is prime} \\  0 &amp; \text{ if not} \end{cases}</div> $</td>
@@ -878,6 +878,10 @@ C_6 C_6
 </table>
 <ul>
 <li>Infinite loops not possible</li>
+<li>Can simulate a Turing Machine only with a given numbers of steps<ul>
+<li>Number of iterations of a loop need to be known from beginning</li>
+</ul>
+</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
