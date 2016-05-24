@@ -188,6 +188,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#primitive-recursive-functions">Primitive Recursive Functions</a></li>
 </ul>
 </div>
 <h1 id="boolean-circuits">Boolean Circuits</h1>
@@ -792,6 +793,92 @@ C_6 C_6
 - Start from the beginning with reading the next rule</p>
 <p>A Cyclic Tag System can simulate a normal Tag System. See 'Understanding Computation' by Tom Stuart on how to do that.</p>
 <!-- End Notes Week 10 -->
+<!-- Begin Notes Week 12 -->
+<h1 id="primitive-recursive-functions">Primitive Recursive Functions</h1>
+<ul>
+<li>Recursion can do a lot!</li>
+<li>Functions are defined using itselves or other functions</li>
+<li>Each function has 2 definition:<ol>
+<li>Definition for argument <span class="math">\(0\)</span></li>
+<li>General definition</li>
+</ol>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Function</th>
+<th>Name</th>
+<th>Definition (<span class="math">\(if n=0\)</span>)</th>
+<th>Definition (<span class="math">\(if n=S(m)\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math">\(S(n) = n + 1\)</span></td>
+<td>Successor</td>
+<td>intrinsic/primitive</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="math">\(A(n,a)=n+a\)</span></td>
+<td>Addition</td>
+<td><span class="math">\(a\)</span></td>
+<td><span class="math">\(S(A(m,a))\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(M(n,a)=n\cdot a\)</span></td>
+<td>Multiplication</td>
+<td><span class="math">\(0\)</span></td>
+<td><span class="math">\(A(a,M(m,a))\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(E(n,a)=a^n\)</span></td>
+<td>Exponentiation</td>
+<td><span class="math">\(1\)</span></td>
+<td><span class="math">\(M(a,E(m,a))\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(V(n)=sign(n)\)</span></td>
+<td>Positivity</td>
+<td><span class="math">\(0\)</span></td>
+<td><span class="math">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(P(n) = n-1\)</span></td>
+<td>Predecessor</td>
+<td><span class="math">\(0\)</span></td>
+<td><span class="math">\(m\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(D(a,n) = a-n\)</span></td>
+<td>Subtraction</td>
+<td><span class="math">\(a\)</span></td>
+<td><span class="math">\(P(D(n,m))\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(R(n,a)=n \bmod a\)</span></td>
+<td>Remainder</td>
+<td><span class="math">\(0\)</span></td>
+<td><span class="math">\(M(S(R(m,a)),V(D(P(a),R(m,a))))\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(C(n,a)=\prod_{i=2}^{n+1} a \bmod i\)</span></td>
+<td>'mod Product'</td>
+<td><span class="math">\(0\)</span></td>
+<td>$M(C(m,a),R(a,(S(S(m)))))</td>
+</tr>
+<tr>
+<td>$Z(n)=<div class="math">\begin{cases}1 &amp; \text{ if } n \text{ is prime} \\  0 &amp; \text{ if not} \end{cases}</div> $</td>
+<td>Primality</td>
+<td><span class="math">\(0\)</span></td>
+<td><span class="math">\(V(M(m,(P(m),S(m))))\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Infinite loops not possible</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
