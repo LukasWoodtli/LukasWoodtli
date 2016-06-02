@@ -190,6 +190,11 @@
 <li><a href="#hibernate">Hibernate</a><ul>
 <li><a href="#object-relational-mappings">Object-Relational Mappings</a></li>
 <li><a href="#main-concepts">Main Concepts</a></li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#persistant-objects">Persistant Objects</a></li>
+</ul>
+</li>
 <li><a href="#mapping-associations">Mapping Associations</a></li>
 <li><a href="#mapping-inheritance">Mapping Inheritance</a></li>
 <li><a href="#annotations">Annotations</a></li>
@@ -230,13 +235,17 @@
 </ul>
 </li>
 <li><a href="#db4o-transactions">db4o Transactions</a></li>
-<li><a href="#configuration">Configuration</a></li>
+<li><a href="#configuration_1">Configuration</a></li>
 <li><a href="#external-tools">External tools</a></li>
 <li><a href="#indexes">Indexes</a></li>
 <li><a href="#tuning-for-speed">Tuning for Speed</a></li>
 <li><a href="#distribution-and-replication">Distribution and Replication</a></li>
 <li><a href="#callbacks">Callbacks</a></li>
 <li><a href="#object-instantiation">Object Instantiation</a></li>
+</ul>
+</li>
+<li><a href="#the-om-data-model">The OM Data Model</a><ul>
+<li><a href="#typing-and-classification">Typing and Classification</a></li>
 </ul>
 </li>
 </ul>
@@ -1028,7 +1037,73 @@ List&lt;Struct { string name }&gt;
 </ul>
 </li>
 </ul>
-<!-- TODO Hibernate Tutorial http://www.tutorialspoint.com/hibernate/hibernate_environment.htm  -->
+<h2 id="configuration">Configuration</h2>
+<ul>
+<li>Hibernate needs to know where to find some informations about class mappings and database</li>
+<li>XML file: <em>hibernate.cfg.xml</em> (or Java properties file <em>hibernate.properties</em>)</li>
+</ul>
+<h3 id="properties">Properties</h3>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hibernate.dialect</td>
+<td>The SQL dialect used to generate persistance code</td>
+</tr>
+<tr>
+<td>hibernate.connection.driver_class</td>
+<td>The JDBC driver class</td>
+</tr>
+<tr>
+<td>hibernate.connection.url</td>
+<td>The URL to the database instance</td>
+</tr>
+<tr>
+<td>hibernate.connection.username</td>
+<td>The username for the database</td>
+</tr>
+<tr>
+<td>hibernate.connection.password</td>
+<td>The password for the database</td>
+</tr>
+<tr>
+<td>hibernate.connection.pool_size</td>
+<td>The number of connections in the Hibernate database connection pool</td>
+</tr>
+<tr>
+<td>hibernate.connection.autocommit</td>
+<td>Autocommit mode for the JDBC connection</td>
+</tr>
+</tbody>
+</table>
+<p>There are additional settings for using a database along with an application server and JNDI.</p>
+<h3 id="persistant-objects">Persistant Objects</h3>
+<p>Only Plain Old Java Object (POJO) can be saved in the DB.</p>
+<p>Requirements:</p>
+<ul>
+<li>Default constructor</li>
+<li>Class should contain an ID<ul>
+<li>Maps to the primary key column in DB table</li>
+</ul>
+</li>
+<li>Attributes should be private<ul>
+<li>Public accessor functions (getter, setter) need to be provided</li>
+<li>JavaBean style accessors: getXYZ, setXYZ</li>
+</ul>
+</li>
+<li>Persistence class either<ul>
+<li>non-final or</li>
+<li>implementation of interface that declares all public methods</li>
+</ul>
+</li>
+<li>Some additional minor restrictions from EJB framework</li>
+</ul>
+<!-- TODO Hibernate Tutorial http://www.tutorialspoint.com/hibernate/hibernate_examples.htm  -->
 <p>Example:</p>
 <div class="highlight"><pre><span></span><span class="n">SessionFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">().</span><span class="na">buildSessionFactory</span><span class="o">();</span>
 </pre></div>
@@ -1661,7 +1736,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="configuration">Configuration</h2>
+<h2 id="configuration_1">Configuration</h2>
 <ul>
 <li>Embedded<ul>
 <li><code>Db4oEmbedded.newConfiguration()</code></li>
@@ -1925,6 +2000,83 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
+<!-- Start Slides Week 13 -->
+<h1 id="the-om-data-model">The OM Data Model</h1>
+<ul>
+<li>Extended Entity-Relationship model</li>
+<li>for OOP data management</li>
+<li>special features<ul>
+<li>difference between typing and classification</li>
+<li>objects: attributes and methods</li>
+<li>multiple inheritance, multiple instantiation, multiple classification</li>
+<li>collections as first-class concepts</li>
+<li>binary associations as first-class concepts</li>
+<li>constraints for integrity, classification and evolution</li>
+<li>data definition, manipulation and query language (OML)</li>
+</ul>
+</li>
+</ul>
+<h2 id="typing-and-classification">Typing and Classification</h2>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Typing</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>representation of entities</td>
+<td>roles of entities</td>
+</tr>
+<tr>
+<td>defines format of data values</td>
+<td>defines semantic groupings as collections of values</td>
+</tr>
+<tr>
+<td>defines operations</td>
+<td>defines constraits among collection</td>
+</tr>
+<tr>
+<td>defines inheritance properties</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>better understanding of issues<ul>
+<li>important to recognise the two concepts</li>
+</ul>
+</li>
+<li>Reduces complexity of type graphs<ul>
+<li>no need to introduce subtypes to represent each classification</li>
+</ul>
+</li>
+<li>Rich classification structures</li>
+<li>Support for relationships between objects<ul>
+<li>accociation over collections instead embedded in objects</li>
+</ul>
+</li>
+<li>Integration of:<ul>
+<li>Database</li>
+<li>Programming Languages</li>
+</ul>
+</li>
+<li>Collections<ul>
+<li>semantic groupings of objects</li>
+</ul>
+</li>
+<li>Member types of collections<ul>
+<li>constrain membership in a collection</li>
+</ul>
+</li>
+<li>Object evolution<ul>
+<li>objects can gain/loose roles by being added or deleted form collections</li>
+<li>type change not always required (???) <!-- slides week 13 p.7 --></li>
+</ul>
+</li>
+</ul>
+<!-- TODO slides week 13 p.7 -->
   </div>
 
   <hr/>
