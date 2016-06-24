@@ -156,7 +156,7 @@
 <li><a href="#learning-goals">Learning Goals</a></li>
 </ul>
 </li>
-<li><a href="#general-topis-for-dbs">General Topis for DB's</a><ul>
+<li><a href="#general-topics-for-dbs">General Topics for DB's</a><ul>
 <li><a href="#crud-and-acid">CRUD and ACID</a></li>
 </ul>
 </li>
@@ -245,6 +245,25 @@
 <li><a href="#distribution-and-replication">Distribution and Replication</a></li>
 <li><a href="#callbacks">Callbacks</a></li>
 <li><a href="#object-instantiation">Object Instantiation</a></li>
+</ul>
+</li>
+<li><a href="#indexing">Indexing</a><ul>
+<li><a href="#type-hierarchy-indexing">Type Hierarchy Indexing</a><ul>
+<li><a href="#single-class-index-sc-index">Single Class Index (SC-Index)</a></li>
+<li><a href="#class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</a></li>
+<li><a href="#h-tree">H-Tree</a></li>
+<li><a href="#class-division-index-cd-index">Class Division Index (CD-Index)</a></li>
+<li><a href="#multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</a></li>
+<li><a href="#overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</a></li>
+</ul>
+</li>
+<li><a href="#aggregation-path-indexing">Aggregation Path Indexing</a><ul>
+<li><a href="#nested-index">Nested Index</a></li>
+<li><a href="#path-index">Path Index</a></li>
+<li><a href="#multi-index-8mx9">Multi-Index 8MX9</a></li>
+<li><a href="#overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#the-om-data-model">The OM Data Model</a><ul>
@@ -502,7 +521,7 @@
 </ul>
 <!-- Lecture 1 Slides End -->
 <!-- Lecture 1 Notes End -->
-<h1 id="general-topis-for-dbs">General Topis for DB's</h1>
+<h1 id="general-topics-for-dbs">General Topics for DB's</h1>
 <p>[Prepared Statement]</p>
 <h2 id="crud-and-acid">CRUD and ACID</h2>
 <ul>
@@ -2009,6 +2028,190 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- End Slides/Notes Week 5 ? -->
+<!-- Start Slides Week 12 -->
+<h1 id="indexing">Indexing</h1>
+<h2 id="type-hierarchy-indexing">Type Hierarchy Indexing</h2>
+<h3 id="single-class-index-sc-index">Single Class Index (SC-Index)</h3>
+<ul>
+<li>Index construction for attribute of a type <em>t</em><ul>
+<li>incorporate only direct instances of a particular type in index</li>
+<li>construct search structure for all types in sub-hierarchy of t</li>
+<li>search data structres (called SC-Index components)</li>
+<li>Evaluator needs to traverse all components referenced by query</li>
+</ul>
+</li>
+<li>Usually implemented using <span class="math">\(B^+\)</span>-trees</li>
+</ul>
+<blockquote>
+<p>Good for querying full extent</p>
+</blockquote>
+<h3 id="class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</h3>
+<ul>
+<li>One search structure for all objects of all types of indexed hierarchy</li>
+<li>One index on the common attribute for all classes of a iheritance graph</li>
+<li>Leaf node consists of<ul>
+<li>key-value</li>
+<li>key directory<ul>
+<li>contains an entry for each class that has instances with the key-value in the indexed attribute</li>
+<li>entry for a class consist of class identifier and offset fo list of OIDs in index record</li>
+</ul>
+</li>
+<li>number of elements in list of OIDs (for each class in the inheritance graph)</li>
+<li>list of OIDs</li>
+</ul>
+</li>
+<li>Evaluator scans through <span class="math">\(B^+\)</span>-tree once<ul>
+<li>selects OIDs f types referenced by query</li>
+<li>discards other OIDs</li>
+</ul>
+</li>
+<li>Point queries perform good</li>
+<li>Range queries depend on number of referenced types<ul>
+<li>good when queries aim at indexed type and all subtypes</li>
+<li>bad if only few types of indexed hierarchy hit by query</li>
+</ul>
+</li>
+<li>Key-grouping structure</li>
+</ul>
+<blockquote>
+<p>Good for querying extent (not full extent)</p>
+</blockquote>
+<h3 id="h-tree">H-Tree</h3>
+<ul>
+<li>Set of nested <span class="math">\(B^+\)</span>-trees</li>
+<li>Combining class hierarchy with SC-Index</li>
+<li>Nesting reflects indexed type hierarchy<ul>
+<li>each H-tree component is nested with H-trees of immediate subtypes</li>
+<li>H-tree index for attribute of inheritance sub-graph is H-tree hierarchy nested according to supertype-subtype relation</li>
+</ul>
+</li>
+<li>Avoids full scans of each B-tree component when several types queried</li>
+<li>Single type lookup: don't search nested trees</li>
+<li>
+<p>Type hierarchy lookup: traverse nested trees</p>
+</li>
+<li>
+<p>Type-grouping structure</p>
+</li>
+</ul>
+<h3 id="class-division-index-cd-index">Class Division Index (CD-Index)</h3>
+<ul>
+<li>Compromise between<ul>
+<li>indexing for each type</li>
+<li>indexing extent for each type</li>
+</ul>
+</li>
+<li>Specific family of type sets for indexed hierarchy</li>
+<li>Combine parts of subtype hierarchies to use one index structure</li>
+<li>Each typeset managed with search data structure</li>
+<li>Parameters <em>q</em> and <em>r</em> give bounds<ul>
+<li><em>q</em>: number of structures needed to build a type extent</li>
+<li><em>r</em>: number of times a type set is managed redundantly or replicated</li>
+</ul>
+</li>
+</ul>
+<h3 id="multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</h3>
+<ul>
+<li>Compromise between<ul>
+<li>type grouping</li>
+<li>key grouping</li>
+</ul>
+</li>
+<li>Type membership as additional object attribute<ul>
+<li>symmetrical indexing of object types and attributes</li>
+<li>indexing of more than one attribute with single search structure</li>
+</ul>
+</li>
+</ul>
+<h3 id="overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</h3>
+<ul>
+<li>Classes: <code>Person :&gt; Student</code></li>
+<li>Extent: all objects of a given class (without subclasses)</li>
+<li>Full Extent: all objects of a given class and it's subclasses</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full-Extent</td>
+<td>Person</td>
+<td>Rel. DBs, SC-Index, (H-Index)</td>
+</tr>
+<tr>
+<td>Extent</td>
+<td>Person</td>
+<td>CH-Index, H-Index</td>
+</tr>
+<tr>
+<td>Extnet</td>
+<td>Student</td>
+<td>CH-Index, H-Index</td>
+</tr>
+<tr>
+<td>comb(Extent, Full-Extent)</td>
+<td>...</td>
+<td>MT-Index, CD-Index, (H-Index)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="aggregation-path-indexing">Aggregation Path Indexing</h2>
+<ul>
+<li>Backward queries<ul>
+<li>without full object tree traverses</li>
+</ul>
+</li>
+<li>Forward queries<ul>
+<li>without retrieving intermedia objects</li>
+</ul>
+</li>
+</ul>
+<h3 id="nested-index">Nested Index</h3>
+<ul>
+<li>Direct association between<ul>
+<li>an <em>ending</em> object and</li>
+<li>corresponding starting objects along a path</li>
+</ul>
+</li>
+</ul>
+<h3 id="path-index">Path Index</h3>
+<ul>
+<li>Records all subpaths leading to an ending object</li>
+<li>Predicates can be evaluated on all classes along the path</li>
+</ul>
+<h3 id="multi-index-8mx9">Multi-Index 8MX9</h3>
+<ul>
+<li>Divide path (of arbritrary length) into sub-paths<ul>
+<li>sub-paths have length <em>1</em></li>
+<li>index maintained over sub-paths</li>
+</ul>
+</li>
+<li>Query evaluation<ul>
+<li>concatenating <em>n</em> index edges requires <em>n</em> index scans</li>
+<li>supports backward traversals and queries</li>
+<li><em>no</em> forward traversals and queries</li>
+</ul>
+</li>
+<li>Each index enty is represented as a pair<ol>
+<li>A key-value</li>
+<li>set of OIDs of objects holding this key-value (for indexed attribute)</li>
+</ol>
+</li>
+</ul>
+<h3 id="overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</h3>
+<ul>
+<li>Nested Index and Path Index implemented using<ul>
+<li>trees or</li>
+<li>hash tables</li>
+</ul>
+</li>
+</ul>
+<!-- End Slides Week 12 -->
 <!-- Start Slides Week 13 -->
 <h1 id="the-om-data-model">The OM Data Model</h1>
 <ul>
@@ -2086,6 +2289,63 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- TODO slides week 13 p.7 -->
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
