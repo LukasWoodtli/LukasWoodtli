@@ -260,7 +260,7 @@
 <li><a href="#aggregation-path-indexing">Aggregation Path Indexing</a><ul>
 <li><a href="#nested-index">Nested Index</a></li>
 <li><a href="#path-index">Path Index</a></li>
-<li><a href="#multi-index-8mx9">Multi-Index 8MX9</a></li>
+<li><a href="#multi-index-mx">Multi-Index (MX)</a></li>
 <li><a href="#overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</a></li>
 </ul>
 </li>
@@ -2030,6 +2030,24 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <!-- End Slides/Notes Week 5 ? -->
 <!-- Start Slides Week 12 -->
 <h1 id="indexing">Indexing</h1>
+<p>Make OODBs faster and more performant</p>
+<ul>
+<li>Compare OOP model to Relational model</li>
+</ul>
+<p>Main differences bewteen OOP and Relational model:</p>
+<ol>
+<li>inheritance (is-a)</li>
+<li>multitype attributes (sets, collections)</li>
+<li>dereferencing a path of pointers/references (traversing the object graph)</li>
+</ol>
+<p>Different approaches to:</p>
+<ul>
+<li>Mapping (ORM)</li>
+<li>Physically represent data differently (eg. Objectivity)</li>
+<li>Use additional (meta-) data but keep the representation of the data</li>
+<li>Group record: pages, clusters ...</li>
+</ul>
+<!-- TODO Cont week 12 0:15:00 -->
 <h2 id="type-hierarchy-indexing">Type Hierarchy Indexing</h2>
 <h3 id="single-class-index-sc-index">Single Class Index (SC-Index)</h3>
 <ul>
@@ -2184,7 +2202,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Records all subpaths leading to an ending object</li>
 <li>Predicates can be evaluated on all classes along the path</li>
 </ul>
-<h3 id="multi-index-8mx9">Multi-Index 8MX9</h3>
+<h3 id="multi-index-mx">Multi-Index (MX)</h3>
 <ul>
 <li>Divide path (of arbritrary length) into sub-paths<ul>
 <li>sub-paths have length <em>1</em></li>
@@ -2211,6 +2229,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
+<!-- TODO -->
 <!-- End Slides Week 12 -->
 <!-- Start Slides Week 13 -->
 <h1 id="the-om-data-model">The OM Data Model</h1>
