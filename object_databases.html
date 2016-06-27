@@ -249,6 +249,7 @@
 </li>
 <li><a href="#indexing">Indexing</a><ul>
 <li><a href="#type-hierarchy-indexing">Type Hierarchy Indexing</a><ul>
+<li><a href="#extent-and-full-extent">Extent and Full Extent</a></li>
 <li><a href="#single-class-index-sc-index">Single Class Index (SC-Index)</a></li>
 <li><a href="#class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</a></li>
 <li><a href="#h-tree">H-Tree</a></li>
@@ -2037,18 +2038,33 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <p>Main differences bewteen OOP and Relational model:</p>
 <ol>
 <li>inheritance (is-a)</li>
-<li>multitype attributes (sets, collections)</li>
+<li>multitype attributes (sets, collections)<ul>
+<li>First normal form in Relational Databases disallows mutlivalued attribues (collections) in a field</li>
+</ul>
+</li>
 <li>dereferencing a path of pointers/references (traversing the object graph)</li>
 </ol>
+<blockquote>
+<p>OODB systems can be faster when using additional information that a RDBMSs doesn't have</p>
+</blockquote>
 <p>Different approaches to:</p>
 <ul>
 <li>Mapping (ORM)</li>
 <li>Physically represent data differently (eg. Objectivity)</li>
-<li>Use additional (meta-) data but keep the representation of the data</li>
+<li>Use additional (meta-) data but keep the representation of the data<ul>
+<li>secundary datastructures</li>
+<li>index structures</li>
+</ul>
+</li>
 <li>Group record: pages, clusters ...</li>
 </ul>
-<!-- TODO Cont week 12 0:15:00 -->
 <h2 id="type-hierarchy-indexing">Type Hierarchy Indexing</h2>
+<h3 id="extent-and-full-extent">Extent and Full Extent</h3>
+<ul>
+<li>Extent: all objects of a given class (without subclasses)</li>
+<li>Full Extent: all objects of a given class and it's subclasses</li>
+</ul>
+<p>-<!-- TODO Cont week 12 0:30:00 --></p>
 <h3 id="single-class-index-sc-index">Single Class Index (SC-Index)</h3>
 <ul>
 <li>Index construction for attribute of a type <em>t</em><ul>
@@ -2144,8 +2160,6 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <h3 id="overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</h3>
 <ul>
 <li>Classes: <code>Person :&gt; Student</code></li>
-<li>Extent: all objects of a given class (without subclasses)</li>
-<li>Full Extent: all objects of a given class and it's subclasses</li>
 </ul>
 <table class="table table-hover table-striped">
 <thead>
