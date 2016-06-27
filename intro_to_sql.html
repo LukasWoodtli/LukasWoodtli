@@ -202,18 +202,16 @@ The combination is based on a common field between them.</p>
 </li>
 </ul>
 </li>
-<li>
-<p>How many animals eat fisch?</p>
-<p>:::sql
-SELECT
-  animals.name,
-  animals.species,
-  diet.food
-FROM animals JOIN diet
-ON animal.species = diet.species
-WHERE food = 'fish';</p>
-</li>
 </ul>
+<p>Example: Which animals eat fisch?</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+  <span class="n">animals</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+  <span class="n">animals</span><span class="p">.</span><span class="n">species</span><span class="p">,</span>
+  <span class="n">diet</span><span class="p">.</span><span class="n">food</span>
+<span class="k">FROM</span> <span class="n">animals</span> <span class="k">JOIN</span> <span class="n">diet</span>
+<span class="k">ON</span> <span class="n">animal</span><span class="p">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">diet</span><span class="p">.</span><span class="n">species</span>
+<span class="k">WHERE</span> <span class="n">food</span> <span class="o">=</span> <span class="s1">'fish'</span><span class="p">;</span>
+</pre></div>
 <h1 id="unique-keys">Unique Keys</h1>
 <ul>
 <li>Primary keys used to identify an entry (row) in a table</li>
@@ -235,12 +233,13 @@ WHERE food = 'fish';</p>
 <li>columns: which columns to sort by. Seperated by comas.</li>
 <li>DESC: sort in reverse order (descending).</li>
 </ul>
-<p>:::sql
-SELECT name, birthday FROM animals WHERE species = 'gorilla' AND name = 'Max';</p>
 </li>
-<li>
-<p><code>SELECT</code>: selects <em>colums</em></p>
-</li>
+</ul>
+<p>Select example:
+    :::sql
+    SELECT name, birthday FROM animals WHERE species = 'gorilla' AND name = 'Max';</p>
+<ul>
+<li><code>SELECT</code>: selects <em>colums</em></li>
 <li><code>FROM</code>: table to select from</li>
 <li><code>WHERE</code>: row restriction</li>
 </ul>
