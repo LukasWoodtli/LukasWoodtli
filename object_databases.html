@@ -247,6 +247,25 @@
 <li><a href="#object-instantiation">Object Instantiation</a></li>
 </ul>
 </li>
+<li><a href="#graph-databases">Graph Databases</a><ul>
+<li><a href="#social-network-analysis">Social Network Analysis</a></li>
+<li><a href="#graphs">Graphs</a><ul>
+<li><a href="#graph-metrics">Graph Metrics</a><ul>
+<li><a href="#path-lengths">Path Lengths</a></li>
+<li><a href="#node-properties">Node Properties</a></li>
+<li><a href="#network-structure-properties">Network Structure Properties</a></li>
+</ul>
+</li>
+<li><a href="#general-model">General Model</a></li>
+</ul>
+</li>
+<li><a href="#graph-database-implementations">Graph Database Implementations</a><ul>
+<li><a href="#infinitegraph-objectivity">InfiniteGraph (Objectivity)</a></li>
+<li><a href="#neo4j">Neo4j</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#indexing">Indexing</a><ul>
 <li><a href="#type-hierarchy-indexing">Type Hierarchy Indexing</a><ul>
 <li><a href="#key-vs-type-grouping">Key- vs Type-Grouping</a></li>
@@ -2036,6 +2055,204 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- End Slides/Notes Week 5 ? -->
+<!-- Start Slides/Notes Week 10 -->
+<h1 id="graph-databases">Graph Databases</h1>
+<ul>
+<li>Domain specific solution<ul>
+<li>for a group of problems</li>
+<li>a kind of solution for a kind of problems</li>
+</ul>
+</li>
+<li>Technology models (describe the world):<ol>
+<li>Key-Value Map</li>
+<li>Relational Model</li>
+<li>OO Model
+- Mapping between models
+- There is no generig model for all domains</li>
+</ol>
+</li>
+</ul>
+<h2 id="social-network-analysis">Social Network Analysis</h2>
+<ul>
+<li>People are connected to each other</li>
+<li>Networks may be represented as graphs<ul>
+<li>Nodes: peoples</li>
+<li>Edges: relationships</li>
+</ul>
+</li>
+<li><a href="http://www.orgnet.com/sna.html">Social Network Analysis</a> to gather information</li>
+</ul>
+<h2 id="graphs">Graphs</h2>
+<ul>
+<li>Nodes and Edges may have attributes<ul>
+<li>Often key-value pairs</li>
+</ul>
+</li>
+<li>Graph algorithms can compute different values</li>
+<li>Connections vary:<ul>
+<li>Uni- / Bidirectional connections</li>
+<li>Nodes with single / multiple connections</li>
+<li>Multiple connections with different attribute</li>
+<li>Explicit / implicit connections</li>
+<li>Transient / long lasting connections</li>
+<li>One-time / repeated connections<ul>
+<li>regular / irregular connections</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="graph-metrics">Graph Metrics</h3>
+<h4 id="path-lengths">Path Lengths</h4>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar's number</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Erd%C5%91s_number">Erdős number</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon">Bacon’s number</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Small-world_experiment">Small world phenomenon</a></li>
+</ul>
+<h4 id="node-properties">Node Properties</h4>
+<ul>
+<li>Degree Centrality<ul>
+<li>The number of direct connections a node has</li>
+</ul>
+</li>
+<li>Betweenness Centrality (Bridge)<ul>
+<li>A node is <em>between</em> two important nodes</li>
+<li>has great influence what flows in the network</li>
+</ul>
+</li>
+<li>Closeness Centrality<ul>
+<li>A node has the shortest path to all others</li>
+<li>good position to monitor information flow in network</li>
+</ul>
+</li>
+</ul>
+<h4 id="network-structure-properties">Network Structure Properties</h4>
+<ul>
+<li>Network Centralisation<ul>
+<li>Dominated by one or few nodes</li>
+<li>(single) point of failure</li>
+</ul>
+</li>
+<li>Density/Cohesion<ul>
+<li>Proposition of direct connections relative to all possible connections</li>
+</ul>
+</li>
+<li>Distance (Small World)<ul>
+<li>Minimum numbers of edges needed to connect two particular nodes</li>
+</ul>
+</li>
+<li>Clustering Coefficients<ul>
+<li>Likelyhood that two associates of a node are also associates to each other</li>
+<li>'cliquishness'</li>
+</ul>
+</li>
+</ul>
+<h3 id="general-model">General Model</h3>
+<ul>
+<li>Common representation</li>
+<li>Uniform graph representation<ul>
+<li>needed to apply algorithms</li>
+</ul>
+</li>
+<li>Always <em>2</em> core <em>identities</em> connected by <em>action</em></li>
+<li>e.g.<ul>
+<li>connect 2 authors that worked on same publication</li>
+<li>or connect publications that have the same autor</li>
+</ul>
+</li>
+</ul>
+<h2 id="graph-database-implementations">Graph Database Implementations</h2>
+<ul>
+<li>API</li>
+<li>Support for CRUD</li>
+<li>High-level operations for graph traversals</li>
+<li>Somtimes graph algorithms part of DB</li>
+<li>ACID</li>
+<li>Scalable</li>
+<li>Examples:<ul>
+<li>Objectivity InfiniteGraph</li>
+<li>Neo4j</li>
+<li>OrientDB</li>
+</ul>
+</li>
+</ul>
+<h3 id="infinitegraph-objectivity">InfiniteGraph (Objectivity)</h3>
+<ul>
+<li>Graph library on top of Objectivity/DB</li>
+<li>Distributed graph DB</li>
+<li>Classes for Vertex and Edge are predefined and persistent capable</li>
+<li>DB API extended with graph methods</li>
+<li>Traversing/Querying the graph: Navigator Engine<ol>
+<li>Put the current path from here</li>
+<li>Follow path from here</li>
+<li>if yes: which path to follow
+- not declaritive
+- interface to implement
+- some predefined queries available</li>
+</ol>
+</li>
+</ul>
+<h3 id="neo4j">Neo4j</h3>
+<ul>
+<li><a href="https://neo4j.com/">Open Source DB</a> for Java</li>
+<li>Distinction between marking transaction and finishing (committing)</li>
+<li>Only generic node class available<ul>
+<li>set properties as key-values (<code>setProperty(...)</code>)</li>
+</ul>
+</li>
+<li>Graph Traversal<ul>
+<li>using <a href="https://en.wikipedia.org/wiki/Fluent_interface">fluent interface</a> (chaining method calls)</li>
+<li>Provides special methods for<ul>
+<li>breadth first, depth first</li>
+<li>evaluator</li>
+<li>relationships</li>
+<li>...</li>
+</ul>
+</li>
+<li>all these methods return a <code>TraversalDescription</code> object, supports chaining</li>
+<li>evaluator looks at a Path object<ul>
+<li>decides if it should be in the result</li>
+<li>decides if the traverser should continue actual path</li>
+<li>Method to be implemented: <code>Evaluation evaluate(Path path)</code></li>
+<li>return value:<ul>
+<li><code>EXCLUDE_AND_CONTINUE</code></li>
+<li><code>EXCLUDE_AND_PRUNE</code></li>
+<li><code>INCLUDE_AND_CONTINUE</code></li>
+<li><code>INCLUDE_AND_PRUNE</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Graph algorithms<ul>
+<li>find all paths between two nodes</li>
+<li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijktra-based cheapest path</a></li>
+<li>Paths with given length</li>
+<li>Shortest paths</li>
+</ul>
+</li>
+<li>REST API<ul>
+<li>Management (CRUD) of nodes and edges<ul>
+<li>GET/POST</li>
+<li>JSON in-/output</li>
+</ul>
+</li>
+<li>Graph traversals</li>
+<li>Graph algorithms</li>
+</ul>
+</li>
+<li>Query language: Cypher<ul>
+<li>Declarative</li>
+<li>pattern matching</li>
+<li>supports update operations</li>
+<li>ASCII art</li>
+<li><a href="http://console.neo4j.org/">try it online</a></li>
+</ul>
+</li>
+</ul>
+<!-- End Slides/Notes Week 10 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing">Indexing</h1>
 <p>Make OODBs faster and more performant</p>
@@ -2187,7 +2404,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>indexing of more than one attribute with single search structure</li>
 </ul>
 </li>
-<li>Linearization </li>
+<li>Linearization</li>
 </ul>
 <h3 id="overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</h3>
 <ul>
