@@ -249,6 +249,7 @@
 </li>
 <li><a href="#indexing">Indexing</a><ul>
 <li><a href="#type-hierarchy-indexing">Type Hierarchy Indexing</a><ul>
+<li><a href="#key-vs-type-grouping">Key- vs Type-Grouping</a></li>
 <li><a href="#extent-and-full-extent">Extent and Full Extent</a></li>
 <li><a href="#single-class-index-sc-index">Single Class Index (SC-Index)</a></li>
 <li><a href="#class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</a></li>
@@ -259,10 +260,16 @@
 </ul>
 </li>
 <li><a href="#aggregation-path-indexing">Aggregation Path Indexing</a><ul>
-<li><a href="#nested-index">Nested Index</a></li>
-<li><a href="#path-index">Path Index</a></li>
+<li><a href="#nested-index-nx">Nested Index (NX)</a></li>
+<li><a href="#path-index-px">Path Index (PX)</a></li>
+<li><a href="#join-index-jx">Join-Index (JX)</a></li>
 <li><a href="#multi-index-mx">Multi-Index (MX)</a></li>
+<li><a href="#access-support-relations-asr">Access Support Relations (ASR)</a></li>
 <li><a href="#overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</a></li>
+</ul>
+</li>
+<li><a href="#collection-operations">Collection Operations</a><ul>
+<li><a href="#signature-files">Signature Files</a></li>
 </ul>
 </li>
 </ul>
@@ -2029,7 +2036,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- End Slides/Notes Week 5 ? -->
-<!-- Start Slides Week 12 -->
+<!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing">Indexing</h1>
 <p>Make OODBs faster and more performant</p>
 <ul>
@@ -2059,12 +2066,25 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Group record: pages, clusters ...</li>
 </ul>
 <h2 id="type-hierarchy-indexing">Type Hierarchy Indexing</h2>
+<h3 id="key-vs-type-grouping">Key- vs Type-Grouping</h3>
+<ul>
+<li>Key-Grouping<ul>
+<li>build index along the actual attribute value</li>
+<li>as <span class="math">\(B^+\)</span>-trees</li>
+<li>additional information about typing and subtiping in the leafs</li>
+</ul>
+</li>
+<li>Type-Grouping<ul>
+<li>index built along typing information</li>
+<li>values are sencondary datastructure</li>
+</ul>
+</li>
+</ul>
 <h3 id="extent-and-full-extent">Extent and Full Extent</h3>
 <ul>
 <li>Extent: all objects of a given class (without subclasses)</li>
 <li>Full Extent: all objects of a given class and it's subclasses</li>
 </ul>
-<p>-<!-- TODO Cont week 12 0:30:00 --></p>
 <h3 id="single-class-index-sc-index">Single Class Index (SC-Index)</h3>
 <ul>
 <li>Index construction for attribute of a type <em>t</em><ul>
@@ -2136,16 +2156,27 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Specific family of type sets for indexed hierarchy</li>
-<li>Combine parts of subtype hierarchies to use one index structure</li>
+<li>Look at all possible combinations of full extends for all types</li>
+<li>Combine parts of subtype hierarchies to use one index structure (like SC-index)</li>
 <li>Each typeset managed with search data structure</li>
 <li>Parameters <em>q</em> and <em>r</em> give bounds<ul>
-<li><em>q</em>: number of structures needed to build a type extent</li>
+<li><em>q</em>: number of index structures needed to build a type extent</li>
 <li><em>r</em>: number of times a type set is managed redundantly or replicated</li>
+</ul>
+</li>
+<li>Multiple index structures need to be accessed for a querry<ul>
+<li>trade-off between:<ul>
+<li>number of index structures to access for a query</li>
+<li>number of index structures to maintain</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <h3 id="multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</h3>
 <ul>
+<li>Mutli-Dimensional indexing</li>
+<li>Type information as additional attribute available</li>
 <li>Compromise between<ul>
 <li>type grouping</li>
 <li>key grouping</li>
@@ -2156,6 +2187,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>indexing of more than one attribute with single search structure</li>
 </ul>
 </li>
+<li>Linearization </li>
 </ul>
 <h3 id="overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</h3>
 <ul>
@@ -2181,7 +2213,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <td>CH-Index, H-Index</td>
 </tr>
 <tr>
-<td>Extnet</td>
+<td>Extent</td>
 <td>Student</td>
 <td>CH-Index, H-Index</td>
 </tr>
@@ -2189,6 +2221,54 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <td>comb(Extent, Full-Extent)</td>
 <td>...</td>
 <td>MT-Index, CD-Index, (H-Index)</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Index Structure</th>
+<th>Extent</th>
+<th>Full Extent</th>
+<th>Combination (Extent, Full Extent)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relational DBs</td>
+<td>x</td>
+<td>Person</td>
+<td>x</td>
+</tr>
+<tr>
+<td>SC-Index</td>
+<td>x</td>
+<td>Person</td>
+<td>x</td>
+</tr>
+<tr>
+<td>CH-Index</td>
+<td>Person, Student</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>H-Index</td>
+<td>Person, Student</td>
+<td>(Person)</td>
+<td>('any')</td>
+</tr>
+<tr>
+<td>CD-Index</td>
+<td>x</td>
+<td>x</td>
+<td>'any'</td>
+</tr>
+<tr>
+<td>MT-Index</td>
+<td>x</td>
+<td>x</td>
+<td>'any'</td>
 </tr>
 </tbody>
 </table>
@@ -2203,21 +2283,33 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h3 id="nested-index">Nested Index</h3>
+<h3 id="nested-index-nx">Nested Index (NX)</h3>
 <ul>
 <li>Direct association between<ul>
 <li>an <em>ending</em> object and</li>
 <li>corresponding starting objects along a path</li>
 </ul>
 </li>
+<li>Bypassing intermediate objects</li>
+<li>Only allows backwards traversels of full path</li>
+<li>Equivalent to backward traversal in ASR canonical</li>
+<li>A Nested Index <em>NX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to a Multi-Index <em>MX(P)</em> for the same path</li>
 </ul>
-<h3 id="path-index">Path Index</h3>
+<h3 id="path-index-px">Path Index (PX)</h3>
 <ul>
 <li>Records all subpaths leading to an ending object</li>
 <li>Predicates can be evaluated on all classes along the path</li>
+<li>Equivalent to backwards traversal of right-complete ASR</li>
+<li>A Path-Index <em>PX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to Multi-Index <em>MX(P)</em> an a Nested Index <em>NX(P)</em> for the same path</li>
+</ul>
+<h3 id="join-index-jx">Join-Index (JX)</h3>
+<ul>
+<li>Originally for optimization of <em>joins</em> in Relational DBs</li>
+<li>Consists of a set of binary join indices (Slides p. 33)</li>
 </ul>
 <h3 id="multi-index-mx">Multi-Index (MX)</h3>
 <ul>
+<li>Like Join-Indexes in Relational DBs</li>
 <li>Divide path (of arbritrary length) into sub-paths<ul>
 <li>sub-paths have length <em>1</em></li>
 <li>index maintained over sub-paths</li>
@@ -2235,6 +2327,23 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ol>
 </li>
 </ul>
+<h3 id="access-support-relations-asr">Access Support Relations (ASR)</h3>
+<ul>
+<li>Given a path create <em>4</em> index structures that support all desired queries (Nested Index, Path Index, Multi-Index)<ol>
+<li>Canonical representation</li>
+<li>Full representation</li>
+<li>Left representation</li>
+<li>Right representation
+- Related to Relational DB Joins: canonical is like regular join in SQL</li>
+</ol>
+</li>
+<li>ASR Compositions Index Graph<ul>
+<li>Queries that do not traverse the path at either endpoint can't be answered efficiently</li>
+<li>Aggregation path can be split in sub-paths (partitions)</li>
+<li>Set of partions: decompositions of an ASR</li>
+</ul>
+</li>
+</ul>
 <h3 id="overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</h3>
 <ul>
 <li>Nested Index and Path Index implemented using<ul>
@@ -2243,8 +2352,26 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<!-- TODO -->
-<!-- End Slides Week 12 -->
+<h2 id="collection-operations">Collection Operations</h2>
+<ul>
+<li>For: sets, bags, lists, arrays</li>
+<li>new modelling features, enhanced expressiveness</li>
+<li>increased complexity of indexing and query optimisation</li>
+<li>OQL provides constructors and operators for collections</li>
+</ul>
+<h3 id="signature-files">Signature Files</h3>
+<ul>
+<li>Index construction for a multi-valued property of a type</li>
+<li>Query over multi-valued properties</li>
+<li>Compute signatures for attribute values, elements ...</li>
+<li>Use mathematical operation<ul>
+<li>Super-set, sub-set ...</li>
+<li>'actual drop': true positive</li>
+<li>'false drop': false positive</li>
+</ul>
+</li>
+</ul>
+<!-- End Slides/Notes Week 12 -->
 <!-- Start Slides Week 13 -->
 <h1 id="the-om-data-model">The OM Data Model</h1>
 <ul>
