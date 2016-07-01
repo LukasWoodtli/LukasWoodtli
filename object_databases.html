@@ -2066,11 +2066,11 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Technology models (describe the world):<ol>
 <li>Key-Value Map</li>
 <li>Relational Model</li>
-<li>OO Model
-- Mapping between models
-- There is no generig model for all domains</li>
+<li>OO Model</li>
 </ol>
 </li>
+<li>Mapping between models</li>
+<li>There is no generig model for all domains</li>
 </ul>
 <h2 id="social-network-analysis">Social Network Analysis</h2>
 <ul>
@@ -2186,11 +2186,14 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Traversing/Querying the graph: Navigator Engine<ol>
 <li>Put the current path from here</li>
 <li>Follow path from here</li>
-<li>if yes: which path to follow
-- not declaritive
-- interface to implement
-- some predefined queries available</li>
+<li>if yes: which path to follow</li>
 </ol>
+</li>
+<li>Properties of the Navigator Engine<ul>
+<li>not declaritive</li>
+<li>interfaces to implement</li>
+<li>some predefined queries available</li>
+</ul>
 </li>
 </ul>
 <h3 id="neo4j">Neo4j</h3>
@@ -2201,12 +2204,14 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>set properties as key-values (<code>setProperty(...)</code>)</li>
 </ul>
 </li>
-<li>Graph Traversal<ul>
+<li>
+<p>Graph Traversal</p>
+<ul>
 <li>using <a href="https://en.wikipedia.org/wiki/Fluent_interface">fluent interface</a> (chaining method calls)</li>
 <li>Provides special methods for<ul>
-<li>breadth first, depth first</li>
-<li>evaluator</li>
-<li>relationships</li>
+<li><code>breadthFirst()</code>, <code>depthFirst()</code></li>
+<li><code>evaluator(Evaluator)</code></li>
+<li><code>relationships(RelationShipType, Direction)</code></li>
 <li>...</li>
 </ul>
 </li>
@@ -2226,7 +2231,9 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 </li>
-<li>Graph algorithms<ul>
+<li>
+<p>Graph algorithms</p>
+<ul>
 <li>find all paths between two nodes</li>
 <li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijktra-based cheapest path</a></li>
 <li>Paths with given length</li>
@@ -2307,11 +2314,12 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Index construction for attribute of a type <em>t</em><ul>
 <li>incorporate only direct instances of a particular type in index</li>
 <li>construct search structure for all types in sub-hierarchy of t</li>
-<li>search data structres (called SC-Index components)</li>
+<li>search data structres (called <em>SC-Index components</em>)</li>
 <li>Evaluator needs to traverse all components referenced by query</li>
 </ul>
 </li>
 <li>Usually implemented using <span class="math">\(B^+\)</span>-trees</li>
+<li>Type-Grouping</li>
 </ul>
 <blockquote>
 <p>Good for querying full extent</p>
@@ -2389,6 +2397,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 </li>
+<li>Type-grouping structure</li>
 </ul>
 <h3 id="multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</h3>
 <ul>
@@ -2405,6 +2414,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Linearization</li>
+<li>Key-grouping structure (type is handled as an attribute)</li>
 </ul>
 <h3 id="overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</h3>
 <ul>
@@ -2511,14 +2521,18 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Only allows backwards traversels of full path</li>
 <li>Equivalent to backward traversal in ASR canonical</li>
 <li>A Nested Index <em>NX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to a Multi-Index <em>MX(P)</em> for the same path</li>
+<li>Updating index structure is expensive</li>
 </ul>
+<p><img alt="Nested Index" class="img-responsive" src="/images/object_databases/nested_index.png"/></p>
 <h3 id="path-index-px">Path Index (PX)</h3>
 <ul>
 <li>Records all subpaths leading to an ending object</li>
 <li>Predicates can be evaluated on all classes along the path</li>
 <li>Equivalent to backwards traversal of right-complete ASR</li>
 <li>A Path-Index <em>PX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to Multi-Index <em>MX(P)</em> an a Nested Index <em>NX(P)</em> for the same path</li>
+<li>Updating index structure better than with <em>NX</em></li>
 </ul>
+<p><img alt="Path Index" class="img-responsive" src="/images/object_databases/path_index.png"/></p>
 <h3 id="join-index-jx">Join-Index (JX)</h3>
 <ul>
 <li>Originally for optimization of <em>joins</em> in Relational DBs</li>
@@ -2543,7 +2557,10 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>set of OIDs of objects holding this key-value (for indexed attribute)</li>
 </ol>
 </li>
+<li>Updates cheap</li>
+<li>Complex queries expensive (hop over nodes)</li>
 </ul>
+<p><img alt="Multi Index" class="img-responsive" src="/images/object_databases/multi_index.png"/></p>
 <h3 id="access-support-relations-asr">Access Support Relations (ASR)</h3>
 <ul>
 <li>Given a path create <em>4</em> index structures that support all desired queries (Nested Index, Path Index, Multi-Index)<ol>
