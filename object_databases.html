@@ -262,7 +262,7 @@
 <li><a href="#graph-database-implementations">Graph Database Implementations</a><ul>
 <li><a href="#infinitegraph-objectivity">InfiniteGraph (Objectivity)</a></li>
 <li><a href="#neo4j">Neo4j</a></li>
-<li><a href="#comparison-infinitegraph-and-neo4j">Comparison InfiniteGraph and Neo4j</a></li>
+<li><a href="#comparison-between-infinitegraph-and-neo4j">Comparison between InfiniteGraph and Neo4j</a></li>
 </ul>
 </li>
 </ul>
@@ -2230,7 +2230,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Put node/path in result?</li>
 </ul>
 </li>
-<li><code>relationships(RelationShipType, Direction)</code></li>
+<li>Relationships to follow (<code>relationships(RelationShipType, Direction)</code>)</li>
 </ul>
 </li>
 <li>all these methods return a <code>TraversalDescription</code> object, supports chaining</li>
@@ -2279,7 +2279,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h3 id="comparison-infinitegraph-and-neo4j">Comparison InfiniteGraph and Neo4j</h3>
+<h3 id="comparison-between-infinitegraph-and-neo4j">Comparison between InfiniteGraph and Neo4j</h3>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -2289,7 +2289,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </thead>
 <tbody>
 <tr>
-<td>NO database orthogonality</td>
+<td><em>no</em> database orthogonality</td>
 <td>partly datatype orthogonality (<code>RelationshipTypes</code> need to be implemented)</td>
 </tr>
 <tr>
@@ -2313,12 +2313,12 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <td>Some graph algorithms included</td>
 </tr>
 <tr>
-<td>REST API: CRUD, JSON, algorithms</td>
 <td></td>
+<td>REST API: CRUD, JSON, algorithms</td>
 </tr>
 <tr>
-<td>Cyper: ASCII Art, declarative query language</td>
 <td></td>
+<td>Cyper: ASCII Art, declarative query language</td>
 </tr>
 </tbody>
 </table>
