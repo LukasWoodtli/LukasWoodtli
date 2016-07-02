@@ -262,6 +262,7 @@
 <li><a href="#graph-database-implementations">Graph Database Implementations</a><ul>
 <li><a href="#infinitegraph-objectivity">InfiniteGraph (Objectivity)</a></li>
 <li><a href="#neo4j">Neo4j</a></li>
+<li><a href="#comparison-infinitegraph-and-neo4j">Comparison InfiniteGraph and Neo4j</a></li>
 </ul>
 </li>
 </ul>
@@ -2181,13 +2182,24 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>Graph library on top of Objectivity/DB</li>
 <li>Distributed graph DB</li>
-<li>Classes for Vertex and Edge are predefined and persistent capable</li>
+<li>Classes for Vertex and Edge are predefined and persistent capable<ul>
+<li><code>BaseVertex</code></li>
+<li><code>BaseEdge</code></li>
+</ul>
+</li>
 <li>DB API extended with graph methods</li>
 <li>Traversing/Querying the graph: Navigator Engine<ol>
 <li>Put the current path from here</li>
 <li>Follow path from here</li>
 <li>if yes: which path to follow</li>
 </ol>
+</li>
+<li>Interfaces for Navigator Engine<ul>
+<li>Path Guide (path to go next)</li>
+<li>Path Qualifier (terminate current path?)</li>
+<li>Result Qualifier (put path in result set?)</li>
+<li>Result handler is called after navigation on result set</li>
+</ul>
 </li>
 <li>Properties of the Navigator Engine<ul>
 <li>not declaritive</li>
@@ -2201,18 +2213,24 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li><a href="https://neo4j.com/">Open Source DB</a> for Java</li>
 <li>Distinction between marking transaction and finishing (committing)</li>
 <li>Only generic node class available<ul>
+<li>Generic Node (<code>GraphDatabaseService.createNode()</code>)</li>
+<li>Generic Edge (<code>Node.createRelationshipTo(...)</code>)</li>
 <li>set properties as key-values (<code>setProperty(...)</code>)</li>
 </ul>
 </li>
+<li>Generic nodes can be integrated into Java classes (different use of nodes)</li>
 <li>
 <p>Graph Traversal</p>
 <ul>
 <li>using <a href="https://en.wikipedia.org/wiki/Fluent_interface">fluent interface</a> (chaining method calls)</li>
 <li>Provides special methods for<ul>
-<li><code>breadthFirst()</code>, <code>depthFirst()</code></li>
-<li><code>evaluator(Evaluator)</code></li>
+<li><code>breadthFirst()</code> or <code>depthFirst()</code></li>
+<li><code>evaluator(Evaluator)</code><ul>
+<li>Continue from here?</li>
+<li>Put node/path in result?</li>
+</ul>
+</li>
 <li><code>relationships(RelationShipType, Direction)</code></li>
-<li>...</li>
 </ul>
 </li>
 <li>all these methods return a <code>TraversalDescription</code> object, supports chaining</li>
@@ -2229,6 +2247,8 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 </li>
+<li>Iterator over result set</li>
+<li>Not declarative</li>
 </ul>
 </li>
 <li>
@@ -2259,6 +2279,49 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
+<h3 id="comparison-infinitegraph-and-neo4j">Comparison InfiniteGraph and Neo4j</h3>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Infinte Graph (Objectivity)</th>
+<th>Neo4j</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NO database orthogonality</td>
+<td>partly datatype orthogonality (<code>RelationshipTypes</code> need to be implemented)</td>
+</tr>
+<tr>
+<td>independance (persistence orthogonality)</td>
+<td>(no) independance (persistence orthogonally)</td>
+</tr>
+<tr>
+<td>Extend <code>BaseVertex</code> and <code>BaseEdge</code></td>
+<td>Only generic nodes and edges available</td>
+</tr>
+<tr>
+<td>Navigation with implementation of interfaces (Qualifiers)</td>
+<td>Navigation with fluent interface (chaining)</td>
+</tr>
+<tr>
+<td>Navigation not declarative</td>
+<td>Navigation not declarative</td>
+</tr>
+<tr>
+<td>Part of Objectivity (object database)</td>
+<td>Some graph algorithms included</td>
+</tr>
+<tr>
+<td>REST API: CRUD, JSON, algorithms</td>
+<td></td>
+</tr>
+<tr>
+<td>Cyper: ASCII Art, declarative query language</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <!-- End Slides/Notes Week 10 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing">Indexing</h1>
