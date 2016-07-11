@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>SystemC · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/systemc.html">SystemC</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month02">15</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>SystemC is a system-level modeling language. It's implemented as a C++ library.</p>
+<p>The library is open source and platform independent.</p>
+<p>It contains an event-driven simulation kernel for executing models.</p>
+<p><a href="http://accellera.org/">Accellera</a> is the main resource for SystemC.</p>
+<h1 id="simulation">Simulation</h1>
+<p>SystemC contains a kernel for discrete-event driven simulation.
+The main purpose of the kernel is to ensure to model concurrent activities (parallelism) correctly.</p>
+<p>The simulation clock represents the current value of the simulation time.</p>
+<p><img alt="Simulation Engine" class="img-responsive" src="/images/systemc_simulation_engine.svg" style="float:right"/></p>
+<ul>
+<li>Initialization of simulation model<ul>
+<li>Set initial states of subsystem modules</li>
+<li>Fill event queue with initial events</li>
+</ul>
+</li>
+<li>Timing routine<ul>
+<li>Determine <em>next</em> event from event queue</li>
+<li>Advance simulation clock to the time when the event is to occur</li>
+</ul>
+</li>
+<li>Event routine<ul>
+<li>Update the system state when a particular type of event occurs</li>
+</ul>
+</li>
+</ul>
+<p>A more detailed description can be found on the <a href="https://www.doulos.com/knowhow/systemc/tutorial/primitive_channels/">Doulos tutorial</a>:</p>
+<ol>
+<li>Initialization: execute all processes (except <code>SC_CTHREAD</code>s) in any (undefined) order</li>
+<li>Evaluation: select a process (ready to run) and resume its execution<ul>
+<li>This may cause immediate event notifications to occur</li>
+<li>which may result in additional processes being made ready to run in this same phase</li>
+</ul>
+</li>
+<li>Repeat step 2. until there are no processes ready to run</li>
+<li>Update: execute all pending calls to <code>update()</code> resulting from calls to <code>request_update()</code> made in step 2.</li>
+<li>If there were any delta event notifications made during steps 2. or 4.<ul>
+<li>determine which processes are ready to run due to all those events and go back to step 2.</li>
+</ul>
+</li>
+<li>If there are no timed events: simulation is finished</li>
+<li>Advance the simulation time to the time of the earliest pending timed event notification</li>
+<li>Determine which processes are ready to run due to all the timed events at what is now the current time<ul>
+<li>go back to step 2.</li>
+</ul>
+</li>
+</ol>
+<p>(note: the list above is taken mostly from the Doulos tutorial)</p>
+<h2 id="delta-cycle">Delta Cycle</h2>
+<p>Within the same simulation cycle <em>cause</em> and <em>effect</em> events may share the same time of occurrence.</p>
+<p>The simulator uses a zero duration <em>virtual time interval</em>: delta cycle</p>
+<p>The delta cycle is the smallest simulated time slot. It consist of two phases:</p>
+<ol>
+<li>Evaluation phase</li>
+<li>Update phase</li>
+</ol>
+<p>Separating the two phases makes it possible to guarantee deterministic behavior.
+A channel will not change it's value until the update phase occurs.
+It cannot change the value during the evaluation phase.</p>
+<p>It's possible to run a process without the update phase (without the delta cycle) with <code>notify()</code>.</p>
+<h1 id="constructs">Constructs</h1>
+<h2 id="modules">Modules</h2>
+<p>Building blocks of SystemC models.</p>
+<ul>
+<li>Hierarchy (subsystems)</li>
+<li>Abstraction</li>
+<li>IP reuse</li>
+</ul>
+<p>Modules are called by the simulation engine if an relevant event is scheduled.</p>
+<p>Modules process events, manipulate the event queue and contain (and manipulate) the system state.</p>
+<h2 id="processes">Processes</h2>
+<p>Processes must be contained in a module.</p>
+<ul>
+<li><code>SC_THREAD</code><ul>
+<li>Typically called once, run in an endless loop</li>
+<li>Can be suspended with <code>wait()</code></li>
+<li>Keep the state of execution implicitly</li>
+</ul>
+</li>
+<li><code>SC_METHOD</code><ul>
+<li>Execute repeatedly form beginning to end</li>
+<li>Simulate <em>faster</em></li>
+<li>Do <em>not</em> keep state of execution implicitly</li>
+</ul>
+</li>
+</ul>
+<h3 id="wait-and-notify">Wait and Notify</h3>
+<ul>
+<li>wait: halt process execution until an event is raised<ul>
+<li><code>wait()</code></li>
+<li>wait with arguments: dynamic sensitivity<ul>
+<li><code>wait(sc_event)</code></li>
+<li><code>wait(time)</code></li>
+<li><code>wait(time_out, sc_event)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>notify: raise an event (method of <code>sc_event</code> class)<ul>
+<li><code>my_event.notify()</code>: immediate notification. Processes sensitive to the event will run during current evaluation phase</li>
+<li>notify with arguments: delayed notification<ul>
+<li><code>my_event.notify(SC_ZERO_TIME)</code>: notify during evaluation phase of next delta cycle</li>
+<li><code>my_event.notify(time)</code>: notify after <em>time</em> (in evaluation phase of that delta cycle)</li>
+</ul>
+</li>
+<li>notify allows non-deterministic behavior</li>
+</ul>
+</li>
+</ul>
+<h2 id="communication">Communication</h2>
+<ul>
+<li>Event<ul>
+<li>Flexible</li>
+<li>low-level synchronization primitive</li>
+</ul>
+</li>
+<li>Channel<ul>
+<li>Container for<ul>
+<li>Communication and</li>
+<li>Synchronization</li>
+</ul>
+</li>
+<li>Can have state (private data), transport data/events</li>
+<li>Implement one or more <em>interfaces</em></li>
+</ul>
+</li>
+<li>Interface<ul>
+<li>Set of access methods to channel</li>
+<li>Interface methods need to be implemented (pure virtual)</li>
+</ul>
+</li>
+</ul>
+<p>Other communication and synchronization models can be built
+based on these primitives.</p>
+<h3 id="channels">Channels</h3>
+<ul>
+<li>Separating communication from behavior</li>
+<li>Interfaces define access to channel</li>
+<li>Ports are used to access the channel</li>
+</ul>
+<h1 id="non-determinism">Non-Determinism</h1>
+<p>SystemC allows for non-determinism. This might not be acceptable for hardware modeling.
+But it can be needed for software system modeling.</p>
+<p>An example of non-determinism can be found here: <a href="https://www.doulos.com/knowhow/systemc/tutorial/primitive_channels/">Doulos: Primitive Channels and the Kernel</a>.</p>
+<p>It shows two threads (<code>SC_THREAD</code>s) in a module that both access the same variable. It's not known in
+which order the variable is accessed.</p>
+<p>In software systems a mutex might be needed to control the access to the variable.</p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/object_databases.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/cosine_distance.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

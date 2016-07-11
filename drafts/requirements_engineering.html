@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Requirements Engineering · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/drafts/requirements_engineering.html">Requirements Engineering</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/software_development.html">Software Development</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month04">04</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month04">28</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <blockquote>
+<p>This article is work in progress... For now it's just a un-ordered collection of notes</p>
+</blockquote>
+<ul>
+<li>Conceptual Design =&gt; Technical Design =&gt; Implementation</li>
+<li>Actors, Personas</li>
+<li>Mock-ups<ul>
+<li>Paper Mock-ups</li>
+<li>Tools for Mock-ups (functional)</li>
+</ul>
+</li>
+<li>Rapid Prototype</li>
+<li>Architecture<ol>
+<li>Geographic Architecture: Local, Client-Server, Cloud...</li>
+<li>Technological Architecture: SQL, JSON, XML, Programming Language</li>
+<li>Logical (Business) Architecture: Semantics, Implementation that satisfies the Requirements</li>
+</ol>
+</li>
+<li>Functional and Non-Functional Requirements<ul>
+<li>Functional Requirements: What the Software needs to do</li>
+<li>Non-Functional Requirements: Quality criteria: Security, extensibility, scalibility...</li>
+</ul>
+</li>
+<li>Logical Architecture<ul>
+<li>Read the Specification: Nouns =&gt; Actors/Entities, Verbs =&gt; Actions/Functionality/Behavior</li>
+<li>Entities + Behavior =&gt; Data Model</li>
+<li>Methods: input -&gt; output</li>
+<li>Entities: data -&gt; creator</li>
+<li>Components (Bottom-Top):<ol>
+<li>Create Data Model</li>
+<li>Build Application</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Conceptual data model:<ul>
+<li>first high-level, go in detail later</li>
+<li>describe reality =&gt; Model<ul>
+<li>OOP</li>
+<li>SQL</li>
+<li>...</li>
+<li>Impedance mismatch</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Know the Problem! Don't start before you really know the problem!</li>
+<li>Modeling Language (programming languages...) needed to capture details of reality<ul>
+<li>e.g Java (and other OOP languages) can not properly model relationships</li>
+</ul>
+</li>
+<li>Impedance mismatch<ul>
+<li>if two connected models are not the same</li>
+<li>OOP &lt;-&gt; reality</li>
+<li>OOP &lt;-&gt; relational-dbs (SQL)</li>
+</ul>
+</li>
+<li>
+<p>Start with simple things =&gt; improve</p>
+<ul>
+<li>agile</li>
+</ul>
+</li>
+<li>
+<p>List available operations with input and output (e.g use Fitnesse...)</p>
+</li>
+</ul>
+<p>Example:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Operation</th>
+<th>in</th>
+<th>out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td>message, location</td>
+<td>-</td>
+</tr>
+<tr>
+<td>get</td>
+<td>location</td>
+<td>set of messages</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Sentences (e.g. use cases):<ul>
+<li>Nouns: Objects (classes)</li>
+<li>Verbs: Methods</li>
+</ul>
+</li>
+</ul>
+  </div>
+
+  <hr/>
+
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
