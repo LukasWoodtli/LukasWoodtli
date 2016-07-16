@@ -247,6 +247,22 @@
 <li><a href="#object-instantiation">Object Instantiation</a></li>
 </ul>
 </li>
+<li><a href="#versant">Versant</a><ul>
+<li><a href="#indexing">Indexing</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#database-volumes">Database Volumes</a></li>
+<li><a href="#versant-manager">Versant Manager</a></li>
+<li><a href="#cache">Cache</a></li>
+<li><a href="#processes-sessions-and-transactions">Processes, Sessions and Transactions</a></li>
+<li><a href="#java-versant-interface">Java Versant Interface</a></li>
+<li><a href="#jvi-layers">JVI Layers</a><ul>
+<li><a href="#fundamental-layer">Fundamental Layer</a></li>
+<li><a href="#transparent-layer">Transparent Layer</a></li>
+<li><a href="#omdg-layer">OMDG Layer</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
 <li><a href="#social-network-analysis">Social Network Analysis</a></li>
 <li><a href="#graphs">Graphs</a><ul>
@@ -267,7 +283,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#indexing">Indexing</a><ul>
+<li><a href="#indexing_1">Indexing</a><ul>
 <li><a href="#type-hierarchy-indexing">Type Hierarchy Indexing</a><ul>
 <li><a href="#key-vs-type-grouping">Key- vs Type-Grouping</a></li>
 <li><a href="#extent-and-full-extent">Extent and Full Extent</a></li>
@@ -318,6 +334,13 @@
 </ul>
 </li>
 <li>Data is stored automatically</li>
+<li>Not always desirabls: don't need to store UI, messages ...</li>
+<li>3 possible solutions<ol>
+<li>implicit: save all objects automatically</li>
+<li>explicit: objects need to be saved manually</li>
+<li>on class base (different granularity)</li>
+</ol>
+</li>
 </ul>
 </li>
 <li><strong>Data Type Orthogonality</strong> all data objects should be allowed to be persistent (long-lived, transient)<ul>
@@ -1155,7 +1178,6 @@ List&lt;Struct { string name }&gt;
 </li>
 <li>Some additional minor restrictions from EJB framework</li>
 </ul>
-<!-- TODO Hibernate Tutorial http://www.tutorialspoint.com/hibernate/hibernate_examples.htm  -->
 <p>Example:</p>
 <div class="highlight"><pre><span></span><span class="n">SessionFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">().</span><span class="na">buildSessionFactory</span><span class="o">();</span>
 </pre></div>
@@ -2055,7 +2077,198 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<!-- End Slides/Notes Week 5 ? -->
+<!-- End Slides/Notes Week 5/6 ? -->
+<!-- Start Slides/Notes Week 7 -->
+<h1 id="versant">Versant</h1>
+<ul>
+<li>Highly scalable</li>
+<li>Distributed</li>
+<li>Many platforms and progamming languages<ul>
+<li>C, C++, Java</li>
+</ul>
+</li>
+<li>db4o acquired by Versant</li>
+<li>Lot of features</li>
+</ul>
+<h2 id="indexing">Indexing</h2>
+<ul>
+<li>Like SQL</li>
+<li>Point/Range queries</li>
+<li>Index structures for Relational DBs not ideal for Subtyping<ul>
+<li><em>Polymorphic indexes</em> in Versant</li>
+</ul>
+</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<ul>
+<li>Always network based<ul>
+<li>no embedded option (as db4o)</li>
+</ul>
+</li>
+<li>Client<ul>
+<li>Versant Manager</li>
+<li>Object cache</li>
+<li>Application logic</li>
+</ul>
+</li>
+<li>Versant Server<ul>
+<li>possible to use multiple servers</li>
+<li>Access to data<ul>
+<li>Volumes (page cache)</li>
+</ul>
+</li>
+<li>Logical log file</li>
+<li>Physical log file</li>
+</ul>
+</li>
+</ul>
+<h2 id="database-volumes">Database Volumes</h2>
+<ul>
+<li>System Volume (created automatically)<ul>
+<li>Class descriptions</li>
+<li>Object instances</li>
+</ul>
+</li>
+<li>Data Volumes (optional)<ul>
+<li>Increase database capacity</li>
+<li>Partition data</li>
+</ul>
+</li>
+<li>Logical Log Volume (created automatically)<ul>
+<li>Transactions and redo information</li>
+<li>For recovery and rollback</li>
+</ul>
+</li>
+<li>Physical Log Volume (created automatically)<ul>
+<li>Physical data information</li>
+<li>For recovery and rollback</li>
+</ul>
+</li>
+</ul>
+<h2 id="versant-manager">Versant Manager</h2>
+<ul>
+<li>Presents objects to app</li>
+<li>Caches objects in virtual memory</li>
+<li>Manages transactions</li>
+<li>Distributes queries and updates to servers</li>
+<li>Conversion between Versant DB format and client machine format</li>
+</ul>
+<h2 id="cache">Cache</h2>
+<ul>
+<li>Cached Object Descriptor Table</li>
+<li>Map from <em>logical object identifier</em> (LOID) to object in memory<ul>
+<li>attributes pointing to other object: access object in memory or DB</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Nested Index" class="img-responsive" src="/images/object_databases/versant_cache.png"/></p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>pointer</th>
+<th>LOID</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>NULL</td>
+<td>object deleted?</td>
+</tr>
+<tr>
+<td>not NULL</td>
+<td>NULL</td>
+<td>not saved persistently</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>not NULL</td>
+<td>not loaded in cache</td>
+</tr>
+<tr>
+<td>not NULL</td>
+<td>not NULL</td>
+<td>in DB and in cache</td>
+</tr>
+</tbody>
+</table>
+<p>Other entries:</p>
+<ul>
+<li>locking information</li>
+<li>state information</li>
+<li>...</li>
+</ul>
+<p>Version doesn't have the notion of activation. Data is retreived automatically
+when dereferencing pointers.</p>
+<h2 id="processes-sessions-and-transactions">Processes, Sessions and Transactions</h2>
+<ul>
+<li>Session (same as ObjectContainer in db4o)<ul>
+<li>On client side</li>
+<li>Represents database instance</li>
+<li>Container</li>
+<li>A session object is always bound to one <em>single transaction</em></li>
+<li>It's possible to have multiple threads attached to one session<ul>
+<li>This is dangerous!</li>
+<li>Not transaction support</li>
+</ul>
+</li>
+<li>Multiple sessions within separate threads</li>
+<li>or multiple session in one thread</li>
+<li>Each session object on the client is bound to one transaction thread in the server<ul>
+<li>Transaction (ACID) support</li>
+</ul>
+</li>
+<li>The server thread accesses the page cache</li>
+</ul>
+</li>
+</ul>
+<h2 id="java-versant-interface">Java Versant Interface</h2>
+<ul>
+<li>Easy-to-use storage of persistent Java objects<ul>
+<li>pure Java (syntax and semantics)</li>
+<li>instances of nearly all classes can be stored (and accessed)</li>
+<li>works with Java GC</li>
+</ul>
+</li>
+<li>Client-server architecture<ul>
+<li>access to the Versant object DB</li>
+<li>client libs cache objects for faster access</li>
+<li>DB queries are axecuted on server</li>
+</ul>
+</li>
+</ul>
+<h2 id="jvi-layers">JVI Layers</h2>
+<h3 id="fundamental-layer">Fundamental Layer</h3>
+<ul>
+<li>DB centric</li>
+<li>Objects manipulated indirectly through handles</li>
+<li>
+<p>package <code>com.versant.fund</code></p>
+</li>
+<li>
+<p>Create wrapper code for real classes (reflection)</p>
+</li>
+</ul>
+<h3 id="transparent-layer">Transparent Layer</h3>
+<ul>
+<li>language centric</li>
+<li>build on top of fundamental layer</li>
+<li>package <code>com.versant.trans</code></li>
+<li>Java classes are mapped to objects in fundamental layer</li>
+<li>Persistant objects are cached in memory</li>
+<li>For persistent objects retrieved from a DB Java objects are constructed (in memory)</li>
+</ul>
+<!-- TODO cont slides p. 20, Notes 0:40:00 -->
+<p>...</p>
+<h3 id="omdg-layer">OMDG Layer</h3>
+<ul>
+<li>language centric</li>
+<li>ODMG database, transactions, collections</li>
+<li>build on transparent layer</li>
+<li>packages <code>com.versant.odmg</code> and <code>com.versant.odmg</code>
+ ...</li>
+</ul>
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
 <ul>
@@ -2324,7 +2537,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </table>
 <!-- End Slides/Notes Week 10 -->
 <!-- Start Slides/Notes Week 12 -->
-<h1 id="indexing">Indexing</h1>
+<h1 id="indexing_1">Indexing</h1>
 <p>Make OODBs faster and more performant</p>
 <ul>
 <li>Compare OOP model to Relational model</li>
@@ -2760,6 +2973,64 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>values for attributes</li>
 </ul>
 </li>
+<li>
+<p>Collection is not just contains objects</p>
+<ul>
+<li>relationship to objects</li>
+<li>name</li>
+<li>constraint (subset relation)<ul>
+<li>joint</li>
+<li>disjoint</li>
+</ul>
+</li>
+<li>associations<ul>
+<li>collection to pairs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>e.g: A person becomming a friend or an enemy doesn't change (or add/remove) any properties of a person type</p>
+</li>
+<li>
+<p>Objects can gain state and behavior dynamically</p>
+<ul>
+<li>distinguish<ul>
+<li>object: can refer to, identity, can be pointed to</li>
+<li>instance: container of values of a particular type</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Relationships</p>
+</li>
+<li>
+<p>intentional / extensional ???</p>
+</li>
+<li>
+<p>Query</p>
+<ul>
+<li>Decide if something in a collection or not</li>
+<li>Traversiong result (iterator, cursor)</li>
+</ul>
+</li>
+<li>SQL<ul>
+<li>relationships mapped by primary-/foreign-key</li>
+<li><code>select</code> can be used instead of <code>joins</code> to follow relationships</li>
+<li>A selection query is fully specified when:<ul>
+<li>providing a <em>set of candidates</em> and</li>
+<li>a function that takes <em>individual candidates</em> and returns <em>true</em> or <em>false</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>OM Model queries<ul>
+<li>Declaritive query language</li>
+<li>Collections are <em>sets of candidates</em> for queries</li>
+</ul>
+</li>
+<li>Map-Reduce</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
