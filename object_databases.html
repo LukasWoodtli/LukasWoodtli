@@ -195,7 +195,7 @@
 <li><a href="#main-concepts">Main Concepts</a></li>
 <li><a href="#configuration">Configuration</a><ul>
 <li><a href="#properties">Properties</a></li>
-<li><a href="#persistant-objects">Persistant Objects</a></li>
+<li><a href="#persistent-objects">Persistent Objects</a></li>
 </ul>
 </li>
 <li><a href="#mapping-associations">Mapping Associations</a></li>
@@ -346,7 +346,7 @@
 </ul>
 </li>
 <li>Data is stored automatically</li>
-<li>Not always desirabls: don't need to store UI, messages ...</li>
+<li>Not always desirable: don't need to store UI, messages ...</li>
 <li>3 possible solutions<ol>
 <li>implicit: save all objects automatically</li>
 <li>explicit: objects need to be saved manually</li>
@@ -1092,10 +1092,10 @@ List&lt;Struct { string name }&gt;
 </li>
 <li><code>Session</code> object<ul>
 <li>Used to get physical connection to the database</li>
-<li>leightweight</li>
-<li>desigend to be instatiated each time an interatcion with the DB is needed</li>
+<li>lightweight</li>
+<li>designed to be instantiated each time an interaction with the DB is needed</li>
 <li>Persistent objects are <em>stored</em> and <em>retrieved</em> through <code>Session</code> object</li>
-<li>should not be kept open for al long time<ul>
+<li>should not be kept open for a long time<ul>
 <li>usually not thread safe</li>
 <li>create before use</li>
 <li>destroy after use</li>
@@ -1105,7 +1105,7 @@ List&lt;Struct { string name }&gt;
 </li>
 <li><code>Transaction</code> object<ul>
 <li>represent a unit of work with the DB</li>
-<li>handled by underlying tansaction manager and transaction (JDBC or JTA)</li>
+<li>handled by underlying transaction manager and transaction (JDBC or JTA)</li>
 <li>optional object<ul>
 <li>transactions can be managed in own application code</li>
 </ul>
@@ -1126,7 +1126,7 @@ List&lt;Struct { string name }&gt;
 </ul>
 <h2 id="configuration">Configuration</h2>
 <ul>
-<li>Hibernate needs to know where to find some informations about class mappings and database</li>
+<li>Hibernate needs to know where to find some information about class mappings and database</li>
 <li>XML file: <em>hibernate.cfg.xml</em> (or Java properties file <em>hibernate.properties</em>)</li>
 </ul>
 <h3 id="properties">Properties</h3>
@@ -1140,7 +1140,7 @@ List&lt;Struct { string name }&gt;
 <tbody>
 <tr>
 <td>hibernate.dialect</td>
-<td>The SQL dialect used to generate persistance code</td>
+<td>The SQL dialect used to generate persistence code</td>
 </tr>
 <tr>
 <td>hibernate.connection.driver_class</td>
@@ -1169,7 +1169,7 @@ List&lt;Struct { string name }&gt;
 </tbody>
 </table>
 <p>There are additional settings for using a database along with an application server and JNDI.</p>
-<h3 id="persistant-objects">Persistant Objects</h3>
+<h3 id="persistent-objects">Persistent Objects</h3>
 <p>Only Plain Old Java Object (POJO) can be saved in the DB.</p>
 <p>Requirements:</p>
 <ul>
@@ -1996,7 +1996,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Object granularity</li>
 </ul>
 </li>
-<li>Conflict handlig has to be done by developer</li>
+<li>Conflict handling has to be done by developer</li>
 </ul>
 </li>
 </ul>
@@ -2095,14 +2095,14 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>Highly scalable</li>
 <li>Distributed</li>
-<li>Many platforms and progamming languages<ul>
+<li>Many platforms and programming languages<ul>
 <li>C, C++, Java</li>
 </ul>
 </li>
 <li>db4o acquired by Versant</li>
 <li>Lot of features</li>
 <li>easy to use</li>
-<li>Full Persistance Orthogonality<ul>
+<li>Full Persistence Orthogonality<ul>
 <li>but code is injected (into byte-code)</li>
 </ul>
 </li>
@@ -2228,7 +2228,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Logging and recovery</li>
 <li>Indexing</li>
 </ul>
-<p>Version doesn't have the notion of activation. Data is retreived automatically
+<p>Version doesn't have the notion of activation. Data is retrieved automatically
 when dereferencing pointers.</p>
 <h2 id="processes-sessions-and-transactions">Processes, Sessions and Transactions</h2>
 <ul>
@@ -2263,14 +2263,14 @@ when dereferencing pointers.</p>
 <li>Client-server architecture<ul>
 <li>access to the Versant object DB</li>
 <li>client libs cache objects for faster access</li>
-<li>DB queries are axecuted on server</li>
+<li>DB queries are executed on server</li>
 </ul>
 </li>
 <li>Configuration and code-generation integrated in build process</li>
 </ul>
 <h2 id="jvi-layers">JVI Layers</h2>
 <p>Versant provides different API layers.
-The fundamental layer is usually not direclty needed by the application developer.</p>
+The fundamental layer is usually not directly needed by the application developer.</p>
 <h3 id="fundamental-layer">Fundamental Layer</h3>
 <ul>
 <li>DB centric</li>
@@ -2292,25 +2292,25 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>build on top of fundamental layer</li>
 <li>package <code>com.versant.trans</code></li>
 <li>Java classes are mapped to objects in fundamental layer</li>
-<li>Persistant objects are cached in memory</li>
+<li>Persistent objects are cached in memory</li>
 <li>For persistent objects retrieved from a DB Java objects are constructed (in memory)</li>
 </ul>
 <h4 id="first-and-second-class-objects">First and Second Class Objects</h4>
-<p>Versant distiquishes first class and second class objects</p>
+<p>Versant distinguishes first class and second class objects</p>
 <ul>
 <li>Configured externally in a file</li>
 <li>Configured on class basis</li>
 <li>First Class Objects (FCO)<ul>
 <li>main objects that can be saved and retrieved independently</li>
 <li>have a Logical Object Identifier (LOID)</li>
-<li>changes are saved automatically (independance)</li>
+<li>changes are saved automatically (independence)</li>
 <li>strong entities</li>
 </ul>
 </li>
 <li>Second Class Objects (SCO)<ul>
 <li>can be saved only as part of an FCO</li>
 <li>can't be results of queries</li>
-<li>can be part of forst class objects</li>
+<li>can be part of first class objects</li>
 <li>stored as binary array</li>
 <li>weak entity</li>
 <li>used for optimization</li>
@@ -2335,7 +2335,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>marked as dirty when modified</li>
 </ul>
 </li>
-<li>Superclass of <em>p</em> or <em>c</em> must also be <em>p</em> or <em>c</em> respectively</li>
+<li>Super-class of <em>p</em> or <em>c</em> must also be <em>p</em> or <em>c</em> respectively</li>
 </ul>
 </li>
 <li>Second class objects<ul>
@@ -2392,7 +2392,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </li>
 <li>Compile</li>
 <li>Run enhancer to make byte-code changes<ul>
-<li>persistence behaviour ihnerited from <code>com.versant.trans.Persistent</code></li>
+<li>persistence behavior inherited from <code>com.versant.trans.Persistent</code></li>
 <li>explicit at compile time or</li>
 <li>implicit at run time (class loader)</li>
 </ul>
@@ -2402,7 +2402,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 <h2 id="byte-code-enhancement">Byte-code Enhancement</h2>
 <ul>
-<li>Code which creates shema object in DB</li>
+<li>Code which creates schema object in DB</li>
 <li>Code for writing and reading to and from DB</li>
 <li>Code for accessing attribute values</li>
 </ul>
@@ -2458,7 +2458,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>Event Notification<ul>
 <li>Propagation of events from DB to client</li>
 <li>Event types<ul>
-<li>class: create, modfy or delete an instance</li>
+<li>class: create, modify or delete an instance</li>
 <li>object: modify or delete object or group of objects</li>
 <li>transactions: begin or end of transaction</li>
 <li>user-defined events</li>
@@ -2468,11 +2468,11 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 </li>
 <li>Persistent Object Hooks<ul>
-<li>Allow interventeion of state transitions</li>
+<li>Allow intervention of state transitions</li>
 <li><code>activate()</code>, <code>deactivate()</code></li>
 <li><code>preRead(boolean act)</code> and <code>postRead(boolean act)</code></li>
 <li><code>preWrite(boolean deAct)</code> and <code>postWrite(boolean deAct)</code></li>
-<li><code>vDelete()</code>: can be used to maintain referential integrity (caascading delete)</li>
+<li><code>vDelete()</code>: can be used to maintain referential integrity (cascading delete)</li>
 </ul>
 </li>
 </ul>
@@ -2492,7 +2492,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ol>
 </li>
 <li>Mapping between models</li>
-<li>There is no generig model for all domains</li>
+<li>There is no generic model for all domains</li>
 </ul>
 <h2 id="social-network-analysis">Social Network Analysis</h2>
 <ul>
@@ -2551,7 +2551,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 <h4 id="network-structure-properties">Network Structure Properties</h4>
 <ul>
-<li>Network Centralisation<ul>
+<li>Network Centralization<ul>
 <li>Dominated by one or few nodes</li>
 <li>(single) point of failure</li>
 </ul>
@@ -2565,7 +2565,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 </li>
 <li>Clustering Coefficients<ul>
-<li>Likelyhood that two associates of a node are also associates to each other</li>
+<li>Likelihood that two associates of a node are also associates to each other</li>
 <li>'cliquishness'</li>
 </ul>
 </li>
@@ -2580,7 +2580,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>Always <em>2</em> core <em>identities</em> connected by <em>action</em></li>
 <li>e.g.<ul>
 <li>connect 2 authors that worked on same publication</li>
-<li>or connect publications that have the same autor</li>
+<li>or connect publications that have the same author</li>
 </ul>
 </li>
 </ul>
@@ -2589,7 +2589,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>API</li>
 <li>Support for CRUD</li>
 <li>High-level operations for graph traversals</li>
-<li>Somtimes graph algorithms part of DB</li>
+<li>Sometimes graph algorithms part of DB</li>
 <li>ACID</li>
 <li>Scalable</li>
 <li>Examples:<ul>
@@ -2623,7 +2623,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 </li>
 <li>Properties of the Navigator Engine<ul>
-<li>not declaritive</li>
+<li>not declarative</li>
 <li>interfaces to implement</li>
 <li>some predefined queries available</li>
 </ul>
@@ -2704,7 +2704,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <table class="table table-hover table-striped">
 <thead>
 <tr>
-<th>Infinte Graph (Objectivity)</th>
+<th>Infinite Graph (Objectivity)</th>
 <th>Neo4j</th>
 </tr>
 </thead>
@@ -2714,8 +2714,8 @@ The fundamental layer is usually not direclty needed by the application develope
 <td>partly datatype orthogonality (<code>RelationshipTypes</code> need to be implemented)</td>
 </tr>
 <tr>
-<td>independance (persistence orthogonality)</td>
-<td>(no) independance (persistence orthogonally)</td>
+<td>independence (persistence orthogonality)</td>
+<td>(no) independence (persistence orthogonality)</td>
 </tr>
 <tr>
 <td>Extend <code>BaseVertex</code> and <code>BaseEdge</code></td>
@@ -2739,7 +2739,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </tr>
 <tr>
 <td></td>
-<td>Cyper: ASCII Art, declarative query language</td>
+<td>Cypher: ASCII Art, declarative query language</td>
 </tr>
 </tbody>
 </table>
@@ -2750,11 +2750,11 @@ The fundamental layer is usually not direclty needed by the application develope
 <ul>
 <li>Compare OOP model to Relational model</li>
 </ul>
-<p>Main differences bewteen OOP and Relational model:</p>
+<p>Main differences between OOP and Relational model:</p>
 <ol>
 <li>inheritance (is-a)</li>
 <li>multitype attributes (sets, collections)<ul>
-<li>First normal form in Relational Databases disallows mutlivalued attribues (collections) in a field</li>
+<li>First normal form in Relational Databases disallows mutlivalued attributes (collections) in a field</li>
 </ul>
 </li>
 <li>dereferencing a path of pointers/references (traversing the object graph)</li>
@@ -2767,7 +2767,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>Mapping (ORM)</li>
 <li>Physically represent data differently (eg. Objectivity)</li>
 <li>Use additional (meta-) data but keep the representation of the data<ul>
-<li>secundary datastructures</li>
+<li>secondary datastructures</li>
 <li>index structures</li>
 </ul>
 </li>
@@ -2779,26 +2779,26 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>Key-Grouping<ul>
 <li>build index along the actual attribute value</li>
 <li>as <span class="math">\(B^+\)</span>-trees</li>
-<li>additional information about typing and subtiping in the leafs</li>
+<li>additional information about typing and sub-typing in the leafs</li>
 </ul>
 </li>
 <li>Type-Grouping<ul>
 <li>index built along typing information</li>
-<li>values are sencondary datastructure</li>
+<li>values are secondary datastructure</li>
 </ul>
 </li>
 </ul>
 <h3 id="extent-and-full-extent">Extent and Full Extent</h3>
 <ul>
-<li>Extent: all objects of a given class (without subclasses)</li>
-<li>Full Extent: all objects of a given class and it's subclasses</li>
+<li>Extent: all objects of a given class (without sub-classes)</li>
+<li>Full Extent: all objects of a given class and it's sub-classes</li>
 </ul>
 <h3 id="single-class-index-sc-index">Single Class Index (SC-Index)</h3>
 <ul>
 <li>Index construction for attribute of a type <em>t</em><ul>
 <li>incorporate only direct instances of a particular type in index</li>
 <li>construct search structure for all types in sub-hierarchy of t</li>
-<li>search data structres (called <em>SC-Index components</em>)</li>
+<li>search data structures (called <em>SC-Index components</em>)</li>
 <li>Evaluator needs to traverse all components referenced by query</li>
 </ul>
 </li>
@@ -2811,12 +2811,12 @@ The fundamental layer is usually not direclty needed by the application develope
 <h3 id="class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</h3>
 <ul>
 <li>One search structure for all objects of all types of indexed hierarchy</li>
-<li>One index on the common attribute for all classes of a iheritance graph</li>
+<li>One index on the common attribute for all classes of a inheritance graph</li>
 <li>Leaf node consists of<ul>
 <li>key-value</li>
 <li>key directory<ul>
 <li>contains an entry for each class that has instances with the key-value in the indexed attribute</li>
-<li>entry for a class consist of class identifier and offset fo list of OIDs in index record</li>
+<li>entry for a class consist of class identifier and offset for list of OIDs in index record</li>
 </ul>
 </li>
 <li>number of elements in list of OIDs (for each class in the inheritance graph)</li>
@@ -2830,7 +2830,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </li>
 <li>Point queries perform good</li>
 <li>Range queries depend on number of referenced types<ul>
-<li>good when queries aim at indexed type and all subtypes</li>
+<li>good when queries aim at indexed type and all sub-types</li>
 <li>bad if only few types of indexed hierarchy hit by query</li>
 </ul>
 </li>
@@ -2844,14 +2844,14 @@ The fundamental layer is usually not direclty needed by the application develope
 <li>Set of nested <span class="math">\(B^+\)</span>-trees</li>
 <li>Combining class hierarchy with SC-Index</li>
 <li>Nesting reflects indexed type hierarchy<ul>
-<li>each H-tree component is nested with H-trees of immediate subtypes</li>
-<li>H-tree index for attribute of inheritance sub-graph is H-tree hierarchy nested according to supertype-subtype relation</li>
+<li>each H-tree component is nested with H-trees of immediate sub-types</li>
+<li>H-tree index for attribute of inheritance sub-graph is H-tree hierarchy nested according to super-type-sub-type relation</li>
 </ul>
 </li>
 <li>Avoids full scans of each B-tree component when several types queried</li>
-<li>Single type lookup: don't search nested trees</li>
+<li>Single type look-up: don't search nested trees</li>
 <li>
-<p>Type hierarchy lookup: traverse nested trees</p>
+<p>Type hierarchy look-up: traverse nested trees</p>
 </li>
 <li>
 <p>Type-grouping structure</p>
@@ -2866,14 +2866,14 @@ The fundamental layer is usually not direclty needed by the application develope
 </li>
 <li>Specific family of type sets for indexed hierarchy</li>
 <li>Look at all possible combinations of full extends for all types</li>
-<li>Combine parts of subtype hierarchies to use one index structure (like SC-index)</li>
+<li>Combine parts of sub-type hierarchies to use one index structure (like SC-index)</li>
 <li>Each typeset managed with search data structure</li>
 <li>Parameters <em>q</em> and <em>r</em> give bounds<ul>
 <li><em>q</em>: number of index structures needed to build a type extent</li>
 <li><em>r</em>: number of times a type set is managed redundantly or replicated</li>
 </ul>
 </li>
-<li>Multiple index structures need to be accessed for a querry<ul>
+<li>Multiple index structures need to be accessed for a query<ul>
 <li>trade-off between:<ul>
 <li>number of index structures to access for a query</li>
 <li>number of index structures to maintain</li>
@@ -2885,7 +2885,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 <h3 id="multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</h3>
 <ul>
-<li>Mutli-Dimensional indexing</li>
+<li>Multi-Dimensional indexing</li>
 <li>Type information as additional attribute available</li>
 <li>Compromise between<ul>
 <li>type grouping</li>
@@ -2990,7 +2990,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 </li>
 <li>Forward queries<ul>
-<li>without retrieving intermedia objects</li>
+<li>without retrieving intermediate objects</li>
 </ul>
 </li>
 </ul>
@@ -3002,7 +3002,7 @@ The fundamental layer is usually not direclty needed by the application develope
 </ul>
 </li>
 <li>Bypassing intermediate objects</li>
-<li>Only allows backwards traversels of full path</li>
+<li>Only allows backwards traversals of full path</li>
 <li>Equivalent to backward traversal in ASR canonical</li>
 <li>A Nested Index <em>NX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to a Multi-Index <em>MX(P)</em> for the same path</li>
 <li>Updating index structure is expensive</li>
@@ -3010,7 +3010,7 @@ The fundamental layer is usually not direclty needed by the application develope
 <p><img alt="Nested Index" class="img-responsive" src="/images/object_databases/nested_index.png"/></p>
 <h3 id="path-index-px">Path Index (PX)</h3>
 <ul>
-<li>Records all subpaths leading to an ending object</li>
+<li>Records all sub-paths leading to an ending object</li>
 <li>Predicates can be evaluated on all classes along the path</li>
 <li>Equivalent to backwards traversal of right-complete ASR</li>
 <li>A Path-Index <em>PX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to Multi-Index <em>MX(P)</em> an a Nested Index <em>NX(P)</em> for the same path</li>
@@ -3020,12 +3020,12 @@ The fundamental layer is usually not direclty needed by the application develope
 <h3 id="join-index-jx">Join-Index (JX)</h3>
 <ul>
 <li>Originally for optimization of <em>joins</em> in Relational DBs</li>
-<li>Consists of a set of binary join indices (Slides p. 33)</li>
+<li>Consists of a set of binary join indexes (Slides p. 33)</li>
 </ul>
 <h3 id="multi-index-mx">Multi-Index (MX)</h3>
 <ul>
 <li>Like Join-Indexes in Relational DBs</li>
-<li>Divide path (of arbritrary length) into sub-paths<ul>
+<li>Divide path (of arbitrary length) into sub-paths<ul>
 <li>sub-paths have length <em>1</em></li>
 <li>index maintained over sub-paths</li>
 </ul>
