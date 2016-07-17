@@ -253,14 +253,26 @@
 <li><a href="#database-volumes">Database Volumes</a></li>
 <li><a href="#versant-manager">Versant Manager</a></li>
 <li><a href="#cache">Cache</a></li>
+<li><a href="#versant-server">Versant Server</a></li>
 <li><a href="#processes-sessions-and-transactions">Processes, Sessions and Transactions</a></li>
 <li><a href="#java-versant-interface">Java Versant Interface</a></li>
 <li><a href="#jvi-layers">JVI Layers</a><ul>
 <li><a href="#fundamental-layer">Fundamental Layer</a></li>
-<li><a href="#transparent-layer">Transparent Layer</a></li>
+<li><a href="#transparent-layer">Transparent Layer</a><ul>
+<li><a href="#first-and-second-class-objects">First and Second Class Objects</a></li>
+<li><a href="#persistence-categories">Persistence Categories</a></li>
+<li><a href="#persistence-and-navigation">Persistence and Navigation</a></li>
+</ul>
+</li>
 <li><a href="#omdg-layer">OMDG Layer</a></li>
 </ul>
 </li>
+<li><a href="#application-development">Application Development</a></li>
+<li><a href="#byte-code-enhancement">Byte-code Enhancement</a></li>
+<li><a href="#object-lifecycle">Object Lifecycle</a></li>
+<li><a href="#versant-collections">Versant Collections</a></li>
+<li><a href="#versant-query-language-vql">Versant Query Language (VQL)</a></li>
+<li><a href="#event-notification-and-persistent-object-hooks">Event Notification and Persistent Object Hooks</a></li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -2089,6 +2101,11 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 <li>db4o acquired by Versant</li>
 <li>Lot of features</li>
+<li>easy to use</li>
+<li>Full Persistance Orthogonality<ul>
+<li>but code is injected (into byte-code)</li>
+</ul>
+</li>
 </ul>
 <h2 id="indexing">Indexing</h2>
 <ul>
@@ -2119,6 +2136,11 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 <li>Logical log file</li>
 <li>Physical log file</li>
+</ul>
+</li>
+<li>Dual cache<ul>
+<li>Object cache (client)</li>
+<li>Page cache (server)</li>
 </ul>
 </li>
 </ul>
@@ -2199,6 +2221,13 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>state information</li>
 <li>...</li>
 </ul>
+<h2 id="versant-server">Versant Server</h2>
+<ul>
+<li>Object retrieval (disk and page cache)</li>
+<li>Transactions and locks</li>
+<li>Logging and recovery</li>
+<li>Indexing</li>
+</ul>
 <p>Version doesn't have the notion of activation. Data is retreived automatically
 when dereferencing pointers.</p>
 <h2 id="processes-sessions-and-transactions">Processes, Sessions and Transactions</h2>
@@ -2237,14 +2266,19 @@ when dereferencing pointers.</p>
 <li>DB queries are axecuted on server</li>
 </ul>
 </li>
+<li>Configuration and code-generation integrated in build process</li>
 </ul>
 <h2 id="jvi-layers">JVI Layers</h2>
+<p>Versant provides different API layers.
+The fundamental layer is usually not direclty needed by the application developer.</p>
 <h3 id="fundamental-layer">Fundamental Layer</h3>
 <ul>
 <li>DB centric</li>
+<li>Create 'Meta-classes'</li>
 <li>Objects manipulated indirectly through handles</li>
+<li>package <code>com.versant.fund</code></li>
 <li>
-<p>package <code>com.versant.fund</code></p>
+<p>Query classes <code>FundQuery</code> and <code>FundQueryResult</code></p>
 </li>
 <li>
 <p>Create wrapper code for real classes (reflection)</p>
@@ -2253,22 +2287,196 @@ when dereferencing pointers.</p>
 <h3 id="transparent-layer">Transparent Layer</h3>
 <ul>
 <li>language centric</li>
+<li>usually used by developer</li>
+<li>code is injected to application code</li>
 <li>build on top of fundamental layer</li>
 <li>package <code>com.versant.trans</code></li>
 <li>Java classes are mapped to objects in fundamental layer</li>
 <li>Persistant objects are cached in memory</li>
 <li>For persistent objects retrieved from a DB Java objects are constructed (in memory)</li>
 </ul>
-<!-- TODO cont slides p. 20, Notes 0:40:00 -->
-<p>...</p>
+<h4 id="first-and-second-class-objects">First and Second Class Objects</h4>
+<p>Versant distiquishes first class and second class objects</p>
+<ul>
+<li>Configured externally in a file</li>
+<li>Configured on class basis</li>
+<li>First Class Objects (FCO)<ul>
+<li>main objects that can be saved and retrieved independently</li>
+<li>have a Logical Object Identifier (LOID)</li>
+<li>changes are saved automatically (independance)</li>
+<li>strong entities</li>
+</ul>
+</li>
+<li>Second Class Objects (SCO)<ul>
+<li>can be saved only as part of an FCO</li>
+<li>can't be results of queries</li>
+<li>can be part of forst class objects</li>
+<li>stored as binary array</li>
+<li>weak entity</li>
+<li>used for optimization</li>
+</ul>
+</li>
+</ul>
+<h4 id="persistence-categories">Persistence Categories</h4>
+<ul>
+<li>
+<p>can be configured on class basis</p>
+</li>
+<li>
+<p>First class objects</p>
+<ul>
+<li>Persistent always (<em>p</em>)<ul>
+<li>becomes persistent at instantiation (independence)</li>
+<li>marked as dirty when modified</li>
+</ul>
+</li>
+<li>Persistence capable (<em>c</em>)<ul>
+<li>new instances are transient but can become persistent</li>
+<li>marked as dirty when modified</li>
+</ul>
+</li>
+<li>Superclass of <em>p</em> or <em>c</em> must also be <em>p</em> or <em>c</em> respectively</li>
+</ul>
+</li>
+<li>Second class objects<ul>
+<li>Transparent dirty owner (<em>d</em>)<ul>
+<li>changes to object automatically mark the owner object as dirty</li>
+<li>works only when the owner is stored (FCO)</li>
+</ul>
+</li>
+<li>Persistence aware (<em>a</em>)<ul>
+<li>for code that is aware of FCO</li>
+<li>code needs to mark manually the FCO as dirty</li>
+</ul>
+</li>
+<li>Not persistent (<em>n</em>)<ul>
+<li>no managed by Versant system</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="persistence-and-navigation">Persistence and Navigation</h4>
+<ul>
+<li>Persistence by reachability is provided</li>
+<li>Database root<ul>
+<li>persist the root of an object graph</li>
+<li>name it (for retrieving it later)</li>
+<li>Methods <code>makeRoot()</code>, <code>deleteRoot()</code> and <code>findRoot()</code></li>
+</ul>
+</li>
+<li>Transparent navigation<ul>
+<li>'activation' handled automatically and lazy</li>
+<li>objects are transparently locked and retrieved</li>
+<li>works across DB boundaries</li>
+</ul>
+</li>
+</ul>
 <h3 id="omdg-layer">OMDG Layer</h3>
 <ul>
 <li>language centric</li>
 <li>ODMG database, transactions, collections</li>
 <li>build on transparent layer</li>
-<li>packages <code>com.versant.odmg</code> and <code>com.versant.odmg</code>
- ...</li>
+<li>packages <code>com.versant.odmg</code> and <code>com.versant.odmg</code></li>
 </ul>
+<h2 id="application-development">Application Development</h2>
+<ul>
+<li>Develop Java classes<ul>
+<li>make code 'persistence aware'</li>
+<li>sessions, transactions, concurrency</li>
+</ul>
+</li>
+<li>Create configuration file<ul>
+<li>specify persistence category for each Java class</li>
+</ul>
+</li>
+<li>Compile</li>
+<li>Run enhancer to make byte-code changes<ul>
+<li>persistence behaviour ihnerited from <code>com.versant.trans.Persistent</code></li>
+<li>explicit at compile time or</li>
+<li>implicit at run time (class loader)</li>
+</ul>
+</li>
+<li>create DB</li>
+<li>Run application</li>
+</ul>
+<h2 id="byte-code-enhancement">Byte-code Enhancement</h2>
+<ul>
+<li>Code which creates shema object in DB</li>
+<li>Code for writing and reading to and from DB</li>
+<li>Code for accessing attribute values</li>
+</ul>
+<h2 id="object-lifecycle">Object Lifecycle</h2>
+<ul>
+<li>Creation of persistent objects<ul>
+<li>Java objects in memory</li>
+<li>Each object has internal DB information in object cache</li>
+</ul>
+</li>
+<li>Commit<ul>
+<li>Object data written to DB</li>
+<li>Proxy Java objects retained in memory</li>
+</ul>
+</li>
+<li>Rollback<ul>
+<li>New database objects will be dropped</li>
+</ul>
+</li>
+<li>Querying<ul>
+<li>Queries are passed to DB server</li>
+<li>Proxy object for every object in result</li>
+</ul>
+</li>
+<li>Accessing objects<ul>
+<li>Objects are fetched or de-serialized transparently</li>
+</ul>
+</li>
+</ul>
+<h2 id="versant-collections">Versant Collections</h2>
+<ul>
+<li>Standard collection classes can't be byte-code enhanced</li>
+<li>Special collection classes for <em>FCO</em>s and <em>SCO</em>s</li>
+<li>Scalable large collections (<em>FCO</em>)</li>
+<li>OMDG collections (are <em>FCO</em>s)<ul>
+<li>additional query facilities</li>
+</ul>
+</li>
+</ul>
+<h2 id="versant-query-language-vql">Versant Query Language (VQL)</h2>
+<ul>
+<li>Subset of OQL (ODMG)</li>
+<li>Similar to SQL</li>
+<li>Executed on server</li>
+<li>Can be parameterised<ul>
+<li>prepared statements</li>
+</ul>
+</li>
+</ul>
+<h2 id="event-notification-and-persistent-object-hooks">Event Notification and Persistent Object Hooks</h2>
+<ul>
+<li>Like callbacks in db4o</li>
+<li>Event Notification<ul>
+<li>Propagation of events from DB to client</li>
+<li>Event types<ul>
+<li>class: create, modfy or delete an instance</li>
+<li>object: modify or delete object or group of objects</li>
+<li>transactions: begin or end of transaction</li>
+<li>user-defined events</li>
+</ul>
+</li>
+<li>package <code>com.versant.event</code></li>
+</ul>
+</li>
+<li>Persistent Object Hooks<ul>
+<li>Allow interventeion of state transitions</li>
+<li><code>activate()</code>, <code>deactivate()</code></li>
+<li><code>preRead(boolean act)</code> and <code>postRead(boolean act)</code></li>
+<li><code>preWrite(boolean deAct)</code> and <code>postWrite(boolean deAct)</code></li>
+<li><code>vDelete()</code>: can be used to maintain referential integrity (caascading delete)</li>
+</ul>
+</li>
+</ul>
+<!-- End of Notes/Slides Week 7 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
 <ul>
