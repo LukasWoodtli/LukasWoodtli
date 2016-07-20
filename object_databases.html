@@ -281,6 +281,11 @@
 <li><a href="#virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</a></li>
 <li><a href="#server-side-components">Server Side Components</a></li>
 <li><a href="#client-side-components">Client Side Components</a></li>
+<li><a href="#fetching-and-mapping-pages">Fetching and Mapping Pages</a><ul>
+<li><a href="#fetching-and-mapping-sequence">Fetching and Mapping Sequence</a></li>
+</ul>
+</li>
+<li><a href="#cache-forward-architecture">Cache-Forward Architecture</a></li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -2508,6 +2513,7 @@ The fundamental layer is usually not directly needed by the application develope
 <h2 id="architecture_1">Architecture</h2>
 <ul>
 <li>C++ and Java</li>
+<li>Client/Server application</li>
 <li>Leightweight and professional editions available</li>
 <li>Based on virtual memory mapping<ul>
 <li>pages</li>
@@ -2520,9 +2526,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>address translation</li>
 </ul>
 </li>
-<li>
-<p>Characteristics (ObjectStore)</p>
-<ul>
+<li>Characteristics (ObjectStore)<ul>
 <li>virtual</li>
 <li>shared</li>
 <li>distributed</li>
@@ -2531,9 +2535,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>transactional</li>
 </ul>
 </li>
-<li>
-<p>Logical vs. physical address</p>
-<ul>
+<li>Logical vs. physical address<ul>
 <li>data is referenced uniquely using a 4-part key<ol>
 <li>database</li>
 <li>segment</li>
@@ -2550,6 +2552,8 @@ The fundamental layer is usually not directly needed by the application develope
 <li>cache hold recently accessed data even across transactions</li>
 </ul>
 </li>
+<li>Data is cached on different levels</li>
+<li>Granularity: pages</li>
 </ul>
 <h2 id="virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</h2>
 <ul>
@@ -2579,7 +2583,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Database<ul>
 <li>managed by one server<ul>
-<li>one server can manage multiple DBs</li>
+<li>one server can manage multiple DBs (distribution)</li>
 </ul>
 </li>
 <li>binary files storing pages of memory containing C++ objects</li>
@@ -2599,10 +2603,11 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <h2 id="client-side-components">Client Side Components</h2>
+<!-- TODO continue  Notes 0:50:00 -->
 <ul>
 <li>Client<ul>
 <li>C++ program linked with ObjectStore librarys</li>
-<li>even Java programs using ObjectStore have a C++ part</li>
+<li>even Java programs using ObjectStore are embedded (session) in a C++ part</li>
 <li>interacts with DB</li>
 <li>pages automatically fetched from DB</li>
 </ul>
@@ -2611,17 +2616,86 @@ The fundamental layer is usually not directly needed by the application develope
 <li>one cache memory mapped file per client process</li>
 <li>pages fetched from DB are held in cache</li>
 <li>pages can be retained in cache between transactions</li>
+<li>Cache manager retrieves data from the server</li>
 </ul>
 </li>
-<li>meta-information<ul>
+<li>meta-information (Commseg)<ul>
 <li>Commseg memory mapped file</li>
 <li>contains meta-information about pages in cache</li>
 <li>stores <em>permit</em> and <em>lock</em> for pages in cache</li>
 <li><em>permit</em>s can be retained between transactions</li>
 </ul>
 </li>
+<li>Cache manager<ul>
+<li>one manager per client machine</li>
+<li>shared by all clients on that machine</li>
+<li>handles permit revokes</li>
+<li>read/write cache and commseg</li>
+<li>not directly involved in page fetch</li>
 </ul>
-<!-- TODO continue Slides . 9, Notes 0:50:00 -->
+</li>
+<li>Persistent Storage Region (<em>PSR</em>)<ul>
+<li>reserved area of virtual address space (in C++ part)</li>
+<li>addresses of persistent objects used by client are mapped to <em>PSR</em></li>
+<li>pointers of application will be in the range of the <em>PSR</em></li>
+<li>at end of transaction <em>PSR</em> is cleared<ul>
+<li>can be reused for next transaction</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="fetching-and-mapping-pages">Fetching and Mapping Pages</h2>
+<ul>
+<li>Client automaticalliy fetches and maps pages<ul>
+<li>'lazy' fetches</li>
+<li>held in client cache</li>
+</ul>
+</li>
+<li>Server <em>perimits</em> and client <em>locks</em> acquired automatically<ul>
+<li>ensuring transaction consistency</li>
+</ul>
+</li>
+<li>Existing page can be swapped out<ul>
+<li>if not enough toom in cache for new page</li>
+<li>updated pages are sent to the server</li>
+<li>read-only pages are dropped from cache (copy in DB)</li>
+</ul>
+</li>
+</ul>
+<h3 id="fetching-and-mapping-sequence">Fetching and Mapping Sequence</h3>
+<ul>
+<li>ObjectStore installs <code>SIGSEGV</code> (segmentation fault) handler</li>
+<li>Program obtains pointer <code>p</code> to object on page <em>x</em></li>
+<li>Dereferencing <code>p</code> causes <code>SIGSEGV</code> handler to be called</li>
+<li>Virtual mapping table is consulted</li>
+<li>Page is fetched from server and stored in cache</li>
+<li>Page <em>x</em> is mapped to address space</li>
+<li>Execution continues</li>
+</ul>
+<h2 id="cache-forward-architecture">Cache-Forward Architecture</h2>
+<ul>
+<li>To provide high performace in ObjectStore<ul>
+<li>data cached across transaction boundaries</li>
+<li>number of used locks is reduces</li>
+<li>cached data kept in globally consistent state</li>
+</ul>
+</li>
+<li>Two types of locks on pages<ul>
+<li><em>transaction locks</em>: represents state of page during transaction</li>
+<li><em>ownership permits</em>: represents state of page in cache</li>
+</ul>
+</li>
+<li><em>Permits</em> are tracked by <em>server</em><ul>
+<li>server serves permits on pages that are sent to client</li>
+</ul>
+</li>
+<li><em>Locks</em> are taken by <em>client</em><ul>
+<li>client can lock pages according to given permit</li>
+</ul>
+</li>
+</ul>
+<!-- TODO continue Slides p. 13 -->
 <!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
