@@ -275,6 +275,14 @@
 <li><a href="#event-notification-and-persistent-object-hooks">Event Notification and Persistent Object Hooks</a></li>
 </ul>
 </li>
+<li><a href="#objectstore">ObjectStore</a><ul>
+<li><a href="#general-topics-of-persistence">General Topics of Persistence</a></li>
+<li><a href="#architecture_1">Architecture</a></li>
+<li><a href="#virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</a></li>
+<li><a href="#server-side-components">Server Side Components</a></li>
+<li><a href="#client-side-components">Client Side Components</a></li>
+</ul>
+</li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
 <li><a href="#social-network-analysis">Social Network Analysis</a></li>
 <li><a href="#graphs">Graphs</a><ul>
@@ -2228,7 +2236,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Logging and recovery</li>
 <li>Indexing</li>
 </ul>
-<p>Version doesn't have the notion of activation. Data is retrieved automatically
+<p>Versant doesn't have the notion of activation. Data is retrieved automatically
 when dereferencing pointers.</p>
 <h2 id="processes-sessions-and-transactions">Processes, Sessions and Transactions</h2>
 <ul>
@@ -2477,6 +2485,144 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End of Notes/Slides Week 7 -->
+<!-- Start Notes/Slides Week 8 -->
+<h1 id="objectstore">ObjectStore</h1>
+<h2 id="general-topics-of-persistence">General Topics of Persistence</h2>
+<ul>
+<li>Orthogonal persistence is not always desired (UI, messages, ...)</li>
+<li>Persistence identification: do we need to explicit store/retrieve objects</li>
+<li>Possibility to select what is in DB and what is in memory</li>
+<li>Declarative query language<ul>
+<li>what, not how</li>
+<li>more powerfull</li>
+<li>easy to use</li>
+<li>more expressive</li>
+</ul>
+</li>
+<li>Difference between<ul>
+<li>persistent always: stored automatically</li>
+<li>persistent capable: needs to be stored explicitly</li>
+</ul>
+</li>
+</ul>
+<h2 id="architecture_1">Architecture</h2>
+<ul>
+<li>C++ and Java</li>
+<li>Leightweight and professional editions available</li>
+<li>Based on virtual memory mapping<ul>
+<li>pages</li>
+<li>cache forward architecture</li>
+</ul>
+</li>
+<li>Virtual memory mapping architecture (extends operating system)<ul>
+<li>logical vs. physical address</li>
+<li>page fault</li>
+<li>address translation</li>
+</ul>
+</li>
+<li>
+<p>Characteristics (ObjectStore)</p>
+<ul>
+<li>virtual</li>
+<li>shared</li>
+<li>distributed</li>
+<li>heterogeneous</li>
+<li>persistent</li>
+<li>transactional</li>
+</ul>
+</li>
+<li>
+<p>Logical vs. physical address</p>
+<ul>
+<li>data is referenced uniquely using a 4-part key<ol>
+<li>database</li>
+<li>segment</li>
+<li>cluster</li>
+<li>offset (in cluster)</li>
+</ol>
+</li>
+<li>theoretical address space to <span class="math">\(2^{128}\)</span></li>
+<li>Reserved virtual memory region for persistence: Persistent Storage Region (<em>PSR</em>)</li>
+</ul>
+</li>
+<li>Physical memory and secondary storage<ul>
+<li>all data accessed by client must be in <em>PSR</em></li>
+<li>cache hold recently accessed data even across transactions</li>
+</ul>
+</li>
+</ul>
+<h2 id="virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</h2>
+<ul>
+<li>Page faults<ul>
+<li>ObjectStore maps data into app when page fault occurs</li>
+<li>data is paged into memory from cache if not in <em>PSR</em> or fetched from server if not in cache</li>
+</ul>
+</li>
+<li>Address translation<ul>
+<li>done when data is fetched into cache</li>
+<li>retranslation can occur (when <em>PSR</em> gets full)</li>
+<li>trade-off<ul>
+<li>nice to have the ability to use direct SW pointes</li>
+<li>translating pointers has scalability implications</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="server-side-components">Server Side Components</h2>
+<ul>
+<li>Server<ul>
+<li>Enforces ACID using 'page permits'</li>
+<li>co-operation between servers with two-phase commits</li>
+<li>automatic recovery mechanism</li>
+</ul>
+</li>
+<li>Database<ul>
+<li>managed by one server<ul>
+<li>one server can manage multiple DBs</li>
+</ul>
+</li>
+<li>binary files storing pages of memory containing C++ objects</li>
+</ul>
+</li>
+<li>Transaction log<ul>
+<li>each server owns transaction log</li>
+<li>pages only propagated to DB when transaction commits</li>
+<li>used for<ul>
+<li>automatic recovery</li>
+<li>faster commits</li>
+<li>Multiversion Concurrency Control (MVCC)</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="client-side-components">Client Side Components</h2>
+<ul>
+<li>Client<ul>
+<li>C++ program linked with ObjectStore librarys</li>
+<li>even Java programs using ObjectStore have a C++ part</li>
+<li>interacts with DB</li>
+<li>pages automatically fetched from DB</li>
+</ul>
+</li>
+<li>Cache<ul>
+<li>one cache memory mapped file per client process</li>
+<li>pages fetched from DB are held in cache</li>
+<li>pages can be retained in cache between transactions</li>
+</ul>
+</li>
+<li>meta-information<ul>
+<li>Commseg memory mapped file</li>
+<li>contains meta-information about pages in cache</li>
+<li>stores <em>permit</em> and <em>lock</em> for pages in cache</li>
+<li><em>permit</em>s can be retained between transactions</li>
+</ul>
+</li>
+</ul>
+<!-- TODO continue Slides . 9, Notes 0:50:00 -->
+<!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
 <ul>
