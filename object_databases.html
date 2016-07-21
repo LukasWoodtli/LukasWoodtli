@@ -286,6 +286,9 @@
 </ul>
 </li>
 <li><a href="#cache-forward-architecture">Cache-Forward Architecture</a></li>
+<li><a href="#shared-virtual-memory">Shared Virtual Memory</a></li>
+<li><a href="#page-permits-and-locks">Page Permits and Locks</a></li>
+<li><a href="#distribution-and-hatarogenity">Distribution and Hatarogenity</a></li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -2695,7 +2698,88 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<!-- TODO continue Slides p. 13 -->
+<h2 id="shared-virtual-memory">Shared Virtual Memory</h2>
+<ul>
+<li>Lazy call-back mechanism for permits</li>
+<li>Server maintains table of permits for each client</li>
+<li>When client requests page from server<ul>
+<li>Server checks for other clients with permit for page (and permit type)</li>
+<li>Server issues call-back if one or more clients have conflicting permits</li>
+</ul>
+</li>
+</ul>
+<h2 id="page-permits-and-locks">Page Permits and Locks</h2>
+<ul>
+<li>Read permit<ul>
+<li>client can lock page for reading <em>without consulting server</em></li>
+<li>many clients can hold a read permit for the same page</li>
+</ul>
+</li>
+<li>Write permit<ul>
+<li>client can lock page for reading or writing <em>without asking server</em></li>
+<li>only one client can hold a write permit for a page at any given time</li>
+</ul>
+</li>
+<li>Cache manager inspects permit and lock status for call-back<ul>
+<li>✓: Positive</li>
+<li>✗: Negative, but permit is flagged to be revoked at transaction end</li>
+</ul>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Permit</th>
+<th>Lock</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>read</td>
+<td>read</td>
+<td>✗ server only calls back permit of other client needs to write</td>
+</tr>
+<tr>
+<td>read</td>
+<td>no lock</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>write</td>
+<td>read</td>
+<td>✓ permit for page downgraded fo read</td>
+</tr>
+<tr>
+<td>write</td>
+<td>write</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>write</td>
+<td>no lock</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h2 id="distribution-and-hatarogenity">Distribution and Hatarogenity</h2>
+<ul>
+<li>Clients can access objects in different remote DBs in one transaction</li>
+<li>Clients and servers can run on different platforms<ul>
+<li>Win</li>
+<li>Linux</li>
+<li>Unix</li>
+<li>...</li>
+</ul>
+</li>
+<li>Physical object layout is transformed automatically<ul>
+<li>by client</li>
+<li>at runtime</li>
+<li>when page is mapped into cache</li>
+</ul>
+</li>
+</ul>
+<!-- TODO continue Slides p. 17 -->
 <!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
