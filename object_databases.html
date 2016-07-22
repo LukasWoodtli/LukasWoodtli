@@ -298,8 +298,12 @@
 <li><a href="#developing-applications-api">Developing Applications (API)</a><ul>
 <li><a href="#managing-databases">Managing Databases</a></li>
 <li><a href="#transactions_1">Transactions</a></li>
+<li><a href="#creating-persistent-objects">Creating Persistent Objects</a></li>
+<li><a href="#updating-and-deleting-persistent-objects">Updating and Deleting Persistent Objects</a></li>
+<li><a href="#collections-and-relationships">Collections and Relationships</a></li>
 </ul>
 </li>
+<li><a href="#database-roots">Database Roots</a></li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -320,6 +324,13 @@
 <li><a href="#comparison-between-infinitegraph-and-neo4j">Comparison between InfiniteGraph and Neo4j</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#version-models">Version Models</a><ul>
+<li><a href="#versioned-object">Versioned Object</a></li>
+<li><a href="#version-orgensiations">Version Orgensiations</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#storage-strategies">Storage Strategies</a></li>
 </ul>
 </li>
 <li><a href="#indexing_1">Indexing</a><ul>
@@ -2920,7 +2931,71 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<!-- TODO continue Slides p. 25 -->
+<h3 id="creating-persistent-objects">Creating Persistent Objects</h3>
+<p>Use overloaded <code>new</code> operator:
+    :::cpp
+    os_database <em>db = os_database::open("publications.db", 0, 1);
+    Author </em>scheel = new(db, os_ts<author>::get()) Author("Matthias Geel");
+    db-&gt;close();</author></p>
+<p>It's also possible to instantiate persitent array of objects.</p>
+<h3 id="updating-and-deleting-persistent-objects">Updating and Deleting Persistent Objects</h3>
+<ul>
+<li>Changes to persistent objects are propagated to DB automatically<ul>
+<li>when pages are sent back to server</li>
+<li>client app updates memory-mapped persistent objects (using standard C++)</li>
+<li>persistent objects are deleted when memory-mapped objects are deleted (using standard C++)</li>
+</ul>
+</li>
+<li>Fully transparent to app developer</li>
+</ul>
+<h3 id="collections-and-relationships">Collections and Relationships</h3>
+<ul>
+<li>Relationships between classes modelled as collections</li>
+<li>library of non-templated and templated collection types available</li>
+<li>traversal, manipulation, retrieval</li>
+<li>classes <code>os_collection</code>, <code>os_Collection&lt;E&gt;</code> and sub-classes</li>
+</ul>
+<p>Relationships:</p>
+<div class="highlight"><pre><span></span><span class="c1">// Relationship to the customers orders:</span>
+<span class="n">os_relationship_m_1</span><span class="p">(</span><span class="n">Customer</span><span class="p">,</span><span class="n">orders</span><span class="p">,</span><span class="n">Order</span><span class="p">,</span><span class="n">customer</span><span class="p">,</span><span class="n">os_List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">*&gt;</span><span class="p">)</span> <span class="n">orders</span><span class="p">;</span>
+</pre></div>
+<ul>
+<li>
+<p>Cursors over Collections</p>
+<ul>
+<li>used to navigate and manipulate collections</li>
+<li>class <code>os_Cursor</code></li>
+<li>cursors can be reused by rebinding to other collection</li>
+</ul>
+</li>
+<li>
+<p>Queries over Collections</p>
+<ul>
+<li>specify<ul>
+<li>element type</li>
+<li>query string</li>
+<li>schema DB</li>
+</ul>
+</li>
+<li>query string indicates selection criterion<ul>
+<li>in C++</li>
+<li>or pattern matching expression</li>
+</ul>
+</li>
+<li>function calls in query strings restricted to basic types</li>
+<li>nested queries supported</li>
+</ul>
+</li>
+</ul>
+<h2 id="database-roots">Database Roots</h2>
+<ul>
+<li>persistent objects with a well-known name</li>
+<li>class <code>os_database_root</code><ul>
+<li>root name as <code>char *</code></li>
+<li>pointer to object as <code>void *</code></li>
+</ul>
+</li>
+</ul>
 <!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
@@ -3189,6 +3264,67 @@ The fundamental layer is usually not directly needed by the application develope
 </tbody>
 </table>
 <!-- End Slides/Notes Week 10 -->
+<!-- Start Slides/Notes Week 11 -->
+<!-- TODO Notes 0:00:00 -->
+<h1 id="version-models">Version Models</h1>
+<ul>
+<li>Various models proposed<ul>
+<li>temporal DBs</li>
+<li>CAD/CAM</li>
+<li>SW configuration and engineering environments</li>
+</ul>
+</li>
+<li>Some object-oriented DBs provide versioning</li>
+</ul>
+<h2 id="versioned-object">Versioned Object</h2>
+<ul>
+<li>Concept with number of states</li>
+<li>Different levels of granularity<ul>
+<li>entire files</li>
+<li>tuples of relation</li>
+<li>attributes of a class</li>
+<li>objects in OOP system</li>
+</ul>
+</li>
+<li>Each version is a possible representation of the object<ul>
+<li>corresponding directly to one of its states</li>
+</ul>
+</li>
+</ul>
+<h2 id="version-orgensiations">Version Orgensiations</h2>
+<ul>
+<li>Set</li>
+<li>List</li>
+<li>Tree</li>
+<li>DAG</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Specific reference<ul>
+<li>references single version of object directly</li>
+</ul>
+</li>
+<li>Generic reference<ul>
+<li>references entire object</li>
+<li>has to be dereferenced to a version when traversed</li>
+</ul>
+</li>
+</ul>
+<h2 id="storage-strategies">Storage Strategies</h2>
+<ul>
+<li>Representing versions at physical level<ul>
+<li>store complete versions of objects</li>
+<li>store changes (deltas) between versions</li>
+</ul>
+</li>
+<li>Delta-based approaches<ul>
+<li>forward or backward deltas</li>
+<li>state-based or operation-based delta</li>
+</ul>
+</li>
+</ul>
+<!-- TODO Slides p. 7 -->
+<!-- End Slides/Notes Week 11 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing_1">Indexing</h1>
 <p>Make OODBs faster and more performant</p>
