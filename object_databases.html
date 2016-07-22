@@ -288,7 +288,18 @@
 <li><a href="#cache-forward-architecture">Cache-Forward Architecture</a></li>
 <li><a href="#shared-virtual-memory">Shared Virtual Memory</a></li>
 <li><a href="#page-permits-and-locks">Page Permits and Locks</a></li>
-<li><a href="#distribution-and-hatarogenity">Distribution and Hatarogenity</a></li>
+<li><a href="#distribution-and-heterogenity">Distribution and Heterogenity</a></li>
+<li><a href="#persistence_1">Persistence</a></li>
+<li><a href="#transactions">Transactions</a><ul>
+<li><a href="#transaction-types">Transaction Types</a></li>
+</ul>
+</li>
+<li><a href="#database-layout">Database Layout</a></li>
+<li><a href="#developing-applications-api">Developing Applications (API)</a><ul>
+<li><a href="#managing-databases">Managing Databases</a></li>
+<li><a href="#transactions_1">Transactions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -2762,7 +2773,7 @@ The fundamental layer is usually not directly needed by the application develope
 </tr>
 </tbody>
 </table>
-<h2 id="distribution-and-hatarogenity">Distribution and Hatarogenity</h2>
+<h2 id="distribution-and-heterogenity">Distribution and Heterogenity</h2>
 <ul>
 <li>Clients can access objects in different remote DBs in one transaction</li>
 <li>Clients and servers can run on different platforms<ul>
@@ -2779,7 +2790,137 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<!-- TODO continue Slides p. 17 -->
+<h2 id="persistence_1">Persistence</h2>
+<ul>
+<li>persistence by instantiation in C++</li>
+<li>Overloaded persistent <code>new</code> operator</li>
+<li>Several options for object allocation<ul>
+<li>transiently on the heap</li>
+<li>DB</li>
+<li>segment</li>
+<li>cluster</li>
+<li>...</li>
+</ul>
+</li>
+<li>Persistence is orthogonal to the type of an object (datatype orthogonality)</li>
+</ul>
+<h2 id="transactions">Transactions</h2>
+<ul>
+<li>Basic ACID properties</li>
+<li>Atomicity<ul>
+<li>after commit: guaranteed that data was written and is recoverable</li>
+<li>after abort: changes are undone</li>
+</ul>
+</li>
+<li>Consistency<ul>
+<li>it's impossible to apply or lose update while data is written</li>
+</ul>
+</li>
+<li>Isolation<ul>
+<li>serialisability (CPSR) is quaranteed by 2-phase locking</li>
+<li>MVCC provides serialisability for read-only transactions (using snapshots)</li>
+</ul>
+</li>
+<li>Durability<ul>
+<li>changes are written to transaction log first</li>
+<li>background process propagates changes to DB</li>
+</ul>
+</li>
+</ul>
+<h3 id="transaction-types">Transaction Types</h3>
+<ul>
+<li>Read or Write</li>
+<li>Local or Global<ul>
+<li>local: only initiating thread is allowd</li>
+<li>global: allows all threds in a session to share transaction</li>
+</ul>
+</li>
+<li>Lexical or Dynamic transactions<ul>
+<li>Lexical transactions<ul>
+<li>automatically retry on lock</li>
+<li>must start and end in same code block</li>
+<li>always thread-local</li>
+</ul>
+</li>
+<li>Dynamic transactions<ul>
+<li>lower level of <code>os_transaction</code>class</li>
+<li>better suited for multi-threaded applications</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="database-layout">Database Layout</h2>
+<ul>
+<li>Memory pages held in hierarchy of clusters in segments</li>
+<li>Segments<ul>
+<li>logical partitioning of objects</li>
+<li>Segment 0: schema segment<ul>
+<li>DB schema</li>
+<li>DB roots</li>
+</ul>
+</li>
+<li>Segment 2: default segment</li>
+<li>Segment 4: first user-created segment</li>
+<li>max <span class="math">\(2^{32}\)</span> segments per DB</li>
+</ul>
+</li>
+<li>Clusters<ul>
+<li>group closely related objects</li>
+<li>each segment has default cluster 0</li>
+<li>max <span class="math">\(2^{31}\)</span> clusters per segment</li>
+</ul>
+</li>
+</ul>
+<h2 id="developing-applications-api">Developing Applications (API)</h2>
+<ul>
+<li>
+<p>ObjectStore libraries</p>
+<ul>
+<li><code>objectstore</code>: runtime</li>
+<li><code>os_database</code>: DB management</li>
+<li><code>os_transactions</code>: transaction handles and functionality</li>
+<li><code>os_typespec</code>: determine type specification</li>
+<li><code>os_database_root</code>: manage roots</li>
+<li><code>os_segment</code>: segment access and management</li>
+<li><code>os_cluster</code>: cluster access and management</li>
+</ul>
+</li>
+<li>
+<p>Development process</p>
+<ul>
+<li>writing persistent classes, schema file, app logic</li>
+<li>compile schema file with <code>pssq</code> compiler</li>
+<li>compile classes with C++ compiler</li>
+<li>linking</li>
+</ul>
+</li>
+</ul>
+<h3 id="managing-databases">Managing Databases</h3>
+<ul>
+<li>provided by `os_database<ul>
+<li><code>create()</code>: creates new DB</li>
+<li><code>open()</code>: opens DB</li>
+<li><code>save()</code>: saves DB, changes permanent</li>
+<li><code>close()</code>: closes DB, but doesn't save stat</li>
+<li><code>destroy()</code>: deletes DB</li>
+</ul>
+</li>
+</ul>
+<h3 id="transactions_1">Transactions</h3>
+<ul>
+<li>provided by <code>os_transaction</code><ul>
+<li>all interactions with DB must be in a transactions</li>
+<li>can be nested</li>
+</ul>
+</li>
+<li>defining and working with transactions<ul>
+<li>directly using <code>os_transaction</code> class (dynamic)</li>
+<li>using macros (lexical)</li>
+</ul>
+</li>
+</ul>
+<!-- TODO continue Slides p. 25 -->
 <!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
