@@ -331,6 +331,8 @@
 <li><a href="#version-orgensiations">Version Orgensiations</a></li>
 <li><a href="#references">References</a></li>
 <li><a href="#storage-strategies">Storage Strategies</a></li>
+<li><a href="#operation-and-interaction-models">Operation and Interaction Models</a></li>
+<li><a href="#queries-and-configurations">Queries and Configurations</a></li>
 </ul>
 </li>
 <li><a href="#indexing_1">Indexing</a><ul>
@@ -3322,8 +3324,48 @@ The fundamental layer is usually not directly needed by the application develope
 <li>state-based or operation-based delta</li>
 </ul>
 </li>
+<li>Different strategies have different perfomance<ul>
+<li>storage vs. retrieval</li>
+<li>space vs. time</li>
+<li>...</li>
 </ul>
-<!-- TODO Slides p. 7 -->
+</li>
+</ul>
+<h2 id="operation-and-interaction-models">Operation and Interaction Models</h2>
+<ul>
+<li>Operations<ul>
+<li>Control evolution of versions (of single objects)</li>
+<li>create new version</li>
+<li>branch a parallel version</li>
+<li>merge two parallel versions</li>
+<li>delete a version</li>
+</ul>
+</li>
+<li>Interaction or transactions models<ul>
+<li>working with complex objects and object graphs</li>
+<li>automatic versioning transparent to user</li>
+<li>library model uses check-out and check-in operations</li>
+<li>long running and nested transactions</li>
+</ul>
+</li>
+</ul>
+<h2 id="queries-and-configurations">Queries and Configurations</h2>
+<ul>
+<li>additional constraint to seletc correct representations (versions)</li>
+<li>various implementations<ul>
+<li>configurator evaluates rules against versioned objects</li>
+<li>declarative queries express constraints in extended language</li>
+<li>logical (based on feature logic)</li>
+</ul>
+</li>
+<li>Dereferencing of generic references<ul>
+<li>query evaluator needs to select specific version</li>
+<li>access for parallel versions</li>
+<li>access for sequencial versions</li>
+</ul>
+</li>
+</ul>
+<!-- TODO Slides p. 10 -->
 <!-- End Slides/Notes Week 11 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing_1">Indexing</h1>
