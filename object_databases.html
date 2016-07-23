@@ -333,6 +333,12 @@
 <li><a href="#storage-strategies">Storage Strategies</a></li>
 <li><a href="#operation-and-interaction-models">Operation and Interaction Models</a></li>
 <li><a href="#queries-and-configurations">Queries and Configurations</a></li>
+<li><a href="#temporal-databases">Temporal Databases</a></li>
+<li><a href="#time-in-databases">Time in Databases</a></li>
+<li><a href="#classification-of-temporal-databases">Classification of Temporal Databases</a><ul>
+<li><a href="#querying-moving-objects-with-uncertainity">Querying Moving Objects with Uncertainity</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#indexing_1">Indexing</a><ul>
@@ -2544,7 +2550,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Leightweight and professional editions available</li>
 <li>Based on virtual memory mapping<ul>
 <li>pages</li>
-<li>cache forward architecture</li>
+<li>cache forward architecture (very performant)</li>
 </ul>
 </li>
 <li>Virtual memory mapping architecture (extends operating system)<ul>
@@ -2581,6 +2587,11 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Data is cached on different levels</li>
 <li>Granularity: pages</li>
+<li>close to persistence capable (in Versant)<ul>
+<li>overloaded <code>new</code> operator</li>
+<li>instance based persistence</li>
+</ul>
+</li>
 </ul>
 <h2 id="virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</h2>
 <ul>
@@ -2630,7 +2641,6 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <h2 id="client-side-components">Client Side Components</h2>
-<!-- TODO continue  Notes 0:50:00 -->
 <ul>
 <li>Client<ul>
 <li>C++ program linked with ObjectStore librarys</li>
@@ -2702,7 +2712,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h2 id="cache-forward-architecture">Cache-Forward Architecture</h2>
 <ul>
-<li>To provide high performace in ObjectStore<ul>
+<li>To provide <em>high performace</em> in ObjectStore<ul>
 <li>data cached across transaction boundaries</li>
 <li>number of used locks is reduces</li>
 <li>cached data kept in globally consistent state</li>
@@ -2734,6 +2744,8 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h2 id="page-permits-and-locks">Page Permits and Locks</h2>
 <ul>
+<li>Lock for client (locally)</li>
+<li>Permission for server (globaly)</li>
 <li>Read permit<ul>
 <li>client can lock page for reading <em>without consulting server</em></li>
 <li>many clients can hold a read permit for the same page</li>
@@ -2772,7 +2784,7 @@ The fundamental layer is usually not directly needed by the application develope
 <tr>
 <td>write</td>
 <td>read</td>
-<td>✓ permit for page downgraded fo read</td>
+<td>✓ permit for page downgraded to read</td>
 </tr>
 <tr>
 <td>write</td>
@@ -2786,6 +2798,10 @@ The fundamental layer is usually not directly needed by the application develope
 </tr>
 </tbody>
 </table>
+<ul>
+<li>Pages on server are fetched with permission (read or write)</li>
+<li>Local locks don't tell server about lock/un-lock about after transaction</li>
+</ul>
 <h2 id="distribution-and-heterogenity">Distribution and Heterogenity</h2>
 <ul>
 <li>Clients can access objects in different remote DBs in one transaction</li>
@@ -3365,7 +3381,111 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<!-- TODO Slides p. 10 -->
+<h2 id="temporal-databases">Temporal Databases</h2>
+<ul>
+<li>one of the first application domains for version models</li>
+<li>manage different time-dependent data</li>
+<li>field of research</li>
+<li>numerous approaches</li>
+<li>mostly based on relational DBs</li>
+</ul>
+<h2 id="time-in-databases">Time in Databases</h2>
+<ul>
+<li>does time stored in a DB represent<ul>
+<li>time in the domain (e.g. event schedule)?</li>
+<li>time of DB operation (e.g. insertion, update)?</li>
+<li>can the time be <em>arbitrary modified</em>?</li>
+<li>is the time value provided by app or DB?</li>
+<li>...</li>
+</ul>
+</li>
+<li>different types of time to characterise temporal data<ul>
+<li>Transaction, Registration or Physical time<ul>
+<li>captures when values were stored in DB</li>
+<li><code>AS-OF</code> operation</li>
+</ul>
+</li>
+<li>Valid or logical time<ul>
+<li>used to express when values existed in <em>real world</em></li>
+<li><code>WHEN</code> operation</li>
+</ul>
+</li>
+<li>User-defined time<ul>
+<li>all other aspects of time</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="classification-of-temporal-databases">Classification of Temporal Databases</h2>
+<ul>
+<li>Static or snapshot DB<ul>
+<li>conventional DB</li>
+<li>does not manage temporal data</li>
+<li>supports only one single version</li>
+<li>if value is updated, previous value is lost</li>
+</ul>
+</li>
+<li>Static roll-back DB<ul>
+<li>keeps track of transaction time</li>
+<li>supports <code>AS-OF</code> operation</li>
+<li>no way to correct an error</li>
+<li>space or computation overhead (destructive vs. non-destructive)</li>
+</ul>
+</li>
+<li>Historical DB<ul>
+<li>keeps track of <em>valid time</em></li>
+<li>supports <code>WHEN</code></li>
+<li>changes can be made to previous values</li>
+</ul>
+</li>
+<li>Temporal DB<ul>
+<li>keept track of <em>transaction</em> and <em>valid</em> time</li>
+<li>supports <code>AS-OF</code> and <code>WHEN</code> operations</li>
+</ul>
+</li>
+<li>Spatio-Temporal DB<ul>
+<li>DB for moving objects</li>
+<li>continuous update of location</li>
+<li>uncertainty of location value</li>
+</ul>
+</li>
+</ul>
+<h3 id="querying-moving-objects-with-uncertainity">Querying Moving Objects with Uncertainity</h3>
+<ul>
+<li>Point Queries<ul>
+<li>operators over singel trajectory<ul>
+<li><code>Where_At(trajectory T, time t)</code>: expected location on route <code>T</code> at time <code>t</code></li>
+<li><code>When_At(trajectory T, location l)</code>: times object expected to be at location <code>l</code> on <code>T</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Spatio-Temporal Range Queries</p>
+<ul>
+<li>set of <em>6 boolean predicates</em></li>
+<li>give <em>qualitative</em> description of relative position</li>
+</ul>
+</li>
+<li>
+<p>location changes continuously: condition satisfied <em>sometime</em> or <em>always</em> within $[t_b,t_e]</p>
+</li>
+<li>due to uncerainty: condition satisfied <em>possibly</em> or <em>definitely</em> at point $p \in [t_b,t_e]</li>
+</ul>
+<p>Leads to 8 possible operators</p>
+<ol>
+<li><code>Possibly_Sometime_Inside( T, R, tb te)</code></li>
+<li><code>Sometime_Possibly_Inside ( T, R, tb, te)</code></li>
+<li><code>Possibly_Always_Inside( T, R, tb, te)</code></li>
+<li><code>Always_Possibly_Inside( T, R, tb, te)</code></li>
+<li><code>Definitely_Always_Inside( T, R, tb, te)</code></li>
+<li><code>Always_Definitely_Inside( T, R, tb, te)</code></li>
+<li><code>Definitely_Sometime_Inside( T, R, tb, te)</code></li>
+<li><code>Sometime_Definitely_Inside( T, R, tb, te)</code></li>
+</ol>
+<p>Some of them are semantically equivalent</p>
+<!-- TODO Slides p. 22 -->
 <!-- End Slides/Notes Week 11 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing_1">Indexing</h1>
