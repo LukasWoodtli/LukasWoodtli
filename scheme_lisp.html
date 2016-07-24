@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Evaluation strategy · Lukas Woodtli</title>
+        <title>Scheme (Lisp) · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/evaluation_strategy.html">Evaluation strategy</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/scheme_lisp.html">Scheme (Lisp)</a></h1>
     </div>
 
         </div>
@@ -123,10 +123,10 @@
       href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+          href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month07">07</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month07">12</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month07">07</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month07">24</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -136,17 +136,32 @@
   <hr/>
 
   <div id="article_content">
-    <p>See also: [Wikipedia: Evaluation strategy](<a class="reference external" href="https://en.wikipedia.org/wiki/Evaluation_strategy">https://en.wikipedia.org/wiki/Evaluation_strategy</a>)</p>
-<div class="section" id="applicative-order-evaluation-eager-evaluation">
-<h2>Applicative order evaluation (eager evaluation)</h2>
-<p>All arguments to procedures are evaluated when provided to procedure (when procedure is applied)</p>
-<ul class="simple">
-<li>for example <em>Scheme</em> uses this evaluation strategy</li>
-</ul>
+    <p>This page collects notes about Scheme (an Lisp in general).</p>
+<div class="section" id="sources">
+<h2>Sources</h2>
+<p>Most information is taken from:</p>
+<p>[Structure and Interpretation of Computer Programs](<a class="reference external" href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/">http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/</a>)</p>
+<p>[My Github repository with examples](<a class="reference external" href="https://github.com/LukasWoodtli/SchemeCourse">https://github.com/LukasWoodtli/SchemeCourse</a>)</p>
 </div>
-<div class="section" id="normal-order-evaluation-lazy-evaluation">
-<h2>Normal order evaluation (lazy evaluation)</h2>
-<p>Delay the evaluation of procedure arguments until they are needed</p>
+<div class="section" id="evaluation-rules">
+<h2>Evaluation Rules</h2>
+<ol class="arabic">
+<li><p class="first">If <em>self-evaluating</em>: return value</p>
+</li>
+<li><p class="first">If <em>name</em>: return value of associated name in environment</p>
+</li>
+<li><p class="first">If <em>special form</em>: do something special</p>
+</li>
+<li><dl class="first docutils">
+<dt>If <em>combination</em>:</dt>
+<dd><ol class="first last loweralpha simple">
+<li><em>evaluate</em> all subexpressions (in any order)</li>
+<li><em>apply</em> operator on arguments and return result</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
 </div>
 
   </div>
@@ -154,12 +169,12 @@
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/scheme_lisp.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/statements_and_expressions.html">
+          <a href="http://lukaswoodtli.github.io/evaluation_strategy.html">
           Older &raquo;</a>
         </li>
       </ul>
