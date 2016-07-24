@@ -339,6 +339,11 @@
 <li><a href="#querying-moving-objects-with-uncertainity">Querying Moving Objects with Uncertainity</a></li>
 </ul>
 </li>
+<li><a href="#representing-temporal-data">Representing Temporal Data</a></li>
+<li><a href="#conceptual-and-data-models">Conceptual and Data Models</a></li>
+<li><a href="#homogeneous-and-heterogenous-models">Homogeneous and Heterogenous Models</a></li>
+<li><a href="#storage-models">Storage Models</a></li>
+<li><a href="#engineering-databases">Engineering Databases</a></li>
 </ul>
 </li>
 <li><a href="#indexing_1">Indexing</a><ul>
@@ -3485,7 +3490,198 @@ The fundamental layer is usually not directly needed by the application develope
 <li><code>Sometime_Definitely_Inside( T, R, tb, te)</code></li>
 </ol>
 <p>Some of them are semantically equivalent</p>
-<!-- TODO Slides p. 22 -->
+<h2 id="representing-temporal-data">Representing Temporal Data</h2>
+<ul>
+<li>Tuple Versioning<ul>
+<li>tuple is extended with attribute for temporal dimension</li>
+<li>can be realised without violating <em>relational first normal form</em></li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Employee</th>
+<th>Office</th>
+<th>Salary</th>
+<th>TS</th>
+<th>TE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anne</td>
+<td>A12</td>
+<td>5500</td>
+<td>2000</td>
+<td>now</td>
+</tr>
+<tr>
+<td>Bob</td>
+<td>B 34</td>
+<td>4000</td>
+<td>2002</td>
+<td>2003</td>
+</tr>
+<tr>
+<td>Bob</td>
+<td>B 34</td>
+<td>5500</td>
+<td>2003</td>
+<td>now</td>
+</tr>
+<tr>
+<td>Charles</td>
+<td>C 56</td>
+<td>6700</td>
+<td>1995</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>Charles</td>
+<td>C 56</td>
+<td>7500</td>
+<td>2000</td>
+<td>2006</td>
+</tr>
+<tr>
+<td>Charles</td>
+<td>C 56</td>
+<td>7000</td>
+<td>2006</td>
+<td>now</td>
+</tr>
+<tr>
+<td>Denise</td>
+<td>B 34</td>
+<td>3000</td>
+<td>1990</td>
+<td>1995</td>
+</tr>
+<tr>
+<td>Denise</td>
+<td>B 34</td>
+<td>5300</td>
+<td>1995</td>
+<td>2002</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Attribute Versioning<ul>
+<li>each attribute is extended with temporal information</li>
+<li>requires non-first normal form <span class="math">\(NF^3\)</span> relational systems</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Employee</th>
+<th>Office</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anne</td>
+<td>A12</td>
+<td>(5500, 2000, now)</td>
+</tr>
+<tr>
+<td>Bob</td>
+<td>B 34</td>
+<td>(4000, 2002, 2003) (5500, 2003, now)</td>
+</tr>
+<tr>
+<td>Charles</td>
+<td>C 56</td>
+<td>(6700, 1995, 2000) (7500, 2000, 2006) (7000, 2006, now)</td>
+</tr>
+<tr>
+<td>Denise</td>
+<td>B 34</td>
+<td>(3000, 1990, 1995) (5300, 1995, 2002)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conceptual-and-data-models">Conceptual and Data Models</h2>
+<ul>
+<li>Early models: extend relational of E/R model</li>
+<li>Bitemporal Conceptual Data Model (BCDM)<ul>
+<li>tuple versioning</li>
+<li>using <em>4</em> additional columns per tuple</li>
+<li><em>transation time</em> and <em>valid time</em><ul>
+<li>special 'until changed' and 'now' values indicate if a tuple is current</li>
+</ul>
+</li>
+<li>query language TSQL2<ul>
+<li>extension of SQL</li>
+<li>introduces <code>VALIDTIME</code> and <code>WHEN</code> clause</li>
+<li>integrated into SQL3 as SQL/Temporal</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="homogeneous-and-heterogenous-models">Homogeneous and Heterogenous Models</h2>
+<ul>
+<li>homogenous if temporal domain does not vary from one attribute to another<ul>
+<li>all models that use tuple versioning are homogenous</li>
+</ul>
+</li>
+<li>heterogenous if attributes of a tuple associated to different times</li>
+</ul>
+<h2 id="storage-models">Storage Models</h2>
+<ul>
+<li>Temporal relation as 3-dimensional data structure<ul>
+<li>sequence of relations</li>
+<li>data cube</li>
+</ul>
+</li>
+<li>implemented using a two level store structure<ul>
+<li>primary store contains current versions<ul>
+<li>satisfy all non-temporal queries</li>
+</ul>
+</li>
+<li>history store hold in remaining history versions</li>
+</ul>
+</li>
+<li>traditional access methods cannot be used in such a storage model</li>
+<li>Two-level Storage Structures<ul>
+<li>Reverse Chaining</li>
+<li>Accession Lists</li>
+<li>Clustering</li>
+<li>Stacked Versions</li>
+</ul>
+</li>
+</ul>
+<h2 id="engineering-databases">Engineering Databases</h2>
+<ul>
+<li>Engineering application domains<ul>
+<li>Computer-Aided Design (CAD)</li>
+<li>Computer-Aided Manufacturing (CAM)</li>
+</ul>
+</li>
+<li>support development and maintenance of products</li>
+<li>Requirements<ul>
+<li>data structures</li>
+<li>concurrency control concepts</li>
+<li>define and manage complex (and hierarchical) design objects</li>
+<li>versionen support for complex objects</li>
+<li>iterative development</li>
+<li>alternatives and trial-and-error experiments</li>
+</ul>
+</li>
+<li>2-dimensional version models<ul>
+<li>linear revision dimension</li>
+<li>non-sequential variation dimension</li>
+</ul>
+</li>
+</ul>
+<!-- TODO Slides p. 30 -->
 <!-- End Slides/Notes Week 11 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing_1">Indexing</h1>
