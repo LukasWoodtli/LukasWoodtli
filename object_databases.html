@@ -344,6 +344,13 @@
 <li><a href="#homogeneous-and-heterogenous-models">Homogeneous and Heterogenous Models</a></li>
 <li><a href="#storage-models">Storage Models</a></li>
 <li><a href="#engineering-databases">Engineering Databases</a></li>
+<li><a href="#design-space-version-model">Design Space Version Model</a></li>
+<li><a href="#software-configuration-systems">Software Configuration Systems</a></li>
+<li><a href="#product-space-representation">Product Space Representation</a></li>
+<li><a href="#version-space">Version Space</a><ul>
+<li><a href="#version-space-representation">Version Space Representation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#indexing_1">Indexing</a><ul>
@@ -3681,7 +3688,78 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<!-- TODO Slides p. 30 -->
+<h2 id="design-space-version-model">Design Space Version Model</h2>
+<ul>
+<li>Modeling primitives</li>
+<li>component hierarchies (<em>is-a-part-of</em>)</li>
+<li>version histories (<em>is-a-kind-of</em>, <em>is-derved-from</em>)</li>
+<li>configurations combine hierarchies and version histories</li>
+</ul>
+<h2 id="software-configuration-systems">Software Configuration Systems</h2>
+<ul>
+<li>Developed for SW development</li>
+<li>SW Configuration Management (SCM)</li>
+<li>SW Engineering Environments (SEE)</li>
+<li>manage product directly</li>
+<li>fully automting process of building final product</li>
+<li>built around source files and program modules</li>
+<li>reference and dependencies management complex<ul>
+<li>hidden inside source code files</li>
+</ul>
+</li>
+</ul>
+<h2 id="product-space-representation">Product Space Representation</h2>
+<ul>
+<li>Data model with type relationships<ul>
+<li>composition tree with files as leaves</li>
+<li>dependencies are sepresented within tree</li>
+<li>build information can be computed from composition and dependency relationships</li>
+</ul>
+</li>
+<li>Without spanning tree<ul>
+<li>all files of one module are summarised as one object</li>
+<li>only source dependencies are represented</li>
+<li>directly corresponds to logical structure</li>
+</ul>
+</li>
+</ul>
+<h2 id="version-space">Version Space</h2>
+<ul>
+<li>Version model defines how objects are versioned<ul>
+<li>versioned object is container for set of object version</li>
+<li>common properties shared by all versions (invariants)</li>
+<li>differences (deltas) between versions<ul>
+<li>symmetric deltas</li>
+<li>directed deltas (changes)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Definition of version set<ul>
+<li><em>extentional</em> versioning enumerates all member of version set</li>
+<li><em>intentional</em> versioning uses predicate defining version set members</li>
+</ul>
+</li>
+<li>Evolution<ul>
+<li>revisions: track of history</li>
+<li>variants: alternatives</li>
+<li>can be used for cooperation and collaboration</li>
+</ul>
+</li>
+</ul>
+<h3 id="version-space-representation">Version Space Representation</h3>
+<ul>
+<li>One-level representation<ul>
+<li>Successor relationship (Sequence)</li>
+<li>Branch (Tree) and Merge (DAG)</li>
+</ul>
+</li>
+<li>Two-level representation<ul>
+<li>Revision</li>
+<li>Variants</li>
+</ul>
+</li>
+</ul>
 <!-- End Slides/Notes Week 11 -->
 <!-- Start Slides/Notes Week 12 -->
 <h1 id="indexing_1">Indexing</h1>
