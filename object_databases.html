@@ -328,7 +328,7 @@
 </li>
 <li><a href="#version-models">Version Models</a><ul>
 <li><a href="#versioned-object">Versioned Object</a></li>
-<li><a href="#version-orgensiations">Version Orgensiations</a></li>
+<li><a href="#version-organsiations">Version Organsiations</a></li>
 <li><a href="#references">References</a></li>
 <li><a href="#storage-strategies">Storage Strategies</a></li>
 <li><a href="#operation-and-interaction-models">Operation and Interaction Models</a></li>
@@ -3295,7 +3295,6 @@ The fundamental layer is usually not directly needed by the application develope
 </table>
 <!-- End Slides/Notes Week 10 -->
 <!-- Start Slides/Notes Week 11 -->
-<!-- TODO Notes 0:00:00 -->
 <h1 id="version-models">Version Models</h1>
 <ul>
 <li>Various models proposed<ul>
@@ -3305,6 +3304,11 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>Some object-oriented DBs provide versioning</li>
+</ul>
+<p>Comparison:</p>
+<ul>
+<li>Version Control Systems: unstructured data</li>
+<li>Versioning DBs: structured data</li>
 </ul>
 <h2 id="versioned-object">Versioned Object</h2>
 <ul>
@@ -3321,12 +3325,15 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="version-orgensiations">Version Orgensiations</h2>
+<h2 id="version-organsiations">Version Organsiations</h2>
 <ul>
-<li>Set</li>
-<li>List</li>
-<li>Tree</li>
-<li>DAG</li>
+<li>Relations between version<ul>
+<li>not related (set)</li>
+<li>linerar versioning (time, list)</li>
+<li>trees (branches)</li>
+<li>DAG (merging)</li>
+</ul>
+</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
@@ -3337,6 +3344,10 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Generic reference<ul>
 <li>references entire object</li>
 <li>has to be dereferenced to a version when traversed</li>
+</ul>
+</li>
+<li>default version<ul>
+<li>it's not always clear which version is the default one (e.g. DAG)</li>
 </ul>
 </li>
 </ul>
@@ -3483,7 +3494,13 @@ The fundamental layer is usually not directly needed by the application develope
 <li>
 <p>location changes continuously: condition satisfied <em>sometime</em> or <em>always</em> within $[t_b,t_e]</p>
 </li>
-<li>due to uncerainty: condition satisfied <em>possibly</em> or <em>definitely</em> at point $p \in [t_b,t_e]</li>
+<li>
+<p>due to uncerainty: condition satisfied <em>possibly</em> or <em>definitely</em> at point $p \in [t_b,t_e]</p>
+</li>
+<li>
+<p><em>possibly</em>: trajectory with uncretainity</p>
+</li>
+<li><em>sometime</em>: don't care about time</li>
 </ul>
 <p>Leads to 8 possible operators</p>
 <ol>
