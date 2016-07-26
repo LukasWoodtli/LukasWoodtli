@@ -382,6 +382,11 @@
 </li>
 <li><a href="#the-om-data-model">The OM Data Model</a><ul>
 <li><a href="#typing-and-classification">Typing and Classification</a></li>
+<li><a href="#object-model-language-oml">Object Model Language (OML)</a><ul>
+<li><a href="#collection-algebra">Collection Algebra</a></li>
+<li><a href="#binary-collections">Binary Collections</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -4273,6 +4278,81 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>Map-Reduce</li>
+</ul>
+<h2 id="object-model-language-oml">Object Model Language (OML)</h2>
+<!-- TODO cont Notes 0:30:00 -->
+<ul>
+<li>Declarative OOP language for OM data model</li>
+<li>OML Data Definition Language<ul>
+<li>object and structured type definition</li>
+<li>method definition and emplementation</li>
+<li>collection, association and constraint definition</li>
+</ul>
+</li>
+<li>OML Data Manipulation Language<ul>
+<li>creating and updating objects</li>
+<li>ceate, update, delete, dress and strip operations</li>
+</ul>
+</li>
+<li>OML Query Language<ul>
+<li>expressions and functions for values of base types</li>
+<li>operations on objects<ul>
+<li>access attributes</li>
+<li>invoke methods</li>
+</ul>
+</li>
+<li>operations on collections (collection algebra)</li>
+</ul>
+</li>
+</ul>
+<h3 id="collection-algebra">Collection Algebra</h3>
+<ul>
+<li>Operations defined for collections of OM model<ul>
+<li>union</li>
+<li>intersections</li>
+<li>difference</li>
+<li>selection</li>
+<li>map</li>
+<li>reduce</li>
+<li>flatten</li>
+</ul>
+</li>
+<li>Sematics of operations depend on collection behaviour<ul>
+<li>set theory defines semantics</li>
+<li>generalisation for <em>bag</em>, <em>sequence</em> and <em>ranking</em></li>
+<li>mixing and converting collection types</li>
+</ul>
+</li>
+</ul>
+<h3 id="binary-collections">Binary Collections</h3>
+<ul>
+<li>All collections-operations can be applied to binary collection</li>
+<li>Binary collections suort additional operations<ul>
+<li>domain and range</li>
+<li>domain and range restriction</li>
+<li>subtraction</li>
+<li>inverse<ul>
+<li>swapping domain and range</li>
+</ul>
+</li>
+<li>nest<ul>
+<li>grouping of binary collections</li>
+</ul>
+</li>
+<li>compose<ul>
+<li>find associatd objects in DB it may be necessary to compose (<em>join</em>) associations</li>
+</ul>
+</li>
+<li>closure<ul>
+<li>repeatedly compose binary collection with itself</li>
+</ul>
+</li>
+<li>division<ul>
+<li>divide a binary collection with a unary collection</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
