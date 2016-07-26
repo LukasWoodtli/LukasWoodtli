@@ -288,7 +288,7 @@
 <li><a href="#cache-forward-architecture">Cache-Forward Architecture</a></li>
 <li><a href="#shared-virtual-memory">Shared Virtual Memory</a></li>
 <li><a href="#page-permits-and-locks">Page Permits and Locks</a></li>
-<li><a href="#distribution-and-heterogenity">Distribution and Heterogenity</a></li>
+<li><a href="#distribution-and-heterogeneity">Distribution and Heterogeneity</a></li>
 <li><a href="#persistence_1">Persistence</a></li>
 <li><a href="#transactions">Transactions</a><ul>
 <li><a href="#transaction-types">Transaction Types</a></li>
@@ -2549,7 +2549,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Possibility to select what is in DB and what is in memory</li>
 <li>Declarative query language<ul>
 <li>what, not how</li>
-<li>more powerfull</li>
+<li>more power-full</li>
 <li>easy to use</li>
 <li>more expressive</li>
 </ul>
@@ -2564,7 +2564,7 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>C++ and Java</li>
 <li>Client/Server application</li>
-<li>Leightweight and professional editions available</li>
+<li>Lightweight and professional editions available</li>
 <li>Based on virtual memory mapping<ul>
 <li>pages</li>
 <li>cache forward architecture (very performant)</li>
@@ -2619,9 +2619,9 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Address translation<ul>
 <li>done when data is fetched into cache</li>
-<li>retranslation can occur (when <em>PSR</em> gets full)</li>
+<li>re-translation can occur (when <em>PSR</em> gets full)</li>
 <li>trade-off<ul>
-<li>nice to have the ability to use direct SW pointes</li>
+<li>nice to have the ability to use direct SW pointers</li>
 <li>translating pointers has scalability implications</li>
 </ul>
 </li>
@@ -2650,7 +2650,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>used for<ul>
 <li>automatic recovery</li>
 <li>faster commits</li>
-<li>Multiversion Concurrency Control (MVCC)</li>
+<li>Multi-version Concurrency Control (MVCC)</li>
 <li>...</li>
 </ul>
 </li>
@@ -2660,7 +2660,7 @@ The fundamental layer is usually not directly needed by the application develope
 <h2 id="client-side-components">Client Side Components</h2>
 <ul>
 <li>Client<ul>
-<li>C++ program linked with ObjectStore librarys</li>
+<li>C++ program linked with ObjectStore libraries</li>
 <li>even Java programs using ObjectStore are embedded (session) in a C++ part</li>
 <li>interacts with DB</li>
 <li>pages automatically fetched from DB</li>
@@ -2684,7 +2684,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>one manager per client machine</li>
 <li>shared by all clients on that machine</li>
 <li>handles permit revokes</li>
-<li>read/write cache and commseg</li>
+<li>read/write cache and Commseg</li>
 <li>not directly involved in page fetch</li>
 </ul>
 </li>
@@ -2701,17 +2701,17 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h2 id="fetching-and-mapping-pages">Fetching and Mapping Pages</h2>
 <ul>
-<li>Client automaticalliy fetches and maps pages<ul>
+<li>Client automatically fetches and maps pages<ul>
 <li>'lazy' fetches</li>
 <li>held in client cache</li>
 </ul>
 </li>
-<li>Server <em>perimits</em> and client <em>locks</em> acquired automatically<ul>
+<li>Server <em>permits</em> and client <em>locks</em> acquired automatically<ul>
 <li>ensuring transaction consistency</li>
 </ul>
 </li>
 <li>Existing page can be swapped out<ul>
-<li>if not enough toom in cache for new page</li>
+<li>if not enough room in cache for new page</li>
 <li>updated pages are sent to the server</li>
 <li>read-only pages are dropped from cache (copy in DB)</li>
 </ul>
@@ -2729,7 +2729,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h2 id="cache-forward-architecture">Cache-Forward Architecture</h2>
 <ul>
-<li>To provide <em>high performace</em> in ObjectStore<ul>
+<li>To provide <em>high performance</em> in ObjectStore<ul>
 <li>data cached across transaction boundaries</li>
 <li>number of used locks is reduces</li>
 <li>cached data kept in globally consistent state</li>
@@ -2762,7 +2762,7 @@ The fundamental layer is usually not directly needed by the application develope
 <h2 id="page-permits-and-locks">Page Permits and Locks</h2>
 <ul>
 <li>Lock for client (locally)</li>
-<li>Permission for server (globaly)</li>
+<li>Permission for server (globally)</li>
 <li>Read permit<ul>
 <li>client can lock page for reading <em>without consulting server</em></li>
 <li>many clients can hold a read permit for the same page</li>
@@ -2819,7 +2819,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Pages on server are fetched with permission (read or write)</li>
 <li>Local locks don't tell server about lock/un-lock about after transaction</li>
 </ul>
-<h2 id="distribution-and-heterogenity">Distribution and Heterogenity</h2>
+<h2 id="distribution-and-heterogeneity">Distribution and Heterogeneity</h2>
 <ul>
 <li>Clients can access objects in different remote DBs in one transaction</li>
 <li>Clients and servers can run on different platforms<ul>
@@ -2831,7 +2831,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Physical object layout is transformed automatically<ul>
 <li>by client</li>
-<li>at runtime</li>
+<li>at run-time</li>
 <li>when page is mapped into cache</li>
 </ul>
 </li>
@@ -2848,7 +2848,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>...</li>
 </ul>
 </li>
-<li>Persistence is orthogonal to the type of an object (datatype orthogonality)</li>
+<li>Persistence is orthogonal to the type of an object (data-type orthogonality)</li>
 </ul>
 <h2 id="transactions">Transactions</h2>
 <ul>
@@ -2863,7 +2863,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>Isolation<ul>
-<li>serialisability (CPSR) is quaranteed by 2-phase locking</li>
+<li>serialisability (CPSR) is guaranteed by 2-phase locking</li>
 <li>MVCC provides serialisability for read-only transactions (using snapshots)</li>
 </ul>
 </li>
@@ -2877,8 +2877,8 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Read or Write</li>
 <li>Local or Global<ul>
-<li>local: only initiating thread is allowd</li>
-<li>global: allows all threds in a session to share transaction</li>
+<li>local: only initiating thread is allowed</li>
+<li>global: allows all threads in a session to share transaction</li>
 </ul>
 </li>
 <li>Lexical or Dynamic transactions<ul>
@@ -2923,7 +2923,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>
 <p>ObjectStore libraries</p>
 <ul>
-<li><code>objectstore</code>: runtime</li>
+<li><code>objectstore</code>: run-time</li>
 <li><code>os_database</code>: DB management</li>
 <li><code>os_transactions</code>: transaction handles and functionality</li>
 <li><code>os_typespec</code>: determine type specification</li>
@@ -2944,7 +2944,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h3 id="managing-databases">Managing Databases</h3>
 <ul>
-<li>provided by `os_database<ul>
+<li>provided by <code>os_database</code><ul>
 <li><code>create()</code>: creates new DB</li>
 <li><code>open()</code>: opens DB</li>
 <li><code>save()</code>: saves DB, changes permanent</li>
@@ -2972,7 +2972,7 @@ The fundamental layer is usually not directly needed by the application develope
     os_database <em>db = os_database::open("publications.db", 0, 1);
     Author </em>scheel = new(db, os_ts<author>::get()) Author("Matthias Geel");
     db-&gt;close();</author></p>
-<p>It's also possible to instantiate persitent array of objects.</p>
+<p>It's also possible to instantiate persistent array of objects.</p>
 <h3 id="updating-and-deleting-persistent-objects">Updating and Deleting Persistent Objects</h3>
 <ul>
 <li>Changes to persistent objects are propagated to DB automatically<ul>
@@ -2985,7 +2985,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h3 id="collections-and-relationships">Collections and Relationships</h3>
 <ul>
-<li>Relationships between classes modelled as collections</li>
+<li>Relationships between classes modeled as collections</li>
 <li>library of non-templated and templated collection types available</li>
 <li>traversal, manipulation, retrieval</li>
 <li>classes <code>os_collection</code>, <code>os_Collection&lt;E&gt;</code> and sub-classes</li>
@@ -3266,7 +3266,7 @@ The fundamental layer is usually not directly needed by the application develope
 <tbody>
 <tr>
 <td><em>no</em> database orthogonality</td>
-<td>partly datatype orthogonality (<code>RelationshipTypes</code> need to be implemented)</td>
+<td>partly data-type orthogonality (<code>RelationshipTypes</code> need to be implemented)</td>
 </tr>
 <tr>
 <td>independence (persistence orthogonality)</td>
@@ -4259,7 +4259,7 @@ The fundamental layer is usually not directly needed by the application develope
 <p>Query</p>
 <ul>
 <li>Decide if something in a collection or not</li>
-<li>Traversiong result (iterator, cursor)</li>
+<li>Traversing result (iterator, cursor)</li>
 </ul>
 </li>
 <li>SQL<ul>
@@ -4280,7 +4280,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Map-Reduce</li>
 </ul>
 <h2 id="object-model-language-oml">Object Model Language (OML)</h2>
-<!-- TODO cont Notes 0:30:00 -->
+<!-- TODO cont Notes 1:15:00 -->
 <ul>
 <li>Declarative OOP language for OM data model</li>
 <li>OML Data Definition Language<ul>
@@ -4304,6 +4304,10 @@ The fundamental layer is usually not directly needed by the application develope
 <li>operations on collections (collection algebra)</li>
 </ul>
 </li>
+<li>map-reduce<ul>
+<li>very important operations after selection</li>
+</ul>
+</li>
 </ul>
 <h3 id="collection-algebra">Collection Algebra</h3>
 <ul>
@@ -4312,8 +4316,16 @@ The fundamental layer is usually not directly needed by the application develope
 <li>intersections</li>
 <li>difference</li>
 <li>selection</li>
-<li>map</li>
-<li>reduce</li>
+<li>map<ul>
+<li>takes a set of objects and applies a function on <em>each object</em></li>
+<li>the result set has the same carinality</li>
+</ul>
+</li>
+<li>reduce<ul>
+<li>take a set of values (objects)</li>
+<li>return one value (object)</li>
+</ul>
+</li>
 <li>flatten</li>
 </ul>
 </li>
