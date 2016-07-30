@@ -382,6 +382,7 @@
 </li>
 <li><a href="#the-om-data-model">The OM Data Model</a><ul>
 <li><a href="#typing-and-classification">Typing and Classification</a></li>
+<li><a href="#om-data-model-layers">OM Data Model Layers</a></li>
 <li><a href="#object-model-language-oml">Object Model Language (OML)</a><ul>
 <li><a href="#collection-algebra">Collection Algebra</a></li>
 <li><a href="#binary-collections">Binary Collections</a></li>
@@ -391,8 +392,7 @@
 </li>
 </ul>
 </div>
-<!-- Lecture 1 Slides Start -->
-<!-- Lecture 1 Notes Start -->
+<!-- Lecture 1 Slides/Notes Start -->
 <h1 id="motivation">Motivation</h1>
 <ul>
 <li>Information Systems Design<ul>
@@ -645,8 +645,7 @@
 </ul>
 </li>
 </ul>
-<!-- Lecture 1 Slides End -->
-<!-- Lecture 1 Notes End -->
+<!-- Lecture 1 Slides/Notes End -->
 <h1 id="general-topics-for-dbs">General Topics for DB's</h1>
 <p>[Prepared Statement]</p>
 <h2 id="crud-and-acid">CRUD and ACID</h2>
@@ -719,8 +718,7 @@
 </tr>
 </tbody>
 </table>
-<!-- Lecture 2 Slides Start -->
-<!-- Lecture 2 Notes Start -->
+<!-- Lecture 2 Slides/Notes Start -->
 <h1 id="odmg-standard">ODMG Standard</h1>
 <ul>
 <li>What is an object?<ul>
@@ -4213,9 +4211,57 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<!-- TODO cont: Slides Week 13 p. 8 -->
+<h2 id="om-data-model-layers">OM Data Model Layers</h2>
 <ul>
-<li>Things that exist<ul>
+<li>OM distinguishes<ul>
+<li>typing from</li>
+<li>classification</li>
+</ul>
+</li>
+<li>Type-layer<ul>
+<li>object representation<ul>
+<li>objects: type units</li>
+<li>can gain and lose types dynamically: dressing and stripping</li>
+</ul>
+</li>
+<li>multiple inheritance</li>
+<li>multiple instantiation<ul>
+<li>objects can have types from parallel inheritance hierarchies</li>
+<li>objects can have types that are completely unrelated</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Classification-layer<ul>
+<li>based on types from type layer</li>
+<li>semantic groupings: collections<ul>
+<li>membership constrained by type</li>
+<li>associations to link objects together</li>
+<li>kinds and roles</li>
+<li>constraints<ul>
+<li>subcollections and supercollections</li>
+<li>cardinality to describe associations</li>
+<li>evolution constraints</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>multiple classification</li>
+<li>collections and associations</li>
+</ul>
+</li>
+<li>
+<p>Associations can be nested</p>
+<ul>
+<li>model n-ary relationships</li>
+<li>clearer semantics</li>
+<li>allow uniform query language</li>
+</ul>
+</li>
+<li>
+<p>Things that exist</p>
+<ul>
 <li>types</li>
 <li>values for attributes</li>
 </ul>
@@ -4253,7 +4299,7 @@ The fundamental layer is usually not directly needed by the application develope
 <p>Relationships</p>
 </li>
 <li>
-<p>intentional / extensional ???</p>
+<p>intentional / extensional</p>
 </li>
 <li>
 <p>Query</p>
@@ -4279,8 +4325,9 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Map-Reduce</li>
 </ul>
+<!-- End Slides/Notes Week 13 -->
+<!-- Begin Slides/Notes Week 14 -->
 <h2 id="object-model-language-oml">Object Model Language (OML)</h2>
-<!-- TODO cont Notes 1:15:00 -->
 <ul>
 <li>Declarative OOP language for OM data model</li>
 <li>OML Data Definition Language<ul>
@@ -4340,8 +4387,11 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>All collections-operations can be applied to binary collection</li>
 <li>Binary collections suort additional operations<ul>
-<li>domain and range</li>
-<li>domain and range restriction</li>
+<li>domain and range<ul>
+<li>not same as collection with tuple containing 'range' and 'domain'</li>
+</ul>
+</li>
+<li>domain and range restriction (selection)</li>
 <li>subtraction</li>
 <li>inverse<ul>
 <li>swapping domain and range</li>
@@ -4366,6 +4416,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
+<!-- End Slides/Notes Week 14 -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
