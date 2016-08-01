@@ -172,11 +172,70 @@
 </div>
 <div class="section" id="linear-recursion-and-iteration">
 <h2>Linear Recursion and Iteration</h2>
-<p>TODO:</p>
-<p><a class="reference external" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.1">https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.1</a></p>
-<p><a class="reference external" href="http://stackoverflow.com/questions/17254240/sicp-recursive-process-vs-iterative-process-using-a-recursive-procedure-to-gene">http://stackoverflow.com/questions/17254240/sicp-recursive-process-vs-iterative-process-using-a-recursive-procedure-to-gene</a></p>
+<p>See [SICP section 1.2.1](<a class="reference external" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.1">https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.1</a>)</p>
+<p>and [stack overflow](<a class="reference external" href="http://stackoverflow.com/questions/17254240/sicp-recursive-process-vs-iterative-process-using-a-recursive-procedure-to-gene">http://stackoverflow.com/questions/17254240/sicp-recursive-process-vs-iterative-process-using-a-recursive-procedure-to-gene</a>)</p>
+<p>It's confusing that both the recursive and the iterative implementation call themselves. There is a distinction between</p>
+<ul class="simple">
+<li>Recursive process and</li>
+<li>Recursive function</li>
+</ul>
+<p>A recursive function calls itself. But it can be implemented as <em>recursive</em> or <em>iterative</em> process.</p>
+<table border="1" class="docutils table-hover table-striped table borderless">
+<colgroup>
+<col width="44%"></col>
+<col width="56%"></col>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Recursive Process</th>
+<th class="head">Iterative Process</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Function calls itself</td>
+<td>Function calls itself</td>
+</tr>
+<tr><td>Itermediate result is kept on caller side</td>
+<td><p class="first">Intermedia result is passed to the called function</p>
+<ul class="last simple">
+<li>additinal argument needed</li>
+<li>initial value needed</li>
+</ul>
+</td>
+</tr>
+<tr><td>Each recursive call needs a new stack frame</td>
+<td>Stack frame can be reused (tail call)</td>
+</tr>
+<tr><td>Recursive function call part of bigger expression</td>
+<td>Recursive function call not part of bigger expression</td>
+</tr>
+<tr><td>Easier to understand</td>
+<td>More difficult to understand and to implement</td>
+</tr>
+<tr><td>Needs stack</td>
+<td>Can be implemented in register machine (without stack)</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="recursive-process">
+<h3>Recursive Process</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="mi">1</span>
+      <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">factorial</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span> <span class="c1">;; 'factorial' is part of bigger expression</span>
+</pre></div>
+</div>
 <div class="section" id="iterative-process">
 <h3>Iterative Process</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">fact-iter</span> <span class="mi">1</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">))</span> <span class="c1">;; inital values need to be provided</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fact-iter</span> <span class="nv">product</span> <span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span> <span class="c1">;; max-cout: intermediate result</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span>
+       <span class="nv">product</span>
+       <span class="p">(</span><span class="nf">fact-iter</span> <span class="p">(</span><span class="nb">* </span><span class="nv">counter</span> <span class="nv">product</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nb">+ </span><span class="nv">counter</span> <span class="mi">1</span><span class="p">)</span>
+                  <span class="nv">max-count</span><span class="p">)))</span> <span class="c1">;; max-cout: supply intermediate result to next call</span>
+</pre></div>
 <ul class="simple">
 <li>Iterative algorithms have constant space</li>
 <li>Develop iterative algorithm:<ul>
