@@ -325,6 +325,12 @@
 <li><a href="#deletion-and-lock-propagation">Deletion and Lock Propagation</a></li>
 <li><a href="#copy-and-versioning-behaviour">Copy and Versioning Behaviour</a></li>
 <li><a href="#domain-classes">Domain Classes</a></li>
+<li><a href="#connection-sessions-and-threads">Connection, Sessions and Threads</a></li>
+<li><a href="#persistent-collections">Persistent Collections</a></li>
+<li><a href="#iterators">Iterators</a></li>
+<li><a href="#scope-names">Scope Names</a></li>
+<li><a href="#retrieving-objects_1">Retrieving Objects</a></li>
+<li><a href="#linq-overview">LINQ Overview</a></li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -3052,6 +3058,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 9 -->
+<!-- TODO Notes 0:00:00 -->
 <h1 id="objectivitydb">Objectivity/DB</h1>
 <h2 id="key-features">Key Features</h2>
 <ul>
@@ -3301,7 +3308,84 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>App code class contains user-defined code</li>
 </ul>
-<!-- TODO: Continue p 30 -->
+<h2 id="connection-sessions-and-threads">Connection, Sessions and Threads</h2>
+<ul>
+<li>Static funtions for startup, shutdown and connection</li>
+<li>One connection to federation per application process</li>
+<li>Seesions<ul>
+<li>manage resources (cache, transaction state ...)</li>
+<li>one or many per thread or</li>
+<li>one shared by many threads</li>
+</ul>
+</li>
+<li>Cache<ul>
+<li>remains intact through commits and checkpoints</li>
+<li>flushed if transaction aborted</li>
+</ul>
+</li>
+</ul>
+<h2 id="persistent-collections">Persistent Collections</h2>
+<ul>
+<li>Built-in persistent collections: sets, lists and maps<ul>
+<li>automatically persistent (when created)</li>
+<li>conform to <code>System.Collections.Generic</code> interface</li>
+</ul>
+</li>
+<li>Types of persistent collections<ul>
+<li>ordered vs. unordered</li>
+<li>scalable vs.non-scalabse</li>
+</ul>
+</li>
+</ul>
+<h2 id="iterators">Iterators</h2>
+<ul>
+<li>Iterators are transient<ul>
+<li>provide access to persistent objects</li>
+</ul>
+</li>
+<li>Not an efficient method for looking up objects<ul>
+<li>predicates evaluated on client (unless index is available)</li>
+<li>can be improved with indexes and scoping</li>
+</ul>
+</li>
+<li>Result is not built entirely before it is returned<ul>
+<li>clients can start process result (instead of getting blockes)</li>
+<li>sorting of result is not possible</li>
+</ul>
+</li>
+</ul>
+<h2 id="scope-names">Scope Names</h2>
+<ul>
+<li>Generalization of DB roots</li>
+<li>Unique name</li>
+<li>Possible on each storage level<ul>
+<li>container</li>
+<li>database</li>
+<li>federation</li>
+</ul>
+</li>
+</ul>
+<h2 id="retrieving-objects_1">Retrieving Objects</h2>
+<p>-Scope names
+- Creating links (and following them)
+- Individual and group lookup
+    - keys
+    - iteratos
+- Parallel query
+    - Parallel Query Engine
+    - divides query among several servers
+- Content-based filtering
+    - predicate-query language
+    - used to follow to-many relationships
+    - used in parallel queries</p>
+<h2 id="linq-overview">LINQ Overview</h2>
+<ul>
+<li>Part of .NEW (<code>System.Linq</code>)</li>
+<li>add native query capabilities to .NET languages</li>
+<li>Standard query operators defined by class <code>Enumerable</code></li>
+<li>Language extensions are translated into method calls</li>
+<li>Static safety</li>
+</ul>
 <!-- End Notes/Slides Week 9 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
