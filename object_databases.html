@@ -316,6 +316,15 @@
 <li><a href="#logical-and-physical-pages">Logical and Physical Pages</a></li>
 </ul>
 </li>
+<li><a href="#persistent-object-model">Persistent Object Model</a></li>
+<li><a href="#relationships_1">Relationships</a><ul>
+<li><a href="#non-inline-relationships-default">Non-Inline Relationships (default)</a></li>
+<li><a href="#inline-relationships">Inline Relationships</a></li>
+</ul>
+</li>
+<li><a href="#deletion-and-lock-propagation">Deletion and Lock Propagation</a></li>
+<li><a href="#copy-and-versioning-behaviour">Copy and Versioning Behaviour</a></li>
+<li><a href="#domain-classes">Domain Classes</a></li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -3171,7 +3180,128 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <h3 id="logical-and-physical-pages">Logical and Physical Pages</h3>
-<!-- TODO: Continue p 17 -->
+<ul>
+<li>When page is modified<ul>
+<li>new page is written to container</li>
+<li>old page is kept</li>
+<li>journal file is written<ul>
+<li>containing current page map</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>When a transaction commits<ul>
+<li>page map is updated and written to disk</li>
+<li>old page is freed (for reuse)</li>
+<li>journal file is truncated</li>
+<li>lock removed on lock server</li>
+</ul>
+</li>
+<li>If a transaction aborts<ul>
+<li>new page is freed (for reuse)</li>
+<li>lock is removed from server</li>
+</ul>
+</li>
+</ul>
+<h2 id="persistent-object-model">Persistent Object Model</h2>
+<ul>
+<li>Language independent</li>
+<li>Persistence by inheritance</li>
+<li>Base types<ul>
+<li>numeric: sbyte, short, int, long, byte, ushort, uint, ulong, float, double</li>
+<li>string: ASCII (8-bit), UTF8, UTF16</li>
+<li>boolean</li>
+<li>date/time</li>
+</ul>
+</li>
+<li>Complex types<ul>
+<li>embedded: stored as part of parent object</li>
+<li>referece: parent object stores object identifier</li>
+<li>enumeration</li>
+<li>arrays (fixed and variable-length)</li>
+</ul>
+</li>
+<li>Relationships</li>
+<li>Collections</li>
+</ul>
+<h2 id="relationships_1">Relationships</h2>
+<ul>
+<li>between objects declared in classes<ul>
+<li>unary and binary</li>
+<li>to-one and to-many</li>
+</ul>
+</li>
+<li>Storage and management of relationships<ul>
+<li>inline</li>
+<li>non-inline</li>
+<li>binary associations represented as separate construct internally</li>
+</ul>
+</li>
+<li>Consistency of relationships<ul>
+<li>referential integrity</li>
+<li>inverse relationship of binary relationship is updated automatically</li>
+<li>objects are removed from all relationships when deleted</li>
+</ul>
+</li>
+</ul>
+<h3 id="non-inline-relationships-default">Non-Inline Relationships (default)</h3>
+<ul>
+<li>Each object with relationships has a default relationship array<ul>
+<li>all non-inline relationships are stored in that array</li>
+</ul>
+</li>
+<li>Each relationship in the array is identified by<ul>
+<li>relationship name (id, not string)</li>
+<li>object id (ODI) of related object</li>
+</ul>
+</li>
+<li>Objectivity traverses relationships until it locates the desired relationship</li>
+</ul>
+<h3 id="inline-relationships">Inline Relationships</h3>
+<ul>
+<li>To-one inline relationships: embedded as fields of an object</li>
+<li>To-many inline relationships: placed in their own array</li>
+</ul>
+<h2 id="deletion-and-lock-propagation">Deletion and Lock Propagation</h2>
+<ul>
+<li>Relationshis can have semantics</li>
+<li>Deletion propagation<ul>
+<li>if object is deleted all associated objects are deleted</li>
+</ul>
+</li>
+<li>Lock propagation<ul>
+<li>if object is locked all associated objects are locked</li>
+</ul>
+</li>
+<li>Developer specifies operation and direction of propagation</li>
+</ul>
+<h2 id="copy-and-versioning-behaviour">Copy and Versioning Behaviour</h2>
+<ul>
+<li>Policies define what happens to object relationships when a copy or a new version of an object is made<ul>
+<li>copy: old an new object associated with same objects</li>
+<li>drop: only old object is associated with other objects</li>
+<li>move: only new object is associated with other objects</li>
+</ul>
+</li>
+</ul>
+<h2 id="domain-classes">Domain Classes</h2>
+<ul>
+<li>.NET partial classes to separate app and persistence code</li>
+<li>Persistence by inheritance<ul>
+<li>both partial classes inherit form <code>ReferenceableObject</code></li>
+</ul>
+</li>
+<li>Persistence code class<ul>
+<li>defines schema class and attributes</li>
+<li>functionality to create and dispose objects</li>
+<li>properties for attributes defined by schema</li>
+<li>proxy cache for each relationship</li>
+<li>helper and utility functionality</li>
+</ul>
+</li>
+<li>App code class contains user-defined code</li>
+</ul>
+<!-- TODO: Continue p 30 -->
 <!-- End Notes/Slides Week 9 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
