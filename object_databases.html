@@ -309,6 +309,13 @@
 <li><a href="#objectivitydb">Objectivity/DB</a><ul>
 <li><a href="#key-features">Key Features</a></li>
 <li><a href="#architecture_2">Architecture</a></li>
+<li><a href="#federation">Federation</a></li>
+<li><a href="#databases">Databases</a></li>
+<li><a href="#containers">Containers</a></li>
+<li><a href="#pages">Pages</a><ul>
+<li><a href="#logical-and-physical-pages">Logical and Physical Pages</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#graph-databases">Graph Databases</a><ul>
@@ -3076,10 +3083,95 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Client/Server</li>
 <li>Lock Servers</li>
 <li>Data Servers</li>
-<li>Query Servers (Parallel Query Engine)</li>
+<li>Query Servers (Parallel Query Engine)<ul>
+<li>task splitter</li>
+<li>multiple query server scanning portions of data in parallel</li>
+</ul>
+</li>
 <li>Client-side Objectivity Kernel</li>
 </ul>
-<!-- TODO: Continue p 7/8 -->
+<h2 id="federation">Federation</h2>
+<blockquote>
+<p>Federation &gt; Database &gt; Container &gt; Objects</p>
+</blockquote>
+<ul>
+<li>A <em>Federation</em> contains several <em>DBs</em>.</li>
+<li>A <em>DB</em> contains several <em>Containers</em>.</li>
+<li>A <em>Container</em> contains several <em>Objects</em>.</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Logical</th>
+<th>Physical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Federation</td>
+<td>File</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>Files</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Pages</td>
+</tr>
+<tr>
+<td>Objects</td>
+<td>Slots</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Federated DB contains one or more DBs</li>
+</ul>
+<h2 id="databases">Databases</h2>
+<ul>
+<li>Databases are files<ul>
+<li>contain objects in container</li>
+<li>up to 65530 databases per federation</li>
+<li>a database holds up to 65530 containers</li>
+</ul>
+</li>
+<li>can be moved or copied to any disk/machine</li>
+<li>can be marked read-only or taken off-line</li>
+</ul>
+<h2 id="containers">Containers</h2>
+<ul>
+<li>Collections of objects in DB<ul>
+<li>contained objects can be of any size or type</li>
+<li>logical zie in page</li>
+<li>can grow up to 65530 pages</li>
+</ul>
+</li>
+<li>Useful for logical partitions<ul>
+<li>by owner</li>
+<li>by attribute</li>
+<li>by time</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h2 id="pages">Pages</h2>
+<ul>
+<li>Logical and Physical<ul>
+<li>logical page is permament part of object ID (OID)</li>
+<li>physical page is where the page is put in the file</li>
+</ul>
+</li>
+<li>Different age sizes possible</li>
+<li>Unit of transfer from disk or server</li>
+<li>Unit of locking<ul>
+<li>one writer</li>
+<li>multiple readers</li>
+</ul>
+</li>
+</ul>
+<h3 id="logical-and-physical-pages">Logical and Physical Pages</h3>
+<!-- TODO: Continue p 17 -->
 <!-- End Notes/Slides Week 9 -->
 <!-- Start Slides/Notes Week 10 -->
 <h1 id="graph-databases">Graph Databases</h1>
