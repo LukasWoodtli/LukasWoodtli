@@ -3784,15 +3784,18 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>different types of time to characterise temporal data<ul>
 <li>Transaction, Registration or Physical time<ul>
+<li>transaction or registration time</li>
 <li>captures when values were stored in DB</li>
 <li><code>AS-OF</code> operation</li>
 </ul>
 </li>
 <li>Valid or logical time<ul>
+<li>real-world time</li>
 <li>used to express when values existed in <em>real world</em></li>
 <li><code>WHEN</code> operation</li>
 </ul>
 </li>
+<li>Bitemporal: combination of physical and logical time</li>
 <li>User-defined time<ul>
 <li>all other aspects of time</li>
 </ul>
@@ -3810,6 +3813,11 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>Static roll-back DB<ul>
+<li>like version control system (more or less)</li>
+<li>changes can be made only on actual version<ul>
+<li>errors in older versions can't be fixed</li>
+</ul>
+</li>
 <li>keeps track of transaction time</li>
 <li>supports <code>AS-OF</code> operation</li>
 <li>no way to correct an error</li>
@@ -3823,6 +3831,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>Temporal DB<ul>
+<li>bi-temporal</li>
 <li>keept track of <em>transaction</em> and <em>valid</em> time</li>
 <li>supports <code>AS-OF</code> and <code>WHEN</code> operations</li>
 </ul>
