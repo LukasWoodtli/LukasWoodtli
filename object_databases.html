@@ -3143,6 +3143,7 @@ The fundamental layer is usually not directly needed by the application develope
 </table>
 <ul>
 <li>Federated DB contains one or more DBs</li>
+<li>A DB file can be copied to other machine</li>
 </ul>
 <h2 id="databases">Databases</h2>
 <ul>
@@ -3342,6 +3343,10 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Iterators are transient<ul>
 <li>provide access to persistent objects</li>
+</ul>
+</li>
+<li>Predicates can be supplied to iterators<ul>
+<li>no (or less) <code>if</code>s in loop</li>
 </ul>
 </li>
 <li>Not an efficient method for looking up objects<ul>
