@@ -226,6 +226,7 @@
 </li>
 <li><a href="#updating-objects">Updating Objects</a></li>
 <li><a href="#deleting-objects">Deleting Objects</a></li>
+<li><a href="#simple-vs-complex-objects">Simple vs. Complex Objects</a></li>
 <li><a href="#simple-structured-objects">Simple Structured Objects</a><ul>
 <li><a href="#updating-simple-structured-objects">Updating Simple Structured Objects</a></li>
 <li><a href="#deleting-simple-structured-objects">Deleting Simple Structured Objects</a></li>
@@ -410,6 +411,8 @@
 <li><a href="#the-om-data-model">The OM Data Model</a><ul>
 <li><a href="#typing-and-classification">Typing and Classification</a></li>
 <li><a href="#om-data-model-layers">OM Data Model Layers</a></li>
+<li><a href="#collection-constraint">Collection Constraint</a></li>
+<li><a href="#associations-relationships">Associations (Relationships)</a></li>
 <li><a href="#object-model-language-oml">Object Model Language (OML)</a><ul>
 <li><a href="#collection-algebra">Collection Algebra</a></li>
 <li><a href="#binary-collections">Binary Collections</a></li>
@@ -1767,6 +1770,20 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <ul>
 <li>similar to updating objects</li>
 <li>Method <code>ObjectContainer.delete(...)</code> removes objects</li>
+</ul>
+<h2 id="simple-vs-complex-objects">Simple vs. Complex Objects</h2>
+<ul>
+<li>Simple Structured Objects (objects in classical sense):<ul>
+<li>properties</li>
+<li>methods</li>
+</ul>
+</li>
+<li>Complex Object Structures: multivalued attrivutes<ul>
+<li>arrays</li>
+<li>collections</li>
+<li>...</li>
+</ul>
+</li>
 </ul>
 <h2 id="simple-structured-objects">Simple Structured Objects</h2>
 <ul>
@@ -4532,6 +4549,10 @@ The fundamental layer is usually not directly needed by the application develope
 </thead>
 <tbody>
 <tr>
+<td>static</td>
+<td>dynamic</td>
+</tr>
+<tr>
 <td>representation of entities</td>
 <td>roles of entities</td>
 </tr>
@@ -4545,6 +4566,14 @@ The fundamental layer is usually not directly needed by the application develope
 </tr>
 <tr>
 <td>defines inheritance properties</td>
+<td>Collections: member type</td>
+</tr>
+<tr>
+<td>'Java' classes</td>
+<td></td>
+</tr>
+<tr>
+<td>multiple inheritance/instantiation</td>
 <td></td>
 </tr>
 </tbody>
@@ -4696,6 +4725,19 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>Map-Reduce</li>
+</ul>
+<h2 id="collection-constraint">Collection Constraint</h2>
+<ul>
+<li>Disjoint: XOR</li>
+<li>Cover: OR</li>
+<li>Partition: one and only one needs to be true</li>
+</ul>
+<h2 id="associations-relationships">Associations (Relationships)</h2>
+<ul>
+<li>binary relation between 2 collections</li>
+<li>cardinality</li>
+<li>tuple as type of collection</li>
+<li>can be nested: n-ary relationships</li>
 </ul>
 <!-- End Slides/Notes Week 13 -->
 <!-- Begin Slides/Notes Week 14 -->
