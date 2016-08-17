@@ -157,6 +157,11 @@
 <li><a href="#tiles-as-turing-machine">Tiles as Turing Machine</a></li>
 </ul>
 </li>
+<li><a href="#cellular-automata">Cellular Automata</a><ul>
+<li><a href="#the-model">The Model</a></li>
+<li><a href="#variants">Variants</a></li>
+</ul>
+</li>
 <li><a href="#lambda-calculus">Lambda Calculus</a><ul>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#main-operations">Main Operations</a></li>
@@ -514,6 +519,57 @@
 <li>We can tile the floor with the tiles if TM halts</li>
 </ul>
 <!-- Notes Week 4 End -->
+<!-- Notes Week 6 Start -->
+<h1 id="cellular-automata">Cellular Automata</h1>
+<ul>
+<li>Inspired by natural cells</li>
+<li>World is grid of cells</li>
+<li>Cells have state (e.g. dead/alive)</li>
+<li>Next state of a cell is calculated by<ul>
+<li>actual state of the cell</li>
+<li>actual state of the neighbor cells</li>
+</ul>
+</li>
+<li>All cells work with same rules</li>
+<li>Time is discrete (round based)</li>
+<li>Often used in physics</li>
+<li>Good model for unreliability</li>
+<li>parallel, local comuptation</li>
+</ul>
+<h2 id="the-model">The Model</h2>
+<ul>
+<li><span class="math">\(N\)</span>-dimensional array of cells (infinitely large)</li>
+<li>Finite number of states<ul>
+<li>each cell is in some state</li>
+</ul>
+</li>
+<li>At each time step, each cell updates its state based on<ul>
+<li>it's own state</li>
+<li>the states of its neighbors</li>
+</ul>
+</li>
+<li>Variations:<ul>
+<li>number of dimensions</li>
+<li>neighborhood size (and geometry)</li>
+<li>asynchronouns</li>
+<li>error-prone (add randomness)</li>
+<li>finite size</li>
+<li>grid type</li>
+</ul>
+</li>
+</ul>
+<h2 id="variants">Variants</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a><ul>
+<li><a href="https://github.com/LukasWoodtli/GameOfLife">My implementation (Qt, C++)</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Toom%27s_rule">Toom's rule</a><ul>
+<li>asymetrc rule
+<!-- Notes Week 6 End --></li>
+</ul>
+</li>
+</ul>
 <!-- Notes Week 7 Start -->
 <h1 id="lambda-calculus">Lambda Calculus</h1>
 <ul>
@@ -932,7 +988,7 @@ C_6 C_6
 <td><span class="math">\(M(C(m,a),R(a,(S(S(m)))))\)</span></td>
 </tr>
 <tr>
-<td><span class="math">\(Z(n)=1\)</span> if prime ; <span class="math">\(0\)</span> else $</td>
+<td><span class="math">\(Z(n)=1\)</span> if prime ; <span class="math">\(0\)</span> else</td>
 <td>Primality</td>
 <td><span class="math">\(0\)</span></td>
 <td><span class="math">\(V(M(m,(P(m),S(m))))\)</span></td>
