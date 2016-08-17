@@ -152,6 +152,8 @@
 </ul>
 </li>
 <li><a href="#register-machines">Register Machines</a></li>
+<li><a href="#fractran">Fractran</a></li>
+<li><a href="#tilings">Tilings</a></li>
 <li><a href="#lambda-calculus">Lambda Calculus</a><ul>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#main-operations">Main Operations</a></li>
@@ -453,6 +455,32 @@
 </ul>
 </li>
 </ul>
+<!-- Notes Week 2 End -->
+<!-- Notes Week 4 Start -->
+<h1 id="fractran">Fractran</h1>
+<p>See also <a href="https://en.wikipedia.org/wiki/FRACTRAN">Wikipedia:Fractran</a></p>
+<p>Example PRIMEGAME:</p>
+<div class="math">$${\frac  {17}{91}},{\frac  {78}{85}},{\frac  {19}{51}},{\frac  {23}{38}},{\frac  {29}{33}},{\frac  {77}{29}},{\frac  {95}{23}},{\frac  {77}{19}},{\frac  {1}{17}},{\frac  {11}{13}},{\frac  {13}{11}},{\frac  {15}{2}},{\frac  {1}{7}},{\frac  {55}{1}}$$</div>
+<p>State/Memory: an Integer</p>
+<p>Computation: multiply by first fraction that yields an integer</p>
+<p>Start with <span class="math">\(2\)</span>: calculate primes.</p>
+<p>Implementation in racket:</p>
+<script src="https://gist.github.com/LukasWoodtli/c391e391dcc9f9c9e9231a8c6fb954a4.js"></script>
+<p>Fractran is similar to stack machines.</p>
+<h1 id="tilings">Tilings</h1>
+<p>See also <a href="https://en.wikipedia.org/wiki/Wang_tile">Wikipedia:Wang tile</a></p>
+<ul>
+<li>Graphical model of computation</li>
+<li>The edges of each tile have special form/color</li>
+<li>Tiles can be arranged on plain so that edges match</li>
+<li>Tiled plain can be seen as Turing Machine over time<ul>
+<li>one dimension (horizontal, x) is tape</li>
+<li>other dimension (vertical, y) is time</li>
+<li>so each row shows the tape at a given time</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 4 End -->
 <!-- Notes Week 7 Start -->
 <h1 id="lambda-calculus">Lambda Calculus</h1>
 <ul>
