@@ -153,7 +153,10 @@
 </li>
 <li><a href="#register-machines">Register Machines</a></li>
 <li><a href="#fractran">Fractran</a></li>
-<li><a href="#tilings">Tilings</a></li>
+<li><a href="#tilings">Tilings</a><ul>
+<li><a href="#tiles-as-turing-machine">Tiles as Turing Machine</a></li>
+</ul>
+</li>
 <li><a href="#lambda-calculus">Lambda Calculus</a><ul>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#main-operations">Main Operations</a></li>
@@ -473,12 +476,42 @@
 <li>Graphical model of computation</li>
 <li>The edges of each tile have special form/color</li>
 <li>Tiles can be arranged on plain so that edges match</li>
+</ul>
+<h2 id="tiles-as-turing-machine">Tiles as Turing Machine</h2>
+<ul>
 <li>Tiled plain can be seen as Turing Machine over time<ul>
 <li>one dimension (horizontal, x) is tape</li>
 <li>other dimension (vertical, y) is time</li>
-<li>so each row shows the tape at a given time</li>
+<li>so each row shows the tape at a given time
+3 kind of tiles needed</li>
 </ul>
 </li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Kind of Tile</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TAPE</td>
+<td>One for each symbol in the alphabet</td>
+</tr>
+<tr>
+<td>ACTION</td>
+<td>One tile for each transition of the TM</td>
+</tr>
+<tr>
+<td>PREPARE</td>
+<td>Two for each (symbol, state) pair</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Seed row: initial configuration</li>
+<li>We can tile the floor with the tiles if TM halts</li>
 </ul>
 <!-- Notes Week 4 End -->
 <!-- Notes Week 7 Start -->
@@ -899,7 +932,7 @@ C_6 C_6
 <td><span class="math">\(M(C(m,a),R(a,(S(S(m)))))\)</span></td>
 </tr>
 <tr>
-<td if="if" prime="prime">$Z(n)=1 \text</td>
+<td><span class="math">\(Z(n)=1\)</span> if prime ; <span class="math">\(0\)</span> else $</td>
 <td>Primality</td>
 <td><span class="math">\(0\)</span></td>
 <td><span class="math">\(V(M(m,(P(m),S(m))))\)</span></td>
