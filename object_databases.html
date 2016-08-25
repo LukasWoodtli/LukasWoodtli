@@ -160,7 +160,6 @@
 <li><a href="#crud-and-acid">CRUD and ACID</a></li>
 </ul>
 </li>
-<li><a href="#object-database-systems">Object Database Systems</a></li>
 <li><a href="#odmg-standard">ODMG Standard</a><ul>
 <li><a href="#object-data-management-group-odmg">Object Data Management Group (ODMG)</a><ul>
 <li><a href="#object-model">Object Model</a><ul>
@@ -390,7 +389,6 @@
 <li><a href="#h-tree">H-Tree</a></li>
 <li><a href="#class-division-index-cd-index">Class Division Index (CD-Index)</a></li>
 <li><a href="#multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</a></li>
-<li><a href="#overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</a></li>
 </ul>
 </li>
 <li><a href="#aggregation-path-indexing">Aggregation Path Indexing</a><ul>
@@ -434,7 +432,7 @@
 <p>Data has to outlive the execution of the program</p>
 <ul>
 <li><strong>Independence</strong> of longelivety of data<ul>
-<li>How much code needs to be written for persistence<ul>
+<li>How much code needs to be written for persistence (effort for programmer)<ul>
 <li>None at all would be nice but not realistic (GUI objects usually don't need storing...)</li>
 </ul>
 </li>
@@ -558,7 +556,7 @@
 </ul>
 </li>
 <li>Operations<ul>
-<li>Create tables</li>
+<li>Create tables (<code>class</code> in Java)</li>
 <li>Declare relation attributes</li>
 <li>Declare primary and foreign keys</li>
 <li>Alter tables</li>
@@ -577,6 +575,7 @@
 <li>Insert</li>
 <li>Update</li>
 <li>Delete</li>
+<li>in Java: <code>new</code> and 'setters'</li>
 </ul>
 </li>
 </ul>
@@ -593,6 +592,7 @@
 <li>Project</li>
 <li>Join</li>
 <li>Select</li>
+<li>in Java: 'getters'</li>
 </ul>
 </li>
 </ul>
@@ -699,65 +699,22 @@
 </ul>
 </li>
 </ul>
-<h1 id="object-database-systems">Object Database Systems</h1>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th>System</th>
-<th>db4o</th>
-<th>Object Store</th>
-<th>Versant</th>
-<th>Objectivity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data-type Orthogonality</td>
-<td>No changes to classes to make objects persistent</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Orthogonal Persistence (independence)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Programming Languages</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Persistence Depth</td>
-<td>persistence by reachability</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>OSs</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <!-- Lecture 2 Slides/Notes Start -->
 <h1 id="odmg-standard">ODMG Standard</h1>
 <ul>
-<li>What is an object?<ul>
+<li>
+<p>What is an object?</p>
+<ul>
 <li>Something that can be pointed to?</li>
 <li>Can be passed on as a reference?</li>
 <li>Distinct from single values</li>
+<li>properties and behaviour</li>
+<li>representing something (moddeling the real world)</li>
 </ul>
 </li>
-<li>Object:<ul>
+<li>
+<p>Object:</p>
+<ul>
 <li>properties</li>
 <li>behaviour</li>
 <li>presenting something (modelling the real world)</li>
@@ -931,17 +888,19 @@ where   condition
 <li><code>WHERE</code>: Predicates (conditions) that have to be true so that the results are selected as result</li>
 </ul>
 <p>Mapping to OOP not obvious.</p>
-<p>Table in relational DBs has tow roles:
-1. Defining Type
-2. Container of all values (of that type)</p>
+<p>Table in relational DBs has tow roles:</p>
+<ol>
+<li>Defining Type</li>
+<li>Container of all values (of that type)</li>
+</ol>
 <p>In OOP 2. is missing. A class just defines a type but is not a container of all instances of that class.</p>
 <p>ODMG defines Extents.</p>
 <h4 id="difference-to-sql">Difference to SQL</h4>
-<p>This is illegal as the “dot” operator cannot be applied to a collection of objects:
-    :::SqlLexer
-    select a.authors.title
-    from   Authors a
-    where  a.name = "Tilmann Zaeschke"</p>
+<p>This is illegal as the “dot” operator cannot be applied to a collection of objects:</p>
+<div class="highlight"><pre><span></span>select a.authors.title
+from   Authors a
+where  a.name = "Tilmann Zaeschke"
+</pre></div>
 <p>Correct solution based on <em>correlated</em> variables:</p>
 <div class="highlight"><pre><span></span>select p.title
 from Authors a, a.authors p
@@ -954,23 +913,23 @@ where a.name = "Tilmann Zaeschke"
 <p>As a default, queries return a <em>bag</em></p>
 <div class="highlight"><pre><span></span>select first: p.authored_by[1], p.title, p.year
 from   Publications p
-
-:::java
-Bag&lt;Struct { Author first, string title, integer year }&gt;
+</pre></div>
+<p>In Java:</p>
+<div class="highlight"><pre><span></span><span class="n">Bag</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">Author</span> <span class="n">first</span><span class="o">,</span> <span class="n">string</span> <span class="n">title</span><span class="o">,</span> <span class="n">integer</span> <span class="n">year</span> <span class="o">}&gt;</span>
 </pre></div>
 <p>Queries with <code>DISTINCT</code> return a <em>set</em></p>
 <div class="highlight"><pre><span></span>select distinct a.name
 from   Authors a
-
-:::java
-Set&lt;Struct { string name }&gt;
+</pre></div>
+<p>In Java:</p>
+<div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
 </pre></div>
 <p>Queries with <code>ORDER BY</code> return a <em>list</em></p>
 <div class="highlight"><pre><span></span>select p.title
 from Publications s order by p.year desc
-
-:::java
-List&lt;Struct { string name }&gt;
+</pre></div>
+<p>In Java:</p>
+<div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
 </pre></div>
 <h4 id="extents">Extents</h4>
 <ul>
@@ -1047,9 +1006,10 @@ List&lt;Struct { string name }&gt;
 </ul>
 </li>
 <li>Database gives access to global names<ul>
-<li>explicitly named root objects</li>
+<li>explicitly <em>named root objects</em></li>
 <li>types defined in schema</li>
 <li>named extents of types</li>
+<li>store object graphs</li>
 </ul>
 </li>
 </ul>
@@ -1395,6 +1355,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Default applications: Search, Maps, Mail, Calendar, Contacts...</li>
 <li>Java SDK</li>
 <li>Support for persistent data management</li>
+<li>Smart Phone / Tablet</li>
 </ul>
 <h2 id="application-component-model">Application component model</h2>
 <ul>
@@ -1412,7 +1373,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>components can be made available to other applications</li>
 </ul>
 </li>
-<li>Intent: request the use of application components<ul>
+<li>Intent: request the use of application components (integration with other apps)<ul>
 <li>showing activities</li>
 <li>using content provides</li>
 <li>listening to events</li>
@@ -1494,7 +1455,8 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>3. Encapsulation</li>
 <li>4. Types and classes</li>
 <li>5. Type and class hierarchies</li>
-<li>6. Overriding, overloading and late binding 7. Computational completeness</li>
+<li>6. Overriding, overloading and late binding</li>
+<li>7. Computational completeness</li>
 <li>8. Extensibility</li>
 </ul>
 </li>
@@ -1685,7 +1647,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 <li>Features<ul>
 <li>No conversion of mapping needed</li>
-<li>Classes don't need to be changed to make them persistent</li>
+<li>Classes don't need to be changed to make them persistent (datatype orthogonality)</li>
 <li>One line of code to store (complex) objects</li>
 <li>local or client/server mode</li>
 <li>ACID transaction model</li>
@@ -1862,7 +1824,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Logic of transparent persistence framework<ul>
-<li><code>Activatable</code> interface</li>
+<li><code>Activatable</code> interface (no datatype orthogonality)</li>
 <li>objects are made persistent by <code>store</code> method</li>
 <li>objects bound to transparent persistence framework with <code>bind</code>method</li>
 <li>commit: transparent persistent framework scans for modified objects and invokes <code>store</code></li>
@@ -1907,7 +1869,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 <li>Logic of transparent activation framework<ul>
-<li><code>Activable</code> interface</li>
+<li><code>Activable</code> interface (no datatype orthogonality)</li>
 <li>at object instantiation db registers itself in object with <code>bind(..)</code></li>
 </ul>
 </li>
@@ -3183,7 +3145,6 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Collections of objects in DB<ul>
 <li>contained objects can be of any size or type</li>
-<li>logical zie in page</li>
 <li>can grow up to 65530 pages</li>
 </ul>
 </li>
@@ -4237,9 +4198,6 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Usually implemented using <span class="math">\(B^+\)</span>-trees</li>
 <li>Type-Grouping</li>
 </ul>
-<blockquote>
-<p>Good for querying full extent</p>
-</blockquote>
 <h3 id="class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</h3>
 <ul>
 <li>One search structure for all objects of all types of indexed hierarchy</li>
@@ -4268,9 +4226,6 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Key-grouping structure</li>
 </ul>
-<blockquote>
-<p>Good for querying extent (not full extent)</p>
-</blockquote>
 <h3 id="h-tree">H-Tree</h3>
 <ul>
 <li>Set of nested <span class="math">\(B^+\)</span>-trees</li>
@@ -4303,6 +4258,8 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Parameters <em>q</em> and <em>r</em> give bounds<ul>
 <li><em>q</em>: number of index structures needed to build a type extent</li>
 <li><em>r</em>: number of times a type set is managed redundantly or replicated</li>
+<li>big <em>q</em>: slow queries</li>
+<li>big <em>r</em>: slow updates</li>
 </ul>
 </li>
 <li>Multiple index structures need to be accessed for a query<ul>
@@ -4317,7 +4274,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h3 id="multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</h3>
 <ul>
-<li>Multi-Dimensional indexing</li>
+<li><em>Multi-Dimensional</em> indexing (locality)</li>
 <li>Type information as additional attribute available</li>
 <li>Compromise between<ul>
 <li>type grouping</li>
@@ -4332,89 +4289,6 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Linearization</li>
 <li>Key-grouping structure (type is handled as an attribute)</li>
 </ul>
-<h3 id="overview-type-hierarchy-indexing">Overview: Type Hierarchy Indexing</h3>
-<ul>
-<li>Classes: <code>Person :&gt; Student</code></li>
-</ul>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Full-Extent</td>
-<td>Person</td>
-<td>Rel. DBs, SC-Index, (H-Index)</td>
-</tr>
-<tr>
-<td>Extent</td>
-<td>Person</td>
-<td>CH-Index, H-Index</td>
-</tr>
-<tr>
-<td>Extent</td>
-<td>Student</td>
-<td>CH-Index, H-Index</td>
-</tr>
-<tr>
-<td>comb(Extent, Full-Extent)</td>
-<td>...</td>
-<td>MT-Index, CD-Index, (H-Index)</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th>Index Structure</th>
-<th>Extent</th>
-<th>Full Extent</th>
-<th>Combination (Extent, Full Extent)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Relational DBs</td>
-<td>x</td>
-<td>Person</td>
-<td>x</td>
-</tr>
-<tr>
-<td>SC-Index</td>
-<td>x</td>
-<td>Person</td>
-<td>x</td>
-</tr>
-<tr>
-<td>CH-Index</td>
-<td>Person, Student</td>
-<td>x</td>
-<td>x</td>
-</tr>
-<tr>
-<td>H-Index</td>
-<td>Person, Student</td>
-<td>(Person)</td>
-<td>('any')</td>
-</tr>
-<tr>
-<td>CD-Index</td>
-<td>x</td>
-<td>x</td>
-<td>'any'</td>
-</tr>
-<tr>
-<td>MT-Index</td>
-<td>x</td>
-<td>x</td>
-<td>'any'</td>
-</tr>
-</tbody>
-</table>
 <h2 id="aggregation-path-indexing">Aggregation Path Indexing</h2>
 <ul>
 <li>Backward queries<ul>
@@ -4423,6 +4297,8 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Forward queries<ul>
 <li>without retrieving intermediate objects</li>
+<li>less hops to get to objects referenced over seversl levels</li>
+<li>shortcut forward</li>
 </ul>
 </li>
 </ul>
@@ -4453,6 +4329,8 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Originally for optimization of <em>joins</em> in Relational DBs</li>
 <li>Consists of a set of binary join indexes (Slides p. 33)</li>
+<li>Forward references are also indexed</li>
+<li>Cost compared to <em>MX</em> doubled</li>
 </ul>
 <h3 id="multi-index-mx">Multi-Index (MX)</h3>
 <ul>
@@ -4475,6 +4353,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Updates cheap</li>
 <li>Complex queries expensive (hop over nodes)</li>
+<li>each reference in object has index structure for backward references</li>
 </ul>
 <p><img alt="Multi Index" class="img-responsive" src="/images/object_databases/multi_index.png"/></p>
 <h3 id="access-support-relations-asr">Access Support Relations (ASR)</h3>
@@ -4537,7 +4416,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 <li>objects: attributes and methods</li>
-<li>multiple inheritance, multiple instantiation, multiple classification</li>
+<li>multiple inheritance, multiple instantiation (gain/lose roles), multiple classification</li>
 <li>collections as first-class concepts</li>
 <li>binary associations as first-class concepts</li>
 <li>constraints for integrity, classification and evolution</li>
