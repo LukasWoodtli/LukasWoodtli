@@ -202,6 +202,12 @@
 </li>
 <li><a href="#diophantine-equations">Diophantine Equations</a></li>
 <li><a href="#primitive-recursive-functions">Primitive Recursive Functions</a></li>
+<li><a href="#some-simple-models">Some Simple Models</a><ul>
+<li><a href="#chemical-reaction-networks">Chemical Reaction Networks</a></li>
+<li><a href="#petri-nets">Petri Nets</a></li>
+<li><a href="#vector-addition-systems">Vector Addition Systems</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="boolean-circuits">Boolean Circuits</h1>
@@ -1029,10 +1035,131 @@ C_6 C_6
 </li>
 <li><em>Not</em> considierd as universal system</li>
 </ul>
-<!-- # Some Simple Models
+<h1 id="some-simple-models">Some Simple Models</h1>
+<h2 id="chemical-reaction-networks">Chemical Reaction Networks</h2>
+<ul>
+<li>Inspired by chemical reaction equations</li>
+</ul>
+<div class="math">$$\begin{matrix}
+A &amp; \rightarrow  &amp; B \\ 
+C &amp; \rightarrow &amp; D \\ 
+B + C &amp; \rightarrow &amp; A \\ 
+A + D &amp; \rightarrow &amp; A + 2E\\ 
+B + E &amp; \rightarrow &amp; B + D
+\end{matrix}$$</div>
+<ul>
+<li>Nondeterministic: any reaction can happen at any time</li>
+<li>Primitive Recursive Functions can always compute this in bounded time, even if answer is <span class="math">\(\infty\)</span>.</li>
+<li>Chemical Reaction Networks are not stronger than Primitive Recursive Functions.</li>
+</ul>
+<h2 id="petri-nets">Petri Nets</h2>
+<ul>
+<li>A lot of different form of <a href="https://en.wikipedia.org/wiki/Petri_net">Petri Nets</a></li>
+<li>Components<ul>
+<li>Transition (edges)</li>
+<li>Places (nodes)</li>
+<li>Tokens (arcs) travel from transitions to places (or vice versa)</li>
+</ul>
+</li>
+<li>Nondeterministic</li>
+<li>Similar to (and as powerful as) Chemical Transition Networks</li>
+<li>Used to simulate concurrency in distributed systems (but not turing-complete)</li>
+</ul>
+<h2 id="vector-addition-systems">Vector Addition Systems</h2>
+<ul>
+<li>Rules: Starting position and list of possible moves (like a knight in chess)</li>
+<li>no coordinate ca go negative</li>
+<li>N-dimensional is posible</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-1</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>7 moves for 7 dimensions</li>
+<li>Non-deterministic</li>
+<li>Same as Chemical Reduction Networks<ul>
+<li>Put equations in vectors (linear combination)</li>
+</ul>
+</li>
+</ul>
+<!-- Continue: Week 13 1:10:00
 
-## Chemical Reaction Networks -->
-<!-- TODO: cont Week 13  0:40:00 -->
+##Unordered Fractran -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
