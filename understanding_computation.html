@@ -139,12 +139,13 @@
     <p>This page collects notes and citations from the book:</p>
 <p><a href="http://computationbook.com/">Understanding Computation by Tom Stuart</a></p>
 <h1 id="i-programs-and-machines">I. Programs and Machines</h1>
+<p><em>"To create an environment where</em> [...] *computation can occur, we need three basic ingredients:“</p>
 <ul>
-<li><em>"A machine capable of performing the computation"</em></li>
-<li><em>"A language for writing instructions that the machine can understand"</em></li>
-<li><em>"A program written in that language, describing the exact computation that the machine should perform"</em> - page 18</li>
+<li><em>"A <strong>machine</strong> capable of performing the computation"</em></li>
+<li><em>"A <strong>language</strong> for writing instructions that the machine can understand"</em></li>
+<li><em>"A <strong>program</strong> written in that language, describing the exact computation that the machine should perform"</em> - page 18</li>
 </ul>
-<p><em>"But computer programming isn’t really about programs , it’s about ideas"</em> - page 20</p>
+<p><em>"But computer programming isn’t really about <strong>programs</strong>, it’s about <strong>ideas</strong>"</em> - page 20</p>
 <p><em>"semantics is the study of the connection between words and their meanings"</em> - page 21</p>
 <p>Expression and Statements:</p>
 <p><em>"The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine."</em> - page 35</p>
@@ -159,7 +160,7 @@
 <li>Big-step semantics: recursive</li>
 </ul>
 <p><em>"operational semantics is about explaining a language’s meaning by designing an interpreter for it. By contrast, the language-to-language translation of denotational semantics is like a compiler"</em> - page 60</p>
-<p><em>" [It's] possible to compare two programs written in different languages, if a denotational semantics exists to translate both languages into some shared representation"</em> - page 62</p>
+<p><em>"[It's] possible to compare two programs written in different languages, if a denotational semantics exists to translate both languages into some shared representation"</em> - page 62</p>
 <p><em>"Small-step semantics is also known as structural operational semantics and transition semantics"</em> - page 63</p>
 <p><em>"big-step semantics is more often called natural semantics or relational semantics"</em> - page 63</p>
 <p><em>"denotational semantics is also called fixed-point semantics or mathematical semantics"</em> - page 63</p>
@@ -169,79 +170,14 @@
 </ul>
 <p><em>"Reducing an expression and an environment gives us a new expression, and we may reuse the old environment next time; reducing a statement and an environment gives us a new statement and a new environment."</em> - page 70</p>
 <p><em>"alternative style of operational semantics, called reduction semantics , which explicitly separates these “what do we reduce next?” and “how do we reduce it?” phases by introducing so-called reduction contexts"</em> - page 71</p>
-<!-- TODO: continue here
-
-each finite automaton has a hardcoded collection of rules that determine how it should move from one state to another in response to input
-
-July 24, 2016
-73
-
-
-
-
-
-finite automata also have a rudimentary way of producing output
-
-July 24, 2016
-74
-
-
-
-
-
-deterministic
-
-July 24, 2016
-75
-
-
-
-
-
-it’s always absolutely certain which state it will end up in
-
-July 24, 2016
-75
-
-
-
-
-
-a string is accepted if there’s some way for the NFA to end up in an accept state by following some of its rules—that is, if finishing in an accept state is possible , even if it’s not inevitable.
-
-July 29, 2016
-81
-
-
-
-
-
-The collection of strings that are accepted by a particular machine is called a language : we say that the machine recognizes that language.
-
-July 29, 2016
-82
-
-
-
-
-
-those languages that can be recognized by finite automata are called regular languages
-
-July 29, 2016
-82
-
-
-
-
-
-introducing another machine feature called free moves. These are rules that the machine may spontaneously follow without reading any input
-
-July 30, 2016
-88
-
-
-
-
+<p><em>"each finite automaton has a hardcoded collection of rules that determine how it should move from one state to another in response to input"</em> - page 73</p>
+<p><em>"finite automata also have a rudimentary way of producing output"</em> - page 74</p>
+<p>[Deterministric finite automaton] <em>"it’s always absolutely certain which state it will end up in"</em> - page 75</p>
+<p><em>"a string is accepted if there’s some way for the <strong>NFA</strong> to end up in an accept state by following some of its rules—that is, if finishing in an accept state is possible , even if it’s not inevitable."</em> - page 81</p>
+<p><em>"The collection of strings that are accepted by a particular machine is called a language : we say that the machine recognizes that language."</em> - page 82</p>
+<p><em>"those languages that can be recognized by finite automata are called regular languages"</em> - page 82</p>
+<p>[...] <em>"introducing another machine feature called free moves. These are rules that the machine may spontaneously follow without reading any input"</em> - page 88</p>
+<!-- TODO continue here
 
 The characters read by finite automata are usually called symbols , the rules for moving between states are called transitions , and the collection of rules making up a machine is called a transition function (or sometimes transition relation for NFAs)
 
