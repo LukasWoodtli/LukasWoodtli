@@ -211,6 +211,7 @@
 <li><a href="#general-notes">General Notes</a></li>
 </ul>
 </li>
+<li><a href="#halting-problem">Halting Problem</a></li>
 </ul>
 </div>
 <h1 id="boolean-circuits">Boolean Circuits</h1>
@@ -1177,6 +1178,17 @@ B + E &amp; \rightarrow &amp; B + D
 </ul>
 <!-- End Notes Week 13 -->
 <!-- Beginn Notes Week 14 -->
+<h1 id="halting-problem">Halting Problem</h1>
+<p>Suppose a Turing Machine "A" can take <span class="math">\(Enc_1(table)\)</span>, <span class="math">\(Enc_2(tape)\)</span> and <em>decide</em> wether a TM with the given table will ever halt, if started on the given tape</p>
+<p>This is impossible! </p>
+<p>Idea (proof):</p>
+<ol>
+<li>Make a machine that does the opposite of whatever machine you give it (halt or not halt)</li>
+<li>The goal is to feed this machine to itself</li>
+<li>Analyze what machines do when they are fed to themselves</li>
+</ol>
+<!-- Continue Notes Week 14 0:40:00
+# Universal Machine -->
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
