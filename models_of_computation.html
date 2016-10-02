@@ -212,6 +212,7 @@
 </ul>
 </li>
 <li><a href="#halting-problem">Halting Problem</a></li>
+<li><a href="#universal-machine">Universal Machine</a></li>
 </ul>
 </div>
 <h1 id="boolean-circuits">Boolean Circuits</h1>
@@ -1179,7 +1180,7 @@ B + E &amp; \rightarrow &amp; B + D
 <!-- End Notes Week 13 -->
 <!-- Beginn Notes Week 14 -->
 <h1 id="halting-problem">Halting Problem</h1>
-<p>Suppose a Turing Machine "A" can take <span class="math">\(Enc_1(table)\)</span>, <span class="math">\(Enc_2(tape)\)</span> and <em>decide</em> wether a TM with the given table will ever halt, if started on the given tape</p>
+<p>Suppose a Turing Machine "A" can take <span class="math">\(Enc_1(table)\)</span>, <span class="math">\(Enc_2(tape)\)</span> and <em>decide</em> wether a TM with the given table will ever halt, if started on the given tape.</p>
 <p>This is impossible! </p>
 <p>Idea (proof):</p>
 <ol>
@@ -1187,8 +1188,13 @@ B + E &amp; \rightarrow &amp; B + D
 <li>The goal is to feed this machine to itself</li>
 <li>Analyze what machines do when they are fed to themselves</li>
 </ol>
-<!-- Continue Notes Week 14 0:40:00
-# Universal Machine -->
+<h1 id="universal-machine">Universal Machine</h1>
+<p>It's possible to create a "universal" machine, which just (slowly) does the same
+thing that the machine described to it would do.</p>
+<ul>
+<li>a programmable Turing Machine</li>
+<li>see <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine">Universal Turing machine</a></li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
