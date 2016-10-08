@@ -160,19 +160,132 @@
 </ul>
 <h2 id="predefined-character-classes">Predefined Character Classes</h2>
 <p>Available in Python</p>
-<p>| Element | Description                                                     |
-+---------+-----------------------------------------------------------------+
-| <code>.</code>     | Any character except newline <code>\n</code>                               |
-| <code>\d</code>    | Decimal digit, equivalent to <code>[0-9]</code>                            |
-| <code>\D</code>    | Any non-digit character, equivalent to <code>[^0-9]</code>                 |
-| <code>\s</code>    | Any whitespace character, equivalent to <code>[ \t\n\r\f\v]</code>         |
-| <code>\S</code>    | Any non-whitespace character, equivalent to <code>[^ \t\n\r\f\v]</code>    |
-| <code>\w</code>    | Any alphanumeric character, equivalent to <code>[a-zA-Z0-9_]</code>        |
-| <code>\W</code>    | Any non-alphanumeric character, equivalent to <code>[^a-zA-Z0-9_]</code>   |</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Any character except newline <code>\n</code></td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>Decimal digit, equivalent to <code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Any non-digit character, equivalent to <code>[^0-9]</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Any whitespace character, equivalent to <code>[ \t\n\r\f\v]</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Any non-whitespace character, equivalent to <code>[^ \t\n\r\f\v]</code></td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Any alphanumeric character, equivalent to <code>[a-zA-Z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Any non-alphanumeric character, equivalent to <code>[^a-zA-Z0-9_]</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="posix-character-classes">POSIX Character Classes</h2>
 <ul>
 <li>POSIX defines some classes: <a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions#Character_classes&gt;">Wikibooks</a></li>
 <li>not available in Python</li>
+</ul>
+<h1 id="alternation">Alternation</h1>
+<ul>
+<li>Alternation (or) is marked with <code>|</code></li>
+</ul>
+<h1 id="quantifiers">Quantifiers</h1>
+<p>Quantifiers can be applied to characters, character sets, and to groups</p>
+<ul>
+<li>Optional (0 or 1 repetition): <code>?</code></li>
+<li>Zero (0) or more times: <code>*</code></li>
+<li>One (1) or more times: <code>+</code></li>
+<li>Exact repetition and ranges: <code>{}</code><ul>
+<li>Exactly <code>n</code> times: <code>{n}</code></li>
+<li>Between <code>n</code> and <code>m</code> times (both inclusive): <code>{n,m}</code></li>
+<li>At least <code>n</code> times: <code>{n,}</code></li>
+<li>At most <code>n</code> times: <code>{,n}</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="greedy-and-reluctant-quantifiers">Greedy and Reluctant Quantifiers</h2>
+<ul>
+<li>greedy quantifiers will try to match as much as possible<ul>
+<li>default behavior</li>
+<li>biggest possible result</li>
+</ul>
+</li>
+<li>reluctant (non-greedy, lazy) will try to have smalles match possible<ul>
+<li>extra <code>?</code> to quantifier: <code>??</code>, <code>*?</code> and <code>+?</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="boundary-matchers">Boundary Matchers</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Identifiers</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>^</code></td>
+<td>Beginning of a line</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>End of a line</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>At word boundary</td>
+</tr>
+<tr>
+<td><code>\B</code></td>
+<td>Anything that is not word boundary (opposite of <code>\b</code>)</td>
+</tr>
+<tr>
+<td><code>\A</code></td>
+<td>Beginning of the input</td>
+</tr>
+<tr>
+<td><code>\Z</code></td>
+<td>End of the input</td>
+</tr>
+</tbody>
+</table>
+<h1 id="python-regex-functions">Python Regex Functions</h1>
+<ul>
+<li><code>RegexObject</code> class in <code>re</code> module</li>
+<li>wrapper functions in <code>re</code> module</li>
+<li><code>match</code> tries to match at beginning of string<ul>
+<li><strong>pos</strong> and slicing can have different results</li>
+</ul>
+</li>
+<li><code>search</code> is like <em>match</em> in most languages (e.g Perl)<ul>
+<li>tries to match at any position in string</li>
+</ul>
+</li>
+<li><a href="https://docs.python.org/2/library/re.html#re.compile">Compilation Flags</a></li>
+</ul>
+<h1 id="grouping">Grouping</h1>
+<p>Used for different purposes</p>
+<ul>
+<li>Creating subexpressions for applying <em>quantifiers</em></li>
 </ul>
   </div>
 
