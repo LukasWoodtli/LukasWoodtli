@@ -136,78 +136,44 @@
   <hr/>
 
   <div id="article_content">
-    <p>Most notes are from <a class="reference external" href="https://www.packtpub.com/application-development/mastering-python-regular-expressions">Mastering Python Regular Expressions</a></p>
-<p>My Repository on <a class="reference external" href="https://github.com/LukasWoodtli/MasteringPythonRegularExpressions">GitHub</a></p>
-<div class="section" id="metacharacters">
-<h2>Metacharacters</h2>
+    <p>Most notes are from <a href="https://www.packtpub.com/application-development/mastering-python-regular-expressions">Mastering Python Regular Expressions</a></p>
+<p>My Repository on <a href="https://github.com/LukasWoodtli/MasteringPythonRegularExpressions">GitHub</a></p>
+<h1 id="metacharacters">Metacharacters</h1>
 <p>Twelve Metacharacters:</p>
-<ul class="simple">
-<li>Backslash <tt class="docutils literal">\</tt></li>
-<li>Caret <tt class="docutils literal">^</tt></li>
-<li>Dollar <tt class="docutils literal">$</tt></li>
-<li>Dot <tt class="docutils literal">.</tt></li>
-<li>Pipe <tt class="docutils literal">|</tt></li>
-<li>Question mark <tt class="docutils literal">?</tt></li>
-<li>Asterisk <tt class="docutils literal">*</tt></li>
-<li>Plus <tt class="docutils literal">+</tt></li>
-<li>Opening and closing parenthesis <tt class="docutils literal">(</tt> and <tt class="docutils literal">)</tt></li>
+<ul>
+<li>Backslash <code>\</code></li>
+<li>Caret <code>^</code></li>
+<li>Dollar <code>$</code></li>
+<li>Dot <code>.</code></li>
+<li>Pipe <code>|</code></li>
+<li>Question mark <code>?</code></li>
+<li>Asterisk <code>*</code></li>
+<li>Plus <code>+</code></li>
+<li>Opening and closing parenthesis <code>(</code> and <code>)</code></li>
 </ul>
-</div>
-<div class="section" id="character-classes">
-<h2>Character Classes</h2>
-<ul class="simple">
+<h1 id="character-classes">Character Classes</h1>
+<ul>
 <li>Also known as character sets</li>
-<li>Grouped in <tt class="docutils literal">[</tt> and <tt class="docutils literal">]</tt></li>
-<li>Example: Hex number <tt class="docutils literal"><span class="pre">[0-9a-fA-F]</span></tt></li>
-<li>Invert character set with <tt class="docutils literal">^</tt></li>
+<li>Grouped in <code>[</code> and <code>]</code></li>
+<li>Example: Hex number <code>[0-9a-fA-F]</code></li>
+<li>Invert character set with <code>^</code></li>
 </ul>
-<div class="section" id="predefined-character-classes">
-<h3>Predefined Character Classes</h3>
+<h2 id="predefined-character-classes">Predefined Character Classes</h2>
 <p>Available in Python</p>
-<table border="1" class="docutils table-hover table-striped table borderless">
-<colgroup>
-<col width="12%"></col>
-<col width="88%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Element</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td><tt class="docutils literal">.</tt></td>
-<td>Any character except newline <tt class="docutils literal">\n</tt></td>
-</tr>
-<tr><td><tt class="docutils literal">\d</tt></td>
-<td>Decimal digit, equivalent to <tt class="docutils literal"><span class="pre">[0-9]</span></tt></td>
-</tr>
-<tr><td><tt class="docutils literal">\D</tt></td>
-<td>Any non-digit character, equivalent to <tt class="docutils literal"><span class="pre">[^0-9]</span></tt></td>
-</tr>
-<tr><td><tt class="docutils literal">\s</tt></td>
-<td>Any whitespace character, equivalent to <tt class="docutils literal">[ \t\n\r\f\v]</tt></td>
-</tr>
-<tr><td><tt class="docutils literal">\S</tt></td>
-<td>Any non-whitespace character, equivalent to <tt class="docutils literal">[^ \t\n\r\f\v]</tt></td>
-</tr>
-<tr><td><tt class="docutils literal">\w</tt></td>
-<td>Any alphanumeric character, equivalent to <tt class="docutils literal"><span class="pre">[a-zA-Z0-9_]</span></tt></td>
-</tr>
-<tr><td><tt class="docutils literal">\W</tt></td>
-<td>Any non-alphanumeric character, equivalent to <tt class="docutils literal"><span class="pre">[^a-zA-Z0-9_]</span></tt></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="posix-character-classes">
-<h3>POSIX Character Classes</h3>
-<ul class="simple">
-<li>POSIX defines some classes: <cite>Wikibooks &lt;https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions#Character_classes&gt;</cite></li>
+<p>| Element | Description                                                     |
++---------+-----------------------------------------------------------------+
+| <code>.</code>     | Any character except newline <code>\n</code>                               |
+| <code>\d</code>    | Decimal digit, equivalent to <code>[0-9]</code>                            |
+| <code>\D</code>    | Any non-digit character, equivalent to <code>[^0-9]</code>                 |
+| <code>\s</code>    | Any whitespace character, equivalent to <code>[ \t\n\r\f\v]</code>         |
+| <code>\S</code>    | Any non-whitespace character, equivalent to <code>[^ \t\n\r\f\v]</code>    |
+| <code>\w</code>    | Any alphanumeric character, equivalent to <code>[a-zA-Z0-9_]</code>        |
+| <code>\W</code>    | Any non-alphanumeric character, equivalent to <code>[^a-zA-Z0-9_]</code>   |</p>
+<h2 id="posix-character-classes">POSIX Character Classes</h2>
+<ul>
+<li>POSIX defines some classes: <a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions#Character_classes&gt;">Wikibooks</a></li>
 <li>not available in Python</li>
 </ul>
-</div>
-</div>
-
   </div>
 
   <hr/>
