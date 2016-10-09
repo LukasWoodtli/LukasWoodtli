@@ -293,6 +293,42 @@
 <li>Extract <em>parts</em> of the matched pattern (capturing)</li>
 <li>Using captured <em>parts</em> again in the regex</li>
 </ul>
+<h1 id="look-around">Look Around</h1>
+<ul>
+<li>Add subpatterns that are not in the result (not consuming characters)<ul>
+<li>positive: subpattern needs to match</li>
+<li>negative: subpattern must not match</li>
+</ul>
+</li>
+<li>Also called zero-width assertions</li>
+<li>Python <code>re</code> module allows <em>look behind</em> only with <em>fixed size (sub-) patterns</em></li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th>positive</th>
+<th>negative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Look ahead</td>
+<td>(?=regex)</td>
+<td>(?!regex)</td>
+</tr>
+<tr>
+<td>Look behind</td>
+<td>(?&lt;=regex)</td>
+<td>(?&lt;!regex)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="benchmarking">Benchmarking</h1>
+<p>General for Python:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
+<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"myFunction"</span><span class="p">)</span>
+</pre></div>
   </div>
 
   <hr/>
