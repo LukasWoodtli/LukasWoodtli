@@ -177,7 +177,7 @@
 <p><em>"The collection of strings that are accepted by a particular machine is called a language : we say that the machine recognizes that language."</em> - page 82</p>
 <p><em>"those languages that can be recognized by finite automata are called regular languages"</em> - page 82</p>
 <p><em>"[...] introducing another machine feature called free moves. These are rules that the machine may spontaneously follow without reading any input"</em> - page 88</p>
-<p><em>"The characters read by finite automata are usually called <strong>symbol*s, the rules for moving between states are called </strong>transitions<strong>, and the collection of rules making up a machine is called a </strong>transition function</em><em> (or sometimes transition relation for NFAs)"</em> - page 91</p>
+<p><em>"The characters read by finite automata are usually called <strong>symbols</strong>, the rules for moving between states are called <strong>transitions</strong>, and the collection of rules making up a machine is called a <strong>transition function</strong> (or sometimes transition relation for NFAs)"</em> - page 91</p>
 <p><em>"NFA with free moves is known as an NFA-ε, and free moves themselves are usually called ε-transitions."</em> - page 91</p>
 <p><em>"it’s possible to convert any regular expression into an equivalent NFA—every string matched by the regular expression is accepted by the NFA, and vice versa — and then match a string by feeding it to a simulation of that NFA to see whether it gets accepted."</em> - page 92</p>
 <p><em>"here are two kinds of extremely simple regular expression that are not built out of anything simpler:</em></p>
@@ -191,14 +191,8 @@
 <li><em>Choose between two patterns, written by joining them with the <code>|</code> operator. We can join the regular expressions <code>a</code> or <code>b</code> to get the regular expression <code>a|b</code> , which matches the strings '<code>a</code>' and '<code>b</code>'.</em></li>
 <li><em>Repeat a pattern zero or more times, written by suffixing it with the <code>*</code> operator. We can suffix the regular expression a to get <code>a*</code> , which matches the strings '<code>a</code>' , '<code>aa</code>' , '<code>aaa</code>' , and so on, as well as the empty string '' (i.e., zero repetitions)."</em> - page 92</li>
 </ul>
+<p><em>"the <code>*</code> operator to bind more tightly than <strong>concatenation</strong>, which in turn binds more tightly than the <code>|</code> operator."</em> - page 94</p>
 <!-- TODO continue
-
-the * operator to bind more tightly than concatenation, which in turn binds more tightly than the | operator.
-
-July 31, 2016
-94
-
-
 
 
 
