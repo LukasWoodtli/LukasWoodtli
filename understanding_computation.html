@@ -192,34 +192,21 @@
 <li><em>Repeat a pattern zero or more times, written by suffixing it with the <code>*</code> operator. We can suffix the regular expression a to get <code>a*</code> , which matches the strings '<code>a</code>' , '<code>aa</code>' , '<code>aaa</code>' , and so on, as well as the empty string '' (i.e., zero repetitions)."</em> - page 92</li>
 </ul>
 <p><em>"the <code>*</code> operator to bind more tightly than <strong>concatenation</strong>, which in turn binds more tightly than the <code>|</code> operator."</em> - page 94</p>
+<p><em>"Any two NFAs can be concatenated by turning every accept state from the first NFA into a nonaccept state and connecting it to the start state of the second NFA with a free move"</em> - page 97</p>
+<ul>
+<li><em>"The start state of the first NFA"</em></li>
+<li><em>"The accept states of the second NFA"</em></li>
+<li><em>"All the rules from both NFAs"</em></li>
+<li><em>"Some extra free moves to connect each of the first NFA’s old accept states to the second NFA’s old start state"</em> - page 98</li>
+</ul>
+<p><em>"We can use a similar strategy to convert a Choose expression into an NFA."</em> - page 98</p>
+<ul>
+<li><em>"A new start state"</em></li>
+<li><em>"All the accept states from both NFAs"</em></li>
+<li><em>"All the rules from both NFAs"</em></li>
+<li><em>"Two extra free moves to connect the new start state to each of the NFA’s old start states"</em> - page 100</li>
+</ul>
 <!-- TODO continue
-
-
-
-Any two NFAs can be concatenated by turning every accept state from the first NFA into a nonaccept state and connecting it to the start state of the second NFA with a free move
-
-August 2, 2016
-97
-
-
-
-
-
-The start state of the first NFA The accept states of the second NFA All the rules from both NFAs Some extra free moves to connect each of the first NFA’s old accept states to the second NFA’s old start state
-
-August 2, 2016
-98
-
-
-
-
-
-A new start state All the accept states from both NFAs All the rules from both NFAs Two extra free moves to connect the new start state to each of the NFA’s old start states
-
-August 2, 2016
-100
-
-
 
 
 
