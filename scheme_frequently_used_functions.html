@@ -160,7 +160,24 @@
 <li><code>(list-ref lst i)</code>: retrieves element at index <code>i</code> (index is zero-based)</li>
 <li><code>(length lst)</code>: returns the length of a list</li>
 <li><code>(append lst1 lst2)</code>: combines the elements of two lists into one new list</li>
+<li><code>(map fun lst)</code>: applies the function <code>fun</code> to each element of <code>lst</code> and returns a new list with the results</li>
 </ul>
+<p>The <code>map</code> function can be applied on multiple lists:</p>
+<p><em>"This more general `map?  takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
+<p><em>For example:</em>"</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span> 
+    <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> 
+    <span class="p">(</span><span class="nb">list </span><span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span><span class="p">)</span> 
+    <span class="p">(</span><span class="nb">list </span><span class="mi">700</span> <span class="mi">800</span> <span class="mi">900</span><span class="p">))</span>
+<span class="nv">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">741</span> <span class="mi">852</span> <span class="mi">963</span><span class="p">)</span>
+
+<span class="nv">:::scheme</span>
+<span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">y</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">list </span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nv">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">9</span> <span class="mi">12</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+<p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1">SICP:2.2.1  Representing Sequences:Mapping over lists</a></p>
 <h2 id="dotted-tail-notation">Dotted-tail Notation</h2>
 <ul>
 <li>Used for functions with arbitrary number of arguments</li>
