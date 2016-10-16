@@ -262,94 +262,26 @@
 <p><em>"can we design a single machine that can read a program from its input and then do whatever job the program specifies? Perhaps unsurprisingly, a Turing machine is powerful enough to read the description of a simple machine from its tape - a deterministic finite automaton, say - and then run a simulation of that machine to find out what it does."</em> - page 176</p>
 <p><em>"we are able to design a machine that can simulate any other DTM by reading its rules, accept states, and initial configuration from the tape and stepping through its execution, essentially acting as a Turing machine rulebook interpreter. A machine that does this is called a <strong>universal Turing machine</strong> (UTM)."</em> - page 177</p>
 <p><em>"We can write software - an encoded description of a Turing machine - onto a tape, feed that tape to the UTM, and have our software executed to produce the behavior we want."</em> - page 177</p>
-<!--- TODO continue here
-
-One challenge is that every Turing machine has a finite number of states and a finite number of different characters it can store on its tape, with both of these numbers being fixed in advance by its rulebook, and a UTM is no exception.
-
-August 22, 2016
-178
-
-II. Computation and Computability
-
-
-
-As programmers we work with languages and machines that are designed to fit our mental models of the world, and we expect them to come equipped with features that make it easy to translate our ideas into implementations. These human-centered designs are motivated by convenience rather than necessity
-
-August 22, 2016
-182
-
-
-
-
-
-hard theoretical constraints: certain problems just can’t be solved by any computer, no matter how fast and efficient it is.
-
-August 22, 2016
-182
-
-
-
-
-
-Each number corresponds to a unique way of repeating an action: the number one corresponds to just performing the action; the number two corresponds to performing it and then performing it again; and so on. The number zero, unsurprisingly, corresponds to not performing the action at all.
-
-August 22, 2016
-189
-
-
-
-
-
-Church encoding after Alonzo Church, the inventor of the lambda calculus
-
-August 22, 2016
-190
-
-
-
-
-
-conversion:def to_integer(proc) proc[-> n { n + 1 }][0] endThis method takes a proc that represents a number and calls it with another proc (which just increments its argument) and the native Ruby number 0.
-
-Church numeral to int conversion
-
-August 22, 2016
-191
-
-
-
-
-
-def to_integer(proc) proc[-> n { n + 1 }][0] endThis method takes a proc that represents a number and calls it with another proc (which just increments its argument) and the native Ruby number 0.
-
-August 22, 2016
-191
-
-
-
-
-
-def to_integer(proc) proc[-> n { n + 1 }][0] endThis method takes a proc that represents a number and calls it with another proc (which just increments its argument) and the native Ruby number 0
-
-Conversion of Church numerals
-
-August 22, 2016
-191
-
-
-
-
-
-def to_boolean(proc) proc[true][false] endThis works by taking a proc that represents a Boolean and calling it with true as its first argument and false as its second. TRUE just returns its first argument, so to_boolean(TRUE) will return true, and likewise for FALSE:
-
-Converting Church booleans
-
-August 22, 2016
-193
-
-
-
-
+<p><em>"One challenge is that every Turing machine has a finite number of states and a finite number of different characters it can store on its tape, with both of these numbers being fixed in advance by its rulebook, and a UTM is no exception.</em>" - page 178</p>
+<h1 id="ii-computation-and-computability">II. Computation and Computability</h1>
+<p><em>"As programmers we work with languages and machines that are designed to fit our mental models of the world, and we expect them to come equipped with features that make it easy to translate our ideas into implementations. These human-centered designs are motivated by convenience rather than necessity"</em> - page 182</p>
+<p><em>"[...] hard theoretical constraints: certain problems just can’t be solved by any computer, no matter how fast and efficient it is."</em> - page 182</p>
+<p>Chruch numerals:</p>
+<p><em>"Each number corresponds to a unique way of repeating an action: the number one corresponds to just performing the action; the number two corresponds to performing it and then performing it again; and so on. The number zero, unsurprisingly, corresponds to not performing the action at all."</em> - page 189</p>
+<p><em>"[...] Church encoding after Alonzo Church, the inventor of the lambda calculus"</em> - page 190</p>
+<p><em>"[Church numeral to integer] conversion:</em></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_integer</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+    <span class="nb">proc</span><span class="o">[-&gt;</span> <span class="n">n</span> <span class="p">{</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span>
+<span class="k">end</span>
+</pre></div>
+<p><em>This method takes a proc that represents a number and calls it with another proc (which just increments its argument) and the native Ruby number 0.</em>" - page 191</p>
+<p>Church to boolean:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_boolean</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+    <span class="nb">proc</span><span class="o">[</span><span class="kp">true</span><span class="o">][</span><span class="kp">false</span><span class="o">]</span>
+<span class="k">end</span>
+</pre></div>
+<p><em>"This works by taking a proc that represents a Boolean and calling it with <code>true</code> as its first argument and <code>false</code> as its second. <code>TRUE</code> just returns its first argument, so <code>to_boolean(TRUE)</code> will return <code>true</code>, and likewise for <code>FALSE</code> [...]"</em> - 193</p>
+<!-- TODO continue here
 
 In languages like Ruby, the if - else statement is nonstrict (or lazy ): we give it a condition and two blocks, and it evaluates the condition to decide which of the two blocks to evaluate and return—it never evaluates both.
 
