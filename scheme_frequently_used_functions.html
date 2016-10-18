@@ -149,6 +149,13 @@
 <p>Equivalent to <code>(cons (cons a0 (cons a1 (cons a2 (cons ... (cons (cons aN nil))...)))))</code></p>
 <ul>
 <li><code>nil</code>: end of list marker (equivalent to the empty list <code>'()</code>)</li>
+<li><code>(null? p)</code>: checks if the given element is <code>nil</code></li>
+<li><code>(pair? e)</code>: checks if the given element is a pair</li>
+</ul>
+<blockquote>
+<p>the empty list satisfies <code>null?</code> and also is <em>not</em> a pair</p>
+</blockquote>
+<ul>
 <li><code>(cons a lst)</code> makes a list like the original one (<code>lst</code>), but with an additional item (<code>a</code>) at the beginning</li>
 </ul>
 <p>Example:</p>
