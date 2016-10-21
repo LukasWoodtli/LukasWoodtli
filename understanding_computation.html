@@ -294,8 +294,10 @@
 <p><em>"Since every Turing machine can be simulated by a lambda calculus program, and every lambda calculus program can be simulated by a Turing machine, the two systems are exactly equivalent in power."</em> - page 234</p>
 <h2 id="partial-recursive-functions">Partial Recursive Functions</h2>
 <p><em>"partial recursive functions are programs that are constructed from four fundamental building blocks in different combinations.</em></p>
-<p><em>[...] The first two building blocks are called <strong>zero</strong> and <strong>increment</strong></em></p>
-<p><em>third building block, <strong>recurse</strong></em></p>
+<p><em>[...]</em> </p>
+<p><strong>The first two building blocks are called </strong>zero<strong> and </strong>increment***</p>
+<p><em>[...]</em> </p>
+<p><em>third building block, <strong>recurse</strong> [...]</em></p>
 <p><em><strong>recurse</strong> is just a template for defining a certain kind of recursive function.</em></p>
 <p><em>The programs that we can assemble out of <strong>zero</strong>, <strong>increment</strong>, and <strong>recurse</strong> are called the <strong>primitive</strong> recursive functions.</em></p>
 <p><em>All primitive recursive functions are <strong>total</strong>: regardless of their inputs, they always halt and return an answer. This is because <strong>recurse</strong> is the only legitimate way to define a recursive method, and <strong>recurse</strong> always halts: each recursive call makes the last argument closer to zero, and when it inevitably reaches zero, the recursion will stop.</em></p>
@@ -332,34 +334,20 @@ September 2, 2016
 246
 
 
-
-
-
 iota ( ɩ ) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce ɩ[ a ] to a [S][K] .
 
 September 2, 2016
 246
-
-
-
-
 
 a language called Iota whose programs only use the ɩ combinator. Although it only has one combinator, Iota is a universal language,
 
 September 2, 2016
 246
 
-
-
-
-
 We can convert an SKI expression to Iota by applying these substitution rules: Replace S with ɩ[ɩ[ɩ[ɩ[ɩ]]]] . Replace K with ɩ[ɩ[ɩ[ɩ]]] . Replace I with ɩ[ɩ] .
 
 September 2, 2016
 246
-
-
-
 
 
 a tag system operates on a string by repeatedly adding new characters to the end of the string and removing them from the beginning.
@@ -368,16 +356,10 @@ September 2, 2016
 248
 
 
-
-
-
 A tag system’s description has two parts: first, a collection of rules, where each rule specifies some characters to append to the string when a particular character appears at the beginning—“when
 
 September 2, 2016
 249
-
-
-
 
 
 instance; and second, a number, called the deletion number , which specifies how many characters to delete from the beginning of the string after a rule has been followed.
