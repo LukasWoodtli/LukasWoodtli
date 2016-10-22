@@ -170,7 +170,7 @@
 <li><code>(map fun lst)</code>: applies the function <code>fun</code> to each element of <code>lst</code> and returns a new list with the results</li>
 </ul>
 <p>The <code>map</code> function can be applied on multiple lists:</p>
-<p><em>"This more general `map?  takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
+<p><em>"This more general <code>map</code> takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
 <p><em>For example:</em>"</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span> 
     <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> 
@@ -190,8 +190,27 @@
 <p><em>"The procedure <code>for-each</code> is similar to map. It takes as arguments a procedure and a list of elements. However, rather than forming a list of the results, <code>for-each</code> just applies the procedure to each of the elements in turn, from left to right. The values returned by applying the procedure to the elements are not used at all - <code>for-each</code> is used with procedures that perform an action, such as printing."</em> </p>
 <p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1">SICP:2.2.1  Representing Sequences:Exercise 2.23</a></p>
 <ul>
-<li><code>(flatten t)</code>: flattens a tree structure into a list</li>
+<li>
+<p><code>(flatten t)</code>: flattens a tree structure into a list</p>
+</li>
+<li>
+<p><code>(filter p lst)</code>: Creates a new list with the elements of <code>lst</code> for which the predicate <code>p</code> returns true</p>
+</li>
+<li>
+<p><code>(foldr f b lst)</code>: applies the function <code>f</code> to the next element of the list and the result of the previous element. <code>b</code> is the initial begining value. The list is traversed from right to left. Also known as <code>acumulate</code> (<a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.3">SICP:2.2.3</a>)</p>
+</li>
+<li>
+<p><code>(foldl f b lst)</code>: Same as <code>foldlr</code> but the list is traversed from left to right.</p>
+</li>
+<li>
+<p><code>(reduce f lst)</code>: Same as <code>foldl</code> but take the first (leftmost) element as starting element.</p>
+</li>
 </ul>
+<p>If <code>reduce</code> is not available (e.g in Racket) it can be defined in terms of <code>foldl</code>:</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reduce</span> <span class="nv">f</span> <span class="nv">xs</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">xs</span><span class="p">))</span> <span class="p">(</span><span class="nf">foldl</span> <span class="nv">f</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">xs</span><span class="p">)</span> <span class="p">(</span><span class="nf">rest</span> <span class="nv">xs</span><span class="p">))))</span>
+</pre></div>
+<p><a href="http://stackoverflow.com/a/25211454/1272072">Stack Overflow</a></p>
 <h2 id="dotted-tail-notation">Dotted-tail Notation</h2>
 <ul>
 <li>Used for functions with arbitrary number of arguments</li>
