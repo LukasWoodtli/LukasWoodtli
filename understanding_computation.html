@@ -306,38 +306,21 @@
 <p><em><strong>minimize</strong> takes a block and calls it repeatedly with a single numeric argument. For the first call, it provides 0 as the argument, then 1, then 2, and keeps calling the block with larger and larger numbers until it returns zero.</em></p>
 <p><em>By adding <strong>minimize</strong> to <strong>zero</strong>, <strong>increment</strong>, and <strong>recurse</strong>, we can build many more functions—all the <strong>partial</strong> recursive functions—including ones that don’t always halt.</em></p>
 <p><em>With <strong>minimize</strong>, it’s possible to fully simulate a Turing machine by repeatedly calling the primitive recursive function that performs a single simulation step. The simulation will continue until the machine halts - and if that never happens, it’ll run forever.</em> - pages 235 - 238</p>
+<h2 id="ski-combinator-calculus">SKI Combinator Calculus</h2>
+<p><em>"The SKI calculus is even simpler, with only two kinds of expression-calls and alphabetic <strong>symbols</strong>-and much easier rules. All of its power comes from the three special symbols <code>S</code>, <code>K</code>, and <code>I</code> (called <strong>combinators</strong>), each of which has its own reduction rule:</em></p>
+<ul>
+<li><em>Reduce <code>S[a][b][c]</code> to <code>a[c][b[c]]</code>, where <code>a</code>, <code>b</code>, and `c can be any SKI calculus expressions.</em></li>
+<li><em>Reduce <code>K[a][b]</code> to <code>a</code>.</em></li>
+<li><em>Reduce <code>I[a]</code> to <code>a</code>.</em> </li>
+</ul>
+<p>page 239</p>
+<p><em>"The SKI calculus can produce surprisingly complex behavior with its three simple rules—so complex, in fact, that it turns out to be universal."</em> - page 243</p>
+<p><em>"Although the SKI calculus has three combinators, the <code>I</code> combinator is actually redundant. There are many expressions containing only <code>S</code> and <code>K</code> that do the same thing as <code>I</code></em></p>
+<p>[...]</p>
+<p><em><code>S[K][K]</code> has the same behavior as <code>I</code>, and in fact, that’s true for any SKI expression of the form <code>S[K][whatever]</code>. The <code>I</code> combinator is syntactic sugar that we can live without; just the two combinators <code>S</code> and <code>K</code> are enough for universality.</em>" - pages 245-246</p>
+<h2 id="iota">Iota</h2>
+<p>*"iota (<code>ɩ</code>) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce <code>ɩ[a]</code> to <code>a[S][K]</code>." - page 246</p>
 <!-- TODO continue here
-
-## SKI Combinator Calculus
-
-The SKI calculus is even simpler, with only two kinds of expression—calls and alphabetic symbols —and much easier rules. All of its power comes from the three special symbols S , K , and I (called combinators ), each of which has its own reduction rule: Reduce S[ a ][ b ][ c ] to a [ c ][ b [ c ]] , where a , b , and c can be any SKI calculus expressions. Reduce K[ a ][ b ] to a . Reduce I[ a ] to a .
-
-August 29, 2016
-239
-
-
-The SKI calculus can produce surprisingly complex behavior with its three simple rules—so complex, in fact, that it turns out to be universal.
-
-August 31, 2016
-243
-
-
-Although the SKI calculus has three combinators, the I combinator is actually redundant. There are many expressions containing only S and K that do the same thing as I
-
-September 2, 2016
-245
-
-
-S[K][K] has the same behavior as I , and in fact, that’s true for any SKI expression of the form S[K][ whatever ] . The I combinator is syntactic sugar that we can live without; just the two combinators S and K are enough for universality.
-
-September 2, 2016
-246
-
-
-iota ( ɩ ) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce ɩ[ a ] to a [S][K] .
-
-September 2, 2016
-246
 
 a language called Iota whose programs only use the ɩ combinator. Although it only has one combinator, Iota is a universal language,
 
