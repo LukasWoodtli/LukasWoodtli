@@ -309,7 +309,7 @@
 <h2 id="ski-combinator-calculus">SKI Combinator Calculus</h2>
 <p><em>"The SKI calculus is even simpler, with only two kinds of expression-calls and alphabetic <strong>symbols</strong>-and much easier rules. All of its power comes from the three special symbols <code>S</code>, <code>K</code>, and <code>I</code> (called <strong>combinators</strong>), each of which has its own reduction rule:</em></p>
 <ul>
-<li><em>Reduce <code>S[a][b][c]</code> to <code>a[c][b[c]]</code>, where <code>a</code>, <code>b</code>, and `c can be any SKI calculus expressions.</em></li>
+<li><em>Reduce <code>S[a][b][c]</code> to <code>a[c][b[c]]</code>, where <code>a</code>, <code>b</code>, and <code>c</code> can be any SKI calculus expressions.</em></li>
 <li><em>Reduce <code>K[a][b]</code> to <code>a</code>.</em></li>
 <li><em>Reduce <code>I[a]</code> to <code>a</code>.</em> </li>
 </ul>
@@ -317,21 +317,19 @@
 <p><em>"The SKI calculus can produce surprisingly complex behavior with its three simple rules—so complex, in fact, that it turns out to be universal."</em> - page 243</p>
 <p><em>"Although the SKI calculus has three combinators, the <code>I</code> combinator is actually redundant. There are many expressions containing only <code>S</code> and <code>K</code> that do the same thing as <code>I</code></em></p>
 <p>[...]</p>
-<p><em><code>S[K][K]</code> has the same behavior as <code>I</code>, and in fact, that’s true for any SKI expression of the form <code>S[K][whatever]</code>. The <code>I</code> combinator is syntactic sugar that we can live without; just the two combinators <code>S</code> and <code>K</code> are enough for universality.</em>" - pages 245-246</p>
+<p><em><code>S[K][K]</code> has the same behavior as <code>I</code>, and in fact, that’s true for any SKI expression of the form <code>S[K][whatever]</code>. The <code>I</code> combinator is syntactic sugar that we can live without; just the two combinators <code>S</code> and <code>K</code> are enough for universality."</em> - pages 245-246</p>
 <h2 id="iota">Iota</h2>
-<p>*"iota (<code>ɩ</code>) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce <code>ɩ[a]</code> to <code>a[S][K]</code>." - page 246</p>
+<p><em>"iota (<code>ɩ</code>) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce <code>ɩ[a]</code> to <code>a[S][K]</code>."</em> - page 246</p>
+<p><em>"[...] a language called Iota whose programs <strong>only</strong> use the <code>ɩ</code> combinator. Although it only has one combinator, Iota is a universal language</em>" - page 246</p>
+<p>*"We can convert an SKI expression to Iota by applying these substitution rules:</p>
+<ul>
+<li>Replace <code>S</code> with <code>ɩ[ɩ[ɩ[ɩ[ɩ]]]]</code>. </li>
+<li>Replace <code>K</code> with <code>ɩ[ɩ[ɩ[ɩ]]]</code>.</li>
+<li>Replace <code>I</code> with <code>ɩ[ɩ]</code>.</li>
+</ul>
+<p>page 246</p>
 <!-- TODO continue here
-
-a language called Iota whose programs only use the ɩ combinator. Although it only has one combinator, Iota is a universal language,
-
-September 2, 2016
-246
-
-We can convert an SKI expression to Iota by applying these substitution rules: Replace S with ɩ[ɩ[ɩ[ɩ[ɩ]]]] . Replace K with ɩ[ɩ[ɩ[ɩ]]] . Replace I with ɩ[ɩ] .
-
-September 2, 2016
-246
-
+## Tag Systems
 
 a tag system operates on a string by repeatedly adding new characters to the end of the string and removing them from the beginning.
 
@@ -349,8 +347,6 @@ instance; and second, a number, called the deletion number , which specifies how
 
 September 2, 2016
 249
-
-
 
 
 
