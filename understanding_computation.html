@@ -139,7 +139,7 @@
     <p>This page collects notes and citations from the book:</p>
 <p><a href="http://computationbook.com/">Understanding Computation by Tom Stuart</a></p>
 <h1 id="i-programs-and-machines">I. Programs and Machines</h1>
-<p><em>"To create an environment where</em> [...] *computation can occur, we need three basic ingredients:“</p>
+<p><em>"To create an environment where [...] computation can occur, we need three basic ingredients:“</em></p>
 <ul>
 <li><em>"A <strong>machine</strong> capable of performing the computation"</em></li>
 <li><em>"A <strong>language</strong> for writing instructions that the machine can understand"</em></li>
@@ -290,13 +290,14 @@
 <p>*"You might protest that <code>3 - 5 = 0</code> isn’t called "subtraction" where you come from, and you’d be right: the technical name for this operation is  "monus", because the nonnegative integers under addition form a commutative monoid instead of a proper abelian group." - page 229</p>
 <h1 id="universality-is-everywhere">Universality Is Everywhere</h1>
 <p><em>"Even though any individual Turing machine has a hardcoded rulebook, the universal Turing machine demonstrates that it’s possible to design a device that can adapt to arbitrary tasks by reading instructions from a tape. These instructions are effectively a piece of software that controls the operation of the machine’s hardware, just like in the general-purpose programmable computers we use every day."</em> - page 231</p>
+<p><em>"The term Turing complete is often used to describe a system or programming language that can simulate any Turing machine."</em></p>
 <p><em>"a Turing machine can act as an interpreter for the lambda calculus by storing a representation of a lambda calculus expression on the tape and repeatedly updating it according to a set of reduction rules"</em> - page 234</p>
 <p><em>"Since every Turing machine can be simulated by a lambda calculus program, and every lambda calculus program can be simulated by a Turing machine, the two systems are exactly equivalent in power."</em> - page 234</p>
 <h2 id="partial-recursive-functions">Partial Recursive Functions</h2>
 <p><em>"partial recursive functions are programs that are constructed from four fundamental building blocks in different combinations.</em></p>
-<p><em>[...]</em> </p>
+<p><em>[...]</em></p>
 <p><em>The first two building blocks are called <strong>zero</strong> and <strong>increment</strong></em></p>
-<p><em>[...]</em> </p>
+<p><em>[...]</em></p>
 <p><em>third building block, <strong>recurse</strong> [...]</em></p>
 <p><em><strong>recurse</strong> is just a template for defining a certain kind of recursive function.</em></p>
 <p><em>The programs that we can assemble out of <strong>zero</strong>, <strong>increment</strong>, and <strong>recurse</strong> are called the <strong>primitive</strong> recursive functions.</em></p>
@@ -311,7 +312,7 @@
 <ul>
 <li><em>Reduce <code>S[a][b][c]</code> to <code>a[c][b[c]]</code>, where <code>a</code>, <code>b</code>, and <code>c</code> can be any SKI calculus expressions.</em></li>
 <li><em>Reduce <code>K[a][b]</code> to <code>a</code>.</em></li>
-<li><em>Reduce <code>I[a]</code> to <code>a</code>.</em> </li>
+<li><em>Reduce <code>I[a]</code> to <code>a</code>.</em></li>
 </ul>
 <p>page 239</p>
 <p><em>"The SKI calculus can produce surprisingly complex behavior with its three simple rules—so complex, in fact, that it turns out to be universal."</em> - page 243</p>
@@ -321,79 +322,26 @@
 <h2 id="iota">Iota</h2>
 <p><em>"iota (<code>ɩ</code>) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce <code>ɩ[a]</code> to <code>a[S][K]</code>."</em> - page 246</p>
 <p><em>"[...] a language called Iota whose programs <strong>only</strong> use the <code>ɩ</code> combinator. Although it only has one combinator, Iota is a universal language</em>" - page 246</p>
-<p>*"We can convert an SKI expression to Iota by applying these substitution rules:</p>
+<p><em>"We can convert an SKI expression to Iota by applying these substitution rules:</em></p>
 <ul>
-<li>Replace <code>S</code> with <code>ɩ[ɩ[ɩ[ɩ[ɩ]]]]</code>. </li>
-<li>Replace <code>K</code> with <code>ɩ[ɩ[ɩ[ɩ]]]</code>.</li>
-<li>Replace <code>I</code> with <code>ɩ[ɩ]</code>.</li>
+<li><em>Replace <code>S</code> with <code>ɩ[ɩ[ɩ[ɩ[ɩ]]]]</code>.</em></li>
+<li><em>Replace <code>K</code> with <code>ɩ[ɩ[ɩ[ɩ]]]</code>.</em></li>
+<li><em>Replace <code>I</code> with <code>ɩ[ɩ]</code>.</em></li>
 </ul>
 <p>page 246</p>
+<h2 id="tag-systems">Tag Systems</h2>
+<p><em>"a tag system operates on a string by repeatedly adding new characters to the end of the string and removing them from the beginning."</em> - page 248</p>
+<p><em>"A tag system's description has two parts: first, a collection of rules, where each rule specifies some characters to append to the string when a particular character appears at the beginning [...] and second, a number, called the deletion number, which specifies how many characters to delete from the beginning of the string after a rule has been followed."</em> - page 249</p>
+<p><em>"Having a deletion number greater than 1 is essential for making this tag system work. Because every <strong>second</strong> character triggers a rule, we can influence the system's behavior by arranging for certain characters to appear (or not appear) in these trigger positions."</em> - page 254</p>
+<p><em>"Cyclic tag systems are extremely limited - they have inflexible rules, only two characters, and the lowest possible deletion number - but surprisingly, it's still possible to use them to simulate any tag system."</em> - page 260</p>
 <!-- TODO continue here
-## Tag Systems
 
-a tag system operates on a string by repeatedly adding new characters to the end of the string and removing them from the beginning.
-
-September 2, 2016
-248
-
-
-A tag system’s description has two parts: first, a collection of rules, where each rule specifies some characters to append to the string when a particular character appears at the beginning—“when
-
-September 2, 2016
-249
-
-
-instance; and second, a number, called the deletion number , which specifies how many characters to delete from the beginning of the string after a rule has been followed.
-
-September 2, 2016
-249
-
-
-
-Having a deletion number greater than 1 is essential for making this tag system work. Because every second character triggers a rule, we can influence the system’s behavior by arranging for certain characters to appear (or not appear) in these trigger positions.
-
-September 2, 2016
-254
-
-
-
-
-
-Building a Turing machine simulation on top of something as simple as a tag system involves a lot of detail,
-
-September 2, 2016
-255
-
-
-
-
-
-Cyclic tag systems are extremely limited—they have inflexible rules, only two characters, and the lowest possible deletion number—but surprisingly, it’s still possible to use them to simulate any tag system.
-
-September 2, 2016
-260
-
-
-
-
-
-The term Turing complete is often used to describe a system or programming language that can simulate any Turing machine.
-
-August 25, 2016
-271
-
-
-
-
+# Impossible Programs
 
 The practical purpose of a computing machine is to perform algorithms . An algorithm is a list of instructions describing some process for turning an input value into an output value, as long as those instructions fulfill certain criteria:
 
 September 3, 2016
 274
-
-
-
-
 
 Finiteness There are a finite number of instructions.
 
@@ -401,14 +349,10 @@ September 3, 2016
 274
 
 
-
-
-
 Simplicity Each instruction is simple enough that it can be performed by a person with a pencil and paper without using any ingenuity.
 
 September 3, 2016
 274
-
 
 
 
