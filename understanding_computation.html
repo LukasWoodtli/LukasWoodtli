@@ -334,135 +334,34 @@
 <p><em>"A tag system's description has two parts: first, a collection of rules, where each rule specifies some characters to append to the string when a particular character appears at the beginning [...] and second, a number, called the deletion number, which specifies how many characters to delete from the beginning of the string after a rule has been followed."</em> - page 249</p>
 <p><em>"Having a deletion number greater than 1 is essential for making this tag system work. Because every <strong>second</strong> character triggers a rule, we can influence the system's behavior by arranging for certain characters to appear (or not appear) in these trigger positions."</em> - page 254</p>
 <p><em>"Cyclic tag systems are extremely limited - they have inflexible rules, only two characters, and the lowest possible deletion number - but surprisingly, it's still possible to use them to simulate any tag system."</em> - page 260</p>
+<h1 id="impossible-programs">Impossible Programs</h1>
+<p><em>"The practical purpose of a computing machine is to perform algorithms. An algorithm is a list of instructions describing some process for turning an input value into an output value, as long as those instructions fulfill certain criteria:</em></p>
+<h3 id="finiteness">Finiteness</h3>
+<p><em>There are a finite number of instructions.</em></p>
+<h3 id="simplicity">Simplicity</h3>
+<p><em>Each instruction is simple enough that it can be performed by a person with a pencil and paper without using any ingenuity.</em></p>
+<h3 id="termination">Termination</h3>
+<p><em>A person following the instructions will finish within a finite number of steps for any input.</em></p>
+<h3 id="correctness">Correctness</h3>
+<p><em>A person following the instructions will produce the right answer for any input.</em></p>
+<p>page 274</p>
+<p><em>"can any algorithm be turned into instructions suitable for execution by a machine?"</em> - page 276</p>
+<p><em>"there’s a real difference between the abstract, intuitive idea of an algorithm and the concrete, logical implementation of that algorithm within a computational system. Could there ever be an algorithm so large, complex, and unusual that its essence can’t be captured by an unthinking mechanical process?"</em> - page 276</p>
+<p><em>"the question is philosophical rather than scientific"</em> - page 276</p>
+<p><em>"The idea that any algorithm can be performed by a machine - specifically a deterministic Turing machine - is called the <strong>Church–Turing thesis</strong>, and although it's just a conjecture rather than a proven fact, it has enough evidence in its favor to be generally accepted as true.</em>" - page 277</p>
+<h2 id="code-is-data">Code Is Data</h2>
+<p><em>"programs can be represented as data so that they can be used as input to other programs; it's the unification of code and data that makes software possible in the first place."</em> - page 279</p>
+<h2 id="universal-systems-can-loop-forever">Universal Systems Can Loop Forever</h2>
+<p><em>"any system that's powerful enough to be universal will inevitably allow us to construct computations that loop forever without halting."</em> - page 281</p>
+<p><em>"So why must every universal system bring nontermination along for the ride?"</em> - page 283</p>
+<p><em>"it's impossible to remove features (e.g., <code>while</code> loops) from a programming language in a way that prevents us from writing nonhalting programs while keeping the language powerful enough to be universal."</em> - page 287</p>
+<p><em>"Languages that have been carefully designed to ensure that their programs must always halt are called <strong>total programming languages</strong>, as opposed to the more conventional <strong>partial programming languages</strong> whose programs sometimes halt with an answer and sometimes don't. Total programming languages are still very powerful and capable of expressing many useful computations, but one thing they can’t do is interpret themselves."</em> - page 287</p>
 <!-- TODO continue here
-
-# Impossible Programs
-
-The practical purpose of a computing machine is to perform algorithms . An algorithm is a list of instructions describing some process for turning an input value into an output value, as long as those instructions fulfill certain criteria:
-
-September 3, 2016
-274
-
-Finiteness There are a finite number of instructions.
-
-September 3, 2016
-274
-
-
-Simplicity Each instruction is simple enough that it can be performed by a person with a pencil and paper without using any ingenuity.
-
-September 3, 2016
-274
-
-
-
-
-Termination A person following the instructions will finish within a finite number of steps for any input.
-
-September 3, 2016
-274
-
-
-
-
-
-Correctness A person following the instructions will produce the right answer for any input.
-
-September 3, 2016
-274
-
-
-
-
-
-can any algorithm be turned into instructions suitable for execution by a machine?
-
-September 3, 2016
-276
-
-
-
-
-
-there’s a real difference between the abstract, intuitive idea of an algorithm and the concrete, logical implementation of that algorithm within a computational system. Could there ever be an algorithm so large, complex, and unusual that its essence can’t be captured by an unthinking mechanical process?
-
-September 3, 2016
-276
-
-
-
-
-
-the question is philosophical rather than scientific
-
-September 3, 2016
-276
-
-
-
-
-
-The idea that any algorithm can be performed by a machine—specifically a deterministic Turing machine—is called the Church–Turing thesis , and although it’s just a conjecture rather than a proven fact, it has enough evidence in its favor to be generally accepted as true.
-
-September 3, 2016
-277
-
-
-
-
-
-programs can be represented as data so that they can be used as input to other programs; it’s the unification of code and data that makes software possible in the first place.
-
-September 3, 2016
-279
-
-
-
-
-
-any system that’s powerful enough to be universal will inevitably allow us to construct computations that loop forever without halting.
-
-September 3, 2016
-281
-
-
-
-
-
-So why must every universal system bring nontermination along for the ride?
-
-September 3, 2016
-283
-
-
-
-
-
-it’s impossible to remove features (e.g., while loops) from a programming language in a way that prevents us from writing nonhalting programs while keeping the language powerful enough to be universal.
-
-September 3, 2016
-287
-
-
-
-
-
-Languages that have been carefully designed to ensure that their programs must always halt are called total programming languages , as opposed to the more conventional partial programming languages whose programs sometimes halt with an answer and sometimes don’t. Total programming languages are still very powerful and capable of expressing many useful computations, but one thing they can’t do is interpret themselves.
-
-September 3, 2016
-287
-
-
-
-
 
 a fundamental mathematical result called Kleene’s second recursion theorem , which guarantees that any program can be converted into an equivalent one that is able to calculate its own source code.
 
 September 3, 2016
 288
-
-
-
 
 
 A decision problem is any question with a yes or no answer
