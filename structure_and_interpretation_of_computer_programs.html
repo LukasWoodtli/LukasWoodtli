@@ -203,22 +203,21 @@ MIT Press</p>
 <p><em>"One reason that the distinction between process and procedure may be confusing is that most implementations of common languages (including Ada, Pascal, and C) are designed in such a way that the interpretation of any recursive procedure consumes an amount of memory that grows with the number of procedure calls, even when the process described is, in principle, iterative. As a consequence, these languages can describe iterative processes only by resorting to special-purpose 'looping constructs' such as <code>do</code>, <code>repeat</code>, <code>until</code>, <code>for</code>, and <code>while</code>."</em></p>
 <p><em>"any iterative process can be realized 'in hardware' as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a <strong>stack</strong>."</em></p>
 <h4 id="let">Let</h4>
-<p><em>"we could use a lambda expression to specify an anonymous procedure for binding our local variables"</em></p>
-<p><em>"The general form of a let expression is</em></p>
-<div class="highlight"><pre><span></span>  :::Scheme
-  (let
-    ((⟨var ₁⟩ ⟨exp ₁⟩)
-     (⟨var ₂⟩ ⟨exp ₂⟩)
-     …
-     (⟨var n⟩ ⟨exp n⟩))
-  ⟨ body⟩)
+<p><em>"we could use a lambda expression to specify an anonymous procedure for binding our local variables</em></p>
+<p><em>The general form of a let expression is</em></p>
+<div class="highlight"><pre><span></span>   :::scheme
+   (let
+     ((⟨var ₁⟩ ⟨exp ₁⟩)
+      (⟨var ₂⟩ ⟨exp ₂⟩)
+      …
+      (⟨var n⟩ ⟨exp n⟩))
+   ⟨ body⟩)
 </pre></div>
-<p><em>"</em></p>
-<p><em>"the let expression is interpreted as an alternate syntax for</em></p>
-<div class="highlight"><pre><span></span>  :::Scheme
-  (( lambda ( ⟨ var ₁ ⟩ … ⟨ var n ⟩ )
-    ⟨ body ⟩ )
-    ⟨ exp ₁ ⟩ … ⟨ exp n ⟩ )
+<p><em>the let expression is interpreted as an alternate syntax for</em></p>
+<div class="highlight"><pre><span></span>   :::scheme
+   (( lambda ( ⟨ var ₁ ⟩ … ⟨ var n ⟩ )
+     ⟨ body ⟩ )
+     ⟨ exp ₁ ⟩ … ⟨ exp n ⟩ )
 </pre></div>
 <p><em>No new mechanism is required in the interpreter in order to provide local variables. A <code>let</code> expression is simply syntactic sugar for the underlying lambda application."</em></p>
 <p><em>"<code>Let</code> allows one to bind variables as locally as possible to where they are to be used."</em></p>
@@ -234,15 +233,15 @@ MIT Press</p>
 <h3 id="what-is-meant-by-data">What Is Meant by Data?</h3>
 <p><em>"In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation."</em></p>
 <p><em>"we could implement <code>cons</code>, <code>car</code>, and <code>cdr</code> without using any data structures at all but only using procedures. Here are the definitions:</em></p>
-<div class="highlight"><pre><span></span>  :::Scheme
-  ( define ( cons x y )
+<div class="highlight"><pre><span></span>   :::scheme
+   ( define ( cons x y )
       ( define ( dispatch m )
           ( cond (( = m 0 ) x )
               (( = m 1 ) y )
                   ( else ( error "Argument not 0 or 1: CONS" m )))) dispatch )
 
-  ( define ( car z ) ( z 0 ))
-  ( define ( cdr z ) ( z 1 ))
+   ( define ( car z ) ( z 0 ))
+   ( define ( cdr z ) ( z 1 ))
 </pre></div>
 <h2 id="hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</h2>
 <p><em>"The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation."</em></p>
