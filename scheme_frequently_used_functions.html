@@ -172,9 +172,9 @@
 <p>The <code>map</code> function can be applied on multiple lists:</p>
 <p><em>"This more general <code>map</code> takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
 <p><em>For example:</em>"</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span> 
-    <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> 
-    <span class="p">(</span><span class="nb">list </span><span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span><span class="p">)</span> 
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span>
+    <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">list </span><span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">700</span> <span class="mi">800</span> <span class="mi">900</span><span class="p">))</span>
 <span class="nv">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">741</span> <span class="mi">852</span> <span class="mi">963</span><span class="p">)</span>
 
@@ -187,7 +187,7 @@
 <ul>
 <li><code>(for-each fun lst)</code>: applies a function <code>fun</code> to each element in the list <code>lst</code> but doesn't create a new list. The return value of the function is ignored.</li>
 </ul>
-<p><em>"The procedure <code>for-each</code> is similar to map. It takes as arguments a procedure and a list of elements. However, rather than forming a list of the results, <code>for-each</code> just applies the procedure to each of the elements in turn, from left to right. The values returned by applying the procedure to the elements are not used at all - <code>for-each</code> is used with procedures that perform an action, such as printing."</em> </p>
+<p><em>"The procedure <code>for-each</code> is similar to map. It takes as arguments a procedure and a list of elements. However, rather than forming a list of the results, <code>for-each</code> just applies the procedure to each of the elements in turn, from left to right. The values returned by applying the procedure to the elements are not used at all - <code>for-each</code> is used with procedures that perform an action, such as printing."</em></p>
 <p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1">SICP:2.2.1  Representing Sequences:Exercise 2.23</a></p>
 <ul>
 <li>
@@ -211,6 +211,9 @@
     <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">xs</span><span class="p">))</span> <span class="p">(</span><span class="nf">foldl</span> <span class="nv">f</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">xs</span><span class="p">)</span> <span class="p">(</span><span class="nf">rest</span> <span class="nv">xs</span><span class="p">))))</span>
 </pre></div>
 <p><a href="http://stackoverflow.com/a/25211454/1272072">Stack Overflow</a></p>
+<ul>
+<li><code>(memq  v lst)</code>: find element <code>v</code> in list <code>lst</code> and return the rest of the list starting at the found element. If element is not found <code>#f</code> is returned. Similar functions: <code>member</code>, <code>memv</code>, <code>memf</code></li>
+</ul>
 <h2 id="dotted-tail-notation">Dotted-tail Notation</h2>
 <ul>
 <li>Used for functions with arbitrary number of arguments</li>
