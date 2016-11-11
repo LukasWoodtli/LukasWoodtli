@@ -231,15 +231,14 @@ MIT Press</p>
 <h3 id="what-is-meant-by-data">What Is Meant by Data?</h3>
 <p><em>"In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation."</em></p>
 <p><em>"we could implement <code>cons</code>, <code>car</code>, and <code>cdr</code> without using any data structures at all but only using procedures. Here are the definitions:</em></p>
-<div class="highlight"><pre><span></span>   :::scheme
-   (define (cons x y)
-      (define (dispatch m)
-          (cond ((= m 0) x)
-              ((= m 1) y)
-                  (else (error "Argument not 0 or 1: CONS" m)))) dispatch)
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+          <span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Argument not 0 or 1: CONS"</span> <span class="nv">m</span><span class="p">))))</span> <span class="nv">dispatch</span><span class="p">)</span>
 
-   (define (car z)(z 0))
-   (define (cdr z) (z 1))
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 <h2 id="hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</h2>
 <p><em>"The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation."</em></p>
