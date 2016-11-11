@@ -151,14 +151,15 @@ MIT Press</p>
 <li><a href="#applicative-order-versus-normal-order">Applicative order versus normal order</a></li>
 </ul>
 </li>
-<li><a href="#the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</a><ul>
-<li><a href="#let">Let</a></li>
-</ul>
-</li>
+<li><a href="#the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</a></li>
 </ul>
 </li>
 <li><a href="#formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</a><ul>
+<li><a href="#constructing-procedures-using-lambda">Constructing Procedures Using lambda</a><ul>
+<li><a href="#using-let-to-create-local-variables">Using let to create local variables</a></li>
 <li><a href="#abstractions-and-first-class-procedures">Abstractions and first-class procedures</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -202,7 +203,9 @@ MIT Press</p>
 <p><em>"In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive <strong>process</strong> with the notion of a recursive <strong>procedure</strong> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written."</em></p>
 <p><em>"One reason that the distinction between process and procedure may be confusing is that most implementations of common languages (including Ada, Pascal, and C) are designed in such a way that the interpretation of any recursive procedure consumes an amount of memory that grows with the number of procedure calls, even when the process described is, in principle, iterative. As a consequence, these languages can describe iterative processes only by resorting to special-purpose 'looping constructs' such as <code>do</code>, <code>repeat</code>, <code>until</code>, <code>for</code>, and <code>while</code>."</em></p>
 <p><em>"any iterative process can be realized 'in hardware' as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a <strong>stack</strong>."</em></p>
-<h4 id="let">Let</h4>
+<h2 id="formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</h2>
+<h3 id="constructing-procedures-using-lambda">Constructing Procedures Using <code>lambda</code></h3>
+<h4 id="using-let-to-create-local-variables">Using <code>let</code> to create local variables</h4>
 <p><em>"we could use a lambda expression to specify an anonymous procedure for binding our local variables</em></p>
 <p><em>The general form of a <code>let</code> expression is</em></p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">let</span>
@@ -215,11 +218,12 @@ MIT Press</p>
 <p><em>the <code>let</code> expression is interpreted as an alternate syntax for</em></p>
 <div class="highlight"><pre><span></span><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="o">...</span> <span class="nv">&lt;var</span> <span class="nv">n&gt;</span><span class="p">)</span>
   <span class="nv">&lt;body&gt;</span><span class="p">)</span>
-    <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span> <span class="o">...</span> <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">)</span>
+    <span class="nv">&lt;exp</span> <span class="mi">1</span><span class="nv">&gt;</span>
+    <span class="o">...</span>
+    <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">)</span>
 </pre></div>
 <p><em>No new mechanism is required in the interpreter in order to provide local variables. A <code>let</code> expression is simply syntactic sugar for the underlying lambda application."</em></p>
 <p><em>"<code>Let</code> allows one to bind variables as locally as possible to where they are to be used."</em></p>
-<h2 id="formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</h2>
 <h4 id="abstractions-and-first-class-procedures">Abstractions and first-class procedures</h4>
 <p><em>"programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have first-class status."</em></p>
 <p><em>"Some of the 'rights and privileges' of first-class elements are:</em>
@@ -235,7 +239,8 @@ MIT Press</p>
   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
           <span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
-              <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Argument not 0 or 1: CONS"</span> <span class="nv">m</span><span class="p">))))</span> <span class="nv">dispatch</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Argument not 0 or 1: CONS"</span> <span class="nv">m</span><span class="p">))))</span>
+   <span class="nv">dispatch</span><span class="p">)</span>
 
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
