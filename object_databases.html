@@ -132,303 +132,22 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
-    <div class="toc">
-<ul>
-<li><a href="#motivation">Motivation</a><ul>
-<li><a href="#orthogonal-persistence">Orthogonal Persistence</a></li>
-<li><a href="#impedance-missmatch">Impedance Missmatch</a></li>
-<li><a href="#relational-databases">Relational Databases</a></li>
-<li><a href="#object-relational-mapping-orm">Object-relational mapping (ORM)</a></li>
-<li><a href="#develop-own-database">Develop own Database</a></li>
-<li><a href="#sql">SQL</a><ul>
-<li><a href="#data-definition-language-ddl">Data Definition Language (DDL)</a></li>
-<li><a href="#data-manipulation-language-dml">Data Manipulation Language (DML)</a></li>
-<li><a href="#query-language-ql">Query Language (QL)</a></li>
-</ul>
-</li>
-<li><a href="#ddl-dml-and-ql-in-sql-and-java">DDL, DML and QL in SQL and Java</a></li>
-<li><a href="#learning-goals">Learning Goals</a></li>
-</ul>
-</li>
-<li><a href="#general-topics-for-dbs">General Topics for DB's</a><ul>
-<li><a href="#crud-and-acid">CRUD and ACID</a></li>
-</ul>
-</li>
-<li><a href="#odmg-standard">ODMG Standard</a><ul>
-<li><a href="#object-data-management-group-odmg">Object Data Management Group (ODMG)</a><ul>
-<li><a href="#object-model">Object Model</a><ul>
-<li><a href="#types">Types</a></li>
-<li><a href="#type-specifications">Type Specifications</a></li>
-<li><a href="#type-implementation">Type Implementation</a></li>
-<li><a href="#subtyping-and-inheritance">Subtyping and Inheritance</a></li>
-</ul>
-</li>
-<li><a href="#object-query-language-oql">Object Query Language (OQL)</a><ul>
-<li><a href="#difference-to-sql">Difference to SQL</a></li>
-<li><a href="#return-types">Return Types</a></li>
-<li><a href="#extents">Extents</a></li>
-</ul>
-</li>
-<li><a href="#collections">Collections</a><ul>
-<li><a href="#sub-collections">Sub-collections</a></li>
-</ul>
-</li>
-<li><a href="#relationships">Relationships</a></li>
-<li><a href="#persistence">Persistence</a></li>
-<li><a href="#other-concepts-supported">Other Concepts Supported</a></li>
-<li><a href="#object-definition-language-odl">Object Definition Language (ODL)</a></li>
-<li><a href="#collection-expressions">Collection Expressions</a></li>
-<li><a href="#language-bindings">Language Bindings</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#hibernate">Hibernate</a><ul>
-<li><a href="#object-relational-mappings">Object-Relational Mappings</a></li>
-<li><a href="#main-concepts">Main Concepts</a></li>
-<li><a href="#configuration">Configuration</a><ul>
-<li><a href="#properties">Properties</a></li>
-<li><a href="#persistent-objects">Persistent Objects</a></li>
-</ul>
-</li>
-<li><a href="#mapping-associations">Mapping Associations</a></li>
-<li><a href="#mapping-inheritance">Mapping Inheritance</a></li>
-<li><a href="#annotations">Annotations</a></li>
-</ul>
-</li>
-<li><a href="#google-android">Google Android</a><ul>
-<li><a href="#application-component-model">Application component model</a></li>
-<li><a href="#data-management">Data Management</a></li>
-</ul>
-</li>
-<li><a href="#object-oriented-databases-object-database-manifesto">Object-Oriented Databases: Object Database Manifesto</a><ul>
-<li><a href="#objects-mandatory">Objects (mandatory)</a></li>
-<li><a href="#types-and-classes">Types and Classes</a></li>
-<li><a href="#generalization-hierarchies">Generalization Hierarchies</a></li>
-<li><a href="#durability-and-efficiency">Durability and Efficiency</a></li>
-<li><a href="#concurrency-control-and-recovery">Concurrency Control and Recovery</a></li>
-<li><a href="#declarative-query-language">Declarative Query Language</a></li>
-</ul>
-</li>
-<li><a href="#db4o">db4o</a><ul>
-<li><a href="#object-container">Object Container</a></li>
-<li><a href="#storing-objects">Storing Objects</a></li>
-<li><a href="#retrieving-objects">Retrieving Objects</a><ul>
-<li><a href="#soda-queries">SODA Queries</a></li>
-</ul>
-</li>
-<li><a href="#updating-objects">Updating Objects</a></li>
-<li><a href="#deleting-objects">Deleting Objects</a></li>
-<li><a href="#simple-vs-complex-objects">Simple vs. Complex Objects</a></li>
-<li><a href="#simple-structured-objects">Simple Structured Objects</a><ul>
-<li><a href="#updating-simple-structured-objects">Updating Simple Structured Objects</a></li>
-<li><a href="#deleting-simple-structured-objects">Deleting Simple Structured Objects</a></li>
-</ul>
-</li>
-<li><a href="#object-hierarchies">Object Hierarchies</a></li>
-<li><a href="#transparent-persistence">Transparent Persistence</a></li>
-<li><a href="#activation">Activation</a><ul>
-<li><a href="#transparent-activation">Transparent Activation</a></li>
-</ul>
-</li>
-<li><a href="#db4o-transactions">db4o Transactions</a></li>
-<li><a href="#configuration_1">Configuration</a></li>
-<li><a href="#external-tools">External tools</a></li>
-<li><a href="#indexes">Indexes</a></li>
-<li><a href="#tuning-for-speed">Tuning for Speed</a></li>
-<li><a href="#distribution-and-replication">Distribution and Replication</a></li>
-<li><a href="#callbacks">Callbacks</a></li>
-<li><a href="#object-instantiation">Object Instantiation</a></li>
-</ul>
-</li>
-<li><a href="#versant">Versant</a><ul>
-<li><a href="#indexing">Indexing</a></li>
-<li><a href="#architecture">Architecture</a></li>
-<li><a href="#database-volumes">Database Volumes</a></li>
-<li><a href="#versant-manager">Versant Manager</a></li>
-<li><a href="#cache">Cache</a></li>
-<li><a href="#versant-server">Versant Server</a></li>
-<li><a href="#processes-sessions-and-transactions">Processes, Sessions and Transactions</a></li>
-<li><a href="#java-versant-interface">Java Versant Interface</a></li>
-<li><a href="#jvi-layers">JVI Layers</a><ul>
-<li><a href="#fundamental-layer">Fundamental Layer</a></li>
-<li><a href="#transparent-layer">Transparent Layer</a><ul>
-<li><a href="#first-and-second-class-objects">First and Second Class Objects</a></li>
-<li><a href="#persistence-categories">Persistence Categories</a></li>
-<li><a href="#persistence-and-navigation">Persistence and Navigation</a></li>
-</ul>
-</li>
-<li><a href="#omdg-layer">OMDG Layer</a></li>
-</ul>
-</li>
-<li><a href="#application-development">Application Development</a></li>
-<li><a href="#byte-code-enhancement">Byte-code Enhancement</a></li>
-<li><a href="#object-lifecycle">Object Lifecycle</a></li>
-<li><a href="#versant-collections">Versant Collections</a></li>
-<li><a href="#versant-query-language-vql">Versant Query Language (VQL)</a></li>
-<li><a href="#event-notification-and-persistent-object-hooks">Event Notification and Persistent Object Hooks</a></li>
-</ul>
-</li>
-<li><a href="#objectstore">ObjectStore</a><ul>
-<li><a href="#general-topics-of-persistence">General Topics of Persistence</a></li>
-<li><a href="#architecture_1">Architecture</a></li>
-<li><a href="#virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</a></li>
-<li><a href="#server-side-components">Server Side Components</a></li>
-<li><a href="#client-side-components">Client Side Components</a></li>
-<li><a href="#fetching-and-mapping-pages">Fetching and Mapping Pages</a><ul>
-<li><a href="#fetching-and-mapping-sequence">Fetching and Mapping Sequence</a></li>
-</ul>
-</li>
-<li><a href="#cache-forward-architecture">Cache-Forward Architecture</a></li>
-<li><a href="#shared-virtual-memory">Shared Virtual Memory</a></li>
-<li><a href="#page-permits-and-locks">Page Permits and Locks</a></li>
-<li><a href="#distribution-and-heterogeneity">Distribution and Heterogeneity</a></li>
-<li><a href="#persistence_1">Persistence</a></li>
-<li><a href="#transactions">Transactions</a><ul>
-<li><a href="#transaction-types">Transaction Types</a></li>
-</ul>
-</li>
-<li><a href="#database-layout">Database Layout</a></li>
-<li><a href="#developing-applications-api">Developing Applications (API)</a><ul>
-<li><a href="#managing-databases">Managing Databases</a></li>
-<li><a href="#transactions_1">Transactions</a></li>
-<li><a href="#creating-persistent-objects">Creating Persistent Objects</a></li>
-<li><a href="#updating-and-deleting-persistent-objects">Updating and Deleting Persistent Objects</a></li>
-<li><a href="#collections-and-relationships">Collections and Relationships</a></li>
-</ul>
-</li>
-<li><a href="#database-roots">Database Roots</a></li>
-</ul>
-</li>
-<li><a href="#objectivitydb">Objectivity/DB</a><ul>
-<li><a href="#key-features">Key Features</a></li>
-<li><a href="#architecture_2">Architecture</a></li>
-<li><a href="#federation">Federation</a></li>
-<li><a href="#databases">Databases</a></li>
-<li><a href="#containers">Containers</a></li>
-<li><a href="#pages">Pages</a><ul>
-<li><a href="#logical-and-physical-pages">Logical and Physical Pages</a></li>
-</ul>
-</li>
-<li><a href="#persistent-object-model">Persistent Object Model</a></li>
-<li><a href="#relationships_1">Relationships</a><ul>
-<li><a href="#non-inline-relationships-default">Non-Inline Relationships (default)</a></li>
-<li><a href="#inline-relationships">Inline Relationships</a></li>
-</ul>
-</li>
-<li><a href="#deletion-and-lock-propagation">Deletion and Lock Propagation</a></li>
-<li><a href="#copy-and-versioning-behaviour">Copy and Versioning Behaviour</a></li>
-<li><a href="#domain-classes">Domain Classes</a></li>
-<li><a href="#connection-sessions-and-threads">Connection, Sessions and Threads</a></li>
-<li><a href="#persistent-collections">Persistent Collections</a></li>
-<li><a href="#iterators">Iterators</a></li>
-<li><a href="#scope-names">Scope Names</a></li>
-<li><a href="#retrieving-objects_1">Retrieving Objects</a></li>
-<li><a href="#linq-overview">LINQ Overview</a></li>
-</ul>
-</li>
-<li><a href="#graph-databases">Graph Databases</a><ul>
-<li><a href="#social-network-analysis">Social Network Analysis</a></li>
-<li><a href="#graphs">Graphs</a><ul>
-<li><a href="#graph-metrics">Graph Metrics</a><ul>
-<li><a href="#path-lengths">Path Lengths</a></li>
-<li><a href="#node-properties">Node Properties</a></li>
-<li><a href="#network-structure-properties">Network Structure Properties</a></li>
-</ul>
-</li>
-<li><a href="#general-model">General Model</a></li>
-</ul>
-</li>
-<li><a href="#graph-database-implementations">Graph Database Implementations</a><ul>
-<li><a href="#infinitegraph-objectivity">InfiniteGraph (Objectivity)</a></li>
-<li><a href="#neo4j">Neo4j</a></li>
-<li><a href="#comparison-between-infinitegraph-and-neo4j">Comparison between InfiniteGraph and Neo4j</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#version-models">Version Models</a><ul>
-<li><a href="#versioned-object">Versioned Object</a></li>
-<li><a href="#version-organsiations">Version Organsiations</a></li>
-<li><a href="#references">References</a></li>
-<li><a href="#storage-strategies">Storage Strategies</a></li>
-<li><a href="#operation-and-interaction-models">Operation and Interaction Models</a></li>
-<li><a href="#queries-and-configurations">Queries and Configurations</a></li>
-<li><a href="#temporal-databases">Temporal Databases</a></li>
-<li><a href="#time-in-databases">Time in Databases</a></li>
-<li><a href="#classification-of-temporal-databases">Classification of Temporal Databases</a><ul>
-<li><a href="#querying-moving-objects-with-uncertainity">Querying Moving Objects with Uncertainity</a></li>
-</ul>
-</li>
-<li><a href="#representing-temporal-data">Representing Temporal Data</a></li>
-<li><a href="#conceptual-and-data-models">Conceptual and Data Models</a></li>
-<li><a href="#homogeneous-and-heterogenous-models">Homogeneous and Heterogenous Models</a></li>
-<li><a href="#storage-models">Storage Models</a></li>
-<li><a href="#engineering-databases">Engineering Databases</a></li>
-<li><a href="#design-space-version-model">Design Space Version Model</a></li>
-<li><a href="#software-configuration-systems">Software Configuration Systems</a></li>
-<li><a href="#product-space-representation">Product Space Representation</a></li>
-<li><a href="#version-space">Version Space</a><ul>
-<li><a href="#version-space-representation">Version Space Representation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#indexing_1">Indexing</a><ul>
-<li><a href="#type-hierarchy-indexing">Type Hierarchy Indexing</a><ul>
-<li><a href="#key-vs-type-grouping">Key- vs Type-Grouping</a></li>
-<li><a href="#extent-and-full-extent">Extent and Full Extent</a></li>
-<li><a href="#single-class-index-sc-index">Single Class Index (SC-Index)</a></li>
-<li><a href="#class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</a></li>
-<li><a href="#h-tree">H-Tree</a></li>
-<li><a href="#class-division-index-cd-index">Class Division Index (CD-Index)</a></li>
-<li><a href="#multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</a></li>
-</ul>
-</li>
-<li><a href="#aggregation-path-indexing">Aggregation Path Indexing</a><ul>
-<li><a href="#nested-index-nx">Nested Index (NX)</a></li>
-<li><a href="#path-index-px">Path Index (PX)</a></li>
-<li><a href="#join-index-jx">Join-Index (JX)</a></li>
-<li><a href="#multi-index-mx">Multi-Index (MX)</a></li>
-<li><a href="#access-support-relations-asr">Access Support Relations (ASR)</a></li>
-<li><a href="#overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</a></li>
-</ul>
-</li>
-<li><a href="#collection-operations">Collection Operations</a><ul>
-<li><a href="#signature-files">Signature Files</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#the-om-data-model">The OM Data Model</a><ul>
-<li><a href="#typing-and-classification">Typing and Classification</a></li>
-<li><a href="#om-data-model-layers">OM Data Model Layers</a></li>
-<li><a href="#collection-constraint">Collection Constraint</a></li>
-<li><a href="#associations-relationships">Associations (Relationships)</a></li>
-<li><a href="#object-model-language-oml">Object Model Language (OML)</a><ul>
-<li><a href="#collection-algebra">Collection Algebra</a></li>
-<li><a href="#binary-collections">Binary Collections</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
+    <p>[TOC]</p>
 <!-- Lecture 1 Slides/Notes Start -->
-<h1 id="motivation">Motivation</h1>
+<h1>Motivation</h1>
 <ul>
 <li>Information Systems Design<ul>
 <li>Conceptual Design -&gt; Technical Design -&gt; Implementation</li>
 </ul>
 </li>
 </ul>
-<h2 id="orthogonal-persistence">Orthogonal Persistence</h2>
+<h2>Orthogonal Persistence</h2>
 <p>Data has to outlive the execution of the program</p>
 <ul>
 <li><strong>Independence</strong> of longelivety of data<ul>
@@ -461,7 +180,7 @@
 <blockquote>
 <p>No commercial DB system fully satisfies the above criteria</p>
 </blockquote>
-<h2 id="impedance-missmatch">Impedance Missmatch</h2>
+<h2>Impedance Missmatch</h2>
 <ul>
 <li>Difference between models<ul>
 <li>OOP data model is based on object trees</li>
@@ -515,7 +234,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="relational-databases">Relational Databases</h2>
+<h2>Relational Databases</h2>
 <ul>
 <li>Tables, Rows, Columns...<ul>
 <li>Table: Relation (similar to class)</li>
@@ -527,7 +246,7 @@
 <blockquote>
 <p>It's difficult to match the relational database model to the object oriented model</p>
 </blockquote>
-<h2 id="object-relational-mapping-orm">Object-relational mapping (ORM)</h2>
+<h2>Object-relational mapping (ORM)</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-relational mapping</a> can be used against object-relational miss-match<ul>
 <li>But it's not a very good approach</li>
@@ -535,7 +254,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="develop-own-database">Develop own Database</h2>
+<h2>Develop own Database</h2>
 <ul>
 <li>Support application development (programming language)<ul>
 <li>Clients of the DB system are developers (not end user)</li>
@@ -545,8 +264,8 @@
 <li>One data model (OOP)</li>
 <li>One language (Java?)</li>
 </ul>
-<h2 id="sql">SQL</h2>
-<h3 id="data-definition-language-ddl">Data Definition Language (DDL)</h3>
+<h2>SQL</h2>
+<h3>Data Definition Language (DDL)</h3>
 <p>Definition of data models</p>
 <ul>
 <li>Concepts<ul>
@@ -563,7 +282,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="data-manipulation-language-dml">Data Manipulation Language (DML)</h3>
+<h3>Data Manipulation Language (DML)</h3>
 <p>Creation and management of data</p>
 <ul>
 <li>Concepts<ul>
@@ -579,7 +298,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="query-language-ql">Query Language (QL)</h3>
+<h3>Query Language (QL)</h3>
 <p>Retrieval of data</p>
 <ul>
 <li>Concepts<ul>
@@ -596,7 +315,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="ddl-dml-and-ql-in-sql-and-java">DDL, DML and QL in SQL and Java</h2>
+<h2>DDL, DML and QL in SQL and Java</h2>
 <p>DD, DM supported in Java. Querying is very limited.</p>
 <ul>
 <li>DD</li>
@@ -630,7 +349,7 @@
 <div class="highlight"><pre><span></span><span class="o">...</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">name</span>
 </pre></div>
 <p>LINQ is a powerful and compile time safe support for querying.</p>
-<h2 id="learning-goals">Learning Goals</h2>
+<h2>Learning Goals</h2>
 <ul>
 <li>Motivation for Database technologies (not relational)<ul>
 <li>Design- and run-time</li>
@@ -676,9 +395,9 @@
 </li>
 </ul>
 <!-- Lecture 1 Slides/Notes End -->
-<h1 id="general-topics-for-dbs">General Topics for DB's</h1>
+<h1>General Topics for DB's</h1>
 <p>[Prepared Statement]</p>
-<h2 id="crud-and-acid">CRUD and ACID</h2>
+<h2>CRUD and ACID</h2>
 <ul>
 <li>
 <p>The acronym <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> stands for the basic functions of a database system</p>
@@ -700,7 +419,7 @@
 </li>
 </ul>
 <!-- Lecture 2 Slides/Notes Start -->
-<h1 id="odmg-standard">ODMG Standard</h1>
+<h1>ODMG Standard</h1>
 <ul>
 <li>
 <p>What is an object?</p>
@@ -766,8 +485,8 @@
 </li>
 <li>Object database systems are more coupled to one (or multiple) programming language</li>
 </ul>
-<h2 id="object-data-management-group-odmg">Object Data Management Group (ODMG)</h2>
-<h3 id="object-model">Object Model</h3>
+<h2>Object Data Management Group (ODMG)</h2>
+<h3>Object Model</h3>
 <ul>
 <li>Based on <a href="https://en.wikipedia.org/wiki/Object_Management_Group">OMG</a> object model</li>
 <li>Basic modeling primitives<ul>
@@ -793,7 +512,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="types">Types</h4>
+<h4>Types</h4>
 <ul>
 <li>Specification<ul>
 <li>properties<ul>
@@ -816,7 +535,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="type-specifications">Type Specifications</h4>
+<h4>Type Specifications</h4>
 <ul>
 <li>Interface<ul>
 <li>defines only abstract behavior</li>
@@ -834,7 +553,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="type-implementation">Type Implementation</h4>
+<h4>Type Implementation</h4>
 <ul>
 <li>Representation<ul>
 <li>data structure</li>
@@ -849,7 +568,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="subtyping-and-inheritance">Subtyping and Inheritance</h4>
+<h4>Subtyping and Inheritance</h4>
 <ul>
 <li>
 <p>Two types of inheritance relationships</p>
@@ -876,7 +595,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="object-query-language-oql">Object Query Language (OQL)</h3>
+<h3>Object Query Language (OQL)</h3>
 <p>Based on ODMG Object Model and SQL-92</p>
 <div class="highlight"><pre><span></span>select  list_of_values
 from    list_of_collections_and_typical_members
@@ -895,7 +614,7 @@ where   condition
 </ol>
 <p>In OOP 2. is missing. A class just defines a type but is not a container of all instances of that class.</p>
 <p>ODMG defines Extents.</p>
-<h4 id="difference-to-sql">Difference to SQL</h4>
+<h4>Difference to SQL</h4>
 <p>This is illegal as the “dot” operator cannot be applied to a collection of objects:</p>
 <div class="highlight"><pre><span></span>select a.authors.title
 from   Authors a
@@ -906,7 +625,7 @@ where  a.name = "Tilmann Zaeschke"
 from Authors a, a.authors p
 where a.name = "Tilmann Zaeschke"
 </pre></div>
-<h4 id="return-types">Return Types</h4>
+<h4>Return Types</h4>
 <ul>
 <li>Queries return sets, bags or lists</li>
 </ul>
@@ -931,7 +650,7 @@ from Publications s order by p.year desc
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
 </pre></div>
-<h4 id="extents">Extents</h4>
+<h4>Extents</h4>
 <ul>
 <li>Extent of a type is the set (collection) of all active instances<ul>
 <li><code>class Person</code>: extent of class Person would be the set of all person objects in the data management system</li>
@@ -939,7 +658,7 @@ from Publications s order by p.year desc
 </li>
 <li>Extents can be maintained automatically</li>
 </ul>
-<h3 id="collections">Collections</h3>
+<h3>Collections</h3>
 <p>OMDG supports collections:</p>
 <ul>
 <li>set: un-ordered, no duplicates</li>
@@ -974,9 +693,9 @@ from Publications s order by p.year desc
 <li>Collection objects: <code>Set&lt;t&gt;</code>, <code>Bag&lt;t&gt;</code>, <code>List&lt;t&gt;</code>, <code>Array&lt;t&gt;</code>, <code>Dictionary&lt;t,v&gt;</code></li>
 <li>Collection literals: <code>set&lt;t&gt;</code>, <code>bag&lt;t&gt;</code>, <code>list&lt;t&gt;</code>, <code>array&lt;t&gt;</code>, <code>dictionary&lt;t,v&gt;</code></li>
 </ul>
-<h4 id="sub-collections">Sub-collections</h4>
+<h4>Sub-collections</h4>
 <p>OMDG supports sub-collections</p>
-<h3 id="relationships">Relationships</h3>
+<h3>Relationships</h3>
 <ul>
 <li>All relationships are binary<ul>
 <li>many-to-many</li>
@@ -999,7 +718,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h3 id="persistence">Persistence</h3>
+<h3>Persistence</h3>
 <ul>
 <li>Persistence by reachability<ul>
 <li>not necessary the best option</li>
@@ -1013,7 +732,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h3 id="other-concepts-supported">Other Concepts Supported</h3>
+<h3>Other Concepts Supported</h3>
 <ul>
 <li>Database operations</li>
 <li>Locking and concurrency control</li>
@@ -1028,7 +747,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h3 id="object-definition-language-odl">Object Definition Language (ODL)</h3>
+<h3>Object Definition Language (ODL)</h3>
 <ul>
 <li>programming language independent, extensible and practical</li>
 <li>compatible to OMG Interface Definition Language (IDL)</li>
@@ -1046,7 +765,7 @@ from Publications s order by p.year desc
 <li>relationships specify inverse to maintain referential integrity</li>
 <li>method signatures are implemented by language binding</li>
 </ul>
-<h3 id="collection-expressions">Collection Expressions</h3>
+<h3>Collection Expressions</h3>
 <ul>
 <li>Aggregate operators<ul>
 <li><code>AVG</code>, <code>SUM</code>, <code>MIN</code>, <code>MAX</code>, and <code>COUNT</code> apply to collections that have a compatible member type</li>
@@ -1064,14 +783,14 @@ from Publications s order by p.year desc
 </li>
 <li>Flattening a collection of collections</li>
 </ul>
-<h3 id="language-bindings">Language Bindings</h3>
+<h3>Language Bindings</h3>
 <ul>
 <li>C++</li>
 <li>Java</li>
 <li>Smalltalk</li>
 <li>...</li>
 </ul>
-<h1 id="hibernate">Hibernate</h1>
+<h1>Hibernate</h1>
 <ul>
 <li>Example of a <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-relational mapping</a> tool</li>
 <li>Challenges<ul>
@@ -1105,7 +824,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h2 id="object-relational-mappings">Object-Relational Mappings</h2>
+<h2>Object-Relational Mappings</h2>
 <ul>
 <li>Map object-oriented domain model to relational database<ul>
 <li>Hibernate<ul>
@@ -1127,7 +846,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h2 id="main-concepts">Main Concepts</h2>
+<h2>Main Concepts</h2>
 <ul>
 <li><code>Configuration</code><ul>
 <li>Connection to database (hibernate.properties or hibernate.cfg.xml)</li>
@@ -1181,12 +900,12 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h2 id="configuration">Configuration</h2>
+<h2>Configuration</h2>
 <ul>
 <li>Hibernate needs to know where to find some information about class mappings and database</li>
 <li>XML file: <em>hibernate.cfg.xml</em> (or Java properties file <em>hibernate.properties</em>)</li>
 </ul>
-<h3 id="properties">Properties</h3>
+<h3>Properties</h3>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -1226,7 +945,7 @@ from Publications s order by p.year desc
 </tbody>
 </table>
 <p>There are additional settings for using a database along with an application server and JNDI.</p>
-<h3 id="persistent-objects">Persistent Objects</h3>
+<h3>Persistent Objects</h3>
 <p>Only Plain Old Java Object (POJO) can be saved in the DB.</p>
 <p>Requirements:</p>
 <ul>
@@ -1301,7 +1020,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<h2 id="mapping-associations">Mapping Associations</h2>
+<h2>Mapping Associations</h2>
 <ul>
 <li>Uni- and bidirectional associations</li>
 <li>Unordered and ordered associations</li>
@@ -1322,7 +1041,7 @@ CREATE TABLE AUTHORSPUBLICATIONS(
   PRIMARY KEY(AUTHOR_ID, PUBLICATION_ID))
 CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </pre></div>
-<h2 id="mapping-inheritance">Mapping Inheritance</h2>
+<h2>Mapping Inheritance</h2>
 <ul>
 <li>Multiple strategies<ul>
 <li>One table per class hierarchy</li>
@@ -1341,7 +1060,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="annotations">Annotations</h2>
+<h2>Annotations</h2>
 <ul>
 <li>Since Java 5</li>
 <li>Java Persistence API (JPA, Enterprise Java Beans 3.0)</li>
@@ -1349,7 +1068,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Standardizes ORM</li>
 <li>Hibernate implements JPA</li>
 </ul>
-<h1 id="google-android">Google Android</h1>
+<h1>Google Android</h1>
 <ul>
 <li>Linux based OS</li>
 <li>Default applications: Search, Maps, Mail, Calendar, Contacts...</li>
@@ -1357,7 +1076,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Support for persistent data management</li>
 <li>Smart Phone / Tablet</li>
 </ul>
-<h2 id="application-component-model">Application component model</h2>
+<h2>Application component model</h2>
 <ul>
 <li>Activity (UI)</li>
 <li>Service (API, Computation)</li>
@@ -1388,7 +1107,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="data-management">Data Management</h2>
+<h2>Data Management</h2>
 <ul>
 <li>Low-level: SQL</li>
 <li>High-level: Content Provider</li>
@@ -1427,7 +1146,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- OODB Manifesto start -->
-<h1 id="object-oriented-databases-object-database-manifesto">Object-Oriented Databases: Object Database Manifesto</h1>
+<h1>Object-Oriented Databases: Object Database Manifesto</h1>
 <ul>
 <li>Avoid impedance mismatch</li>
 <li>Provide uniform data model</li>
@@ -1471,7 +1190,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="objects-mandatory">Objects (mandatory)</h2>
+<h2>Objects (mandatory)</h2>
 <ul>
 <li>Complex objects<ul>
 <li>build from simpler objects (constructor)</li>
@@ -1531,7 +1250,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="types-and-classes">Types and Classes</h2>
+<h2>Types and Classes</h2>
 <ul>
 <li>Data types<ul>
 <li>definition of object properties</li>
@@ -1551,7 +1270,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="generalization-hierarchies">Generalization Hierarchies</h2>
+<h2>Generalization Hierarchies</h2>
 <ul>
 <li>Powerful modeling tool</li>
 <li>Reuse (specification and implementation)</li>
@@ -1567,7 +1286,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="durability-and-efficiency">Durability and Efficiency</h2>
+<h2>Durability and Efficiency</h2>
 <ul>
 <li>Persistence<ul>
 <li>data has to survive the program execution</li>
@@ -1604,7 +1323,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="concurrency-control-and-recovery">Concurrency Control and Recovery</h2>
+<h2>Concurrency Control and Recovery</h2>
 <ul>
 <li>Concurrency<ul>
 <li>management of multiple users concurrently interacting</li>
@@ -1621,7 +1340,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="declarative-query-language">Declarative Query Language</h2>
+<h2>Declarative Query Language</h2>
 <ul>
 <li>High-level language<ul>
 <li>express non-trivial queries concisely</li>
@@ -1639,7 +1358,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 <!-- OODB Manifesto end -->
 <!-- Lecture 5 Start -->
-<h1 id="db4o">db4o</h1>
+<h1>db4o</h1>
 <ul>
 <li>Open Source project<ul>
 <li>Java and .NET</li>
@@ -1656,7 +1375,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="object-container">Object Container</h2>
+<h2>Object Container</h2>
 <ul>
 <li>Represents db4o databases<ul>
 <li>local file mode or</li>
@@ -1675,13 +1394,13 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="storing-objects">Storing Objects</h2>
+<h2>Storing Objects</h2>
 <ul>
 <li>Store objects with method <code>ObjectContainer.store(...)</code></li>
 <li>Arbitrary complex objects can be stored</li>
 <li>Persistence by reachability</li>
 </ul>
-<h2 id="retrieving-objects">Retrieving Objects</h2>
+<h2>Retrieving Objects</h2>
 <ul>
 <li>3 Query languages<ol>
 <li>Query by Example<ul>
@@ -1704,7 +1423,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ol>
 </li>
 </ul>
-<h3 id="soda-queries">SODA Queries</h3>
+<h3>SODA Queries</h3>
 <ul>
 <li>Expressed using <code>Query</code> objects<ul>
 <li><code>descend</code> adds or traverses a node in the query tree</li>
@@ -1723,7 +1442,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="updating-objects">Updating Objects</h2>
+<h2>Updating Objects</h2>
 <ul>
 <li>Update procedure for persistent object<ul>
 <li>retrieve desired object from the database</li>
@@ -1734,12 +1453,12 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>db4o uses IDs to connect in-memory objects with stored objects</li>
 <li>IDs are cached</li>
 </ul>
-<h2 id="deleting-objects">Deleting Objects</h2>
+<h2>Deleting Objects</h2>
 <ul>
 <li>similar to updating objects</li>
 <li>Method <code>ObjectContainer.delete(...)</code> removes objects</li>
 </ul>
-<h2 id="simple-vs-complex-objects">Simple vs. Complex Objects</h2>
+<h2>Simple vs. Complex Objects</h2>
 <ul>
 <li>Simple Structured Objects (objects in classical sense):<ul>
 <li>properties</li>
@@ -1753,7 +1472,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="simple-structured-objects">Simple Structured Objects</h2>
+<h2>Simple Structured Objects</h2>
 <ul>
 <li>New objects are stored using the <code>store</code> method<ul>
 <li>Persistence by reachability<ul>
@@ -1775,7 +1494,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h3 id="updating-simple-structured-objects">Updating Simple Structured Objects</h3>
+<h3>Updating Simple Structured Objects</h3>
 <ul>
 <li>Cascading updates are configured per class with <code>ObjectClass.cascadeOnUpdate(..)</code></li>
 <li>Update depth can be configured<ul>
@@ -1785,7 +1504,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h3 id="deleting-simple-structured-objects">Deleting Simple Structured Objects</h3>
+<h3>Deleting Simple Structured Objects</h3>
 <ul>
 <li>Cascading deletes similar to cascading updates<ul>
 <li>configured per object class</li>
@@ -1799,7 +1518,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="object-hierarchies">Object Hierarchies</h2>
+<h2>Object Hierarchies</h2>
 <ul>
 <li>Complex object structures are handled automatically<ul>
 <li>hierarchies, composite hierarchies</li>
@@ -1816,7 +1535,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="transparent-persistence">Transparent Persistence</h2>
+<h2>Transparent Persistence</h2>
 <ul>
 <li>Persistence should be transparent to application logic<ul>
 <li>Store objects in database <em>once</em> (<code>store</code> method)</li>
@@ -1834,7 +1553,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <p>Enabling transparent persistence</p>
 <div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TransparentPersistenceSupport</span><span class="o">());</span>
 </pre></div>
-<h2 id="activation">Activation</h2>
+<h2>Activation</h2>
 <ul>
 <li>Activation controls depth of loaded fields<ul>
 <li>field values (objects) are loaded in memory to a certain depth when query retrieves objects</li>
@@ -1862,7 +1581,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <span class="n">ObjectClass</span><span class="err">#</span><span class="n">cascadeOnActivate</span><span class="o">(</span><span class="n">bool</span><span class="o">)</span>
 <span class="n">ObjectClass</span><span class="err">#</span><span class="n">objectField</span><span class="o">(...).</span><span class="na">cascadeOnActivate</span><span class="o">(</span><span class="n">bool</span><span class="o">)</span>
 </pre></div>
-<h3 id="transparent-activation">Transparent Activation</h3>
+<h3>Transparent Activation</h3>
 <ul>
 <li>Make activation transparent to application logic<ul>
 <li>activate fields automatically when accessed</li>
@@ -1877,7 +1596,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <p>Enabling the transparent activation framework</p>
 <div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TransparentActivationSupport</span><span class="o">());</span>
 </pre></div>
-<h2 id="db4o-transactions">db4o Transactions</h2>
+<h2>db4o Transactions</h2>
 <ul>
 <li>ACID</li>
 <li>Data transaction journaling<ul>
@@ -1897,7 +1616,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="configuration_1">Configuration</h2>
+<h2>Configuration</h2>
 <ul>
 <li>Embedded<ul>
 <li><code>Db4oEmbedded.newConfiguration()</code></li>
@@ -1909,7 +1628,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="external-tools">External tools</h2>
+<h2>External tools</h2>
 <ul>
 <li>performance tuning</li>
 <li>database diagnostics</li>
@@ -1936,7 +1655,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="indexes">Indexes</h2>
+<h2>Indexes</h2>
 <ul>
 <li>Trade-off between<ul>
 <li>increased query performance</li>
@@ -1946,7 +1665,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Set by configuration or annotation (<code>@Indexed</code>)</li>
 <li>B-Tree based indexes on single object fields</li>
 </ul>
-<h2 id="tuning-for-speed">Tuning for Speed</h2>
+<h2>Tuning for Speed</h2>
 <ul>
 <li>Heuristic to improve performance<ul>
 <li>weak references</li>
@@ -1976,7 +1695,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="distribution-and-replication">Distribution and Replication</h2>
+<h2>Distribution and Replication</h2>
 <ul>
 <li>Embedded mode<ul>
 <li>DB accessed by clients in same <em>JVM</em></li>
@@ -2073,7 +1792,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="callbacks">Callbacks</h2>
+<h2>Callbacks</h2>
 <ul>
 <li>Called in response to events<ul>
 <li>activate</li>
@@ -2109,7 +1828,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="object-instantiation">Object Instantiation</h2>
+<h2>Object Instantiation</h2>
 <ul>
 <li>Three different techniques for instantiation<ol>
 <li>Constructor</li>
@@ -2164,7 +1883,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 <!-- End Slides/Notes Week 5/6 ? -->
 <!-- Start Slides/Notes Week 7 -->
-<h1 id="versant">Versant</h1>
+<h1>Versant</h1>
 <ul>
 <li>Highly scalable</li>
 <li>Distributed</li>
@@ -2180,7 +1899,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="indexing">Indexing</h2>
+<h2>Indexing</h2>
 <ul>
 <li>Like SQL</li>
 <li>Point/Range queries</li>
@@ -2189,7 +1908,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="architecture">Architecture</h2>
+<h2>Architecture</h2>
 <ul>
 <li>Always network based<ul>
 <li>no embedded option (as db4o)</li>
@@ -2217,7 +1936,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="database-volumes">Database Volumes</h2>
+<h2>Database Volumes</h2>
 <ul>
 <li>System Volume (created automatically)<ul>
 <li>Class descriptions</li>
@@ -2240,7 +1959,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<h2 id="versant-manager">Versant Manager</h2>
+<h2>Versant Manager</h2>
 <ul>
 <li>Presents objects to app</li>
 <li>Caches objects in virtual memory</li>
@@ -2248,7 +1967,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>Distributes queries and updates to servers</li>
 <li>Conversion between Versant DB format and client machine format</li>
 </ul>
-<h2 id="cache">Cache</h2>
+<h2>Cache</h2>
 <ul>
 <li>Cached Object Descriptor Table</li>
 <li>Map from <em>logical object identifier</em> (LOID) to object in memory<ul>
@@ -2294,7 +2013,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>state information</li>
 <li>...</li>
 </ul>
-<h2 id="versant-server">Versant Server</h2>
+<h2>Versant Server</h2>
 <ul>
 <li>Object retrieval (disk and page cache)</li>
 <li>Transactions and locks</li>
@@ -2303,7 +2022,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 <p>Versant doesn't have the notion of activation. Data is retrieved automatically
 when dereferencing pointers.</p>
-<h2 id="processes-sessions-and-transactions">Processes, Sessions and Transactions</h2>
+<h2>Processes, Sessions and Transactions</h2>
 <ul>
 <li>Session (same as ObjectContainer in db4o)<ul>
 <li>On client side</li>
@@ -2325,7 +2044,7 @@ when dereferencing pointers.</p>
 </ul>
 </li>
 </ul>
-<h2 id="java-versant-interface">Java Versant Interface</h2>
+<h2>Java Versant Interface</h2>
 <ul>
 <li>Easy-to-use storage of persistent Java objects<ul>
 <li>pure Java (syntax and semantics)</li>
@@ -2341,10 +2060,10 @@ when dereferencing pointers.</p>
 </li>
 <li>Configuration and code-generation integrated in build process</li>
 </ul>
-<h2 id="jvi-layers">JVI Layers</h2>
+<h2>JVI Layers</h2>
 <p>Versant provides different API layers.
 The fundamental layer is usually not directly needed by the application developer.</p>
-<h3 id="fundamental-layer">Fundamental Layer</h3>
+<h3>Fundamental Layer</h3>
 <ul>
 <li>DB centric</li>
 <li>Create 'Meta-classes'</li>
@@ -2357,7 +2076,7 @@ The fundamental layer is usually not directly needed by the application develope
 <p>Create wrapper code for real classes (reflection)</p>
 </li>
 </ul>
-<h3 id="transparent-layer">Transparent Layer</h3>
+<h3>Transparent Layer</h3>
 <ul>
 <li>language centric</li>
 <li>usually used by developer</li>
@@ -2368,7 +2087,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Persistent objects are cached in memory</li>
 <li>For persistent objects retrieved from a DB Java objects are constructed (in memory)</li>
 </ul>
-<h4 id="first-and-second-class-objects">First and Second Class Objects</h4>
+<h4>First and Second Class Objects</h4>
 <p>Versant distinguishes first class and second class objects</p>
 <ul>
 <li>Configured externally in a file</li>
@@ -2390,7 +2109,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h4 id="persistence-categories">Persistence Categories</h4>
+<h4>Persistence Categories</h4>
 <ul>
 <li>
 <p>can be configured on class basis</p>
@@ -2429,7 +2148,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h4 id="persistence-and-navigation">Persistence and Navigation</h4>
+<h4>Persistence and Navigation</h4>
 <ul>
 <li>Persistence by reachability is provided</li>
 <li>Database root<ul>
@@ -2445,14 +2164,14 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="omdg-layer">OMDG Layer</h3>
+<h3>OMDG Layer</h3>
 <ul>
 <li>language centric</li>
 <li>ODMG database, transactions, collections</li>
 <li>build on transparent layer</li>
 <li>packages <code>com.versant.odmg</code> and <code>com.versant.odmg</code></li>
 </ul>
-<h2 id="application-development">Application Development</h2>
+<h2>Application Development</h2>
 <ul>
 <li>Develop Java classes<ul>
 <li>make code 'persistence aware'</li>
@@ -2473,13 +2192,13 @@ The fundamental layer is usually not directly needed by the application develope
 <li>create DB</li>
 <li>Run application</li>
 </ul>
-<h2 id="byte-code-enhancement">Byte-code Enhancement</h2>
+<h2>Byte-code Enhancement</h2>
 <ul>
 <li>Code which creates schema object in DB</li>
 <li>Code for writing and reading to and from DB</li>
 <li>Code for accessing attribute values</li>
 </ul>
-<h2 id="object-lifecycle">Object Lifecycle</h2>
+<h2>Object Lifecycle</h2>
 <ul>
 <li>Creation of persistent objects<ul>
 <li>Java objects in memory</li>
@@ -2505,7 +2224,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="versant-collections">Versant Collections</h2>
+<h2>Versant Collections</h2>
 <ul>
 <li>Standard collection classes can't be byte-code enhanced</li>
 <li>Special collection classes for <em>FCO</em>s and <em>SCO</em>s</li>
@@ -2515,7 +2234,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="versant-query-language-vql">Versant Query Language (VQL)</h2>
+<h2>Versant Query Language (VQL)</h2>
 <ul>
 <li>Subset of OQL (ODMG)</li>
 <li>Similar to SQL</li>
@@ -2525,7 +2244,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="event-notification-and-persistent-object-hooks">Event Notification and Persistent Object Hooks</h2>
+<h2>Event Notification and Persistent Object Hooks</h2>
 <ul>
 <li>Like callbacks in db4o</li>
 <li>Event Notification<ul>
@@ -2551,8 +2270,8 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <!-- End of Notes/Slides Week 7 -->
 <!-- Start Notes/Slides Week 8 -->
-<h1 id="objectstore">ObjectStore</h1>
-<h2 id="general-topics-of-persistence">General Topics of Persistence</h2>
+<h1>ObjectStore</h1>
+<h2>General Topics of Persistence</h2>
 <ul>
 <li>Orthogonal persistence is not always desired (UI, messages, ...)</li>
 <li>Persistence identification: do we need to explicit store/retrieve objects</li>
@@ -2570,7 +2289,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="architecture_1">Architecture</h2>
+<h2>Architecture</h2>
 <ul>
 <li>C++ and Java</li>
 <li>Client/Server application</li>
@@ -2603,7 +2322,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>offset (in cluster)</li>
 </ol>
 </li>
-<li>theoretical address space to <span class="math">\(2^{128}\)</span></li>
+<li>theoretical address space to $2^{128}$</li>
 <li>Reserved virtual memory region for persistence: Persistent Storage Region (<em>PSR</em>)</li>
 </ul>
 </li>
@@ -2620,7 +2339,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="virtual-memory-mapping-architecture">Virtual Memory Mapping Architecture</h2>
+<h2>Virtual Memory Mapping Architecture</h2>
 <ul>
 <li>Page faults<ul>
 <li>ObjectStore maps data into app when page fault occurs</li>
@@ -2638,7 +2357,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="server-side-components">Server Side Components</h2>
+<h2>Server Side Components</h2>
 <ul>
 <li>Server<ul>
 <li>Enforces ACID using 'page permits'</li>
@@ -2667,7 +2386,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="client-side-components">Client Side Components</h2>
+<h2>Client Side Components</h2>
 <ul>
 <li>Client<ul>
 <li>C++ program linked with ObjectStore libraries</li>
@@ -2709,7 +2428,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="fetching-and-mapping-pages">Fetching and Mapping Pages</h2>
+<h2>Fetching and Mapping Pages</h2>
 <ul>
 <li>Client automatically fetches and maps pages<ul>
 <li>'lazy' fetches</li>
@@ -2727,7 +2446,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="fetching-and-mapping-sequence">Fetching and Mapping Sequence</h3>
+<h3>Fetching and Mapping Sequence</h3>
 <ul>
 <li>ObjectStore installs <code>SIGSEGV</code> (segmentation fault) handler</li>
 <li>Program obtains pointer <code>p</code> to object on page <em>x</em></li>
@@ -2737,7 +2456,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Page <em>x</em> is mapped to address space</li>
 <li>Execution continues</li>
 </ul>
-<h2 id="cache-forward-architecture">Cache-Forward Architecture</h2>
+<h2>Cache-Forward Architecture</h2>
 <ul>
 <li>To provide <em>high performance</em> in ObjectStore<ul>
 <li>data cached across transaction boundaries</li>
@@ -2759,7 +2478,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="shared-virtual-memory">Shared Virtual Memory</h2>
+<h2>Shared Virtual Memory</h2>
 <ul>
 <li>Lazy call-back mechanism for permits</li>
 <li>Server maintains table of permits for each client</li>
@@ -2769,7 +2488,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="page-permits-and-locks">Page Permits and Locks</h2>
+<h2>Page Permits and Locks</h2>
 <ul>
 <li>Lock for client (locally)</li>
 <li>Permission for server (globally)</li>
@@ -2829,7 +2548,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Pages on server are fetched with permission (read or write)</li>
 <li>Local locks don't tell server about lock/un-lock about after transaction</li>
 </ul>
-<h2 id="distribution-and-heterogeneity">Distribution and Heterogeneity</h2>
+<h2>Distribution and Heterogeneity</h2>
 <ul>
 <li>Clients can access objects in different remote DBs in one transaction</li>
 <li>Clients and servers can run on different platforms<ul>
@@ -2846,7 +2565,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="persistence_1">Persistence</h2>
+<h2>Persistence</h2>
 <ul>
 <li>persistence by instantiation in C++</li>
 <li>Overloaded persistent <code>new</code> operator</li>
@@ -2860,7 +2579,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Persistence is orthogonal to the type of an object (data-type orthogonality)</li>
 </ul>
-<h2 id="transactions">Transactions</h2>
+<h2>Transactions</h2>
 <ul>
 <li>Basic ACID properties</li>
 <li>Atomicity<ul>
@@ -2883,7 +2602,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="transaction-types">Transaction Types</h3>
+<h3>Transaction Types</h3>
 <ul>
 <li>Read or Write</li>
 <li>Local or Global<ul>
@@ -2906,7 +2625,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="database-layout">Database Layout</h2>
+<h2>Database Layout</h2>
 <ul>
 <li>Memory pages held in hierarchy of clusters in segments</li>
 <li>Segments<ul>
@@ -2918,17 +2637,17 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Segment 2: default segment</li>
 <li>Segment 4: first user-created segment</li>
-<li>max <span class="math">\(2^{32}\)</span> segments per DB</li>
+<li>max $2^{32}$ segments per DB</li>
 </ul>
 </li>
 <li>Clusters<ul>
 <li>group closely related objects</li>
 <li>each segment has default cluster 0</li>
-<li>max <span class="math">\(2^{31}\)</span> clusters per segment</li>
+<li>max $2^{31}$ clusters per segment</li>
 </ul>
 </li>
 </ul>
-<h2 id="developing-applications-api">Developing Applications (API)</h2>
+<h2>Developing Applications (API)</h2>
 <ul>
 <li>
 <p>ObjectStore libraries</p>
@@ -2952,7 +2671,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="managing-databases">Managing Databases</h3>
+<h3>Managing Databases</h3>
 <ul>
 <li>provided by <code>os_database</code><ul>
 <li><code>create()</code>: creates new DB</li>
@@ -2963,7 +2682,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="transactions_1">Transactions</h3>
+<h3>Transactions</h3>
 <ul>
 <li>provided by <code>os_transaction</code><ul>
 <li>all interactions with DB must be in a transactions</li>
@@ -2976,14 +2695,14 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="creating-persistent-objects">Creating Persistent Objects</h3>
+<h3>Creating Persistent Objects</h3>
 <p>Use overloaded <code>new</code> operator:
     :::cpp
     os_database <em>db = os_database::open("publications.db", 0, 1);
     Author </em>scheel = new(db, os_ts<author>::get()) Author("Matthias Geel");
     db-&gt;close();</author></p>
 <p>It's also possible to instantiate persistent array of objects.</p>
-<h3 id="updating-and-deleting-persistent-objects">Updating and Deleting Persistent Objects</h3>
+<h3>Updating and Deleting Persistent Objects</h3>
 <ul>
 <li>Changes to persistent objects are propagated to DB automatically<ul>
 <li>when pages are sent back to server</li>
@@ -2993,7 +2712,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Fully transparent to app developer</li>
 </ul>
-<h3 id="collections-and-relationships">Collections and Relationships</h3>
+<h3>Collections and Relationships</h3>
 <ul>
 <li>Relationships between classes modeled as collections</li>
 <li>library of non-templated and templated collection types available</li>
@@ -3032,7 +2751,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="database-roots">Database Roots</h2>
+<h2>Database Roots</h2>
 <ul>
 <li>persistent objects with a well-known name</li>
 <li>class <code>os_database_root</code><ul>
@@ -3044,8 +2763,8 @@ The fundamental layer is usually not directly needed by the application develope
 <!-- End Notes/Slides Week 8 -->
 <!-- Start Slides/Notes Week 9 -->
 <!-- TODO Notes 0:00:00 -->
-<h1 id="objectivitydb">Objectivity/DB</h1>
-<h2 id="key-features">Key Features</h2>
+<h1>Objectivity/DB</h1>
+<h2>Key Features</h2>
 <ul>
 <li>Logical and physical pages<ul>
 <li>non-destructive manipulation</li>
@@ -3079,7 +2798,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="architecture_2">Architecture</h2>
+<h2>Architecture</h2>
 <ul>
 <li>Client/Server</li>
 <li>Lock Servers</li>
@@ -3091,7 +2810,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Client-side Objectivity Kernel</li>
 </ul>
-<h2 id="federation">Federation</h2>
+<h2>Federation</h2>
 <blockquote>
 <p>Federation &gt; Database &gt; Container &gt; Objects</p>
 </blockquote>
@@ -3130,7 +2849,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Federated DB contains one or more DBs</li>
 <li>A DB file can be copied to other machine</li>
 </ul>
-<h2 id="databases">Databases</h2>
+<h2>Databases</h2>
 <ul>
 <li>Databases are files<ul>
 <li>contain objects in container</li>
@@ -3141,7 +2860,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>can be moved or copied to any disk/machine</li>
 <li>can be marked read-only or taken off-line</li>
 </ul>
-<h2 id="containers">Containers</h2>
+<h2>Containers</h2>
 <ul>
 <li>Collections of objects in DB<ul>
 <li>contained objects can be of any size or type</li>
@@ -3156,7 +2875,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="pages">Pages</h2>
+<h2>Pages</h2>
 <ul>
 <li>Logical and Physical<ul>
 <li>logical page is permament part of object ID (OID)</li>
@@ -3171,7 +2890,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="logical-and-physical-pages">Logical and Physical Pages</h3>
+<h3>Logical and Physical Pages</h3>
 <ul>
 <li>When page is modified<ul>
 <li>new page is written to container</li>
@@ -3195,7 +2914,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="persistent-object-model">Persistent Object Model</h2>
+<h2>Persistent Object Model</h2>
 <ul>
 <li>Language independent</li>
 <li>Persistence by inheritance</li>
@@ -3216,7 +2935,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Relationships</li>
 <li>Collections</li>
 </ul>
-<h2 id="relationships_1">Relationships</h2>
+<h2>Relationships</h2>
 <ul>
 <li>between objects declared in classes<ul>
 <li>unary and binary</li>
@@ -3236,7 +2955,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="non-inline-relationships-default">Non-Inline Relationships (default)</h3>
+<h3>Non-Inline Relationships (default)</h3>
 <ul>
 <li>Each object with relationships has a default relationship array<ul>
 <li>all non-inline relationships are stored in that array</li>
@@ -3250,12 +2969,12 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Objectivity traverses relationships until it locates the desired relationship</li>
 <li>array is like part of an adjacent matrix</li>
 </ul>
-<h3 id="inline-relationships">Inline Relationships</h3>
+<h3>Inline Relationships</h3>
 <ul>
 <li>To-one inline relationships: embedded as fields of an object</li>
 <li>To-many inline relationships: placed in their own array</li>
 </ul>
-<h2 id="deletion-and-lock-propagation">Deletion and Lock Propagation</h2>
+<h2>Deletion and Lock Propagation</h2>
 <ul>
 <li>Relationshis can have semantics</li>
 <li>Deletion propagation<ul>
@@ -3268,7 +2987,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Developer specifies operation and direction of propagation</li>
 </ul>
-<h2 id="copy-and-versioning-behaviour">Copy and Versioning Behaviour</h2>
+<h2>Copy and Versioning Behaviour</h2>
 <ul>
 <li>Policies define what happens to object relationships when a copy or a new version of an object is made<ul>
 <li>copy: old an new object associated with same objects</li>
@@ -3277,7 +2996,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="domain-classes">Domain Classes</h2>
+<h2>Domain Classes</h2>
 <ul>
 <li>.NET partial classes to separate app and persistence code</li>
 <li>Persistence by inheritance<ul>
@@ -3294,7 +3013,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>App code class contains user-defined code</li>
 </ul>
-<h2 id="connection-sessions-and-threads">Connection, Sessions and Threads</h2>
+<h2>Connection, Sessions and Threads</h2>
 <ul>
 <li>Static funtions for startup, shutdown and connection</li>
 <li>One connection to federation per application process</li>
@@ -3310,7 +3029,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="persistent-collections">Persistent Collections</h2>
+<h2>Persistent Collections</h2>
 <ul>
 <li>Built-in persistent collections: sets, lists and maps<ul>
 <li>automatically persistent (when created)</li>
@@ -3323,7 +3042,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="iterators">Iterators</h2>
+<h2>Iterators</h2>
 <ul>
 <li>Iterators are transient<ul>
 <li>provide access to persistent objects</li>
@@ -3344,7 +3063,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="scope-names">Scope Names</h2>
+<h2>Scope Names</h2>
 <ul>
 <li>Generalization of DB roots</li>
 <li>Unique name</li>
@@ -3355,7 +3074,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="retrieving-objects_1">Retrieving Objects</h2>
+<h2>Retrieving Objects</h2>
 <p>-Scope names
 - Creating links (and following them)
 - Individual and group lookup
@@ -3368,7 +3087,7 @@ The fundamental layer is usually not directly needed by the application develope
     - predicate-query language
     - used to follow to-many relationships
     - used in parallel queries</p>
-<h2 id="linq-overview">LINQ Overview</h2>
+<h2>LINQ Overview</h2>
 <ul>
 <li>Part of .NEW (<code>System.Linq</code>)</li>
 <li>add native query capabilities to .NET languages</li>
@@ -3378,7 +3097,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <!-- End Notes/Slides Week 9 -->
 <!-- Start Slides/Notes Week 10 -->
-<h1 id="graph-databases">Graph Databases</h1>
+<h1>Graph Databases</h1>
 <ul>
 <li>Domain specific solution<ul>
 <li>for a group of problems</li>
@@ -3394,7 +3113,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Mapping between models</li>
 <li>There is no generic model for all domains</li>
 </ul>
-<h2 id="social-network-analysis">Social Network Analysis</h2>
+<h2>Social Network Analysis</h2>
 <ul>
 <li>People are connected to each other</li>
 <li>Networks may be represented as graphs<ul>
@@ -3404,7 +3123,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li><a href="http://www.orgnet.com/sna.html">Social Network Analysis</a> to gather information</li>
 </ul>
-<h2 id="graphs">Graphs</h2>
+<h2>Graphs</h2>
 <ul>
 <li>Nodes and Edges may have attributes<ul>
 <li>Often key-value pairs</li>
@@ -3424,15 +3143,15 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="graph-metrics">Graph Metrics</h3>
-<h4 id="path-lengths">Path Lengths</h4>
+<h3>Graph Metrics</h3>
+<h4>Path Lengths</h4>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar's number</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Erd%C5%91s_number">Erdős number</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon">Bacon’s number</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Small-world_experiment">Small world phenomenon</a></li>
 </ul>
-<h4 id="node-properties">Node Properties</h4>
+<h4>Node Properties</h4>
 <ul>
 <li>Degree Centrality<ul>
 <li>The number of direct connections a node has</li>
@@ -3449,7 +3168,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h4 id="network-structure-properties">Network Structure Properties</h4>
+<h4>Network Structure Properties</h4>
 <ul>
 <li>Network Centralization<ul>
 <li>Dominated by one or few nodes</li>
@@ -3470,7 +3189,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="general-model">General Model</h3>
+<h3>General Model</h3>
 <ul>
 <li>Common representation</li>
 <li>Uniform graph representation<ul>
@@ -3484,7 +3203,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="graph-database-implementations">Graph Database Implementations</h2>
+<h2>Graph Database Implementations</h2>
 <ul>
 <li>API</li>
 <li>Support for CRUD</li>
@@ -3499,7 +3218,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="infinitegraph-objectivity">InfiniteGraph (Objectivity)</h3>
+<h3>InfiniteGraph (Objectivity)</h3>
 <ul>
 <li>Graph library on top of Objectivity/DB</li>
 <li>Distributed graph DB</li>
@@ -3529,7 +3248,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="neo4j">Neo4j</h3>
+<h3>Neo4j</h3>
 <ul>
 <li><a href="https://neo4j.com/">Open Source DB</a> for Java</li>
 <li>Distinction between marking transaction and finishing (committing)</li>
@@ -3600,7 +3319,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="comparison-between-infinitegraph-and-neo4j">Comparison between InfiniteGraph and Neo4j</h3>
+<h3>Comparison between InfiniteGraph and Neo4j</h3>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -3645,7 +3364,7 @@ The fundamental layer is usually not directly needed by the application develope
 </table>
 <!-- End Slides/Notes Week 10 -->
 <!-- Start Slides/Notes Week 11 -->
-<h1 id="version-models">Version Models</h1>
+<h1>Version Models</h1>
 <ul>
 <li>Various models proposed<ul>
 <li>temporal DBs</li>
@@ -3660,7 +3379,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Version Control Systems: unstructured data</li>
 <li>Versioning DBs: structured data</li>
 </ul>
-<h2 id="versioned-object">Versioned Object</h2>
+<h2>Versioned Object</h2>
 <ul>
 <li>Concept with number of states</li>
 <li>Different levels of granularity<ul>
@@ -3675,7 +3394,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="version-organsiations">Version Organsiations</h2>
+<h2>Version Organsiations</h2>
 <ul>
 <li>Relations between version<ul>
 <li>not related (set)</li>
@@ -3685,7 +3404,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="references">References</h2>
+<h2>References</h2>
 <ul>
 <li>Specific reference<ul>
 <li>references single version of object directly</li>
@@ -3701,7 +3420,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="storage-strategies">Storage Strategies</h2>
+<h2>Storage Strategies</h2>
 <ul>
 <li>Representing versions at physical level<ul>
 <li>store complete versions of objects</li>
@@ -3720,7 +3439,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="operation-and-interaction-models">Operation and Interaction Models</h2>
+<h2>Operation and Interaction Models</h2>
 <ul>
 <li>Operations<ul>
 <li>Control evolution of versions (of single objects)</li>
@@ -3738,7 +3457,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="queries-and-configurations">Queries and Configurations</h2>
+<h2>Queries and Configurations</h2>
 <ul>
 <li>additional constraint to seletc correct representations (versions)</li>
 <li>various implementations<ul>
@@ -3754,7 +3473,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="temporal-databases">Temporal Databases</h2>
+<h2>Temporal Databases</h2>
 <ul>
 <li>one of the first application domains for version models</li>
 <li>manage different time-dependent data</li>
@@ -3762,7 +3481,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>numerous approaches</li>
 <li>mostly based on relational DBs</li>
 </ul>
-<h2 id="time-in-databases">Time in Databases</h2>
+<h2>Time in Databases</h2>
 <ul>
 <li>does time stored in a DB represent<ul>
 <li>time in the domain (e.g. event schedule)?</li>
@@ -3793,7 +3512,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="classification-of-temporal-databases">Classification of Temporal Databases</h2>
+<h2>Classification of Temporal Databases</h2>
 <ul>
 <li>Static or snapshot DB<ul>
 <li>conventional DB</li>
@@ -3833,7 +3552,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="querying-moving-objects-with-uncertainity">Querying Moving Objects with Uncertainity</h3>
+<h3>Querying Moving Objects with Uncertainity</h3>
 <ul>
 <li>Point Queries<ul>
 <li>operators over singel trajectory<ul>
@@ -3873,7 +3592,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li><code>Sometime_Definitely_Inside( T, R, tb, te)</code></li>
 </ol>
 <p>Some of them are semantically equivalent</p>
-<h2 id="representing-temporal-data">Representing Temporal Data</h2>
+<h2>Representing Temporal Data</h2>
 <ul>
 <li>Tuple Versioning<ul>
 <li>tuple is extended with attribute for temporal dimension</li>
@@ -3954,7 +3673,7 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Attribute Versioning<ul>
 <li>each attribute is extended with temporal information</li>
-<li>requires non-first normal form <span class="math">\(NF^3\)</span> relational systems</li>
+<li>requires non-first normal form $NF^3$ relational systems</li>
 </ul>
 </li>
 </ul>
@@ -3990,7 +3709,7 @@ The fundamental layer is usually not directly needed by the application develope
 </tr>
 </tbody>
 </table>
-<h2 id="conceptual-and-data-models">Conceptual and Data Models</h2>
+<h2>Conceptual and Data Models</h2>
 <ul>
 <li>Early models: extend relational of E/R model</li>
 <li>Bitemporal Conceptual Data Model (BCDM)<ul>
@@ -4009,7 +3728,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="homogeneous-and-heterogenous-models">Homogeneous and Heterogenous Models</h2>
+<h2>Homogeneous and Heterogenous Models</h2>
 <ul>
 <li>homogenous if temporal domain does not vary from one attribute to another<ul>
 <li>all models that use tuple versioning are homogenous</li>
@@ -4017,7 +3736,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>heterogenous if attributes of a tuple associated to different times</li>
 </ul>
-<h2 id="storage-models">Storage Models</h2>
+<h2>Storage Models</h2>
 <ul>
 <li>Temporal relation as 3-dimensional data structure<ul>
 <li>sequence of relations</li>
@@ -4041,7 +3760,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="engineering-databases">Engineering Databases</h2>
+<h2>Engineering Databases</h2>
 <ul>
 <li>Engineering application domains<ul>
 <li>Computer-Aided Design (CAD)</li>
@@ -4064,14 +3783,14 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="design-space-version-model">Design Space Version Model</h2>
+<h2>Design Space Version Model</h2>
 <ul>
 <li>Modeling primitives</li>
 <li>component hierarchies (<em>is-a-part-of</em>)</li>
 <li>version histories (<em>is-a-kind-of</em>, <em>is-derved-from</em>)</li>
 <li>configurations combine hierarchies and version histories</li>
 </ul>
-<h2 id="software-configuration-systems">Software Configuration Systems</h2>
+<h2>Software Configuration Systems</h2>
 <ul>
 <li>Developed for SW development</li>
 <li>SW Configuration Management (SCM)</li>
@@ -4084,7 +3803,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="product-space-representation">Product Space Representation</h2>
+<h2>Product Space Representation</h2>
 <ul>
 <li>Data model with type relationships<ul>
 <li>composition tree with files as leaves</li>
@@ -4099,7 +3818,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="version-space">Version Space</h2>
+<h2>Version Space</h2>
 <ul>
 <li>Version model defines how objects are versioned<ul>
 <li>versioned object is container for set of object version</li>
@@ -4123,7 +3842,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="version-space-representation">Version Space Representation</h3>
+<h3>Version Space Representation</h3>
 <ul>
 <li>One-level representation<ul>
 <li>Successor relationship (Sequence)</li>
@@ -4138,7 +3857,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <!-- End Slides/Notes Week 11 -->
 <!-- Start Slides/Notes Week 12 -->
-<h1 id="indexing_1">Indexing</h1>
+<h1>Indexing</h1>
 <p>Make OODBs faster and more performant</p>
 <ul>
 <li>Compare OOP model to Relational model</li>
@@ -4166,12 +3885,12 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Group record: pages, clusters ...</li>
 </ul>
-<h2 id="type-hierarchy-indexing">Type Hierarchy Indexing</h2>
-<h3 id="key-vs-type-grouping">Key- vs Type-Grouping</h3>
+<h2>Type Hierarchy Indexing</h2>
+<h3>Key- vs Type-Grouping</h3>
 <ul>
 <li>Key-Grouping<ul>
 <li>build index along the actual attribute value</li>
-<li>as <span class="math">\(B^+\)</span>-trees</li>
+<li>as $B^+$-trees</li>
 <li>additional information about typing and sub-typing in the leafs</li>
 </ul>
 </li>
@@ -4181,12 +3900,12 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="extent-and-full-extent">Extent and Full Extent</h3>
+<h3>Extent and Full Extent</h3>
 <ul>
 <li>Extent: all objects of a given class (without sub-classes)</li>
 <li>Full Extent: all objects of a given class and it's sub-classes</li>
 </ul>
-<h3 id="single-class-index-sc-index">Single Class Index (SC-Index)</h3>
+<h3>Single Class Index (SC-Index)</h3>
 <ul>
 <li>Index construction for attribute of a type <em>t</em><ul>
 <li>incorporate only direct instances of a particular type in index</li>
@@ -4195,10 +3914,10 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Evaluator needs to traverse all components referenced by query</li>
 </ul>
 </li>
-<li>Usually implemented using <span class="math">\(B^+\)</span>-trees</li>
+<li>Usually implemented using $B^+$-trees</li>
 <li>Type-Grouping</li>
 </ul>
-<h3 id="class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</h3>
+<h3>Class Hierarchy Index (CH-Index)</h3>
 <ul>
 <li>One search structure for all objects of all types of indexed hierarchy</li>
 <li>One index on the common attribute for all classes of a inheritance graph</li>
@@ -4213,7 +3932,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>list of OIDs</li>
 </ul>
 </li>
-<li>Evaluator scans through <span class="math">\(B^+\)</span>-tree once<ul>
+<li>Evaluator scans through $B^+$-tree once<ul>
 <li>selects OIDs f types referenced by query</li>
 <li>discards other OIDs</li>
 </ul>
@@ -4226,9 +3945,9 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Key-grouping structure</li>
 </ul>
-<h3 id="h-tree">H-Tree</h3>
+<h3>H-Tree</h3>
 <ul>
-<li>Set of nested <span class="math">\(B^+\)</span>-trees</li>
+<li>Set of nested $B^+$-trees</li>
 <li>Combining class hierarchy with SC-Index</li>
 <li>Nesting reflects indexed type hierarchy<ul>
 <li>each H-tree component is nested with H-trees of immediate sub-types</li>
@@ -4244,7 +3963,7 @@ The fundamental layer is usually not directly needed by the application develope
 <p>Type-grouping structure</p>
 </li>
 </ul>
-<h3 id="class-division-index-cd-index">Class Division Index (CD-Index)</h3>
+<h3>Class Division Index (CD-Index)</h3>
 <ul>
 <li>Compromise between<ul>
 <li>indexing for each type</li>
@@ -4272,7 +3991,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Type-grouping structure</li>
 </ul>
-<h3 id="multi-key-type-index-mt-index">Multi-Key Type Index (MT-Index)</h3>
+<h3>Multi-Key Type Index (MT-Index)</h3>
 <ul>
 <li><em>Multi-Dimensional</em> indexing (locality)</li>
 <li>Type information as additional attribute available</li>
@@ -4289,7 +4008,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Linearization</li>
 <li>Key-grouping structure (type is handled as an attribute)</li>
 </ul>
-<h2 id="aggregation-path-indexing">Aggregation Path Indexing</h2>
+<h2>Aggregation Path Indexing</h2>
 <ul>
 <li>Backward queries<ul>
 <li>without full object tree traverses</li>
@@ -4302,7 +4021,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="nested-index-nx">Nested Index (NX)</h3>
+<h3>Nested Index (NX)</h3>
 <ul>
 <li>Direct association between<ul>
 <li>an <em>ending</em> object and</li>
@@ -4316,7 +4035,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Updating index structure is expensive</li>
 </ul>
 <p><img alt="Nested Index" class="img-responsive" src="/images/object_databases/nested_index.png"/></p>
-<h3 id="path-index-px">Path Index (PX)</h3>
+<h3>Path Index (PX)</h3>
 <ul>
 <li>Records all sub-paths leading to an ending object</li>
 <li>Predicates can be evaluated on all classes along the path</li>
@@ -4325,14 +4044,14 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Updating index structure better than with <em>NX</em></li>
 </ul>
 <p><img alt="Path Index" class="img-responsive" src="/images/object_databases/path_index.png"/></p>
-<h3 id="join-index-jx">Join-Index (JX)</h3>
+<h3>Join-Index (JX)</h3>
 <ul>
 <li>Originally for optimization of <em>joins</em> in Relational DBs</li>
 <li>Consists of a set of binary join indexes (Slides p. 33)</li>
 <li>Forward references are also indexed</li>
 <li>Cost compared to <em>MX</em> doubled</li>
 </ul>
-<h3 id="multi-index-mx">Multi-Index (MX)</h3>
+<h3>Multi-Index (MX)</h3>
 <ul>
 <li>Like Join-Indexes in Relational DBs</li>
 <li>Divide path (of arbitrary length) into sub-paths<ul>
@@ -4356,14 +4075,14 @@ The fundamental layer is usually not directly needed by the application develope
 <li>each reference in object has index structure for backward references</li>
 </ul>
 <p><img alt="Multi Index" class="img-responsive" src="/images/object_databases/multi_index.png"/></p>
-<h3 id="access-support-relations-asr">Access Support Relations (ASR)</h3>
+<h3>Access Support Relations (ASR)</h3>
 <ul>
 <li>Given a path create <em>4</em> index structures that support all desired queries (Nested Index, Path Index, Multi-Index)<ol>
 <li>Canonical representation</li>
 <li>Full representation</li>
 <li>Left representation</li>
-<li>Right representation
-- Related to Relational DB Joins: canonical is like regular join in SQL</li>
+<li>Right representation</li>
+<li>Related to Relational DB Joins: canonical is like regular join in SQL</li>
 </ol>
 </li>
 <li>ASR Compositions Index Graph<ul>
@@ -4373,7 +4092,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="overview-aggregation-path-indexing">Overview: Aggregation Path Indexing</h3>
+<h3>Overview: Aggregation Path Indexing</h3>
 <ul>
 <li>Nested Index and Path Index implemented using<ul>
 <li>trees or</li>
@@ -4381,14 +4100,14 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="collection-operations">Collection Operations</h2>
+<h2>Collection Operations</h2>
 <ul>
 <li>For: sets, bags, lists, arrays</li>
 <li>new modelling features, enhanced expressiveness</li>
 <li>increased complexity of indexing and query optimisation</li>
 <li>OQL provides constructors and operators for collections</li>
 </ul>
-<h3 id="signature-files">Signature Files</h3>
+<h3>Signature Files</h3>
 <ul>
 <li>Index construction for a multi-valued property of a type</li>
 <li>Query over multi-valued properties</li>
@@ -4402,7 +4121,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <!-- End Slides/Notes Week 12 -->
 <!-- Start Slides Week 13 -->
-<h1 id="the-om-data-model">The OM Data Model</h1>
+<h1>The OM Data Model</h1>
 <ul>
 <li>Extended Entity-Relationship model</li>
 <li>for OOP data management</li>
@@ -4424,7 +4143,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="typing-and-classification">Typing and Classification</h2>
+<h2>Typing and Classification</h2>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -4497,7 +4216,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h2 id="om-data-model-layers">OM Data Model Layers</h2>
+<h2>OM Data Model Layers</h2>
 <ul>
 <li>OM distinguishes<ul>
 <li>typing from</li>
@@ -4611,13 +4330,13 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Map-Reduce</li>
 </ul>
-<h2 id="collection-constraint">Collection Constraint</h2>
+<h2>Collection Constraint</h2>
 <ul>
 <li>Disjoint: XOR</li>
 <li>Cover: OR</li>
 <li>Partition: one and only one needs to be true</li>
 </ul>
-<h2 id="associations-relationships">Associations (Relationships)</h2>
+<h2>Associations (Relationships)</h2>
 <ul>
 <li>binary relation between 2 collections</li>
 <li>cardinality</li>
@@ -4626,7 +4345,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <!-- End Slides/Notes Week 13 -->
 <!-- Begin Slides/Notes Week 14 -->
-<h2 id="object-model-language-oml">Object Model Language (OML)</h2>
+<h2>Object Model Language (OML)</h2>
 <ul>
 <li>Declarative OOP language for OM data model</li>
 <li>OML Data Definition Language<ul>
@@ -4655,7 +4374,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="collection-algebra">Collection Algebra</h3>
+<h3>Collection Algebra</h3>
 <ul>
 <li>Operations defined for collections of OM model<ul>
 <li>union</li>
@@ -4682,7 +4401,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<h3 id="binary-collections">Binary Collections</h3>
+<h3>Binary Collections</h3>
 <ul>
 <li>All collections-operations can be applied to binary collection</li>
 <li>Binary collections suort additional operations<ul>
@@ -4716,63 +4435,6 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End Slides/Notes Week 14 -->
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
   </div>
 
   <hr/>

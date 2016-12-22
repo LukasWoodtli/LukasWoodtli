@@ -132,7 +132,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
@@ -141,203 +141,11 @@
     <blockquote>
 <p>My Notes for the <em>System Construction</em> Course at ETH</p>
 </blockquote>
-<div class="toc">
-<ul>
-<li><a href="#minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</a><ul>
-<li><a href="#arm-a7">ARM A7</a><ul>
-<li><a href="#documentation">Documentation</a></li>
-<li><a href="#6-kinds-of-instructions">6 Kinds Of Instructions</a></li>
-<li><a href="#execution-modes">Execution Modes</a></li>
-<li><a href="#special-registers">Special Registers</a></li>
-<li><a href="#typical-procedure-call">Typical Procedure Call</a></li>
-<li><a href="#exceptions">Exceptions</a></li>
-<li><a href="#misc">Misc</a></li>
-</ul>
-</li>
-<li><a href="#raspberry-pi-2">Raspberry PI 2</a><ul>
-<li><a href="#booting">Booting</a></li>
-<li><a href="#mmu">MMU</a></li>
-<li><a href="#gpio">GPIO</a></li>
-</ul>
-</li>
-<li><a href="#minos-and-oberon">Minos and Oberon</a><ul>
-<li><a href="#history-of-oberon">History of Oberon</a></li>
-<li><a href="#oberon">Oberon</a><ul>
-<li><a href="#oberon07">Oberon07</a></li>
-<li><a href="#language-constructs">Language Constructs</a><ul>
-<li><a href="#program-units">Program Units</a></li>
-<li><a href="#data-types">Data Types</a></li>
-<li><a href="#structured-types">Structured Types</a></li>
-<li><a href="#control-structures">Control Structures</a><ul>
-<li><a href="#if">IF</a></li>
-<li><a href="#while">WHILE</a></li>
-<li><a href="#repeat">REPEAT</a></li>
-<li><a href="#for">FOR</a></li>
-</ul>
-</li>
-<li><a href="#built-in-functions">Built-in Functions</a></li>
-</ul>
-</li>
-<li><a href="#modules">Modules</a></li>
-<li><a href="#pseudo-module-system">Pseudo Module SYSTEM</a><ul>
-<li><a href="#system-arm-specific">SYSTEM: ARM Specific</a></li>
-<li><a href="#interrupt-procedures">Interrupt Procedures</a></li>
-<li><a href="#special-flags-and-features">Special Flags and Features</a></li>
-<li><a href="#type-declarations">Type Declarations</a></li>
-<li><a href="#inheritance">Inheritance</a></li>
-<li><a href="#run-time-support-for-inheritance">Run-time Support for Inheritance</a></li>
-</ul>
-</li>
-<li><a href="#module-loading-and-commands">Module Loading and Commands</a></li>
-<li><a href="#compilation-and-linking">Compilation and Linking</a></li>
-<li><a href="#object-file-format">Object File Format</a></li>
-<li><a href="#boot-file">Boot-file</a></li>
-</ul>
-</li>
-<li><a href="#minos-kernel">Minos Kernel</a><ul>
-<li><a href="#system-start-up">System Start-up</a></li>
-<li><a href="#initialisation-of-interrupts">Initialisation of Interrupts</a></li>
-<li><a href="#task-scheduling-minos">Task Scheduling (Minos)</a><ul>
-<li><a href="#stack-minos">Stack (Minos)</a></li>
-<li><a href="#scheduler-minos">Scheduler (Minos)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#serial-communication">Serial Communication</a><ul>
-<li><a href="#spi">SPI</a><ul>
-<li><a href="#setup">Setup</a></li>
-</ul>
-</li>
-<li><a href="#uart">UART</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#a2-case-study-2">A2 (Case Study 2)</a><ul>
-<li><a href="#intel-x86">Intel x86</a><ul>
-<li><a href="#resources-x86-compatible-hw">Resources (x86 compatible HW)</a></li>
-<li><a href="#interrupt-system-x86">Interrupt System (x86)</a><ul>
-<li><a href="#apic">APIC</a></li>
-<li><a href="#multiprocessor-specification">MultiProcessor Specification</a></li>
-<li><a href="#exception-numbers">Exception Numbers</a></li>
-<li><a href="#configuring-apic">Configuring APIC</a></li>
-</ul>
-</li>
-<li><a href="#pci-local-bus">PCI Local Bus</a></li>
-</ul>
-</li>
-<li><a href="#active-oberon-language">Active Oberon Language</a><ul>
-<li><a href="#locks-vs-monitors">Locks vs. Monitors</a></li>
-<li><a href="#threads-vs-active-objects">Threads vs. Active Objects</a></li>
-<li><a href="#object-model-active-oberon">Object Model (Active Oberon)</a></li>
-<li><a href="#signal-wait-implementations">Signal-Wait Implementations</a></li>
-<li><a href="#monitors-in-active-oberon">Monitors in Active Oberon</a></li>
-</ul>
-</li>
-<li><a href="#active-object-system-a2">Active Object System (A2)</a><ul>
-<li><a href="#modular-kernel-structure">Modular Kernel Structure</a></li>
-<li><a href="#atomic-operations-hw-support">Atomic Operations (HW Support)</a><ul>
-<li><a href="#intel-x86_1">Intel (x86)</a></li>
-<li><a href="#arm">ARM</a></li>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#compare-and-swap-cas">Compare-And-Swap (CAS)</a></li>
-<li><a href="#implementation-of-a-spinal-using-cas">Implementation of a spinal using CAS</a></li>
-</ul>
-</li>
-<li><a href="#boot-procedure-a2">Boot Procedure (A2)</a><ul>
-<li><a href="#processor-startup">Processor Startup</a></li>
-</ul>
-</li>
-<li><a href="#a2-activities-states">A2 Activities States</a></li>
-<li><a href="#run-time-data-structures">Run-Time Data Structures</a></li>
-<li><a href="#stack-management">Stack Management</a></li>
-<li><a href="#context-switch">Context Switch</a><ul>
-<li><a href="#coroutines-synchronous">Coroutines (Synchronous)</a></li>
-<li><a href="#asynchronous-context-switch">Asynchronous Context Switch</a></li>
-</ul>
-</li>
-<li><a href="#synchronisation">Synchronisation</a><ul>
-<li><a href="#object-locking">Object Locking</a></li>
-<li><a href="#priority-inversion">Priority Inversion</a></li>
-<li><a href="#priority-inheritance">Priority Inheritance</a></li>
-</ul>
-</li>
-<li><a href="#lock-free-programming">Lock-Free Programming</a><ul>
-<li><a href="#a2">A2</a><ul>
-<li><a href="#goals">Goals</a></li>
-<li><a href="#guiding-principles">Guiding Principles</a></li>
-<li><a href="#lock-free-kernel">Lock-Free Kernel</a></li>
-<li><a href="#memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</a></li>
-</ul>
-</li>
-<li><a href="#aba-problem">ABA Problem</a><ul>
-<li><a href="#hazard-pointers">Hazard Pointers</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</a><ul>
-<li><a href="#interrupts">Interrupts</a></li>
-<li><a href="#queue-data-structures">Queue Data Structures</a><ul>
-<li><a href="#scheduling-activities">Scheduling (Activities)</a></li>
-<li><a href="#task-switch-finalizer">Task Switch Finalizer</a></li>
-</ul>
-</li>
-<li><a href="#stack-management_1">Stack Management</a><ul>
-<li><a href="#interrupts_1">Interrupts</a></li>
-<li><a href="#lock-free-memory-management">Lock-Free Memory Management</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#portability">Portability</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#oberon-risc-case-study-3">Oberon RISC (Case Study 3)</a></li>
-<li><a href="#active-cells-case-study-4">Active Cells (Case Study 4)</a><ul>
-<li><a href="#tiny-register-machine-trm">Tiny Register Machine (TRM)</a></li>
-<li><a href="#active-cells">Active Cells</a></li>
-<li><a href="#programming-language-vs-hdl">Programming Language vs. HDL</a><ul>
-<li><a href="#programming-language">Programming Language</a></li>
-<li><a href="#hardware-description-language">Hardware Description Language</a></li>
-</ul>
-</li>
-<li><a href="#singlecycle-datapath-trm">Single/Cycle Datapath (TRM)</a><ul>
-<li><a href="#instruction-fetch">Instruction Fetch</a></li>
-<li><a href="#register-read">Register Read</a></li>
-<li><a href="#alu">ALU</a></li>
-<li><a href="#control-path">Control Path</a></li>
-<li><a href="#write-result-back-to-rd">Write Result Back to Rd</a></li>
-<li><a href="#trm-stalling">TRM Stalling</a></li>
-<li><a href="#load-ld">Load (LD)</a></li>
-<li><a href="#store-st">Store (ST)</a></li>
-<li><a href="#set-flag-registers">Set Flag Registers</a></li>
-<li><a href="#branch-instructions">Branch instructions</a></li>
-<li><a href="#separate-compilation-trm">Separate Compilation (TRM)</a><ul>
-<li><a href="#compilation-steps">Compilation Steps</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#problems-with-active-cells-1">Problems with Active Cells 1</a><ul>
-<li><a href="#generic-communication-interface">Generic Communication Interface</a></li>
-</ul>
-</li>
-<li><a href="#active-cells-2">Active Cells 2</a></li>
-<li><a href="#active-cells-3">Active Cells 3</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h1 id="minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</h1>
-<h2 id="arm-a7">ARM A7</h2>
+<p>[TOC]</p>
+<h1>Minos on Raspberry PI 2 (Case Study 1)</h1>
+<h2>ARM A7</h2>
 <p>The ARM <em>Architecture</em> is not the same thing as the ARM <em>Processor-Families</em></p>
-<h3 id="documentation">Documentation</h3>
+<h3>Documentation</h3>
 <p>There is a lot of good documentation for the ARM processors available. But it's difficult to
 find the right documents.</p>
 <table class="table table-hover table-striped">
@@ -362,17 +170,19 @@ find the right documents.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="6-kinds-of-instructions">6 Kinds Of Instructions</h3>
+<h3>6 Kinds Of Instructions</h3>
 <ol>
 <li>Data Processing</li>
 <li>Branch Instructions</li>
 <li>Status Register Transfer</li>
 <li>Load and Store (RISC)</li>
 <li>Generic Coprocessor Instructions</li>
-<li>Exception Generation</li>
-</ol>
+<li>
+<p>Exception Generation</p>
+</li>
+<li>
+<p>Load-/Store: No memory operands (not as x86)</p>
 <ul>
-<li>Load-/Store: No memory operands (not as x86)<ul>
 <li>Load: from memory to register</li>
 <li>Store: from register to memory</li>
 </ul>
@@ -380,8 +190,8 @@ find the right documents.</p>
 <li>Multiple-Data-Transfer commands (<code>stmdb sp!,{fp,lr}</code>, <code>!</code>: Write-Back)</li>
 <li>Link Register: <code>bl</code>: Branch-and-Link (stores PC in link register)</li>
 <li>PC-Relative Addressing: Loading large constants (that have no space in instruction encoding) form code</li>
-</ul>
-<h3 id="execution-modes">Execution Modes</h3>
+</ol>
+<h3>Execution Modes</h3>
 <ul>
 <li>7 Modes</li>
 <li>for exception handling</li>
@@ -443,7 +253,7 @@ find the right documents.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="special-registers">Special Registers</h3>
+<h3>Special Registers</h3>
 <ul>
 <li>R15: PC (Program Counter)</li>
 <li>R14: LR (Return address for procedure)</li>
@@ -457,7 +267,7 @@ find the right documents.</p>
 </ul>
 </li>
 </ul>
-<h3 id="typical-procedure-call">Typical Procedure Call</h3>
+<h3>Typical Procedure Call</h3>
 <ul>
 <li>
 <p>Caller</p>
@@ -483,19 +293,19 @@ find the right documents.</p>
 </ul>
 </li>
 </ul>
-<h3 id="exceptions">Exceptions</h3>
+<h3>Exceptions</h3>
 <ul>
 <li>Interrupt: asynchronous event triggered by a device signal</li>
 <li>Trap / Syscall: intentional exception</li>
 <li>Fault: error condition that a handler might be able to correct</li>
 <li>Abort: error condition that cannot be corrected</li>
 </ul>
-<h3 id="misc">Misc</h3>
+<h3>Misc</h3>
 <ul>
 <li>FIRQ is about having more stacked registers</li>
 <li>Return Link type: Different sizes because of pipe-line</li>
 </ul>
-<h2 id="raspberry-pi-2">Raspberry PI 2</h2>
+<h2>Raspberry PI 2</h2>
 <ul>
 <li>Quad Core</li>
 <li>1 GB RAM</li>
@@ -503,18 +313,18 @@ find the right documents.</p>
 <li>UART, SPI, USB, Ethernet, ...</li>
 <li>Powered from MicroUSB</li>
 </ul>
-<h3 id="booting">Booting</h3>
+<h3>Booting</h3>
 <ul>
 <li>Kernel is copied to address: <code>0x8000h</code> and branches there (instead to <code>0x00</code>)</li>
 <li>MMU is disabled</li>
 <li>Only one core is running</li>
 </ul>
-<h3 id="mmu">MMU</h3>
+<h3>MMU</h3>
 <ul>
 <li>Memory translation is complicated due to two different MMU's</li>
 <li>ARM's memory mapped registers start from <code>0x3f000000</code>, opposed to <code>0x7e000000</code> in BMC manual</li>
 </ul>
-<h3 id="gpio">GPIO</h3>
+<h3>GPIO</h3>
 <ul>
 <li>Some GPIO Registers need Read-Modify-Write (i.e GPFSELn)</li>
 <li>Other Registers support setting or clearing single bits:<ul>
@@ -523,10 +333,10 @@ find the right documents.</p>
 </ul>
 </li>
 </ul>
-<h2 id="minos-and-oberon">Minos and Oberon</h2>
-<h3 id="history-of-oberon">History of Oberon</h3>
+<h2>Minos and Oberon</h2>
+<h3>History of Oberon</h3>
 <p><img alt="Oberon Language and OS Family" class="img-responsive" src="/images/syscon_oberon_history.png"/></p>
-<h3 id="oberon">Oberon</h3>
+<h3>Oberon</h3>
 <ul>
 <li>Modules can be compiled separately</li>
 <li>Strongly typed<ul>
@@ -537,13 +347,13 @@ find the right documents.</p>
 <li>High Level (minimal Assembler code)</li>
 <li>Special low level functions in <code>SYSTEM</code> pseudo module (compiler directives)</li>
 </ul>
-<h4 id="oberon07">Oberon07</h4>
+<h4>Oberon07</h4>
 <ul>
 <li>Minimal</li>
 <li>No type <code>OBJECT*</code> no member functions (methods)</li>
 </ul>
-<h4 id="language-constructs">Language Constructs</h4>
-<h5 id="program-units">Program Units</h5>
+<h4>Language Constructs</h4>
+<h5>Program Units</h5>
 <ul>
 <li><code>MODULE</code></li>
 <li><code>PROCEDURE</code><ul>
@@ -551,37 +361,37 @@ find the right documents.</p>
 </ul>
 </li>
 </ul>
-<h5 id="data-types">Data Types</h5>
+<h5>Data Types</h5>
 <ul>
 <li><code>BOOLEAN</code>, <code>CHAR</code>, <code>SHORTINT</code>, <code>INTEGER</code>, <code>LONGINT</code>, <code>HUGEINT</code>, <code>REAL</code>, <code>LONGREAL</code>, <code>SET</code>, <code>ADDRESS</code>, <code>SIZE</code></li>
 </ul>
-<h5 id="structured-types">Structured Types</h5>
+<h5>Structured Types</h5>
 <ul>
 <li><code>ARRAY</code>, <code>POINTER TO ARRAY</code></li>
 <li><code>RECORD</code> (with type extension), <code>POINTER TO RECORD</code></li>
 </ul>
-<h5 id="control-structures">Control Structures</h5>
-<h6 id="if"><code>IF</code></h6>
+<h5>Control Structures</h5>
+<h6><code>IF</code></h6>
 <div class="highlight"><pre><span></span><span class="kr">IF</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="kr">THEN</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
-<h6 id="while"><code>WHILE</code></h6>
+<h6><code>WHILE</code></h6>
 <div class="highlight"><pre><span></span><span class="kr">WHILE</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">n</span> <span class="kr">DO</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
-<h6 id="repeat"><code>REPEAT</code></h6>
+<h6><code>REPEAT</code></h6>
 <div class="highlight"><pre><span></span><span class="kr">REPEAT</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">UNTIL</span> <span class="n">x</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
 </pre></div>
-<h6 id="for"><code>FOR</code></h6>
+<h6><code>FOR</code></h6>
 <div class="highlight"><pre><span></span><span class="kr">FOR</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="kr">TO</span> <span class="mi">100</span> <span class="kr">DO</span>
     <span class="cm">(* statement seq *)</span>
 <span class="kr">END</span><span class="p">;</span>
 </pre></div>
-<h5 id="built-in-functions">Built-in Functions</h5>
+<h5>Built-in Functions</h5>
 <p>Increment and decrement</p>
 <div class="highlight"><pre><span></span><span class="nb">INC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="nb">DEC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
@@ -629,7 +439,7 @@ find the right documents.</p>
 <span class="nb">SIZE</span> <span class="kr">OF</span> <span class="n">t</span><span class="p">;</span>
 <span class="n">SIZEOF</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 </pre></div>
-<h4 id="modules">Modules</h4>
+<h4>Modules</h4>
 <ul>
 <li><code>PROCEDURE Write* ...</code>: Exported (<code>*</code>)</li>
 <li>Module body is executed first and only once</li>
@@ -651,7 +461,7 @@ find the right documents.</p>
 </li>
 <li>Unsafe Pointer: can write to memory address</li>
 </ul>
-<h4 id="pseudo-module-system">Pseudo Module <code>SYSTEM</code></h4>
+<h4>Pseudo Module <code>SYSTEM</code></h4>
 <p>Direct Memory Access Functions</p>
 <div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">PUT</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">GET</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
@@ -674,7 +484,7 @@ find the right documents.</p>
     <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">PUT</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">,</span> <span class="p">{</span><span class="mi">21</span><span class="p">});</span>
 <span class="kr">END</span> <span class="n">LetThereBeLight</span><span class="p">;</span>
 </pre></div>
-<h5 id="system-arm-specific"><code>SYSTEM</code>: ARM Specific</h5>
+<h5><code>SYSTEM</code>: ARM Specific</h5>
 <p>Register Access</p>
 <div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">SP</span><span class="p">();</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">FP</span><span class="p">();</span>
@@ -694,13 +504,13 @@ find the right documents.</p>
 <div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">NULL</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">MULD</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
 </pre></div>
-<h5 id="interrupt-procedures">Interrupt Procedures</h5>
+<h5>Interrupt Procedures</h5>
 <div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="n">Handler</span> <span class="p">{</span><span class="n">INTERRUPT</span><span class="p">,</span> <span class="n">PCOFFSET</span><span class="o">=</span><span class="n">k</span><span class="p">};</span>
 <span class="kr">BEGIN</span> <span class="cm">(* k is the offset to the next instruction</span>
 <span class="cm">         cf. table of exceptions *)</span>
 <span class="kr">END</span> <span class="n">Handler</span><span class="p">;</span>
 </pre></div>
-<h5 id="special-flags-and-features">Special Flags and Features</h5>
+<h5>Special Flags and Features</h5>
 <p>Procedure without activation frame</p>
 <div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">NOTAG</span><span class="p">}</span>
 </pre></div>
@@ -722,7 +532,7 @@ find the right documents.</p>
 <p>Symbol that is invisible to a Garbage Collector</p>
 <div class="highlight"><pre><span></span><span class="n">symbol</span> <span class="p">{</span><span class="n">UNTRACED</span><span class="p">}</span>
 </pre></div>
-<h5 id="type-declarations">Type Declarations</h5>
+<h5>Type Declarations</h5>
 <div class="highlight"><pre><span></span><span class="kr">TYPE</span>
 
 <span class="n">Device</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">DeviceDesc</span><span class="p">;</span>  <span class="cm">(* Pointer to record (reference type)*)</span>
@@ -742,7 +552,7 @@ find the right documents.</p>
 
 <span class="n">Data</span><span class="o">*</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="kr">ARRAY</span> <span class="kr">OF</span> <span class="nb">CHAR</span><span class="p">;</span> <span class="cm">(* Dynamic array type *)</span>
 </pre></div>
-<h5 id="inheritance">Inheritance</h5>
+<h5>Inheritance</h5>
 <div class="highlight"><pre><span></span><span class="n">Task</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">TaskDesc</span><span class="p">;</span>
 <span class="n">TaskDesc</span><span class="o">*</span> <span class="o">=</span> <span class="kr">RECORD</span>
     <span class="n">task</span> <span class="n">task</span> <span class="n">task</span>
@@ -766,7 +576,7 @@ find the right documents.</p>
 <p>Type Test and Guard</p>
 <div class="highlight"><pre><span></span><span class="kr">WITH</span> <span class="n">task</span><span class="p">:</span> <span class="n">PeriodicTask</span> <span class="kr">DO</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
 </pre></div>
-<h5 id="run-time-support-for-inheritance">Run-time Support for Inheritance</h5>
+<h5>Run-time Support for Inheritance</h5>
 <ul>
 <li>RTTI is supported</li>
 <li>Each type gets an unique type descriptor (<code>LONGINT</code>)</li>
@@ -774,7 +584,7 @@ find the right documents.</p>
 <li>The tags point to the type descriptors</li>
 <li>Inheritance level is restricted to 3</li>
 </ul>
-<h4 id="module-loading-and-commands">Module Loading and Commands</h4>
+<h4>Module Loading and Commands</h4>
 <ul>
 <li>Modules are loaded on demand (first use)</li>
 <li>Statically linked modules are loaded at boot-time</li>
@@ -783,13 +593,13 @@ find the right documents.</p>
 <li>Unloading possible, if no other loaded module (static or dynamic) depends on it</li>
 <li>If a command of a not loaded module is executed the module is loaded first</li>
 </ul>
-<h4 id="compilation-and-linking">Compilation and Linking</h4>
+<h4>Compilation and Linking</h4>
 <ul>
 <li>A module (.mod) is compiled to an executable file / object file (.arm) and a symbol file (.smb)</li>
 <li>The executable file contains a fingerprint</li>
 <li>The linker adds fingerprint to dependent object files (fix-up)</li>
 </ul>
-<h4 id="object-file-format">Object File Format</h4>
+<h4>Object File Format</h4>
 <p>Compiler flags:</p>
 <div class="highlight"><pre><span></span>Compiler.Compile -b=ARM --objectFile=Minos
 </pre></div>
@@ -805,7 +615,7 @@ find the right documents.</p>
 </ul>
 <p><img alt="Minos Object Files" class="img-responsive" src="/images/syscon_minos_object_file.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
-<h4 id="boot-file">Boot-file</h4>
+<h4>Boot-file</h4>
 <ul>
 <li>Linked Modules of Kernel files (hierarchy)</li>
 <li>Predefined loading address and entry point (0x8000 for RPI2)</li>
@@ -818,8 +628,8 @@ Start address: <code>108000H</code>
 Image file name: <code>kernel.img</code>
 Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <!-- Beginning of Slides Week 3 -->
-<h3 id="minos-kernel">Minos Kernel</h3>
-<h4 id="system-start-up">System Start-up</h4>
+<h3>Minos Kernel</h3>
+<h4>System Start-up</h4>
 <ul>
 <li>
 <p>Firmware (RPI2, GPU)</p>
@@ -854,7 +664,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <!-- Slides Week 3 09-29 p. 84 (6) -->
 <p>...</p>
 <!-- Slides and Notes Week 4 -->
-<h4 id="initialisation-of-interrupts">Initialisation of Interrupts</h4>
+<h4>Initialisation of Interrupts</h4>
 <ol>
 <li>Set handlers of IRQ's<ul>
 <li>Write handlers for needed interrupts</li>
@@ -875,7 +685,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Need to be checked in the <em>IRQ Trap Handler</em> (1st level handler)</li>
 <li>Call <em>IRQ Handler</em> (2nd level) depending on pending bits</li>
 </ul>
-<h4 id="task-scheduling-minos">Task Scheduling (Minos)</h4>
+<h4>Task Scheduling (Minos)</h4>
 <p>3 Task types:</p>
 <ul>
 <li>High Priority (every 5 ms)</li>
@@ -893,7 +703,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Synchronous (periodic) tasks</li>
 <li>Asynchronous (background) tasks</li>
 </ul>
-<h5 id="stack-minos">Stack (Minos)</h5>
+<h5>Stack (Minos)</h5>
 <ul>
 <li>One stack for all processes</li>
 <li>Every task needs to run to completion</li>
@@ -902,7 +712,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h5 id="scheduler-minos">Scheduler (Minos)</h5>
+<h5>Scheduler (Minos)</h5>
 <p>Recursive interrupt procedure</p>
 <ul>
 <li>Prolog: Interrupts masked</li>
@@ -921,7 +731,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 <!-- End of Week 4 -->
 <!-- Beginning of Week 5 -->
-<h2 id="serial-communication">Serial Communication</h2>
+<h2>Serial Communication</h2>
 <ul>
 <li>Directionally<ul>
 <li>Simplex</li>
@@ -940,11 +750,11 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>RS-232</li>
 <li>RS-458</li>
 <li>SPI (SSP, Microwire)</li>
-<li>I<span class="math">\(^2\)</span>C</li>
+<li>I$^2$C</li>
 <li>1-Wire</li>
 <li>USB</li>
 </ul>
-<h3 id="spi">SPI</h3>
+<h3>SPI</h3>
 <ul>
 <li>Very simple</li>
 <li>4 Wires:<ul>
@@ -974,13 +784,15 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Master pushed data out of shift register</li>
 <li>Slave pushes data out of shift register at the same time</li>
 <li>Sampling happens at SCLK</li>
-<li>To finish communication master stops SCLK</li>
-</ol>
-<ul>
-<li>No acknowledgment mechanism</li>
+<li>
+<p>To finish communication master stops SCLK</p>
+</li>
+<li>
+<p>No acknowledgment mechanism</p>
+</li>
 <li>No device interrupts</li>
-</ul>
-<h4 id="setup">Setup</h4>
+</ol>
+<h4>Setup</h4>
 <ul>
 <li>Polarity (SCLK):<ul>
 <li>0: Sampling happens on rising SCLK edge</li>
@@ -993,7 +805,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h3 id="uart">UART</h3>
+<h3>UART</h3>
 <ul>
 <li>Serial transmission (least significant bit first)</li>
 <li>Configurable<ul>
@@ -1007,13 +819,13 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 <!-- End of Week 5 -->
 <!-- Beginning of Week 6 -->
-<h1 id="a2-case-study-2">A2 (Case Study 2)</h1>
-<h2 id="intel-x86">Intel x86</h2>
+<h1>A2 (Case Study 2)</h1>
+<h2>Intel x86</h2>
 <ul>
 <li>Shared Memory (for all processors)</li>
 <li>Symmetrical Multiple Processors (SMP)</li>
 </ul>
-<h3 id="resources-x86-compatible-hw">Resources (x86 compatible HW)</h3>
+<h3>Resources (x86 compatible HW)</h3>
 <p><a href="http://wiki.osdev.org">osdev.org</a></p>
 <ul>
 <li>SDM: Intel® 64 and IA-32 Architectures Software Developer’s Manual (4000 p., 3 volumes)<ol>
@@ -1026,7 +838,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>ACPI Spec: Advanced Configuration and Power Interface Specification (1000 p.)</li>
 <li>PCI Spec: PCI Local Bus Specification Rev. 2.2 (322 p.)</li>
 </ul>
-<h3 id="interrupt-system-x86">Interrupt System (x86)</h3>
+<h3>Interrupt System (x86)</h3>
 <ul>
 <li>External IRQ's (asynchronous)<ul>
 <li>I/O Devices</li>
@@ -1044,7 +856,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h4 id="apic">APIC</h4>
+<h4>APIC</h4>
 <ul>
 <li>Each CPU has local APIC (local interrupts)</li>
 <li>
@@ -1063,7 +875,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h4 id="multiprocessor-specification">MultiProcessor Specification</h4>
+<h4>MultiProcessor Specification</h4>
 <ul>
 <li>Standard by Intel (MP Spec 1.4)</li>
 <li>Hardware Specification<ul>
@@ -1078,7 +890,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h4 id="exception-numbers">Exception Numbers</h4>
+<h4>Exception Numbers</h4>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -1125,7 +937,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </tr>
 </tbody>
 </table>
-<h4 id="configuring-apic">Configuring APIC</h4>
+<h4>Configuring APIC</h4>
 <ul>
 <li>Local Vector Table (for local interrupt sources)<ul>
 <li>Vector Number, Trigger Mode, Status, Interrupt Vector Mask</li>
@@ -1139,7 +951,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h3 id="pci-local-bus">PCI Local Bus</h3>
+<h3>PCI Local Bus</h3>
 <ul>
 <li>Connect Peripheral Components</li>
 <li>Standardised Configuration Address Space for all PCI Devices</li>
@@ -1151,8 +963,8 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <li>Addressable via in / out instructions operating on separate I/O memory address space</li>
 <li>PCI Express now Memory Mapped I/O</li>
 </ul>
-<h2 id="active-oberon-language">Active Oberon Language</h2>
-<h3 id="locks-vs-monitors">Locks vs. Monitors</h3>
+<h2>Active Oberon Language</h2>
+<h3>Locks vs. Monitors</h3>
 <ul>
 <li>Lock based<ul>
 <li>shared data</li>
@@ -1165,7 +977,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h3 id="threads-vs-active-objects">Threads vs. Active Objects</h3>
+<h3>Threads vs. Active Objects</h3>
 <ul>
 <li>Threads<ul>
 <li>Concurrently running code</li>
@@ -1177,7 +989,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h3 id="object-model-active-oberon">Object Model (Active Oberon)</h3>
+<h3>Object Model (Active Oberon)</h3>
 <ul>
 <li>
 <p><code>EXCLUSIVE</code>: Protection (mutual exclusion)</p>
@@ -1199,7 +1011,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h3 id="signal-wait-implementations">Signal-Wait Implementations</h3>
+<h3>Signal-Wait Implementations</h3>
 <ul>
 <li>Signal-and-Continue<ul>
 <li>Java uses this</li>
@@ -1247,7 +1059,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-<h3 id="monitors-in-active-oberon">Monitors in Active Oberon</h3>
+<h3>Monitors in Active Oberon</h3>
 <ul>
 <li>No <em>notify()</em> (or <em>notifyAll()</em>): Every <code>EXCLUSIVE</code> procedure triggers reevaluation of <code>AWAIT</code> when it returns</li>
 <li>Downsides of Monitors:<ul>
@@ -1256,17 +1068,17 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </ul>
 </li>
 </ul>
-<h2 id="active-object-system-a2">Active Object System (A2)</h2>
-<h3 id="modular-kernel-structure">Modular Kernel Structure</h3>
+<h2>Active Object System (A2)</h2>
+<h3>Modular Kernel Structure</h3>
 <ul>
 <li>Cover: Kernel</li>
 <li>Activity Scheduler: Objects</li>
 <li>Module Loader (Memory Management): Modules, Heaps</li>
 <li>Hardware Abstraction: Machine</li>
 </ul>
-<h3 id="atomic-operations-hw-support">Atomic Operations (HW Support)</h3>
+<h3>Atomic Operations (HW Support)</h3>
 <p>The supported operations are typically a lot slower than simple read and write operations.</p>
-<h4 id="intel-x86_1">Intel (x86)</h4>
+<h4>Intel (x86)</h4>
 <p>From AMD64 Architecture Programmer’s Manual:</p>
 <ul>
 <li><code>CMPXCHG mem, reg</code></li>
@@ -1279,7 +1091,7 @@ clears ZF flag to 0"</p>
 <li>Lock Prefix</li>
 </ul>
 <p>"The lock prefix causes certain kinds of memory read-modify- write instructions to occur atomically"</p>
-<h4 id="arm">ARM</h4>
+<h4>ARM</h4>
 <p>From ARM Architecture Reference Manual:</p>
 <ul>
 <li><code>LDREX &lt;rd&gt;, &lt;rn&gt;</code></li>
@@ -1291,7 +1103,7 @@ address as exclusive access for the executing processor in a shared monitor"</p>
 </ul>
 <p>"performs a conditional store to memory. The store only occurs if the executing processor has
 exclusive access to the memory addressed"</p>
-<h4 id="overview">Overview</h4>
+<h4>Overview</h4>
 <p>Some typical instructions for atomic operations and implementation examples.</p>
 <ul>
 <li>Test-And-Set (TAS)<ul>
@@ -1316,7 +1128,7 @@ Caches can't be exploited (direct access to memory)!</p>
 <ul>
 <li>Compare-And-Swap is the most universal instruction</li>
 </ul>
-<h4 id="compare-and-swap-cas">Compare-And-Swap (CAS)</h4>
+<h4>Compare-And-Swap (CAS)</h4>
 <p>Atomic operation implemented in processor.</p>
 <p>Compares memory location with an value. If it's same a new (given) value is written at the
 memory address. Returns the previous value at memory position in any case.</p>
@@ -1326,7 +1138,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>
 <li>Return previous value at <code>a</code> in any case</li>
 </ul>
-<h4 id="implementation-of-a-spinal-using-cas">Implementation of a spinal using CAS</h4>
+<h4>Implementation of a spinal using CAS</h4>
 <div class="highlight"><pre><span></span><span class="cm">(* Initialisation *)</span>
 <span class="n">Init</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1344,7 +1156,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </pre></div>
 <!-- End of Notes Week 6 -->
 <!-- Beginning of Notes Week 7 -->
-<h3 id="boot-procedure-a2">Boot Procedure (A2)</h3>
+<h3>Boot Procedure (A2)</h3>
 <ul>
 <li>Start BIOS Firmware</li>
 <li>Load A2 Boot-file</li>
@@ -1371,7 +1183,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <blockquote>
 <p>This all happens on the Boot Processor (BP)</p>
 </blockquote>
-<h4 id="processor-startup">Processor Startup</h4>
+<h4>Processor Startup</h4>
 <ul>
 <li>Start processor <strong>P</strong> (Boot-processor)<ol>
 <li>Setup boot program (<code>Machine.InitProcessors</code>)</li>
@@ -1389,7 +1201,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ol>
 </li>
 </ul>
-<h3 id="a2-activities-states">A2 Activities States</h3>
+<h3>A2 Activities States</h3>
 <ul>
 <li>Ready: ready to be scheduled</li>
 <li>Running: currently scheduled</li>
@@ -1404,7 +1216,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <p>Java doesn't make difference between waiting on a condition or a lock.</p>
 </blockquote>
 <p><img alt="A2 Activities States" class="img-responsive" src="/images/syscon_a2_activieties_states.png"/></p>
-<h3 id="run-time-data-structures">Run-Time Data Structures</h3>
+<h3>Run-Time Data Structures</h3>
 <ul>
 <li>Running Array/List<ul>
 <li>One entry for each processor</li>
@@ -1430,7 +1242,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 </li>
 </ul>
-<h3 id="stack-management">Stack Management</h3>
+<h3>Stack Management</h3>
 <ul>
 <li>Virtual addressing</li>
 <li>Allocation in page units</li>
@@ -1458,7 +1270,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 </li>
 </ul>
-<h3 id="context-switch">Context Switch</h3>
+<h3>Context Switch</h3>
 <ul>
 <li>Synchronous<ul>
 <li>Explicit<ul>
@@ -1482,7 +1294,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 </li>
 </ul>
-<h4 id="coroutines-synchronous">Coroutines (Synchronous)</h4>
+<h4>Coroutines (Synchronous)</h4>
 <ul>
 <li>Synchronous context switch</li>
 <li>Context switch:<ul>
@@ -1492,13 +1304,13 @@ memory address. Returns the previous value at memory position in any case.</p>
 </li>
 <li>Stack can be used to identify process</li>
 </ul>
-<h4 id="asynchronous-context-switch">Asynchronous Context Switch</h4>
+<h4>Asynchronous Context Switch</h4>
 <ul>
 <li>Needs to save much more than for a synchronous context switch</li>
 <li>Save <em>all registers</em> (copy state)</li>
 </ul>
-<h3 id="synchronisation">Synchronisation</h3>
-<h4 id="object-locking">Object Locking</h4>
+<h3>Synchronisation</h3>
+<h4>Object Locking</h4>
 <ul>
 <li>
 <p>Object descriptors (added by system): Object with mutual exclusion contain additional fields</p>
@@ -1538,7 +1350,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <blockquote>
 <p>Side-effects in <code>AWAIT</code> conditions are dangerous!</p>
 </blockquote>
-<h4 id="priority-inversion">Priority Inversion</h4>
+<h4>Priority Inversion</h4>
 <p>Example:</p>
 <ul>
 <li>3 processes, 1 shared resource<ul>
@@ -1558,7 +1370,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 <p><img alt="Priority Inversion" class="img-responsive" src="/images/syscon_priority_inversion.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
-<h4 id="priority-inheritance">Priority Inheritance</h4>
+<h4>Priority Inheritance</h4>
 <ul>
 <li>One possibility to cope with priority inversion</li>
 <li>The priority of each process holding a lock to a resource is increased to the highest priority of all waiting processes (for the lock)</li>
@@ -1566,7 +1378,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 <!-- End of Notes Week 7 -->
 <!-- Beginning of Notes Week 8 -->
-<h3 id="lock-free-programming">Lock-Free Programming</h3>
+<h3>Lock-Free Programming</h3>
 <p>Problems with Locks</p>
 <ul>
 <li>Deadlocks</li>
@@ -1621,8 +1433,8 @@ memory address. Returns the previous value at memory position in any case.</p>
 <li>Lock-free programming basically makes loop around CAS</li>
 <li>Overflows (i.e INTEGER) is critical</li>
 </ul>
-<h4 id="a2">A2</h4>
-<h5 id="goals">Goals</h5>
+<h4>A2</h4>
+<h5>Goals</h5>
 <ul>
 <li>Lock Freedom<ul>
 <li>Progress Guarantees</li>
@@ -1635,34 +1447,36 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 </li>
 </ul>
-<h5 id="guiding-principles">Guiding Principles</h5>
+<h5>Guiding Principles</h5>
 <ul>
 <li>Use <em>implicit cooperative multitasking</em></li>
 <li>no virtual memory</li>
 <li>possible optmizations are limited</li>
 <li>Co-design of OS, Compiler and Programming Language</li>
 </ul>
-<h5 id="lock-free-kernel">Lock-Free Kernel</h5>
+<h5>Lock-Free Kernel</h5>
 <ul>
 <li>Needs lock-free queue</li>
 <li>Compare-And-Swap (CAS) is implemented <em>wait-free</em> in hardware</li>
 </ul>
-<h5 id="memory-model-for-lock-free-active-oberon">Memory Model for Lock-Free Active Oberon</h5>
+<h5>Memory Model for Lock-Free Active Oberon</h5>
 <ol>
 <li>Data shared between two or more activities at the same time has to be either<ul>
 <li>protected by <code>EXCLUSIVE</code> blocks or</li>
 <li>read or modified using the <em>compare-and-swap</em> operation</li>
 </ul>
 </li>
-<li>Changed shared data is visible to other activities after<ul>
+<li>
+<p>Changed shared data is visible to other activities after</p>
+<ul>
 <li>leaving an <code>EXCLUSIVE</code> block or</li>
 <li>executing a <em>compare-and-swap</em> operation</li>
 </ul>
 </li>
+<li>
+<p><code>CAS</code> is an operation in the programming language</p>
+</li>
 </ol>
-<ul>
-<li><code>CAS</code> is an operation in the programming language</li>
-</ul>
 <p>Declaration:</p>
 <div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="bp">CAS</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">BaseType</span><span class="p">):</span> <span class="n">BaseType</span>
 </pre></div>
@@ -1673,7 +1487,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 </li>
 </ul>
-<h4 id="aba-problem">ABA Problem</h4>
+<h4>ABA Problem</h4>
 <p>The <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA Problem</a> occurs when one thread
 fails to recognise that a memory location was
 modified temporarily by another thread and therefore erroneously assumes
@@ -1687,7 +1501,7 @@ that the overall state has not been changed.</p>
 </li>
 <li>Solution: hazard pointers</li>
 </ul>
-<h5 id="hazard-pointers">Hazard Pointers</h5>
+<h5>Hazard Pointers</h5>
 <ul>
 <li>ABA Problem because of reuse of pointers<ul>
 <li>Pointer <em>P</em> that has been read by one thread <em>X</em> but not yet written by same thread</li>
@@ -1712,7 +1526,7 @@ that the overall state has not been changed.</p>
 </ul>
 </li>
 </ul>
-<h3 id="cooperative-multitasking-implicit">Cooperative Multitasking (implicit)</h3>
+<h3>Cooperative Multitasking (implicit)</h3>
 <ul>
 <li>Compiler automatically inserts code for cooperative multitasking (implicit)</li>
 <li>Each process has a quantum</li>
@@ -1742,14 +1556,14 @@ that the overall state has not been changed.</p>
 </ul>
 </li>
 </ul>
-<h4 id="interrupts">Interrupts</h4>
+<h4>Interrupts</h4>
 <ul>
 <li>Interrupt handlers are modeled as <em>virtual</em> processors</li>
 <li>M = # of physical processors + # of potentially concurrent interrupts</li>
 </ul>
 <!-- End of Week 8 -->
 <!-- Beginning of Week 9 -->
-<h4 id="queue-data-structures">Queue Data Structures</h4>
+<h4>Queue Data Structures</h4>
 <p><img alt="Queue Data Structures" class="img-responsive" src="/images/syscon_queue_data_structure.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <ul>
@@ -1758,7 +1572,7 @@ that the overall state has not been changed.</p>
 <li>Lock-free but not wait-free (starvation possible)</li>
 <li>if not possible to en-/dequeue: help other threads (processors)</li>
 </ul>
-<h5 id="scheduling-activities">Scheduling (Activities)</h5>
+<h5>Scheduling (Activities)</h5>
 <div class="highlight"><pre><span></span><span class="kr">TYPE</span> <span class="n">Activity</span><span class="o">*</span> <span class="o">=</span> <span class="n">OBJECT</span> <span class="p">{</span><span class="n">DISPOSABLE</span><span class="p">}</span> <span class="p">(</span><span class="n">Queues</span><span class="p">.</span><span class="n">Item</span><span class="p">)</span> <span class="cm">(* Queues.Item accessed via activity register *)</span>
 <span class="kr">VAR</span>
     <span class="cm">(* access to current processor *)</span>
@@ -1767,7 +1581,7 @@ that the overall state has not been changed.</p>
     <span class="cm">(* active object *)</span>
 <span class="kr">END</span> <span class="n">Activity</span><span class="p">;</span>
 </pre></div>
-<h5 id="task-switch-finalizer">Task Switch Finalizer</h5>
+<h5>Task Switch Finalizer</h5>
 <p>Finest granular protection makes <strong>races</strong> possible that did not occur previously:</p>
 <p>Need to pass information to the new thread.</p>
 <div class="highlight"><pre><span></span><span class="n">current</span> <span class="o">:=</span> <span class="n">GetCurrentTask</span><span class="p">()</span>
@@ -1789,7 +1603,7 @@ that the overall state has not been changed.</p>
           <span class="bp">ADDRESS</span> <span class="kr">OF</span> <span class="n">readyQueue</span><span class="p">[</span><span class="n">currentActivity</span><span class="p">.</span><span class="n">priority</span><span class="p">]);</span>
 <span class="n">FinalizeSwitch</span><span class="p">;</span> <span class="cm">(* Calls finalizer of previous thread *)</span>
 </pre></div>
-<h4 id="stack-management_1">Stack Management</h4>
+<h4>Stack Management</h4>
 <ul>
 <li>Stacks organized as Heap Blocks</li>
 <li>Stack check instrumented at beginning of procedure</li>
@@ -1800,7 +1614,7 @@ that the overall state has not been changed.</p>
 </ol>
 </li>
 </ul>
-<h5 id="interrupts_1">Interrupts</h5>
+<h5>Interrupts</h5>
 <ul>
 <li>First Level IRQ by non-portable CPU module</li>
 <li>Second level IRQ handling with activities</li>
@@ -1823,7 +1637,7 @@ that the overall state has not been changed.</p>
 <li>Very powerful to write IRQ handlers in to levels</li>
 <li>Possible with cooperative multitasking</li>
 </ul>
-<h5 id="lock-free-memory-management">Lock-Free Memory Management</h5>
+<h5>Lock-Free Memory Management</h5>
 <ul>
 <li>Allocation/Deallocation by lock-free algorithms</li>
 <li>Buddy system: old approach but simple when returning blocks and merging them in free memory</li>
@@ -1877,7 +1691,7 @@ that the overall state has not been changed.</p>
 <li>Watch List: all candidates that could be garbage collected</li>
 <li>Root Set: where to start to find all reachable object</li>
 </ul>
-<h3 id="portability">Portability</h3>
+<h3>Portability</h3>
 <ul>
 <li>Lock-free A2 kernel written exclusively in a high-level language</li>
 <li>No timer interrupt required (cooperative multitasking): scheduler hardware independent</li>
@@ -1894,7 +1708,7 @@ that the overall state has not been changed.</p>
 </ul>
 <!-- End of Notes Week 9 -->
 <!-- Beginning of Notes Week 10 -->
-<h1 id="oberon-risc-case-study-3">Oberon RISC (Case Study 3)</h1>
+<h1>Oberon RISC (Case Study 3)</h1>
 <p><a href="http://www.projectoberon.com/">Project Oberon</a></p>
 <ul>
 <li>RISC architecture</li>
@@ -2017,7 +1831,7 @@ that the overall state has not been changed.</p>
 </ul>
 <!-- End of Notes Week 11 -->
 <!-- Beginning of Notes Week 12 -->
-<h1 id="active-cells-case-study-4">Active Cells (Case Study 4)</h1>
+<h1>Active Cells (Case Study 4)</h1>
 <ul>
 <li>
 <p>Custom design of Multi-Processor System</p>
@@ -2090,7 +1904,7 @@ that the overall state has not been changed.</p>
 </ul>
 </li>
 </ul>
-<h2 id="tiny-register-machine-trm">Tiny Register Machine (TRM)</h2>
+<h2>Tiny Register Machine (TRM)</h2>
 <ul>
 <li>Extremely simple processor on FPGA</li>
 <li>Hardware architecture</li>
@@ -2143,7 +1957,7 @@ TRM Machine Language</li>
 </ul>
 </li>
 </ul>
-<h2 id="active-cells">Active Cells</h2>
+<h2>Active Cells</h2>
 <ul>
 <li>Computing model, programming language</li>
 <li>Compiler, synthesizer, hardware library, simulator</li>
@@ -2277,8 +2091,8 @@ TRM Machine Language</li>
         - VGA, DVI controller</p>
 <!-- End of Notes Week 12 -->
 <!-- Beginning of Notes Week 13 -->
-<h2 id="programming-language-vs-hdl">Programming Language vs. HDL</h2>
-<h3 id="programming-language">Programming Language</h3>
+<h2>Programming Language vs. HDL</h2>
+<h3>Programming Language</h3>
 <ul>
 <li>Sequential execution</li>
 <li>No notion of time</li>
@@ -2289,7 +2103,7 @@ TRM Machine Language</li>
     a := 1;      (<em> unknown </em>)
     b := 2;      (<em> mapping to </em>)
     c := a + b;  (<em> machine cycles </em>)</p>
-<h3 id="hardware-description-language">Hardware Description Language</h3>
+<h3>Hardware Description Language</h3>
 <p>Continuous execution (combinational logic):</p>
 <div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
 <span class="k">assign</span> <span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="c1">// no</span>
@@ -2306,8 +2120,8 @@ TRM Machine Language</li>
     <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// of the clock</span>
 <span class="k">end</span><span class="p">;</span>
 </pre></div>
-<h2 id="singlecycle-datapath-trm">Single/Cycle Datapath (TRM)</h2>
-<h3 id="instruction-fetch">Instruction Fetch</h3>
+<h2>Single/Cycle Datapath (TRM)</h2>
+<h3>Instruction Fetch</h3>
 <ul>
 <li>Get value of <em>PC</em></li>
 <li>Get data from instruction memory (36-bit)<ul>
@@ -2322,7 +2136,7 @@ TRM Machine Language</li>
 </ul>
 </li>
 </ul>
-<h3 id="register-read">Register Read</h3>
+<h3>Register Read</h3>
 <p>Read source operands from register file</p>
 <div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">rd</span><span class="p">,</span> <span class="n">rs</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="n">regWr</span><span class="p">;</span>
@@ -2340,7 +2154,7 @@ TRM Machine Language</li>
 <li>For <code>BL</code> the destination register is always the link register (7)</li>
 <li>Otherwise the registers are read from the instuction register (<em>IR</em>)</li>
 </ul>
-<h3 id="alu">ALU</h3>
+<h3>ALU</h3>
 <p>Compute the result via ALU</p>
 <div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="no">AA</span><span class="p">,</span> <span class="no">A</span><span class="p">,</span> <span class="no">B</span><span class="p">,</span> <span class="n">imm</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="mh">32</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">aluRes</span><span class="p">;</span>
@@ -2358,7 +2172,7 @@ TRM Machine Language</li>
 <span class="p">(</span><span class="no">XOR</span><span class="p">)</span><span class="o">?</span> <span class="no">B</span> <span class="o">^</span> <span class="no">A</span> <span class="o">:</span>
 <span class="o">~</span><span class="no">A</span><span class="p">;</span>
 </pre></div>
-<h3 id="control-path">Control Path</h3>
+<h3>Control Path</h3>
 <div class="highlight"><pre><span></span><span class="n">Control</span> <span class="n">Path</span>
 <span class="k">assign</span> <span class="n">vector</span> <span class="o">=</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">8</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">7</span><span class="p">];</span>
 <span class="k">assign</span> <span class="n">op</span> <span class="o">=</span> <span class="no">IR</span><span class="p">[</span><span class="mh">17</span><span class="o">:</span><span class="mh">14</span><span class="p">];</span>
@@ -2420,7 +2234,7 @@ TRM Machine Language</li>
 </tr>
 </tbody>
 </table>
-<h3 id="write-result-back-to-rd">Write Result Back to <code>Rd</code></h3>
+<h3>Write Result Back to <code>Rd</code></h3>
 <div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">regmux</span><span class="p">;</span> <span class="kt">wire</span> <span class="n">regwr</span><span class="p">;</span>
 
 <span class="c1">// ...</span>
@@ -2437,7 +2251,7 @@ TRM Machine Language</li>
 <span class="p">(</span><span class="no">LDH</span><span class="p">)</span> <span class="o">?</span> <span class="nl">H:</span>
 <span class="n">aluRes</span><span class="p">;</span>
 </pre></div>
-<h3 id="trm-stalling">TRM Stalling</h3>
+<h3>TRM Stalling</h3>
 <ul>
 <li>Stop fetching next instruction, <em>pcmux</em> keeps the current value</li>
 <li>Disable register file write enable and memory write enable signals to avoid changing the state of the processor</li>
@@ -2445,7 +2259,7 @@ TRM Machine Language</li>
 <li><em>dmwe</em> signal is not affected</li>
 <li><em>regwr</em> signal is affected</li>
 </ul>
-<h3 id="load-ld">Load (<code>LD</code>)</h3>
+<h3>Load (<code>LD</code>)</h3>
 <div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmout</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="nl">DAW:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmadr</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="mh">6</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">offset</span><span class="p">;</span>
@@ -2465,7 +2279,7 @@ TRM Machine Language</li>
 <span class="k">always</span> <span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
     <span class="n">IoenbReg</span> <span class="o">&lt;=</span> <span class="n">ioenb</span><span class="p">;</span>
 </pre></div>
-<h3 id="store-st">Store (<code>ST</code>)</h3>
+<h3>Store (<code>ST</code>)</h3>
 <div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmin</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="n">dmwr</span><span class="p">;</span>
 <span class="c1">// register file</span>
@@ -2481,7 +2295,7 @@ TRM Machine Language</li>
 <span class="k">assign</span> <span class="n">dmwe</span> <span class="o">=</span> <span class="no">ST</span> <span class="o">&amp;</span> <span class="o">~</span><span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">ioenb</span><span class="p">;</span>
 <span class="k">assign</span> <span class="n">dmin</span> <span class="o">=</span> <span class="no">B</span><span class="p">;</span>
 </pre></div>
-<h3 id="set-flag-registers">Set Flag Registers</h3>
+<h3>Set Flag Registers</h3>
 <div class="highlight"><pre><span></span><span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">,</span> <span class="k">negedge</span> <span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="c1">// flags handling</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="no">N</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="no">Z</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="no">C</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="no">V</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="k">end</span>
 <span class="k">else</span> <span class="k">begin</span>
@@ -2497,7 +2311,7 @@ TRM Machine Language</li>
 <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
-<h3 id="branch-instructions">Branch instructions</h3>
+<h3>Branch instructions</h3>
 <ul>
 <li><em>PC</em> &lt;= <em>PC</em> + 1 + off</li>
 <li><em>PC</em> &lt;= <em>Rs</em></li>
@@ -2514,7 +2328,7 @@ TRM Machine Language</li>
     <span class="p">(</span><span class="n">Bc</span> <span class="o">&amp;</span> <span class="n">cond</span><span class="p">)</span> <span class="o">?</span> <span class="p">{{{</span><span class="no">PAW</span><span class="o">-</span><span class="mh">10</span><span class="p">}{</span><span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]}},</span> <span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="o">:</span><span class="mh">0</span><span class="p">]}</span> <span class="o">+</span> <span class="n">nxpc</span> <span class="o">:</span> <span class="p">(</span><span class="no">BLR</span> <span class="o">|</span> <span class="no">BR</span> <span class="p">)</span> <span class="o">?</span> <span class="no">A</span><span class="p">[</span><span class="no">PAW</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">:</span>
     <span class="n">nxpc</span><span class="p">;</span>
 </pre></div>
-<h3 id="separate-compilation-trm">Separate Compilation (TRM)</h3>
+<h3>Separate Compilation (TRM)</h3>
 <ul>
 <li>Development environment with separate compilation<ul>
 <li>important for commercial products</li>
@@ -2535,7 +2349,7 @@ TRM Machine Language</li>
 </li>
 <li>Solution: Compilation to Intermediate Code, back-end application at link time</li>
 </ul>
-<h4 id="compilation-steps">Compilation Steps</h4>
+<h4>Compilation Steps</h4>
 <ol>
 <li>Scanner &amp; Parser</li>
 <li>Checker</li>
@@ -2548,97 +2362,42 @@ TRM Machine Language</li>
 </ol>
 <!-- End Notes Week 13 -->
 <!-- Beginning of Notes Week 14 -->
-<h2 id="problems-with-active-cells-1">Problems with Active Cells 1</h2>
+<h2>Problems with Active Cells 1</h2>
 <ul>
 <li>What if several same HW components available?</li>
 <li>How to extend HW without rewriting compiler each time?</li>
 </ul>
-<h3 id="generic-communication-interface">Generic Communication Interface</h3>
+<h3>Generic Communication Interface</h3>
 <ul>
 <li>Peer-to-Peer</li>
 <li>Use of <em>AXI4 Stream</em> interconnect standard from ARM</li>
 <li>Generic, flexible</li>
 <li>Non-redundant</li>
 </ul>
-<h2 id="active-cells-2">Active Cells 2</h2>
+<h2>Active Cells 2</h2>
 <ul>
 <li>Flexible parameterization of the components using interpreted code in the component specification</li>
 <li>XML-based specification (object persistency)</li>
 </ul>
-<h2 id="active-cells-3">Active Cells 3</h2>
+<h2>Active Cells 3</h2>
 <ul>
-<li>Parameterization and Description of Hardware completely in one programming language</li>
-</ul>
-<ol>
-<li>Platform specific settings clock sources, pin locations etc</li>
+<li>
+<p>Parameterization and Description of Hardware completely in one programming language</p>
+</li>
+<li>
+<p>Platform specific settings clock sources, pin locations etc</p>
+</li>
 <li>Component specific settings:<ul>
 <li>dependencies (Verilog-Files) parameters</li>
 <li>port names</li>
 <li>Can be made very generic with plugins</li>
 </ul>
 </li>
-</ol>
+</ul>
 <p><img alt="Active Cells 3 Toolchain" class="img-responsive" src="/images/syscon_active_cells_3_toolchain.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <!-- End of Notes Week 14 -->
 <!-- End of Course -->
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
   </div>
 
   <hr/>
