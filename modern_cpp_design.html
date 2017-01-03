@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Tag: C++ · Lukas Woodtli</title>
+        <title>Modern C++ Design · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,71 +111,58 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/cpp.html">Tag: C++</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/modern_cpp_design.html">Modern C++ Design</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="C++" href="#C++">C++</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#C++collapse">
-          <span class="badge pull-right">10</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month02">03</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="C++collapse">
-        <a href="http://lukaswoodtli.github.io/modern_cpp_design.html">
-          <li class="list-group-item">
-Modern C++ Design</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/systemc.html">
-          <li class="list-group-item">
-SystemC</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/list_of_design_patterns.html">
-          <li class="list-group-item">
-List of Design Patterns</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/preprocessor_defines.html">
-          <li class="list-group-item">
-Preprocessor Defines</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html">
-          <li class="list-group-item">
-Concepts of Object Oriented Programming</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">
-          <li class="list-group-item">
-Arrays in C and C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/endianness.html">
-          <li class="list-group-item">
-Endianness</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/memory_layout.html">
-          <li class="list-group-item">
-Memory Layout</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">
-          <li class="list-group-item">
-Macro Magic in C and C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">
-          <li class="list-group-item">
-Enums in C and C++</li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <h1>Part I. Techniques</h1>
+<h2>Policy-Based Class Design</h2>
+<h3>The Benefit of Templates</h3>
+<p><em>"Templates are a good candidate for coping with combinatorial behaviors because they generate code at compile time based on the types (and/or constant values) provided by the user.
+Class templates are customizable in ways not supported by regular classes."</em></p>
+<p><em>"Furthermore, for class templates you can use partial template specialization [...]. Partial template specialization gives you the ability to specialize a class template for only some of its arguments."</em></p>
+<p><em>"[...] several problems that are not self-evident:</em></p>
+<ol>
+<li><em>You cannot specialize structure. Using templates alone, you cannot specialize the structure of a class (its data members). You can only specialize functions.</em></li>
+<li><em>Partial specialization of member functions does not scale. You can specialize any member function of a class template with one template parameter, but you cannot specialize individual member functions for templates with multiple template parameters.</em></li>
+<li><em>"The library writer cannot provide multiple default values. At best, a class template implementer can provide a single default implementation for each member function. You cannot provide several defaults for a template member function."</em></li>
+</ol>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
