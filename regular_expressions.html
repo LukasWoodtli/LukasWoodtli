@@ -138,7 +138,7 @@
   <div id="article_content">
     <p>Most notes are from <a href="https://www.packtpub.com/application-development/mastering-python-regular-expressions">Mastering Python Regular Expressions</a></p>
 <p>My Repository on <a href="https://github.com/LukasWoodtli/MasteringPythonRegularExpressions">GitHub</a></p>
-<h1>Metacharacters</h1>
+<h1 id="metacharacters">Metacharacters</h1>
 <p>Twelve Metacharacters:</p>
 <ul>
 <li>Backslash <code>\</code></li>
@@ -151,14 +151,14 @@
 <li>Plus <code>+</code></li>
 <li>Opening and closing parenthesis <code>(</code> and <code>)</code></li>
 </ul>
-<h1>Character Classes</h1>
+<h1 id="character-classes">Character Classes</h1>
 <ul>
 <li>Also known as character sets</li>
 <li>Grouped in <code>[</code> and <code>]</code></li>
 <li>Example: Hex number <code>[0-9a-fA-F]</code></li>
 <li>Invert character set with <code>^</code></li>
 </ul>
-<h2>Predefined Character Classes</h2>
+<h2 id="predefined-character-classes">Predefined Character Classes</h2>
 <p>Available in Python</p>
 <table class="table table-hover table-striped">
 <thead>
@@ -198,16 +198,16 @@
 </tr>
 </tbody>
 </table>
-<h2>POSIX Character Classes</h2>
+<h2 id="posix-character-classes">POSIX Character Classes</h2>
 <ul>
 <li>POSIX defines some classes: <a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions#Character_classes&gt;">Wikibooks</a></li>
 <li>not available in Python</li>
 </ul>
-<h1>Alternation</h1>
+<h1 id="alternation">Alternation</h1>
 <ul>
 <li>Alternation (or) is marked with <code>|</code></li>
 </ul>
-<h1>Quantifiers</h1>
+<h1 id="quantifiers">Quantifiers</h1>
 <p>Quantifiers can be applied to characters, character sets, and to groups</p>
 <ul>
 <li>Optional (0 or 1 repetition): <code>?</code></li>
@@ -221,7 +221,7 @@
 </ul>
 </li>
 </ul>
-<h2>Greedy and Reluctant Quantifiers</h2>
+<h2 id="greedy-and-reluctant-quantifiers">Greedy and Reluctant Quantifiers</h2>
 <ul>
 <li>greedy quantifiers will try to match as much as possible<ul>
 <li>default behavior</li>
@@ -233,7 +233,7 @@
 </ul>
 </li>
 </ul>
-<h1>Boundary Matchers</h1>
+<h1 id="boundary-matchers">Boundary Matchers</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -268,7 +268,7 @@
 </tr>
 </tbody>
 </table>
-<h1>Python Regex Functions</h1>
+<h1 id="python-regex-functions">Python Regex Functions</h1>
 <ul>
 <li><code>RegexObject</code> class in <code>re</code> module</li>
 <li>wrapper functions in <code>re</code> module</li>
@@ -282,7 +282,7 @@
 </li>
 <li><a href="https://docs.python.org/2/library/re.html#re.compile">Compilation Flags</a></li>
 </ul>
-<h1>Grouping</h1>
+<h1 id="grouping">Grouping</h1>
 <ul>
 <li>Subexpressions are grouped within <code>(</code> and <code>)</code></li>
 </ul>
@@ -293,7 +293,7 @@
 <li>Extract <em>parts</em> of the matched pattern (capturing)</li>
 <li>Using captured <em>parts</em> again in the regex</li>
 </ul>
-<h1>Look Around</h1>
+<h1 id="look-around">Look Around</h1>
 <ul>
 <li>Add subpatterns that are not in the result (not consuming characters)<ul>
 <li>positive: subpattern needs to match</li>
@@ -324,7 +324,7 @@
 </tr>
 </tbody>
 </table>
-<h1>Benchmarking</h1>
+<h1 id="benchmarking">Benchmarking</h1>
 <p>General for Python:</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
 <span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"myFunction"</span><span class="p">)</span>

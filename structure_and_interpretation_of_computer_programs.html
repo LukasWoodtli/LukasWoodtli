@@ -142,36 +142,70 @@
 Harold Abelson, Gerald Jay Sussman, Julie Sussman
 MIT Press</p>
 </blockquote>
-<p>[TOC]</p>
-<h1>Building Abstractions with Procedures</h1>
-<h2>The Elements of Programming</h2>
+<div class="toc">
+<ul>
+<li><a href="#building-abstractions-with-procedures">Building Abstractions with Procedures</a><ul>
+<li><a href="#the-elements-of-programming">The Elements of Programming</a><ul>
+<li><a href="#evaluating-combinations">Evaluating Combinations</a></li>
+<li><a href="#the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</a><ul>
+<li><a href="#applicative-order-versus-normal-order">Applicative order versus normal order</a></li>
+</ul>
+</li>
+<li><a href="#the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</a></li>
+</ul>
+</li>
+<li><a href="#formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</a><ul>
+<li><a href="#constructing-procedures-using-lambda">Constructing Procedures Using lambda</a><ul>
+<li><a href="#using-let-to-create-local-variables">Using let to create local variables</a></li>
+<li><a href="#abstractions-and-first-class-procedures">Abstractions and first-class procedures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#building-abstractions-with-data">Building Abstractions with Data</a><ul>
+<li><a href="#what-is-meant-by-data">What Is Meant by Data?</a></li>
+<li><a href="#hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</a><ul>
+<li><a href="#sequences-as-conventional-interfaces">Sequences as Conventional Interfaces</a><ul>
+<li><a href="#sequence-operations">Sequence Operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="building-abstractions-with-procedures">Building Abstractions with Procedures</h1>
+<h2 id="the-elements-of-programming">The Elements of Programming</h2>
 <p><em>"[The] language provides for combining simple ideas to form more complex ideas.  Every powerful language has three mechanisms for accomplishing this:</em></p>
 <ul>
 <li><em><strong>primitive expressions</strong>, which represent the simplest entities the language is concerned with,</em></li>
 <li><em><strong>means of combination</strong>, by which compound elements are built from simpler ones, and</em></li>
 <li><em><strong>means of abstraction</strong>, by which compound elements can be named and manipulated as units."</em></li>
 </ul>
-<h3>Evaluating Combinations</h3>
+<h3 id="evaluating-combinations">Evaluating Combinations</h3>
 <p><em>"To evaluate a combination, do the following:</em>
 - <em>Evaluate the subexpressions of the combination.</em>
 - <em>Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands).</em>"</p>
 <p><em>"[...] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is<strong>recursive</strong> in nature"</em></p>
-<h3>The Substitution Model for Procedure Application</h3>
-<h4>Applicative order versus normal order</h4>
+<h3 id="the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</h3>
+<h4 id="applicative-order-versus-normal-order">Applicative order versus normal order</h4>
 <p><em>"interpreter first evaluates the operator and operands and then applies the resulting procedure to the resulting arguments"</em></p>
 <p><em>"[An] alternative evaluation model would not evaluate the operands until their values were needed. Instead it would first substitute operand expressions for parameters until it obtained an expression involving only primitive operators, and would then perform the evaluation"</em></p>
 <p><em>"This alternative 'fully expand and then reduce' evaluation method is known as <strong>normal-order evaluation</strong>, in contrast to the 'evaluate the arguments and then apply' method that the interpreter actually uses, which is called <strong>applicative-order evaluation</strong>"</em></p>
 <p><em>"normal-order and applicative-order evaluation produce the same value"</em></p>
 <p><em>"Lisp uses applicative-order evaluation"</em></p>
 <p><em>"Lisp obeys the convention that every expression has a value"</em></p>
-<h3>The Substitution Model for Procedure Application</h3>
+<h3 id="the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</h3>
 <p><em>"In the iterative case, the program variables provide a complete description of the state of the process at any point."</em></p>
 <p><em>"In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive <strong>process</strong> with the notion of a recursive <strong>procedure</strong> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written."</em></p>
 <p><em>"One reason that the distinction between process and procedure may be confusing is that most implementations of common languages (including Ada, Pascal, and C) are designed in such a way that the interpretation of any recursive procedure consumes an amount of memory that grows with the number of procedure calls, even when the process described is, in principle, iterative. As a consequence, these languages can describe iterative processes only by resorting to special-purpose 'looping constructs' such as <code>do</code>, <code>repeat</code>, <code>until</code>, <code>for</code>, and <code>while</code>."</em></p>
 <p><em>"any iterative process can be realized 'in hardware' as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a <strong>stack</strong>."</em></p>
-<h2>Formulating Abstractions with Higher-Order Procedures</h2>
-<h3>Constructing Procedures Using <code>lambda</code></h3>
-<h4>Using <code>let</code> to create local variables</h4>
+<h2 id="formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</h2>
+<h3 id="constructing-procedures-using-lambda">Constructing Procedures Using <code>lambda</code></h3>
+<h4 id="using-let-to-create-local-variables">Using <code>let</code> to create local variables</h4>
 <p><em>"we could use a lambda expression to specify an anonymous procedure for binding our local variables</em></p>
 <p><em>The general form of a <code>let</code> expression is</em></p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">let</span>
@@ -190,15 +224,15 @@ MIT Press</p>
 </pre></div>
 <p><em>No new mechanism is required in the interpreter in order to provide local variables. A <code>let</code> expression is simply syntactic sugar for the underlying lambda application."</em></p>
 <p><em>"<code>Let</code> allows one to bind variables as locally as possible to where they are to be used."</em></p>
-<h4>Abstractions and first-class procedures</h4>
+<h4 id="abstractions-and-first-class-procedures">Abstractions and first-class procedures</h4>
 <p><em>"programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have first-class status."</em></p>
 <p><em>"Some of the 'rights and privileges' of first-class elements are:</em>
 - <em>They may be named by variables.</em>
 - <em>They may be passed as arguments to procedures.</em>
 - <em>They may be returned as the results of procedures.</em>
 - <em>They may be included in data structures."</em></p>
-<h1>Building Abstractions with Data</h1>
-<h3>What Is Meant by Data?</h3>
+<h1 id="building-abstractions-with-data">Building Abstractions with Data</h1>
+<h3 id="what-is-meant-by-data">What Is Meant by Data?</h3>
 <p><em>"In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation."</em></p>
 <p><em>"we could implement <code>cons</code>, <code>car</code>, and <code>cdr</code> without using any data structures at all but only using procedures. Here are the definitions:</em></p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
@@ -211,10 +245,10 @@ MIT Press</p>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
-<h2>Hierarchical Data and the Closure Property</h2>
+<h2 id="hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</h2>
 <p><em>"The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation."</em></p>
-<h3>Sequences as Conventional Interfaces</h3>
-<h4>Sequence Operations</h4>
+<h3 id="sequences-as-conventional-interfaces">Sequences as Conventional Interfaces</h3>
+<h4 id="sequence-operations">Sequence Operations</h4>
 <p><em>"The key to organizing programs so as to more clearly reflect the signal-flow structure is to concentrate on the 'signals' that flow from one stage in the process to the next. If we represent these signals as lists, then we can use list operations to implement the processing at each of the stages."</em></p>
 <p><em>"The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces. We can encourage modular design by providing a library of standard components together with a conventional interface for connecting the components in flexible ways."</em></p>
 <p><em>"The Lisp community also (unfortunately) uses the word “closure” to describe a totally unrelated concept: A closure is an implementation technique for representing procedures with free variables."</em></p>

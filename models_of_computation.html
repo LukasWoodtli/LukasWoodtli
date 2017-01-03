@@ -138,8 +138,84 @@
   <hr/>
 
   <div id="article_content">
-    <p>[TOC]</p>
-<h1>Boolean Circuits</h1>
+    <div class="toc">
+<ul>
+<li><a href="#boolean-circuits">Boolean Circuits</a><ul>
+<li><a href="#xor">XOR</a></li>
+</ul>
+</li>
+<li><a href="#finite-state-machines-fsm">Finite State Machines (FSM)</a><ul>
+<li><a href="#deterministic-non-deterministic-fsm">Deterministic / Non-Deterministic FSM</a></li>
+<li><a href="#acceptor-recognizer">Acceptor (Recognizer)</a></li>
+<li><a href="#classifier">Classifier</a></li>
+<li><a href="#transducer">Transducer</a></li>
+</ul>
+</li>
+<li><a href="#register-machines">Register Machines</a></li>
+<li><a href="#fractran">Fractran</a></li>
+<li><a href="#tilings">Tilings</a><ul>
+<li><a href="#tiles-as-turing-machine">Tiles as Turing Machine</a></li>
+</ul>
+</li>
+<li><a href="#cellular-automata">Cellular Automata</a><ul>
+<li><a href="#the-model">The Model</a></li>
+<li><a href="#variants">Variants</a></li>
+</ul>
+</li>
+<li><a href="#lambda-calculus">Lambda Calculus</a><ul>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#main-operations">Main Operations</a></li>
+<li><a href="#church-numerals">Church Numerals</a></li>
+<li><a href="#lambda-calculus-expressions">Lambda Calculus Expressions</a><ul>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#function-application">Function Application</a></li>
+<li><a href="#function-creation">Function Creation</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#increment">Increment</a></li>
+<li><a href="#addition">Addition</a></li>
+<li><a href="#multiplication">Multiplication</a></li>
+<li><a href="#boolean-logic">Boolean Logic</a></li>
+<li><a href="#if-then-else">If-Then-Else</a></li>
+<li><a href="#pair">Pair</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#recursion">Recursion</a><ul>
+<li><a href="#y-combinator">Y-Combinator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#numbers">Numbers</a></li>
+<li><a href="#tag-systems">Tag Systems</a><ul>
+<li><a href="#2-tag-system">2-Tag System</a><ul>
+<li><a href="#example-test-for-oddeven-number">Example: Test for odd/even number</a></li>
+<li><a href="#example-power-of-two">Example: Power of Two</a></li>
+<li><a href="#simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</a></li>
+<li><a href="#cyclic-tag-systems">Cyclic Tag Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#diophantine-equations">Diophantine Equations</a></li>
+<li><a href="#primitive-recursive-functions">Primitive Recursive Functions</a></li>
+<li><a href="#some-simple-models">Some Simple Models</a><ul>
+<li><a href="#chemical-reaction-networks">Chemical Reaction Networks</a></li>
+<li><a href="#petri-nets">Petri Nets</a></li>
+<li><a href="#vector-addition-systems">Vector Addition Systems</a></li>
+<li><a href="#unordered-fractran">Unordered Fractran</a></li>
+<li><a href="#broken-register-machine">Broken Register Machine</a></li>
+<li><a href="#general-notes">General Notes</a></li>
+</ul>
+</li>
+<li><a href="#halting-problem">Halting Problem</a></li>
+<li><a href="#universal-machine">Universal Machine</a></li>
+</ul>
+</div>
+<h1 id="boolean-circuits">Boolean Circuits</h1>
 <ul>
 <li>AND/OR/NOT gates</li>
 <li>Gate: function</li>
@@ -148,7 +224,7 @@
 <li>Circuits: combination of gates</li>
 <li>Truth table: all possible combination (look-up table)</li>
 </ul>
-<h2>XOR</h2>
+<h2 id="xor">XOR</h2>
 <ul>
 <li>Parity: odd/even<ul>
 <li>0: even</li>
@@ -240,7 +316,7 @@
 </ul>
 <!-- Notes Week 1 End -->
 <!-- Notes Week 2 Start -->
-<h1>Finite State Machines (FSM)</h1>
+<h1 id="finite-state-machines-fsm">Finite State Machines (FSM)</h1>
 <ul>
 <li>Also called Finite State Automaton (FSA)</li>
 </ul>
@@ -253,7 +329,7 @@
 <li>$q_0$: initial state ($q_0 \in Q$)</li>
 <li>$F$: set of final states ($F \subseteq  Q$)</li>
 </ul>
-<h2>Deterministic / Non-Deterministic FSM</h2>
+<h2 id="deterministic-non-deterministic-fsm">Deterministic / Non-Deterministic FSM</h2>
 <ul>
 <li>Deterministic<ul>
 <li>For each arriving event it's clear what the next state is</li>
@@ -269,7 +345,7 @@
 <p>Any non-deterministic FSM can be turned into a deterministic FSM</p>
 </li>
 </ul>
-<h2>Acceptor (Recognizer)</h2>
+<h2 id="acceptor-recognizer">Acceptor (Recognizer)</h2>
 <ul>
 <li>Calculates a Boolean function</li>
 <li>All states are either <em>accepting</em> or <em>rejecting</em> for a given input</li>
@@ -281,12 +357,12 @@
 </ul>
 </li>
 </ul>
-<h2>Classifier</h2>
+<h2 id="classifier">Classifier</h2>
 <ul>
 <li>Has more than two final states</li>
 <li>gives single output when it terminates</li>
 </ul>
-<h2>Transducer</h2>
+<h2 id="transducer">Transducer</h2>
 <ul>
 <li>Produces outputs based on current input and on previous state</li>
 <li>2 different types<ul>
@@ -296,13 +372,13 @@
 </ul>
 </li>
 </ul>
-<h1>Register Machines</h1>
+<h1 id="register-machines">Register Machines</h1>
 <ul>
 <li>A register machine has multiple registers that store positive integers</li>
 <li>There are only two possible operations on these registers<ol>
 <li>incrementing ($+1$)</li>
-<li>decrementing ($-1$)</li>
-<li>Decrementing a register that holds $0$ fails</li>
+<li>decrementing ($-1$)
+- Decrementing a register that holds $0$ fails</li>
 </ol>
 </li>
 <li>There are other (slightly different) definitions of register machines that allow different operations (e.g checking for $0$)</li>
@@ -401,7 +477,7 @@
 </ul>
 <!-- Notes Week 2 End -->
 <!-- Notes Week 4 Start -->
-<h1>Fractran</h1>
+<h1 id="fractran">Fractran</h1>
 <p>See also <a href="https://en.wikipedia.org/wiki/FRACTRAN">Wikipedia:Fractran</a></p>
 <p>Example PRIMEGAME:</p>
 <p>$${\frac  {17}{91}},{\frac  {78}{85}},{\frac  {19}{51}},{\frac  {23}{38}},{\frac  {29}{33}},{\frac  {77}{29}},{\frac  {95}{23}},{\frac  {77}{19}},{\frac  {1}{17}},{\frac  {11}{13}},{\frac  {13}{11}},{\frac  {15}{2}},{\frac  {1}{7}},{\frac  {55}{1}}$$</p>
@@ -411,14 +487,14 @@
 <p>Implementation in racket:</p>
 <script src="https://gist.github.com/LukasWoodtli/c391e391dcc9f9c9e9231a8c6fb954a4.js"></script>
 <p>Fractran is similar to stack machines.</p>
-<h1>Tilings</h1>
+<h1 id="tilings">Tilings</h1>
 <p>See also <a href="https://en.wikipedia.org/wiki/Wang_tile">Wikipedia:Wang tile</a></p>
 <ul>
 <li>Graphical model of computation</li>
 <li>The edges of each tile have special form/color</li>
 <li>Tiles can be arranged on plain so that edges match</li>
 </ul>
-<h2>Tiles as Turing Machine</h2>
+<h2 id="tiles-as-turing-machine">Tiles as Turing Machine</h2>
 <ul>
 <li>Tiled plain can be seen as Turing Machine over time<ul>
 <li>one dimension (horizontal, x) is tape</li>
@@ -456,7 +532,7 @@
 </ul>
 <!-- Notes Week 4 End -->
 <!-- Notes Week 6 Start -->
-<h1>Cellular Automata</h1>
+<h1 id="cellular-automata">Cellular Automata</h1>
 <ul>
 <li>Inspired by natural cells</li>
 <li>World is grid of cells</li>
@@ -473,7 +549,7 @@
 <li>parallel, local comuptation</li>
 <li>can model a Turing Machine</li>
 </ul>
-<h2>The Model</h2>
+<h2 id="the-model">The Model</h2>
 <ul>
 <li>$N$-dimensional array of cells (infinitely large)</li>
 <li>Finite number of states<ul>
@@ -495,7 +571,7 @@
 </ul>
 </li>
 </ul>
-<h2>Variants</h2>
+<h2 id="variants">Variants</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a><ul>
 <li><a href="https://github.com/LukasWoodtli/GameOfLife">My implementation (Qt, C++)</a></li>
@@ -508,13 +584,13 @@
 </ul>
 <!-- Notes Week 6 End -->
 <!-- Notes Week 7 Start -->
-<h1>Lambda Calculus</h1>
+<h1 id="lambda-calculus">Lambda Calculus</h1>
 <ul>
 <li>Meta-Mathematics</li>
 <li>Turing Machines simulate a person that calculate (State: Mind, Tape: Paper)</li>
 <li>Lambda Calculus: about functions</li>
 </ul>
-<h2>Syntax</h2>
+<h2 id="syntax">Syntax</h2>
 <p>Traditional Syntax:</p>
 <p>$$f(x) = \frac{e^x - sin(x)}{x+3}$$</p>
 <p>Lambda Syntax:</p>
@@ -541,7 +617,7 @@
 </ul>
 </li>
 </ul>
-<h2>Main Operations</h2>
+<h2 id="main-operations">Main Operations</h2>
 <ul>
 <li>$\beta$-reduction: apply a function to an argument using substitution<ul>
 <li>Reduction is an optimistic term since the result of the $\beta$-reduction can be bigger then the expression before</li>
@@ -550,7 +626,7 @@
 <li>$\alpha$-conversion: changing a functions 'argument symbol' ($\lambda x.x \equiv \lambda y.y$)</li>
 <li>$\eta$-conversion: $\lambda v. f v \equiv f$ because $(\lambda v. f v) a \equiv f a$</li>
 </ul>
-<h2>Church Numerals</h2>
+<h2 id="church-numerals">Church Numerals</h2>
 <ul>
 <li>Numbers can be encoded as functions</li>
 <li>Arbitrary encoding of numbers suggested by church</li>
@@ -569,30 +645,30 @@ n :&amp;= \lambda f.\lambda x. f^n x
 </blockquote>
 <p>Example: $(5 inc) x$: apply function $inc$ $5$-times to $x$</p>
 <p><img alt="Church Numerals" class="img-responsive" src="/images/lambda_calculus/church_numerals.png"/></p>
-<h2>Lambda Calculus Expressions</h2>
+<h2 id="lambda-calculus-expressions">Lambda Calculus Expressions</h2>
 <ul>
 <li>Using just <em>substitution step</em> to calculate<ul>
 <li>seems complex, but only one operation needed: substitution</li>
 </ul>
 </li>
 </ul>
-<h3>Variables</h3>
+<h3 id="variables">Variables</h3>
 <ul>
 <li>$a$, $b$, $c$ ...</li>
 <li>representing functions</li>
 </ul>
-<h3>Function Application</h3>
+<h3 id="function-application">Function Application</h3>
 <p>$(a b)$: $a$ applied to $b$</p>
 <p><img alt="Function Application" class="img-responsive" src="/images/lambda_calculus/function_application.png"/></p>
-<h3>Function Creation</h3>
+<h3 id="function-creation">Function Creation</h3>
 <p>$\lambda a. aa$</p>
 <p><img alt="Function Creation" class="img-responsive" src="/images/lambda_calculus/function_creation.png"/></p>
-<h3>Evaluation</h3>
+<h3 id="evaluation">Evaluation</h3>
 <p><img alt="Evaluation" class="img-responsive" src="/images/lambda_calculus/function_evaluation.png"/></p>
 <p>Example:</p>
 <p><img alt="Evaluation Example" class="img-responsive" src="/images/lambda_calculus/function_evaluation_example.png"/></p>
-<h3>Examples</h3>
-<h4>Increment</h4>
+<h3 id="examples">Examples</h3>
+<h4 id="increment">Increment</h4>
 <p>$$\lambda k f x. f ( k f x)$$</p>
 <p>Example:</p>
 <p>increment $2$</p>
@@ -604,18 +680,18 @@ n :&amp;= \lambda f.\lambda x. f^n x
 \end{align</em>}
 $$</p>
 <p><img alt="Increment" class="img-responsive" src="/images/lambda_calculus/increment.png"/></p>
-<h4>Addition</h4>
+<h4 id="addition">Addition</h4>
 <p><img alt="Addition" class="img-responsive" src="/images/lambda_calculus/addition.png"/></p>
-<h4>Multiplication</h4>
+<h4 id="multiplication">Multiplication</h4>
 <p><img alt="Multiplication" class="img-responsive" src="/images/lambda_calculus/multiplication.png"/></p>
-<h4>Boolean Logic</h4>
+<h4 id="boolean-logic">Boolean Logic</h4>
 <p><img alt="Boolean Logic" class="img-responsive" src="/images/lambda_calculus/boolean_logic.png"/></p>
-<h4>If-Then-Else</h4>
+<h4 id="if-then-else">If-Then-Else</h4>
 <p><img alt="If Then Else" class="img-responsive" src="/images/lambda_calculus/if_then_else.png"/></p>
-<h4>Pair</h4>
+<h4 id="pair">Pair</h4>
 <p><img alt="Pair" class="img-responsive" src="/images/lambda_calculus/pair.png"/></p>
 <p><img alt="Shift Pair" class="img-responsive" src="/images/lambda_calculus/pair_shifting.png"/></p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <ul>
 <li>No distinction between code and data: everything is code!</li>
 <li>No structure is safe from substitution (safety issue)</li>
@@ -623,7 +699,7 @@ $$</p>
 </ul>
 <!-- Notes Week 7 End -->
 <!-- Notes Week 8 Start -->
-<h2>Recursion</h2>
+<h2 id="recursion">Recursion</h2>
 <ul>
 <li>in $\lambda$-calculus a function can't reference (call) itself since there are no names for functions</li>
 <li>
@@ -635,7 +711,7 @@ $$</p>
 </ul>
 <p>This structure rebuilds itself infinitely:</p>
 <p>$$\Omega = (\lambda w. w w) (\lambda w. w w)$$</p>
-<h3>Y-Combinator</h3>
+<h3 id="y-combinator">Y-Combinator</h3>
 <p>See <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed_point_combinators_in_lambda_calculus">Wikipedia</a></p>
 <p>and <a href="https://medium.com/@ayanonagon/the-y-combinator-no-not-that-one-7268d8d9c46#.c11j5arpk">The Y Combinator (no, not that one)</a>.</p>
 <p>$$Y = \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x \;x))$$</p>
@@ -653,7 +729,7 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \
 </ul>
 </li>
 </ul>
-<h1>Numbers</h1>
+<h1 id="numbers">Numbers</h1>
 <ul>
 <li>Numbers are an abstract concept</li>
 <li>It's only possible to manipulate <em>representations</em> of numbers</li>
@@ -688,13 +764,13 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \
 </ul>
 <!-- Notes Week 8 End -->
 <!-- Notes Week 10 Begin -->
-<h1>Tag Systems</h1>
+<h1 id="tag-systems">Tag Systems</h1>
 <ul>
 <li>Tape with a starting string</li>
 <li>Reading and deleting at the beginning (left)</li>
 <li>Appending (writing) at the end (right)</li>
 </ul>
-<h2>2-Tag System</h2>
+<h2 id="2-tag-system">2-Tag System</h2>
 <ol>
 <li>reads <em>1</em> symbol at the beginning of the tape</li>
 <li>appends a string at the end of the type<ul>
@@ -703,7 +779,7 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \
 </li>
 <li>removes <em>2</em> symbols at the beginning of the tape</li>
 </ol>
-<h3>Example: Test for odd/even number</h3>
+<h3 id="example-test-for-oddeven-number">Example: Test for odd/even number</h3>
 <ul>
 <li>Alphabet: $\Sigma = {C_1, C_2,C_3}$</li>
 <li>Rules:<ul>
@@ -738,7 +814,7 @@ C_3 C_3 C_3 C_2 O \rightarrow \
 C_3 C_2 O \rightarrow \
 O
 \end{align</em>}</p>
-<h3>Example: Power of Two</h3>
+<h3 id="example-power-of-two">Example: Power of Two</h3>
 <p>\begin{align<em>}
 2^n &amp;\rightarrow  n \
 C_1 &amp;\rightarrow C_1 C_2 C_4 C_5 \
@@ -762,7 +838,7 @@ C_5 C_4 C_5 C_3 \rightarrow \
 C_5 C_3 C_6 \rightarrow \
 C_6 C_6
 \end{align</em>}$$</p>
-<h3>Simulation of Turing Machines with Tag Systems</h3>
+<h3 id="simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</h3>
 <p>Some of the notes here are taken from 'Understanding Computation' by Tom Stuart.</p>
 <ol>
 <li>Tape uses only 2 characters: $0$ and $1$<ul>
@@ -829,7 +905,7 @@ C_6 C_6
 <li>Convert each Turing Machine rule into a Tag Systems that rewrites the current string in the expected way</li>
 <li>Combine all the Tag Systems to make a large one the simulates every rule of the Turing Machine</li>
 </ol>
-<h3>Cyclic Tag Systems</h3>
+<h3 id="cyclic-tag-systems">Cyclic Tag Systems</h3>
 <p>This are simplified Tag Systems</p>
 <ul>
 <li>The tape is allowed only to have 2 symbols $0$ and $1$</li>
@@ -852,7 +928,7 @@ C_6 C_6
 <p>A Cyclic Tag System can simulate a normal Tag System. See 'Understanding Computation' by Tom Stuart on how to do that.</p>
 <!-- End Notes Week 10 -->
 <!-- Begin Notes Week 11 -->
-<h1>Diophantine Equations</h1>
+<h1 id="diophantine-equations">Diophantine Equations</h1>
 <p>See also <a href="https://en.wikipedia.org/wiki/Diophantine_equation">Wikipedia:Diophantine equation</a></p>
 <ul>
 <li>Polynomal equations</li>
@@ -875,7 +951,7 @@ C_6 C_6
 </ul>
 <!-- End Notes Week 11 -->
 <!-- Begin Notes Week 12 -->
-<h1>Primitive Recursive Functions</h1>
+<h1 id="primitive-recursive-functions">Primitive Recursive Functions</h1>
 <ul>
 <li>Recursion can do a lot!</li>
 <li>Functions are defined using itselves or other functions</li>
@@ -966,8 +1042,8 @@ C_6 C_6
 </li>
 <li><em>Not</em> considierd as universal system</li>
 </ul>
-<h1>Some Simple Models</h1>
-<h2>Chemical Reaction Networks</h2>
+<h1 id="some-simple-models">Some Simple Models</h1>
+<h2 id="chemical-reaction-networks">Chemical Reaction Networks</h2>
 <ul>
 <li>Inspired by chemical reaction equations</li>
 </ul>
@@ -983,7 +1059,7 @@ B + E &amp; \rightarrow &amp; B + D
 <li>Primitive Recursive Functions can always compute this in bounded time, even if answer is $\infty$.</li>
 <li>Chemical Reaction Networks are not stronger than Primitive Recursive Functions.</li>
 </ul>
-<h2>Petri Nets</h2>
+<h2 id="petri-nets">Petri Nets</h2>
 <ul>
 <li>A lot of different form of <a href="https://en.wikipedia.org/wiki/Petri_net">Petri Nets</a></li>
 <li>Components<ul>
@@ -996,7 +1072,7 @@ B + E &amp; \rightarrow &amp; B + D
 <li>Similar to (and as powerful as) Chemical Transition Networks</li>
 <li>Used to simulate concurrency in distributed systems (but not turing-complete)</li>
 </ul>
-<h2>Vector Addition Systems</h2>
+<h2 id="vector-addition-systems">Vector Addition Systems</h2>
 <ul>
 <li>Rules: Starting position and list of possible moves (like a knight in chess)</li>
 <li>no coordinate ca go negative</li>
@@ -1088,24 +1164,24 @@ B + E &amp; \rightarrow &amp; B + D
 </ul>
 </li>
 </ul>
-<h2>Unordered Fractran</h2>
+<h2 id="unordered-fractran">Unordered Fractran</h2>
 <ul>
 <li>Similar to fractran</li>
 <li>Choose any fraction randomly that yields an integer when multiplied with given number</li>
 <li>non-deterministic</li>
 </ul>
-<h2>Broken Register Machine</h2>
+<h2 id="broken-register-machine">Broken Register Machine</h2>
 <ul>
 <li>decrementing a register might fail even if register could be decremented</li>
 </ul>
-<h2>General Notes</h2>
+<h2 id="general-notes">General Notes</h2>
 <ul>
 <li>A lot of these systems get more powerful if they allow prioritizing</li>
 <li>determinism: turing complete</li>
 </ul>
 <!-- End Notes Week 13 -->
 <!-- Beginn Notes Week 14 -->
-<h1>Halting Problem</h1>
+<h1 id="halting-problem">Halting Problem</h1>
 <p>Suppose a Turing Machine "A" can take $Enc_1(table)$, $Enc_2(tape)$ and <em>decide</em> wether a TM with the given table will ever halt, if started on the given tape.</p>
 <p>This is impossible! </p>
 <p>Idea (proof):</p>
@@ -1114,7 +1190,7 @@ B + E &amp; \rightarrow &amp; B + D
 <li>The goal is to feed this machine to itself</li>
 <li>Analyze what machines do when they are fed to themselves</li>
 </ol>
-<h1>Universal Machine</h1>
+<h1 id="universal-machine">Universal Machine</h1>
 <p>It's possible to create a "universal" machine, which just (slowly) does the same
 thing that the machine described to it would do.</p>
 <ul>

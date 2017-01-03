@@ -179,13 +179,31 @@
           <li class="list-group-item"><blockquote>
 <p>My Notes for the <em>System Construction</em> Course at ETH</p>
 </blockquote>
-<p>[TOC]</p>
-<h1>Minos on Raspberry PI 2 (Case Study 1)</h1>
-<h2>ARM A7</h2>
-<p>The ARM <em>Architecture</em> is not the same thing as the ARM <em>Processor-Families</em></p>
-<h3>Documentation</h3>
-<p>There is a lot of good documentation for the ARM processors available. But it's difficult to
-find …</p></li>
+<div class="toc">
+<ul>
+<li><a href="#minos-on-raspberry-pi-2-case-study-1">Minos on Raspberry PI 2 (Case Study 1)</a><ul>
+<li><a href="#arm-a7">ARM A7</a><ul>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#6-kinds-of-instructions">6 Kinds Of Instructions</a></li>
+<li><a href="#execution-modes">Execution Modes</a></li>
+<li><a href="#special-registers">Special Registers</a></li>
+<li><a href="#typical-procedure-call">Typical Procedure Call</a></li>
+<li><a href="#exceptions">Exceptions</a></li>
+<li><a href="#misc">Misc</a></li>
+</ul>
+</li>
+<li><a href="#raspberry-pi-2">Raspberry PI 2</a><ul>
+<li><a href="#booting">Booting</a></li>
+<li><a href="#mmu">MMU</a></li>
+<li><a href="#gpio">GPIO</a></li>
+</ul>
+</li>
+<li><a href="#minos-and-oberon">Minos and Oberon</a><ul>
+<li><a href="#history-of-oberon">History of Oberon</a></li>
+<li><a href="#oberon">Oberon</a><ul>
+<li><a href="#oberon07">Oberon07</a></li>
+<li><a href="#language-constructs">Language Constructs</a><ul>
+<li><a href="#program-units">Program …</a></li></ul></li></ul></li></ul></li></ul></li></ul></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/system_construction.html#disqus_thread" title="comments">
@@ -244,7 +262,7 @@ find …</p></li>
             <a class="pull-right" href="http://lukaswoodtli.github.io/distance_functions_and_metrics.html">
               </a>
           </li>
-          <li class="list-group-item"><h1>Distant Functions</h1>
+          <li class="list-group-item"><h1 id="distant-functions">Distant Functions</h1>
 <p>A distant function works on two elements (i.e. vectors, sets...).</p>
 <p>A given distance function $d(s,t)$ needs to fulfill properties:</p>
 <ol>
@@ -390,7 +408,7 @@ find …</p></li>
             <a class="pull-right" href="http://lukaswoodtli.github.io/list_of_design_patterns.html">
               </a>
           </li>
-          <li class="list-group-item"><h2>Overview of Design Patterns</h2>
+          <li class="list-group-item"><h2 id="overview-of-design-patterns">Overview of Design Patterns</h2>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -481,11 +499,17 @@ find …</p></li>
               </a>
           </li>
           <li class="list-group-item"><p>Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl.</p>
-<p>[TOC]</p>
-<h1>Nabla Operator ($\nabla$)</h1>
+<div class="toc">
+<ul>
+<li><a href="#nabla-operator-nabla">Nabla Operator ($\nabla$)</a></li>
+<li><a href="#gradient-operatornamegrad">Gradient ($\operatorname{grad}$)</a></li>
+<li><a href="#divergence-operatornamediv">Divergence ($\operatorname{div}$)</a></li>
+</ul>
+</div>
+<h1 id="nabla-operator-nabla">Nabla Operator ($\nabla$)</h1>
 <p>$$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$</p>
 <p>For a 3-dimensional cartesian coordinate system:</p>
-<p>$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac …</p></li>
+<p>$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y …</p></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/vector_calculus.html#disqus_thread" title="comments">

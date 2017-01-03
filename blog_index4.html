@@ -182,7 +182,7 @@
 <p>The library is open source and platform independent.</p>
 <p>It contains an event-driven simulation kernel for executing models.</p>
 <p><a href="http://accellera.org/">Accellera</a> is the main resource for SystemC.</p>
-<h1>Simulation</h1>
+<h1 id="simulation">Simulation</h1>
 <p>SystemC contains a kernel for discrete-event driven simulation.
 The main purpose of the …</p></li>
          <!-- <li class="list-group-item text-right">
@@ -317,12 +317,12 @@ The main purpose of the …</p></li>
             <a class="pull-right" href="http://lukaswoodtli.github.io/l2-norm.html">
               </a>
           </li>
-          <li class="list-group-item"><h1>L2-Norm</h1>
+          <li class="list-group-item"><h1 id="l2-norm">L2-Norm</h1>
 <p>A vector $\vec a$ has the $L_2$-Norm: </p>
 <p>$$\left \| \vec a \right \|<em k="1">{2} = \sqrt{\sum</em>^n|a_k|^2}$$</p>
 <p>$n$: Dimensions
 $a_k$: $k$-th element of $a$</p>
-<h1>L2-Distance</h1>
+<h1 id="l2-distance">L2-Distance</h1>
 <p>The $L_2$-Distance between two vectors $\vec a$ and $\vec b$ is:</p>
 <p>$$d \left ( \vec a, \vec b  \right ) = \sqrt{\sum_{k …</p></li>
          <!-- <li class="list-group-item text-right">
@@ -450,38 +450,35 @@ $a_k$: $k$-th element of $a$</p>
             <a class="pull-right" href="http://lukaswoodtli.github.io/hardware-software_codesign.html">
               </a>
           </li>
-          <li class="list-group-item"><p>[TOC]</p>
-<h1>0. Overview</h1>
+          <li class="list-group-item"><div class="toc">
 <ul>
-<li>Specification and Models of Computation<ul>
-<li>State-Charts</li>
-<li>Kahn Process Networks</li>
-</ul>
-</li>
-<li>Design Space Exploration<ul>
-<li>Mapping</li>
-<li>Partitioning</li>
-<li>Multi-Criteria Optimization</li>
-</ul>
-</li>
-<li>Performance Estimation<ul>
-<li>Simulation-based Methods</li>
-<li>Worst-Case Execution Time Analysis</li>
-<li>Performance Analysis of Distributed Systems</li>
-<li>Thermal-aware Design</li>
+<li><a href="#0-overview">0. Overview</a></li>
+<li><a href="#1-introduction">1. Introduction</a><ul>
+<li><a href="#system-design">System Design</a></li>
+<li><a href="#embedded-systems">Embedded Systems</a><ul>
+<li><a href="#difference-embedded-systems-general-purpose-computing">Difference Embedded Systems ↔ General Purpose Computing</a></li>
+<li><a href="#levels-of-abstraction-from-higher-to-lower">Levels of abstraction (from higher to lower)</a></li>
+<li><a href="#design">Design</a></li>
+<li><a href="#estimation">Estimation</a></li>
+<li><a href="#mapping">Mapping</a></li>
+<li><a href="#specification">Specification</a></li>
 </ul>
 </li>
 </ul>
-<h1>1. Introduction</h1>
-<h2>System Design</h2>
-<ul>
-<li>Specifications and Models</li>
-<li>Design</li>
-<li>Estimation</li>
+</li>
+<li><a href="#2-models-of-computation">2. Models of Computation</a><ul>
+<li><a href="#state-charts">State Charts</a><ul>
+<li><a href="#evaluation-of-state-charts">Evaluation of State Charts</a></li>
 </ul>
-<h2>Embedded Systems</h2>
-<ul>
-<li>Information processing system embedded in …</li></ul></li>
+</li>
+<li><a href="#specification-and-description-language-sdl">Specification and Description Language (SDL)</a></li>
+<li><a href="#dataflow-languages">Dataflow Languages</a><ul>
+<li><a href="#kahn-process-networks">Kahn Process Networks</a><ul>
+<li><a href="#determinacy">Determinacy</a></li>
+<li><a href="#adding-non-determinacy">Adding Non-Determinacy</a></li>
+</ul>
+</li>
+<li><a href="#synchronous-dataflow-sdf">Synchronous Dataflow …</a></li></ul></li></ul></li></ul></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/hardware-software_codesign.html#disqus_thread" title="comments">

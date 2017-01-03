@@ -144,7 +144,7 @@
 <p>The library is open source and platform independent.</p>
 <p>It contains an event-driven simulation kernel for executing models.</p>
 <p><a href="http://accellera.org/">Accellera</a> is the main resource for SystemC.</p>
-<h1>Simulation</h1>
+<h1 id="simulation">Simulation</h1>
 <p>SystemC contains a kernel for discrete-event driven simulation.
 The main purpose of the kernel is to ensure to model concurrent activities (parallelism) correctly.</p>
 <p>The simulation clock represents the current value of the simulation time.</p>
@@ -187,7 +187,7 @@ The main purpose of the kernel is to ensure to model concurrent activities (para
 </li>
 </ol>
 <p>(note: the list above is taken mostly from the Doulos tutorial)</p>
-<h2>Delta Cycle</h2>
+<h2 id="delta-cycle">Delta Cycle</h2>
 <p>Within the same simulation cycle <em>cause</em> and <em>effect</em> events may share the same time of occurrence.</p>
 <p>The simulator uses a zero duration <em>virtual time interval</em>: delta cycle</p>
 <p>The delta cycle is the smallest simulated time slot. It consist of two phases:</p>
@@ -199,8 +199,8 @@ The main purpose of the kernel is to ensure to model concurrent activities (para
 A channel will not change it's value until the update phase occurs.
 It cannot change the value during the evaluation phase.</p>
 <p>It's possible to run a process without the update phase (without the delta cycle) with <code>notify()</code>.</p>
-<h1>Constructs</h1>
-<h2>Modules</h2>
+<h1 id="constructs">Constructs</h1>
+<h2 id="modules">Modules</h2>
 <p>Building blocks of SystemC models.</p>
 <ul>
 <li>Hierarchy (subsystems)</li>
@@ -209,7 +209,7 @@ It cannot change the value during the evaluation phase.</p>
 </ul>
 <p>Modules are called by the simulation engine if an relevant event is scheduled.</p>
 <p>Modules process events, manipulate the event queue and contain (and manipulate) the system state.</p>
-<h2>Processes</h2>
+<h2 id="processes">Processes</h2>
 <p>Processes must be contained in a module.</p>
 <ul>
 <li><code>SC_THREAD</code><ul>
@@ -225,7 +225,7 @@ It cannot change the value during the evaluation phase.</p>
 </ul>
 </li>
 </ul>
-<h3>Wait and Notify</h3>
+<h3 id="wait-and-notify">Wait and Notify</h3>
 <ul>
 <li>wait: halt process execution until an event is raised<ul>
 <li><code>wait()</code></li>
@@ -248,7 +248,7 @@ It cannot change the value during the evaluation phase.</p>
 </ul>
 </li>
 </ul>
-<h2>Communication</h2>
+<h2 id="communication">Communication</h2>
 <ul>
 <li>Event<ul>
 <li>Flexible</li>
@@ -273,13 +273,13 @@ It cannot change the value during the evaluation phase.</p>
 </ul>
 <p>Other communication and synchronization models can be built
 based on these primitives.</p>
-<h3>Channels</h3>
+<h3 id="channels">Channels</h3>
 <ul>
 <li>Separating communication from behavior</li>
 <li>Interfaces define access to channel</li>
 <li>Ports are used to access the channel</li>
 </ul>
-<h1>Non-Determinism</h1>
+<h1 id="non-determinism">Non-Determinism</h1>
 <p>SystemC allows for non-determinism. This might not be acceptable for hardware modeling.
 But it can be needed for software system modeling.</p>
 <p>An example of non-determinism can be found here: <a href="https://www.doulos.com/knowhow/systemc/tutorial/primitive_channels/">Doulos: Primitive Channels and the Kernel</a>.</p>

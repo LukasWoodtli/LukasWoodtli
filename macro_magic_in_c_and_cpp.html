@@ -138,8 +138,8 @@
   <hr/>
 
   <div id="article_content">
-    <h1>Macro Tricks</h1>
-<h2>Stringification</h2>
+    <h1 id="macro-tricks">Macro Tricks</h1>
+<h2 id="stringification">Stringification</h2>
 <p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
 <div class="highlight"><pre><span></span><span class="cp">#define stringize(s) _stringize(s)</span>
 <span class="cp">#define _stringize(s) #s</span>
@@ -159,7 +159,7 @@
 <p>_stringize(4)  </p>
 <p>"4"  </p>
 </blockquote>
-<h2>Concatenation</h2>
+<h2 id="concatenation">Concatenation</h2>
 <p>With the <code>##</code> operator in a preprocessor macro it's possible to combine two tokens.</p>
 <div class="highlight"><pre><span></span><span class="cp">#define CREATE_ID(name) ID_##name</span>
 
@@ -168,7 +168,7 @@
 <blockquote>
 <p>ID_IMPORTANT_THING</p>
 </blockquote>
-<h2>Further Reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 <p>There is a good explanation in the GCC online docs:
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Macros.html#Macros">Macros</a></p>
   </div>

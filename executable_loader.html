@@ -189,16 +189,16 @@ loaded.</p>
    then points to the data.</li>
 </ol>
 <p>This aproach is often used in Linux (32-bit) and BSD</p>
-<h1>Difference between Relocation Table and Global Offset Table (GOT)</h1>
-<h2>Relocation Table</h2>
+<h1 id="difference-between-relocation-table-and-global-offset-table-got">Difference between Relocation Table and Global Offset Table (GOT)</h1>
+<h2 id="relocation-table">Relocation Table</h2>
 <p>Relocation table is not changed when shared object is loaded.
 The relocation table points to data references in the code.
 These references are modified in place.</p>
-<h2>Global Offset Table (GOT)</h2>
+<h2 id="global-offset-table-got">Global Offset Table (GOT)</h2>
 <p>The GOT is changed by the loader. So the entries in the GOT point
 to the new (relocated) addresses. Static data references in the
 code still point to the GOT but the entries in the GOT were updated.</p>
-<h1>Function calls across shared objects (DLLs)</h1>
+<h1 id="function-calls-across-shared-objects-dlls">Function calls across shared objects (DLLs)</h1>
 <p>Shared objects can have references to functions in other shared objects.
 Usually calls to these functions go through an import table in the
 executable (shared object) file.</p>

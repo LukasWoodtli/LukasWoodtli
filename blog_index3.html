@@ -317,7 +317,7 @@
           <li class="list-group-item"><p>Files on Linux</p>
 <p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
 <p><a href="http://www.usna.edu/Users/cs/aviv/classes/ic221/s15/lec/21/lec.html">Here</a> is another good resource (English).</p>
-<h1>Process Control Block (PCB)</h1>
+<h1 id="process-control-block-pcb">Process Control Block (PCB)</h1>
 <p>Contains the information about a process.</p>
 <ul>
 <li>C struct <code>task_struct</code></li>
@@ -385,30 +385,45 @@
             <a class="pull-right" href="http://lukaswoodtli.github.io/models_of_computation.html">
               </a>
           </li>
-          <li class="list-group-item"><p>[TOC]</p>
-<h1>Boolean Circuits</h1>
+          <li class="list-group-item"><div class="toc">
 <ul>
-<li>AND/OR/NOT gates</li>
-<li>Gate: function</li>
-<li>Inputs: arguments to function</li>
-<li>In-/Outputs: wires</li>
-<li>Circuits: combination of gates</li>
-<li>Truth table: all possible combination (look-up table)</li>
-</ul>
-<h2>XOR</h2>
-<ul>
-<li>Parity: odd/even<ul>
-<li>0: even</li>
-<li>1: odd</li>
-<li>0 is even number, 1 is odd number</li>
+<li><a href="#boolean-circuits">Boolean Circuits</a><ul>
+<li><a href="#xor">XOR</a></li>
 </ul>
 </li>
-<li>works with more than 2 inputs</li>
+<li><a href="#finite-state-machines-fsm">Finite State Machines (FSM)</a><ul>
+<li><a href="#deterministic-non-deterministic-fsm">Deterministic / Non-Deterministic FSM</a></li>
+<li><a href="#acceptor-recognizer">Acceptor (Recognizer)</a></li>
+<li><a href="#classifier">Classifier</a></li>
+<li><a href="#transducer">Transducer</a></li>
 </ul>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th>X …</th></tr></thead></table></li>
+</li>
+<li><a href="#register-machines">Register Machines</a></li>
+<li><a href="#fractran">Fractran</a></li>
+<li><a href="#tilings">Tilings</a><ul>
+<li><a href="#tiles-as-turing-machine">Tiles as Turing Machine</a></li>
+</ul>
+</li>
+<li><a href="#cellular-automata">Cellular Automata</a><ul>
+<li><a href="#the-model">The Model</a></li>
+<li><a href="#variants">Variants</a></li>
+</ul>
+</li>
+<li><a href="#lambda-calculus">Lambda Calculus</a><ul>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#main-operations">Main Operations</a></li>
+<li><a href="#church-numerals">Church Numerals</a></li>
+<li><a href="#lambda-calculus-expressions">Lambda Calculus Expressions</a><ul>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#function-application">Function Application</a></li>
+<li><a href="#function-creation">Function Creation</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#increment">Increment</a></li>
+<li><a href="#addition">Addition</a></li>
+<li><a href="#multiplication">Multiplication</a></li>
+<li><a href="#boolean-logic">Boolean Logic</a></li>
+<li><a href="#if-then-else">If-Then-Else …</a></li></ul></li></ul></li></ul></li></ul></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/models_of_computation.html#disqus_thread" title="comments">
@@ -469,21 +484,31 @@
             <a class="pull-right" href="http://lukaswoodtli.github.io/object_databases.html">
               </a>
           </li>
-          <li class="list-group-item"><p>[TOC]</p>
-<!-- Lecture 1 Slides/Notes Start -->
-<h1>Motivation</h1>
+          <li class="list-group-item"><div class="toc">
 <ul>
-<li>Information Systems Design<ul>
-<li>Conceptual Design -&gt; Technical Design -&gt; Implementation</li>
+<li><a href="#motivation">Motivation</a><ul>
+<li><a href="#orthogonal-persistence">Orthogonal Persistence</a></li>
+<li><a href="#impedance-missmatch">Impedance Missmatch</a></li>
+<li><a href="#relational-databases">Relational Databases</a></li>
+<li><a href="#object-relational-mapping-orm">Object-relational mapping (ORM)</a></li>
+<li><a href="#develop-own-database">Develop own Database</a></li>
+<li><a href="#sql">SQL</a><ul>
+<li><a href="#data-definition-language-ddl">Data Definition Language (DDL)</a></li>
+<li><a href="#data-manipulation-language-dml">Data Manipulation Language (DML)</a></li>
+<li><a href="#query-language-ql">Query Language (QL)</a></li>
 </ul>
 </li>
+<li><a href="#ddl-dml-and-ql-in-sql-and-java">DDL, DML and QL in SQL and Java</a></li>
+<li><a href="#learning-goals">Learning Goals</a></li>
 </ul>
-<h2>Orthogonal Persistence</h2>
-<p>Data has to outlive the execution of the program</p>
-<ul>
-<li><strong>Independence</strong> of longelivety of data<ul>
-<li>How much code needs to be written for persistence (effort for programmer)<ul>
-<li>None at all would be nice but not realistic (GUI objects usually …</li></ul></li></ul></li></ul></li>
+</li>
+<li><a href="#general-topics-for-dbs">General Topics for DB's</a><ul>
+<li><a href="#crud-and-acid">CRUD and ACID</a></li>
+</ul>
+</li>
+<li><a href="#odmg-standard">ODMG Standard</a><ul>
+<li><a href="#object-data-management-group-odmg">Object Data Management Group (ODMG)</a><ul>
+<li><a href="#object-model">Object …</a></li></ul></li></ul></li></ul></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/object_databases.html#disqus_thread" title="comments">
