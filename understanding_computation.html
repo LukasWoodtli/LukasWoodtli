@@ -196,7 +196,7 @@
 <p><em>"conditional statements like <code>« if (x) { y = 1 } else { y = 2 } »</code>, which contain an expression called the condition (<code>« x »</code>), and two statements that we'll call the consequence (<code>« y = 1 »</code>) and the alternative (<code>« y = 2 »</code>)"</em> - page 39</p>
 <p><em>"the latest R6RS standard for the Scheme programming language uses small-step semantics to describe its execution"</em> - page 45</p>
 <p><em>"small-step semantics has a mostly iterative flavor, requiring the abstract machine to repeatedly perform reduction steps"</em> - page 45</p>
-<p><em>"recursive rather than an iterative process"</em> - page 46</p>
+<p><em>"[Big-step semantics:] recursive rather than an iterative process"</em> - page 46</p>
 <ul>
 <li>Small-step semantics: iterative</li>
 <li>Big-step semantics: recursive</li>
@@ -242,14 +242,14 @@
 <li><em>"All the rules from both NFAs"</em></li>
 <li><em>"Some extra free moves to connect each of the first NFA's old accept states to the second NFA's old start state"</em> - page 98</li>
 </ul>
-<p><em>"We can use a similar strategy to convert a Choose expression into an NFA."</em> - page 98</p>
+<p><em>"We can use a similar strategy to convert a</em> <code>Choose</code> <em>expression into an NFA."</em> - page 98</p>
 <ul>
 <li><em>"A new start state"</em></li>
 <li><em>"All the accept states from both NFAs"</em></li>
 <li><em>"All the rules from both NFAs"</em></li>
 <li><em>"Two extra free moves to connect the new start state to each of the NFA's old start states"</em> - page 100</li>
 </ul>
-<p><em>"This time we need:</em></p>
+<p><em>"We can do the same for any NFA [...]. This time we need:</em></p>
 <ul>
 <li><em>A new start state, which is also an accept state</em></li>
 <li><em>All the accept states from the old NFA</em></li>
@@ -262,14 +262,17 @@
 <p><em>"it's possible to convert any nondeterministic finite automaton into a deterministic one that accepts exactly the same strings"</em> - page 105</p>
 <h2 id="just-add-power">Just Add Power</h2>
 <p><em>"A finite state machine with a built-in stack is called a pushdown automaton (PDA), and when that machine's rules are deterministic, we call it a deterministic pushdown automaton (DPDA)."</em> - page 122</p>
-<p><em>"[...] a PDA rule into five parts:</em>
-- <em>The current state of the machine</em>
-- <em>The character that must be read from the input (optional)</em>
-- <em>The next state of the machine</em>
-- <em>The character that must be popped off the stack</em>
-- <em>The sequence of characters to push onto the stack after the top character has been popped off"</em> - page 123</p>
+<p><em>"[...] a PDA rule into five parts:</em></p>
+<ul>
+<li><em>The current state of the machine</em></li>
+<li><em>The character that must be read from the input (optional)</em></li>
+<li><em>The next state of the machine</em></li>
+<li><em>The character that must be popped off the stack</em></li>
+<li><em>The sequence of characters to push onto the stack after the top character has been popped off"</em></li>
+</ul>
+<p>page 123</p>
 <p><em>"The assumption is that a PDA will always pop the top character off the stack, and then push some other characters onto the stack, every time it follows a rule. Each rule declares which character it wants to pop, and the rule will only apply when that character is on the top of the stack; if the rule wants that character to stay on the stack instead of getting popped, it can include it in the sequence of characters that get pushed back on afterward."</em> - page 123</p>
-<p><em>"[...] bottom of the stack—the dollar sign, <code>$</code> , is a popular choice"</em> - page 124</p>
+<p><em>"[...] mark the bottom of the stack—the dollar sign,</em> <code>$</code>, <em>is a popular choice"</em> - page 124</p>
 <p><em>"there are two important things to know about a pushdown automaton at each step of its computation: what its current state is, and what the current contents of its stack are. If we use the word <strong>configuration</strong> to refer to this combination of a state and a stack, we can talk about a pushdown automaton moving from one configuration to another as it reads input characters"</em> - page 126</p>
 <p><em>"there isn't an NPDA-to-DPDA algorithm."</em> - page 139</p>
 <p><em>"Lexical analysis</em></p>
@@ -292,6 +295,7 @@
 <p><em>"The unlimited storage provided by a stack lets a PDA remember arbitrary amounts of information during a computation and refer back to it later."</em> - page 148</p>
 <p><em>"There's a feedback loop between the rules and the stack—the contents of the stack affect which rules the machine can follow, and following a rule will affect the stack contents—which allows a PDA to store away information on the stack that will influence its future execution."</em> - page 148</p>
 <h2 id="the-ultimate-machine">The Ultimate Machine</h2>
+<p>Turing machine:</p>
 <p><em>"[...] unified rule format has five parts:</em></p>
 <ul>
 <li><em>The current state of the machine</em></li>
@@ -328,12 +332,12 @@
 </pre></div>
 <p><em>"This works by taking a proc that represents a Boolean and calling it with <code>true</code> as its first argument and <code>false</code> as its second. <code>TRUE</code> just returns its first argument, so <code>to_boolean(TRUE)</code> will return <code>true</code>, and likewise for <code>FALSE</code> [...]"</em> - 193</p>
 <p><em>"In languages like Ruby, the <code>if</code>-<code>else</code> statement is nonstrict (or <strong>lazy</strong>): we give it a condition and two blocks, and it evaluates the condition to decide which of the two blocks to evaluate and return — it never evaluates both."</em> - page 200</p>
-<p><em>"Ruby [...] evaluates both arguments before IF gets a chance to decide which one to return."</em> - page 200</p>
+<p><em>"Ruby [...] evaluates both arguments before</em> <code>IF</code> <em>gets a chance to decide which one to return."</em> - page 200</p>
 <p><em>"we can easily implement lists that calculate their contents on the fly, also known as <strong>streams</strong>. In fact, there's no reason why streams even need to be finite, because the calculation only has to generate the list contents as they're consumed"</em> - page 215</p>
 <p><em>"defining a data structure in terms of itself might seem weird and unusual; in this setting, they're exactly the same thing, and the Z combinator makes both completely legitimate."</em> - page 216</p>
 <p><em>"Function calls are the only thing that actually <strong>happens</strong> when a lambda calculus program is evaluated"</em> - page 225</p>
 <p><em>"function calls are the only kind of syntax that can be reduced."</em> - page 225</p>
-<p>*"You might protest that <code>3 - 5 = 0</code> isn't called "subtraction" where you come from, and you'd be right: the technical name for this operation is  "monus", because the nonnegative integers under addition form a commutative monoid instead of a proper abelian group." - page 229</p>
+<p><em>"You might protest that</em> <code>3 - 5 = 0</code> <em>isn't called "subtraction" where you come from, and you'd be right: the technical name for this operation is  "monus", because the nonnegative integers under addition form a commutative monoid instead of a proper abelian group."</em> - page 229</p>
 <h2 id="universality-is-everywhere">Universality Is Everywhere</h2>
 <p><em>"Even though any individual Turing machine has a hardcoded rulebook, the universal Turing machine demonstrates that it's possible to design a device that can adapt to arbitrary tasks by reading instructions from a tape. These instructions are effectively a piece of software that controls the operation of the machine's hardware, just like in the general-purpose programmable computers we use every day."</em> - page 231</p>
 <p><em>"The term Turing complete is often used to describe a system or programming language that can simulate any Turing machine."</em></p>
@@ -354,7 +358,7 @@
 <p><em>By adding <strong>minimize</strong> to <strong>zero</strong>, <strong>increment</strong>, and <strong>recurse</strong>, we can build many more functions—all the <strong>partial</strong> recursive functions—including ones that don't always halt.</em></p>
 <p><em>With <strong>minimize</strong>, it's possible to fully simulate a Turing machine by repeatedly calling the primitive recursive function that performs a single simulation step. The simulation will continue until the machine halts - and if that never happens, it'll run forever.</em> - pages 235 - 238</p>
 <h3 id="ski-combinator-calculus">SKI Combinator Calculus</h3>
-<p><em>"The SKI calculus is even simpler, with only two kinds of expression-calls and alphabetic <strong>symbols</strong>-and much easier rules. All of its power comes from the three special symbols <code>S</code>, <code>K</code>, and <code>I</code> (called <strong>combinators</strong>), each of which has its own reduction rule:</em></p>
+<p><em>"The SKI calculus is even simpler, with only two kinds of expression - calls and alphabetic <strong>symbols</strong> - and much easier rules. All of its power comes from the three special symbols <code>S</code>, <code>K</code>, and <code>I</code> (called <strong>combinators</strong>), each of which has its own reduction rule:</em></p>
 <ul>
 <li><em>Reduce <code>S[a][b][c]</code> to <code>a[c][b[c]]</code>, where <code>a</code>, <code>b</code>, and <code>c</code> can be any SKI calculus expressions.</em></li>
 <li><em>Reduce <code>K[a][b]</code> to <code>a</code>.</em></li>
