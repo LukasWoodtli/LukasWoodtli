@@ -139,31 +139,88 @@
     <p>Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl.</p>
 <div class="toc">
 <ul>
-<li><a href="#nabla-operator-nabla">Nabla Operator ($\nabla$)</a></li>
-<li><a href="#gradient-operatornamegrad">Gradient ($\operatorname{grad}$)</a></li>
-<li><a href="#divergence-operatornamediv">Divergence ($\operatorname{div}$)</a></li>
+<li><a href="#nabla-operator-nabla">Nabla Operator (\(\nabla\))</a></li>
+<li><a href="#gradient-operatornamegrad">Gradient (\(\operatorname{grad}\))</a></li>
+<li><a href="#divergence-operatornamediv">Divergence (\(\operatorname{div}\))</a></li>
 </ul>
 </div>
-<h1 id="nabla-operator-nabla">Nabla Operator ($\nabla$)</h1>
-<p>$$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$</p>
+<h1 id="nabla-operator-nabla">Nabla Operator (<span class="math">\(\nabla\)</span>)</h1>
+<div class="math">$$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$</div>
 <p>For a 3-dimensional cartesian coordinate system:</p>
-<p>$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}$$</p>
-<p>Sometimes $\vec\nabla$ is written instead of $\nabla$ to show that it's basically a vector.</p>
-<h1 id="gradient-operatornamegrad">Gradient ($\operatorname{grad}$)</h1>
+<div class="math">$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}$$</div>
+<p>Sometimes <span class="math">\(\vec\nabla\)</span> is written instead of <span class="math">\(\nabla\)</span> to show that it's basically a vector.</p>
+<h1 id="gradient-operatornamegrad">Gradient (<span class="math">\(\operatorname{grad}\)</span>)</h1>
 <p>The gradient represents the slope of the tangent of the graph of a function.</p>
 <p>Input: A <a href="https://en.wikipedia.org/wiki/Scalar_field">Scalar field</a></p>
 <p>Output: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a> </p>
 <p>The direction of the gradient at one position shows the direction of the biggest change in the scalar field.
 The length (absolute value) of the gradient at that point is a measurement of the change (slope).</p>
-<p>$$\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n$$</p>
-<p>$e_i$: The orthogonal unit vectors pointing in the coordinate directions</p>
-<h1 id="divergence-operatornamediv">Divergence ($\operatorname{div}$)</h1>
+<div class="math">$$\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n$$</div>
+<p><span class="math">\(e_i\)</span>: The orthogonal unit vectors pointing in the coordinate directions</p>
+<h1 id="divergence-operatornamediv">Divergence (<span class="math">\(\operatorname{div}\)</span>)</h1>
 <p>The divergence is a vector operator that measures the <strong>magnitude</strong> of a vector field's source or sink. It is a
 scalar field with signed components (positive values for sources, negative values for sinks). </p>
 <p>Input: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a></p>
 <p>Output: A <a href="https://en.wikipedia.org/wiki/Scalar_field">Scalar field</a></p>
-<p>The divergence is the <em>scalar product</em> between the Nabla operator $\nabla=(\tfrac{\partial}{\partial x_1},\ldots,\tfrac{\partial}{\partial x_n})$ and the vector $\vec F = (F_1, \ldots,F_n)$.</p>
-<p>$$\operatorname{div}\,\vec F = \nabla\cdot\vec F =\frac{\partial F_1}{\partial x_1}+\frac{\partial F_2}{\partial x_2}+\cdots +\frac{\partial F_n}{\partial x_n} = \sum_{i=1}^n\frac{\partial F_i}{\partial x_i}$$</p>
+<p>The divergence is the <em>scalar product</em> between the Nabla operator <span class="math">\(\nabla=(\tfrac{\partial}{\partial x_1},\ldots,\tfrac{\partial}{\partial x_n})\)</span> and the vector <span class="math">\(\vec F = (F_1, \ldots,F_n)\)</span>.</p>
+<div class="math">$$\operatorname{div}\,\vec F = \nabla\cdot\vec F =\frac{\partial F_1}{\partial x_1}+\frac{\partial F_2}{\partial x_2}+\cdots +\frac{\partial F_n}{\partial x_n} = \sum_{i=1}^n\frac{\partial F_i}{\partial x_i}$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>

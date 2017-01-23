@@ -1102,72 +1102,72 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 <tr>
 <td><code>EQ</code></td>
 <td>Equal</td>
-<td>Z$=$1</td>
+<td>Z<span class="math">\(=\)</span>1</td>
 </tr>
 <tr>
 <td><code>NE</code></td>
 <td>Not equal</td>
-<td>Z$=$0</td>
+<td>Z<span class="math">\(=\)</span>0</td>
 </tr>
 <tr>
 <td><code>CS</code>or <code>HS</code></td>
 <td>Unsigned higher or same (carry set)</td>
-<td>C$=$1</td>
+<td>C<span class="math">\(=\)</span>1</td>
 </tr>
 <tr>
 <td><code>CC</code>or <code>LO</code></td>
 <td>Unsigned lower (or carry clear)</td>
-<td>C$=$0</td>
+<td>C<span class="math">\(=\)</span>0</td>
 </tr>
 <tr>
 <td><code>MI</code></td>
 <td>Negative (minus)</td>
-<td>N$=$1</td>
+<td>N<span class="math">\(=\)</span>1</td>
 </tr>
 <tr>
 <td><code>PL</code></td>
 <td>Positive or zero (plus)</td>
-<td>N$=$0</td>
+<td>N<span class="math">\(=\)</span>0</td>
 </tr>
 <tr>
 <td><code>VS</code></td>
 <td>Signed overflow (V set)</td>
-<td>V$=$1</td>
+<td>V<span class="math">\(=\)</span>1</td>
 </tr>
 <tr>
 <td><code>VC</code></td>
 <td>No signed overflow (V clear)</td>
-<td>V$=$0</td>
+<td>V<span class="math">\(=\)</span>0</td>
 </tr>
 <tr>
 <td><code>HI</code></td>
 <td>Unsigned higher</td>
-<td>(C$=$1) AND (Z$=$0)</td>
+<td>(C<span class="math">\(=\)</span>1) AND (Z<span class="math">\(=\)</span>0)</td>
 </tr>
 <tr>
 <td><code>LS</code></td>
 <td>Unsigned lower or same</td>
-<td>(C$=$0) OR (Z$=$1)</td>
+<td>(C<span class="math">\(=\)</span>0) OR (Z<span class="math">\(=\)</span>1)</td>
 </tr>
 <tr>
 <td><code>GE</code></td>
 <td>Signed greater than or equal</td>
-<td>N$=$V</td>
+<td>N<span class="math">\(=\)</span>V</td>
 </tr>
 <tr>
 <td><code>LT</code></td>
 <td>Signed less than</td>
-<td>N$\neq$V</td>
+<td>N<span class="math">\(\neq\)</span>V</td>
 </tr>
 <tr>
 <td><code>GT</code></td>
 <td>Signed greater than</td>
-<td>(Z$=$0) AND (N$=$V)</td>
+<td>(Z<span class="math">\(=\)</span>0) AND (N<span class="math">\(=\)</span>V)</td>
 </tr>
 <tr>
 <td><code>LE</code></td>
 <td>Signed less than or equal</td>
-<td>(Z$=$1) OR (N$\neq$V)</td>
+<td>(Z<span class="math">\(=\)</span>1) OR (N<span class="math">\(\neq\)</span>V)</td>
 </tr>
 <tr>
 <td><code>AL</code> (or omitted)</td>
@@ -1499,6 +1499,63 @@ The debug architecture defines the use (if any).</p>
 - CPS
 
 -->
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>

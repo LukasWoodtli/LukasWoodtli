@@ -429,14 +429,14 @@ reseved for kernel and drivers.</p>
 <h3 id="windows">Windows</h3>
 <p>The size of code and static data together is limited to 2 GB.
 So it's possible to use RIP-relative addresses.
-The image base of an executable binary is usually below $2^{31}$.
+The image base of an executable binary is usually below <span class="math">\(2^{31}\)</span>.
 Absolute 32-bit addresses are not often used.</p>
 <p>Stack and dynamically allocated data (data on heap) can exceed 2 GB.</p>
 <p>Pointers are usually 64 bits (sometimes 32 bits).</p>
 <p>Negative addresses are reserved for the kernel.</p>
 <h3 id="linux-snd-bsd">Linux snd BSD</h3>
 <h4 id="small_1">Small</h4>
-<p>Code an static data is limited to 2 GB and stored at addresses below $2^{31}$.
+<p>Code an static data is limited to 2 GB and stored at addresses below <span class="math">\(2^{31}\)</span>.
 The compiler can use absolte signed 32-bit addresses.</p>
 <p>Stack and dynamically allocated data can exceed 2 GB.</p>
 <p>Pointers are 64 bits.</p>
@@ -445,24 +445,24 @@ The compiler can use absolte signed 32-bit addresses.</p>
 <p>Static data bigger than the 'large-data-threshold' is stored in a
 data section that can exceed 2 GB.</p>
 <p>Code and smaller static data are limited to addresses below 
-$2^{31}$.</p>
+<span class="math">\(2^{31}\)</span>.</p>
 <h4 id="large_1">Large</h4>
 <p>Code and data can exceed 2 GB. Addresses are 64 bits.</p>
 <h4 id="kernel">Kernel</h4>
 <p>Used to compile the kernel and device drivers.</p>
-<p>Addresses must be negative between $-2^{31}$ and $0$.</p>
+<p>Addresses must be negative between <span class="math">\(-2^{31}\)</span> and <span class="math">\(0\)</span>.</p>
 <h3 id="os-x-darwin">OS X (Darwin)</h3>
 <p>The defaukt memory model of the intel-based darwin kernel 
 limits code and static data together to 2 GB.
 So 32-bit RIP-relative addresses can be used.</p>
-<p>Code is loaded to addresses above $2^{32}$ by default.
-Addresses below $2^{32}$ are blocked (pagezero).</p>
+<p>Code is loaded to addresses above <span class="math">\(2^{32}\)</span> by default.
+Addresses below <span class="math">\(2^{32}\)</span> are blocked (pagezero).</p>
 <p>Stack and dynamically allocated data can exceed 2 GB.</p>
 <p>Pointers are 64 bits. Pointer tables can use 32-bit
 signed addresses relative to any reference point.</p>
 <p>Certain system functions can be accessed in the <em>commpage</em>.</p>
 <p>It's possible to reduce the size of <em>pagezero</em> to place
-code below $2^{31}$ so that absolute 32-bit addresses can be used.</p>
+code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresses can be used.</p>
 <h1 id="registers">Registers</h1>
 <p>This are the 16-bit registers of Intel 8086, 8088,  80186 and 80188.</p>
 <table class="table table-hover table-striped">
@@ -670,13 +670,13 @@ code below $2^{31}$ so that absolute 32-bit addresses can be used.</p>
 </table>
 <h1 id="segmentation">Segmentation</h1>
 <p>To allow access to 20-bit addresses with 16-bit registers the 8086 uses segmentation.</p>
-<p>$$physical_ address = segment_ register \times 10_{hex} + offset$$</p>
+<div class="math">$$physical\_ address = segment\_ register \times 10_{hex} + offset$$</div>
 <ul>
-<li>$\times 10_{hex}$ means a 4-bit shift to left</li>
+<li><span class="math">\(\times 10_{hex}\)</span> means a 4-bit shift to left</li>
 <li>Each addressable segment is 64 kB big.</li>
-<li>20-bit address bus: Total $2^{20}$ bytes addressable (1'048'576 bytes = 1 MB).</li>
-<li>16-bit offset: $2^{16}$ bytes addressable (65'536 bytes = 64 kB) per segment.</li>
-<li>Needed segments: $2^{20}/2^{16} = 2^4 = 16$ segments needed to access complete address space.</li>
+<li>20-bit address bus: Total <span class="math">\(2^{20}\)</span> bytes addressable (1'048'576 bytes = 1 MB).</li>
+<li>16-bit offset: <span class="math">\(2^{16}\)</span> bytes addressable (65'536 bytes = 64 kB) per segment.</li>
+<li>Needed segments: <span class="math">\(2^{20}/2^{16} = 2^4 = 16\)</span> segments needed to access complete address space.</li>
 <li>Segments can overlap or there can be gaps between them.</li>
 </ul>
 <h1 id="addressing">Addressing</h1>
@@ -700,8 +700,8 @@ code below $2^{31}$ so that absolute 32-bit addresses can be used.</p>
 <pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
 <h3 id="address">Address</h3>
 <p>To calculate an address the following scheme is used:</p>
-<p>$$Offset := \begin{Bmatrix}-\CS:\DS:\SS:\ES:\end{Bmatrix}\begin{Bmatrix}-\BX\BP\end{Bmatrix} +\begin{Bmatrix}-\SI\DI\end{Bmatrix} + \begin{Bmatrix}-\displacement_8\displacement_{16}\end{Bmatrix}$$</p>
-<p>$-$ means that this element is not used.</p>
+<div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
+<p><span class="math">\(-\)</span> means that this element is not used.</p>
 <p>The three possible address parts are:</p>
 <ol>
 <li>Basis Register (BX or BP): Contains usually the start address of a data structure. A segment prefix can be given.</li>
@@ -947,7 +947,7 @@ shift operators</em> need to be used.</p>
 shift operators</em> need to be used.</p>
 <h2 id="left-shift-commands-shl-sal">Left Shift Commands (<code>SHL</code>, <code>SAL</code>)</h2>
 <p>Both left shift operators are functional identical. They muliplicate
-the operator by <em>2</em> or by $2^{CL}$.</p>
+the operator by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
 <p>Shifts the given operator (memory or register) left by
 the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>.</p>
 <h3 id="affected-flags_13">Affected Flags</h3>
@@ -962,8 +962,8 @@ the constant <strong>1</strong> (immediate) or by the value given in <em>CL</em>
 </li>
 </ul>
 <h2 id="right-shift-commands-shr-sar">Right  Shift Commands (<code>SHR</code>, <code>SAR</code>)</h2>
-<p>The <em>logical shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by $2^{CL}$.</p>
-<p>The <em>arithmetic shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by $2^{CL}$.
+<p>The <em>logical shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
+<p>The <em>arithmetic shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.
 The sign stays unchanged.</p>
 <p>The first operand is a memory location or a register. The second operand is the
 constant <strong>1</strong> or the register <em>CL</em>.</p>
@@ -1045,17 +1045,17 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </thead>
 <tbody>
 <tr>
-<td>$=$</td>
+<td><span class="math">\(=\)</span></td>
 <td>equal</td>
 <td>equal</td>
 </tr>
 <tr>
-<td>$&lt;$</td>
+<td><span class="math">\(&lt;\)</span></td>
 <td>below</td>
 <td>less</td>
 </tr>
 <tr>
-<td>$&gt;$</td>
+<td><span class="math">\(&gt;\)</span></td>
 <td>above</td>
 <td>greater</td>
 </tr>
@@ -1073,64 +1073,64 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </thead>
 <tbody>
 <tr>
-<td>$=$</td>
+<td><span class="math">\(=\)</span></td>
 <td><code>JE</code></td>
 <td>Jump if equal</td>
-<td>ZF $=$ 1</td>
+<td>ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$\neq$</td>
+<td><span class="math">\(\neq\)</span></td>
 <td><code>JNE</code></td>
 <td>Jump if not equal</td>
-<td>ZF $=$ 0</td>
+<td>ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
-<td>$&lt;$</td>
+<td><span class="math">\(&lt;\)</span></td>
 <td><code>JB</code></td>
 <td>Jump if below</td>
-<td>CF $=$ 1</td>
+<td>CF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$\ngeq$</td>
+<td><span class="math">\(\ngeq\)</span></td>
 <td><code>JNAE</code></td>
 <td>Jump if not above or equal</td>
-<td>CF $=$ 1</td>
+<td>CF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$\ge$</td>
+<td><span class="math">\(\ge\)</span></td>
 <td><code>JAE</code></td>
 <td>Jump if above or equal</td>
-<td>CF $=$ 0</td>
+<td>CF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
-<td>$\not&lt;$</td>
+<td><span class="math">\(\not&lt;\)</span></td>
 <td><code>JNB</code></td>
 <td>Jump if not below</td>
-<td>CF $=$ 0</td>
+<td>CF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
-<td>$\le$</td>
+<td><span class="math">\(\le\)</span></td>
 <td><code>JBE</code></td>
 <td>Jump if below or equal</td>
-<td>CF $=$ 1 or ZF $=$ 1</td>
+<td>CF <span class="math">\(=\)</span> 1 or ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$\not&gt;$</td>
+<td><span class="math">\(\not&gt;\)</span></td>
 <td><code>JNA</code></td>
 <td>Jump if not above</td>
-<td>CF $=$ 1 or ZF $=$ 1</td>
+<td>CF <span class="math">\(=\)</span> 1 or ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$&gt;$</td>
+<td><span class="math">\(&gt;\)</span></td>
 <td><code>JA</code></td>
 <td>Jump if above</td>
-<td>CF $=$ 0 and ZF $=$ 0</td>
+<td>CF <span class="math">\(=\)</span> 0 and ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
-<td>$\not\le$</td>
+<td><span class="math">\(\not\le\)</span></td>
 <td><code>JNBE</code></td>
 <td>Jump if not below or equal</td>
-<td>CF $=$ 0 and ZF $=$ 0</td>
+<td>CF <span class="math">\(=\)</span> 0 and ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 </tbody>
 </table>
@@ -1146,64 +1146,64 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 </thead>
 <tbody>
 <tr>
-<td>$=$</td>
+<td><span class="math">\(=\)</span></td>
 <td><code>JE</code></td>
 <td>Jump if equal</td>
-<td>ZF $=$ 1</td>
+<td>ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$\neq$</td>
+<td><span class="math">\(\neq\)</span></td>
 <td><code>JNE</code></td>
 <td>Jump if not equal</td>
-<td>ZF $=$ 0</td>
+<td>ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
-<td>$&lt;$</td>
+<td><span class="math">\(&lt;\)</span></td>
 <td><code>JL</code></td>
 <td>Jump if less</td>
-<td>OF $\neq$ SF</td>
+<td>OF <span class="math">\(\neq\)</span> SF</td>
 </tr>
 <tr>
-<td>$\ngeq$</td>
+<td><span class="math">\(\ngeq\)</span></td>
 <td><code>JNGE</code></td>
 <td>Jump if not greater or equal</td>
-<td>OF $\neq$ SF</td>
+<td>OF <span class="math">\(\neq\)</span> SF</td>
 </tr>
 <tr>
-<td>$\ge$</td>
+<td><span class="math">\(\ge\)</span></td>
 <td><code>JGE</code></td>
 <td>Jump if greater or equal</td>
-<td>OF $=$ SF</td>
+<td>OF <span class="math">\(=\)</span> SF</td>
 </tr>
 <tr>
-<td>$\not&lt;$</td>
+<td><span class="math">\(\not&lt;\)</span></td>
 <td><code>JNL</code></td>
 <td>Jump if not less</td>
-<td>OF $=$ SF</td>
+<td>OF <span class="math">\(=\)</span> SF</td>
 </tr>
 <tr>
-<td>$\le$</td>
+<td><span class="math">\(\le\)</span></td>
 <td><code>JLE</code></td>
 <td>Jump if less or equal</td>
-<td>OF $\neq$ SF or ZF $=$ 1</td>
+<td>OF <span class="math">\(\neq\)</span> SF or ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$\not&gt;$</td>
+<td><span class="math">\(\not&gt;\)</span></td>
 <td><code>JNG</code></td>
 <td>Jump if not greater</td>
-<td>OF $\neq$ SF or ZF $=$ 1</td>
+<td>OF <span class="math">\(\neq\)</span> SF or ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
-<td>$&gt;$</td>
+<td><span class="math">\(&gt;\)</span></td>
 <td><code>JG</code></td>
 <td>Jump if greater</td>
-<td>OF $=$ SF and ZF $=$ 0</td>
+<td>OF <span class="math">\(=\)</span> SF and ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
-<td>$\not\le$</td>
+<td><span class="math">\(\not\le\)</span></td>
 <td><code>JNLE</code></td>
 <td>Jump if not less or equal</td>
-<td>OF $=$ SF and ZF $=$ 0</td>
+<td>OF <span class="math">\(=\)</span> SF and ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 </tbody>
 </table>
@@ -1220,62 +1220,62 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</
 <tr>
 <td><code>JZ</code></td>
 <td>Jump if zero</td>
-<td>ZF $=$ 1</td>
+<td>ZF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
 <td><code>JNZ</code></td>
 <td>Jump if not zero</td>
-<td>ZF $=$ 0</td>
+<td>ZF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
 <td><code>JC</code></td>
 <td>Jump if carry</td>
-<td>CF $=$ 1</td>
+<td>CF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
 <td><code>JNC</code></td>
 <td>Jump if no carry</td>
-<td>CF $=$ 0</td>
+<td>CF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
 <td><code>JS</code></td>
 <td>Jump if sign</td>
-<td>SF $=$ 1</td>
+<td>SF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
 <td><code>JNS</code></td>
 <td>Jump if no sign</td>
-<td>SF $=$ 0</td>
+<td>SF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
 <td><code>JO</code></td>
 <td>Jump if overflow</td>
-<td>OF $=$ 1</td>
+<td>OF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
 <td><code>JNO</code></td>
 <td>Jump if no overflow</td>
-<td>OF $=$ 0</td>
+<td>OF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
 <td><code>JP</code></td>
 <td>Jump if parity</td>
-<td>PF $=$ 1</td>
+<td>PF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
 <td><code>JNP</code></td>
 <td>Jump if no parity</td>
-<td>PF $=$ 0</td>
+<td>PF <span class="math">\(=\)</span> 0</td>
 </tr>
 <tr>
 <td><code>JPE</code></td>
 <td>Jump if parity even</td>
-<td>PF $=$ 1</td>
+<td>PF <span class="math">\(=\)</span> 1</td>
 </tr>
 <tr>
 <td><code>JPO</code></td>
 <td>Jump if parity odd</td>
-<td>PF $=$ 0</td>
+<td>PF <span class="math">\(=\)</span> 0</td>
 </tr>
 </tbody>
 </table>
@@ -1294,18 +1294,18 @@ or a constant as second operator.</p>
 <p>All loop commands accept an displacement operator (8-bit).</p>
 <p>None of the loop commands affects any flags!</p>
 <h2 id="loop-loop">Loop (<code>LOOP</code>)</h2>
-<p>Decrements <em>CX</em> by one (1). If <em>CX</em> is not zero (<em>CX</em> $\neq$ 0) it performs the jump.</p>
+<p>Decrements <em>CX</em> by one (1). If <em>CX</em> is not zero (<em>CX</em> <span class="math">\(\neq\)</span> 0) it performs the jump.</p>
 <h2 id="loop-while-equal-and-loop-while-zero-loope-loopz">Loop while equal and Loop while zero (<code>LOOPE</code>, <code>LOOPZ</code>)</h2>
 <p><code>LOOPE</code> and <code>LOOPZ</code> are different mnemonics for the same command.</p>
 <p>Decrements <em>CX</em> by one (1). Performs the jump if if Zero Flag is set and <em>CX</em> is not zero (0).</p>
-<p>Jump if: ZF $=$ 1 and CX $\neq$ 0</p>
+<p>Jump if: ZF <span class="math">\(=\)</span> 1 and CX <span class="math">\(\neq\)</span> 0</p>
 <h2 id="loop-while-not-equal-and-loop-while-not-zero-loopne-loopnz">Loop while not equal and Loop while not zero (<code>LOOPNE</code>, <code>LOOPNZ</code>)</h2>
 <p><code>LOOPNE</code> and <code>LOOPNZ</code> are different mnemonics for the same command.</p>
 <p>Decrements <em>CX</em> by one (1). Performs the jump if if Zero Flag is not set and <em>CX</em> is not zero (0).</p>
-<p>Jump if: ZF $=$ 0 and CX $\neq$ 0</p>
+<p>Jump if: ZF <span class="math">\(=\)</span> 0 and CX <span class="math">\(\neq\)</span> 0</p>
 <h2 id="jump-if-cx-zero-jcxz">Jump if <em>CX</em> zero (<code>JCXZ</code>)</h2>
 <p>Performs the jump if <em>CX</em> is zero.</p>
-<p>Jump if: CX $=$ 0</p>
+<p>Jump if: CX <span class="math">\(=\)</span> 0</p>
 <h1 id="stack-and-function-calls">Stack and Function calls</h1>
 <p>The stack on x86 is always addressed by the Stack Segment (<em>SS</em>).</p>
 <p>Stack operations are word aligned (16-bit). So <code>PUSH</code> decrements <em>SP</em> by <em>2</em> and
@@ -1412,7 +1412,7 @@ For some commands the accumulator (<em>AL</em>/<em>AX</em>) is used as operator.
 </ul>
 <h2 id="repeat-prefix">Repeat Prefix</h2>
 <ul>
-<li><code>REP</code>: Repeat the string command as long as <em>CX</em> $\neq$ 0. Decrement <em>CX</em> in each iteration.</li>
+<li><code>REP</code>: Repeat the string command as long as <em>CX</em> <span class="math">\(\neq\)</span> 0. Decrement <em>CX</em> in each iteration.</li>
 <li><code>REPE</code>: Repeat while operands are equal.</li>
 <li><code>REPZ</code>: Repeat while zero (ZF = 1).</li>
 <li><code>REPNE</code>: Repeat while operands are <em>not</em> equal.</li>
@@ -1421,6 +1421,63 @@ For some commands the accumulator (<em>AL</em>/<em>AX</em>) is used as operator.
 <blockquote>
 <p>There is now practical use for <code>LODSx</code> with <code>REP</code>.</p>
 </blockquote>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>

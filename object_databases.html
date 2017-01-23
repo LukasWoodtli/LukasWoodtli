@@ -2603,7 +2603,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>offset (in cluster)</li>
 </ol>
 </li>
-<li>theoretical address space to $2^{128}$</li>
+<li>theoretical address space to <span class="math">\(2^{128}\)</span></li>
 <li>Reserved virtual memory region for persistence: Persistent Storage Region (<em>PSR</em>)</li>
 </ul>
 </li>
@@ -2918,13 +2918,13 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 <li>Segment 2: default segment</li>
 <li>Segment 4: first user-created segment</li>
-<li>max $2^{32}$ segments per DB</li>
+<li>max <span class="math">\(2^{32}\)</span> segments per DB</li>
 </ul>
 </li>
 <li>Clusters<ul>
 <li>group closely related objects</li>
 <li>each segment has default cluster 0</li>
-<li>max $2^{31}$ clusters per segment</li>
+<li>max <span class="math">\(2^{31}\)</span> clusters per segment</li>
 </ul>
 </li>
 </ul>
@@ -3954,7 +3954,7 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Attribute Versioning<ul>
 <li>each attribute is extended with temporal information</li>
-<li>requires non-first normal form $NF^3$ relational systems</li>
+<li>requires non-first normal form <span class="math">\(NF^3\)</span> relational systems</li>
 </ul>
 </li>
 </ul>
@@ -4171,7 +4171,7 @@ The fundamental layer is usually not directly needed by the application develope
 <ul>
 <li>Key-Grouping<ul>
 <li>build index along the actual attribute value</li>
-<li>as $B^+$-trees</li>
+<li>as <span class="math">\(B^+\)</span>-trees</li>
 <li>additional information about typing and sub-typing in the leafs</li>
 </ul>
 </li>
@@ -4195,7 +4195,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Evaluator needs to traverse all components referenced by query</li>
 </ul>
 </li>
-<li>Usually implemented using $B^+$-trees</li>
+<li>Usually implemented using <span class="math">\(B^+\)</span>-trees</li>
 <li>Type-Grouping</li>
 </ul>
 <h3 id="class-hierarchy-index-ch-index">Class Hierarchy Index (CH-Index)</h3>
@@ -4213,7 +4213,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>list of OIDs</li>
 </ul>
 </li>
-<li>Evaluator scans through $B^+$-tree once<ul>
+<li>Evaluator scans through <span class="math">\(B^+\)</span>-tree once<ul>
 <li>selects OIDs f types referenced by query</li>
 <li>discards other OIDs</li>
 </ul>
@@ -4228,7 +4228,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 <h3 id="h-tree">H-Tree</h3>
 <ul>
-<li>Set of nested $B^+$-trees</li>
+<li>Set of nested <span class="math">\(B^+\)</span>-trees</li>
 <li>Combining class hierarchy with SC-Index</li>
 <li>Nesting reflects indexed type hierarchy<ul>
 <li>each H-tree component is nested with H-trees of immediate sub-types</li>
@@ -4716,6 +4716,63 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End Slides/Notes Week 14 -->
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
