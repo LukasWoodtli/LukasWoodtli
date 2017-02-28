@@ -146,6 +146,7 @@
 <div class="toc">
 <ul>
 <li><a href="#overview-of-kernels">Overview of Kernels</a></li>
+<li><a href="#other-oss">Other OS's:</a></li>
 <li><a href="#sharing-resources">Sharing Resources</a></li>
 <li><a href="#exokernel">Exokernel</a><ul>
 <li><a href="#memory-tlb">Memory (TLB)</a></li>
@@ -227,6 +228,24 @@
 </ul>
 </li>
 <li><a href="#parallel-architectures">Parallel Architectures</a></li>
+<li><a href="#spring">Spring</a><ul>
+<li><a href="#overall-system-structure">Overall System Structure</a></li>
+<li><a href="#nucleus">Nucleus</a><ul>
+<li><a href="#doors">Doors</a></li>
+<li><a href="#object-invocations-via-doors">Object invocations via Doors</a></li>
+</ul>
+</li>
+<li><a href="#network-proxies">Network Proxies</a></li>
+<li><a href="#security-model">Security model</a></li>
+<li><a href="#virtual-memory">Virtual Memory</a><ul>
+<li><a href="#cache-and-pager-objects">Cache and Pager Objects</a></li>
+</ul>
+</li>
+<li><a href="#file-system">File System</a></li>
+<li><a href="#spring-naming">Spring Naming</a></li>
+<li><a href="#unix-emulation">UNIX Emulation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="overview-of-kernels">Overview of Kernels</h1>
@@ -244,7 +263,7 @@
 </thead>
 <tbody>
 <tr>
-<td>SPIN</td>
+<td><a href="https://en.wikipedia.org/wiki/SPIN_(operating_system)">SPIN</a></td>
 <td>Microkernel (Mach-like)</td>
 <td>Modula-3</td>
 <td>Special approach.</td>
@@ -321,8 +340,25 @@
 <td>?</td>
 <td></td>
 </tr>
+<tr>
+<td><a href="https://en.m.wikipedia.org/wiki/Spring_(operating_system)">Spring</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Microkernel</td>
+<td>independent (CORBA IDL)</td>
+<td>Solaris emulation, OOP design, doors ...</td>
+<td></td>
+</tr>
 </tbody>
 </table>
+<h1 id="other-oss">Other OS's:</h1>
+<ul>
+<li><a href="https://en.m.wikipedia.org/wiki/Nucleus_RTOS">Nucleus RTOS</a></li>
+<li><a href="https://en.m.wikipedia.org/wiki/ChorusOS">ChorusOS</a></li>
+</ul>
 <h1 id="sharing-resources">Sharing Resources</h1>
 <p>One of the most important task of an OS is to share (hardware) resources. There are two posibilities how resources can be shared.</p>
 <ol>
@@ -595,6 +631,241 @@ UNLOCK(L):
 <li><a href="https://en.wikipedia.org/wiki/Non-Uniform_Memory_Access">Non-uniform memory access (NUMA)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Cache_coherence">Cache coherence</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Computer_cluster">Computer cluster</a></li>
+</ul>
+<p>OS:</p>
+<h1 id="spring">Spring</h1>
+<p><a href="https://en.m.wikipedia.org/wiki/Spring_(operating_system)">Wikipedia:Spring (operating system)</a></p>
+<p><a href="https://www.cs.fsu.edu/~awang/courses/cop5611_s2004/spring.pdf">An Overview of the Spring System</a></p>
+<ul>
+<li>Indepentant of programming language (CORBA IDL)</li>
+<li>OOP</li>
+<li>Microkernel</li>
+<li>Spring Nucleus: secure objects with high speed object invocation between address spaces and networked machines</li>
+<li>Object managers:<ul>
+<li>e.g. file system: file objects</li>
+<li>running in non-kernel mode</li>
+<li>like server</li>
+</ul>
+</li>
+<li>IDL (CORBA) Generate:
+        1. Interface (e.g. header file)
+        2. Client side stub code: get access to object implemented in other address space or machine
+        3. Server side stub code: used by object manager to translate remote object invocations into the run-time environment of object implementation</li>
+<li>Serverless objects<ul>
+<li>entire state of object always in clients address space</li>
+<li>passing to other address space: copy entire state</li>
+</ul>
+</li>
+<li>Subcontracts<ul>
+<li>plugging different kinds of object runtimes</li>
+<li>control how<ul>
+<li>object invocation is implemented</li>
+<li>object references are transmitted between address spaces</li>
+<li>object references are released</li>
+<li>...</li>
+</ul>
+</li>
+<li>Subcontracts<ul>
+<li>Singleton</li>
+<li>Replication</li>
+<li>Cheap objects</li>
+<li>Caching</li>
+<li>Crash recovery</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="overall-system-structure">Overall System Structure</h2>
+<ul>
+<li>Microkernel<ul>
+<li>Processes, IPC and Memory management part of kernel (Liedtke)</li>
+</ul>
+</li>
+<li>Kernel mode<ul>
+<li>Nucleus: processes and IPC<ul>
+<li>Entered by trap mechanism</li>
+</ul>
+</li>
+<li>Virtual Memory Manager<ul>
+<li>page faults</li>
+<li>external pagers (looks like any other object server)</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>All other system services implemented as user-level servers<ul>
+<li>naming</li>
+<li>paging</li>
+<li>network IO</li>
+<li>file systems</li>
+<li>keyboard management</li>
+<li>...</li>
+</ul>
+</li>
+<li>inherently distributed: all services and objects available on one node are also a available on other nodes in the distributed system</li>
+</ul>
+<h2 id="nucleus">Nucleus</h2>
+<ul>
+<li>Three basic abstractions: domains, threads and doors</li>
+<li>No memory management</li>
+<li>Domains<ul>
+<li>analogous to processes in Unix or tasks in Mach</li>
+<li>address space for applications</li>
+<li>resources: threads, doors, ...</li>
+</ul>
+</li>
+<li>Threads<ul>
+<li>execute within domains</li>
+</ul>
+</li>
+<li>Doors<ul>
+<li>Cross domain calls</li>
+<li>OOP calls between domains</li>
+<li>entry points to domains</li>
+<li>represented by a PC and a unique value (nominated by domain)</li>
+<li>unique value used by object server to identify state of object</li>
+<li>unique value might be a C++ pointer</li>
+</ul>
+</li>
+</ul>
+<h3 id="doors">Doors</h3>
+<ul>
+<li>pieces of protected nucleus state</li>
+<li>each domain has a table with doors it has access to</li>
+<li>refers to doors using <em>door identifiers</em></li>
+<li>same door may be referenced by several different door identifiers in different domains</li>
+<li>possesion of door: right to send invocation request to door</li>
+<li>valid door can be obtained with consent of<ul>
+<li>target domain</li>
+<li>someone who already has door identifier to that door</li>
+</ul>
+</li>
+<li>doors can be passed as arguments or be returned as values from functions</li>
+</ul>
+<h3 id="object-invocations-via-doors">Object invocations via Doors</h3>
+<ul>
+<li>cross-address-space invocation</li>
+<li>Algorithm<ol>
+<li>nucleus allocates server thread in target address space</li>
+<li>nucleus transfers control to that thread, passing information about door and the arguments of the invoked method</li>
+<li>when the called thread returns:<ul>
+<li>deactivation of the thread</li>
+<li>activation of caller thread</li>
+<li>passing return data</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="network-proxies">Network Proxies</h2>
+<p>rovide object invocation across network
+- connect nuclei of different machines transparently
+- proxies are normal user-mode domains (no special support from nucleus)
+- client and server need not to be aware that proxies exist: normal door invocation</p>
+<h2 id="security-model">Security model</h2>
+<ul>
+<li>secure access to objects</li>
+<li>two basic security mechanisms:<ul>
+<li>Access Control Lists</li>
+<li>software capabilities</li>
+</ul>
+</li>
+<li>invocations are controlled by nucleus doors and front objects</li>
+</ul>
+<h2 id="virtual-memory">Virtual Memory</h2>
+<ul>
+<li>demand-paged virtual memory system</li>
+<li>per machine virtual memory manager (VMM) handles local memory:<ul>
+<li>mapping</li>
+<li>sharing</li>
+<li>protection</li>
+<li>transfer</li>
+<li>caching</li>
+</ul>
+</li>
+<li>depends on <em>external pagers</em> for accessing store and maintaining inter-machine coherency</li>
+<li><em>Address Space</em> and <em>Memory</em> objects used by clients</li>
+<li>Adress Space:<ul>
+<li>virtual address space of domain</li>
+<li>implemented by VMM</li>
+</ul>
+</li>
+<li>Memory<ul>
+<li>abstraction of memory that can be mapped to address space</li>
+<li>can be a file</li>
+<li>operations to set and query length and bind</li>
+<li>no read/write or page-in/out operations</li>
+</ul>
+</li>
+<li>Separating memory from interface for paging<ul>
+<li>useful for implementing filesystem</li>
+<li>Memory Object server can be on different machine than the Pager Object server</li>
+</ul>
+</li>
+</ul>
+<h3 id="cache-and-pager-objects">Cache and Pager Objects</h3>
+<ul>
+<li>two-way connection between the VMMs and external pagers</li>
+<li>cache must be coherent between more than one VMM</li>
+<li>VMM obtains data by invoking pager object implemented by external pager</li>
+<li>external pager performs coherency actions by invoking cache object implemented by a VMM</li>
+<li>the coherency protocol is not specified by the architecture: external pagers can implement  any coherency protocol</li>
+</ul>
+<h2 id="file-system">File System</h2>
+<ul>
+<li>file objects implemented by fileserver</li>
+<li>file objects may be memory mapped</li>
+<li>access to files on local disks or over the network</li>
+<li>Spring security and naming architectures to provide access control and directory services</li>
+<li>Spring file system typically consists of several layered file servers</li>
+</ul>
+<h2 id="spring-naming">Spring Naming</h2>
+<ul>
+<li>Naming for:<ul>
+<li>users</li>
+<li>files</li>
+<li>printers</li>
+<li>machines</li>
+<li>services</li>
+<li>...</li>
+</ul>
+</li>
+<li>uniform name service</li>
+<li>any object can be bound to any name</li>
+<li>Object can be:<ul>
+<li>local to a process</li>
+<li>local to a machine</li>
+<li>resident on the network</li>
+<li>transient or persistent</li>
+<li>standard system object</li>
+<li>process environment object</li>
+<li>user specific object</li>
+</ul>
+</li>
+<li>new name spaces  can be compose of different name spaces</li>
+<li>name service allows objects to be associated with a name in a context</li>
+<li>objects need not be bound to a name</li>
+<li>naming graph (name space):<ul>
+<li>a directed graph</li>
+<li>nodes with outgoing edges are contexts</li>
+</ul>
+</li>
+<li>naming provide persistence</li>
+<li>access control and authentication</li>
+</ul>
+<h2 id="unix-emulation">UNIX Emulation</h2>
+<ul>
+<li>Spring can run Solaris binaries</li>
+<li>implemented by user-level code</li>
+<li>contains no UNIX code</li>
+<li>two components:<ul>
+<li>a shared library (libue.so), dynamically linked with each Solaris binary</li>
+<li>a set of UNIX-specific services</li>
+</ul>
+</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
