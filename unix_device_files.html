@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Modern C++ Design · Lukas Woodtli</title>
+        <title>Unix Device Files · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/modern_cpp_design.html">Modern C++ Design</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/unix_device_files.html">Unix Device Files</a></h1>
     </div>
 
         </div>
@@ -123,10 +123,16 @@
       href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a>
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/unix.html">Unix</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month02">03</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month03">03</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month03">05</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -136,29 +142,42 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="part-i-techniques">Part I. Techniques</h1>
-<h2 id="policy-based-class-design">Policy-Based Class Design</h2>
-<h3 id="the-benefit-of-templates">The Benefit of Templates</h3>
-<p><em>"Templates are a good candidate for coping with combinatorial behaviors because they generate code at compile time based on the types (and/or constant values) provided by the user.
-Class templates are customizable in ways not supported by regular classes."</em></p>
-<p><em>"Furthermore, for class templates you can use partial template specialization [...]. Partial template specialization gives you the ability to specialize a class template for only some of its arguments."</em></p>
-<p><em>"[...] several problems that are not self-evident:</em></p>
-<ol>
-<li><em>You cannot specialize structure. Using templates alone, you cannot specialize the structure of a class (its data members). You can only specialize functions.</em></li>
-<li><em>Partial specialization of member functions does not scale. You can specialize any member function of a class template with one template parameter, but you cannot specialize individual member functions for templates with multiple template parameters.</em></li>
-<li><em>"The library writer cannot provide multiple default values. At best, a class template implementer can provide a single default implementation for each member function. You cannot provide several defaults for a template member function."</em></li>
-</ol>
+    <p>Device files provide access to drivers through files.</p>
+<p>They are listed under <code>/dev</code>.
+ There are two kinds of device drivers (as shown with <code>ls -l</code>)
+<code>c</code>: character device
+<code>b</code>: block device</p>
+<ul>
+<li>Character devices provide a stream of bytes (e. g. serial ports, USB, system consoles ...)</li>
+<li>Block devices allow random access of blocks of information (e. g. HD, SSD ...).</li>
+</ul>
+<p>The device files have a major and a minor number. The same major number means that the same device
+driver is responsible for the file/device. The minor number is used to distinguish different devices
+of the same type that use the same device driver.</p>
+<h1 id="functions">Functions</h1>
+<p>A file descriptor for a device file can be aquired by the common <code>open()</code> function. Afer use it can be
+closed with <code>close()</code>. Reading and writing to the file is donne with <code>read()</code> and <code>write()</code>.</p>
+<p>Contol of device drivers is acomplished with the <code>ioctl()</code> function.</p>
+<p>Man page: <code>man ioctl</code> and <code>man ioctl_list</code> (only Linux).</p>
+<h1 id="special-device-files">Special Device Files</h1>
+<ul>
+<li><code>/dev/null</code>: used to redirect unused streams to 'nowhere'</li>
+<li><code>/dev/zero</code>: 'infinite' sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>
+<li><code>/dev/pts/</code>: virtual consoles (s.a. <a href="http://unix.stackexchange.com/questions/93531/what-is-stored-in-dev-pts-files-and-can-we-open-them/93640#93640">stackexchange</a>)</li>
+<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block, <code>/dev/urandom</code> doesn't block)</li>
+<li><code>/dev/full</code>: can be used to simulate writing to a file when the disk is full (sets <code>errno</code> to <code>ENOSPC</code>)</li>
+</ul>
   </div>
 
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/unix_device_files.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html">
+          <a href="http://lukaswoodtli.github.io/modern_cpp_design.html">
           Older &raquo;</a>
         </li>
       </ul>
