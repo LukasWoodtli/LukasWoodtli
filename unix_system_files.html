@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Lukas Woodtli</title>
+        <title>Unix System Files · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -110,14 +110,80 @@
 
       <div class="col-md-8">
         <div class="row">
-          
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/unix_system_files.html">Unix System Files</a></h1>
+    </div>
+
         </div>
 
         <div class="row">
-    <h1>Authors on Lukas Woodtli</h1>
 
-    <ul>        <li><a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a> (46)</li>
-    </ul>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/unix.html">Unix</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month03">03</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month03">06</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <h1 id="etcpasswd"><code>/etc/passwd</code></h1>
+<p>Contains user informations. The information fields are separated by a colon.</p>
+<p><code>user-name:password:UID:GID:info:home-dir:shell</code></p>
+<ul>
+<li><code>user-name</code>: The name that the user needs to log in.</li>
+<li><code>password</code>: Usually the entry <code>x</code>, meaning that the password is saved in <code>/etc/shadow</code>.</li>
+<li><code>UID</code>: The user-id (usually greater than 1000).</li>
+<li><code>GID</code>: The group-id.</li>
+<li><code>info</code>: Additional information such as the real name. Subfields separated by coma.</li>
+<li><code>home-dir</code>: The home dir of the user.</li>
+<li><code>shell</code>: The login-shell of the user (needs to be listed in <code>/etc/shells</code>).</li>
+</ul>
+<h1 id="etcshadow"><code>/etc/shadow</code></h1>
+<p>Saves the user password and related information. The file can be read only by root.</p>
+<p><code>name:password:DOC:minDay:maxDay:warn:deaktIn:deaktSince:unused</code></p>
+<ul>
+<li><code>name</code>: User name (same as in <code>/etc/passwd</code>).</li>
+<li><code>password</code>: Encrypted password.</li>
+<li><code>DOC</code>: Day of last change (number of days since 1.1.1970).</li>
+<li><code>minDay</code>: Earliest possible day to change password.</li>
+<li><code>maxDay</code>: Latest possible day to change password.</li>
+<li><code>warn</code>: Number of days before <code>maxDay</code> that a warning occures.</li>
+<li><code>deaktIn</code>: Day when password expires.</li>
+<li><code>deaktSince</code>: Number of days since password expired.</li>
+<li><code>unused</code>: For feature use.</li>
+</ul>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/unix_device_files.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
         </div>
 
         <div class="row">
