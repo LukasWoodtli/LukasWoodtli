@@ -168,6 +168,15 @@
 <li><code>deaktSince</code>: Number of days since password expired.</li>
 <li><code>unused</code>: For feature use.</li>
 </ul>
+<h1 id="etcgroup"><code>/etc/group</code></h1>
+<p>Stores informations about groups.</p>
+<p><code>groupName:password:groupId:member1,memger2,...</code></p>
+<ul>
+<li><code>groupName</code>: Name of the group.</li>
+<li><code>password</code>: Usually <code>x</code>, meaning that the password is saved in <code>/etc/passwd</code>.</li>
+<li><code>groupId</code>: Group ID (GID).</li>
+<li><code>member1,memger2,...</code>: User names of the members of the group (comma separated).</li>
+</ul>
   </div>
 
   <hr/>
