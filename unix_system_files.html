@@ -177,6 +177,13 @@
 <li><code>groupId</code>: Group ID (GID).</li>
 <li><code>member1,memger2,...</code>: User names of the members of the group (comma separated).</li>
 </ul>
+<h1 id="network-files">Network Files</h1>
+<ul>
+<li><code>/etc/services</code>: Services provided on the network, mapping of ports to processes (see <code>getservbyname()</code> and <code>getservbyport()</code>).</li>
+<li><code>etc/networks</code>: Informations about connected networks (see <code>getnetbyname()</code> and <code>getnetbyaddr()</code>)</li>
+<li><code>/etc/protocols</code>: Information about network portocols (see <code>getprotobyname()</code> and <code>getprotobynumber()</code>)</li>
+<li><code>/etc/hosts</code>: Mapping from hostnames to IP's, mainly replaced by DNS (see <code>gethostbyname()</code> and <code>gethostbyaddr()</code>)</li>
+</ul>
   </div>
 
   <hr/>
