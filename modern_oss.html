@@ -246,6 +246,12 @@
 <li><a href="#unix-emulation">UNIX Emulation</a></li>
 </ul>
 </li>
+<li><a href="#barrelfish">Barrelfish</a><ul>
+<li><a href="#system-structure">System Structure</a></li>
+<li><a href="#memory-management">Memory Management</a></li>
+<li><a href="#knowledge-and-policy-engine">Knowledge and Policy Engine</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="overview-of-kernels">Overview of Kernels</h1>
@@ -641,10 +647,12 @@ UNLOCK(L):
 <li>like server</li>
 </ul>
 </li>
-<li>IDL (CORBA) Generate:
-        1. Interface (e.g. header file)
-        2. Client side stub code: get access to object implemented in other address space or machine
-        3. Server side stub code: used by object manager to translate remote object invocations into the run-time environment of object implementation</li>
+<li>IDL (CORBA) Generate:<ol>
+<li>Interface (e.g. header file)</li>
+<li>Client side stub code: get access to object implemented in other address space or machine</li>
+<li>Server side stub code: used by object manager to translate remote object invocations into the run-time environment of object implementation</li>
+</ol>
+</li>
 <li>Serverless objects<ul>
 <li>entire state of object always in clients address space</li>
 <li>passing to other address space: copy entire state</li>
@@ -860,6 +868,121 @@ UNLOCK(L):
 <li>a set of UNIX-specific services</li>
 </ul>
 </li>
+</ul>
+<h1 id="barrelfish">Barrelfish</h1>
+<ul>
+<li>Multikernel</li>
+<li>OS as distributed system of functional units (network of independent cores)</li>
+<li>communication via explicit messages (message passing)</li>
+<li>Design principles<ol>
+<li>Make all inter-core communication explicit (message passing)</li>
+<li>Make OS structure HW-neutral</li>
+<li>View state as replicated instead of shared</li>
+</ol>
+</li>
+<li>Single computer as networked system</li>
+<li>RPC<ul>
+<li>latency is lower than shared memory access</li>
+<li>asynchronous or pipelined RPC: client processors can avoid stalling on cache misses</li>
+</ul>
+</li>
+<li>Asynchronous messaging: event-driven programming</li>
+<li>pitfalls with shared data structures in scalable progams:<ul>
+<li>correctness</li>
+<li>performance</li>
+<li>lock granularity</li>
+<li>field layout in structures (alignment ...)</li>
+</ul>
+</li>
+<li>applications can share memory across cores, but OS design does not reky on shared memory</li>
+<li>networking optimizations for message passing:<ul>
+<li>pipelining: a number of requests in flight at once</li>
+<li>batching: sending or processing a number of messages together</li>
+</ul>
+</li>
+<li>Multikernel separates OS structure from hardware</li>
+<li>Replication of state is a useful framework for:<ul>
+<li>changes to the running cores</li>
+<li>hotplugging processors</li>
+<li>shutting down subsystems to save power</li>
+</ul>
+</li>
+<li>Replication:<ul>
+<li>Benefit of performance and availability</li>
+<li>at cost of ensuring replica consistency</li>
+</ul>
+</li>
+<li>porting application to Barrelfish are straightforward<ul>
+<li>standard C and mate library</li>
+<li>Virtual Memory Management</li>
+<li>subset of POSIX threads and file I/O APIs</li>
+</ul>
+</li>
+</ul>
+<h2 id="system-structure">System Structure</h2>
+<ul>
+<li>multiple independent OS instances</li>
+<li>communication via explicit messages</li>
+<li>each OS instance per core<ul>
+<li>privileged mode CPU driver</li>
+<li>user mode monitor process</li>
+</ul>
+</li>
+<li>CPU driver local to core</li>
+<li>monitor<ul>
+<li>performes inter-core coordination</li>
+<li>coordinate system-wide state</li>
+<li>handling message-oriented inter-core communication</li>
+<li>mostly processor-agnostic</li>
+</ul>
+</li>
+<li>monitor and CPU driver encapsulate: scheduling, communication and resource allocation</li>
+<li>device drivers and system services (network stack, memory allocators ...) run in user mode</li>
+<li>device interrupts are routed in hardware to the appropriate core</li>
+<li>CPU driver<ul>
+<li>enfonces protection</li>
+<li>performs authorization</li>
+<li>timeslices processes</li>
+<li>mediates access to core and associated hardware (MMU, APIC ...)</li>
+<li>completely event-driven and non-preemptable (single threaded)</li>
+<li>processes events: traps from user processes, interrupts from devices to other cores</li>
+</ul>
+</li>
+<li>Process structure<ul>
+<li>collection of dispatcher objects (cores)</li>
+<li>dispatchers scheduled by local CPU driver</li>
+</ul>
+</li>
+<li>Inter-core communication<ul>
+<li>user-level RPC (URPC):<ul>
+<li>marschaling code generated with stub compiler</li>
+<li>name service to locate services</li>
+<li>channels established between services (setup performed by monitors)</li>
+<li>no shared memory other than URPC channel and packet payload</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>cross-core thread management is performed in user-space<ul>
+<li>thread schedulers exchange messages to create and unblock threads and migrate threads between cores</li>
+<li>POSIX like threads</li>
+</ul>
+</li>
+</ul>
+<h2 id="memory-management">Memory Management</h2>
+<ul>
+<li>global set of resources</li>
+<li>user-level app and services services use shared memory across multiple cores</li>
+<li>capability system (<a href="https://sel4.systems/"> seL4</a>)</li>
+<li>virtual memory management (allocation/manipulation of page tables...) entirely in user-space</li>
+<li>capability code is complex</li>
+</ul>
+<h2 id="knowledge-and-policy-engine">Knowledge and Policy Engine</h2>
+<ul>
+<li>Maintaining  knowledge of hardware in <a href="http://wiki.barrelfish.org/SystemKnowledgeBase">'system knowledge base'</a></li>
+<li>subset of first-order logic: <a href="http://eclipseclp.org/">The ECLiPSe Constraint Programming System</a></li>
+<li>declarative approach</li>
+<li>hardware discovery</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
