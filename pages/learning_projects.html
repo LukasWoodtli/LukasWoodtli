@@ -167,63 +167,6 @@
 <p>MIT OpenCourseWare <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/4a-pattern-matching-and-rule-based-substitution/">4A</a></p>
 <p>My Repo: <a href="https://github.com/LukasWoodtli/SchemeCourse">GitHub</a></p>
 <h1 id="overview">Overview</h1>
-<p><meta charset="utf-8">
-<style></p>
-<div class="highlight"><pre><span></span><span class="nt">body</span> <span class="p">{</span>
-    <span class="k">font-family</span><span class="p">:</span> <span class="s2">&quot;Helvetica Neue&quot;</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-    <span class="k">width</span><span class="p">:</span> <span class="mi">960</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">height</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">svg</span> <span class="p">{</span>
-    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">toolTip</span> <span class="p">{</span>
-    <span class="k">font-family</span><span class="p">:</span> <span class="s2">&quot;Helvetica Neue&quot;</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-    <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
-    <span class="k">width</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
-    <span class="k">height</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
-    <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="kc">repeat</span> <span class="kc">scroll</span> <span class="mi">0</span> <span class="mi">0</span> <span class="kc">white</span><span class="p">;</span>
-    <span class="k">border</span><span class="p">:</span> <span class="mi">0</span> <span class="kc">none</span><span class="p">;</span>
-    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span> <span class="mi">8</span><span class="kt">px</span> <span class="mi">8</span><span class="kt">px</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">-3</span><span class="kt">px</span> <span class="mi">3</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mh">#888888</span><span class="p">;</span>
-    <span class="k">color</span><span class="p">:</span> <span class="kc">black</span><span class="p">;</span>
-    <span class="k">font</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span> <span class="kc">sans-serif</span><span class="p">;</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">text</span> <span class="p">{</span>
-    <span class="k">font</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span> <span class="kc">sans-serif</span><span class="p">;</span>
-    <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">text</span><span class="p">.</span><span class="nc">value</span> <span class="p">{</span>
-    <span class="k">font-size</span><span class="p">:</span> <span class="mi">120</span><span class="kt">%</span><span class="p">;</span>
-    <span class="n">fill</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">axisHorizontal</span> <span class="nt">path</span><span class="p">{</span>
-    <span class="n">fill</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">axisHorizontal</span> <span class="p">.</span><span class="nc">tick</span> <span class="nt">line</span> <span class="p">{</span>
-    <span class="n">stroke-width</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">stroke</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">bar</span> <span class="p">{</span>
-    <span class="n">fill</span><span class="p">:</span> <span class="kc">steelblue</span><span class="p">;</span>
-    <span class="n">fill-opacity</span><span class="p">:</span> <span class="mf">.9</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-</style>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -356,7 +299,7 @@
             .attr("transform", "translate(" + (margin + labelWidth) + ","+ (height - axisMargin - margin)+")")
             .call(xAxis);
 
-</script></meta></p>
+</script>
 </div>
         </div>
 
