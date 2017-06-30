@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Tag: Git · Lukas Woodtli</title>
+        <title>Git: The `.git` Directory · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,43 +111,57 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/git.html">Tag: Git</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/git_the_git_directory.html">Git: The `.git` Directory</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="Git" href="#Git">Git</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#Gitcollapse">
-          <span class="badge pull-right">3</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/git.html">Git</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month06">29</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="Gitcollapse">
-        <a href="http://lukaswoodtli.github.io/git_the_git_directory.html">
-          <li class="list-group-item">
-Git: The `.git` Directory</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/git_commit_a_older_version_to_head.html">
-          <li class="list-group-item">
-Git: Commit a older version to HEAD</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/move_actual_work_to_a_new_branch.html">
-          <li class="list-group-item">
-Move actual work to a new Branch</li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <p>Some notes about the contents of the <code>.git</code> directory that resides in the root of a git repository.</p>
+<ul>
+<li><code>config</code> file: contains project-specific configurations</li>
+<li><code>info/exclude</code> file: ignore patterns in addition to <code>.gitignore</code> files but not tracked</li>
+<li><code>hooks</code> directory: client- or server-side hook scripts</li>
+<li><code>HEAD</code> file: points to the currently checked out branch</li>
+<li><code>objects</code> directory: stores the content of the git database</li>
+<li><code>refs</code> directory stores pointers to commit objects (branches)</li>
+<li><code>index</code> file: staging area information</li>
+<li><code>description</code> file: only used by the GitWeb program</li>
+</ul>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/cpp_on_embedded_systems.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
