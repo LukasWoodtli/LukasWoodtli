@@ -44,8 +44,6 @@
 <span class="cp">#define _stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
 </pre></div>
-
-
 <p>If you'd use the stingize operator <code>#</code> directly in ...</p> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
@@ -72,7 +70,7 @@ Even if enums are a simple language construct there ...</p> </div><!-- /.entry-c
 <h1>Aggregations</h1>
 <p>Aggregation functions work on the values of a column.</p>
 <p>They return a single value.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Function</th>
@@ -142,8 +140,6 @@ Even if enums are a simple language construct there ...</p> </div><!-- /.entry-c
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// ok!</span>
 </pre></div>
-
-
 <p>But this fails:</p>
 <div class="highlight"><pre><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
 
@@ -155,8 +151,6 @@ Even if enums are a simple language construct there ...</p> </div><!-- /.entry-c
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// fails!</span>
 </pre></div>
-
-
 <h2>Test and Set</h2>
 <p>Pseudo code:</p>
 <div class="highlight"><pre><span class="c1">// atomic</span>
@@ -165,8 +159,6 @@ Even if enums are a simple language construct there ...</p> </div><!-- /.entry-c
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">temp</span>
 </pre></div>
-
-
 <p>Reset:</p>
 <div class="highlight"><pre><span class="c1">// normal ...</span></pre></div> </div><!-- /.entry-content -->
         </article></li>

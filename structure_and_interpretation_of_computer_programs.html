@@ -91,8 +91,6 @@ MIT Press</p>
     <span class="p">(</span><span class="nf">&lt;var</span> <span class="nv">n&gt;</span> <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">))</span>
   <span class="nv">&lt;body&gt;</span><span class="p">)</span>
 </pre></div>
-
-
 <p><em>the <code>let</code> expression is interpreted as an alternate syntax for</em></p>
 <div class="highlight"><pre><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="o">...</span> <span class="nv">&lt;var</span> <span class="nv">n&gt;</span><span class="p">)</span>
   <span class="nv">&lt;body&gt;</span><span class="p">)</span>
@@ -100,8 +98,6 @@ MIT Press</p>
     <span class="o">...</span>
     <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">)</span>
 </pre></div>
-
-
 <p><em>No new mechanism is required in the interpreter in order to provide local variables. A <code>let</code> expression is simply syntactic sugar for the underlying lambda application."</em></p>
 <p><em>"<code>Let</code> allows one to bind variables as locally as possible to where they are to be used."</em></p>
 <h4>Abstractions and first-class procedures</h4>
@@ -119,14 +115,12 @@ MIT Press</p>
   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
           <span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
-              <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">&quot;Argument not 0 or 1: CONS&quot;</span> <span class="nv">m</span><span class="p">))))</span>
+              <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Argument not 0 or 1: CONS"</span> <span class="nv">m</span><span class="p">))))</span>
    <span class="nv">dispatch</span><span class="p">)</span>
 
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
-
-
 <h2>Hierarchical Data and the Closure Property</h2>
 <p><em>"The ability to create pairs whose elements are pairs is the essence of list structure's importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation."</em></p>
 <h3>Sequences as Conventional Interfaces</h3>

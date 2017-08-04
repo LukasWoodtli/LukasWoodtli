@@ -44,7 +44,7 @@
 <a href="https://www.udacity.com/course/intro-to-statistics--st101" title="Udacity">Intro to Statistics</a>.</p>
 <p>[TOC]</p>
 <h1>Statistics and Probability</h1>
-<p><img alt="Statistics and Probability" src="/images/statistics_probability.svg" /></p>
+<p><img alt="Statistics and Probability" class="img-responsive" src="/images/statistics_probability.svg"/></p>
 <h1>Independent Events</h1>
 <ul>
 <li>Probability of Event: <span class="math">\(P\)</span></li>
@@ -52,7 +52,61 @@
 <li>Probability of composite Events: <span class="math">\(P \cdot P \cdot ... \cdot P\)</span></li>
 </ul>
 <h1>Dependent Events</h1>
-<p><span class="math">\(P(A\mid ...</span></p> </div><!-- /.entry-content -->
+<p><span class="math">\(P(A\mid B)\) ...</span></p><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html" rel="bookmark" title="Permalink to Macro Magic in C and C++">Macro Magic in C and C++</a></h2> </header>
@@ -69,8 +123,6 @@
 <span class="cp">#define _stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
 </pre></div>
-
-
 <p>If you'd use the stingize operator <code>#</code> directly in ...</p> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
@@ -81,7 +133,7 @@
                         <a class="url fn" href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
                     </address>
                 </footer><!-- /.post-info -->
-                <div class="entry-content"> <table>
+                <div class="entry-content"> <table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Keys</th>
@@ -157,7 +209,7 @@ Even if enums are a simple language construct there ...</p> </div><!-- /.entry-c
 <h1>Aggregations</h1>
 <p>Aggregation functions work on the values of a column.</p>
 <p>They return a single value.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Function</th>

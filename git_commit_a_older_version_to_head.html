@@ -54,25 +54,17 @@
 <p>First checkout the version that should be the new <code>HEAD</code>.</p>
 <div class="highlight"><pre>git checkout &lt;SHA-1 id of commit&gt;
 </pre></div>
-
-
 <p>Now we create a <code>temp</code> branch and check it out.</p>
 <div class="highlight"><pre>git checkout -b temp
 </pre></div>
-
-
 <p>This is equivalent to <code>git branch temp</code> followed by <code>git checkout temp</code>.</p>
 <p>Now we want <code>master</code> (or an other branch) to point to it.</p>
 <div class="highlight"><pre>git checkout -B master temp
 </pre></div>
-
-
 <p>This is equivalent to <code>git branch -f master temp</code>followed by <code>git checkout master</code>.</p>
 <p>Now we can delete the <code>temp</code> branch:</p>
 <div class="highlight"><pre>git branch -d temp
 </pre></div>
-
-
 <p>Now we can push to a remote (<code>-f</code> might be needed):</p>
 <div class="highlight"><pre>git push -f origin master
 </pre></div>

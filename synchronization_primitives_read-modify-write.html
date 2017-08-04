@@ -62,8 +62,6 @@
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// ok!</span>
 </pre></div>
-
-
 <p>But this fails:</p>
 <div class="highlight"><pre><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
 
@@ -75,8 +73,6 @@
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// fails!</span>
 </pre></div>
-
-
 <h2>Test and Set</h2>
 <p>Pseudo code:</p>
 <div class="highlight"><pre><span class="c1">// atomic</span>
@@ -85,15 +81,11 @@
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">temp</span>
 </pre></div>
-
-
 <p>Reset:</p>
 <div class="highlight"><pre><span class="c1">// normal write</span>
 <span class="n">reset</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">)</span><span class="o">:</span>
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
 </pre></div>
-
-
 <h2>Generic RWM</h2>
 <p>Pseudo code:</p>
 <div class="highlight"><pre><span class="n">rwm</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">,</span> <span class="nl">f</span><span class="p">:</span> <span class="n">function</span><span class="p">)</span> <span class="k">return</span> <span class="n">value</span>
@@ -101,8 +93,6 @@
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span>
 </pre></div>
-
-
 <h1>Mutex (Shared Memory)</h1>
 <ul>
 <li>
@@ -123,7 +113,6 @@
  Remainder -> Enter
 
 -->
-
 <p>Requirements:</p>
 <ol>
 <li>At most one process in critical section</li>

@@ -91,8 +91,8 @@
 <li>Technical environment does not forgive errors</li>
 <li>Stricter requirements (usually update not possible)</li>
 </ul>
-<h3>Difference Embedded Systems &#8596; General Purpose Computing</h3>
-<table>
+<h3>Difference Embedded Systems ↔ General Purpose Computing</h3>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Embedded Systems</th>
@@ -314,11 +314,8 @@
 </li>
 </ul>
 <!-- Week 05 - 14.10.15 -->
-
 <!-- Beginning of Notes Week 5 -->
-
 <!-- Beginning of Slides 3 -->
-
 <h1>3. Mapping Application to Architecture</h1>
 <p>System synthesis from specification</p>
 <ul>
@@ -335,8 +332,6 @@
 <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
 </pre></div>
-
-
 <ul>
 <li>no loops</li>
 <li>parallelism</li>
@@ -356,8 +351,6 @@
     <span class="n">write</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
-
-
 <ul>
 <li>State machine</li>
 <li>Conditional branches</li>
@@ -375,9 +368,8 @@
 <li><em>binds</em> communication between processes to architecture communication paths</li>
 <li>specifies <em>resource sharing</em> and <em>scheduling</em></li>
 </ul>
-<p><img alt="Partitioning and Mapping" src="/images/hscd_partitioning_mapping.svg" /></p>
+<p><img alt="Partitioning and Mapping" class="img-responsive" src="/images/hscd_partitioning_mapping.svg"/></p>
 <!-- TODO: Repeat Slides 3-10 to 3-14 -->
-
 <h1>4. System Partitioning</h1>
 <blockquote>
 <p>Partitioning: Given a set of objects: Partition this set in subsets.</p>
@@ -472,15 +464,13 @@
 <li>Minimize objective function subject to constraints</li>
 </ul>
 <!-- End of Notes Week 5 -->
-
 <!-- Beginning of Notes Week 6 -->
-
 <h4>Example for Partitioning</h4>
 <ul>
 <li>optimize for a load balanced system</li>
 </ul>
 <p>Scheduling:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Task</th>
@@ -508,7 +498,7 @@
 </tbody>
 </table>
 <p>Run Times:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Run time</th>
@@ -648,8 +638,6 @@ $$</div>
             <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_new</span>
         <span class="n">temp</span> <span class="o">=</span> <span class="n">DecreaseTemp</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
 </pre></div>
-
-
 <p>Functions:</p>
 <p><code>RandomMove(P)</code>:</p>
 <ul>
@@ -682,9 +670,7 @@ $$</div>
 <code>Equilibrium()</code>, <code>DecreaseTemp()</code> and <code>Frozen()</code>.</li>
 </ul>
 <!-- End of Slides 4 -->
-
 <!-- Beginning of Slides 5 -->
-
 <h1>5. Multi-Criteria Optimization</h1>
 <p>Part of system synthesis.</p>
 <blockquote>
@@ -727,7 +713,7 @@ $$</div>
 <li>A single alternative <span class="math">\(x \in X\)</span> is (sometimes) named <em>solution</em> and the corresponding object value <span class="math">\(z = f(x) \in Z\)</span> is named <em>objective vector</em></li>
 </ul>
 <blockquote>
-<p>decision space &rarr; objective space</p>
+<p>decision space → objective space</p>
 </blockquote>
 <p>Basic question:</p>
 <p>How do we define the minimum of a vector-valued function?</p>
@@ -749,14 +735,14 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<p>&rarr; Decision making is done before the optimization</p>
+<p>→ Decision making is done before the optimization</p>
 <ul>
 <li>Population based optimization methods<ul>
 <li>Evolutionary / genetic algorithms</li>
 </ul>
 </li>
 </ul>
-<p>&rarr; Decision making is done after the optimization</p>
+<p>→ Decision making is done after the optimization</p>
 <h3>Evolutionary Algorithms</h3>
 <p>Basic scheme (many variations exist):</p>
 <ol>
@@ -767,7 +753,7 @@ all objectives, i.e:</p>
 <li>Solutions of the set from 4. are selected based on their merit to construct the new <em>parent</em> set (<em>environmental selection</em>).</li>
 <li>continue at 2.</li>
 </ol>
-<p><img alt="Evolutionary Algorithm" src="/images/hscd_evolutionary_algorithm.svg" style="float:right" /></p>
+<p><img alt="Evolutionary Algorithm" class="img-responsive" src="/images/hscd_evolutionary_algorithm.svg" style="float:right"/></p>
 <ul>
 <li>Cross-over operator: Take best parts of two solutions</li>
 <li>Mutation operator: same as in simulated annealing (make small variations)</li>
@@ -806,7 +792,6 @@ all objectives, i.e:</p>
 </ul>
 <p>Encoding: i.e order of tasks executing to explore scheduling.</p>
 <!-- End of Notes Week 7 -->
-
 <h4>Tree Representation</h4>
 <ul>
 <li>Solutions can be represented as tree structures</li>
@@ -995,9 +980,7 @@ all objectives, i.e:</p>
 </li>
 </ol>
 <!-- End of Notes Week 8 (morning) -->
-
 <!-- Beginning of Notes Week 8 (afternoon) -->
-
 <h2>SystemC</h2>
 <ul>
 <li>System-level modeling language<ul>
@@ -1089,7 +1072,7 @@ all objectives, i.e:</p>
 <h3>Wait and Notify</h3>
 <ul>
 <li><code>wait</code>: halt process until an extent is raised<ul>
-<li><code>wait()</code> with arguments &rarr; dynamic sensitivity<ul>
+<li><code>wait()</code> with arguments → dynamic sensitivity<ul>
 <li><code>wait(sc_event)</code></li>
 <li><code>wait(time)</code></li>
 <li><code>wait(timeout, sc_event)</code></li>
@@ -1098,7 +1081,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 <li><code>notify</code>: rise an event<ul>
-<li><code>notify()</code> with arguments &rarr; delayed notification<ul>
+<li><code>notify()</code> with arguments → delayed notification<ul>
 <li><code>my_event.notify();</code>: notify immediately</li>
 <li><code>my_event.notify(SC_ZERO_TIME);</code>: notify next delta cycle</li>
 <li><code>my_event.notify(time);</code>: notify after 'time'</li>
@@ -1427,22 +1410,22 @@ for other components.</p>
 </li>
 <li>Abstraction<ul>
 <li>Application: abstract execution traces<ul>
-<li>&rarr; Graph of events: <strong>read</strong>, <strong>write</strong> and <strong>execute</strong></li>
+<li>→ Graph of events: <strong>read</strong>, <strong>write</strong> and <strong>execute</strong></li>
 </ul>
 </li>
 <li>Architecture: 'virtual machines' and 'virtual channels'<ul>
-<li>&rarr; Calibrated with non-functional properties (timing, power, energy)</li>
+<li>→ Calibrated with non-functional properties (timing, power, energy)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Trace-based simulation steps<ul>
 <li>Build application abstract model<ul>
-<li>&rarr; execution trace determined by functional application simulation</li>
+<li>→ execution trace determined by functional application simulation</li>
 </ul>
 </li>
 <li>Extending abstract model with architecture and mapping<ul>
-<li>&rarr; Event graph extended by non-functional properties of virtual architecture elements</li>
+<li>→ Event graph extended by non-functional properties of virtual architecture elements</li>
 </ul>
 </li>
 <li>Simulation of extended model</li>
@@ -1450,13 +1433,9 @@ for other components.</p>
 </li>
 </ul>
 <!-- End of Slides 8 -->
-
 <!-- End of Notes Week 10 -->
-
 <!-- Beginning of Slides 9 -->
-
 <!-- Beginning of Notes Week 11 -->
-
 <h1>9. Worst Case Execution Time Analysis</h1>
 <ul>
 <li>Calculation not simulation</li>
@@ -1567,8 +1546,6 @@ and exits at the end, without stopping in-between or branching (except at the en
 <span class="nl">t4</span> <span class="p">:</span><span class="o">=</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t3</span>
 <span class="k">if</span> <span class="n">t4</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">goto</span> <span class="n">L</span>
 </pre></div>
-
-
 <p>Determine basic blocks of a program</p>
 <ol>
 <li>Determine the first instructions of blocks:<ul>
@@ -1595,7 +1572,7 @@ and exits at the end, without stopping in-between or branching (except at the en
 </ul>
 </li>
 </ul>
-<p><img alt="WCET Calculation" src="/images/hscd_wcet_calculation.png" /></p>
+<p><img alt="WCET Calculation" class="img-responsive" src="/images/hscd_wcet_calculation.png"/></p>
 <p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
 <p>Flow Equations (sum of incoming edges equals sum of outgoing edges)</p>
 <div class="math">$$\begin{align*}
@@ -1656,9 +1633,7 @@ d9 = d10 = x_7
 <p>Calculate intervals at all program points. Lower and upper bounds for the set of possible values
 occurring in the program (addresses, register contents, local and global variables).</p>
 <!-- End of Notes Week 11 -->
-
 <!-- Beginning of Notes Week 12 -->
-
 <h4>Caches</h4>
 <ul>
 <li>Main memory to slow</li>
@@ -1676,8 +1651,8 @@ occurring in the program (addresses, register contents, local and global variabl
 </li>
 <li>Memory: relatively slow (bottle neck), large, cheap</li>
 <li>Access cycles:<ul>
-<li>CPU &harr; Cache: ~1 cycle</li>
-<li>Cache &harr; Memory: ~100 cycles</li>
+<li>CPU ↔ Cache: ~1 cycle</li>
+<li>Cache ↔ Memory: ~100 cycles</li>
 </ul>
 </li>
 </ul>
@@ -1717,8 +1692,6 @@ occurring in the program (addresses, register contents, local and global variabl
     - Determines safe information about cache misses
     - Each predicted cache miss *increases* **BCET**
 </pre></div>
-
-
 <h5>Must Cache</h5>
 <ul>
 <li>Only variables that are in all caches</li>
@@ -1808,16 +1781,14 @@ occurring in the program (addresses, register contents, local and global variabl
 <li>CPU as State Machine: Abstract Pipeline for basic blocks</li>
 </ul>
 <!-- End of Slides 9 -->
-
 <!-- Beginning of Slides 10 -->
-
 <h1>10 Performance Analysis of Distributed Embedded Systems</h1>
 <blockquote>
 <p>Embedded System = Computation + Communication + Resource Interaction</p>
 </blockquote>
 <ul>
 <li>
-<p>Analysis &harr; Design</p>
+<p>Analysis ↔ Design</p>
 <ul>
 <li>Analysis: infer system properties from subsystem properties</li>
 <li>Design: build system from subsystems while meeting requirements</li>
@@ -1827,7 +1798,7 @@ occurring in the program (addresses, register contents, local and global variabl
 <p>Abstract model</p>
 </li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Concrete instance (real world)</th>
@@ -1950,7 +1921,7 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 </li>
 </ul>
-<p><img alt="Plus-times calculus" src="/images/hscd_plus_times.svg" /></p>
+<p><img alt="Plus-times calculus" class="img-responsive" src="/images/hscd_plus_times.svg"/></p>
 <div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
 <ul>
 <li>
@@ -1968,20 +1939,18 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 </li>
 </ul>
-<p><img alt="Min-plus calculus" src="/images/hscd_min_plus.svg" /></p>
+<p><img alt="Min-plus calculus" class="img-responsive" src="/images/hscd_min_plus.svg"/></p>
 <div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
 <!-- End of Notes Week 12 -->
-
 <!-- Beginning of Notes Week 13 -->
-
 <h3>From Streams to Cumulative Functions</h3>
 <ul>
-<li>Event streams &rarr; <strong>Arrival Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
+<li>Event streams → <strong>Arrival Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
 <li>Event stream: number of events in <span class="math">\(t=[0 .. T]\)</span></li>
 <li>Arrival Curves <span class="math">\(\alpha = [\alpha', \alpha^u]\)</span>: maximum and minimum arriving events in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
 </ul>
 </li>
-<li>Resources &rarr; <strong>Service Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
+<li>Resources → <strong>Service Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
 <li>Resource Availability: available service in <span class="math">\(t=[0 .. T]\)</span></li>
 <li>Service Curves <span class="math">\(\beta = [\beta', \beta^u]\)</span>: maximum and minimum available service in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
 </ul>
@@ -1989,7 +1958,7 @@ occurring in the program (addresses, register contents, local and global variabl
 <li>Arrival and Service Curves work on <em>time intervals</em> as domain (<span class="math">\(\Delta\)</span>)</li>
 </ul>
 <h1>Overview of Methods and Algorithms</h1>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>

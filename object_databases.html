@@ -52,7 +52,6 @@
   <div class="entry-content">
     <p>[TOC]</p>
 <!-- Lecture 1 Slides/Notes Start -->
-
 <h1>Motivation</h1>
 <ul>
 <li>Information Systems Design<ul>
@@ -117,7 +116,7 @@
 </li>
 </ul>
 <p>An overview of the mismatch is shown on <a href="http://www.tutorialspoint.com/hibernate/orm_overview.htm">Tutorialspoint</a></p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Mismatch</th>
@@ -236,43 +235,31 @@
 <p>SQL</p>
 <div class="highlight"><pre>CREATE TABLE name ...
 </pre></div>
-
-
 <p>Java</p>
 <div class="highlight"><pre><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
     <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
     <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
 <span class="o">}</span>
 </pre></div>
-
-
 <ul>
 <li>DM</li>
 </ul>
 <p>SQL</p>
 <div class="highlight"><pre>UPDATE name ...
 </pre></div>
-
-
 <p>Java</p>
 <div class="highlight"><pre><span class="k">new</span> <span class="n">Person</span><span class="o">()</span>
-<span class="n">p</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;Bill Stinnet&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"Bill Stinnet"</span>
 </pre></div>
-
-
 <ul>
 <li>Querying</li>
 </ul>
 <p>SQL</p>
 <div class="highlight"><pre>SELECT col_name ...
 </pre></div>
-
-
 <p>Java</p>
 <div class="highlight"><pre><span class="o">...</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">name</span>
 </pre></div>
-
-
 <p>LINQ is a powerful and compile time safe support for querying.</p>
 <h2>Learning Goals</h2>
 <ul>
@@ -320,7 +307,6 @@
 </li>
 </ul>
 <!-- Lecture 1 Slides/Notes End -->
-
 <h1>General Topics for DB's</h1>
 <p>[Prepared Statement]</p>
 <h2>CRUD and ACID</h2>
@@ -345,7 +331,6 @@
 </li>
 </ul>
 <!-- Lecture 2 Slides/Notes Start -->
-
 <h1>ODMG Standard</h1>
 <ul>
 <li>
@@ -368,7 +353,7 @@
 </li>
 </ul>
 <p>Examples in Java:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -528,8 +513,6 @@
 from    list_of_collections_and_typical_members
 where   condition
 </pre></div>
-
-
 <ul>
 <li><code>SELECT</code>: Get attributes</li>
 <li><code>FROM</code>: The base population of potential results to search in</li>
@@ -547,17 +530,13 @@ where   condition
 <p>This is illegal as the “dot” operator cannot be applied to a collection of objects:</p>
 <div class="highlight"><pre>select a.authors.title
 from   Authors a
-where  a.name = &quot;Tilmann Zaeschke&quot;
+where  a.name = "Tilmann Zaeschke"
 </pre></div>
-
-
 <p>Correct solution based on <em>correlated</em> variables:</p>
 <div class="highlight"><pre>select p.title
 from Authors a, a.authors p
-where a.name = &quot;Tilmann Zaeschke&quot;
+where a.name = "Tilmann Zaeschke"
 </pre></div>
-
-
 <h4>Return Types</h4>
 <ul>
 <li>Queries return sets, bags or lists</li>
@@ -566,35 +545,23 @@ where a.name = &quot;Tilmann Zaeschke&quot;
 <div class="highlight"><pre>select first: p.authored_by[1], p.title, p.year
 from   Publications p
 </pre></div>
-
-
 <p>In Java:</p>
 <div class="highlight"><pre><span class="n">Bag</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">Author</span> <span class="n">first</span><span class="o">,</span> <span class="n">string</span> <span class="n">title</span><span class="o">,</span> <span class="n">integer</span> <span class="n">year</span> <span class="o">}&gt;</span>
 </pre></div>
-
-
 <p>Queries with <code>DISTINCT</code> return a <em>set</em></p>
 <div class="highlight"><pre>select distinct a.name
 from   Authors a
 </pre></div>
-
-
 <p>In Java:</p>
 <div class="highlight"><pre><span class="n">Set</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
 </pre></div>
-
-
 <p>Queries with <code>ORDER BY</code> return a <em>list</em></p>
 <div class="highlight"><pre>select p.title
 from Publications s order by p.year desc
 </pre></div>
-
-
 <p>In Java:</p>
 <div class="highlight"><pre><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
 </pre></div>
-
-
 <h4>Extents</h4>
 <ul>
 <li>Extent of a type is the set (collection) of all active instances<ul>
@@ -612,7 +579,7 @@ from Publications s order by p.year desc
 <li>array: ordered, elements can be replaced</li>
 <li>dictionary: maps keys to values</li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -705,8 +672,6 @@ from Publications s order by p.year desc
   <span class="o">{</span> <span class="n">type</span> <span class="nf">name</span><span class="o">({</span> <span class="o">(</span><span class="n">in</span><span class="o">|</span><span class="n">out</span><span class="o">|</span><span class="n">inout</span><span class="o">)</span> <span class="n">type</span> <span class="n">name</span> <span class="o">})[</span><span class="n">raises</span> <span class="o">({</span> <span class="n">exception</span> <span class="o">})]</span> <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-
-
 <ul>
 <li>extent and key of a class can be specified optionally</li>
 <li>relationships specify inverse to maintain referential integrity</li>
@@ -746,7 +711,7 @@ from Publications s order by p.year desc
 </ul>
 </li>
 </ul>
-<p><img alt="Mappings" src="/images/object_databases/db_mappings.svg" /></p>
+<p><img alt="Mappings" class="img-responsive" src="/images/object_databases/db_mappings.svg"/></p>
 <ul>
 <li>Problems of Object Identity<ul>
 <li>Two object graphs can point to same objects</li>
@@ -853,7 +818,7 @@ from Publications s order by p.year desc
 <li>XML file: <em>hibernate.cfg.xml</em> (or Java properties file <em>hibernate.properties</em>)</li>
 </ul>
 <h3>Properties</h3>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Property</th>
@@ -916,8 +881,6 @@ from Publications s order by p.year desc
 <p>Example:</p>
 <div class="highlight"><pre><span class="n">SessionFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">().</span><span class="na">buildSessionFactory</span><span class="o">();</span>
 </pre></div>
-
-
 <ul>
 <li>Session<ul>
 <li>Connection to a database instance</li>
@@ -940,8 +903,6 @@ from Publications s order by p.year desc
 <span class="o">...</span>
 <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
 </pre></div>
-
-
 <ul>
 <li>Transaction<ul>
 <li>Opened with a Session object <code>beginTransaction()</code> and closed using <code>commit()</code></li>
@@ -953,8 +914,6 @@ from Publications s order by p.year desc
 <span class="o">...</span>
 <span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
 </pre></div>
-
-
 <ul>
 <li>Query<ul>
 <li>Represents a query (e.g. <code>SELECT * FROM PERSONS</code>, HQL).</li>
@@ -967,8 +926,6 @@ from Publications s order by p.year desc
 <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">p</span><span class="o">:</span> <span class="n">persons</span><span class="o">)</span>
   <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
 </pre></div>
-
-
 <ul>
 <li>Criteria<ul>
 <li>An object-oriented representation of query criteria</li>
@@ -996,8 +953,6 @@ CREATE TABLE AUTHORSPUBLICATIONS(
   PRIMARY KEY(AUTHOR_ID, PUBLICATION_ID))
 CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </pre></div>
-
-
 <h2>Mapping Inheritance</h2>
 <ul>
 <li>Multiple strategies<ul>
@@ -1103,7 +1058,6 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- OODB Manifesto start -->
-
 <h1>Object-Oriented Databases: Object Database Manifesto</h1>
 <ul>
 <li>Avoid impedance mismatch</li>
@@ -1315,9 +1269,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- OODB Manifesto end -->
-
 <!-- Lecture 5 Start -->
-
 <h1>db4o</h1>
 <ul>
 <li>Open Source project<ul>
@@ -1513,8 +1465,6 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <p>Enabling transparent persistence</p>
 <div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TransparentPersistenceSupport</span><span class="o">());</span>
 </pre></div>
-
-
 <h2>Activation</h2>
 <ul>
 <li>Activation controls depth of loaded fields<ul>
@@ -1543,8 +1493,6 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <span class="n">ObjectClass</span><span class="err">#</span><span class="n">cascadeOnActivate</span><span class="o">(</span><span class="n">bool</span><span class="o">)</span>
 <span class="n">ObjectClass</span><span class="err">#</span><span class="n">objectField</span><span class="o">(...).</span><span class="na">cascadeOnActivate</span><span class="o">(</span><span class="n">bool</span><span class="o">)</span>
 </pre></div>
-
-
 <h3>Transparent Activation</h3>
 <ul>
 <li>Make activation transparent to application logic<ul>
@@ -1560,8 +1508,6 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <p>Enabling the transparent activation framework</p>
 <div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TransparentActivationSupport</span><span class="o">());</span>
 </pre></div>
-
-
 <h2>db4o Transactions</h2>
 <ul>
 <li>ACID</li>
@@ -1732,10 +1678,10 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <li>uni- or bidirectional replication</li>
 <li>Replication of relational databases based on Hibernate</li>
 <li>Supported replication providers<ul>
-<li>db4o &rarr; db4o</li>
-<li>db4o &rarr; Hibernate</li>
-<li>Hibernate &rarr; db4o</li>
-<li>Hibernate &rarr; Hibernate</li>
+<li>db4o → db4o</li>
+<li>db4o → Hibernate</li>
+<li>Hibernate → db4o</li>
+<li>Hibernate → Hibernate</li>
 </ul>
 </li>
 <li>3 steps required<ol>
@@ -1824,8 +1770,6 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 <span class="c1">// exceptions for debugging (default: true)</span>
 <span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">exceptionsOnNotStorable</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
 </pre></div>
-
-
 <ul>
 <li>Bypassing Constructors<ul>
 <li>Constructors that cannot handle default values or <code>null</code> must be bypassed</li>
@@ -1850,9 +1794,7 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </li>
 </ul>
 <!-- End Slides/Notes Week 5/6 ? -->
-
 <!-- Start Slides/Notes Week 7 -->
-
 <h1>Versant</h1>
 <ul>
 <li>Highly scalable</li>
@@ -1945,8 +1887,8 @@ CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
 </ul>
 </li>
 </ul>
-<p><img alt="Nested Index" src="/images/object_databases/versant_cache.png" /></p>
-<table>
+<p><img alt="Nested Index" class="img-responsive" src="/images/object_databases/versant_cache.png"/></p>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>pointer</th>
@@ -2239,9 +2181,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End of Notes/Slides Week 7 -->
-
 <!-- Start Notes/Slides Week 8 -->
-
 <h1>ObjectStore</h1>
 <h2>General Topics of Persistence</h2>
 <ul>
@@ -2480,7 +2420,7 @@ The fundamental layer is usually not directly needed by the application develope
 </ul>
 </li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Permit</th>
@@ -2671,8 +2611,8 @@ The fundamental layer is usually not directly needed by the application develope
 <p>Use overloaded <code>new</code> operator:
     :::cpp
     os_database <em>db = os_database::open("publications.db", 0, 1);
-    Author </em>scheel = new(db, os_ts<Author>::get()) Author("Matthias Geel");
-    db-&gt;close();</p>
+    Author </em>scheel = new(db, os_ts<author>::get()) Author("Matthias Geel");
+    db-&gt;close();</author></p>
 <p>It's also possible to instantiate persistent array of objects.</p>
 <h3>Updating and Deleting Persistent Objects</h3>
 <ul>
@@ -2695,8 +2635,6 @@ The fundamental layer is usually not directly needed by the application develope
 <div class="highlight"><pre><span class="c1">// Relationship to the customers orders:</span>
 <span class="n">os_relationship_m_1</span><span class="p">(</span><span class="n">Customer</span><span class="p">,</span><span class="n">orders</span><span class="p">,</span><span class="n">Order</span><span class="p">,</span><span class="n">customer</span><span class="p">,</span><span class="n">os_List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">*&gt;</span><span class="p">)</span> <span class="n">orders</span><span class="p">;</span>
 </pre></div>
-
-
 <ul>
 <li>
 <p>Cursors over Collections</p>
@@ -2735,11 +2673,8 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End Notes/Slides Week 8 -->
-
 <!-- Start Slides/Notes Week 9 -->
-
 <!-- TODO Notes 0:00:00 -->
-
 <h1>Objectivity/DB</h1>
 <h2>Key Features</h2>
 <ul>
@@ -2796,7 +2731,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>A <em>DB</em> contains several <em>Containers</em>.</li>
 <li>A <em>Container</em> contains several <em>Objects</em>.</li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Logical</th>
@@ -3073,9 +3008,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Static safety</li>
 </ul>
 <!-- End Notes/Slides Week 9 -->
-
 <!-- Start Slides/Notes Week 10 -->
-
 <h1>Graph Databases</h1>
 <ul>
 <li>Domain specific solution<ul>
@@ -3299,7 +3232,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <h3>Comparison between InfiniteGraph and Neo4j</h3>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Infinite Graph (Objectivity)</th>
@@ -3342,9 +3275,7 @@ The fundamental layer is usually not directly needed by the application develope
 </tbody>
 </table>
 <!-- End Slides/Notes Week 10 -->
-
 <!-- Start Slides/Notes Week 11 -->
-
 <h1>Version Models</h1>
 <ul>
 <li>Various models proposed<ul>
@@ -3582,7 +3513,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <p>Example:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Employee</th>
@@ -3659,7 +3590,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <p>Example:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Employee</th>
@@ -3837,9 +3768,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End Slides/Notes Week 11 -->
-
 <!-- Start Slides/Notes Week 12 -->
-
 <h1>Indexing</h1>
 <p>Make OODBs faster and more performant</p>
 <ul>
@@ -4017,7 +3946,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>A Nested Index <em>NX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to a Multi-Index <em>MX(P)</em> for the same path</li>
 <li>Updating index structure is expensive</li>
 </ul>
-<p><img alt="Nested Index" src="/images/object_databases/nested_index.png" /></p>
+<p><img alt="Nested Index" class="img-responsive" src="/images/object_databases/nested_index.png"/></p>
 <h3>Path Index (PX)</h3>
 <ul>
 <li>Records all sub-paths leading to an ending object</li>
@@ -4026,7 +3955,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>A Path-Index <em>PX(P)</em> for path <em>P</em> with length <em>1</em> is equivalent to Multi-Index <em>MX(P)</em> an a Nested Index <em>NX(P)</em> for the same path</li>
 <li>Updating index structure better than with <em>NX</em></li>
 </ul>
-<p><img alt="Path Index" src="/images/object_databases/path_index.png" /></p>
+<p><img alt="Path Index" class="img-responsive" src="/images/object_databases/path_index.png"/></p>
 <h3>Join-Index (JX)</h3>
 <ul>
 <li>Originally for optimization of <em>joins</em> in Relational DBs</li>
@@ -4057,7 +3986,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>Complex queries expensive (hop over nodes)</li>
 <li>each reference in object has index structure for backward references</li>
 </ul>
-<p><img alt="Multi Index" src="/images/object_databases/multi_index.png" /></p>
+<p><img alt="Multi Index" class="img-responsive" src="/images/object_databases/multi_index.png"/></p>
 <h3>Access Support Relations (ASR)</h3>
 <ul>
 <li>Given a path create <em>4</em> index structures that support all desired queries (Nested Index, Path Index, Multi-Index)<ol>
@@ -4103,9 +4032,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End Slides/Notes Week 12 -->
-
 <!-- Start Slides Week 13 -->
-
 <h1>The OM Data Model</h1>
 <ul>
 <li>Extended Entity-Relationship model</li>
@@ -4129,7 +4056,7 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <h2>Typing and Classification</h2>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Typing</th>
@@ -4329,9 +4256,7 @@ The fundamental layer is usually not directly needed by the application develope
 <li>can be nested: n-ary relationships</li>
 </ul>
 <!-- End Slides/Notes Week 13 -->
-
 <!-- Begin Slides/Notes Week 14 -->
-
 <h2>Object Model Language (OML)</h2>
 <ul>
 <li>Declarative OOP language for OM data model</li>
@@ -4422,7 +4347,6 @@ The fundamental layer is usually not directly needed by the application develope
 </li>
 </ul>
 <!-- End Slides/Notes Week 14 -->
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

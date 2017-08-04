@@ -196,16 +196,12 @@
     <span class="nb">proc</span><span class="o">[-&gt;</span> <span class="n">n</span> <span class="p">{</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span>
 <span class="k">end</span>
 </pre></div>
-
-
 <p><em>This method takes a proc that represents a number and calls it with another proc (which just increments its argument) and the native Ruby number 0.</em>" - page 191</p>
 <p>Church to boolean:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">to_boolean</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
     <span class="nb">proc</span><span class="o">[</span><span class="kp">true</span><span class="o">][</span><span class="kp">false</span><span class="o">]</span>
 <span class="k">end</span>
 </pre></div>
-
-
 <p><em>"This works by taking a proc that represents a Boolean and calling it with <code>true</code> as its first argument and <code>false</code> as its second. <code>TRUE</code> just returns its first argument, so <code>to_boolean(TRUE)</code> will return <code>true</code>, and likewise for <code>FALSE</code> [...]"</em> - 193</p>
 <p><em>"In languages like Ruby, the <code>if</code>-<code>else</code> statement is nonstrict (or <strong>lazy</strong>): we give it a condition and two blocks, and it evaluates the condition to decide which of the two blocks to evaluate and return — it never evaluates both."</em> - page 200</p>
 <p><em>"Ruby [...] evaluates both arguments before</em> <code>IF</code> <em>gets a chance to decide which one to return."</em> - page 200</p>

@@ -223,7 +223,7 @@ It's mainly used to compare languages to each other about the possible castings,
 <li>Much simpler</li>
 </ul>
 <h3>Overview of Type Systems in OO-Languages</h3>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -258,7 +258,7 @@ It's mainly used to compare languages to each other about the possible castings,
 <li>Semantic classification: Subtypes provide <em>at least the behaviour</em> of their supertypes.</li>
 </ul>
 <p>A type is a <em>set</em> of values. <em>Subtype relation</em> corresponds to <em>subset relation</em>.</p>
-<p><img alt="Subtyping and Sets" src="/images/coop_subtyping_and_sets.svg" /></p>
+<p><img alt="Subtyping and Sets" class="img-responsive" src="/images/coop_subtyping_and_sets.svg"/></p>
 <ul>
 <li>In <em>nominal</em> programming languages the <em>programmer</em> decides about subtype relation</li>
 <li>In <em>structural</em> programming languages the <em>type checker</em> decides about subtype relation</li>
@@ -267,13 +267,13 @@ It's mainly used to compare languages to each other about the possible castings,
 <p>Based on substitution principle.</p>
 <h4>Covariance</h4>
 <p>Ordering of types from more specific to more generic (in direction of inheritance hierarchy)</p>
-<p><img alt="Covariance" src="/images/covariance.svg" /></p>
+<p><img alt="Covariance" class="img-responsive" src="/images/covariance.svg"/></p>
 <h4>Contravariance</h4>
 <p>Ordering of types from more generic to more specific (in oposite direction of inheritance hierarchy)</p>
-<p><img alt="Contravariance" src="/images/contravariance.svg" /></p>
+<p><img alt="Contravariance" class="img-responsive" src="/images/contravariance.svg"/></p>
 <h4>Variance for OOP</h4>
 <p><a href="https://class.coursera.org/progfun-005/lecture/83">Coursera:Scala</a></p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -300,11 +300,9 @@ It's mainly used to compare languages to each other about the possible castings,
 <span class="c1">//   v                        ..            // | co-     |</span>
 <span class="n">SubReturnType</span>   <span class="n">Sub</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SuperParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// v variant |</span>
 </pre></div>
-
-
 <p><em>Super</em> is more <strong>general</strong> than <em>Sub</em>.</p>
 <p><em>Sub</em> is more <strong>specific</strong> than <em>Super</em>.</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Programming Language</th>
@@ -331,7 +329,6 @@ It's mainly used to compare languages to each other about the possible castings,
 </tbody>
 </table>
 <!-- End of Notes Week 2 -->
-
 <p>In Java and C# arrays are covariant!</p>
 <h3>Behavioral Subtyping (Contracts)</h3>
 <p>What are the <em>properties</em> shared by the values of a type?</p>
@@ -352,7 +349,6 @@ This is expressed as interface specifications (contracts)</p>
 <li>Subtypes may have <em>stronger history constrains</em> than supertype</li>
 </ul>
 <!-- Beginning of Notes Week 4 -->
-
 <h4>Specification Inheritance (Inherit Contracts from Subtypes)</h4>
 <ul>
 <li>Subtype needs to satisfy the contract of the supertype (inheriting contracts)</li>
@@ -371,7 +367,7 @@ This is expressed as interface specifications (contracts)</p>
 <h3>Types as Contracts</h3>
 <p>Types can be seen as a kind of contracts.</p>
 <p>Overriding Methods must:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Behavioral Subtyping (contracts)</th>
@@ -399,10 +395,8 @@ This is expressed as interface specifications (contracts)</p>
 <li>History constraints</li>
 </ul>
 <!-- End of Slides 2 -->
-
 <h2>Inheritance</h2>
 <!-- Notes Week 4 01:18:05  p. 4 -->
-
 <h3>Difference between inheritance and subtyping</h3>
 <p>Inheritance allows to reuse the code (specialization) inside a class
 (member variables and method definitions).</p>
@@ -513,9 +507,7 @@ of <em>both</em> arguments.</p>
 <p>TODO</p>
 <p>...</p>
 <!-- Beginning of Slides 4.2 Parametric Polymorphism p. 61 (29) -->
-
 <!-- Beginning of Notes Week 7 p. 8 -->
-
 <h1>Parametric Polymorphism</h1>
 <h2>Java, C#, ...</h2>
 <ul>
@@ -555,9 +547,7 @@ of <em>both</em> arguments.</p>
 </li>
 </ul>
 <!-- End of Notes Week 7 -->
-
 <!-- Beginning of Notes Week 8 -->
-
 <ul>
 <li>Methods can also have type arguments (i.e <code>static &lt;T&gt; void printAll(Collection&lt;T&gt; c) {...}</code>)</li>
 </ul>
@@ -568,8 +558,6 @@ of <em>both</em> arguments.</p>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-
-
 <blockquote>
 <p>There exits a type argument <code>T</code> such that <code>c</code> has type <code>collection&lt;T&gt;</code></p>
 </blockquote>
@@ -595,8 +583,6 @@ of <em>both</em> arguments.</p>
 <span class="n">w</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cell</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span> <span class="c1">// w.data has type Cell&lt;String&gt;</span>
 <span class="n">w</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span> <span class="c1">// now w.data has type Cell&lt;Object&gt;!</span>
 </pre></div>
-
-
 <ul>
 <li>
 <p>Generics with wildcards (and possibly with bounds) have a subtype relation if the type parameters have a relation</p>
@@ -651,9 +637,7 @@ of <em>both</em> arguments.</p>
 </li>
 </ul>
 <!-- End of Slides 4.2 -->
-
 <!-- End of Notes Week 8 -->
-
 <h1>Information Hiding and Encapsulation</h1>
 <p><!-- Beginning of Slides 5 -->
 <!-- Beginning of Notes Week 9 --></p>
@@ -695,7 +679,7 @@ provided only the information needed.</p>
 <li>default access: friend interface</li>
 <li><code>private</code>: implementation</li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Modifier</th>
@@ -777,7 +761,7 @@ provided only the information needed.</p>
 <p>Rules for overriding</p>
 <ul>
 <li>Access modifier of overriding method must provide at least as much access as the overridden method</li>
-<li>default access &rarr; <code>protected</code> &rarr; <code>public</code></li>
+<li>default access → <code>protected</code> → <code>public</code></li>
 <li><code>private</code> methods can't be overridden: Hiding</li>
 </ul>
 </li>
@@ -830,10 +814,8 @@ provided only the information needed.</p>
 </li>
 </ol>
 <!-- End of Slides 5 -->
-
 <h1>Object Structures</h1>
 <!-- Beginnning of Slides 6 -->
-
 <blockquote>
 <p>An object structure is a set of objects that are connected via references.</p>
 </blockquote>
@@ -941,10 +923,8 @@ provided only the information needed.</p>
 <li>Subclassing is prohibited (<code>final</code>)</li>
 </ul>
 <!-- End Notes Week 9 -->
-
 <h2>Readonly Types</h2>
 <!-- Beginning of Notes Week 10 -->
-
 <ul>
 <li>Restrict access to shared objects</li>
 <li>Common: grant read-only access</li>
@@ -1007,11 +987,11 @@ provided only the information needed.</p>
 <li>Array access</li>
 <li>Method invocation</li>
 </ul>
-<p>is determined by type combinator: &#9658;</p>
-<table>
+<p>is determined by type combinator: ►</p>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
-<th>&#9658;</th>
+<th>►</th>
 <th>rw T</th>
 <th>ro T</th>
 </tr>
@@ -1095,8 +1075,6 @@ provided only the information needed.</p>
 </blockquote>
 <div class="highlight"><pre><span class="n">any</span> <span class="n">T</span> <span class="n">o</span><span class="o">;</span>
 </pre></div>
-
-
 <p>There exitst an owner such that o ist an istance of T and has that owner.</p>
 <h4>Subtyp Relation between Ownership Types</h4>
 <p><strong>rep</strong> types and <strong>peer</strong> types are subtypes of corresponsing <strong>any</strong> types.</p>
@@ -1120,10 +1098,10 @@ provided only the information needed.</p>
 </ul>
 </li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
-<th>&#9658;</th>
+<th>►</th>
 <th>peer T</th>
 <th>rep T</th>
 <th>any T</th>
@@ -1162,21 +1140,17 @@ provided only the information needed.</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="Ownership Types Hierarchy" src="/images/coop_ownership_types_hierarchy.svg" /></p>
+<p><img alt="Ownership Types Hierarchy" class="img-responsive" src="/images/coop_ownership_types_hierarchy.svg"/></p>
 <h4>Field Access and Method Invocation (Type Rules)</h4>
 <p><span class="math">\(\tau(a)\)</span>: Type of a</p>
 <p>Field <strong>Read</strong> or Method <strong>Parameters</strong>:</p>
 <div class="highlight"><pre><span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
 </pre></div>
-
-
 <p>Is correctly typed if:</p>
 <div class="math">$$\tau(v) :&gt; \tau(e) \blacktriangleright \tau(f)$$</div>
 <p>Field <strong>Write</strong> or Method <strong>Result</strong>:</p>
 <div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
 </pre></div>
-
-
 <div class="math">$$\tau(e) \blacktriangleright \tau(f) :&gt; \tau(v)$$</div>
 <p>And</p>
 <div class="math">$$\tau(e) \blacktriangleright \tau(f)$$</div>
@@ -1201,16 +1175,12 @@ provided only the information needed.</p>
     <span class="n">addr</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span> <span class="c1">// cannot be called by clients (lost) only by this bject</span>
   <span class="o">}</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAddr</span><span class="o">(</span><span class="n">any</span> <span class="n">Address</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">addr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">rep</span> <span class="nf">Address</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// cloning necessary, can&#39;t assign any to rep</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">rep</span> <span class="nf">Address</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// cloning necessary, can't assign any to rep</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-
-
 <!-- End of Notes Week 10 -->
-
 <!-- Beginning of Notes Week 11 -->
-
 <h2>Owner-as-Modifier</h2>
 <ul>
 <li>Readonly Typesystem: leaking is safe (only readonly leaking)</li>
@@ -1245,7 +1215,7 @@ provided only the information needed.</p>
 <p>Stronger concept for encapsulation than private-protected-public</p>
 </li>
 <li>
-<p>leaking only happens as readonly ('something' &#9658; <strong>rep</strong>: <strong>lost</strong>)</p>
+<p>leaking only happens as readonly ('something' ► <strong>rep</strong>: <strong>lost</strong>)</p>
 </li>
 <li>Standard (Java): default modifier would be <strong>peer</strong>, flat datastructures</li>
 <li>'shared ownership' is not possible. i.e List owns nodes and modifying Iterator would need readwrite access to nodes.<ul>
@@ -1267,9 +1237,7 @@ provided only the information needed.</p>
 </li>
 </ul>
 <!-- End of Slides 6 -->
-
 <!-- Beginning of Slides 7 -->
-
 <h1>Initialization and Null-References</h1>
 <ul>
 <li>Main Usages of Null-References<ul>
@@ -1354,9 +1322,7 @@ provided only the information needed.</p>
 </blockquote>
 <p>There could also be other invariants that have to hold after object is initialized, but can be broken before the object is fully initialized.</p>
 <!-- End Notes Week 11 -->
-
 <!-- Beginning Notes Week 12 -->
-
 <h2>Type Rules</h2>
 <ul>
 <li>Most type rules of Java remain unchanged</li>
@@ -1374,7 +1340,7 @@ provided only the information needed.</p>
 </ul>
 </li>
 </ul>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th></th>
@@ -1401,7 +1367,7 @@ provided only the information needed.</p>
 </tbody>
 </table>
 <p>No downcasts from unclassified to free or committed (no reasonable run-time checks).</p>
-<p><img alt="Construction types hierarchy" src="/images/coop_non-null_and_construction_types.png" /></p>
+<p><img alt="Construction types hierarchy" class="img-responsive" src="/images/coop_non-null_and_construction_types.png"/></p>
 <h2>Local Initialization</h2>
 <ul>
 <li>An object is locally initialized: all non-null fields have non-null values</li>
@@ -1410,9 +1376,7 @@ provided only the information needed.</p>
 <p>Field access:</p>
 <div class="highlight"><pre><span class="n">e</span><span class="o">.</span><span class="na">f</span>
 </pre></div>
-
-
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Field access</th>
@@ -1467,14 +1431,12 @@ provided only the information needed.</p>
 <p>A field write</p>
 <div class="highlight"><pre><span class="n">a</span><span class="o">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">b</span>
 </pre></div>
-
-
 <p>is well-typed if
 - <code>a</code> and <code>b</code> are well-typed
 - <code>a</code>'s type is a non-null type (<code>!</code>)
 - <code>b</code>'s class and non-null type conforms to <code>a.f</code>
 - <strong><code>a</code>'s type is <em>free</em> or <code>b</code>'s type is <em>committed</em> </strong></p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>type of <code>a</code> \ type of <code>b</code></th>
@@ -1486,21 +1448,21 @@ provided only the information needed.</p>
 <tbody>
 <tr>
 <td>committed</td>
-<td>&#10003;</td>
-<td>&#10008;</td>
-<td>&#10008;</td>
+<td>✓</td>
+<td>✘</td>
+<td>✘</td>
 </tr>
 <tr>
 <td>free</td>
-<td>&#10003;</td>
-<td>&#10003;</td>
-<td>&#10003;</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
 </tr>
 <tr>
 <td>unc</td>
-<td>&#10003;</td>
-<td>&#10008;</td>
-<td>&#10008;</td>
+<td>✓</td>
+<td>✘</td>
+<td>✘</td>
 </tr>
 </tbody>
 </table>
@@ -1514,7 +1476,7 @@ provided only the information needed.</p>
 </li>
 </ul>
 <p>The type of <code>e.f</code> is:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>type of e \ type of f</th>
@@ -1561,8 +1523,6 @@ provided only the information needed.</p>
   <span class="k">return</span> <span class="o">...;</span>
 <span class="o">}</span>
 </pre></div>
-
-
 <ul>
 <li>Overriding requires usual co- and contravariant rules<ul>
 <li>The receiver (<code>this</code>) counts as parameter</li>
@@ -1618,8 +1578,6 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
   <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
-
-
 <h2>Arrays</h2>
 <div class="highlight"><pre><span class="c1">// Elements</span>
 <span class="c1">//    |</span>
@@ -1632,8 +1590,6 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <span class="c1">//        |</span>
 <span class="c1">//      Array</span>
 </pre></div>
-
-
 <ul>
 <li>Arrays have no constructors</li>
 <li>Problem: Array initialization is often done with loops<ul>
@@ -1662,9 +1618,7 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <li>At end of constructor: object might not yet be constructed (i.e subclass constructors)</li>
 </ul>
 <!-- End of Notes Week 12 -->
-
 <!-- Beginning of Notes Week 13 -->
-
 <h2>Initialization of Global Data</h2>
 <ul>
 <li>OO-Programs have also global data</li>
@@ -1707,9 +1661,7 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <li>Carefull with global data (as programmer)!</li>
 </ul>
 <!-- End of Slides 7 -->
-
 <!-- Beginning of Slides 8 -->
-
 <h1>Reflections</h1>
 <ul>
 <li>Program can observe and modify its structure and behavioral at run-time</li>
@@ -1735,8 +1687,6 @@ All references inside the 'outer' <code>new</code> expression point to transitiv
 <p>Example:</p>
 <div class="highlight"><pre><span class="kd">public</span> <span class="n">T</span> <span class="nf">newInstance</span><span class="o">(</span> <span class="o">)</span> <span class="kd">throws</span> <span class="n">InstantiationException</span><span class="o">,</span> <span class="n">IllegalAccessException</span><span class="o">;</span>
 </pre></div>
-
-
 <p>If the constructor called internally by <code>newInstance</code> throws an exception (even a checked exception)
 it gets swalowed and rethrown as an unchecked exception.</p>
 <ul>
@@ -1778,7 +1728,7 @@ it gets swalowed and rethrown as an unchecked exception.</p>
 <li>Performance can be wery bad</li>
 </ul>
 <p>Reflection and Typechecking:</p>
-<table>
+<table class="table table-hover table-striped">
 <thead>
 <tr>
 <th>Degree of Reflection</th>
@@ -1801,11 +1751,8 @@ it gets swalowed and rethrown as an unchecked exception.</p>
 </tbody>
 </table>
 <!-- End of Slides 8 -->
-
 <!-- End of Notes Week 13 -->
-
 <!-- End of Course! -->
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
