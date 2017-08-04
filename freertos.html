@@ -6,8 +6,9 @@
 
 
 
-    <meta name="tags" content="C" />
-    <meta name="tags" content="C++" />
+    <meta name="tags" content="Computer Science" />
+    <meta name="tags" content="OS" />
+    <meta name="tags" content="FreeRTOS" />
 
 </head>
 
@@ -34,70 +35,26 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="http://lukaswoodtli.github.io/endianness.html" rel="bookmark"
-         title="Permalink to Endianness">Endianness</a></h2>
+      <a href="http://lukaswoodtli.github.io/freertos.html" rel="bookmark"
+         title="Permalink to FreeRTOS">FreeRTOS</a></h2>
  
   </header>
   <footer class="post-info">
-    <abbr class="published" title="2015-06-17T00:00:00+02:00">
-      Wed 17 June 2015
-    </abbr>
-    <abbr class="modified" title="2015-06-17T00:00:00+02:00">
-      Wed 17 June 2015
+    <abbr class="published" title="2017-06-16T00:00:00+02:00">
+      Fri 16 June 2017
     </abbr>
     <address class="vcard author">
       By           <a class="url fn" href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
     </address>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>The endianness means the representation of a variable (if it is bigger than one byte) in the memory.</p>
-<blockquote>
-<p>Big-Endian: Most Significant Byte (MSB) is first (bigger end is first)</p>
-<p>Little Endian: Least Significant Byte (LSB) is first (little end is first)</p>
-</blockquote>
-<p><img alt="Big-Endian and Little-Endian" src="/images/endianness.png" /></p>
-<h1>CPU's</h1>
-<h2>Big-Endian:</h2>
+    <p>This page contains some random notes for FreeRTOS.</p>
+<p>See also: <a href="https://github.com/LukasWoodtli/FreeRtosExamples">FreeRtosExamples</a>
+and: <a href="http://www.freertos.org/">FreeRtos</a></p>
+<h1>Configuration</h1>
+<p>The configuration of the kernel is set in <code>FreeRTOSConfig.h</code></p>
 <ul>
-<li>Motorola-6800</li>
-<li>Motorola-68k</li>
-<li>Coldfire</li>
-<li>System-z</li>
-<li>Sun-SPARC</li>
-<li>PowerPC (some models can be switched to little-endian)</li>
-<li>Atmel AVR32</li>
-<li>TMS9900</li>
-</ul>
-<h2>Little-Endian:</h2>
-<ul>
-<li>6502</li>
-<li>NEC-V800</li>
-<li>PICmicro</li>
-<li>Intel-x86</li>
-<li>Alpha</li>
-<li>Altera Nios</li>
-<li>Atmel AVR</li>
-<li>SH3/SH4 (some)</li>
-<li>VAX</li>
-</ul>
-<h2>Configurable:</h2>
-<ul>
-<li>PowerPC (some models)</li>
-<li>IA-64 (Hewlett-Packard and Intel)</li>
-<li>ARM (and XScale, little-endian as default)</li>
-</ul>
-<h1>Uses</h1>
-<h2>Technical</h2>
-<p>IP and Ethernet Network Byte Order: Big-Endian</p>
-<h2>Real-Life use</h2>
-<h3>Big-Endian:</h3>
-<ul>
-<li>written arabic numbers: 1234 (thousend-two-hundert-thirty-four)</li>
-<li>Time: 18:34</li>
-</ul>
-<h3>Little-Endian:</h3>
-<ul>
-<li>European Date (dd. MM YYYY): 17. June 2015</li>
+<li><code>configTOTAL_HEAP_SIZE</code>: This must be enough space to allocate all tasks. If the kernel does't start it could be that the heap is too small.</li>
 </ul>
   </div><!-- /.entry-content -->
 </section>

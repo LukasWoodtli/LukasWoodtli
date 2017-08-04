@@ -1,194 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
-
-        <title>Understanding Computation · Lukas Woodtli</title>
+          <title>Lukas Woodtli</title>
+        <meta charset="utf-8" />
 
 
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <meta name="tags" content="Computer Science" />
 
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
-
-        </ul>
-      </div><!-- /.navbar-collapse -->
-
-    </div> <!--container-->
-  </nav>
-
-
-    <div class="container">
-      <div class="col-md-2">
-      </div>
-
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/understanding_computation.html">Understanding Computation</a></h1>
-    </div>
-
-        </div>
-
-        <div class="row">
-
-    <span id="article_info">
-    <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month09">09</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month09">12</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
-  </span>
-
-  <hr/>
-
-  <div id="article_content">
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli <strong></strong></a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/pages/resume.html">Resume</a></li>
+            <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+            <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+            <li><a href="http://lukaswoodtli.github.io/">Welcome to my Site</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and Headhunters</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://lukaswoodtli.github.io/understanding_computation.html" rel="bookmark"
+         title="Permalink to Understanding Computation">Understanding Computation</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-09-12T00:00:00+02:00">
+      Mon 12 September 2016
+    </abbr>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
     <p>This page collects notes and citations from the book:</p>
 <p><a href="http://computationbook.com/">Understanding Computation by Tom Stuart</a></p>
-<div class="toc">
-<ul>
-<li><a href="#i-programs-and-machines">I. Programs and Machines</a><ul>
-<li><a href="#the-meaning-of-programs">The Meaning of Programs</a><ul>
-<li><a href="#the-meaning-of-meaning">The Meaning of "Meaning"</a></li>
-<li><a href="#operational-semantics">Operational Semantics</a></li>
-</ul>
-</li>
-<li><a href="#the-simplest-computers">The Simplest Computers</a></li>
-<li><a href="#just-add-power">Just Add Power</a></li>
-<li><a href="#the-ultimate-machine">The Ultimate Machine</a></li>
-</ul>
-</li>
-<li><a href="#ii-computation-and-computability">II. Computation and Computability</a><ul>
-<li><a href="#programming-with-nothing">Programming with Nothing</a></li>
-<li><a href="#universality-is-everywhere">Universality Is Everywhere</a><ul>
-<li><a href="#partial-recursive-functions">Partial Recursive Functions</a></li>
-<li><a href="#ski-combinator-calculus">SKI Combinator Calculus</a></li>
-<li><a href="#iota">Iota</a></li>
-<li><a href="#tag-systems">Tag Systems</a></li>
-</ul>
-</li>
-<li><a href="#impossible-programs">Impossible Programs</a><ul>
-<li><a href="#code-is-data">Code Is Data</a></li>
-<li><a href="#universal-systems-can-loop-forever">Universal Systems Can Loop Forever</a></li>
-<li><a href="#decidability">Decidability</a></li>
-<li><a href="#the-halting-problem">The Halting Problem</a></li>
-</ul>
-</li>
-<li><a href="#programming-in-toyland">Programming in Toyland</a><ul>
-<li><a href="#abstract-interpretation">Abstract Interpretation</a></li>
-<li><a href="#static-semantics">Static Semantics</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#afterword">Afterword</a></li>
-</ul>
-</div>
-<h1 id="i-programs-and-machines">I. Programs and Machines</h1>
+<p>[TOC]</p>
+<h1>I. Programs and Machines</h1>
 <p><em>"To create an environment where [...] computation can occur, we need three basic ingredients:“</em></p>
 <ul>
 <li><em>"A <strong>machine</strong> capable of performing the computation"</em></li>
 <li><em>"A <strong>language</strong> for writing instructions that the machine can understand"</em></li>
 <li><em>"A <strong>program</strong> written in that language, describing the exact computation that the machine should perform"</em> - page 18</li>
 </ul>
-<h2 id="the-meaning-of-programs">The Meaning of Programs</h2>
+<h2>The Meaning of Programs</h2>
 <p><em>"But computer programming isn't really about <strong>programs</strong>, it's about <strong>ideas</strong>"</em> - page 20</p>
-<h3 id="the-meaning-of-meaning">The Meaning of "Meaning"</h3>
+<h3>The Meaning of "Meaning"</h3>
 <p><em>"semantics is the study of the connection between words and their meanings"</em> - page 21</p>
-<h3 id="operational-semantics">Operational Semantics</h3>
+<h3>Operational Semantics</h3>
 <p>Expression and Statements:</p>
 <p><em>"The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine."</em> - page 35</p>
 <p><em>"difference between expressions and statements. For expressions, we pass an environment into #reduce and get a reduced expression back; no new environment is returned"</em> - page 37</p>
@@ -212,7 +84,7 @@
 </ul>
 <p><em>"Reducing an expression and an environment gives us a new expression, and we may reuse the old environment next time; reducing a statement and an environment gives us a new statement and a new environment."</em> - page 70</p>
 <p><em>"alternative style of operational semantics, called reduction semantics , which explicitly separates these “what do we reduce next?” and “how do we reduce it?” phases by introducing so-called reduction contexts"</em> - page 71</p>
-<h2 id="the-simplest-computers">The Simplest Computers</h2>
+<h2>The Simplest Computers</h2>
 <p><em>"each finite automaton has a hardcoded collection of rules that determine how it should move from one state to another in response to input"</em> - page 73</p>
 <p><em>"finite automata also have a rudimentary way of producing output"</em> - page 74</p>
 <p><em>"[Deterministic finite automaton:] it's always absolutely certain which state it will end up in"</em> - page 75</p>
@@ -260,7 +132,7 @@
 <p><em>"Free moves are useful for this conversion because they provide an unobtrusive way to glue together smaller machines into larger ones without affecting the behavior of any of the components."</em> - page 102</p>
 <p><em>"Nondeterminism and free moves make it easier to design finite state machines to perform specific jobs"</em> - page 105</p>
 <p><em>"it's possible to convert any nondeterministic finite automaton into a deterministic one that accepts exactly the same strings"</em> - page 105</p>
-<h2 id="just-add-power">Just Add Power</h2>
+<h2>Just Add Power</h2>
 <p><em>"A finite state machine with a built-in stack is called a pushdown automaton (PDA), and when that machine's rules are deterministic, we call it a deterministic pushdown automaton (DPDA)."</em> - page 122</p>
 <p><em>"[...] a PDA rule into five parts:</em></p>
 <ul>
@@ -294,7 +166,7 @@
 <p><em>"This algorithm is called <strong>LL</strong> parsing. The first L stands for “left-to-right,” because the input string is read in that direction, and the second L stands for “left derivation,” because it's always the leftmost (i.e., uppermost) symbol on the stack that gets expanded."</em> - page 146</p>
 <p><em>"The unlimited storage provided by a stack lets a PDA remember arbitrary amounts of information during a computation and refer back to it later."</em> - page 148</p>
 <p><em>"There's a feedback loop between the rules and the stack—the contents of the stack affect which rules the machine can follow, and following a rule will affect the stack contents—which allows a PDA to store away information on the stack that will influence its future execution."</em> - page 148</p>
-<h2 id="the-ultimate-machine">The Ultimate Machine</h2>
+<h2>The Ultimate Machine</h2>
 <p>Turing machine:</p>
 <p><em>"[...] unified rule format has five parts:</em></p>
 <ul>
@@ -312,24 +184,28 @@
 <p><em>"we are able to design a machine that can simulate any other DTM by reading its rules, accept states, and initial configuration from the tape and stepping through its execution, essentially acting as a Turing machine rulebook interpreter. A machine that does this is called a <strong>universal Turing machine</strong> (UTM)."</em> - page 177</p>
 <p><em>"We can write software - an encoded description of a Turing machine - onto a tape, feed that tape to the UTM, and have our software executed to produce the behavior we want."</em> - page 177</p>
 <p><em>"One challenge is that every Turing machine has a finite number of states and a finite number of different characters it can store on its tape, with both of these numbers being fixed in advance by its rulebook, and a UTM is no exception.</em>" - page 178</p>
-<h1 id="ii-computation-and-computability">II. Computation and Computability</h1>
+<h1>II. Computation and Computability</h1>
 <p><em>"As programmers we work with languages and machines that are designed to fit our mental models of the world, and we expect them to come equipped with features that make it easy to translate our ideas into implementations. These human-centered designs are motivated by convenience rather than necessity"</em> - page 182</p>
 <p><em>"[...] hard theoretical constraints: certain problems just can't be solved by any computer, no matter how fast and efficient it is."</em> - page 182</p>
-<h2 id="programming-with-nothing">Programming with Nothing</h2>
+<h2>Programming with Nothing</h2>
 <p>Chruch numerals:</p>
 <p><em>"Each number corresponds to a unique way of repeating an action: the number one corresponds to just performing the action; the number two corresponds to performing it and then performing it again; and so on. The number zero, unsurprisingly, corresponds to not performing the action at all."</em> - page 189</p>
 <p><em>"[...] Church encoding after Alonzo Church, the inventor of the lambda calculus"</em> - page 190</p>
 <p><em>"[Church numeral to integer] conversion:</em></p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_integer</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">to_integer</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
     <span class="nb">proc</span><span class="o">[-&gt;</span> <span class="n">n</span> <span class="p">{</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span>
 <span class="k">end</span>
 </pre></div>
+
+
 <p><em>This method takes a proc that represents a number and calls it with another proc (which just increments its argument) and the native Ruby number 0.</em>" - page 191</p>
 <p>Church to boolean:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_boolean</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">to_boolean</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
     <span class="nb">proc</span><span class="o">[</span><span class="kp">true</span><span class="o">][</span><span class="kp">false</span><span class="o">]</span>
 <span class="k">end</span>
 </pre></div>
+
+
 <p><em>"This works by taking a proc that represents a Boolean and calling it with <code>true</code> as its first argument and <code>false</code> as its second. <code>TRUE</code> just returns its first argument, so <code>to_boolean(TRUE)</code> will return <code>true</code>, and likewise for <code>FALSE</code> [...]"</em> - 193</p>
 <p><em>"In languages like Ruby, the <code>if</code>-<code>else</code> statement is nonstrict (or <strong>lazy</strong>): we give it a condition and two blocks, and it evaluates the condition to decide which of the two blocks to evaluate and return — it never evaluates both."</em> - page 200</p>
 <p><em>"Ruby [...] evaluates both arguments before</em> <code>IF</code> <em>gets a chance to decide which one to return."</em> - page 200</p>
@@ -338,12 +214,12 @@
 <p><em>"Function calls are the only thing that actually <strong>happens</strong> when a lambda calculus program is evaluated"</em> - page 225</p>
 <p><em>"function calls are the only kind of syntax that can be reduced."</em> - page 225</p>
 <p><em>"You might protest that</em> <code>3 - 5 = 0</code> <em>isn't called "subtraction" where you come from, and you'd be right: the technical name for this operation is  "monus", because the nonnegative integers under addition form a commutative monoid instead of a proper abelian group."</em> - page 229</p>
-<h2 id="universality-is-everywhere">Universality Is Everywhere</h2>
+<h2>Universality Is Everywhere</h2>
 <p><em>"Even though any individual Turing machine has a hardcoded rulebook, the universal Turing machine demonstrates that it's possible to design a device that can adapt to arbitrary tasks by reading instructions from a tape. These instructions are effectively a piece of software that controls the operation of the machine's hardware, just like in the general-purpose programmable computers we use every day."</em> - page 231</p>
 <p><em>"The term Turing complete is often used to describe a system or programming language that can simulate any Turing machine."</em></p>
 <p><em>"a Turing machine can act as an interpreter for the lambda calculus by storing a representation of a lambda calculus expression on the tape and repeatedly updating it according to a set of reduction rules"</em> - page 234</p>
 <p><em>"Since every Turing machine can be simulated by a lambda calculus program, and every lambda calculus program can be simulated by a Turing machine, the two systems are exactly equivalent in power."</em> - page 234</p>
-<h3 id="partial-recursive-functions">Partial Recursive Functions</h3>
+<h3>Partial Recursive Functions</h3>
 <p><em>"partial recursive functions are programs that are constructed from four fundamental building blocks in different combinations.</em></p>
 <p><em>[...]</em></p>
 <p><em>The first two building blocks are called <strong>zero</strong> and <strong>increment</strong></em></p>
@@ -357,7 +233,7 @@
 <p><em><strong>minimize</strong> takes a block and calls it repeatedly with a single numeric argument. For the first call, it provides 0 as the argument, then 1, then 2, and keeps calling the block with larger and larger numbers until it returns zero.</em></p>
 <p><em>By adding <strong>minimize</strong> to <strong>zero</strong>, <strong>increment</strong>, and <strong>recurse</strong>, we can build many more functions—all the <strong>partial</strong> recursive functions—including ones that don't always halt.</em></p>
 <p><em>With <strong>minimize</strong>, it's possible to fully simulate a Turing machine by repeatedly calling the primitive recursive function that performs a single simulation step. The simulation will continue until the machine halts - and if that never happens, it'll run forever.</em> - pages 235 - 238</p>
-<h3 id="ski-combinator-calculus">SKI Combinator Calculus</h3>
+<h3>SKI Combinator Calculus</h3>
 <p><em>"The SKI calculus is even simpler, with only two kinds of expression - calls and alphabetic <strong>symbols</strong> - and much easier rules. All of its power comes from the three special symbols <code>S</code>, <code>K</code>, and <code>I</code> (called <strong>combinators</strong>), each of which has its own reduction rule:</em></p>
 <ul>
 <li><em>Reduce <code>S[a][b][c]</code> to <code>a[c][b[c]]</code>, where <code>a</code>, <code>b</code>, and <code>c</code> can be any SKI calculus expressions.</em></li>
@@ -369,7 +245,7 @@
 <p><em>"Although the SKI calculus has three combinators, the <code>I</code> combinator is actually redundant. There are many expressions containing only <code>S</code> and <code>K</code> that do the same thing as <code>I</code></em></p>
 <p>[...]</p>
 <p><em><code>S[K][K]</code> has the same behavior as <code>I</code>, and in fact, that's true for any SKI expression of the form <code>S[K][whatever]</code>. The <code>I</code> combinator is syntactic sugar that we can live without; just the two combinators <code>S</code> and <code>K</code> are enough for universality."</em> - pages 245-246</p>
-<h3 id="iota">Iota</h3>
+<h3>Iota</h3>
 <p><em>"iota (<code>ɩ</code>) is an extra combinator that can be added to the SKI calculus. Here is its reduction rule: Reduce <code>ɩ[a]</code> to <code>a[S][K]</code>."</em> - page 246</p>
 <p><em>"[...] a language called Iota whose programs <strong>only</strong> use the <code>ɩ</code> combinator. Although it only has one combinator, Iota is a universal language</em>" - page 246</p>
 <p><em>"We can convert an SKI expression to Iota by applying these substitution rules:</em></p>
@@ -379,12 +255,12 @@
 <li><em>Replace <code>I</code> with <code>ɩ[ɩ]</code>.</em></li>
 </ul>
 <p>page 246</p>
-<h3 id="tag-systems">Tag Systems</h3>
+<h3>Tag Systems</h3>
 <p><em>"a tag system operates on a string by repeatedly adding new characters to the end of the string and removing them from the beginning."</em> - page 248</p>
 <p><em>"A tag system's description has two parts: first, a collection of rules, where each rule specifies some characters to append to the string when a particular character appears at the beginning [...] and second, a number, called the deletion number, which specifies how many characters to delete from the beginning of the string after a rule has been followed."</em> - page 249</p>
 <p><em>"Having a deletion number greater than 1 is essential for making this tag system work. Because every <strong>second</strong> character triggers a rule, we can influence the system's behavior by arranging for certain characters to appear (or not appear) in these trigger positions."</em> - page 254</p>
 <p><em>"Cyclic tag systems are extremely limited - they have inflexible rules, only two characters, and the lowest possible deletion number - but surprisingly, it's still possible to use them to simulate any tag system."</em> - page 260</p>
-<h2 id="impossible-programs">Impossible Programs</h2>
+<h2>Impossible Programs</h2>
 <p><em>"The practical purpose of a computing machine is to perform algorithms. An algorithm is a list of instructions describing some process for turning an input value into an output value, as long as those instructions fulfill certain criteria:</em></p>
 <p>Finiteness:</p>
 <p><em>There are a finite number of instructions.</em></p>
@@ -399,28 +275,28 @@
 <p><em>"there's a real difference between the abstract, intuitive idea of an algorithm and the concrete, logical implementation of that algorithm within a computational system. Could there ever be an algorithm so large, complex, and unusual that its essence can't be captured by an unthinking mechanical process?"</em> - page 276</p>
 <p><em>"the question is philosophical rather than scientific"</em> - page 276</p>
 <p><em>"The idea that any algorithm can be performed by a machine - specifically a deterministic Turing machine - is called the <strong>Church–Turing thesis</strong>, and although it's just a conjecture rather than a proven fact, it has enough evidence in its favor to be generally accepted as true.</em>" - page 277</p>
-<h3 id="code-is-data">Code Is Data</h3>
+<h3>Code Is Data</h3>
 <p><em>"programs can be represented as data so that they can be used as input to other programs; it's the unification of code and data that makes software possible in the first place."</em> - page 279</p>
-<h3 id="universal-systems-can-loop-forever">Universal Systems Can Loop Forever</h3>
+<h3>Universal Systems Can Loop Forever</h3>
 <p><em>"any system that's powerful enough to be universal will inevitably allow us to construct computations that loop forever without halting."</em> - page 281</p>
 <p><em>"So why must every universal system bring nontermination along for the ride?"</em> - page 283</p>
 <p><em>"it's impossible to remove features (e.g., <code>while</code> loops) from a programming language in a way that prevents us from writing nonhalting programs while keeping the language powerful enough to be universal."</em> - page 287</p>
 <p><em>"Languages that have been carefully designed to ensure that their programs must always halt are called <strong>total programming languages</strong>, as opposed to the more conventional <strong>partial programming languages</strong> whose programs sometimes halt with an answer and sometimes don't. Total programming languages are still very powerful and capable of expressing many useful computations, but one thing they can't do is interpret themselves."</em> - page 287</p>
 <p><em>"a fundamental mathematical result called <strong>Kleene's second recursion theorem</strong>, which guarantees that any program can be converted into an equivalent one that is able to calculate its own source code."</em> - page 288</p>
-<h3 id="decidability">Decidability</h3>
+<h3>Decidability</h3>
 <p><em>"A decision problem is any question with a yes or no answer"</em></p>
 <p><em>"A decision problem is <strong>decidable</strong> (or <strong>computable</strong>) if there's an algorithm that's guaranteed to solve it in a finite amount of time for any possible input. The Church-Turing thesis claims that every algorithm can be performed by a Turing machine, so for a problem to be decidable, we have to be able to design a Turing machine that always produces the correct answer and always halts if we let it run for long enough."</em> - page 293</p>
 <p><em>"There are many decision problems - <strong>infinitely</strong> many - and it turns out that a lot of them are undecidable: there is no guaranteed-to-halt algorithm for solving them. Each of these problems is undecidable not because we just haven't found the right algorithm for it yet, but because the problem itself is fundamentally impossible to solve for some inputs, and we can even prove that no suitable algorithm will ever be found."</em> - page 294</p>
-<h3 id="the-halting-problem">The Halting Problem</h3>
+<h3>The Halting Problem</h3>
 <p><em>"the <strong>halting problem</strong>, is the task of deciding whether the execution of a particular Turing machine with a particular initial tape will ever halt."</em> - page 295</p>
 <p><em>"This is <strong>Rice's theorem</strong>: any nontrivial property of program behavior is undecidable, because the halting problem can always be reduced to the problem of deciding whether that property is true; if we could invent an algorithm for deciding that property, we'd be able to use it to build another algorithm that decides the halting problem, and that's impossible."</em> - page 304</p>
 <p><em>"Any system with enough power to be self-referential can't correctly answer every question about itself."</em> - page 308</p>
 <p><em>"every pushdown automaton has an equivalent context-free grammar and vice versa; any CFG can be rewritten in Chomsky normal form; and any CFG in that form must take exactly 2n − 1 steps to generate a string of length n."</em> - page 312</p>
-<h2 id="programming-in-toyland">Programming in Toyland</h2>
-<h3 id="abstract-interpretation">Abstract Interpretation</h3>
+<h2>Programming in Toyland</h2>
+<h3>Abstract Interpretation</h3>
 <p><em>"The main idea of abstract interpretation is to use an <strong>abstraction</strong>, a model of the real problem that discards enough detail to make it manageable - perhaps by making it smaller, simpler, or by eliminating unknowns - but that also retains enough detail to make its solution relevant to the original problem."</em> - page 315</p>
 <p><em>"A lot of the time, it's fine for a result to be imprecise, but for an abstraction to be useful, it's important that this imprecision is <strong>safe</strong>. Safety means that the abstraction always tells the truth: the result of an abstract computation must agree with the result of its concrete counterpart. If not, the abstraction is giving us unreliable information and is probably worse than useless."</em> - page 321</p>
-<h3 id="static-semantics">Static Semantics</h3>
+<h3>Static Semantics</h3>
 <p><em>"[...] <strong>dynamic semantics</strong> of programming languages, a way of specifying the meaning of code when it's executed; a language's <strong>static semantics</strong> tells us about properties of programs that we can investigate without executing them. The classic example of static semantics is a <strong>type system</strong>"</em> - page 327</p>
 <p><em>"From the perspective of someone designing the static semantics, it's also more difficult to handle a language where variables can change their types."</em> - page 334</p>
 <p><em>"Fundamentally, there is a tension between the restrictiveness of a type system and the expressiveness of the programs we can write within it."</em> - page 334</p>
@@ -428,60 +304,17 @@
 <p><em>"Any information we get from the type system has to be taken with a pinch of salt, and we have to pay attention to its limitations when deciding how much faith to put in it. A successful execution of a program's static semantics doesn't mean "this program will definitely work," only "this program definitely won't fail in a particular way" It would be great to have an automated system that can tell us that a program is free of any conceivable kind of bug or error, but as we saw [...], the universe just isn't that convenient."</em> - page 338</p>
 <p><em>"Formally, abstract interpretation is a mathematical technique where different semantics for the same language are connected together by functions that convert collections of concrete values into abstract ones and vice versa, allowing the results and properties of abstract programs to be understood in terms of concrete ones."</em> - page 338</p>
 <p><em>"Java has a <strong>type and effect system</strong> that tracks not only the types of methods' arguments and return values but also which <strong>checked exceptions</strong> can be thrown by the body of the method (throwing an exception is an <strong>effect</strong>), which is used to ensure that all possible exceptions are either handled or explicitly propagated."</em> - page 339</p>
-<h1 id="afterword">Afterword</h1>
+<h1>Afterword</h1>
 <p><em>"Every computer program is a mathematical object. Syntactically a program is just a large number; semantically it can represent a mathematical function, or a hierarchical structure which can be manipulated by formal reduction rules. This means that many techniques and results from mathematics, like Kleene's recursion theorem or Gödel's incompleteness theorem, can equally be applied to programs."</em> - page 341</p>
 <p><em>"Computation, which we initially described as just "what a computer does", has turned out to be something of a force of nature. It's tempting to think of computation as a sophisticated human invention that can only be performed by specially-designed systems with many complicated parts, but it also shows up in systems that don't seem complex enough to support it. So computation isn't a sterile, artificial process that only happens inside a microprocessor, but rather a pervasive phenomenon that crops up in many different places and in many different ways."</em> - page 341</p>
 <p><em>"Computation is not all-or-nothing. Different machines have different amounts of computational power, giving us a continuum of usefulness: DFAs and NFAs have limited capabilities, DPDAs are more powerful, NPDAs more powerful still, and Turing machines are the most powerful we know of."</em> - page 341</p>
-  </div>
-
-  <hr/>
-
-      <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/unix_directory_structure.html">
-          &laquo; Newer</a>
-        </li>
-        <li class="next">
-          <a href="http://lukaswoodtli.github.io/logik.html">
-          Older &raquo;</a>
-        </li>
-      </ul>
-
-
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
-
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

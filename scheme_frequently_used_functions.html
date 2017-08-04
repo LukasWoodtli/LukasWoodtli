@@ -1,148 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
-
-        <title>Scheme: Frequently used Functions · Lukas Woodtli</title>
+          <title>Lukas Woodtli</title>
+        <meta charset="utf-8" />
 
 
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <meta name="tags" content="Lisp" />
 
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
-
-        </ul>
-      </div><!-- /.navbar-collapse -->
-
-    </div> <!--container-->
-  </nav>
-
-
-    <div class="container">
-      <div class="col-md-2">
-      </div>
-
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/scheme_frequently_used_functions.html">Scheme: Frequently used Functions</a></h1>
-    </div>
-
-        </div>
-
-        <div class="row">
-
-    <span id="article_info">
-    <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month10">10</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month10">14</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
-  </span>
-
-  <hr/>
-
-  <div id="article_content">
-    <h1 id="pairs-cons-car-and-cdr">Pairs (<code>cons</code>, <code>car</code> and <code>cdr</code>)</h1>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli <strong></strong></a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/pages/resume.html">Resume</a></li>
+            <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+            <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+            <li><a href="http://lukaswoodtli.github.io/">Welcome to my Site</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and Headhunters</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://lukaswoodtli.github.io/scheme_frequently_used_functions.html" rel="bookmark"
+         title="Permalink to Scheme: Frequently used Functions">Scheme: Frequently used Functions</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-10-14T00:00:00+02:00">
+      Fri 14 October 2016
+    </abbr>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h1>Pairs (<code>cons</code>, <code>car</code> and <code>cdr</code>)</h1>
 <ul>
 <li><code>(cons a b)</code>: Construct a pair</li>
 <li><code>(car p)</code>: Get first element of pair (or list)</li>
 <li><code>(cdr p)</code>: Get second element of pair (or rest of list)</li>
 </ul>
-<h1 id="lists">Lists</h1>
+<h1>Lists</h1>
 <ul>
 <li><code>(list a0 a1 a2 ... aN)</code>: create a list</li>
 </ul>
@@ -159,10 +69,12 @@
 <li><code>(cons a lst)</code> makes a list like the original one (<code>lst</code>), but with an additional item (<code>a</code>) at the beginning</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">cons </span><span class="mi">10</span> <span class="nv">a</span><span class="p">)</span>
 <span class="nv">&gt;&gt;</span> <span class="p">(</span><span class="mi">10</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+
 <ul>
 <li><code>(list-ref lst i)</code>: retrieves element at index <code>i</code> (index is zero-based)</li>
 <li><code>(length lst)</code>: returns the length of a list</li>
@@ -172,7 +84,7 @@
 <p>The <code>map</code> function can be applied on multiple lists:</p>
 <p><em>"This more general <code>map</code> takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
 <p><em>For example:</em>"</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span>
+<div class="highlight"><pre><span class="p">(</span><span class="nb">map </span><span class="nv">+</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">700</span> <span class="mi">800</span> <span class="mi">900</span><span class="p">))</span>
@@ -183,6 +95,8 @@
     <span class="p">(</span><span class="nb">list </span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
 <span class="nv">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">9</span> <span class="mi">12</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div>
+
+
 <p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1">SICP:2.2.1  Representing Sequences:Mapping over lists</a></p>
 <ul>
 <li><code>(for-each fun lst)</code>: applies a function <code>fun</code> to each element in the list <code>lst</code> but doesn't create a new list. The return value of the function is ignored.</li>
@@ -207,71 +121,30 @@
 </li>
 </ul>
 <p>If <code>reduce</code> is not available (e.g in Racket) it can be defined in terms of <code>foldl</code>:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reduce</span> <span class="nv">f</span> <span class="nv">xs</span><span class="p">)</span>
+<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reduce</span> <span class="nv">f</span> <span class="nv">xs</span><span class="p">)</span>
     <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">xs</span><span class="p">))</span> <span class="p">(</span><span class="nf">foldl</span> <span class="nv">f</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">xs</span><span class="p">)</span> <span class="p">(</span><span class="nf">rest</span> <span class="nv">xs</span><span class="p">))))</span>
 </pre></div>
+
+
 <p><a href="http://stackoverflow.com/a/25211454/1272072">Stack Overflow</a></p>
 <ul>
 <li><code>(memq  v lst)</code>: find element <code>v</code> in list <code>lst</code> and return the rest of the list starting at the found element. If element is not found <code>#f</code> is returned. Similar functions: <code>member</code>, <code>memv</code>, <code>memf</code></li>
 </ul>
-<h2 id="dotted-tail-notation">Dotted-tail Notation</h2>
+<h2>Dotted-tail Notation</h2>
 <ul>
 <li>Used for functions with arbitrary number of arguments</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">x</span> <span class="nv">a</span> <span class="nv">b</span> <span class="o">.</span> <span class="nv">c</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">x</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; in the body of x: a=1, b=2, c='(3 4 5)</span>
+<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">x</span> <span class="nv">a</span> <span class="nv">b</span> <span class="o">.</span> <span class="nv">c</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">x</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; in the body of x: a=1, b=2, c=&#39;(3 4 5)</span>
 </pre></div>
-  </div>
-
-  <hr/>
-
-      <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html">
-          &laquo; Newer</a>
-        </li>
-        <li class="next">
-          <a href="http://lukaswoodtli.github.io/closure.html">
-          Older &raquo;</a>
-        </li>
-      </ul>
-
-
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
-
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>

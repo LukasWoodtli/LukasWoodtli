@@ -1,155 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
-
-        <title>Vector Calculus · Lukas Woodtli</title>
+          <title>Lukas Woodtli</title>
+        <meta charset="utf-8" />
 
 
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <meta name="tags" content="Calculus" />
 
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
-
-        </ul>
-      </div><!-- /.navbar-collapse -->
-
-    </div> <!--container-->
-  </nav>
-
-
-    <div class="container">
-      <div class="col-md-2">
-      </div>
-
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/vector_calculus.html">Vector Calculus</a></h1>
-    </div>
-
-        </div>
-
-        <div class="row">
-
-    <span id="article_info">
-    <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/calculus.html">Calculus</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">09</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month09">09</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
-  </span>
-
-  <hr/>
-
-  <div id="article_content">
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli <strong></strong></a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/pages/resume.html">Resume</a></li>
+            <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+            <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+            <li><a href="http://lukaswoodtli.github.io/">Welcome to my Site</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and Headhunters</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+            <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://lukaswoodtli.github.io/vector_calculus.html" rel="bookmark"
+         title="Permalink to Vector Calculus">Vector Calculus</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2015-09-09T00:00:00+02:00">
+      Wed 09 September 2015
+    </abbr>
+    <abbr class="modified" title="2015-09-09T00:00:00+02:00">
+      Wed 09 September 2015
+    </abbr>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
     <p>Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl.</p>
-<div class="toc">
-<ul>
-<li><a href="#nabla-operator-nabla">Nabla Operator (\(\nabla\))</a></li>
-<li><a href="#gradient-operatornamegrad">Gradient (\(\operatorname{grad}\))</a></li>
-<li><a href="#divergence-operatornamediv">Divergence (\(\operatorname{div}\))</a></li>
-</ul>
-</div>
-<h1 id="nabla-operator-nabla">Nabla Operator (<span class="math">\(\nabla\)</span>)</h1>
+<p>[TOC]</p>
+<h1>Nabla Operator (<span class="math">\(\nabla\)</span>)</h1>
 <div class="math">$$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$</div>
 <p>For a 3-dimensional cartesian coordinate system:</p>
 <div class="math">$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}$$</div>
 <p>Sometimes <span class="math">\(\vec\nabla\)</span> is written instead of <span class="math">\(\nabla\)</span> to show that it's basically a vector.</p>
-<h1 id="gradient-operatornamegrad">Gradient (<span class="math">\(\operatorname{grad}\)</span>)</h1>
+<h1>Gradient (<span class="math">\(\operatorname{grad}\)</span>)</h1>
 <p>The gradient represents the slope of the tangent of the graph of a function.</p>
 <p>Input: A <a href="https://en.wikipedia.org/wiki/Scalar_field">Scalar field</a></p>
 <p>Output: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a> </p>
@@ -157,7 +64,7 @@
 The length (absolute value) of the gradient at that point is a measurement of the change (slope).</p>
 <div class="math">$$\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n$$</div>
 <p><span class="math">\(e_i\)</span>: The orthogonal unit vectors pointing in the coordinate directions</p>
-<h1 id="divergence-operatornamediv">Divergence (<span class="math">\(\operatorname{div}\)</span>)</h1>
+<h1>Divergence (<span class="math">\(\operatorname{div}\)</span>)</h1>
 <p>The divergence is a vector operator that measures the <strong>magnitude</strong> of a vector field's source or sink. It is a
 scalar field with signed components (positive values for sources, negative values for sinks). </p>
 <p>Input: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a></p>
@@ -219,56 +126,13 @@ scalar field with signed components (positive values for sources, negative value
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-  </div>
-
-  <hr/>
-
-      <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/list_of_design_patterns.html">
-          &laquo; Newer</a>
-        </li>
-        <li class="next">
-          <a href="http://lukaswoodtli.github.io/executable_loader.html">
-          Older &raquo;</a>
-        </li>
-      </ul>
-
-
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
-
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>
