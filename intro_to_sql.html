@@ -1,56 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-          <title>Lukas Woodtli</title>
-        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Intro to SQL · Lukas Woodtli</title>
 
 
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-    <meta name="tags" content="SQL" />
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli <strong></strong></a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/pages/resume.html">Resume</a></li>
-            <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
-            <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
-            <li><a href="/pages/contact.html">Contact</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
-            <li><a href="http://lukaswoodtli.github.io/">Welcome to my Site</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and Headhunters</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
-            <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
-        </ul></nav><!-- /#menu -->
-<section id="content" class="body">
-  <header>
-    <h2 class="entry-title">
-      <a href="http://lukaswoodtli.github.io/intro_to_sql.html" rel="bookmark"
-         title="Permalink to Intro to SQL">Intro to SQL</a></h2>
- 
-  </header>
-  <footer class="post-info">
-    <abbr class="published" title="2015-04-13T00:00:00+02:00">
-      Mon 13 April 2015
-    </abbr>
-    <abbr class="modified" title="2016-06-26T00:00:00+02:00">
-      Sun 26 June 2016
-    </abbr>
-    <address class="vcard author">
-      By           <a class="url fn" href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
-    </address>
-  </footer><!-- /.post-info -->
-  <div class="entry-content">
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/intro_to_sql.html">Intro to SQL</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/sql.html">SQL</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">04</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month04">13</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
     <p>Most notes taken here are from the <a href="https://www.udacity.com/course/ud197">Udacity SQL course</a></p>
-<h1>Aggregations</h1>
+<h1 id="aggregations">Aggregations</h1>
 <p>Aggregation functions work on the values of a column.</p>
 <p>They return a single value.</p>
 <table class="table table-hover table-striped">
@@ -92,7 +179,7 @@
 </tbody>
 </table>
 <p>Not all functions work on all kinds of columns.</p>
-<h1>Joins</h1>
+<h1 id="joins">Joins</h1>
 <p>JOIN clause is used to combine rows from several tables.
 The combination is based on a common field between them.</p>
 <p>There are different JOIN operaions in SQL:</p>
@@ -120,7 +207,7 @@ The combination is based on a common field between them.</p>
 </li>
 </ul>
 <p>Example: Which animals eat fisch?</p>
-<div class="highlight"><pre><span class="k">SELECT</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span>
   <span class="n">animals</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
   <span class="n">animals</span><span class="p">.</span><span class="n">species</span><span class="p">,</span>
   <span class="n">diet</span><span class="p">.</span><span class="n">food</span>
@@ -128,13 +215,13 @@ The combination is based on a common field between them.</p>
 <span class="k">ON</span> <span class="n">animal</span><span class="p">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">diet</span><span class="p">.</span><span class="n">species</span>
 <span class="k">WHERE</span> <span class="n">food</span> <span class="o">=</span> <span class="s1">'fish'</span><span class="p">;</span>
 </pre></div>
-<h1>Unique Keys</h1>
+<h1 id="unique-keys">Unique Keys</h1>
 <ul>
 <li>Primary keys used to identify an entry (row) in a table</li>
 <li>Most <a href="https://en.wikipedia.org/wiki/Relational_database_management_system">RDBMS</a> can generate unique queues</li>
 <li>Sometimes a table already has a field that can be used as unique primary key</li>
 </ul>
-<h1>Select Clauses</h1>
+<h1 id="select-clauses">Select Clauses</h1>
 <ul>
 <li>
 <p>LIMIT count [OFFSET skip]</p>
@@ -166,13 +253,56 @@ The combination is based on a common field between them.</p>
 <li><code>FROM</code>: table to select from</li>
 <li><code>WHERE</code>: row restriction</li>
 </ul>
-  </div><!-- /.entry-content -->
-</section>
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/modern_oss.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
 </body>
 </html>
