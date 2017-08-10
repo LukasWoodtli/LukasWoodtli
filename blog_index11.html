@@ -170,7 +170,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
             <a class="pull-right" href="http://lukaswoodtli.github.io/modern_oss.html">
@@ -179,7 +179,7 @@
           <li class="list-group-item"><p>This page collects some notes about different Operating System approaches.</p>
 <p>Most of the information gathered here is from the course <a href="https://www.udacity.com/course/ud189">Advanced Operating Systems</a>.</p>
 <p>Some information is from <a href="http://en.wikipedia.org/wiki/Operating_system" title="Wikipedia">Operating System</a>. And other Wikipedia pages.</p>
-<p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I'm using …</p></li>
+<p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I'm ...</p></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/modern_oss.html#disqus_thread" title="comments">
@@ -232,27 +232,27 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
             <a class="pull-right" href="http://lukaswoodtli.github.io/synchronization_primitives_read-modify-write.html">
               </a>
           </li>
-          <li class="list-group-item"><h1 id="read-modify-write">Read-Modify-Write</h1>
-<h2 id="compare-and-swap">Compare-And-Swap</h2>
+          <li class="list-group-item"><h1>Read-Modify-Write</h1>
+<h2>Compare-And-Swap</h2>
 <blockquote>
 <p>Todo</p>
 </blockquote>
-<h2 id="load-linkstore-conditional">Load-Link/Store-Conditional</h2>
+<h2>Load-Link/Store-Conditional</h2>
 <p>This works:</p>
-<div class="highlight"><pre><span></span><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
+<div class="highlight"><pre><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
 
 <span class="c1">// ...</span>
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// ok!</span>
 </pre></div>
 <p>But this fails:</p>
-<div class="highlight"><pre><span></span><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
+<div class="highlight"><pre><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
 
 <span class="c1">// ...</span>
 
@@ -262,16 +262,16 @@
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// fails!</span>
 </pre></div>
-<h2 id="test-and-set">Test and Set</h2>
+<h2>Test and Set</h2>
 <p>Pseudo code:</p>
-<div class="highlight"><pre><span></span><span class="c1">// atomic</span>
+<div class="highlight"><pre><span class="c1">// atomic</span>
 <span class="n">test_and_set</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">)</span><span class="o">:</span> <span class="c1">// V in {0,1}</span>
     <span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span> <span class="n">V</span>
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">temp</span>
 </pre></div>
 <p>Reset:</p>
-<div class="highlight"><pre><span></span><span class="c1">// normal …</span></pre></div></li>
+<div class="highlight"><pre><span class="c1">// normal ...</span></pre></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/synchronization_primitives_read-modify-write.html#disqus_thread" title="comments">

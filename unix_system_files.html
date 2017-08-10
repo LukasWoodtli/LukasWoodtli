@@ -136,13 +136,13 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
-    <h1 id="etcpasswd"><code>/etc/passwd</code></h1>
+    <h1><code>/etc/passwd</code></h1>
 <p>Contains user informations. The information fields are separated by a colon.</p>
 <p><code>user-name:password:UID:GID:info:home-dir:shell</code></p>
 <ul>
@@ -154,7 +154,7 @@
 <li><code>home-dir</code>: The home dir of the user.</li>
 <li><code>shell</code>: The login-shell of the user (needs to be listed in <code>/etc/shells</code>).</li>
 </ul>
-<h1 id="etcshadow"><code>/etc/shadow</code></h1>
+<h1><code>/etc/shadow</code></h1>
 <p>Saves the user password and related information. The file can be read only by root.</p>
 <p><code>name:password:DOC:minDay:maxDay:warn:deaktIn:deaktSince:unused</code></p>
 <ul>
@@ -168,7 +168,7 @@
 <li><code>deaktSince</code>: Number of days since password expired.</li>
 <li><code>unused</code>: For feature use.</li>
 </ul>
-<h1 id="etcgroup"><code>/etc/group</code></h1>
+<h1><code>/etc/group</code></h1>
 <p>Stores informations about groups.</p>
 <p><code>groupName:password:groupId:member1,memger2,...</code></p>
 <ul>
@@ -177,33 +177,33 @@
 <li><code>groupId</code>: Group ID (GID).</li>
 <li><code>member1,memger2,...</code>: User names of the members of the group (comma separated).</li>
 </ul>
-<h1 id="mounts">Mounts</h1>
+<h1>Mounts</h1>
 <ul>
 <li><code>/etc/fstab</code>: Lists drives to mount at startup</li>
 <li><code>/etc/exports</code>: Folders provided to clients over NFS</li>
 </ul>
-<h1 id="network-files">Network Files</h1>
+<h1>Network Files</h1>
 <ul>
 <li><code>/etc/services</code>: Services provided on the network, mapping of ports to processes (see <code>getservbyname()</code> and <code>getservbyport()</code>).</li>
 <li><code>etc/networks</code>: Informations about connected networks (see <code>getnetbyname()</code> and <code>getnetbyaddr()</code>)</li>
 <li><code>/etc/protocols</code>: Information about network portocols (see <code>getprotobyname()</code> and <code>getprotobynumber()</code>)</li>
 <li><code>/etc/hosts</code>: Mapping from hostnames to IP's, mainly replaced by DNS (see <code>gethostbyname()</code> and <code>gethostbyaddr()</code>)</li>
 </ul>
-<h1 id="logging">Logging</h1>
+<h1>Logging</h1>
 <ul>
 <li><code>/etc/syslog.conf</code>: Configuration of applications that use syslog</li>
 <li><code>/etc/asl.conf</code>: Additional config on macOS</li>
 </ul>
-<h1 id="cron-jobs"><code>cron</code> Jobs</h1>
+<h1><code>cron</code> Jobs</h1>
 <ul>
 <li>The config file is usually: <code>/var/spool/cron</code></li>
 <li>use <code>crontab -e</code> to edit the right file</li>
 </ul>
-<h1 id="shell">Shell</h1>
+<h1>Shell</h1>
 <blockquote>
 <p>Work in Progress</p>
 </blockquote>
-<h2 id="system-settings">System Settings</h2>
+<h2>System Settings</h2>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -218,7 +218,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="user-settings">User Settings</h2>
+<h2>User Settings</h2>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -240,14 +240,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="bash">Bash</h3>
+<h3>Bash</h3>
 <p>For an <em>interactive login shell</em> the Bash searches for profile files in the following order:</p>
 <ol>
 <li><code>~/.bash_profile</code></li>
 <li><code>~/.bash_login</code></li>
 <li><code>~/.profile</code></li>
 </ol>
-<h2 id="references">References</h2>
+<h2>References</h2>
 <p><a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html">Bash Reference Manual</a>
 <a href="http://cdwilson.us/articles/bash-shell-startup-files/">Bash shell startup files</a>
 <a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_01.html">Bash Guide for Beginners</a>

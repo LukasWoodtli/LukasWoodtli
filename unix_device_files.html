@@ -136,7 +136,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
@@ -154,12 +154,12 @@
 <p>The device files have a major and a minor number. The same major number means that the same device
 driver is responsible for the file/device. The minor number is used to distinguish different devices
 of the same type that use the same device driver.</p>
-<h1 id="functions">Functions</h1>
+<h1>Functions</h1>
 <p>A file descriptor for a device file can be aquired by the common <code>open()</code> function. Afer use it can be
 closed with <code>close()</code>. Reading and writing to the file is donne with <code>read()</code> and <code>write()</code>.</p>
 <p>Contol of device drivers is acomplished with the <code>ioctl()</code> function.</p>
 <p>Man page: <code>man ioctl</code> and <code>man ioctl_list</code> (only Linux).</p>
-<h1 id="special-device-files">Special Device Files</h1>
+<h1>Special Device Files</h1>
 <ul>
 <li><code>/dev/null</code>: used to redirect unused streams to 'nowhere'</li>
 <li><code>/dev/zero</code>: 'infinite' sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>

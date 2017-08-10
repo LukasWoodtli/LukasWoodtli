@@ -132,212 +132,14 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
-    <div class="toc">
-<ul>
-<li><a href="#0-overview">0. Overview</a></li>
-<li><a href="#1-introduction">1. Introduction</a><ul>
-<li><a href="#system-design">System Design</a></li>
-<li><a href="#embedded-systems">Embedded Systems</a><ul>
-<li><a href="#difference-embedded-systems-general-purpose-computing">Difference Embedded Systems ↔ General Purpose Computing</a></li>
-<li><a href="#levels-of-abstraction-from-higher-to-lower">Levels of abstraction (from higher to lower)</a></li>
-<li><a href="#design">Design</a></li>
-<li><a href="#estimation">Estimation</a></li>
-<li><a href="#mapping">Mapping</a></li>
-<li><a href="#specification">Specification</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#2-models-of-computation">2. Models of Computation</a><ul>
-<li><a href="#state-charts">State Charts</a><ul>
-<li><a href="#evaluation-of-state-charts">Evaluation of State Charts</a></li>
-</ul>
-</li>
-<li><a href="#specification-and-description-language-sdl">Specification and Description Language (SDL)</a></li>
-<li><a href="#dataflow-languages">Dataflow Languages</a><ul>
-<li><a href="#kahn-process-networks">Kahn Process Networks</a><ul>
-<li><a href="#determinacy">Determinacy</a></li>
-<li><a href="#adding-non-determinacy">Adding Non-Determinacy</a></li>
-</ul>
-</li>
-<li><a href="#synchronous-dataflow-sdf">Synchronous Dataflow (SDF)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#3-mapping-application-to-architecture">3. Mapping Application to Architecture</a><ul>
-<li><a href="#specification-examples">Specification Examples</a><ul>
-<li><a href="#data-flow-graph-dfg">Data-Flow Graph (DFG)</a></li>
-<li><a href="#control-flow-graph-cfg">Control-Flow Graph (CFG)</a></li>
-</ul>
-</li>
-<li><a href="#architecture-specification">Architecture Specification</a></li>
-<li><a href="#mapping-specification">Mapping Specification</a></li>
-</ul>
-</li>
-<li><a href="#4-system-partitioning">4. System Partitioning</a><ul>
-<li><a href="#mapping-at-different-levels">Mapping at different Levels</a><ul>
-<li><a href="#low-level">Low Level</a></li>
-<li><a href="#high-level">High Level</a></li>
-</ul>
-</li>
-<li><a href="#cost-functions">Cost Functions</a><ul>
-<li><a href="#estimation_1">Estimation</a></li>
-<li><a href="#the-formal-partitioning-problem">The Formal Partitioning Problem</a></li>
-<li><a href="#partitioning-methods">Partitioning Methods</a><ul>
-<li><a href="#hierarchical-clustering">Hierarchical Clustering</a></li>
-</ul>
-</li>
-<li><a href="#integer-linear-programming-ilp">Integer Linear Programming (ILP)</a><ul>
-<li><a href="#example-for-partitioning">Example for Partitioning</a></li>
-<li><a href="#approaches">Approaches</a></li>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#iterative-methods">Iterative Methods</a><ul>
-<li><a href="#kernighan-lin">Kernighan-Lin</a></li>
-<li><a href="#simulated-annealing">Simulated Annealing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#5-multi-criteria-optimization">5. Multi-Criteria Optimization</a><ul>
-<li><a href="#example-network-processors">Example: Network Processors</a></li>
-<li><a href="#basic-definition">Basic Definition</a></li>
-<li><a href="#pareto-dominance">Pareto Dominance</a><ul>
-<li><a href="#optimization-alternatives">Optimization Alternatives</a></li>
-<li><a href="#evolutionary-algorithms">Evolutionary Algorithms</a><ul>
-<li><a href="#hypervolume-indicator">Hypervolume Indicator</a></li>
-<li><a href="#representation-and-neighborhood">Representation and Neighborhood</a></li>
-<li><a href="#tree-representation">Tree Representation</a></li>
-<li><a href="#handling-constraints">Handling Constraints</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#6-system-simulation">6. System Simulation</a><ul>
-<li><a href="#system-and-model">System and Model</a></li>
-<li><a href="#state">State</a></li>
-<li><a href="#discretecontinuous-systems">Discrete/Continuous Systems</a><ul>
-<li><a href="#discrete-event-systems-des">Discrete Event Systems (DES)</a><ul>
-<li><a href="#simulation">Simulation</a></li>
-<li><a href="#discrete-event-modeling-and-simulation">Discrete-Event Modeling and Simulation</a><ul>
-<li><a href="#components-of-discrete-event-simulation">Components of Discrete-Event Simulation</a></li>
-<li><a href="#simulation-engine">Simulation Engine</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#systemc">SystemC</a><ul>
-<li><a href="#language-architecture">Language Architecture</a></li>
-<li><a href="#processes">Processes</a></li>
-<li><a href="#modules">Modules</a></li>
-<li><a href="#inter-process-communication">Inter Process Communication</a></li>
-<li><a href="#wait-and-notify">Wait and Notify</a></li>
-</ul>
-</li>
-<li><a href="#levels-of-abstractions">Levels of Abstractions</a></li>
-</ul>
-</li>
-<li><a href="#7-design-space-exploration">7. Design Space Exploration</a><ul>
-<li><a href="#example-network-processor-np">Example: Network Processor (NP)</a><ul>
-<li><a href="#optimal-design-of-network-processor">Optimal Design of Network Processor</a><ul>
-<li><a href="#design-constraints">Design constraints</a></li>
-</ul>
-</li>
-<li><a href="#np-design-space-exploration">NP Design Space Exploration</a></li>
-</ul>
-</li>
-<li><a href="#performance-estimation">Performance Estimation</a><ul>
-<li><a href="#metric">Metric</a></li>
-<li><a href="#method">Method</a></li>
-<li><a href="#abstraction-level">Abstraction Level</a></li>
-<li><a href="#subsystem-to-analyze">Subsystem to Analyze</a></li>
-</ul>
-</li>
-<li><a href="#performance-estimation-in-design-flow">Performance Estimation in Design Flow</a></li>
-<li><a href="#multi-processor-system-on-chip">Multi-Processor System-on-Chip</a><ul>
-<li><a href="#communication">Communication</a></li>
-<li><a href="#computation-and-memory">Computation and Memory</a></li>
-<li><a href="#scheduling-and-arbitration">Scheduling and Arbitration</a></li>
-<li><a href="#difficulty">Difficulty</a></li>
-</ul>
-</li>
-<li><a href="#abstraction">Abstraction</a></li>
-<li><a href="#performance-estimation-methods">Performance Estimation Methods</a><ul>
-<li><a href="#static-analysis-models">Static Analysis Models</a></li>
-<li><a href="#dynamic-analytic-models">Dynamic Analytic Models</a><ul>
-<li><a href="#stochastic-queuing-systems">Stochastic Queuing Systems</a></li>
-<li><a href="#worst-casebest-case-queuing-systems">Worst-Case/Best-Case Queuing Systems</a></li>
-</ul>
-</li>
-<li><a href="#simulation_1">Simulation</a><ul>
-<li><a href="#trace-based-simulation">Trace-Based Simulation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#9-worst-case-execution-time-analysis">9. Worst Case Execution Time Analysis</a><ul>
-<li><a href="#hard-real-time-systems">Hard Real-Time Systems</a></li>
-<li><a href="#industrys-best-practice">Industry's Best Practice</a><ul>
-<li><a href="#calculating-upper-bounds">Calculating Upper Bounds</a><ul>
-<li><a href="#sequence-of-statements">Sequence of Statements</a></li>
-<li><a href="#conditional-statement">Conditional Statement</a></li>
-<li><a href="#loops">Loops</a></li>
-</ul>
-</li>
-<li><a href="#modern-hardware-features">Modern Hardware Features</a></li>
-<li><a href="#program-path-analysis">Program Path Analysis</a><ul>
-<li><a href="#basic-blocks">Basic Blocks</a></li>
-<li><a href="#calculation-of-the-wcet">Calculation of the WCET</a><ul>
-<li><a href="#integer-linear-program-for-wcet-calculation">Integer Linear Program for WCET Calculation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#abstract-interpretation-ai">Abstract Interpretation (AI)</a><ul>
-<li><a href="#value-analysis">Value Analysis</a></li>
-<li><a href="#caches">Caches</a></li>
-<li><a href="#cache-analysis">Cache Analysis</a><ul>
-<li><a href="#must-cache">Must Cache</a></li>
-<li><a href="#may-cache">May Cache</a></li>
-<li><a href="#cache-contribution-to-wcet">Cache Contribution to WCET</a></li>
-</ul>
-</li>
-<li><a href="#pipelines">Pipelines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#10-performance-analysis-of-distributed-embedded-systems">10 Performance Analysis of Distributed Embedded Systems</a><ul>
-<li><a href="#real-time-calculus">Real-Time Calculus</a><ul>
-<li><a href="#algebraic-structure">Algebraic Structure</a></li>
-<li><a href="#system-theories">System Theories</a></li>
-<li><a href="#from-streams-to-cumulative-functions">From Streams to Cumulative Functions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#overview-of-methods-and-algorithms">Overview of Methods and Algorithms</a></li>
-</ul>
-</div>
-<h1 id="0-overview">0. Overview</h1>
+    <p>[TOC]</p>
+<h1>0. Overview</h1>
 <ul>
 <li>Specification and Models of Computation<ul>
 <li>State-Charts</li>
@@ -358,14 +160,14 @@
 </ul>
 </li>
 </ul>
-<h1 id="1-introduction">1. Introduction</h1>
-<h2 id="system-design">System Design</h2>
+<h1>1. Introduction</h1>
+<h2>System Design</h2>
 <ul>
 <li>Specifications and Models</li>
 <li>Design</li>
 <li>Estimation</li>
 </ul>
-<h2 id="embedded-systems">Embedded Systems</h2>
+<h2>Embedded Systems</h2>
 <ul>
 <li>Information processing system embedded in a larger product</li>
 <li>Interface to outside world<ul>
@@ -377,7 +179,7 @@
 <li>Technical environment does not forgive errors</li>
 <li>Stricter requirements (usually update not possible)</li>
 </ul>
-<h3 id="difference-embedded-systems-general-purpose-computing">Difference Embedded Systems ↔ General Purpose Computing</h3>
+<h3>Difference Embedded Systems ↔ General Purpose Computing</h3>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -400,7 +202,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="levels-of-abstraction-from-higher-to-lower">Levels of abstraction (from higher to lower)</h3>
+<h3>Levels of abstraction (from higher to lower)</h3>
 <ul>
 <li>Transistors</li>
 <li>Gates</li>
@@ -408,7 +210,7 @@
 <li>Architecture (CPU, ASIC, FPGA, LAN, ...)</li>
 <li>Distributed System</li>
 </ul>
-<h3 id="design">Design</h3>
+<h3>Design</h3>
 <ul>
 <li>Design aspects look similar in every level</li>
 <li>Design goes usually from higher abstraction level to lower level</li>
@@ -420,7 +222,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="estimation">Estimation</h3>
+<h3>Estimation</h3>
 <ul>
 <li>Reason about solution</li>
 <li>Different solutions for a specific task</li>
@@ -429,14 +231,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="mapping">Mapping</h3>
+<h3>Mapping</h3>
 <ul>
 <li><strong>Mapping</strong> parts of specification to different parts of the system<ul>
 <li>Similar to scheduling but bigger design space (including HW)</li>
 </ul>
 </li>
 </ul>
-<h3 id="specification">Specification</h3>
+<h3>Specification</h3>
 <ul>
 <li>Specification: in embedded systems higher requirements to correctness</li>
 <li>Specific languages:<ol>
@@ -456,7 +258,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="2-models-of-computation">2. Models of Computation</h1>
+<h1>2. Models of Computation</h1>
 <blockquote>
 <p>Model of computation = Components + Communication</p>
 </blockquote>
@@ -470,7 +272,7 @@
 <li>State oriented behavior (micro controller, FPGA)</li>
 <li>Dataflow oriented behavior (DSP)</li>
 </ul>
-<h2 id="state-charts">State Charts</h2>
+<h2>State Charts</h2>
 <ul>
 <li>Classical automata (Moore/Mealy): FSM</li>
 <li>State: <strong>Information</strong> needed to get (determine) the output form the input</li>
@@ -501,12 +303,12 @@
 <p>Events, Conditions, Actions</p>
 </li>
 </ul>
-<p>$$\underrightarrow{event [condtition] / action}$$</p>
+<div class="math">$$\underrightarrow{event [condtition] / action}$$</div>
 <ul>
 <li>No storage of events (only available for next step)</li>
 <li>Events are global</li>
 </ul>
-<h3 id="evaluation-of-state-charts">Evaluation of State Charts</h3>
+<h3>Evaluation of State Charts</h3>
 <ul>
 <li>Evaluation is <strong>not</strong> trivial!</li>
 <li>Three phases<ol>
@@ -519,7 +321,7 @@
 </ol>
 </li>
 </ul>
-<h2 id="specification-and-description-language-sdl">Specification and Description Language (SDL)</h2>
+<h2>Specification and Description Language (SDL)</h2>
 <ul>
 <li>Targeted at unambiguous specification and description of systems</li>
 <li><em>Asynchronous</em> message passing</li>
@@ -536,7 +338,7 @@
 </li>
 <li>All orders of events are legal: different correct behavior in simulators (not deterministic)</li>
 </ul>
-<h2 id="dataflow-languages">Dataflow Languages</h2>
+<h2>Dataflow Languages</h2>
 <ul>
 <li>Imperative language style (<em>program counter</em>)</li>
 <li>Movement of data is priority</li>
@@ -558,7 +360,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="kahn-process-networks">Kahn Process Networks</h3>
+<h3>Kahn Process Networks</h3>
 <ul>
 <li>General-purpose scheme for parallel programming<ul>
 <li><em>read</em>: destructive and blocking (reading empty channel blocks until data is available)</li>
@@ -568,7 +370,7 @@
 </li>
 <li>Unique attribute: <em>determinate</em></li>
 </ul>
-<h4 id="determinacy">Determinacy</h4>
+<h4>Determinacy</h4>
 <ul>
 <li>Random: knowing about system and inputs is not sufficient to determine output</li>
 <li>Determinate: the histories of <em>all channels</em> depend only on the histories of the <em>input channels</em></li>
@@ -578,7 +380,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="adding-non-determinacy">Adding Non-Determinacy</h4>
+<h4>Adding Non-Determinacy</h4>
 <ul>
 <li>Several possibilities<ul>
 <li>Allow processes to test for empty queues</li>
@@ -587,7 +389,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="synchronous-dataflow-sdf">Synchronous Dataflow (SDF)</h3>
+<h3>Synchronous Dataflow (SDF)</h3>
 <ul>
 <li>Restriction of Kahn Networks to allow compile-time scheduling</li>
 <li>Each process reads and writes a <em>fixed number of tokens</em> each time it fires</li>
@@ -602,7 +404,7 @@
 <!-- Week 05 - 14.10.15 -->
 <!-- Beginning of Notes Week 5 -->
 <!-- Beginning of Slides 3 -->
-<h1 id="3-mapping-application-to-architecture">3. Mapping Application to Architecture</h1>
+<h1>3. Mapping Application to Architecture</h1>
 <p>System synthesis from specification</p>
 <ul>
 <li>Allocation: Select components (HW)</li>
@@ -612,9 +414,9 @@
 <blockquote>
 <p>Mapping = Binding + Scheduling</p>
 </blockquote>
-<h2 id="specification-examples">Specification Examples</h2>
-<h3 id="data-flow-graph-dfg">Data-Flow Graph (DFG)</h3>
-<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">3</span><span class="n">a</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
+<h2>Specification Examples</h2>
+<h3>Data-Flow Graph (DFG)</h3>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">3</span><span class="n">a</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
 </pre></div>
@@ -623,8 +425,8 @@
 <li>parallelism</li>
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Data_flow_diagram">Data Flow Graph on Wikipedia</a></p>
-<h3 id="control-flow-graph-cfg">Control-Flow Graph (CFG)</h3>
-<div class="highlight"><pre><span></span><span class="n">what_is_this</span> <span class="p">{</span>
+<h3>Control-Flow Graph (CFG)</h3>
+<div class="highlight"><pre><span class="n">what_is_this</span> <span class="p">{</span>
     <span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
     <span class="n">done</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
     <span class="n">repeat</span> <span class="p">{</span>
@@ -642,12 +444,12 @@
 <li>Conditional branches</li>
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Control_flow_graph">Control Flow Graph on Wikipedia</a></p>
-<h2 id="architecture-specification">Architecture Specification</h2>
+<h2>Architecture Specification</h2>
 <ul>
 <li>Reflects structure and properties of underlying platform</li>
 <li>Can be done at different abstraction levels</li>
 </ul>
-<h2 id="mapping-specification">Mapping Specification</h2>
+<h2>Mapping Specification</h2>
 <p>Mapping: application and architecture specification</p>
 <ul>
 <li><em>binds</em> processes to processors</li>
@@ -656,19 +458,19 @@
 </ul>
 <p><img alt="Partitioning and Mapping" class="img-responsive" src="/images/hscd_partitioning_mapping.svg"/></p>
 <!-- TODO: Repeat Slides 3-10 to 3-14 -->
-<h1 id="4-system-partitioning">4. System Partitioning</h1>
+<h1>4. System Partitioning</h1>
 <blockquote>
 <p>Partitioning: Given a set of objects: Partition this set in subsets.</p>
 <p>Mapping: Subset is mapped to specific resource.</p>
 </blockquote>
-<h2 id="mapping-at-different-levels">Mapping at different Levels</h2>
-<h3 id="low-level">Low Level</h3>
+<h2>Mapping at different Levels</h2>
+<h3>Low Level</h3>
 <ul>
 <li>Register Transfer Level (RTL) or Netlist Level</li>
 <li>Split a digital circuit and map it to several devices (FPGAs, ASICs)</li>
 <li>System parameters (e.g., area, delay) relatively easy to determine</li>
 </ul>
-<h3 id="high-level">High Level</h3>
+<h3>High Level</h3>
 <ul>
 <li>System Level</li>
 <li>Comparison of design alternatives for optimality (design space exploration)</li>
@@ -677,30 +479,30 @@
 </ul>
 </li>
 </ul>
-<h2 id="cost-functions">Cost Functions</h2>
+<h2>Cost Functions</h2>
 <ul>
 <li>system cost (<em>C[$]</em>)</li>
 <li>latency (<em>L[sec]</em>)</li>
 <li>power consumption (<em>P[W]</em>)</li>
 <li>...</li>
 </ul>
-<h3 id="estimation_1">Estimation</h3>
+<h3>Estimation</h3>
 <p>Estimation is required to find <em>C</em>, <em>L</em>, <em>P</em> values, for each design point</p>
 <p>i.e</p>
-<p>$$f(C,L,P)= k_1 \cdot h_C(C,C_{max})+ k_2 \cdot h_L(L,L_{max})+ k_3 \cdot h_P(P,P_{max})$$</p>
+<div class="math">$$f(C,L,P)= k_1 \cdot h_C(C,C_{max})+ k_2 \cdot h_L(L,L_{max})+ k_3 \cdot h_P(P,P_{max})$$</div>
 <ul>
-<li>$h_C$, $h_L$, $h_P$: denote how strong $C$, $L$, $P$ violate design constraints $C_{max}$, $L_{max}$, $P_{max}$</li>
-<li>$k_1$, $k_2$, $k_3$: weighting and normalization</li>
+<li><span class="math">\(h_C\)</span>, <span class="math">\(h_L\)</span>, <span class="math">\(h_P\)</span>: denote how strong <span class="math">\(C\)</span>, <span class="math">\(L\)</span>, <span class="math">\(P\)</span> violate design constraints <span class="math">\(C_{max}\)</span>, <span class="math">\(L_{max}\)</span>, <span class="math">\(P_{max}\)</span></li>
+<li><span class="math">\(k_1\)</span>, <span class="math">\(k_2\)</span>, <span class="math">\(k_3\)</span>: weighting and normalization</li>
 </ul>
-<h3 id="the-formal-partitioning-problem">The Formal Partitioning Problem</h3>
-<p>Assign $n$ objects $O= {  o_1, \cdots , o_n }$ to $m$ blocks (also called partitions)
-$P= {  p_1, \cdots , p_m }$, such that</p>
+<h3>The Formal Partitioning Problem</h3>
+<p>Assign <span class="math">\(n\)</span> objects <span class="math">\(O= \{  o_1, \cdots , o_n \}\)</span> to <span class="math">\(m\)</span> blocks (also called partitions)
+<span class="math">\(P= \{  p_1, \cdots , p_m \}\)</span>, such that</p>
 <ul>
-<li>$p_1 \cup p_2 \cup \cdots \cup p_m = O$ (all objects are assigned - mapped)</li>
-<li>$p_i \cap p_j = { }\; \forall i,j:i\neq j$ (an object is not assigned or mapped twice)</li>
-<li>and costs $c(P)$ are minimized</li>
+<li><span class="math">\(p_1 \cup p_2 \cup \cdots \cup p_m = O\)</span> (all objects are assigned - mapped)</li>
+<li><span class="math">\(p_i \cap p_j = \{ \}\; \forall i,j:i\neq j\)</span> (an object is not assigned or mapped twice)</li>
+<li>and costs <span class="math">\(c(P)\)</span> are minimized</li>
 </ul>
-<h3 id="partitioning-methods">Partitioning Methods</h3>
+<h3>Partitioning Methods</h3>
 <p>Exact vs. Heuristic Methods:</p>
 <ul>
 <li>Exact provides optimal solution (or set of solutions)</li>
@@ -728,30 +530,30 @@ $P= {  p_1, \cdots , p_m }$, such that</p>
 </ul>
 </li>
 </ul>
-<h4 id="hierarchical-clustering">Hierarchical Clustering</h4>
+<h4>Hierarchical Clustering</h4>
 <ul>
 <li>Combine always 2 nodes</li>
 <li>Then recalculate</li>
 <li>Repeat until goal achieved</li>
 <li>Steps can be visualized in a tree diagram</li>
 </ul>
-<h3 id="integer-linear-programming-ilp">Integer Linear Programming (ILP)</h3>
+<h3>Integer Linear Programming (ILP)</h3>
 <ul>
 <li>Exact method</li>
 <li>Objective function</li>
 <li>Constraints</li>
 </ul>
 <p>Objective:</p>
-<p>$$C = \sum_{x_i\in X}a_ix_i\; with\; a_i \in \mathbb{R}, x_i \in \mathbb{N}$$</p>
+<div class="math">$$C = \sum_{x_i\in X}a_ix_i\; with\; a_i \in \mathbb{R}, x_i \in \mathbb{N}$$</div>
 <p>Constraints:</p>
-<p>$$\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}$$</p>
+<div class="math">$$\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}$$</div>
 <p>Integer programming problem:</p>
 <ul>
 <li>Minimize objective function subject to constraints</li>
 </ul>
 <!-- End of Notes Week 5 -->
 <!-- Beginning of Notes Week 6 -->
-<h4 id="example-for-partitioning">Example for Partitioning</h4>
+<h4>Example for Partitioning</h4>
 <ul>
 <li>optimize for a load balanced system</li>
 </ul>
@@ -811,54 +613,54 @@ $P= {  p_1, \cdots , p_m }$, such that</p>
 </tr>
 </tbody>
 </table>
-<p>Cost $c_{i,k}$:</p>
-<p>$$\left.\begin{matrix}
-c_{0,0} = 5\
-c_{0,1} = 10\
+<p>Cost <span class="math">\(c_{i,k}\)</span>:</p>
+<div class="math">$$\left.\begin{matrix}
+c_{0,0} = 5\\
+c_{0,1} = 10\\
 \cdots
-\end{matrix}\right}
+\end{matrix}\right\}
 \begin{matrix}
-0 \leq i \leq 3\
+0 \leq i \leq 3\\
 0 \leq k \leq 1
-\end{matrix}$$</p>
-<p>Binary variables $x_{i,k}$:</p>
-<p>$$\left.\begin{matrix}
-x_{0,0} + x_{0,1} = 1\
-x_{1,0} + x_{1,1} = 1\
+\end{matrix}$$</div>
+<p>Binary variables <span class="math">\(x_{i,k}\)</span>:</p>
+<div class="math">$$\left.\begin{matrix}
+x_{0,0} + x_{0,1} = 1\\
+x_{1,0} + x_{1,1} = 1\\
 \cdots
-\end{matrix}\right}
-\sum_{k=0}^1 x_{k,i} = 1\; \forall\; 0 \leq i \leq 3$$</p>
-<h4 id="approaches">Approaches</h4>
+\end{matrix}\right\}
+\sum_{k=0}^1 x_{k,i} = 1\; \forall\; 0 \leq i \leq 3$$</div>
+<h4>Approaches</h4>
 <ol>
 <li>Approach:</li>
 </ol>
-<p>$$min\left { \sum_{i=0}^3 \sum_{k=0}^1 c_{i,k} x_{i,k} \right }$$</p>
+<div class="math">$$min\left \{ \sum_{i=0}^3 \sum_{k=0}^1 c_{i,k} x_{i,k} \right \}$$</div>
 <p>2. Approach:</p>
-<p>$$min\left { \left | \sum_{i=0}^3  c_{i,0} x_{i,0} - \sum_{i=0}^3 c_{i,1} x_{i,1} \right |\right }$$</p>
+<div class="math">$$min\left \{ \left | \sum_{i=0}^3  c_{i,0} x_{i,0} - \sum_{i=0}^3 c_{i,1} x_{i,1} \right |\right \}$$</div>
 <p>This is not a linear problem!</p>
-<h4 id="solutions">Solutions</h4>
+<h4>Solutions</h4>
 <p>1. Solution:</p>
 <p>Solving 2 linear problems: split approach 2 into 2 linear problems:</p>
-<p>$$min \left { \left | \underbrace{\sum_{i=0}^3  c_{i,0} x_{i,0}}<em i="0">{l_1} - \underbrace{\sum</em>^3 c_{i,1} x_{i,1}}_{l_2} \right | \right }$$</p>
+<div class="math">$$min \left \{ \left | \underbrace{\sum_{i=0}^3  c_{i,0} x_{i,0}}_{l_1} - \underbrace{\sum_{i=0}^3 c_{i,1} x_{i,1}}_{l_2} \right | \right \}$$</div>
 <p>Becomes:</p>
-<p>$$\begin{matrix}
-l_0 \geq l_1: min\left { l_0 - l_1 \right } \
-l_1 \geq l_0: min\left { l_1 - l_0 \right }
-\end{matrix}$$</p>
+<div class="math">$$\begin{matrix}
+l_0 \geq l_1: min\left \{ l_0 - l_1 \right \} \\
+l_1 \geq l_0: min\left \{ l_1 - l_0 \right \}
+\end{matrix}$$</div>
 <p>2. Solution:</p>
 <p>Empirical approach: Run code and measure execution time and try to minimize it.</p>
 <p>Move tasks to different processors.</p>
-<p>$$\begin{matrix}
-l_0 = \sum_{(i)}  c_{i,0} x_{i,0}\
+<div class="math">$$\begin{matrix}
+l_0 = \sum_{(i)}  c_{i,0} x_{i,0}\\
 l_1 = \sum_{(i)}  c_{i,1} x_{i,1}
-\end{matrix}$$</p>
-<p>$$min { B }$$</p>
-<p>$$\begin{matrix}
-B \geq l_0 \
+\end{matrix}$$</div>
+<div class="math">$$min \{ B \}$$</div>
+<div class="math">$$\begin{matrix}
+B \geq l_0 \\
 B \geq l_1
 \end{matrix}
-$$</p>
-<h3 id="iterative-methods">Iterative Methods</h3>
+$$</div>
+<h3>Iterative Methods</h3>
 <p>Often used principle:</p>
 <ul>
 <li>Start with some initial configuration (partitioning)</li>
@@ -892,7 +694,7 @@ $$</p>
 <li>local optimum depends on initial configuration</li>
 <li>generally no upper bound on iteration length</li>
 </ul>
-<h4 id="kernighan-lin">Kernighan-Lin</h4>
+<h4>Kernighan-Lin</h4>
 <ul>
 <li>as long as a better partition is found<ul>
 <li>from all possible pairs of objects: <em>virtually</em> re-group the 'best' (lowest cost of resulting partition)</li>
@@ -902,7 +704,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h4 id="simulated-annealing">Simulated Annealing</h4>
+<h4>Simulated Annealing</h4>
 <ul>
 <li>inspired by physical process</li>
 <li>replace existing solutions by (random) new feasible solutions form neighborhood</li>
@@ -912,7 +714,7 @@ $$</p>
 <p>Advantage:
 - Allowance for 'uphill' moves potentially avoids local optima</p>
 <p>Possible implementation:</p>
-<div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp_start</span>
+<div class="highlight"><pre><span class="n">temp</span> <span class="o">=</span> <span class="n">temp_start</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
 <span class="k">while</span> <span class="n">Frozen</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
     <span class="k">while</span> <span class="n">Equilibrium</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
@@ -933,7 +735,7 @@ $$</p>
 <ul>
 <li>Cooling down. There are different choices. For example:<ul>
 <li>initially: <code>temp := 1.0</code></li>
-<li>in any iteration: <code>temp := alpha * temp</code> (typically: 0.8 $\leq$ <code>alpha</code> $\leq$ 0.99)</li>
+<li>in any iteration: <code>temp := alpha * temp</code> (typically: 0.8 <span class="math">\(\leq\)</span> <code>alpha</code> <span class="math">\(\leq\)</span> 0.99)</li>
 </ul>
 </li>
 <li>Frozen<ul>
@@ -948,7 +750,7 @@ $$</p>
 </ul>
 <p><code>Accept(deltacost, temp)</code>:</p>
 <ul>
-<li>$e^{- \frac{deltacost}{k \cdot temp}}$</li>
+<li><span class="math">\(e^{- \frac{deltacost}{k \cdot temp}}\)</span></li>
 </ul>
 <p>Complexity:</p>
 <ul>
@@ -957,12 +759,12 @@ $$</p>
 </ul>
 <!-- End of Slides 4 -->
 <!-- Beginning of Slides 5 -->
-<h1 id="5-multi-criteria-optimization">5. Multi-Criteria Optimization</h1>
+<h1>5. Multi-Criteria Optimization</h1>
 <p>Part of system synthesis.</p>
 <blockquote>
 <p><em>Exploration</em> of different solutions.</p>
 </blockquote>
-<h2 id="example-network-processors">Example: Network Processors</h2>
+<h2>Example: Network Processors</h2>
 <p>Network processor: High-performance, programmable device designed to efficiently execute communication workloads</p>
 <ul>
 <li>Given:<ol>
@@ -985,34 +787,34 @@ $$</p>
 </ol>
 </li>
 </ul>
-<h2 id="basic-definition">Basic Definition</h2>
+<h2>Basic Definition</h2>
 <ul>
 <li>We intend to minimize a <em>vector-valued</em> <strong><em>objective function</em></strong></li>
 </ul>
-<p>$$f= (f_1; f_2; ... ; f_n): X \rightarrow R^n$$</p>
+<div class="math">$$f= (f_1; f_2; ... ; f_n): X \rightarrow R^n$$</div>
 <ul>
-<li>$X$ denotes the <strong>decision space</strong>. i.e the feasible set of alternatives for the optimization problem</li>
-<li>The image of the decision space $X$ using the objective function $f$ is denoted as the <strong>objective space</strong> $Z \subset R^n$ with</li>
+<li><span class="math">\(X\)</span> denotes the <strong>decision space</strong>. i.e the feasible set of alternatives for the optimization problem</li>
+<li>The image of the decision space <span class="math">\(X\)</span> using the objective function <span class="math">\(f\)</span> is denoted as the <strong>objective space</strong> <span class="math">\(Z \subset R^n\)</span> with</li>
 </ul>
-<p>$$Z = {f(x) |x \in X  }$$</p>
+<div class="math">$$Z = \{f(x) |x \in X  \}$$</div>
 <ul>
-<li>A single alternative $x \in X$ is (sometimes) named <em>solution</em> and the corresponding object value $z = f(x) \in Z$ is named <em>objective vector</em></li>
+<li>A single alternative <span class="math">\(x \in X\)</span> is (sometimes) named <em>solution</em> and the corresponding object value <span class="math">\(z = f(x) \in Z\)</span> is named <em>objective vector</em></li>
 </ul>
 <blockquote>
 <p>decision space → objective space</p>
 </blockquote>
 <p>Basic question:</p>
 <p>How do we define the minimum of a vector-valued function?</p>
-<h2 id="pareto-dominance">Pareto Dominance</h2>
+<h2>Pareto Dominance</h2>
 <p>Definition:</p>
-<p>A solution $a \in X$ weakly <em>Pareto-dominates</em> a solution $b \in X$, denoted as $a \preceq  b$, if it is at least as good in
+<p>A solution <span class="math">\(a \in X\)</span> weakly <em>Pareto-dominates</em> a solution <span class="math">\(b \in X\)</span>, denoted as <span class="math">\(a \preceq  b\)</span>, if it is at least as good in
 all objectives, i.e:</p>
-<p>$$f_i(a) \leq f_i(b)\; \forall 1 \leq i \leq n$$</p>
+<div class="math">$$f_i(a) \leq f_i(b)\; \forall 1 \leq i \leq n$$</div>
 <ul>
 <li>Dominance is transitive</li>
-<li>A solution is named <em>Pareto-optimal</em>, if it's not Pareto-dominated by any other solution in $X$</li>
+<li>A solution is named <em>Pareto-optimal</em>, if it's not Pareto-dominated by any other solution in <span class="math">\(X\)</span></li>
 </ul>
-<h3 id="optimization-alternatives">Optimization Alternatives</h3>
+<h3>Optimization Alternatives</h3>
 <ul>
 <li>Classical single objective optimization methods<ul>
 <li>Simulated annealing</li>
@@ -1029,7 +831,7 @@ all objectives, i.e:</p>
 </li>
 </ul>
 <p>→ Decision making is done after the optimization</p>
-<h3 id="evolutionary-algorithms">Evolutionary Algorithms</h3>
+<h3>Evolutionary Algorithms</h3>
 <p>Basic scheme (many variations exist):</p>
 <ol>
 <li>A set of initial solution (initial population is chosen (usually at random). This set is called <em>parent</em> set.</li>
@@ -1049,23 +851,23 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h4 id="hypervolume-indicator">Hypervolume Indicator</h4>
+<h4>Hypervolume Indicator</h4>
 <ul>
 <li>Environmental selection:<ul>
 <li>Select subset of solutions that <em>maximizes hypervolume indicator</em></li>
 </ul>
 </li>
 </ul>
-<p>Given a set of solutions $A \subseteq X$ and a set of <em>reference points</em> $R \subset \mathbb{R}^n$. Then the
-<em>hypervolume indicator</em> $I_H(A,R)$ of $A$ with respect to $R$ is defined as</p>
-<p>$$I_H(A,R) = \int_{z \in H(A,R)} dz$$</p>
-<p>where $H(A,R)$ id the dominated space of $A$ regarding $R$:</p>
-<p>$$H(A,R) = { z \in \mathbb{R}^n | \exists a \in A : \exists r \in R : (f(a) \leq z \leq r) }$$</p>
-<p>$z$: Objective</p>
+<p>Given a set of solutions <span class="math">\(A \subseteq X\)</span> and a set of <em>reference points</em> <span class="math">\(R \subset \mathbb{R}^n\)</span>. Then the
+<em>hypervolume indicator</em> <span class="math">\(I_H(A,R)\)</span> of <span class="math">\(A\)</span> with respect to <span class="math">\(R\)</span> is defined as</p>
+<div class="math">$$I_H(A,R) = \int_{z \in H(A,R)} dz$$</div>
+<p>where <span class="math">\(H(A,R)\)</span> id the dominated space of <span class="math">\(A\)</span> regarding <span class="math">\(R\)</span>:</p>
+<div class="math">$$H(A,R) = \{ z \in \mathbb{R}^n | \exists a \in A : \exists r \in R : (f(a) \leq z \leq r) \}$$</div>
+<p><span class="math">\(z\)</span>: Objective</p>
 <ul>
 <li>The hypervolume indicator leads to <em>diversity</em> and <em>optimality</em></li>
 </ul>
-<h4 id="representation-and-neighborhood">Representation and Neighborhood</h4>
+<h4>Representation and Neighborhood</h4>
 <ul>
 <li>A <em>representation</em> corresponds to an <em>abstract data</em> that encodes a <em>solution</em></li>
 <li><em>Neighborhood operators</em> work on <em>representations</em></li>
@@ -1078,7 +880,7 @@ all objectives, i.e:</p>
 </ul>
 <p>Encoding: i.e order of tasks executing to explore scheduling.</p>
 <!-- End of Notes Week 7 -->
-<h4 id="tree-representation">Tree Representation</h4>
+<h4>Tree Representation</h4>
 <ul>
 <li>Solutions can be represented as tree structures</li>
 <li>Mutation:<ul>
@@ -1090,11 +892,11 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h4 id="handling-constraints">Handling Constraints</h4>
-<p>Constraint: $g(x) \geq 0$</p>
+<h4>Handling Constraints</h4>
+<p>Constraint: <span class="math">\(g(x) \geq 0\)</span></p>
 <ul>
-<li>Feasible: $g \geq 0$</li>
-<li>Infeasible: $g &lt; 0$</li>
+<li>Feasible: <span class="math">\(g \geq 0\)</span></li>
+<li>Infeasible: <span class="math">\(g &lt; 0\)</span></li>
 </ul>
 <p>Approaches:</p>
 <ol>
@@ -1103,32 +905,32 @@ all objectives, i.e:</p>
 <li>Add only feasible solutions to children population</li>
 <li>Preferably select feasible solutions in environmental selection</li>
 <li>Penalty function:<ul>
-<li>Calculate constraint violation $g(x)$ and incorporate it into objective function</li>
-<li>$penalty(x) &gt; 0\; if g(x) &lt; 0,\; penalty(x) = 0\; if g(x) \geq 0$</li>
+<li>Calculate constraint violation <span class="math">\(g(x)\)</span> and incorporate it into objective function</li>
+<li><span class="math">\(penalty(x) &gt; 0\; if g(x) &lt; 0,\; penalty(x) = 0\; if g(x) \geq 0\)</span></li>
 <li>i.e add penalty function to every objective (increase 'price' for Infeasible solutions)</li>
 </ul>
 </li>
 <li>Include the constraints as new objectives</li>
 </ol>
-<h1 id="6-system-simulation">6. System Simulation</h1>
+<h1>6. System Simulation</h1>
 <p>Estimation with simulation.</p>
 <p>Estimation: find out if a solution is good or bad.</p>
-<h2 id="system-and-model">System and Model</h2>
+<h2>System and Model</h2>
 <ul>
 <li>System: Combination of components that act together</li>
 <li>Model: Formal description of the system (covers selected information)</li>
 </ul>
-<h2 id="state">State</h2>
+<h2>State</h2>
 <ul>
-<li>Contains all information of the system at $t_0$ that is necessary to determine the output (for $t \geq t_0$) from the input (at (at $t \geq t_0$).</li>
+<li>Contains all information of the system at <span class="math">\(t_0\)</span> that is necessary to determine the output (for <span class="math">\(t \geq t_0\)</span>) from the input (at (at <span class="math">\(t \geq t_0\)</span>).</li>
 </ul>
 <blockquote>
 <p>Input + State = Output</p>
 </blockquote>
 <ul>
-<li>The set $X$ of all possible states of a system is called it's <em>state space</em></li>
+<li>The set <span class="math">\(X\)</span> of all possible states of a system is called it's <em>state space</em></li>
 </ul>
-<h2 id="discretecontinuous-systems">Discrete/Continuous Systems</h2>
+<h2>Discrete/Continuous Systems</h2>
 <p>Examples:</p>
 <ul>
 <li>Continuous state systems:<ul>
@@ -1156,11 +958,11 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h3 id="discrete-event-systems-des">Discrete Event Systems (DES)</h3>
+<h3>Discrete Event Systems (DES)</h3>
 <ul>
 <li>Driven by events</li>
 <li>
-<p>Event: $e = (v, t)$ is a touple of a value $v$ and a tag $t$</p>
+<p>Event: <span class="math">\(e = (v, t)\)</span> is a touple of a value <span class="math">\(v\)</span> and a tag <span class="math">\(t\)</span></p>
 <ul>
 <li>Tags are usually totally ordered</li>
 <li>If the tag denotes <em>time</em>, then the event is a <em>timed event</em></li>
@@ -1176,14 +978,14 @@ all objectives, i.e:</p>
 </li>
 <li>Can be defined in <em>continuous</em> of <em>discrete time</em></li>
 <li>
-<p>The <em>state space</em> $X$ can be either discrete or continuous</p>
+<p>The <em>state space</em> <span class="math">\(X\)</span> can be either discrete or continuous</p>
 </li>
 <li>
 <p><em>Signals</em> or <em>streams</em> represent ordering/timing of events</p>
 </li>
 <li><em>Processes</em> are represented as functions acting on signals or streams</li>
 </ul>
-<h4 id="simulation">Simulation</h4>
+<h4>Simulation</h4>
 <ul>
 <li>
 <p>Discrete-time, time-driven</p>
@@ -1206,7 +1008,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h4 id="discrete-event-modeling-and-simulation">Discrete-Event Modeling and Simulation</h4>
+<h4>Discrete-Event Modeling and Simulation</h4>
 <ul>
 <li>Concurrent processes are modeled using modules<ul>
 <li><em>Behavior</em> described as logic/algebraic expressions</li>
@@ -1218,7 +1020,7 @@ all objectives, i.e:</p>
 <li>Modules can be hierarchical</li>
 <li>Event-Driven</li>
 </ul>
-<h5 id="components-of-discrete-event-simulation">Components of Discrete-Event Simulation</h5>
+<h5>Components of Discrete-Event Simulation</h5>
 <ul>
 <li>Simulation time<ul>
 <li>Simulation clock represents the current value of simulation time</li>
@@ -1237,7 +1039,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h5 id="simulation-engine">Simulation Engine</h5>
+<h5>Simulation Engine</h5>
 <ol>
 <li>Initialization routine<ul>
 <li>Initialize the simulation model;<ul>
@@ -1252,20 +1054,22 @@ all objectives, i.e:</p>
 <li>Advance the simulation clock to the time when the event occurs</li>
 </ul>
 </li>
-<li>Event routine<ul>
+<li>
+<p>Event routine</p>
+<ul>
 <li>Update <em>system state</em> when event occurs</li>
 </ul>
 </li>
-</ol>
+<li>
+<p>In a simulation cycle 'cause' and 'effect' can share the same time of occurrence</p>
 <ul>
-<li>In a simulation cycle 'cause' and 'effect' can share the same time of occurrence<ul>
-<li>Use <em>zero duration virtual time interval</em> called <strong>delta cycle</strong> ($\delta$)</li>
+<li>Use <em>zero duration virtual time interval</em> called <strong>delta cycle</strong> (<span class="math">\(\delta\)</span>)</li>
 </ul>
 </li>
-</ul>
+</ol>
 <!-- End of Notes Week 8 (morning) -->
 <!-- Beginning of Notes Week 8 (afternoon) -->
-<h2 id="systemc">SystemC</h2>
+<h2>SystemC</h2>
 <ul>
 <li>System-level modeling language<ul>
 <li>Several levels of abstractions<ul>
@@ -1286,7 +1090,7 @@ all objectives, i.e:</p>
 <li>Free (open source)</li>
 <li>For Windows, Linux, OS X...</li>
 </ul>
-<h3 id="language-architecture">Language Architecture</h3>
+<h3>Language Architecture</h3>
 <ul>
 <li>Core language<ul>
 <li>Minimal set of modeling constructs<ul>
@@ -1306,7 +1110,7 @@ all objectives, i.e:</p>
 </li>
 <li>Layer (tier) architecture</li>
 </ul>
-<h3 id="processes">Processes</h3>
+<h3>Processes</h3>
 <p>Processes are the basic units of functionality.</p>
 <ul>
 <li><code>SC_THREAD</code>s<ul>
@@ -1326,7 +1130,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h3 id="modules">Modules</h3>
+<h3>Modules</h3>
 <ul>
 <li>Building blocks of models<ul>
 <li>Hierarchy</li>
@@ -1335,7 +1139,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h3 id="inter-process-communication">Inter Process Communication</h3>
+<h3>Inter Process Communication</h3>
 <ul>
 <li>Processes can communicate directly trough <em>signals</em></li>
 <li><em>Events</em>: Flexible, low-level synchronization primitive</li>
@@ -1353,7 +1157,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h3 id="wait-and-notify">Wait and Notify</h3>
+<h3>Wait and Notify</h3>
 <ul>
 <li><code>wait</code>: halt process until an extent is raised<ul>
 <li><code>wait()</code> with arguments → dynamic sensitivity<ul>
@@ -1374,7 +1178,7 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h2 id="levels-of-abstractions">Levels of Abstractions</h2>
+<h2>Levels of Abstractions</h2>
 <p>Simulation can be done on different levels of abstraction.</p>
 <ul>
 <li>Functional level (untimed/timed)<ul>
@@ -1401,54 +1205,54 @@ all objectives, i.e:</p>
 </ul>
 </li>
 </ul>
-<h1 id="7-design-space-exploration">7. Design Space Exploration</h1>
-<h2 id="example-network-processor-np">Example: Network Processor (NP)</h2>
+<h1>7. Design Space Exploration</h1>
+<h2>Example: Network Processor (NP)</h2>
 <ul>
 <li>Different processing units: ARM9, DSP, ...</li>
 <li>Streams: ordered sequence of tasks</li>
 </ul>
-<h3 id="optimal-design-of-network-processor">Optimal Design of Network Processor</h3>
-<p>$T$: Tasks
-$w$: Requests
-$M$: Mapping
-$R$: Resources
-$c$: Cost</p>
+<h3>Optimal Design of Network Processor</h3>
+<p><span class="math">\(T\)</span>: Tasks
+<span class="math">\(w\)</span>: Requests
+<span class="math">\(M\)</span>: Mapping
+<span class="math">\(R\)</span>: Resources
+<span class="math">\(c\)</span>: Cost</p>
 <ul>
-<li>Mappings: $M \subseteq T \times R$ all possible bindings of tasks<ul>
-<li>i.e if $(t,r) \in M$ then task $t$ could be executed on resource $r$</li>
+<li>Mappings: <span class="math">\(M \subseteq T \times R\)</span> all possible bindings of tasks<ul>
+<li>i.e if <span class="math">\((t,r) \in M\)</span> then task <span class="math">\(t\)</span> could be executed on resource <span class="math">\(r\)</span></li>
 </ul>
 </li>
-<li>Request $w(r,t) \geq 0$<ul>
-<li>i.e execution of one packet in $t$ would use $w$ computing units of $r$</li>
+<li>Request <span class="math">\(w(r,t) \geq 0\)</span><ul>
+<li>i.e execution of one packet in <span class="math">\(t\)</span> would use <span class="math">\(w\)</span> computing units of <span class="math">\(r\)</span></li>
 </ul>
 </li>
-<li>Resource allocation cost $c(r) \geq 0$</li>
-<li>Binding $Z$ of tasks to resources $Z \subseteq M$<ul>
+<li>Resource allocation cost <span class="math">\(c(r) \geq 0\)</span></li>
+<li>Binding <span class="math">\(Z\)</span> of tasks to resources <span class="math">\(Z \subseteq M\)</span><ul>
 <li>leading to actual implementation</li>
-<li>Subset of mappings $M$ s.t every task $t \in T$ is bound to <em>exactly one</em> allocated resource<ul>
-<li>$e \in R alloc(r) = 1$ and</li>
-<li>$r = bind(t)$</li>
+<li>Subset of mappings <span class="math">\(M\)</span> s.t every task <span class="math">\(t \in T\)</span> is bound to <em>exactly one</em> allocated resource<ul>
+<li><span class="math">\(e \in R alloc(r) = 1\)</span> and</li>
+<li><span class="math">\(r = bind(t)\)</span></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="design-constraints">Design constraints</h4>
+<h4>Design constraints</h4>
 <ul>
 <li>Delay constraints: e.g max time a packet is processed within network processor</li>
 <li>Throughput maximization: e.g packets per second</li>
 <li>Cost minimization: implementing with small amount of resources (processing units, memory, networks...)</li>
 <li>And conflicting usage scenarios ...</li>
 </ul>
-<h3 id="np-design-space-exploration">NP Design Space Exploration</h3>
+<h3>NP Design Space Exploration</h3>
 <ul>
 <li>Allocation: determine HW components</li>
 <li>Binding: For each SW process choose allocated HW unit</li>
 <li>Scheduling: For tasks on specific resources choose scheduling policy</li>
 </ul>
-<h2 id="performance-estimation">Performance Estimation</h2>
+<h2>Performance Estimation</h2>
 <p>Global Picture</p>
-<h3 id="metric">Metric</h3>
+<h3>Metric</h3>
 <ul>
 <li>Time</li>
 <li>Power</li>
@@ -1458,26 +1262,26 @@ $c$: Cost</p>
 <li>SNR</li>
 <li>...</li>
 </ul>
-<h3 id="method">Method</h3>
+<h3>Method</h3>
 <ul>
 <li>Analytic</li>
 <li>Simulation</li>
 <li>Statistic</li>
 </ul>
-<h3 id="abstraction-level">Abstraction Level</h3>
+<h3>Abstraction Level</h3>
 <ul>
 <li>Low-level: Register Transfer Level, Instruction Set Architecture</li>
 <li>Intermediary-level: Transaction Level-Model, Operating System, already linked to HW</li>
 <li>High-level: Functional, High-level language, independent of HW</li>
 </ul>
-<h3 id="subsystem-to-analyze">Subsystem to Analyze</h3>
+<h3>Subsystem to Analyze</h3>
 <ul>
 <li>HW subsystem</li>
 <li>CPU subsystem</li>
 <li>Interconnect subsystem</li>
 <li>Multiprocessor System-on-Chip (MPSoC)</li>
 </ul>
-<h2 id="performance-estimation-in-design-flow">Performance Estimation in Design Flow</h2>
+<h2>Performance Estimation in Design Flow</h2>
 <ul>
 <li>High-level<ul>
 <li>Advantages:<ul>
@@ -1505,7 +1309,7 @@ $c$: Cost</p>
 </ul>
 </li>
 </ul>
-<h2 id="multi-processor-system-on-chip">Multi-Processor System-on-Chip</h2>
+<h2>Multi-Processor System-on-Chip</h2>
 <p>Simulation should be divided in to independent modules.
 So they can be exchanged.</p>
 <p>Composable in terms of:</p>
@@ -1528,13 +1332,13 @@ So they can be exchanged.</p>
 <li>Cost</li>
 <li>...</li>
 </ul>
-<h3 id="communication">Communication</h3>
+<h3>Communication</h3>
 <ul>
 <li>Bus</li>
 <li>Network</li>
 <li>Hierarchical Bus</li>
 </ul>
-<h3 id="computation-and-memory">Computation and Memory</h3>
+<h3>Computation and Memory</h3>
 <ul>
 <li>DRAM</li>
 <li>SDRAM</li>
@@ -1544,7 +1348,7 @@ So they can be exchanged.</p>
 <li>muC</li>
 <li>HW</li>
 </ul>
-<h3 id="scheduling-and-arbitration">Scheduling and Arbitration</h3>
+<h3>Scheduling and Arbitration</h3>
 <ul>
 <li>TDMA</li>
 <li>EDF</li>
@@ -1553,7 +1357,7 @@ So they can be exchanged.</p>
 <li>fixed priority</li>
 <li>static</li>
 </ul>
-<h3 id="difficulty">Difficulty</h3>
+<h3>Difficulty</h3>
 <p>Why is MPSoC performance estimation difficult?</p>
 <ul>
 <li>Computation, communication and memory<ul>
@@ -1579,7 +1383,7 @@ So they can be exchanged.</p>
 </blockquote>
 <p>If a component is replaced with a faster one it could block shared resources (e.g bus)
 for other components.</p>
-<h2 id="abstraction">Abstraction</h2>
+<h2>Abstraction</h2>
 <ul>
 <li>Technology: transistors, layouts</li>
 <li>Signal: gate, schematic, RTL</li>
@@ -1593,7 +1397,7 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<h2 id="performance-estimation-methods">Performance Estimation Methods</h2>
+<h2>Performance Estimation Methods</h2>
 <p>How to evaluate a system?</p>
 <ul>
 <li>Measurements<ul>
@@ -1613,18 +1417,18 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<h3 id="static-analysis-models">Static Analysis Models</h3>
+<h3>Static Analysis Models</h3>
 <ul>
 <li>Describe computing, communication and memory resources by <em>algebraic equations</em></li>
 <li>Describe system properties by <em>parameters</em> (e.g data rate)</li>
 <li>Combine relations</li>
 </ul>
-<p>$$comm_delay= \left \lceil \frac{# words}{burst_size}  \right \rceil \cdot comm_time$$</p>
+<div class="math">$$comm\_delay= \left \lceil \frac{\# words}{burst\_size}  \right \rceil \cdot comm\_time$$</div>
 <ul>
 <li>Fast and simple estimation</li>
 <li>But generally inaccurate modeling (e.g resource sharing not modeled)</li>
 </ul>
-<h3 id="dynamic-analytic-models">Dynamic Analytic Models</h3>
+<h3>Dynamic Analytic Models</h3>
 <ul>
 <li>Combination between<ul>
 <li><em>Static models</em> possibly extended by non-determinism in run-time and event processing</li>
@@ -1638,7 +1442,7 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<h4 id="stochastic-queuing-systems">Stochastic Queuing Systems</h4>
+<h4>Stochastic Queuing Systems</h4>
 <ul>
 <li>A stochastic model for queuing systems is described by probability density functions (distributions) of<ul>
 <li>Arrival rates</li>
@@ -1654,7 +1458,7 @@ for other components.</p>
 </li>
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Markov_chain">Markovian (exponential) distribution</a></p>
-<h4 id="worst-casebest-case-queuing-systems">Worst-Case/Best-Case Queuing Systems</h4>
+<h4>Worst-Case/Best-Case Queuing Systems</h4>
 <ul>
 <li>A worst-/best-case queuing system is described by worst-/best-case bounds on system properties<ul>
 <li>worst-/best-case bounds on arrival times</li>
@@ -1669,7 +1473,7 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<h3 id="simulation_1">Simulation</h3>
+<h3>Simulation</h3>
 <ul>
 <li>Model<ul>
 <li>Program implementing a model of the system (application, hardware, platform, mapping)</li>
@@ -1685,7 +1489,7 @@ for other components.</p>
 <li>Typically complex set-up and extensive run-times</li>
 <li>Accurate results and good debugging possibilities</li>
 </ul>
-<h4 id="trace-based-simulation">Trace-Based Simulation</h4>
+<h4>Trace-Based Simulation</h4>
 <ul>
 <li>Abstract system-level simulation (without timing)<ul>
 <li>Faster than low-level simulation</li>
@@ -1720,7 +1524,7 @@ for other components.</p>
 <!-- End of Notes Week 10 -->
 <!-- Beginning of Slides 9 -->
 <!-- Beginning of Notes Week 11 -->
-<h1 id="9-worst-case-execution-time-analysis">9. Worst Case Execution Time Analysis</h1>
+<h1>9. Worst Case Execution Time Analysis</h1>
 <ul>
 <li>Calculation not simulation</li>
 <li>Measurement of running task</li>
@@ -1728,7 +1532,7 @@ for other components.</p>
 <li>Worst case formal analysis</li>
 <li>Program path analysis</li>
 </ul>
-<h2 id="hard-real-time-systems">Hard Real-Time Systems</h2>
+<h2>Hard Real-Time Systems</h2>
 <ul>
 <li>Often in safety-critical applications<ul>
 <li>Aeronautics</li>
@@ -1754,12 +1558,12 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<h2 id="industrys-best-practice">Industry's Best Practice</h2>
+<h2>Industry's Best Practice</h2>
 <ul>
 <li>Measurements: determine execution times directly by observing the execution of a simulation on a set of inputs<ul>
 <li>Does not guarantee an upper bound to all executions in general</li>
 <li>Exhaustive execution in general not possible<ul>
-<li>Too large space: 'Input Domain' $\times$ 'Initial execution states'</li>
+<li>Too large space: 'Input Domain' <span class="math">\(\times\)</span> 'Initial execution states'</li>
 </ul>
 </li>
 </ul>
@@ -1771,33 +1575,33 @@ for other components.</p>
 </ul>
 </li>
 </ul>
-<h3 id="calculating-upper-bounds">Calculating Upper Bounds</h3>
-<p>$ub(s)$: Upper bound for statement $s$</p>
-<h4 id="sequence-of-statements">Sequence of Statements</h4>
-<p>$$A \equiv A1;A2$$</p>
-<p>Constituents of $A$: $A1$ and $A2$</p>
-<p>Upper bound for $A$ is the sum of the upper bounds for $A1$ and $A2$</p>
-<p>$$ub(A) = ub(A1) + ub(A2)$$</p>
-<h4 id="conditional-statement">Conditional Statement</h4>
-<p>$$\begin{align<em>}
-A \equiv \; &amp; if \; B \
- &amp; then \; A1 \
+<h3>Calculating Upper Bounds</h3>
+<p><span class="math">\(ub(s)\)</span>: Upper bound for statement <span class="math">\(s\)</span></p>
+<h4>Sequence of Statements</h4>
+<div class="math">$$A \equiv A1;A2$$</div>
+<p>Constituents of <span class="math">\(A\)</span>: <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
+<p>Upper bound for <span class="math">\(A\)</span> is the sum of the upper bounds for <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
+<div class="math">$$ub(A) = ub(A1) + ub(A2)$$</div>
+<h4>Conditional Statement</h4>
+<div class="math">$$\begin{align*}
+A \equiv \; &amp; if \; B \\
+ &amp; then \; A1 \\
  &amp; else \; A2
-\end{align</em>}$$</p>
-<p>Constituents of $A$:</p>
+\end{align*}$$</div>
+<p>Constituents of <span class="math">\(A\)</span>:</p>
 <ol>
-<li>Condition $B$</li>
-<li>Statements $A1$ and $A2$</li>
+<li>Condition <span class="math">\(B\)</span></li>
+<li>Statements <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></li>
 </ol>
-<p>$$ub(A) = ub(b) + \mathbf{max}(ub(A1), ub(A2))$$</p>
-<h4 id="loops">Loops</h4>
-<p>$$\begin{align<em>}
- A \equiv for\; &amp; i \leftarrow 1\; to\; 100\; do \
+<div class="math">$$ub(A) = ub(b) + \mathbf{max}(ub(A1), ub(A2))$$</div>
+<h4>Loops</h4>
+<div class="math">$$\begin{align*}
+ A \equiv for\; &amp; i \leftarrow 1\; to\; 100\; do \\
  &amp; A1
-\end{align</em>}$$</p>
+\end{align*}$$</div>
 <p>Precondition: Number of loops needs to be known (e.g 100)</p>
-<p>$$ub(A) = ub(i \leftarrow) + 100 \times (ub(i \leq 100) + ub(A1))+ ub(i\leq100)$$</p>
-<h3 id="modern-hardware-features">Modern Hardware Features</h3>
+<div class="math">$$ub(A) = ub(i \leftarrow) + 100 \times (ub(i \leq 100) + ub(A1))+ ub(i\leq100)$$</div>
+<h3>Modern Hardware Features</h3>
 <ul>
 <li>Modern processors increase performance by using<ul>
 <li>Caches</li>
@@ -1813,18 +1617,18 @@ A \equiv \; &amp; if \; B \
 </li>
 <li>Span may be several hundred (even thousand) cycles</li>
 </ul>
-<h3 id="program-path-analysis">Program Path Analysis</h3>
+<h3>Program Path Analysis</h3>
 <ul>
 <li>Which sequence of instructions is executed in the worst-case (longest run time)?</li>
 <li>Problem: The number of possible program paths grow with the length of the program</li>
 <li>Number of loop iteration must be bounded</li>
 <li>Must be done at machine code instruction level</li>
 </ul>
-<h4 id="basic-blocks">Basic Blocks</h4>
+<h4>Basic Blocks</h4>
 <p>A basic block is a sequence of instruction where the control flow enters at the beginning
 and exits at the end, without stopping in-between or branching (except at the end).</p>
 <p>The branch instruction at the end of a basic block belongs to that block!</p>
-<div class="highlight"><pre><span></span><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
+<div class="highlight"><pre><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
 <span class="nl">t2</span> <span class="p">:</span><span class="o">=</span> <span class="n">e</span> <span class="o">*</span> <span class="n">t1</span>
 <span class="nl">t3</span> <span class="p">:</span><span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">t1</span>
 <span class="nl">t4</span> <span class="p">:</span><span class="o">=</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t3</span>
@@ -1844,13 +1648,13 @@ and exits at the end, without stopping in-between or branching (except at the en
 </ul>
 </li>
 </ol>
-<h4 id="calculation-of-the-wcet">Calculation of the <strong>WCET</strong></h4>
-<p>A program consists of $N$ basic blocks, where each basic block $B_i$ has a worst-case execution time $c_i$ and is
- executed for exactly $x_i$ times:</p>
-<p>$$WCET = \sum_{i=1}^N c_i \cdot x_i$$</p>
+<h4>Calculation of the <strong>WCET</strong></h4>
+<p>A program consists of <span class="math">\(N\)</span> basic blocks, where each basic block <span class="math">\(B_i\)</span> has a worst-case execution time <span class="math">\(c_i\)</span> and is
+ executed for exactly <span class="math">\(x_i\)</span> times:</p>
+<div class="math">$$WCET = \sum_{i=1}^N c_i \cdot x_i$$</div>
 <ul>
-<li>The $c_i$ values are determined using the static analysis</li>
-<li>Determine $x_i$<ul>
+<li>The <span class="math">\(c_i\)</span> values are determined using the static analysis</li>
+<li>Determine <span class="math">\(x_i\)</span><ul>
 <li>Structural constraint given by the program structure</li>
 <li>Additional constraints provided by the programmer (e.g bounds for loop counters...)</li>
 </ul>
@@ -1859,26 +1663,26 @@ and exits at the end, without stopping in-between or branching (except at the en
 <p><img alt="WCET Calculation" class="img-responsive" src="/images/hscd_wcet_calculation.png"/></p>
 <p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
 <p>Flow Equations (sum of incoming edges equals sum of outgoing edges)</p>
-<p>$$\begin{align<em>}
-d1 = d2 = x_1 \
-d2 + d8 = d3 + d9 = x_2 \
-d3 = d4 + d5 = x_3 \
-d4 = d6 = x_4 \
-d5 = d7 = x_5 \
-d6 + d7 = d8 = x_6 \
+<div class="math">$$\begin{align*}
+d1 = d2 = x_1 \\
+d2 + d8 = d3 + d9 = x_2 \\
+d3 = d4 + d5 = x_3 \\
+d4 = d6 = x_4 \\
+d5 = d7 = x_5 \\
+d6 + d7 = d8 = x_6 \\
 d9 = d10 = x_7
-\end{align</em>}$$</p>
+\end{align*}$$</div>
 <p>Additional Constraints</p>
 <ul>
-<li>Execute the program only once: $d1 = 1$</li>
-<li>loop is executed at most 10 times: $x_3 \leq 10 \cdot x_1$</li>
-<li>Block 5 is executed at most one time: $x_5 &lt;leq 1 \cdot x_1$</li>
+<li>Execute the program only once: <span class="math">\(d1 = 1\)</span></li>
+<li>loop is executed at most 10 times: <span class="math">\(x_3 \leq 10 \cdot x_1\)</span></li>
+<li>Block 5 is executed at most one time: <span class="math">\(x_5 &lt;leq 1 \cdot x_1\)</span></li>
 </ul>
 <p>The more information the better the result</p>
-<h5 id="integer-linear-program-for-wcet-calculation">Integer Linear Program for <strong>WCET</strong> Calculation</h5>
+<h5>Integer Linear Program for <strong>WCET</strong> Calculation</h5>
 <p>ILP with structural and additional constraints</p>
-<p>$$WCET = max\left { \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}<em in_b_i_="in(B_i)" j_in="j\in">{\text{program is executed once}} \land \underbrace{\sum</em> d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{\text{structural constraints}} \;\land \;\text{additional constraints} \right }$$</p>
-<h3 id="abstract-interpretation-ai">Abstract Interpretation (AI)</h3>
+<div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{\text{structural constraints}} \;\land \;\text{additional constraints} \right \}$$</div>
+<h3>Abstract Interpretation (AI)</h3>
 <ul>
 <li>Semantics-based method for static program analysis</li>
 <li>Basic idea<ul>
@@ -1891,24 +1695,24 @@ d9 = d10 = x_7
 <p>Ingredients:</p>
 <ul>
 <li>Abstract domain: related to concrete domain (by abstraction and concretization functions)<ul>
-<li>e.g $L \rightarrow \text{Intervals}$</li>
-<li>where: $\text{Intervals} = LB \times UB, LB = UB = Int \cup {-\infty, \infty}$</li>
-<li>instead of: $L \rightarrow Int$</li>
+<li>e.g <span class="math">\(L \rightarrow \text{Intervals}\)</span></li>
+<li>where: <span class="math">\(\text{Intervals} = LB \times UB, LB = UB = Int \cup \{-\infty, \infty\}\)</span></li>
+<li>instead of: <span class="math">\(L \rightarrow Int\)</span></li>
 </ul>
 </li>
 <li>Abstract transfer functions: for each statement type (abstract versions of their semantics)<ul>
-<li>e.g $+ : Intervals \times Intervals \rightarrow Intervals$</li>
-<li>where: $[a,b] + [c,d] = [a+c,b+d]$</li>
-<li>with: $+$ extends to $-\infty, \infty$</li>
+<li>e.g <span class="math">\(+ : Intervals \times Intervals \rightarrow Intervals\)</span></li>
+<li>where: <span class="math">\([a,b] + [c,d] = [a+c,b+d]\)</span></li>
+<li>with: <span class="math">\(+\)</span> extends to <span class="math">\(-\infty, \infty\)</span></li>
 </ul>
 </li>
 <li>A join function combining abstract values from different control-flow paths<ul>
-<li>e.g $\cup : Interval \times Interval \rightarrow Interval$</li>
-<li>where: $[a,b] \cup [c,d] = [min(a,c),max(b,d)]$</li>
+<li>e.g <span class="math">\(\cup : Interval \times Interval \rightarrow Interval\)</span></li>
+<li>where: <span class="math">\([a,b] \cup [c,d] = [min(a,c),max(b,d)]\)</span></li>
 </ul>
 </li>
 </ul>
-<h4 id="value-analysis">Value Analysis</h4>
+<h4>Value Analysis</h4>
 <p>Motivation:
 - Provide access information to data-cache/pipeline analysis
 - Detect Infeasible paths
@@ -1918,7 +1722,7 @@ d9 = d10 = x_7
 occurring in the program (addresses, register contents, local and global variables).</p>
 <!-- End of Notes Week 11 -->
 <!-- Beginning of Notes Week 12 -->
-<h4 id="caches">Caches</h4>
+<h4>Caches</h4>
 <ul>
 <li>Main memory to slow</li>
 <li>Speed gap between CPU and memory too large (and increasing)</li>
@@ -1964,9 +1768,9 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 </li>
 </ul>
-<h4 id="cache-analysis">Cache Analysis</h4>
+<h4>Cache Analysis</h4>
 <p>Statically precompute cache contents:</p>
-<div class="highlight"><pre><span></span>- Must Analysis
+<div class="highlight"><pre>- Must Analysis
     - For each program point (and calling context) find out which blocks *are in the cache*
     - Determines safe information about cache hits
     - Predicted cache hit *reduces* **WCET**
@@ -1976,12 +1780,12 @@ occurring in the program (addresses, register contents, local and global variabl
     - Determines safe information about cache misses
     - Each predicted cache miss *increases* **BCET**
 </pre></div>
-<h5 id="must-cache">Must Cache</h5>
+<h5>Must Cache</h5>
 <ul>
 <li>Only variables that are in all caches</li>
 <li>Order: worst age (oldest)</li>
 <li>
-<p>Number of variables in cache $\leq$ numbers of places in cache</p>
+<p>Number of variables in cache <span class="math">\(\leq\)</span> numbers of places in cache</p>
 </li>
 <li>
 <p>Join</p>
@@ -1995,7 +1799,7 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 </li>
 </ul>
-<h5 id="may-cache">May Cache</h5>
+<h5>May Cache</h5>
 <ul>
 <li>All variables that <em>could be in cache</em></li>
 <li>Minimal age</li>
@@ -2010,27 +1814,27 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 </li>
 </ul>
-<h5 id="cache-contribution-to-wcet">Cache Contribution to <strong>WCET</strong></h5>
+<h5>Cache Contribution to <strong>WCET</strong></h5>
 <p>Reference to variable <strong>s</strong> in code:</p>
 <ul>
 <li>if <strong>s</strong> is in <em>must-cache</em>:<ul>
-<li>$t_{WCET} = t_{hit}$</li>
+<li><span class="math">\(t_{WCET} = t_{hit}\)</span></li>
 </ul>
 </li>
 <li>otherwise<ul>
-<li>$t_{WCET} = t_{miss}$</li>
+<li><span class="math">\(t_{WCET} = t_{miss}\)</span></li>
 </ul>
 </li>
 <li>if <strong>s</strong> is in <em>may-cache</em>:<ul>
-<li>$t_{BCET} = t_{hit}$</li>
+<li><span class="math">\(t_{BCET} = t_{hit}\)</span></li>
 </ul>
 </li>
 <li>otherwise<ul>
-<li>$t_{BCET} = t_{miss}$</li>
+<li><span class="math">\(t_{BCET} = t_{miss}\)</span></li>
 </ul>
 </li>
 </ul>
-<p>Reference to variable <strong>s</strong> in loop body (max $n$ iterations):</p>
+<p>Reference to variable <strong>s</strong> in loop body (max <span class="math">\(n\)</span> iterations):</p>
 <ul>
 <li>First time miss, then always hit</li>
 <li>
@@ -2039,14 +1843,14 @@ occurring in the program (addresses, register contents, local and global variabl
 <li>
 <p>within loop</p>
 <ul>
-<li>$n \cdot t_{miss}$</li>
-<li>$n \cdot t_{hit}$</li>
-<li>$t_{miss} + (n - 1) \cdot t_{hit}$</li>
-<li>$t_{hit}  + (n - 1) \cdot t_{miss}$</li>
+<li><span class="math">\(n \cdot t_{miss}\)</span></li>
+<li><span class="math">\(n \cdot t_{hit}\)</span></li>
+<li><span class="math">\(t_{miss} + (n - 1) \cdot t_{hit}\)</span></li>
+<li><span class="math">\(t_{hit}  + (n - 1) \cdot t_{miss}\)</span></li>
 </ul>
 </li>
 </ul>
-<h4 id="pipelines">Pipelines</h4>
+<h4>Pipelines</h4>
 <ul>
 <li>Different stages in parallel<ul>
 <li>Fetch</li>
@@ -2066,7 +1870,7 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 <!-- End of Slides 9 -->
 <!-- Beginning of Slides 10 -->
-<h1 id="10-performance-analysis-of-distributed-embedded-systems">10 Performance Analysis of Distributed Embedded Systems</h1>
+<h1>10 Performance Analysis of Distributed Embedded Systems</h1>
 <blockquote>
 <p>Embedded System = Computation + Communication + Resource Interaction</p>
 </blockquote>
@@ -2115,25 +1919,25 @@ occurring in the program (addresses, register contents, local and global variabl
 </ul>
 </li>
 </ul>
-<h2 id="real-time-calculus">Real-Time Calculus</h2>
+<h2>Real-Time Calculus</h2>
 <ul>
 <li>Real-Time Calculus can be regarded as a worst-/best-case variant of classical queuing theory</li>
 <li>It's a formal method for the analysis of distributed real-time (embedded) systems</li>
 </ul>
-<h3 id="algebraic-structure">Algebraic Structure</h3>
+<h3>Algebraic Structure</h3>
 <ul>
-<li>Set of elements $S$<ul>
+<li>Set of elements <span class="math">\(S\)</span><ul>
 <li>One ore more operators defined on elements of this set</li>
 </ul>
 </li>
-<li>Algebraic structures with <em>two operators</em>: $\boxplus$, $\boxdot$<ul>
+<li>Algebraic structures with <em>two operators</em>: <span class="math">\(\boxplus\)</span>, <span class="math">\(\boxdot\)</span><ul>
 <li>plus-times:<ul>
-<li>$(S, \boxplus, \boxdot) = (R, +, \times)$</li>
+<li><span class="math">\((S, \boxplus, \boxdot) = (R, +, \times)\)</span></li>
 <li>Our 'normal' algebra</li>
 </ul>
 </li>
 <li>min-plus:<ul>
-<li>$(S, \boxplus, \boxdot) = (R \cup { + \infty }, inf, +)$</li>
+<li><span class="math">\((S, \boxplus, \boxdot) = (R \cup \{ + \infty \}, inf, +)\)</span></li>
 <li>Used for Real-Time calculus</li>
 </ul>
 </li>
@@ -2142,51 +1946,53 @@ occurring in the program (addresses, register contents, local and global variabl
 <li><strong>Infimum</strong><ul>
 <li>The infimum of a subset (of some set) is the greatest element (not necessary in the subset)
   that is less than or equal to all other elements of the subset</li>
-<li>$$\begin{matrix}S_1 \subseteq S \  inf(S_1) = \underset{i}{max}{i \in S : i \leq s\; \forall s \in S_1}\end{matrix}$$</li>
+<li>
+<div class="math">$$\begin{matrix}S_1 \subseteq S \\  inf(S_1) = \underset{i}{max}\{i \in S : i \leq s\; \forall s \in S_1\}\end{matrix}$$</div>
+</li>
 <li>Examples:<ul>
-<li>$inf{[3,4]}=3$ and $min{[3,4]}=3$</li>
-<li>$inf{(3,4]}=3$ but $min{(3,4]} \text{not defined}$</li>
+<li><span class="math">\(inf\{[3,4]\}=3\)</span> and <span class="math">\(min\{[3,4]\}=3\)</span></li>
+<li><span class="math">\(inf\{(3,4]\}=3\)</span> but <span class="math">\(min\{(3,4]\} \text{not defined}\)</span></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>Joint properties of $\boxdot$:</p>
+<p>Joint properties of <span class="math">\(\boxdot\)</span>:</p>
 <ul>
-<li>Closure: $a \boxdot b \in S$</li>
-<li>Associativity: $a \boxdot (b \boxdot c) = (a \boxdot b) \boxdot c$</li>
-<li>Commutativity $a \boxdot b = b \boxdot a$</li>
-<li>Existence of identity element: $\exists v: a \boxdot v = a$</li>
-<li>Existence of negative element: $\exists a^{-1}: a \boxdot a^{-1} = v$</li>
-<li>Identity element of $\boxplus$ absorbing for $\boxdot$: $a\boxdot \epsilon = \epsilon$</li>
-<li>Distributivity of $\boxdot$ w.r.t. $\boxplus$: $a \boxdot (b \boxplus c) = (a\boxdot b) \boxplus (a \boxdot c)$</li>
+<li>Closure: <span class="math">\(a \boxdot b \in S\)</span></li>
+<li>Associativity: <span class="math">\(a \boxdot (b \boxdot c) = (a \boxdot b) \boxdot c\)</span></li>
+<li>Commutativity <span class="math">\(a \boxdot b = b \boxdot a\)</span></li>
+<li>Existence of identity element: <span class="math">\(\exists v: a \boxdot v = a\)</span></li>
+<li>Existence of negative element: <span class="math">\(\exists a^{-1}: a \boxdot a^{-1} = v\)</span></li>
+<li>Identity element of <span class="math">\(\boxplus\)</span> absorbing for <span class="math">\(\boxdot\)</span>: <span class="math">\(a\boxdot \epsilon = \epsilon\)</span></li>
+<li>Distributivity of <span class="math">\(\boxdot\)</span> w.r.t. <span class="math">\(\boxplus\)</span>: <span class="math">\(a \boxdot (b \boxplus c) = (a\boxdot b) \boxplus (a \boxdot c)\)</span></li>
 </ul>
 </li>
 <li>
-<p>Joint properties of $\boxplus$:</p>
+<p>Joint properties of <span class="math">\(\boxplus\)</span>:</p>
 <ul>
-<li>Closure: $a \boxplus b \in S$</li>
-<li>Associativity: $a \boxplus (b  \boxplus c) = (a  \boxplus b)  \boxplus c$</li>
-<li>Commutativity: $a \boxplus b = b \boxplus a$</li>
-<li>Existence of identity element: $\exists \epsilon : a  \boxplus \epsilon = a$</li>
+<li>Closure: <span class="math">\(a \boxplus b \in S\)</span></li>
+<li>Associativity: <span class="math">\(a \boxplus (b  \boxplus c) = (a  \boxplus b)  \boxplus c\)</span></li>
+<li>Commutativity: <span class="math">\(a \boxplus b = b \boxplus a\)</span></li>
+<li>Existence of identity element: <span class="math">\(\exists \epsilon : a  \boxplus \epsilon = a\)</span></li>
 </ul>
 </li>
 <li>
-<p>Differences $\boxplus$:</p>
+<p>Differences <span class="math">\(\boxplus\)</span>:</p>
 <ul>
-<li><em>plus-times</em>: Existence of negative element for $\boxplus$: $\exists (-a): a \boxplus (-a) = \epsilon$</li>
-<li><em>min-plus</em>: Idempotency: $a \boxplus a = a$</li>
+<li><em>plus-times</em>: Existence of negative element for <span class="math">\(\boxplus\)</span>: <span class="math">\(\exists (-a): a \boxplus (-a) = \epsilon\)</span></li>
+<li><em>min-plus</em>: Idempotency: <span class="math">\(a \boxplus a = a\)</span></li>
 </ul>
 </li>
 <li>
 <p>Example:</p>
 <ul>
-<li>plus-times: $a \times (b + c) = a \times b + a \times c$</li>
-<li>min-plus: $a + inf{b,c} = inf{a+b,a+c}$</li>
+<li>plus-times: <span class="math">\(a \times (b + c) = a \times b + a \times c\)</span></li>
+<li>min-plus: <span class="math">\(a + inf\{b,c\} = inf\{a+b,a+c\}\)</span></li>
 </ul>
 </li>
 </ul>
-<h3 id="system-theories">System Theories</h3>
+<h3>System Theories</h3>
 <ul>
 <li>
 <p>Plus-times system theory:</p>
@@ -2195,16 +2001,16 @@ occurring in the program (addresses, register contents, local and global variabl
 <p>signals, impulse response, convolution, time-domain</p>
 </li>
 <li>
-<p>$f(t)$: Signals</p>
+<p><span class="math">\(f(t)\)</span>: Signals</p>
 </li>
-<li>$g(t)$: Impulse response</li>
-<li>$(f*g)$: Convolution</li>
-<li>$t$: Time domain</li>
+<li><span class="math">\(g(t)\)</span>: Impulse response</li>
+<li><span class="math">\((f*g)\)</span>: Convolution</li>
+<li><span class="math">\(t\)</span>: Time domain</li>
 </ul>
 </li>
 </ul>
 <p><img alt="Plus-times calculus" class="img-responsive" src="/images/hscd_plus_times.svg"/></p>
-<p>$$h(t) = \underbrace{(f*g)}<em _text_time-domain="\text{time-domain">{\text{convolution}}\underbrace{(t)}</em>}= \int_0^t f(t-s)\cdot g(s) \;ds$$</p>
+<div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
 <ul>
 <li>
 <p>Min-plus system theory</p>
@@ -2213,33 +2019,33 @@ occurring in the program (addresses, register contents, local and global variabl
 <p>streams, variability curves, time-interval domain, convolution</p>
 </li>
 <li>
-<p>$R(t)$: Streams</p>
+<p><span class="math">\(R(t)\)</span>: Streams</p>
 </li>
-<li>$g(\Delta)$: Variability curves</li>
-<li>$\Delta$: Time-interval domain</li>
-<li>$(R\otimes g)$: Convolution</li>
+<li><span class="math">\(g(\Delta)\)</span>: Variability curves</li>
+<li><span class="math">\(\Delta\)</span>: Time-interval domain</li>
+<li><span class="math">\((R\otimes g)\)</span>: Convolution</li>
 </ul>
 </li>
 </ul>
 <p><img alt="Min-plus calculus" class="img-responsive" src="/images/hscd_min_plus.svg"/></p>
-<p>$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}{R(t-\lambda)+g(\lambda) }$$</p>
+<div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
 <!-- End of Notes Week 12 -->
 <!-- Beginning of Notes Week 13 -->
-<h3 id="from-streams-to-cumulative-functions">From Streams to Cumulative Functions</h3>
+<h3>From Streams to Cumulative Functions</h3>
 <ul>
-<li>Event streams → <strong>Arrival Curves</strong> ($t \rightarrow \Delta$)<ul>
-<li>Event stream: number of events in $t=[0 .. T]$</li>
-<li>Arrival Curves $\alpha = [\alpha', \alpha^u]$: maximum and minimum arriving events in <strong>any interval</strong> of length $t$</li>
+<li>Event streams → <strong>Arrival Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
+<li>Event stream: number of events in <span class="math">\(t=[0 .. T]\)</span></li>
+<li>Arrival Curves <span class="math">\(\alpha = [\alpha', \alpha^u]\)</span>: maximum and minimum arriving events in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
 </ul>
 </li>
-<li>Resources → <strong>Service Curves</strong> ($t \rightarrow \Delta$)<ul>
-<li>Resource Availability: available service in $t=[0 .. T]$</li>
-<li>Service Curves $\beta = [\beta', \beta^u]$: maximum and minimum available service in <strong>any interval</strong> of length $t$</li>
+<li>Resources → <strong>Service Curves</strong> (<span class="math">\(t \rightarrow \Delta\)</span>)<ul>
+<li>Resource Availability: available service in <span class="math">\(t=[0 .. T]\)</span></li>
+<li>Service Curves <span class="math">\(\beta = [\beta', \beta^u]\)</span>: maximum and minimum available service in <strong>any interval</strong> of length <span class="math">\(t\)</span></li>
 </ul>
 </li>
-<li>Arrival and Service Curves work on <em>time intervals</em> as domain ($\Delta$)</li>
+<li>Arrival and Service Curves work on <em>time intervals</em> as domain (<span class="math">\(\Delta\)</span>)</li>
 </ul>
-<h1 id="overview-of-methods-and-algorithms">Overview of Methods and Algorithms</h1>
+<h1>Overview of Methods and Algorithms</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -2286,6 +2092,61 @@ occurring in the program (addresses, register contents, local and global variabl
 </tr>
 </tbody>
 </table>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>

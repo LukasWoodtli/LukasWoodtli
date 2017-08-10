@@ -134,7 +134,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
@@ -143,7 +143,7 @@
     <p>Files on Linux</p>
 <p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
 <p><a href="http://www.usna.edu/Users/cs/aviv/classes/ic221/s15/lec/21/lec.html">Here</a> is another good resource (English).</p>
-<h1 id="process-control-block-pcb">Process Control Block (PCB)</h1>
+<h1>Process Control Block (PCB)</h1>
 <p>Contains the information about a process.</p>
 <ul>
 <li>C struct <code>task_struct</code></li>
@@ -160,7 +160,7 @@
 </li>
 <li>Table with open file descriptors hold by this process</li>
 </ul>
-<h1 id="file-table">File Table</h1>
+<h1>File Table</h1>
 <ul>
 <li>1 entry for each open file</li>
 <li>different processes can point to the same entry</li>
@@ -172,7 +172,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="v-node-table">v-node Table</h1>
+<h1>v-node Table</h1>
 <ul>
 <li>i-node information<ul>
 <li>copied to v-node table when file is opened</li>
@@ -186,7 +186,7 @@
 <li>file size</li>
 <li>functions (file system dependent)</li>
 </ul>
-<h1 id="file-descriptors">File Descriptors</h1>
+<h1>File Descriptors</h1>
 <p>File descriptors are unique ID's (ints) that identify an open file.</p>
 <p>3 descriptors are reserved by the system in <code>&lt;unistd.h&gt;</code>:</p>
 <table class="table table-hover table-striped">
@@ -217,7 +217,7 @@
 </table>
 <p>The number can differ but the given ones are common.</p>
 <p>Functions that return a file descriptor (e.g. <code>open(...)</code>or <code>creat(...)</code>) return <code>-1</code> if en error occurred.</p>
-<h1 id="file-types">File Types</h1>
+<h1>File Types</h1>
 <p>There are 6 different file types in Linux:</p>
 <ul>
 <li>Regular files</li>
@@ -227,7 +227,7 @@
 <li>Pipes (named Pipes and FIFOs)</li>
 <li>Links (Soft- and Hardlinks)</li>
 </ul>
-<h1 id="special-device-files">Special Device Files</h1>
+<h1>Special Device Files</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>

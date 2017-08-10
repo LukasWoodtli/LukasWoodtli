@@ -127,7 +127,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
@@ -135,7 +135,7 @@
   <div id="article_content">
     <p>Most information of this page is taken from
 <a href="http://www.agner.org/optimize/#manuals">Calling conventions for different C++ compilers and operating systems</a>.</p>
-<h1 id="overview">Overview</h1>
+<h1>Overview</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -162,7 +162,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="common-object-file-format-coff-pe">Common Object File Format (COFF, PE)</h2>
+<h2>Common Object File Format (COFF, PE)</h2>
 <p>First used in UNIX System V, later superseeded by ELF.</p>
 <p>PE (Portable Executable) is a modified version of COFF from
 Microsoft that is used for Windows.</p>
@@ -189,7 +189,7 @@ Alignment handling of the data structures can be difficult.</p>
 <li>Max relocations per section: 64k.</li>
 <li>Max library size: 4 GB.</li>
 </ul>
-<h2 id="executable-and-linkable-format-elf">Executable and Linkable Format (ELF)</h2>
+<h2>Executable and Linkable Format (ELF)</h2>
 <p>Replaced older formats like a.out and COFF in Linux and BSD.</p>
 <p>Compilers:</p>
 <ul>
@@ -200,13 +200,13 @@ Alignment handling of the data structures can be difficult.</p>
 <ul>
 <li>Segment word size: 32 or 64 bits.</li>
 <li>Max number of sections: 64k.</li>
-<li>Max file size: 4 GB for 32 bits, $2^{64}$ for 64 bits.</li>
-<li>Max section size: 4 GB for 32 bits, $2^{64}$ for 64 bits.</li>
+<li>Max file size: 4 GB for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
+<li>Max section size: 4 GB for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
 <li>String table size: 4 GB.</li>
 <li>Max number of symbols: 16M for 32 bits, 4G for 64 bits.</li>
 <li>Max library size: 4 GB.</li>
 </ul>
-<h2 id="mach-o-format">Mach-O Format</h2>
+<h2>Mach-O Format</h2>
 <p>This format is used by OS X.
 Only the format for Intel Mac OS X is described here.</p>
 <p>Can be used for object files and executable files.</p>
@@ -218,19 +218,74 @@ This is used for position-independent code.</p>
 <ul>
 <li>Section name length: 16 characters.</li>
 <li>Max file size: 4 GB.</li>
-<li>Max section size: 16 MB for position-indep code, 4 GB for 32 bits, $2^{64}$ for 64 bits.</li>
+<li>Max section size: 16 MB for position-indep code, 4 GB for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
 <li>Max number of sections: 16 M.</li>
 <li>Max number of symbols: 16 M.</li>
 <li>Max library size: 4 GB.</li>
 </ul>
-<h2 id="aout-format">a.out Format</h2>
+<h2>a.out Format</h2>
 <p>Stands for 'Assembler Output'.</p>
 <p>Is used in older UNIX systems.</p>
 <p>'a.out' is often the default output file name of linkers. Even if the
 output format is an other one.</p>
 <p>Some tools still support the a.out format.</p>
-<h2 id="data-endianness">Data Endianness</h2>
+<h2>Data Endianness</h2>
 <p>All systems based on x86 (16-bit, 32-bit and 64-bit) use little endian.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
