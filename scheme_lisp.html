@@ -130,7 +130,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
@@ -161,16 +161,13 @@
 </div>
 <div class="section" id="evaluation-rules">
 <h2><a class="toc-backref" href="#id2">Evaluation Rules</a></h2>
-<ol class="arabic">
-<li><p class="first">If <em>self-evaluating</em>: return value</p>
-</li>
-<li><p class="first">If <em>name</em>: return value of associated name in environment</p>
-</li>
-<li><p class="first">If <em>special form</em>: do something special</p>
-</li>
+<ol class="arabic simple">
+<li>If <em>self-evaluating</em>: return value</li>
+<li>If <em>name</em>: return value of associated name in environment</li>
+<li>If <em>special form</em>: do something special</li>
 <li><dl class="first docutils">
 <dt>If <em>combination</em>:</dt>
-<dd><ol class="first last loweralpha simple">
+<dd><ol class="first last loweralpha">
 <li><em>evaluate</em> all subexpressions (in any order)</li>
 <li><em>apply</em> operator on arguments and return result</li>
 </ol>
@@ -234,7 +231,7 @@ and <a class="reference external" href="http://stackoverflow.com/questions/17254
 </table>
 <div class="section" id="recursive-process">
 <h3><a class="toc-backref" href="#id5">Recursive Process</a></h3>
-<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
       <span class="mi">1</span>
       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">factorial</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span> <span class="c1">;; 'factorial' is part of bigger expression</span>
@@ -242,7 +239,7 @@ and <a class="reference external" href="http://stackoverflow.com/questions/17254
 </div>
 <div class="section" id="iterative-process">
 <h3><a class="toc-backref" href="#id6">Iterative Process</a></h3>
-<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">fact-iter</span> <span class="mi">1</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">))</span> <span class="c1">;; inital values need to be provided</span>
 
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fact-iter</span> <span class="nv">product</span> <span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span> <span class="c1">;; max-cout: intermediate result</span>
