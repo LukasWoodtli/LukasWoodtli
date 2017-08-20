@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Modern C++ Design · Lukas Woodtli</title>
+        <title>Modern C++&nbsp;Design · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/modern_cpp_design.html">Modern C++ Design</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/modern_cpp_design.html">Modern C++&nbsp;Design</a></h1>
     </div>
 
         </div>
@@ -136,17 +136,17 @@
   <hr/>
 
   <div id="article_content">
-    <h1 id="part-i-techniques">Part I. Techniques</h1>
-<h2 id="policy-based-class-design">Policy-Based Class Design</h2>
-<h3 id="the-benefit-of-templates">The Benefit of Templates</h3>
-<p><em>"Templates are a good candidate for coping with combinatorial behaviors because they generate code at compile time based on the types (and/or constant values) provided by the user.
-Class templates are customizable in ways not supported by regular classes."</em></p>
-<p><em>"Furthermore, for class templates you can use partial template specialization [...]. Partial template specialization gives you the ability to specialize a class template for only some of its arguments."</em></p>
-<p><em>"[...] several problems that are not self-evident:</em></p>
+    <h1 id="part-i-techniques">Part I. Techniques</h1>
+<h2 id="policy-based-class-design">Policy-Based Class Design</h2>
+<h3 id="the-benefit-of-templates">The Benefit of Templates</h3>
+<p><em><span class="dquo">“</span>Templates are a good candidate for coping with combinatorial behaviors because they generate code at compile time based on the types (and/or constant values) provided by the user.
+Class templates are customizable in ways not supported by regular classes.”</em></p>
+<p><em><span class="dquo">“</span>Furthermore, for class templates you can use partial template specialization […]. Partial template specialization gives you the ability to specialize a class template for only some of its arguments.”</em></p>
+<p><em><span class="dquo">“</span>[…] several problems that are not self-evident:</em></p>
 <ol>
-<li><em>You cannot specialize structure. Using templates alone, you cannot specialize the structure of a class (its data members). You can only specialize functions.</em></li>
-<li><em>Partial specialization of member functions does not scale. You can specialize any member function of a class template with one template parameter, but you cannot specialize individual member functions for templates with multiple template parameters.</em></li>
-<li><em>"The library writer cannot provide multiple default values. At best, a class template implementer can provide a single default implementation for each member function. You cannot provide several defaults for a template member function."</em></li>
+<li><em>You cannot specialize structure. Using templates alone, you cannot specialize the structure of a class (its data members). You can only specialize functions.</em></li>
+<li><em>Partial specialization of member functions does not scale. You can specialize any member function of a class template with one template parameter, but you cannot specialize individual member functions for templates with multiple template parameters.</em></li>
+<li><em><span class="dquo">“</span>The library writer cannot provide multiple default values. At best, a class template implementer can provide a single default implementation for each member function. You cannot provide several defaults for a template member function.”</em></li>
 </ol>
   </div>
 

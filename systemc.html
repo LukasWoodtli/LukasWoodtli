@@ -140,92 +140,92 @@
   <hr/>
 
   <div id="article_content">
-    <p>SystemC is a system-level modeling language. It's implemented as a C++ library.</p>
-<p>The library is open source and platform independent.</p>
-<p>It contains an event-driven simulation kernel for executing models.</p>
-<p><a href="http://accellera.org/">Accellera</a> is the main resource for SystemC.</p>
+    <p>SystemC is a system-level modeling language. It’s implemented as a C++ library.</p>
+<p>The library is open source and platform independent.</p>
+<p>It contains an event-driven simulation kernel for executing models.</p>
+<p><a href="http://accellera.org/">Accellera</a> is the main resource for SystemC.</p>
 <h1 id="simulation">Simulation</h1>
 <p>SystemC contains a kernel for discrete-event driven simulation.
-The main purpose of the kernel is to ensure to model concurrent activities (parallelism) correctly.</p>
-<p>The simulation clock represents the current value of the simulation time.</p>
+The main purpose of the kernel is to ensure to model concurrent activities (parallelism) correctly.</p>
+<p>The simulation clock represents the current value of the simulation time.</p>
 <p><img alt="Simulation Engine" class="img-responsive" src="/images/systemc_simulation_engine.svg" style="float:right"/></p>
 <ul>
 <li>Initialization of simulation model<ul>
-<li>Set initial states of subsystem modules</li>
-<li>Fill event queue with initial events</li>
+<li>Set initial states of subsystem modules</li>
+<li>Fill event queue with initial events</li>
 </ul>
 </li>
 <li>Timing routine<ul>
-<li>Determine <em>next</em> event from event queue</li>
-<li>Advance simulation clock to the time when the event is to occur</li>
+<li>Determine <em>next</em> event from event queue</li>
+<li>Advance simulation clock to the time when the event is to occur</li>
 </ul>
 </li>
 <li>Event routine<ul>
-<li>Update the system state when a particular type of event occurs</li>
+<li>Update the system state when a particular type of event occurs</li>
 </ul>
 </li>
 </ul>
 <p>A more detailed description can be found on the <a href="https://www.doulos.com/knowhow/systemc/tutorial/primitive_channels/">Doulos tutorial</a>:</p>
 <ol>
-<li>Initialization: execute all processes (except <code>SC_CTHREAD</code>s) in any (undefined) order</li>
+<li>Initialization: execute all processes (except <code>SC_CTHREAD</code>s) in any (undefined) order</li>
 <li>Evaluation: select a process (ready to run) and resume its execution<ul>
-<li>This may cause immediate event notifications to occur</li>
-<li>which may result in additional processes being made ready to run in this same phase</li>
+<li>This may cause immediate event notifications to occur</li>
+<li>which may result in additional processes being made ready to run in this same phase</li>
 </ul>
 </li>
-<li>Repeat step 2. until there are no processes ready to run</li>
-<li>Update: execute all pending calls to <code>update()</code> resulting from calls to <code>request_update()</code> made in step 2.</li>
+<li>Repeat step 2. until there are no processes ready to run</li>
+<li>Update: execute all pending calls to <code>update()</code> resulting from calls to <code>request_update()</code> made in step 2.</li>
 <li>If there were any delta event notifications made during steps 2. or 4.<ul>
-<li>determine which processes are ready to run due to all those events and go back to step 2.</li>
+<li>determine which processes are ready to run due to all those events and go back to step 2.</li>
 </ul>
 </li>
-<li>If there are no timed events: simulation is finished</li>
-<li>Advance the simulation time to the time of the earliest pending timed event notification</li>
+<li>If there are no timed events: simulation is finished</li>
+<li>Advance the simulation time to the time of the earliest pending timed event notification</li>
 <li>Determine which processes are ready to run due to all the timed events at what is now the current time<ul>
-<li>go back to step 2.</li>
+<li>go back to step 2.</li>
 </ul>
 </li>
 </ol>
-<p>(note: the list above is taken mostly from the Doulos tutorial)</p>
-<h2 id="delta-cycle">Delta Cycle</h2>
-<p>Within the same simulation cycle <em>cause</em> and <em>effect</em> events may share the same time of occurrence.</p>
-<p>The simulator uses a zero duration <em>virtual time interval</em>: delta cycle</p>
-<p>The delta cycle is the smallest simulated time slot. It consist of two phases:</p>
+<p>(note: the list above is taken mostly from the Doulos tutorial)</p>
+<h2 id="delta-cycle">Delta Cycle</h2>
+<p>Within the same simulation cycle <em>cause</em> and <em>effect</em> events may share the same time of occurrence.</p>
+<p>The simulator uses a zero duration <em>virtual time interval</em>: delta cycle</p>
+<p>The delta cycle is the smallest simulated time slot. It consist of two phases:</p>
 <ol>
-<li>Evaluation phase</li>
-<li>Update phase</li>
+<li>Evaluation phase</li>
+<li>Update phase</li>
 </ol>
 <p>Separating the two phases makes it possible to guarantee deterministic behavior.
-A channel will not change it's value until the update phase occurs.
-It cannot change the value during the evaluation phase.</p>
-<p>It's possible to run a process without the update phase (without the delta cycle) with <code>notify()</code>.</p>
+A channel will not change it’s value until the update phase occurs.
+It cannot change the value during the evaluation phase.</p>
+<p>It’s possible to run a process without the update phase (without the delta cycle) with <code>notify()</code>.</p>
 <h1 id="constructs">Constructs</h1>
 <h2 id="modules">Modules</h2>
-<p>Building blocks of SystemC models.</p>
+<p>Building blocks of SystemC models.</p>
 <ul>
-<li>Hierarchy (subsystems)</li>
+<li>Hierarchy (subsystems)</li>
 <li>Abstraction</li>
-<li>IP reuse</li>
+<li><span class="caps">IP</span> reuse</li>
 </ul>
-<p>Modules are called by the simulation engine if an relevant event is scheduled.</p>
-<p>Modules process events, manipulate the event queue and contain (and manipulate) the system state.</p>
+<p>Modules are called by the simulation engine if an relevant event is scheduled.</p>
+<p>Modules process events, manipulate the event queue and contain (and manipulate) the system state.</p>
 <h2 id="processes">Processes</h2>
-<p>Processes must be contained in a module.</p>
+<p>Processes must be contained in a module.</p>
 <ul>
 <li><code>SC_THREAD</code><ul>
-<li>Typically called once, run in an endless loop</li>
+<li>Typically called once, run in an endless loop</li>
 <li>Can be suspended with <code>wait()</code></li>
-<li>Keep the state of execution implicitly</li>
+<li>Keep the state of execution implicitly</li>
 </ul>
 </li>
 <li><code>SC_METHOD</code><ul>
-<li>Execute repeatedly form beginning to end</li>
+<li>Execute repeatedly form beginning to end</li>
 <li>Simulate <em>faster</em></li>
-<li>Do <em>not</em> keep state of execution implicitly</li>
+<li>Do <em>not</em> keep state of execution implicitly</li>
 </ul>
 </li>
 </ul>
-<h3 id="wait-and-notify">Wait and Notify</h3>
+<h3 id="wait-and-notify">Wait and Notify</h3>
 <ul>
 <li>wait: halt process execution until an event is raised<ul>
 <li><code>wait()</code></li>
@@ -238,13 +238,13 @@ It cannot change the value during the evaluation phase.</p>
 </ul>
 </li>
 <li>notify: raise an event (method of <code>sc_event</code> class)<ul>
-<li><code>my_event.notify()</code>: immediate notification. Processes sensitive to the event will run during current evaluation phase</li>
+<li><code>my_event.notify()</code>: immediate notification. Processes sensitive to the event will run during current evaluation phase</li>
 <li>notify with arguments: delayed notification<ul>
-<li><code>my_event.notify(SC_ZERO_TIME)</code>: notify during evaluation phase of next delta cycle</li>
-<li><code>my_event.notify(time)</code>: notify after <em>time</em> (in evaluation phase of that delta cycle)</li>
+<li><code>my_event.notify(SC_ZERO_TIME)</code>: notify during evaluation phase of next delta cycle</li>
+<li><code>my_event.notify(time)</code>: notify after <em>time</em> (in evaluation phase of that delta cycle)</li>
 </ul>
 </li>
-<li>notify allows non-deterministic behavior</li>
+<li>notify allows non-deterministic behavior</li>
 </ul>
 </li>
 </ul>
@@ -252,40 +252,40 @@ It cannot change the value during the evaluation phase.</p>
 <ul>
 <li>Event<ul>
 <li>Flexible</li>
-<li>low-level synchronization primitive</li>
+<li>low-level synchronization primitive</li>
 </ul>
 </li>
 <li>Channel<ul>
 <li>Container for<ul>
-<li>Communication and</li>
+<li>Communication and</li>
 <li>Synchronization</li>
 </ul>
 </li>
-<li>Can have state (private data), transport data/events</li>
+<li>Can have state (private data), transport data/events</li>
 <li>Implement one or more <em>interfaces</em></li>
 </ul>
 </li>
 <li>Interface<ul>
-<li>Set of access methods to channel</li>
-<li>Interface methods need to be implemented (pure virtual)</li>
+<li>Set of access methods to channel</li>
+<li>Interface methods need to be implemented (pure virtual)</li>
 </ul>
 </li>
 </ul>
 <p>Other communication and synchronization models can be built
-based on these primitives.</p>
+based on these primitives.</p>
 <h3 id="channels">Channels</h3>
 <ul>
-<li>Separating communication from behavior</li>
-<li>Interfaces define access to channel</li>
-<li>Ports are used to access the channel</li>
+<li>Separating communication from behavior</li>
+<li>Interfaces define access to channel</li>
+<li>Ports are used to access the channel</li>
 </ul>
 <h1 id="non-determinism">Non-Determinism</h1>
 <p>SystemC allows for non-determinism. This might not be acceptable for hardware modeling.
-But it can be needed for software system modeling.</p>
+But it can be needed for software system modeling.</p>
 <p>An example of non-determinism can be found here: <a href="https://www.doulos.com/knowhow/systemc/tutorial/primitive_channels/">Doulos: Primitive Channels and the Kernel</a>.</p>
-<p>It shows two threads (<code>SC_THREAD</code>s) in a module that both access the same variable. It's not known in
-which order the variable is accessed.</p>
-<p>In software systems a mutex might be needed to control the access to the variable.</p>
+<p>It shows two threads (<code>SC_THREAD</code>s) in a module that both access the same variable. It’s not known in
+which order the variable is accessed.</p>
+<p>In software systems a mutex might be needed to control the access to the variable.</p>
   </div>
 
   <hr/>

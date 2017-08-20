@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Memory Layout · Lukas Woodtli</title>
+        <title>Memory&nbsp;Layout · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/memory_layout.html">Memory Layout</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/memory_layout.html">Memory&nbsp;Layout</a></h1>
     </div>
 
         </div>
@@ -139,30 +139,30 @@
 
   <div id="article_content">
     <p>When a process is started the operating system allocates memory for this process.
-On modern systems this memory is usually mapped to an virtual address space (using the MMU).</p>
+On modern systems this memory is usually mapped to an virtual address space (using the <span class="caps">MMU</span>).</p>
 <p>But also on deeply embedded system the compiler and runtime environment need to define a memory
-layout. In this case there is only one process and there is no virtual memory.</p>
-<h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating Systems</h1>
-<p>The use of the memory for a process is different in each operating system.</p>
+layout. In this case there is only one process and there is no virtual memory.</p>
+<h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating Systems</h1>
+<p>The use of the memory for a process is different in each operating system.</p>
 <p>This example overwiew is taken from <em>Secure Coding in C and C++, by Robert Seacord</em>:
 <img alt="Memory layouts on different OS's" class="img-responsive" src="/images/memory_layout.png"/></p>
-<p>See also <a href="http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory/">Anatomy of a Program in Memory</a></p>
-<h1 id="stack-growth">Stack Growth</h1>
-<p>Depending on the platform the stack grows in different directions:</p>
+<p>See also <a href="http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory/">Anatomy of a Program in Memory</a></p>
+<h1 id="stack-growth">Stack Growth</h1>
+<p>Depending on the platform the stack grows in different directions:</p>
 <ul>
-<li>Downwards (descending): the stack grows from high adresses to low ones</li>
-<li>Upwards (ascending): it grows from high addresses to low ones</li>
+<li>Downwards (descending): the stack grows from high adresses to low ones</li>
+<li>Upwards (ascending): it grows from high addresses to low ones</li>
 </ul>
-<p>There is also a distinction on where a stack pointer points to:</p>
+<p>There is also a distinction on where a stack pointer points to:</p>
 <ul>
-<li>Full: on the last written position.</li>
-<li>Empty: on the position where the next value is going to be written.</li>
+<li>Full: on the last written position.</li>
+<li>Empty: on the position where the next value is going to be written.</li>
 </ul>
-<p>So for example x86 and ARM (usually) have a full descending stack.</p>
-<p><a href="http://stackoverflow.com/a/3844164">Here</a> is a short explanation.</p>
-<p>On most platforms the stack grows downwards. But there are some exeptions.</p>
+<p>So for example x86 and <span class="caps">ARM</span> (usually) have a full descending stack.</p>
+<p><a href="http://stackoverflow.com/a/3844164">Here</a> is a short explanation.</p>
+<p>On most platforms the stack grows downwards. But there are some exeptions.</p>
 <p>This table is an inclomplete (but hopefully correct) overview. Most data in this
-table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p>
+table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -174,16 +174,16 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 <tbody>
 <tr>
 <td>Windows</td>
-<td>MSVC, MingW</td>
+<td><span class="caps">MSVC</span>, MingW</td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>POSIX</td>
-<td>GCC</td>
+<td><span class="caps">POSIX</span></td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>DOS (16Bit)</td>
+<td><span class="caps">DOS</span> (16Bit)</td>
 <td>Open Watcom</td>
 <td>downwards</td>
 </tr>
@@ -193,108 +193,108 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 <td>downwards</td>
 </tr>
 <tr>
-<td><a href="http://lukaswoodtli.github.io/arm_cortex-m3_architecture.html">ARM</a></td>
+<td><a href="http://lukaswoodtli.github.io/arm_cortex-m3_architecture.html"><span class="caps">ARM</span></a></td>
 <td>any</td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>Renesas 78K0R</td>
-<td>IAR</td>
+<td>Renesas <span class="caps">78K0R</span></td>
+<td><span class="caps">IAR</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>ARM7 (LPC2xxx, AT91SAM7S, AT91FR40008)</td>
-<td>GCC, RVDS, IAR</td>
+<td><span class="caps">ARM7</span> (LPC2xxx, <span class="caps">AT91SAM7S</span>, <span class="caps">AT91FR40008</span>)</td>
+<td><span class="caps">GCC</span>, <span class="caps">RVDS</span>, <span class="caps">IAR</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>ARM Cortex (A5, A9, M0, M4, M3, M7, R4)</td>
-<td>GCC, IAR, RVDS, CCS, Tasking</td>
+<td><span class="caps">ARM</span> Cortex (A5, A9, M0, M4, M3, M7, R4)</td>
+<td><span class="caps">GCC</span>, <span class="caps">IAR</span>, <span class="caps">RVDS</span>, <span class="caps">CCS</span>, Tasking</td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>ATMega323, AVR32 UC3, ATSAM7S64, SAM9XE...</td>
-<td>GCC, IAR</td>
+<td>ATMega323, <span class="caps">AVR32</span> <span class="caps">UC3</span>, <span class="caps">ATSAM7S64</span>, <span class="caps">SAM9XE</span>…</td>
+<td><span class="caps">GCC</span>, <span class="caps">IAR</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>CORTUS APS3</td>
-<td>GCC</td>
+<td><span class="caps">CORTUS</span> <span class="caps">APS3</span></td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
 <td>Freescale ColdFire</td>
-<td>CodeWarrior, GCC</td>
+<td>CodeWarrior, <span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
 <td>Cygnal</td>
-<td>SDCC</td>
+<td><span class="caps">SDCC</span></td>
 <td><strong>upwards</strong></td>
 </tr>
 <tr>
-<td>H8S2329</td>
-<td>GCC</td>
+<td><span class="caps">H8S2329</span></td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>HCS12</td>
-<td>CodeWarrior, GCC</td>
+<td><span class="caps">HCS12</span></td>
+<td>CodeWarrior, <span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>MB91460, MB96340 (Fujitsu)</td>
+<td><span class="caps">MB91460</span>, <span class="caps">MB96340</span> (Fujitsu)</td>
 <td>Softune</td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>MCF5235</td>
-<td>GCC</td>
+<td><span class="caps">MCF5235</span></td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>TI MSP430</td>
-<td>GCC, IAR, Rowley, CCS</td>
+<td><span class="caps">TI</span> <span class="caps">MSP430</span></td>
+<td><span class="caps">GCC</span>, <span class="caps">IAR</span>, Rowley, <span class="caps">CCS</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>MicroBlaze (IP core)</td>
-<td>GCC</td>
+<td>MicroBlaze (<span class="caps">IP</span> core)</td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>NiosII (IP core)</td>
-<td>GCC</td>
+<td>NiosII (<span class="caps">IP</span> core)</td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>Microchip PIC18</td>
+<td>Microchip <span class="caps">PIC18</span></td>
 <td>WizC</td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>Microchip PIC18F</td>
-<td>MPLAB</td>
+<td>Microchip <span class="caps">PIC18F</span></td>
+<td><span class="caps">MPLAB</span></td>
 <td><strong>upwards</strong></td>
 </tr>
 <tr>
-<td>Microchip PIC24/dsPIC</td>
-<td>MPLAB</td>
+<td>Microchip <span class="caps">PIC24</span>/dsPIC</td>
+<td><span class="caps">MPLAB</span></td>
 <td><strong>upwards</strong></td>
 </tr>
 <tr>
-<td>Microchip PIC32MX, PIC32MZ</td>
-<td>MPLAB</td>
+<td>Microchip <span class="caps">PIC32MX</span>, <span class="caps">PIC32MZ</span></td>
+<td><span class="caps">MPLAB</span></td>
 <td>downwards</td>
 </tr>
 <tr>
 <td>PowerPC</td>
-<td>GCC</td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>Renesas X100, X200, X600, RL78</td>
-<td>GCC, IAR, Renesas</td>
+<td>Renesas X100, X200, X600, <span class="caps">RL78</span></td>
+<td><span class="caps">GCC</span>, <span class="caps">IAR</span>, Renesas</td>
 <td>downwards</td>
 </tr>
 <tr>
@@ -304,22 +304,22 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p
 </tr>
 <tr>
 <td>STMicroelectronics STR71x, STR75x, STR91x</td>
-<td>GCC, IAR</td>
+<td><span class="caps">GCC</span>, <span class="caps">IAR</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>Tern EE</td>
+<td>Tern <span class="caps">EE</span></td>
 <td>Paradigm</td>
 <td>downwards</td>
 </tr>
 <tr>
 <td>TriCore 1782</td>
-<td>GCC</td>
+<td><span class="caps">GCC</span></td>
 <td>downwards</td>
 </tr>
 <tr>
-<td>V850ES</td>
-<td>IAR</td>
+<td><span class="caps">V850ES</span></td>
+<td><span class="caps">IAR</span></td>
 <td>downwards</td>
 </tr>
 </tbody>

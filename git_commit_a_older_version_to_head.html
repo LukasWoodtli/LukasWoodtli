@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Git: Commit a older version to HEAD · Lukas Woodtli</title>
+        <title>Git: Commit a older version to <span class="caps">HEAD</span> · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/git_commit_a_older_version_to_head.html">Git: Commit a older version to HEAD</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/git_commit_a_older_version_to_head.html">Git: Commit a older version to <span class="caps">HEAD</span></a></h1>
     </div>
 
         </div>
@@ -136,23 +136,23 @@
   <hr/>
 
   <div id="article_content">
-    <p>If a <code>HEAD</code> has to be reset to a older version this is a possible workflow.</p>
+    <p>If a <code>HEAD</code> has to be reset to a older version this is a possible workflow.</p>
 <p>The solution is from <a href="http://stackoverflow.com/a/5772882">stackoverflow</a></p>
 <p>First checkout the version that should be the new <code>HEAD</code>.</p>
 <div class="highlight"><pre><span></span>git checkout &lt;SHA-1 id of commit&gt;
 </pre></div>
-<p>Now we create a <code>temp</code> branch and check it out.</p>
+<p>Now we create a <code>temp</code> branch and check it out.</p>
 <div class="highlight"><pre><span></span>git checkout -b temp
 </pre></div>
 <p>This is equivalent to <code>git branch temp</code> followed by <code>git checkout temp</code>.</p>
-<p>Now we want <code>master</code> (or an other branch) to point to it.</p>
+<p>Now we want <code>master</code> (or an other branch) to point to it.</p>
 <div class="highlight"><pre><span></span>git checkout -B master temp
 </pre></div>
 <p>This is equivalent to <code>git branch -f master temp</code>followed by <code>git checkout master</code>.</p>
 <p>Now we can delete the <code>temp</code> branch:</p>
 <div class="highlight"><pre><span></span>git branch -d temp
 </pre></div>
-<p>Now we can push to a remote (<code>-f</code> might be needed):</p>
+<p>Now we can push to a remote (<code>-f</code> might be needed):</p>
 <div class="highlight"><pre><span></span>git push -f origin master
 </pre></div>
   </div>

@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Regular Expressions · Lukas Woodtli</title>
+        <title>Regular&nbsp;Expressions · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/regular_expressions.html">Regular Expressions</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/regular_expressions.html">Regular&nbsp;Expressions</a></h1>
     </div>
 
         </div>
@@ -136,10 +136,10 @@
   <hr/>
 
   <div id="article_content">
-    <p>Most notes are from <a href="https://www.packtpub.com/application-development/mastering-python-regular-expressions">Mastering Python Regular Expressions</a></p>
+    <p>Most notes are from <a href="https://www.packtpub.com/application-development/mastering-python-regular-expressions">Mastering Python Regular Expressions</a></p>
 <p>My Repository on <a href="https://github.com/LukasWoodtli/MasteringPythonRegularExpressions">GitHub</a></p>
 <h1 id="metacharacters">Metacharacters</h1>
-<p>Twelve Metacharacters:</p>
+<p>Twelve Metacharacters:</p>
 <ul>
 <li>Backslash <code>\</code></li>
 <li>Caret <code>^</code></li>
@@ -151,15 +151,15 @@
 <li>Plus <code>+</code></li>
 <li>Opening and closing parenthesis <code>(</code> and <code>)</code></li>
 </ul>
-<h1 id="character-classes">Character Classes</h1>
+<h1 id="character-classes">Character Classes</h1>
 <ul>
-<li>Also known as character sets</li>
+<li>Also known as character sets</li>
 <li>Grouped in <code>[</code> and <code>]</code></li>
 <li>Example: Hex number <code>[0-9a-fA-F]</code></li>
 <li>Invert character set with <code>^</code></li>
 </ul>
-<h2 id="predefined-character-classes">Predefined Character Classes</h2>
-<p>Available in Python</p>
+<h2 id="predefined-character-classes">Predefined Character Classes</h2>
+<p>Available in Python</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -198,17 +198,17 @@
 </tr>
 </tbody>
 </table>
-<h2 id="posix-character-classes">POSIX Character Classes</h2>
+<h2 id="posix-character-classes"><span class="caps">POSIX</span> Character Classes</h2>
 <ul>
-<li>POSIX defines some classes: <a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions#Character_classes&gt;">Wikibooks</a></li>
-<li>not available in Python</li>
+<li><span class="caps">POSIX</span> defines some classes: <a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions#Character_classes&gt;">Wikibooks</a></li>
+<li>not available in Python</li>
 </ul>
 <h1 id="alternation">Alternation</h1>
 <ul>
 <li>Alternation (or) is marked with <code>|</code></li>
 </ul>
 <h1 id="quantifiers">Quantifiers</h1>
-<p>Quantifiers can be applied to characters, character sets, and to groups</p>
+<p>Quantifiers can be applied to characters, character sets, and to groups</p>
 <ul>
 <li>Optional (0 or 1 repetition): <code>?</code></li>
 <li>Zero (0) or more times: <code>*</code></li>
@@ -221,11 +221,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="greedy-and-reluctant-quantifiers">Greedy and Reluctant Quantifiers</h2>
+<h2 id="greedy-and-reluctant-quantifiers">Greedy and Reluctant Quantifiers</h2>
 <ul>
 <li>greedy quantifiers will try to match as much as possible<ul>
-<li>default behavior</li>
-<li>biggest possible result</li>
+<li>default behavior</li>
+<li>biggest possible result</li>
 </ul>
 </li>
 <li>reluctant (non-greedy, lazy) will try to have smalles match possible<ul>
@@ -233,7 +233,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="boundary-matchers">Boundary Matchers</h1>
+<h1 id="boundary-matchers">Boundary Matchers</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -268,40 +268,40 @@
 </tr>
 </tbody>
 </table>
-<h1 id="python-regex-functions">Python Regex Functions</h1>
+<h1 id="python-regex-functions">Python Regex Functions</h1>
 <ul>
 <li><code>RegexObject</code> class in <code>re</code> module</li>
 <li>wrapper functions in <code>re</code> module</li>
 <li><code>match</code> tries to match at beginning of string<ul>
-<li><strong>pos</strong> and slicing can have different results</li>
+<li><strong>pos</strong> and slicing can have different results</li>
 </ul>
 </li>
 <li><code>search</code> is like <em>match</em> in most languages (e.g Perl)<ul>
-<li>tries to match at any position in string</li>
+<li>tries to match at any position in string</li>
 </ul>
 </li>
-<li><a href="https://docs.python.org/2/library/re.html#re.compile">Compilation Flags</a></li>
+<li><a href="https://docs.python.org/2/library/re.html#re.compile">Compilation Flags</a></li>
 </ul>
 <h1 id="grouping">Grouping</h1>
 <ul>
 <li>Subexpressions are grouped within <code>(</code> and <code>)</code></li>
 </ul>
-<p>Used for different purposes:</p>
+<p>Used for different purposes:</p>
 <ul>
 <li>Creating subexpressions for applying <em>quantifiers</em></li>
 <li>Limiting scope of an <em>alternation</em></li>
-<li>Extract <em>parts</em> of the matched pattern (capturing)</li>
-<li>Using captured <em>parts</em> again in the regex</li>
+<li>Extract <em>parts</em> of the matched pattern (capturing)</li>
+<li>Using captured <em>parts</em> again in the regex</li>
 </ul>
-<h1 id="look-around">Look Around</h1>
+<h1 id="look-around">Look Around</h1>
 <ul>
 <li>Add subpatterns that are not in the result (not consuming characters)<ul>
-<li>positive: subpattern needs to match</li>
-<li>negative: subpattern must not match</li>
+<li>positive: subpattern needs to match</li>
+<li>negative: subpattern must not match</li>
 </ul>
 </li>
-<li>Also called zero-width assertions</li>
-<li>Python <code>re</code> module allows <em>look behind</em> only with <em>fixed size (sub-) patterns</em></li>
+<li>Also called zero-width assertions</li>
+<li>Python <code>re</code> module allows <em>look behind</em> only with <em>fixed size (sub-) patterns</em></li>
 </ul>
 <table class="table table-hover table-striped">
 <thead>
@@ -325,7 +325,7 @@
 </tbody>
 </table>
 <h1 id="benchmarking">Benchmarking</h1>
-<p>General for Python:</p>
+<p>General for Python:</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
 <span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"myFunction"</span><span class="p">)</span>
 </pre></div>

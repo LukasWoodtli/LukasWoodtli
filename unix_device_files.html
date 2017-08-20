@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Unix Device Files · Lukas Woodtli</title>
+        <title>Unix Device&nbsp;Files · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/unix_device_files.html">Unix Device Files</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/unix_device_files.html">Unix Device&nbsp;Files</a></h1>
     </div>
 
         </div>
@@ -142,29 +142,29 @@
   <hr/>
 
   <div id="article_content">
-    <p>Device files provide access to drivers through files.</p>
+    <p>Device files provide access to drivers through files.</p>
 <p>They are listed under <code>/dev</code>.
  There are two kinds of device drivers (as shown with <code>ls -l</code>)
 <code>c</code>: character device
-<code>b</code>: block device</p>
+<code>b</code>: block device</p>
 <ul>
-<li>Character devices provide a stream of bytes (e. g. serial ports, USB, system consoles ...)</li>
-<li>Block devices allow random access of blocks of information (e. g. HD, SSD ...).</li>
+<li>Character devices provide a stream of bytes (e. g. serial ports, <span class="caps">USB</span>, system consoles …)</li>
+<li>Block devices allow random access of blocks of information (e. g. <span class="caps">HD</span>, <span class="caps">SSD</span> …).</li>
 </ul>
 <p>The device files have a major and a minor number. The same major number means that the same device
 driver is responsible for the file/device. The minor number is used to distinguish different devices
-of the same type that use the same device driver.</p>
+of the same type that use the same device driver.</p>
 <h1 id="functions">Functions</h1>
 <p>A file descriptor for a device file can be aquired by the common <code>open()</code> function. Afer use it can be
 closed with <code>close()</code>. Reading and writing to the file is donne with <code>read()</code> and <code>write()</code>.</p>
 <p>Contol of device drivers is acomplished with the <code>ioctl()</code> function.</p>
-<p>Man page: <code>man ioctl</code> and <code>man ioctl_list</code> (only Linux).</p>
-<h1 id="special-device-files">Special Device Files</h1>
+<p>Man page: <code>man ioctl</code> and <code>man ioctl_list</code> (only Linux).</p>
+<h1 id="special-device-files">Special Device Files</h1>
 <ul>
-<li><code>/dev/null</code>: used to redirect unused streams to 'nowhere'</li>
-<li><code>/dev/zero</code>: 'infinite' sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>
+<li><code>/dev/null</code>: used to redirect unused streams to ‘nowhere’</li>
+<li><code>/dev/zero</code>: ‘infinite’ sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>
 <li><code>/dev/pts/</code>: virtual consoles (s.a. <a href="http://unix.stackexchange.com/questions/93531/what-is-stored-in-dev-pts-files-and-can-we-open-them/93640#93640">stackexchange</a>)</li>
-<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block, <code>/dev/urandom</code> doesn't block)</li>
+<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block, <code>/dev/urandom</code> doesn’t block)</li>
 <li><code>/dev/full</code>: can be used to simulate writing to a file when the disk is full (sets <code>errno</code> to <code>ENOSPC</code>)</li>
 </ul>
   </div>

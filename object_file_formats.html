@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Object File Formats · Lukas Woodtli</title>
+        <title>Object File&nbsp;Formats · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/object_file_formats.html">Object File Formats</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/object_file_formats.html">Object File&nbsp;Formats</a></h1>
     </div>
 
         </div>
@@ -145,92 +145,92 @@
 </thead>
 <tbody>
 <tr>
-<td>COFF / PE</td>
-<td>Windows 32 (PE), Windows 64 (PE32+)</td>
+<td><span class="caps">COFF</span> / <span class="caps">PE</span></td>
+<td>Windows 32 (<span class="caps">PE</span>), Windows 64 (<span class="caps">PE32</span>+)</td>
 </tr>
 <tr>
-<td>ELF</td>
-<td>Linux, UNIX, BSD...</td>
+<td><span class="caps">ELF</span></td>
+<td>Linux, <span class="caps">UNIX</span>, <span class="caps">BSD</span>…</td>
 </tr>
 <tr>
 <td>Mach-O</td>
-<td>OS X (Darwin)</td>
+<td><span class="caps">OS</span> X (Darwin)</td>
 </tr>
 <tr>
 <td>a.out</td>
-<td>Older versions of UNIX</td>
+<td>Older versions of <span class="caps">UNIX</span></td>
 </tr>
 </tbody>
 </table>
-<h2 id="common-object-file-format-coff-pe">Common Object File Format (COFF, PE)</h2>
-<p>First used in UNIX System V, later superseeded by ELF.</p>
-<p>PE (Portable Executable) is a modified version of COFF from
-Microsoft that is used for Windows.</p>
-<p>The same format is used for object files and for executables.</p>
-<p>Compilers that use COFF / PE:</p>
+<h2 id="common-object-file-format-coff-pe">Common Object File Format (<span class="caps">COFF</span>, <span class="caps">PE</span>)</h2>
+<p>First used in <span class="caps">UNIX</span> System V, later superseeded by <span class="caps">ELF</span>.</p>
+<p><span class="caps">PE</span> (Portable Executable) is a modified version of <span class="caps">COFF</span> from
+Microsoft that is used for Windows.</p>
+<p>The same format is used for object files and for executables.</p>
+<p>Compilers that use <span class="caps">COFF</span> / <span class="caps">PE</span>:</p>
 <ul>
-<li>Visual C++</li>
-<li>Intel (Win)</li>
-<li>GCC (Win)</li>
+<li>Visual C++</li>
+<li>Intel (Win)</li>
+<li><span class="caps">GCC</span> (Win)</li>
 </ul>
-<p>COFF uses many different data structures. This makes it difficult to handle.
-Alignment handling of the data structures can be difficult.</p>
+<p><span class="caps">COFF</span> uses many different data structures. This makes it difficult to handle.
+Alignment handling of the data structures can be difficult.</p>
 <p>Properties: </p>
 <ul>
-<li>Can contain debug information</li>
-<li>Different implementations (COFF, PE, XCOFF, ECOFF) are not compatible</li>
+<li>Can contain debug information</li>
+<li>Different implementations (<span class="caps">COFF</span>, <span class="caps">PE</span>, <span class="caps">XCOFF</span>, <span class="caps">ECOFF</span>) are not compatible</li>
 </ul>
 <p>Limitations:</p>
 <ul>
-<li>Segment word size: 32 or 64 bits.</li>
-<li>Max number of sections: 32k.</li>
-<li>Max file size: 4 GB.</li>
-<li>Max section size: 4 GB.</li>
-<li>Max relocations per section: 64k.</li>
-<li>Max library size: 4 GB.</li>
+<li>Segment word size: 32 or 64 bits.</li>
+<li>Max number of sections: 32k.</li>
+<li>Max file size: 4 <span class="caps">GB</span>.</li>
+<li>Max section size: 4 <span class="caps">GB</span>.</li>
+<li>Max relocations per section: 64k.</li>
+<li>Max library size: 4 <span class="caps">GB</span>.</li>
 </ul>
-<h2 id="executable-and-linkable-format-elf">Executable and Linkable Format (ELF)</h2>
-<p>Replaced older formats like a.out and COFF in Linux and BSD.</p>
+<h2 id="executable-and-linkable-format-elf">Executable and Linkable Format (<span class="caps">ELF</span>)</h2>
+<p>Replaced older formats like a.out and <span class="caps">COFF</span> in Linux and <span class="caps">BSD</span>.</p>
 <p>Compilers:</p>
 <ul>
-<li>GCC (Linux, BSD, Win...)</li>
+<li><span class="caps">GCC</span> (Linux, <span class="caps">BSD</span>, Win…)</li>
 </ul>
-<p>Clear and robust design.</p>
+<p>Clear and robust design.</p>
 <p>Limitations:</p>
 <ul>
-<li>Segment word size: 32 or 64 bits.</li>
-<li>Max number of sections: 64k.</li>
-<li>Max file size: 4 GB for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>Max section size: 4 GB for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>String table size: 4 GB.</li>
-<li>Max number of symbols: 16M for 32 bits, 4G for 64 bits.</li>
-<li>Max library size: 4 GB.</li>
+<li>Segment word size: 32 or 64 bits.</li>
+<li>Max number of sections: 64k.</li>
+<li>Max file size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
+<li>Max section size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
+<li>String table size: 4 <span class="caps">GB</span>.</li>
+<li>Max number of symbols: 16M for 32 bits, 4G for 64 bits.</li>
+<li>Max library size: 4 <span class="caps">GB</span>.</li>
 </ul>
-<h2 id="mach-o-format">Mach-O Format</h2>
-<p>This format is used by OS X.
-Only the format for Intel Mac OS X is described here.</p>
-<p>Can be used for object files and executable files.</p>
-<p>Object files have only one segment record that contains several section records.</p>
-<p>Executable files contain several segment records.</p>
+<h2 id="mach-o-format">Mach-O Format</h2>
+<p>This format is used by <span class="caps">OS</span> X.
+Only the format for Intel Mac <span class="caps">OS</span> X is described here.</p>
+<p>Can be used for object files and executable files.</p>
+<p>Object files have only one segment record that contains several section records.</p>
+<p>Executable files contain several segment records.</p>
 <p>Mach-O allows address specifications relative to any reference point in any section.
-This is used for position-independent code.</p>
+This is used for position-independent code.</p>
 <p>Limitations:</p>
 <ul>
-<li>Section name length: 16 characters.</li>
-<li>Max file size: 4 GB.</li>
-<li>Max section size: 16 MB for position-indep code, 4 GB for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>Max number of sections: 16 M.</li>
-<li>Max number of symbols: 16 M.</li>
-<li>Max library size: 4 GB.</li>
+<li>Section name length: 16 characters.</li>
+<li>Max file size: 4 <span class="caps">GB</span>.</li>
+<li>Max section size: 16 <span class="caps">MB</span> for position-indep code, 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
+<li>Max number of sections: 16 M.</li>
+<li>Max number of symbols: 16 M.</li>
+<li>Max library size: 4 <span class="caps">GB</span>.</li>
 </ul>
-<h2 id="aout-format">a.out Format</h2>
-<p>Stands for 'Assembler Output'.</p>
-<p>Is used in older UNIX systems.</p>
-<p>'a.out' is often the default output file name of linkers. Even if the
-output format is an other one.</p>
-<p>Some tools still support the a.out format.</p>
-<h2 id="data-endianness">Data Endianness</h2>
-<p>All systems based on x86 (16-bit, 32-bit and 64-bit) use little endian.</p>
+<h2 id="aout-format">a.out Format</h2>
+<p>Stands for ‘Assembler Output’.</p>
+<p>Is used in older <span class="caps">UNIX</span> systems.</p>
+<p><span class="quo">‘</span>a.out’ is often the default output file name of linkers. Even if the
+output format is an other one.</p>
+<p>Some tools still support the a.out format.</p>
+<h2 id="data-endianness">Data Endianness</h2>
+<p>All systems based on x86 (16-bit, 32-bit and 64-bit) use little endian.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
