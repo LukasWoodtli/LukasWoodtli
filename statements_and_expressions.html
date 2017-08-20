@@ -138,14 +138,9 @@
   <div id="article_content">
     <p>"The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine." [Tom Stuart, Understanding Computation]</p>
 <p>Statements often contain expressions but not the other way around.</p>
-<div class="math">
-\begin{equation*}
-\underbrace{x = \overbrace{1 + 2}^{\text{expression}}}_{\text{statement}}
-\end{equation*}
-</div>
-<div class="section" id="expressions-ausdruck">
-<h2>Expressions (Ausdruck)</h2>
-<ul class="simple">
+<div class="math">$$\underbrace{x = \overbrace{1 + 2}^{\text{expression}}}_{\text{statement}}$$</div>
+<h1 id="expressions-ausdruck">Expressions (Ausdruck)</h1>
+<ul>
 <li>is <em>evaluated</em> according to semantics in a context</li>
 <li>'returns' a value</li>
 <li>can have side-effects (in most languages)</li>
@@ -153,110 +148,96 @@
 <li>some languages have declarations for defining context of expression (among other things)</li>
 <li>can be nested with each other</li>
 </ul>
-</div>
-<div class="section" id="statement-anweisung">
-<h2>Statement (Anweisung)</h2>
-<ul class="simple">
+<h1 id="statement-anweisung">Statement (Anweisung)</h1>
+<ul>
 <li>mostly just in imperative languages</li>
-<li><dl class="first docutils">
-<dt>is <em>executed</em>, action to be carried out</dt>
-<dd><ul class="first last">
+<li>
+<p>is <em>executed</em>, action to be carried out</p>
+<ul>
 <li>in most languages no result/value (no eval)</li>
 <li>only side-effects (change of state)</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li>in assembly languages statements are often called instruction/command</li>
+<li>
+<p>in assembly languages statements are often called instruction/command</p>
+</li>
 <li>most languages have fixed set of statements (can not be changed/extended)</li>
-<li><dl class="first docutils">
-<dt>statements are often language keywords</dt>
-<dd><ul class="first last">
+<li>
+<p>statements are often language keywords</p>
+<ul>
 <li>can't be redefined</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt>some statements can be expressions</dt>
-<dd><ul class="first last">
+<li>
+<p>some statements can be expressions</p>
+<ul>
 <li>assignment</li>
 <li>increment</li>
 <li>function calls</li>
 <li>...</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt>Examples:</dt>
-<dd><ul class="first last">
+<li>
+<p>Examples:</p>
+<ul>
 <li>Assignments</li>
-<li><dl class="first docutils">
-<dt>Control statements</dt>
-<dd><ul class="first last">
+<li>
+<p>Control statements</p>
+<ul>
 <li>jumps</li>
 <li>loops</li>
 <li>conditionals (if, else, switch, ...)</li>
 <li>...</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li>procedure calls</li>
+<li>
+<p>procedure calls</p>
+</li>
 <li>assertion</li>
 <li>declarations</li>
 <li>class/type definitions</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li>statements often begin with a identifier/keyword</li>
-<li><dl class="first docutils">
-<dt>the syntax of statements can be described with</dt>
-<dd><ul class="first last">
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form">BNF</a></li>
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Syntax_diagram">Syntax diagram</a></li>
+<li>
+<p>statements often begin with a identifier/keyword</p>
+</li>
+<li>
+<p>the syntax of statements can be described with</p>
+<ul>
+<li><code>BNF &lt;https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form&gt;</code>_</li>
+<li><code>Syntax diagram &lt;https://en.wikipedia.org/wiki/Syntax_diagram&gt;</code>_</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt>statements differ from subroutine calls by handling of parameters</dt>
-<dd><ul class="first last">
+<li>
+<p>statements differ from subroutine calls by handling of parameters</p>
+<ul>
 <li>subroutine parameters are evaluated once</li>
-<li><dl class="first docutils">
-<dt>statement parameters can be evaluated multiple times (e.g. condition in while loop)</dt>
-<dd><ul class="first last">
+<li>
+<p>statement parameters can be evaluated multiple times (e.g. condition in while loop)</p>
+<ul>
 <li>call-by-name (lazy evaluation)</li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
-</dd>
-</dl>
 </li>
-<li>can't be nested with each others or with expressions</li>
+<li>
+<p>can't be nested with each others or with expressions</p>
+</li>
 </ul>
-</div>
-<div class="section" id="declaration">
-<h2>Declaration</h2>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>set properties</dt>
-<dd><ul class="first last">
+<h1 id="declaration">Declaration</h1>
+<ul>
+<li>
+<p>set properties</p>
+<ul>
 <li>identifier (word/name)</li>
 <li>dimension</li>
 <li>scope</li>
 <li>...</li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt>of</dt>
-<dd><ul class="first last">
+<li>
+<p>of</p>
+<ul>
 <li>variables</li>
 <li>constants</li>
 <li>functions</li>
@@ -265,12 +246,9 @@
 <li>type-defs</li>
 <li>...</li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
-</div>
-<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -334,8 +312,8 @@
           <a href="http://lukaswoodtli.github.io/evaluation_strategy.html">
           &laquo; Newer</a>
         </li>
-        <li class="next disabled">
-          <a >
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/files_and_file_descriptors_on_linux.html">
           Older &raquo;</a>
         </li>
       </ul>

@@ -132,43 +132,43 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
-    <h1>Macro Tricks</h1>
-<h2>Stringification</h2>
+    <h1 id="macro-tricks">Macro Tricks</h1>
+<h2 id="stringification">Stringification</h2>
 <p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
-<div class="highlight"><pre><span class="cp">#define stringize(s) _stringize(s)</span>
+<div class="highlight"><pre><span></span><span class="cp">#define stringize(s) _stringize(s)</span>
 <span class="cp">#define _stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
 </pre></div>
 <p>If you'd use the stingize operator <code>#</code> directly in a macro you won't get the intended string:</p>
-<div class="highlight"><pre><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
 </pre></div>
 <blockquote>
 <p>"IMPORTANT_CONST"</p>
 </blockquote>
 <p>Thats why there is an other macro calling the first one:</p>
-<div class="highlight"><pre> stringize (IMPORTANT_CONST)
+<div class="highlight"><pre><span></span> stringize (IMPORTANT_CONST)
 </pre></div>
 <blockquote>
 <p>stringize(4)  </p>
 <p>_stringize(4)  </p>
 <p>"4"  </p>
 </blockquote>
-<h2>Concatenation</h2>
+<h2 id="concatenation">Concatenation</h2>
 <p>With the <code>##</code> operator in a preprocessor macro it's possible to combine two tokens.</p>
-<div class="highlight"><pre><span class="cp">#define CREATE_ID(name) ID_##name</span>
+<div class="highlight"><pre><span></span><span class="cp">#define CREATE_ID(name) ID_##name</span>
 
 <span class="n">CREATE_ID</span><span class="p">(</span><span class="n">IMPORTANT_THING</span><span class="p">)</span>
 </pre></div>
 <blockquote>
 <p>ID_IMPORTANT_THING</p>
 </blockquote>
-<h2>Further Reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 <p>There is a good explanation in the GCC online docs:
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Macros.html#Macros">Macros</a></p>
   </div>

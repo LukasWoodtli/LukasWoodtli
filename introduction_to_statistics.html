@@ -130,7 +130,7 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
@@ -141,18 +141,52 @@
 </blockquote>
 <p>The notes on this page are from the Udacity course
 <a href="https://www.udacity.com/course/intro-to-statistics--st101" title="Udacity">Intro to Statistics</a>.</p>
-<p>[TOC]</p>
-<h1>Statistics and Probability</h1>
+<div class="toc">
+<ul>
+<li><a href="#statistics-and-probability">Statistics and Probability</a></li>
+<li><a href="#independent-events">Independent Events</a></li>
+<li><a href="#dependent-events">Dependent Events</a></li>
+<li><a href="#bayes-rule">Bayes' Rule</a><ul>
+<li><a href="#algorithm">Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#probability-distributions">Probability Distributions</a><ul>
+<li><a href="#density">Density</a></li>
+</ul>
+</li>
+<li><a href="#estimation">Estimation</a><ul>
+<li><a href="#maximum-likelihood-estimator-mle">Maximum Likelihood Estimator (MLE):</a></li>
+<li><a href="#laplace-estimator">Laplace Estimator:</a></li>
+</ul>
+</li>
+<li><a href="#averages">Averages</a><ul>
+<li><a href="#mean">Mean</a></li>
+<li><a href="#median">Median</a></li>
+<li><a href="#mode">Mode</a></li>
+</ul>
+</li>
+<li><a href="#variance">Variance</a></li>
+<li><a href="#standard-deviation">Standard Deviation</a></li>
+<li><a href="#overwiev-of-mean-variance-and-standard-deviation">Overwiev of Mean, Variance and Standard Deviation</a></li>
+<li><a href="#binomial-coefficients">Binomial Coefficients</a></li>
+<li><a href="#binomial-distribution">Binomial Distribution</a></li>
+<li><a href="#the-normal-distribution">The Normal Distribution</a><ul>
+<li><a href="#normaliser">Normaliser</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="statistics-and-probability">Statistics and Probability</h1>
 <p><img alt="Statistics and Probability" class="img-responsive" src="/images/statistics_probability.svg"/></p>
-<h1>Independent Events</h1>
+<h1 id="independent-events">Independent Events</h1>
 <ul>
 <li>Probability of Event: <span class="math">\(P\)</span></li>
 <li>Probability of opposite Event: <span class="math">\(1-P\)</span></li>
 <li>Probability of composite Events: <span class="math">\(P \cdot P \cdot ... \cdot P\)</span></li>
 </ul>
-<h1>Dependent Events</h1>
+<h1 id="dependent-events">Dependent Events</h1>
 <p><span class="math">\(P(A\mid B)\)</span>: Probability of Event <span class="math">\(A\)</span> when <span class="math">\(B\)</span> already occured.</p>
-<h1>Bayes' Rule</h1>
+<h1 id="bayes-rule">Bayes' Rule</h1>
 <p>See also <a href="http://en.wikipedia.org/wiki/Bayes%27_theorem" title="Bayes' theorem">Wikipedia</a></p>
 <div class="math">$$P(A\mid B) \; = \; \frac {P(B\mid A) \cdot P(A)} {P(B)}$$</div>
 <blockquote>
@@ -167,7 +201,7 @@
 <li><span class="math">\(P(A \mid B)\)</span>: the posterior, is the degree of belief having accounted for <span class="math">\(B\)</span>.</li>
 <li>the quotient <span class="math">\(\frac{P(B \mid A)}{P(B)}\)</span> represents the support <span class="math">\(B\)</span> provides for <span class="math">\(A\)</span>.</li>
 </ul>
-<h2>Algorithm</h2>
+<h2 id="algorithm">Algorithm</h2>
 <p>Imagine there is a disease. The possibility to get this particular disease is <span class="math">\(P(D)\)</span>.</p>
 <p>There is a test to check if someone has that disease. But the test is not completely reliable.</p>
 <p>Prior: <span class="math">\(P(D)\)</span>
@@ -188,11 +222,11 @@ Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 </ol>
 <p>Note: <span class="math">\(P(A, B) = P(B, A)\)</span></p>
 <p>The calculation for a <strong>negative</strong> test result are analogous. Just replace <span class="math">\(Pos\)</span> with <span class="math">\(Neg\)</span>.</p>
-<h1>Probability Distributions</h1>
+<h1 id="probability-distributions">Probability Distributions</h1>
 <blockquote>
 <p>In <strong>Continuous Distributions</strong> every outcome has the <strong>Probability</strong> <span class="math">\(0\)</span>.</p>
 </blockquote>
-<h2>Density</h2>
+<h2 id="density">Density</h2>
 <p>PDF: Probability Density Function</p>
 <p>Probability for continuous spaces. Density can be bigger than <span class="math">\(1\)</span>.</p>
 <p>Density:</p>
@@ -202,37 +236,37 @@ Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <li>Doesn't need to be smaller or equal than one</li>
 <li>Integrates to one</li>
 </ul>
-<h1>Estimation</h1>
+<h1 id="estimation">Estimation</h1>
 <p>Estimation problem is:</p>
 <p>Data → P</p>
 <p>P → P(Data)</p>
-<h2>Maximum Likelihood Estimator (MLE):</h2>
+<h2 id="maximum-likelihood-estimator-mle">Maximum Likelihood Estimator (MLE):</h2>
 <div class="math">$$\frac{1}{N} \cdot \sum_{i}^{} X_i$$</div>
 <p>The sum is always between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>.</p>
-<h2>Laplace Estimator:</h2>
+<h2 id="laplace-estimator">Laplace Estimator:</h2>
 <div class="math">$$\frac{1}{N + k} \cdot \left(1 + \sum_{i}^{} X_i \right)$$</div>
 <p><span class="math">\(k\)</span>: Number of Outcomes</p>
 <p><span class="math">\(N\)</span>: Number of Experiments</p>
-<h1>Averages</h1>
-<h2>Mean</h2>
+<h1 id="averages">Averages</h1>
+<h2 id="mean">Mean</h2>
 <div class="math">$$\mu = \frac{1}{n} \sum_{i=1}^n{x_i}$$</div>
 <p>Sum up all elements and divide by the number of elements.</p>
-<h2>Median</h2>
+<h2 id="median">Median</h2>
 <p>Sort all elements and take the one in the middle.</p>
-<h2>Mode</h2>
+<h2 id="mode">Mode</h2>
 <p>The value of the elements that occur most in the data set.</p>
-<h1>Variance</h1>
+<h1 id="variance">Variance</h1>
 <p>The variance is a measure how disperse a data set is.</p>
 <p>Subtract the <em>mean</em> from every item. Then sum up the <em>squares</em> of the subtractions
 and devide the result by the number of data items.</p>
 <div class="math">$$Var(X) = \sigma^2_X = \frac{1}{n} \sum_{i}(x_i - \mu)^2$$</div>
 <p>Alternative Formula:</p>
 <div class="math">$$\sigma^2_X = \frac{\sum X_i^2}{N} - \frac{\left( \sum X_i  \right)^2}{N^2}$$</div>
-<h1>Standard Deviation</h1>
+<h1 id="standard-deviation">Standard Deviation</h1>
 <p>The standard deviation is giving a sense how far away the items in a data set are from the mean.
 </p>
 <div class="math">$$\sigma_X = \sqrt{Var(X)}$$</div>
-<h1>Overwiev of Mean, Variance and Standard Deviation</h1>
+<h1 id="overwiev-of-mean-variance-and-standard-deviation">Overwiev of Mean, Variance and Standard Deviation</h1>
 <p>This notes are taken from <a href="https://www.khanacademy.org/math/probability/descriptive-statistics/variance_std_deviation/v/statistics-standard-deviation">Khan Academy</a></p>
 <table class="table table-hover table-striped">
 <thead>
@@ -266,23 +300,23 @@ and devide the result by the number of data items.</p>
 <p>For an unbiased estimator (Variance of samples) the sum is divided by <span class="math">\(n-1\)</span>!</p>
 </blockquote>
 <p><span class="math">\(s = \sqrt{s^2}\)</span>: is not an unbiased estimator due to the non-linear nature of the square root.</p>
-<h1>Binomial Coefficients</h1>
+<h1 id="binomial-coefficients">Binomial Coefficients</h1>
 <p>Choose <span class="math">\(k\)</span> elements from <span class="math">\(n\)</span> possible elements (without putting
 back elements and without caring about the order of the chosen
 elements):</p>
 <div class="math">$$\binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$$</div>
-<h1>Binomial Distribution</h1>
+<h1 id="binomial-distribution">Binomial Distribution</h1>
 <p>i.e. Flip a loaded coin:</p>
 <p><span class="math">\(p = P(heads)\)</span>: Probability to get a head from one coin flip.</p>
 <p>Flip coin <span class="math">\(n\)</span> times.</p>
 <p><span class="math">\(P(\#heads = k)\)</span>: Expectation to get <span class="math">\(k\)</span> heads from all the flips.</p>
 <div class="math">$$P(\#heads = k) = \frac{n!}{k! \cdot (n - k)!} \cdot p^k \cdot (1-p)^{n-k} = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}$$</div>
-<h1>The Normal Distribution</h1>
+<h1 id="the-normal-distribution">The Normal Distribution</h1>
 <p><span class="math">\(\mu\)</span>: Mean</p>
 <p><span class="math">\(\sigma^2\)</span>: Variance</p>
 <p><span class="math">\(\sigma\)</span>: Standard Deviation</p>
 <div class="math">$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\cdot e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right)}$$</div>
-<h2>Normaliser</h2>
+<h2 id="normaliser">Normaliser</h2>
 <p>The expression <span class="math">\(\frac{1}{\sqrt{2\pi\sigma^2}}\)</span> is needed to normalise the area underneath curve given by the rest of
 the formula (<span class="math">\(e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right)}\)</span>). Otherwise it would not add up to <span class="math">\(1\)</span>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {

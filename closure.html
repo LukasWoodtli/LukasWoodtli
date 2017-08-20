@@ -130,23 +130,23 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
     <p>There are 2 concepts that are called <em>closure</em></p>
-<h1>Lambdas</h1>
+<h1 id="lambdas">Lambdas</h1>
 <p>Closures are (anonymous) functions with free variables that capture the context of the calling function (stack).</p>
 <p><a href="https://en.m.wikipedia.org/wiki/Closure_(computer_programming)">Wikipedia:Closure</a></p>
-<h1>The Closure Property</h1>
+<h1 id="the-closure-property">The Closure Property</h1>
 <p>From <a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2">SICP: 2.2 Hierarchical Data and the Closure Property</a>:</p>
 <p><em>"The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as <strong>the closure property</strong> of <code>cons</code>. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation."</em></p>
 <p><em>"The use of the word 'closure' here comes from abstract algebra, where a set of elements is said to be closed under an operation if applying the operation to elements in the set produces an element that is again an element of the set. The Lisp community also (unfortunately) uses the word “closure” to describe a totally unrelated concept: A closure is an implementation technique for representing procedures with free variables."</em></p>
-<h2>Cons Cells</h2>
+<h2 id="cons-cells">Cons Cells</h2>
 <p>Related to the closure property is the ability to create compound data (e.g pairs) only with functions:</p>
-<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">p</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">p</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)))</span>

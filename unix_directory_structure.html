@@ -136,13 +136,13 @@
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas_woodtli.html">Lukas Woodtli</a>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
   </span>
 
   <hr/>
 
   <div id="article_content">
-    <h1>Linux</h1>
+    <h1 id="linux">Linux</h1>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -226,11 +226,11 @@
 </tbody>
 </table>
 <p>Any directory ending with <code>bin/</code> contains binary executable files (or links to them)</p>
-<h1>Procfs</h1>
+<h1 id="procfs">Procfs</h1>
 <p>The <code>/proc</code> file system is a pseudo filesystem that allows to get informations from the kernel.</p>
 <p>The man page can be found with: <code>man 5 proc</code></p>
 <p>There are also informations available in the <code>/sys</code> file system.</p>
-<h2>Processes</h2>
+<h2 id="processes">Processes</h2>
 <p>Each running process has a subfolder in <code>/proc</code> which is named after its PID.</p>
 <table class="table table-hover table-striped">
 <thead>
@@ -286,7 +286,7 @@
 </tr>
 </tbody>
 </table>
-<h2>Kernel</h2>
+<h2 id="kernel">Kernel</h2>
 <ul>
 <li>The command that was used to run the kernel at boot time can be found with <code>cat /proc/cmdline</code></li>
 <li>More information about kernel parameters can be found with <code>man bootparam</code></li>
@@ -294,7 +294,7 @@
 <li>Loaded kernel modules are listed under <code>/proc/modules</code></li>
 <li>Information about filesystems are found under <code>/proc/filesystems</code> and <code>/proc/mounts</code></li>
 </ul>
-<h2>Hardware</h2>
+<h2 id="hardware">Hardware</h2>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
