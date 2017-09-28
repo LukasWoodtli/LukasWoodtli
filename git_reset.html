@@ -140,9 +140,9 @@
 <p>This overview is taken from the <a href="https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified#_summary_8">Pro Git</a> book.</p>
 <p>The meanings in the following tables are:</p>
 <ul>
-<li><span class="caps">HEAD</span>: Means that either <span class="caps">HEAD</span> itself is moved or the branch that <span class="caps">HEAD</span> points to (<span class="caps">REF</span>)</li>
-<li>Index and Workdir: indicate what is changed by the command</li>
-<li>Safe: If the command can overwrite uncommited changes it is not safe (work can be lost)</li>
+<li><strong><span class="caps">HEAD</span></strong>: Means that either <span class="caps">HEAD</span> itself is moved or the branch that <span class="caps">HEAD</span> points to (<span class="caps">REF</span>)</li>
+<li><strong>Index</strong> and <strong>Workdir</strong>: indicate what is changed by the command</li>
+<li><strong>Safe</strong>: If the command can overwrite uncommited changes it is <em>not safe</em> (work can be lost)</li>
 </ul>
 <h1 id="commit-level">Commit Level</h1>
 <table class="table table-hover table-striped">
@@ -199,7 +199,7 @@
 <th><span class="caps">HEAD</span></th>
 <th>Index</th>
 <th>Workdir</th>
-<th><span class="caps">WD</span> Safe?</th>
+<th><span class="caps">WD</span></th>
 <th>Notes</th>
 </tr>
 </thead>
@@ -222,6 +222,7 @@
 </tr>
 </tbody>
 </table>
+<p><span class="caps">HEAD</span> is never changed with this commands.</p>
 <h1 id="patch-option">Patch Option</h1>
 <p>Both commands, <code>git reset</code> and <code>git checkout</code> support the <code>--patch</code> option to allow to reset or checkout only part of changes.</p>
   </div>
