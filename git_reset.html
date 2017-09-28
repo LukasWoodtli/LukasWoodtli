@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Category: Version Control · Lukas Woodtli</title>
+        <title>Git&nbsp;Reset · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,51 +111,134 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/category/version_control.html">Category: Version Control</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/git_reset.html">Git&nbsp;Reset</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="Version Control" href="#Version Control">Version Control</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#Version Controlcollapse">
-          <span class="badge pull-right">5</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/git.html">Git</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month09">09</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month09">26</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="Version Controlcollapse">
-        <a href="http://lukaswoodtli.github.io/git_reset.html">
-          <li class="list-group-item">
-Git&nbsp;Reset</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/git_the_git_directory.html">
-          <li class="list-group-item">
-Git: The .git&nbsp;Directory</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/git_commit_a_older_version_to_head.html">
-          <li class="list-group-item">
-Git: Commit a older version to <span class="caps">HEAD</span></li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/move_actual_work_to_a_new_branch.html">
-          <li class="list-group-item">
-Move actual work to a new&nbsp;Branch</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/undo_committed_changes_with_svn.html">
-          <li class="list-group-item">
-Undo Committed Changes with <span class="caps">SVN</span></li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <p>The <code>git reset</code> command is not very easy and can be dangerous in some cases. The <code>git checkout</code> command does similar things.</p>
+<p>This overview is taken from the <a href="https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified#_summary_8">Pro Git</a> book.</p>
+<p>The meanings in the following tables are:</p>
+<ul>
+<li><span class="caps">HEAD</span>: Means that either <span class="caps">HEAD</span> itself is moved or the branch that <span class="caps">HEAD</span> points to (<span class="caps">REF</span>)</li>
+<li>Index and Workdir: indicate what is changed by the command</li>
+<li>Safe: If the command can overwrite uncommited changes it is not safe (work can be lost)</li>
+</ul>
+<h1 id="commit-level">Commit Level</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th><span class="caps">HEAD</span></th>
+<th>Index</th>
+<th>Workdir</th>
+<th>Safe</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reset --soft [commit]</code></td>
+<td><span class="caps">REF</span></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reset [commit]</code></td>
+<td><span class="caps">REF</span></td>
+<td>✓</td>
+<td>✗</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reset --hard [commit]</code></td>
+<td><span class="caps">REF</span></td>
+<td>✓</td>
+<td>✓</td>
+<td><em>✘</em></td>
+<td>just replaces and overwrites files without waring</td>
+</tr>
+<tr>
+<td><code>checkout &lt;commit&gt;</code></td>
+<td><span class="caps">HEAD</span></td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>merges files, aborts and warns in case of conflicts</td>
+</tr>
+</tbody>
+</table>
+<h1 id="file-level">File Level</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th><span class="caps">HEAD</span></th>
+<th>Index</th>
+<th>Workdir</th>
+<th><span class="caps">WD</span> Safe?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reset [commit] &lt;file&gt;</code></td>
+<td>✗</td>
+<td>✓</td>
+<td>✗</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td><code>checkout [commit] &lt;file&gt;</code></td>
+<td>✗</td>
+<td>✓</td>
+<td>✓</td>
+<td><em>✘</em></td>
+<td>would be same as <code>git reset --hard [branch] file</code> but this is not allowed</td>
+</tr>
+</tbody>
+</table>
+<h1 id="patch-option">Patch Option</h1>
+<p>Both commands, <code>git reset</code> and <code>git checkout</code> support the <code>--patch</code> option to allow to reset or checkout only part of changes.</p>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/investment_management_coursera_specialization.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
