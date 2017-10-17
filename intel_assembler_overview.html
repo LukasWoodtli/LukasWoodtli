@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Intel Assembler&nbsp;Overview · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/intel_assembler_overview.html">Intel Assembler&nbsp;Overview</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/assembler.html">Assembler</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month10">10</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month10">17</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <div class="toc">
+<ul>
+<li><a href="#program-format">Program Format</a></li>
+<li><a href="#comments">Comments</a></li>
+<li><a href="#numeric-literals">Numeric Literals</a></li>
+<li><a href="#constants">Constants</a></li>
+<li><a href="#initialized-variables-data">Initialized Variables (data)</a></li>
+<li><a href="#uninitialized-variables-bss">Uninitialized Variables (<span class="caps">BSS</span>)</a></li>
+<li><a href="#code-text">Code (text)</a></li>
+<li><a href="#assembler-directives">Assembler Directives</a></li>
+</ul>
+</div>
+<h1 id="program-format">Program Format</h1>
+<p>Typical sections of an assembler program are:</p>
+<ul>
+<li><code>Data</code> section: declaration and definition of initialized data</li>
+<li><code>BSS</code> section: declaration of uninitialized data</li>
+<li><code>Text</code> section: where the code is placed</li>
+</ul>
+<h1 id="comments">Comments</h1>
+<p>Code comments are written using the semicolon (<code>;</code>).
+It can be placed anywhere. Everything to the end of the line is ignored.</p>
+<h1 id="numeric-literals">Numeric Literals</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Radix</th>
+<th>Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decimal</td>
+<td><em>default</em></td>
+<td><code>127</code></td>
+</tr>
+<tr>
+<td>Hex</td>
+<td><code>0x</code> prefix</td>
+<td><code>0x7F</code></td>
+</tr>
+<tr>
+<td>Octal</td>
+<td><code>q</code> postfix</td>
+<td><code>177q</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="constants">Constants</h1>
+<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="nf">name</span><span class="o">&gt;</span>  <span class="nv">equ</span>   <span class="o">&lt;</span><span class="nv">value</span><span class="o">&gt;</span>
+</pre></div>
+<p>Constants are substituted with their value during the assembly process.
+They are not assigned a memory location</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><span class="no">SIZE</span><span class="kd">  equ</span>   <span class="mi">127</span>
+</pre></div>
+<h1 id="initialized-variables-data">Initialized Variables (data)</h1>
+<ul>
+<li>Declared in <code>section .data</code></li>
+<li>Name, data type and initial value</li>
+<li>Supported data types:<ul>
+<li><code>db</code>: 8-bit(byte)</li>
+<li><code>dw</code>: 16-bit (word)</li>
+<li><code>dd</code>: 32-bit (double word)</li>
+<li><code>dq</code>: 64-bit (quad word)</li>
+<li><code>ddq</code>: 128-bit integer</li>
+<li><code>dt</code>: 128-bit float</li>
+</ul>
+</li>
+<li>Arrays are Initialized with comma separated values</li>
+</ul>
+<p>Format:</p>
+<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="nf">varName</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">dataType</span><span class="o">&gt;</span>   <span class="o">&lt;</span><span class="nv">initialValue</span><span class="o">&gt;</span>
+</pre></div>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><span class="nf">bVal</span> <span class="nv">db</span> <span class="mi">2</span>            <span class="c1">; byte</span>
+<span class="nf">cVal</span> <span class="nv">db</span> <span class="s">"H"</span>          <span class="c1">; char</span>
+<span class="nf">str</span> <span class="nv">db</span> <span class="s">"Hello World"</span> <span class="c1">; string</span>
+<span class="nf">wVal</span> <span class="nv">dw</span> <span class="mi">5000</span>         <span class="c1">; 16-bit word</span>
+<span class="nf">dVal</span> <span class="nv">dd</span> <span class="mi">50000</span>        <span class="c1">; 32-bit (double word)</span>
+<span class="nf">arr</span> <span class="nv">dd</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span> <span class="c1">; 3 element array</span>
+<span class="nf">flt1</span> <span class="nv">dd</span> <span class="mf">3.14159</span>      <span class="c1">; 32-bit float</span>
+<span class="nf">qVar</span> <span class="nv">dq</span> <span class="mi">1000000000</span>   <span class="c1">; 64-bit (quad word)</span>
+</pre></div>
+<h1 id="uninitialized-variables-bss">Uninitialized Variables (<span class="caps">BSS</span>)</h1>
+<ul>
+<li>Declared in <code>section .bss</code></li>
+<li>Name, data type and count</li>
+<li>Supported data types:<ul>
+<li>resb 8-bit (byte)</li>
+<li>resw 16-bit (word)</li>
+<li>resd 32-bit (double-word)</li>
+<li>resq 64-bit (quad-word)</li>
+<li>resdq 128-bit (double quad-word)</li>
+</ul>
+</li>
+</ul>
+<p>Format:</p>
+<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="nf">varName</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">resType</span><span class="o">&gt;</span>   <span class="o">&lt;</span><span class="nv">count</span><span class="o">&gt;</span>
+</pre></div>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><span class="nf">bArr</span> <span class="nv">resb</span> <span class="mi">5</span>   <span class="c1">; 5 element byte array</span>
+<span class="nf">wArr</span> <span class="nv">resw</span> <span class="mi">20</span>  <span class="c1">; 20 element word array</span>
+<span class="nf">dArr</span> <span class="nv">resd</span> <span class="mi">30</span>  <span class="c1">; 30 element double array</span>
+<span class="nf">qArr</span> <span class="nv">resq</span> <span class="mi">25</span>  <span class="c1">; 25 element quad array</span>
+</pre></div>
+<h1 id="code-text">Code (text)</h1>
+<ul>
+<li>Placed in `section .text</li>
+<li>initial program entry point needs to be defined</li>
+</ul>
+<p>For the standard linker (Linux) the entry point is defined:</p>
+<div class="highlight"><pre><span></span><span class="k">global</span> <span class="nv">_start</span>
+<span class="nl">_start:</span>
+</pre></div>
+<h1 id="assembler-directives">Assembler Directives</h1>
+<p>Assembler directives are instrutions for the assembler that are not directly translated
+to <span class="caps">CPU</span> instrutions.</p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/git_reset.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
