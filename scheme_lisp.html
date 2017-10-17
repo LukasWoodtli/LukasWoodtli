@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Scheme&nbsp;(Lisp) · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/scheme_lisp.html">Scheme&nbsp;(Lisp)</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month07">07</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month07">24</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>This page collects notes about Scheme (an Lisp in general).</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#sources" id="id1">Sources</a></li>
+<li><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></li>
+<li><a class="reference internal" href="#application-rules" id="id3">Application Rules</a></li>
+<li><a class="reference internal" href="#linear-recursion-and-iteration" id="id4">Linear Recursion and Iteration</a><ul>
+<li><a class="reference internal" href="#recursive-process" id="id5">Recursive Process</a></li>
+<li><a class="reference internal" href="#iterative-process" id="id6">Iterative Process</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expressions" id="id7">Expressions</a></li>
+<li><a class="reference internal" href="#sequences-as-conventional-interfaces" id="id8">Sequences as Conventional Interfaces</a></li>
+<li><a class="reference internal" href="#quotation" id="id9">Quotation</a></li>
+</ul>
+</div>
+<div class="section" id="sources">
+<h2><a class="toc-backref" href="#id1">Sources</a></h2>
+<p>Most information is taken from:</p>
+<p><a class="reference external" href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/">Structure and Interpretation of Computer Programs</a></p>
+<p><a class="reference external" href="https://github.com/LukasWoodtli/SchemeCourse">My Github repository with examples</a></p>
+</div>
+<div class="section" id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2">Evaluation Rules</a></h2>
+<ol class="arabic simple">
+<li>If <em>self-evaluating</em>: return value</li>
+<li>If <em>name</em>: return value of associated name in environment</li>
+<li>If <em>special form</em>: do something special</li>
+<li><dl class="first docutils">
+<dt>If <em>combination</em>:</dt>
+<dd><ol class="first last loweralpha">
+<li><em>evaluate</em> all subexpressions (in any order)</li>
+<li><em>apply</em> operator on arguments and return result</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="application-rules">
+<h2><a class="toc-backref" href="#id3">Application Rules</a></h2>
+<ol class="arabic simple">
+<li>If <em>primitive procedure</em>, just do it</li>
+<li>If <em>compound procedure</em>, then <em>evaluate</em> body of procedure with each <em>formal</em> parameter replaced with corresponding <em>actual</em> argument value.</li>
+</ol>
+</div>
+<div class="section" id="linear-recursion-and-iteration">
+<h2><a class="toc-backref" href="#id4">Linear Recursion and Iteration</a></h2>
+<p>See <a class="reference external" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.1"><span class="caps">SICP</span> section 1.2.1</a>
+and <a class="reference external" href="http://stackoverflow.com/questions/17254240/sicp-recursive-process-vs-iterative-process-using-a-recursive-procedure-to-gene">stack overflow</a></p>
+<p>It’s confusing that both the recursive and the iterative implementation call themselves. There is a distinction between</p>
+<ul class="simple">
+<li>Recursive process and</li>
+<li>Recursive function</li>
+</ul>
+<p>A recursive function calls itself. But it can be implemented as <em>recursive</em> or <em>iterative</em> process.</p>
+<table border="1" class="docutils table-hover table-striped table borderless">
+<colgroup>
+<col width="44%"/>
+<col width="56%"/>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Recursive Process</th>
+<th class="head">Iterative Process</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Function calls itself</td>
+<td>Function calls itself</td>
+</tr>
+<tr><td>Itermediate result is kept on caller side</td>
+<td><p class="first">Intermedia result is passed to the called function</p>
+<ul class="last simple">
+<li>additinal argument needed</li>
+<li>initial value needed</li>
+</ul>
+</td>
+</tr>
+<tr><td>Each recursive call needs a new stack frame</td>
+<td>Stack frame can be reused (tail call)</td>
+</tr>
+<tr><td>Recursive function call part of bigger expression</td>
+<td>Recursive function call not part of bigger expression</td>
+</tr>
+<tr><td>Easier to understand</td>
+<td>More difficult to understand and to implement</td>
+</tr>
+<tr><td>Needs stack</td>
+<td>Can be implemented in register machine (without stack)</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="recursive-process">
+<h3><a class="toc-backref" href="#id5">Recursive Process</a></h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="mi">1</span>
+      <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">factorial</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span> <span class="c1">;; 'factorial' is part of bigger expression</span>
+</pre></div>
+</div>
+<div class="section" id="iterative-process">
+<h3><a class="toc-backref" href="#id6">Iterative Process</a></h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">fact-iter</span> <span class="mi">1</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">))</span> <span class="c1">;; inital values need to be provided</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fact-iter</span> <span class="nv">product</span> <span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span> <span class="c1">;; max-cout: intermediate result</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span>
+       <span class="nv">product</span>
+       <span class="p">(</span><span class="nf">fact-iter</span> <span class="p">(</span><span class="nb">* </span><span class="nv">counter</span> <span class="nv">product</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nb">+ </span><span class="nv">counter</span> <span class="mi">1</span><span class="p">)</span>
+                  <span class="nv">max-count</span><span class="p">)))</span> <span class="c1">;; max-cout: supply intermediate result to next call</span>
+</pre></div>
+<ul class="simple">
+<li>Iterative algorithms have constant space</li>
+<li>Develop iterative algorithm:<ul>
+<li>figure out a way to accumulate partial answers</li>
+<li>write out table to analyze precisely<ul>
+<li>initialization of first row</li>
+<li>update rules for other rows</li>
+<li>how to know when to stop</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Iterative algorithms have no pending operations when the procedure calls itself</li>
+</ul>
+</div>
+</div>
+<div class="section" id="expressions">
+<h2><a class="toc-backref" href="#id7">Expressions</a></h2>
+<ul class="simple">
+<li>In Scheme everything is an expression</li>
+<li>Expressions can be nested arbritarly</li>
+</ul>
+</div>
+<div class="section" id="sequences-as-conventional-interfaces">
+<h2><a class="toc-backref" href="#id8">Sequences as Conventional Interfaces</a></h2>
+<p><em><span class="dquo">“</span>The key to organizing programs so as to more clearly reflect the signal-flow structure is to concentrate on the “signals” that flow from one stage in the process to the next. If we represent these signals as lists, then we can use list operations to implement the processing at each of the stages.</em>”</p>
+<p><em><span class="dquo">“</span>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces. We can encourage modular design by providing a library of standard components together with a conventional interface for connecting the components in flexible ways.”</em></p>
+<p>[<span class="caps">SICP</span>: 2.2.3  Sequences as Conventional Interfaces](<a class="reference external" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.3">https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.3</a>)</p>
+</div>
+<div class="section" id="quotation">
+<h2><a class="toc-backref" href="#id9">Quotation</a></h2>
+<p><em><span class="dquo">“</span>Allowing quotation in a language wreaks havoc with the ability to reason about the language in simple terms, because it destroys the notion that equals can be substituted for equals. For example, three is one plus two, but the word “three” is not the phrase “one plus two”. Quotation is powerful because it gives us a way to build expressions that manipulate other expressions”</em></p>
+<p>[<span class="caps">SICP</span>: 2.3.1  Quotation](<a class="reference external" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-16.html#%_sec_2.3.1">https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-16.html#%_sec_2.3.1</a>)</p>
+</div>
+
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/logik.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/evaluation_strategy.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

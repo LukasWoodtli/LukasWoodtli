@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Closure · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/closure.html">Closure</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month10">10</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month10">13</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>There are 2 concepts that are called <em>closure</em></p>
+<h1 id="lambdas">Lambdas</h1>
+<p>Closures are (anonymous) functions with free variables that capture the context of the calling function (stack).</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Closure_(computer_programming)">Wikipedia:Closure</a></p>
+<h1 id="the-closure-property">The Closure Property</h1>
+<p>From <a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2"><span class="caps">SICP</span>: 2.2 Hierarchical Data and the Closure Property</a>:</p>
+<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as <strong>the closure property</strong> of <code>cons</code>. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
+<p><em><span class="dquo">“</span>The use of the word ‘closure’ here comes from abstract algebra, where a set of elements is said to be closed under an operation if applying the operation to elements in the set produces an element that is again an element of the set. The Lisp community also (unfortunately) uses the word “closure” to describe a totally unrelated concept: A closure is an implementation technique for representing procedures with free variables.”</em></p>
+<h2 id="cons-cells">Cons Cells</h2>
+<p>Related to the closure property is the ability to create compound data (e.g pairs) only with functions:</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">p</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">p</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">p</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">)))</span>
+</pre></div>
+<p><a href="https://en.m.wikipedia.org/wiki/Cons#Functional_Implementation">Wikipedia:Cons</a></p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/scheme_frequently_used_functions.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/os_x_keymap.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

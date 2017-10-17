@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Unix Directory&nbsp;Structure · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/unix_directory_structure.html">Unix Directory&nbsp;Structure</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/unix.html">Unix</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month09">09</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month09">30</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <h1 id="linux">Linux</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Directory</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/bin/</code></td>
+<td>Essential commands and programs</td>
+</tr>
+<tr>
+<td><code>/sbin/</code></td>
+<td>System binaries: mainly system administration programs</td>
+</tr>
+<tr>
+<td><code>/boot/</code></td>
+<td>Files for bootloader</td>
+</tr>
+<tr>
+<td><code>/dev/</code></td>
+<td>Device files</td>
+</tr>
+<tr>
+<td><code>/usr/</code></td>
+<td>System utilities (Unix System Resources)</td>
+</tr>
+<tr>
+<td><code>/opt/</code></td>
+<td>Optional software: mainly for users</td>
+</tr>
+<tr>
+<td><code>/etc/</code></td>
+<td>System configuration files</td>
+</tr>
+<tr>
+<td><code>/home/</code></td>
+<td>User home directories</td>
+</tr>
+<tr>
+<td><code>/root/</code></td>
+<td>Root home directory</td>
+</tr>
+<tr>
+<td><code>/tmp/</code></td>
+<td>Temporary files, deleted at reboot</td>
+</tr>
+<tr>
+<td><code>/kernel/</code></td>
+<td>The operating system</td>
+</tr>
+<tr>
+<td><code>/srv/</code></td>
+<td>Data for services</td>
+</tr>
+<tr>
+<td><code>/var/</code></td>
+<td>Variable files (logs)</td>
+</tr>
+<tr>
+<td><code>/usr/lib/</code></td>
+<td>Precompiled libraries (shared objects)</td>
+</tr>
+<tr>
+<td><code>/lib/</code></td>
+<td>Precompiled libraries (shared objects)</td>
+</tr>
+<tr>
+<td><code>/media/</code></td>
+<td>Removable devices are mounted here</td>
+</tr>
+<tr>
+<td><code>/mnt/</code></td>
+<td>Temporary filesystems are mounted here</td>
+</tr>
+<tr>
+<td><code>/proc/</code></td>
+<td>Virtual file system with live kernel information</td>
+</tr>
+</tbody>
+</table>
+<p>Any directory ending with <code>bin/</code> contains binary executable files (or links to them)</p>
+<h1 id="procfs">Procfs</h1>
+<p>The <code>/proc</code> file system is a pseudo filesystem that allows to get informations from the kernel.</p>
+<p>The man page can be found with: <code>man 5 proc</code></p>
+<p>There are also informations available in the <code>/sys</code> file system.</p>
+<h2 id="processes">Processes</h2>
+<p>Each running process has a subfolder in <code>/proc</code> which is named after its <span class="caps">PID</span>.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Directory</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/proc/$pid/cmdline</code></td>
+<td>The command line that was used to start the process.</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/environ</code></td>
+<td>The environment of the process.</td>
+</tr>
+<tr>
+<td><code>/proc/self</code></td>
+<td>A link to the current process (can be used prom the process to get information about itself).</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/fd/</code></td>
+<td>A directory that contains references to file descriptors that the process uses.</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/statm</code></td>
+<td>Information about the process memory.</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/status</code></td>
+<td>General formated information: <span class="caps">PID</span>, real and effective <span class="caps">UID</span> and <span class="caps">GID</span>, memory use, bitmasks …</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/stat</code></td>
+<td>Same as <code>/proc/$pid/status</code>. But not formated.</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/cwd</code></td>
+<td>A symbolic link to the current working directory of the process.</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/exe</code></td>
+<td>A reference to the executable file of the process.</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/root</code></td>
+<td>A link to the root directory of the process (s.a. <code>chroot()</code>).</td>
+</tr>
+<tr>
+<td><code>/proc/$pid/maps</code></td>
+<td>Contains memory mappings to files and libraries used by the process. This file can become very large.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kernel">Kernel</h2>
+<ul>
+<li>The command that was used to run the kernel at boot time can be found with <code>cat /proc/cmdline</code></li>
+<li>More information about kernel parameters can be found with <code>man bootparam</code></li>
+<li>The current locks can be found under <code>/proc/locks</code></li>
+<li>Loaded kernel modules are listed under <code>/proc/modules</code></li>
+<li>Information about filesystems are found under <code>/proc/filesystems</code> and <code>/proc/mounts</code></li>
+</ul>
+<h2 id="hardware">Hardware</h2>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Directory</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/proc/devices</code></td>
+<td>List devices (character- and block-devices), <span class="caps">HD</span>’s, <span class="caps">SSD</span>’s, ports …</td>
+</tr>
+<tr>
+<td><code>/proc/dma</code></td>
+<td>List of used <span class="caps">DMA</span> channesl and the driver that uses it.</td>
+</tr>
+<tr>
+<td><code>/proc/interrupts</code></td>
+<td>List of used interrupts, type of <span class="caps">IRQ</span>, using modules and number of occureces</td>
+</tr>
+<tr>
+<td><code>/proc/ioports</code></td>
+<td>List of all used I/O port (<span class="caps">HD</span>’s, ethernet, <span class="caps">USB</span> …).</td>
+</tr>
+<tr>
+<td><code>/proc/iomem</code></td>
+<td>Mapped hardware memory regions.</td>
+</tr>
+<tr>
+<td><code>/proc/stat</code></td>
+<td>General informations about processorS states (s.a. <code>procinfo</code>)</td>
+</tr>
+<tr>
+<td><code>/proc/uptime</code></td>
+<td>Number of seconds that the system is running and idle time of <span class="caps">CPU</span>’s.</td>
+</tr>
+<tr>
+<td><code>/proc/scsi/</code></td>
+<td>Directory with informations about <span class="caps">SCSI</span> devices</td>
+</tr>
+<tr>
+<td><code>/proc/scsi/scsi</code></td>
+<td>List of all <span class="caps">SCSI</span> devices.</td>
+</tr>
+<tr>
+<td><code>/proc/net/</code></td>
+<td>Directory with information to networks</td>
+</tr>
+<tr>
+<td><code>/proc/loadavg</code></td>
+<td>Average workload (1 minute, 5 minutes, 15 minutes, active processes / number of processes, last used <span class="caps">PID</span>)</td>
+</tr>
+<tr>
+<td><code>/proc/meminfo</code></td>
+<td>Information about memory.</td>
+</tr>
+<tr>
+<td><code>/proc/cpuinfo</code></td>
+<td>Information about <span class="caps">CPU</span>’s.</td>
+</tr>
+</tbody>
+</table>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/regular_expressions.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/understanding_computation.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

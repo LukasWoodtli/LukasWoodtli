@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Executable&nbsp;Loader · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/executable_loader.html">Executable&nbsp;Loader</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">08</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">11</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>Most information of this page is taken from
+<a href="http://www.agner.org/optimize/#manuals">Calling conventions for different C++ compilers and operating systems</a>.</p>
+<p>Some other good information sources are:</p>
+<p><a href="http://www.iecc.com/linker/">Linkers and Loaders</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29">Wikipedia:Linker</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Loader_%28computing%29">Wikipedia:Loader</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Relocation_%28computing%29">Wikipedia:Relocation</a></p>
+<p>Book: Computer Systems: A Programmer’s Perspective, Randal E. Bryant, David R. O’Hallarom</p>
+<blockquote>
+<p>Most explanations on this page are for the x86 platform!</p>
+</blockquote>
+<p>Modern <span class="caps">OS</span>’s allow to load executable code at runtime. This can be
+complete programms or (dynamic) libraries.</p>
+<p>On <span class="caps">UNIX</span> a dynamic library is called <em>shared object</em>. On Windows it’s
+called <em>dynamic link library (dll)</em>.</p>
+<p>The <span class="caps">OS</span> needs to load the code to a specific position in memory and 
+it needs to adjust any internal references and addresses.</p>
+<p>This loading is done in a simmilar way in most <span class="caps">OS</span>.</p>
+<p>The relocation of the executable image is done according to the
+image base. </p>
+<p>The image base is the virtal memory address at which the image is loaded.</p>
+<p>The load-time relocation can be avoided if the image base is fixed.</p>
+<p>The most common values for the image base are:</p>
+<ul>
+<li>Windows (32-bit, 64-bit): 0x400000</li>
+<li>Linux (32-bit): 0x8048000</li>
+<li>Linux (64-bit): 0x400000</li>
+<li>Mach-O (32-bit): 0x1000</li>
+<li>Mach-O (64-bit): 0x100000000</li>
+</ul>
+<p>Dynamic libraries can’t be loaded at a fixed image base.</p>
+<p>There are three aproaches for loading executables without fixed image base:</p>
+<ol>
+<li>The executable (or library) contains a relocation table. This contains
+   all cross-references in the file. The loader adjusts all these 
+   cross-references if the executable is loaded at another base address
+   then the the one chosen by the linker.</li>
+</ol>
+<p>This aproach is used by Windows (32-bit, 64-bit)</p>
+<ol>
+<li>The executable is designed position independant. All addresses are
+   calculated at runtime relative to <em><span class="caps">IP</span></em>.</li>
+</ol>
+<p>This aproach is used on <span class="caps">OS</span> X (Intel)</p>
+<ol>
+<li>The shared object contains a Global Offset Table (<span class="caps">GOT</span>). In the <span class="caps">GOT</span>
+   are the addressrs of static objects stored. The addresses in the <span class="caps">GOT</span>
+   are afjusted by the loader according to the base address.
+   Code that accesses static data points to the <span class="caps">GOT</span> and the <span class="caps">GOT</span> 
+   then points to the data.</li>
+</ol>
+<p>This aproach is often used in Linux (32-bit) and <span class="caps">BSD</span></p>
+<h1 id="difference-between-relocation-table-and-global-offset-table-got">Difference between Relocation Table and Global Offset Table (<span class="caps">GOT</span>)</h1>
+<h2 id="relocation-table">Relocation Table</h2>
+<p>Relocation table is not changed when shared object is loaded.
+The relocation table points to data references in the code.
+These references are modified in place.</p>
+<h2 id="global-offset-table-got">Global Offset Table (<span class="caps">GOT</span>)</h2>
+<p>The <span class="caps">GOT</span> is changed by the loader. So the entries in the <span class="caps">GOT</span> point
+to the new (relocated) addresses. Static data references in the
+code still point to the <span class="caps">GOT</span> but the entries in the <span class="caps">GOT</span> were updated.</p>
+<h1 id="function-calls-across-shared-objects-dlls">Function calls across shared objects (DLLs)</h1>
+<p>Shared objects can have references to functions in other shared objects.
+Usually calls to these functions go through an import table in the
+executable (shared object) file.</p>
+<p>Either the loader fills the import table at load time or it is lazy
+initialized for each function when it is called the first time.</p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/vector_calculus.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/object_file_formats.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

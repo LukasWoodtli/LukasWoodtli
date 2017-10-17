@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Files and File descriptors on&nbsp;Linux · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/files_and_file_descriptors_on_linux.html">Files and File descriptors on&nbsp;Linux</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2016">2016</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2016Month06">03</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>Files on Linux</p>
+<p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
+<p><a href="http://www.usna.edu/Users/cs/aviv/classes/ic221/s15/lec/21/lec.html">Here</a> is another good resource (English).</p>
+<h1 id="process-control-block-pcb">Process Control Block (<span class="caps">PCB</span>)</h1>
+<p>Contains the information about a process.</p>
+<ul>
+<li>C struct <code>task_struct</code></li>
+<li>Pointer to code section (text)</li>
+<li>Pointer to data section</li>
+<li>State: running, ready, blocked, terminated</li>
+<li>Instruction pointer (<span class="caps">IP</span>): next instruction to execute</li>
+<li>Saved registers</li>
+<li>Memory information: pages</li>
+<li>Scheduler information<ul>
+<li>Priority</li>
+<li>Pointer to scheduler queue</li>
+</ul>
+</li>
+<li>Table with open file descriptors hold by this process</li>
+</ul>
+<h1 id="file-table">File Table</h1>
+<ul>
+<li>1 entry for each open file</li>
+<li>different processes can point to the same entry</li>
+<li>Entry:<ul>
+<li>number of i-nodes</li>
+<li>position pointer</li>
+<li>mode (read, write, append…)</li>
+<li>pointer to v-node table</li>
+</ul>
+</li>
+</ul>
+<h1 id="v-node-table">v-node Table</h1>
+<ul>
+<li>i-node information<ul>
+<li>copied to v-node table when file is opened</li>
+<li>owner</li>
+<li>rights</li>
+<li>user/group ids</li>
+<li>number of links</li>
+</ul>
+</li>
+<li>file information</li>
+<li>file size</li>
+<li>functions (file system dependent)</li>
+</ul>
+<h1 id="file-descriptors">File Descriptors</h1>
+<p>File descriptors are unique <span class="caps">ID</span>’s (ints) that identify an open file.</p>
+<p>3 descriptors are reserved by the system in <code>&lt;unistd.h&gt;</code>:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Constant</th>
+<th>Number</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STDIN_FILENO</td>
+<td>0</td>
+<td>Standard input</td>
+</tr>
+<tr>
+<td>STDOUT_FILENO</td>
+<td>1</td>
+<td>Standard output</td>
+</tr>
+<tr>
+<td>STDERR_FILENO</td>
+<td>2</td>
+<td>Standard error</td>
+</tr>
+</tbody>
+</table>
+<p>The number can differ but the given ones are common.</p>
+<p>Functions that return a file descriptor (e.g. <code>open(...)</code>or <code>creat(...)</code>) return <code>-1</code> if en error occurred.</p>
+<h1 id="file-types">File Types</h1>
+<p>There are 6 different file types in Linux:</p>
+<ul>
+<li>Regular files</li>
+<li>Directories</li>
+<li>Device files</li>
+<li>Sockets</li>
+<li>Pipes (named Pipes and FIFOs)</li>
+<li>Links (Soft- and Hardlinks)</li>
+</ul>
+<h1 id="special-device-files">Special Device Files</h1>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>File</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/dev/null</code></td>
+<td>Write or read <em>nothing</em></td>
+</tr>
+<tr>
+<td><code>/dev/zero</code></td>
+<td>Read zero (<code>0</code>)</td>
+</tr>
+<tr>
+<td><code>/dev/urandom</code></td>
+<td>Read random bytes</td>
+</tr>
+</tbody>
+</table>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://lukaswoodtli.github.io/statements_and_expressions.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/models_of_computation.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
