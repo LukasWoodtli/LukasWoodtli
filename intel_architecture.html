@@ -206,6 +206,14 @@
 <li><a href="#load-effective-address-lea">Load Effective Address (<span class="caps">LEA</span>)</a></li>
 </ul>
 </li>
+<li><a href="#conversion-instructions">Conversion Instructions</a><ul>
+<li><a href="#narrowing-conversions">Narrowing Conversions</a></li>
+<li><a href="#widening-conversions">Widening Conversions</a><ul>
+<li><a href="#unsigned-conversions-movzx">Unsigned Conversions (<span class="caps">MOVZX</span>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#arithmetic-commands">Arithmetic Commands</a><ul>
 <li><a href="#addition-add">Addition (<span class="caps">ADD</span>)</a><ul>
 <li><a href="#affected-flags">Affected Flags</a></li>
@@ -762,12 +770,6 @@ They are called xmm0-xmm15.</p>
 <p>The calculated value acts as a pointer (address to a memory location).</p>
 <p>i.e:</p>
 <pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
-<p>This mode can also be used to access values from variables. A variable name without brackets is used to get the address
-of the variable. With brackets the value stored in the variable
-is taken.</p>
-<div class="highlight"><pre><span></span><span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">var1</span><span class="p">]</span> <span class="c1">; value of var1 in rax </span>
-<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="nv">var1</span>         <span class="c1">; address of var1 in rax</span>
-</pre></div>
 <h3 id="address">Address</h3>
 <p>To calculate an address the following scheme is used:</p>
 <div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
@@ -799,6 +801,11 @@ Default for most registers is <span class="caps">DS</span>. But for <span class=
 </pre></div>
 <h2 id="addressing-memory">Addressing Memory</h2>
 <p>For addressing the memory the immediate, direct and indirect method can be used.</p>
+<p>A variable name without brackets is used to get the address of the variable.
+With brackets the value stored in the variable is taken.</p>
+<div class="highlight"><pre><span></span><span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">var1</span><span class="p">]</span> <span class="c1">; value of var1 in rax </span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="nv">var1</span>         <span class="c1">; address of var1 in rax</span>
+</pre></div>
 <h1 id="data-transfer-commands">Data Transfer Commands</h1>
 <h2 id="move-command-mov">Move Command (<code>MOV</code>)</h2>
 <p>Moves (copies) a value from a source to a destination.</p>
@@ -809,8 +816,25 @@ Default for most registers is <span class="caps">DS</span>. But for <span class=
 <li><code>src</code> can be a memory variable, a register or a constant.</li>
 <li>Only one memory operand can be used. Then the other one needs to be a register or a constant.</li>
 <li>destination and source operands must be of the same size.</li>
-<li>for double-word destination and source operands the upper part of the register is set to 0.</li>
 </ul>
+<blockquote>
+<p>For <em>double-word</em> destination and source operands the upper part of the <em>quad-word</em> destination register is set to 0!</p>
+</blockquote>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><span class="nf">qFirstVal</span>  <span class="nv">dq</span>  <span class="mh">0xffffffffffffffff</span> <span class="c1">; inital 64-bit value</span>
+<span class="nf">dVar32</span>     <span class="nv">dd</span>  <span class="mh">0xabcdefab</span>         <span class="c1">; 32-bit value</span>
+<span class="nf">wVar16</span>     <span class="nv">dw</span>  <span class="mh">0xbdbd</span>             <span class="c1">; 16-bit value</span>
+
+<span class="c1">; 16-bit example</span>
+<span class="nf">mov</span>     <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">qFirstVal</span><span class="p">]</span>    <span class="c1">; initialize rax</span>
+<span class="nf">mov</span>     <span class="nb">ax</span><span class="p">,</span> <span class="kt">word</span> <span class="p">[</span><span class="nv">wVar16</span><span class="p">]</span>         <span class="c1">; write lowest 16 bit</span>
+<span class="c1">; now rax has value 0xffffffffffffbdbd: the upper part of the register is kept</span>
+
+<span class="c1">; 32-bit example</span>
+<span class="nf">mov</span>     <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">qFirstVal</span><span class="p">]</span>    <span class="c1">; initialize rax</span>
+<span class="nf">mov</span>     <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">dVar32</span><span class="p">]</span>       <span class="c1">; write lowest 32 bit</span>
+<span class="c1">; now rax has value 0x00000000abcdefab: the upper part of the register is cleared!</span>
+</pre></div>
 <h2 id="exchange-command-xchg">Exchange Command (<code>XCHG</code>)</h2>
 <p>Exchanges the values of the two operands (memory/registers).</p>
 <div class="highlight"><pre><span></span><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
@@ -837,6 +861,27 @@ Default for most registers is <span class="caps">DS</span>. But for <span class=
 <div class="highlight"><pre><span></span><span class="nf">lea</span>   <span class="nb">rcx</span><span class="p">,</span> <span class="kt">byte</span> <span class="p">[</span><span class="nv">bvar</span><span class="p">]</span>
 <span class="nf">lea</span>   <span class="nb">rsi</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">dVar</span><span class="p">]</span>
 </pre></div>
+<h1 id="conversion-instructions">Conversion Instructions</h1>
+<h2 id="narrowing-conversions">Narrowing Conversions</h2>
+<ul>
+<li>No special instructions are needed</li>
+<li><code>mov</code> instruction is used</li>
+<li>Programmer is responsible that narrowing conversions are sane</li>
+<li>The instruction will just strip upper part of register or variable</li>
+</ul>
+<h2 id="widening-conversions">Widening Conversions</h2>
+<p>Upper-order bit (sign) must be set based on original value</p>
+<h3 id="unsigned-conversions-movzx">Unsigned Conversions (<code>MOVZX</code>)</h3>
+<ul>
+<li>Upper part of register or memory location must be set to zero</li>
+<li>Instruction <code>movzx</code> can be used</li>
+<li><code>movzx</code> does not allow a quad-word destination with double-word source operand<ul>
+<li>A <code>mov</code> with a double-word destination register and with double-word source operand will zero out the upper double-word of the quad-word destination register (s.a. <code>MOV</code>)</li>
+</ul>
+</li>
+<li>Only one memory operand is allowed</li>
+<li>Destination can not be an immediate</li>
+</ul>
 <h1 id="arithmetic-commands">Arithmetic Commands</h1>
 <ul>
 <li>The result of arithmetic commands is written to the first operand (the original value is lost).</li>
