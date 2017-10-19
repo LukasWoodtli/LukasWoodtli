@@ -210,6 +210,7 @@
 <li><a href="#narrowing-conversions">Narrowing Conversions</a></li>
 <li><a href="#widening-conversions">Widening Conversions</a><ul>
 <li><a href="#unsigned-conversions-movzx">Unsigned Conversions (<span class="caps">MOVZX</span>)</a></li>
+<li><a href="#signed-conversions">Signed Conversions</a></li>
 </ul>
 </li>
 </ul>
@@ -882,6 +883,81 @@ With brackets the value stored in the variable is taken.</p>
 <li>Only one memory operand is allowed</li>
 <li>Destination can not be an immediate</li>
 </ul>
+<h3 id="signed-conversions">Signed Conversions</h3>
+<ul>
+<li>Widening conversion for singed values need adjustment of the upper order bits</li>
+<li>The upper order bits must be set to 0’s or 1’s depending if original value was negative or positive</li>
+<li>There are general instructions: <code>movsx</code> and <code>movsxd</code><ul>
+<li>Only one operand can be memory</li>
+<li>Destination can not be immediate</li>
+<li><code>movsxd</code> required for 32-bit to 64-bit extension</li>
+</ul>
+</li>
+<li>There are special instructions that convert values in a register : <code>bcw</code>, <code>cwd</code>, …<ul>
+<li>These work only on the <code>A</code> register sometimes using <code>D</code> register for result</li>
+</ul>
+</li>
+</ul>
+<p>Instructions <code>movsx</code> and <code>movsxd</code>:</p>
+<div class="highlight"><pre><span></span><span class="nf">movsx</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span>
+<span class="nf">movsxd</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span>
+</pre></div>
+<p>Special instructions:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Source Size</th>
+<th>Implicit Source</th>
+<th>Destination Size</th>
+<th>Implicit destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cbw</code></td>
+<td>byte</td>
+<td><code>al</code></td>
+<td>word</td>
+<td><code>ax</code></td>
+</tr>
+<tr>
+<td><code>cwd</code></td>
+<td>word</td>
+<td><code>ax</code></td>
+<td>double-word</td>
+<td><code>dx:ax</code></td>
+</tr>
+<tr>
+<td><code>cwde</code></td>
+<td>word</td>
+<td><code>ax</code></td>
+<td>double-word</td>
+<td><code>eax</code></td>
+</tr>
+<tr>
+<td><code>cdq</code></td>
+<td>double-word</td>
+<td><code>eax</code></td>
+<td>quadword</td>
+<td><code>edx:eax</code></td>
+</tr>
+<tr>
+<td><code>cdqe</code></td>
+<td>double-word</td>
+<td><code>eax</code></td>
+<td>quad-word</td>
+<td><code>rax</code></td>
+</tr>
+<tr>
+<td><code>cqo</code></td>
+<td>quadword</td>
+<td><code>rax</code></td>
+<td>double-quadword</td>
+<td><code>rdx:rax</code></td>
+</tr>
+</tbody>
+</table>
 <h1 id="arithmetic-commands">Arithmetic Commands</h1>
 <ul>
 <li>The result of arithmetic commands is written to the first operand (the original value is lost).</li>
