@@ -148,6 +148,7 @@
 <li><a href="#uninitialized-variables-bss">Uninitialized Variables (<span class="caps">BSS</span>)</a></li>
 <li><a href="#code-text">Code (text)</a></li>
 <li><a href="#assembler-directives">Assembler Directives</a></li>
+<li><a href="#labels">Labels</a></li>
 </ul>
 </div>
 <h1 id="program-format">Program Format</h1>
@@ -257,6 +258,18 @@ They are not assigned a memory location</p>
 <h1 id="assembler-directives">Assembler Directives</h1>
 <p>Assembler directives are instrutions for the assembler that are not directly translated
 to <span class="caps">CPU</span> instrutions.</p>
+<h1 id="labels">Labels</h1>
+<ul>
+<li>Labels are used as targets for jumps</li>
+<li>Can contain letters, numbers and <code>_</code></li>
+<li>Terminated with colon (<code>:</code>)</li>
+<li>Case sensitive (at least in <em>yasm</em>)</li>
+<li>
+<p>May be definied only once</p>
+<p>:::nasm
+loopBegin: end:</p>
+</li>
+</ul>
   </div>
 
   <hr/>

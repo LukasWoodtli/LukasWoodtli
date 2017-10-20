@@ -305,7 +305,7 @@
 <li><a href="#inter-segment-jump">Inter-Segment Jump</a></li>
 </ul>
 </li>
-<li><a href="#unconditional-jumps">Unconditional Jumps</a></li>
+<li><a href="#unconditional-jumps-jmp">Unconditional Jumps (<span class="caps">JMP</span>)</a></li>
 <li><a href="#conditional-jumps">Conditional Jumps</a><ul>
 <li><a href="#arithmetic-jumps">Arithmetic Jumps</a><ul>
 <li><a href="#arithmetic-unsigned-jumps">Arithmetic “unsigned” Jumps</a></li>
@@ -1278,11 +1278,43 @@ It is then rotated by the constant <strong>1</strong> (immediate) or by the valu
 power of two (2, 5, 8, …).</p>
 <p>For a multiplication or a division of a <em>unsigned</em> number the <em>logical
 shift operators</em> need to be used.</p>
-<p>For a multiplication or a division of a <em>signed</em> number the <em>arithmetic
-shift operators</em> need to be used.</p>
+<p>For a multiplication or a division of a <em>signed</em> number the 
+<em>arithmetic shift operators</em> need to be used.</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Direction</th>
+<th>Logical</th>
+<th>Arithmetic</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left</td>
+<td><code>shl</code></td>
+<td><code>sal</code></td>
+<td>Both instructions are identical</td>
+</tr>
+<tr>
+<td>Right</td>
+<td><code>shr</code></td>
+<td><code>sar</code></td>
+<td>Instructions work diffently</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Logical shift (unsigned shift): Spaces filled with zero</li>
+<li>Arithmetic shift (signed shift): Spaces filled so that sign is preserved<ul>
+<li>Right: Spaces are filled with sign bit.</li>
+<li>Left: Spaces are filled with zero (doesn’t affect sign), thus same as logical shift</li>
+</ul>
+</li>
+</ul>
 <h2 id="left-shift-commands-shl-sal">Left Shift Commands (<code>SHL</code>, <code>SAL</code>)</h2>
-<p>Both left shift operators are functional identical. They muliplicate
-the operator by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
+<p>Both left shift operators are functional identical. They 
+muliplicate the operator by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
 <p>Shifts the given operator (memory or register) left by
 the constant <strong>1</strong> (immediate) or by the value given in <em><span class="caps">CL</span></em>.</p>
 <h3 id="affected-flags_13">Affected Flags</h3>
@@ -1300,6 +1332,8 @@ the constant <strong>1</strong> (immediate) or by the value given in <em><span c
 <p>The <em>logical shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
 <p>The <em>arithmetic shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.
 The sign stays unchanged.</p>
+<p>The two right shift instructions are not equivalent (not as the
+two left shift instructions).</p>
 <p>The first operand is a memory location or a register. The second operand is the
 constant <strong>1</strong> or the register <em><span class="caps">CL</span></em>.</p>
 <h3 id="affected-flags_14">Affected Flags</h3>
@@ -1348,7 +1382,7 @@ is always inside the actual code segment (<em><span class="caps">CS</span></em>)
 <h3 id="inter-segment-jump">Inter-Segment Jump</h3>
 <p>Far jumps change <em><span class="caps">CS</span></em> and <em><span class="caps">IP</span></em>.</p>
 <p>All far jumps are absolute.</p>
-<h2 id="unconditional-jumps">Unconditional Jumps</h2>
+<h2 id="unconditional-jumps-jmp">Unconditional Jumps (<code>JMP</code>)</h2>
 <ul>
 <li>8-bit displacement is added to <em><span class="caps">IP</span></em> as signed number:<pre><strong>JMP</strong> displ8</pre></li>
 <li>16-bit displacement is added to <em><span class="caps">IP</span></em> as unsigned number:<pre><strong>JMP</strong> displ16</pre></li>
