@@ -285,7 +285,7 @@
 <li><a href="#affected-flags_13">Affected Flags</a></li>
 </ul>
 </li>
-<li><a href="#right-shift-commands-shr-sar">Right  Shift Commands (<span class="caps">SHR</span>, <span class="caps">SAR</span>)</a><ul>
+<li><a href="#right-shift-commands-shr-sar">Right Shift Commands (<span class="caps">SHR</span>, <span class="caps">SAR</span>)</a><ul>
 <li><a href="#affected-flags_14">Affected Flags</a></li>
 </ul>
 </li>
@@ -1221,8 +1221,12 @@ number to a number of the same value but twice the size. This is needed to keep 
 <a href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a> format.</p>
 <h1 id="logical-commands">Logical Commands</h1>
 <h2 id="and-or-and-xor-and-or-xor">And, Or and Xor (<code>AND</code>, <code>OR</code>, <code>XOR</code>)</h2>
-<p>Bit-wise <strong>and</strong>, <strong>or</strong> or <strong>xor</strong>  operation. The first operand can be a register or a memory address. The second operand can
-be a register, a memory address or a constant.</p>
+<p>Bit-wise <strong>and</strong>, <strong>or</strong> or <strong>xor</strong> operation. </p>
+<ul>
+<li>The first operand can be a register or a memory address</li>
+<li>The second operand can be a register, a memory address or a constant</li>
+<li>Only one operand can be memory</li>
+</ul>
 <p>The first operand is overwritten with the result.</p>
 <h3 id="affected-flags_9">Affected Flags</h3>
 <ul>
@@ -1230,7 +1234,7 @@ be a register, a memory address or a constant.</p>
 <li>Zero and Sign: are set according to the result</li>
 </ul>
 <h2 id="not-not">Not (<code>NOT</code>)</h2>
-<p>Bit-wise <strong>not</strong> (inverse) operation. The operand can be a register or a memory address.</p>
+<p>Bit-wise <strong>not</strong> (inverse) operation. The operand can be a register or a memory address but not an immediate.</p>
 <p>The operand is overwritten with the result.</p>
 <h3 id="affected-flags_10">Affected Flags</h3>
 <ul>
@@ -1292,7 +1296,7 @@ the constant <strong>1</strong> (immediate) or by the value given in <em><span c
 </ul>
 </li>
 </ul>
-<h2 id="right-shift-commands-shr-sar">Right  Shift Commands (<code>SHR</code>, <code>SAR</code>)</h2>
+<h2 id="right-shift-commands-shr-sar">Right Shift Commands (<code>SHR</code>, <code>SAR</code>)</h2>
 <p>The <em>logical shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.</p>
 <p>The <em>arithmetic shift right</em> (<code>SHR</code>) divides a unsigned value by <em>2</em> or by <span class="math">\(2^{CL}\)</span>.
 The sign stays unchanged.</p>
