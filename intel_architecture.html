@@ -139,9 +139,11 @@
 
   <div id="article_content">
     <p>On this page I write down some notes about the Intel architecture (x86). I learned most of it in <a href="http://www.vdf.ethz.ch/info/showDetails.asp?isbnNr=3255">school</a> few years ago.</p>
-<p>It’s mainly for Intel 80186. But I’ll extend it with information about modern <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">Intel processors</a> (<a href="https://en.wikipedia.org/wiki/IA-32"><span class="caps">IA</span>-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
+<p>Part of the notes here are for Intel 80186. But some sections are extend with information about modern <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">Intel processors</a> (<a href="https://en.wikipedia.org/wiki/IA-32"><span class="caps">IA</span>-32</a>, <a href="https://en.wikipedia.org/wiki/X86-64">x86-64</a>).</p>
+<p>Some information (especially about x86-64) is taken from <a href="http://www.egr.unlv.edu/~ed/x86.html">x86-64 Assembly Language Programming with Ubuntu</a> by Ed Jorgensen.</p>
 <p>I’m trying to keep all code examples in <a href="http://www.nasm.us"><span class="caps">NASM</span></a> syntax.</p>
 <p>There is a good overview of the <a href="https://en.wikipedia.org/wiki/X86_instruction_listings">x86 instructions</a> on Wikipedia.</p>
+<p>I keep some examples on <a href="https://github.com/LukasWoodtli/LinuxAssemblyProgramming">GitHub</a>.</p>
 <div class="toc">
 <ul>
 <li><a href="#general">General</a></li>
@@ -793,6 +795,8 @@ Default for most registers is <span class="caps">DS</span>. But for <span class=
 <h4 id="operand-size-word-dword">Operand Size (<code>WORD</code>, <code>DWORD</code>…)</h4>
 <p>In some cases the size of an operand can be given (for some cases it is even mandatory). Size types:</p>
 <p><code>BYTE</code>, <code>WORD</code>, <code>DWORD</code>, <code>QWORD</code>, <code>TBYTE</code>, <code>FAR</code>…</p>
+<p>Even if the operand size is not mandatory it’s good programming 
+practice to incule it.</p>
 <h4 id="examples">Examples</h4>
 <div class="highlight"><pre><span></span><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
@@ -965,7 +969,12 @@ With brackets the value stored in the variable is taken.</p>
 <li>Only one operand is allowed to be a memory operand.</li>
 </ul>
 <h2 id="addition-add">Addition (<code>ADD</code>)</h2>
-<p>Adds the two operands and writes the result into the first one. The first operand can not be a constant.</p>
+<p>Adds the two operands and writes the result into the first one.</p>
+<ul>
+<li>The first operand can not be a constant (immediate)</li>
+<li>Both operands need to be of same size</li>
+<li>Only one operand can be memory</li>
+</ul>
 <h3 id="affected-flags">Affected Flags</h3>
 <ul>
 <li>Carry: with unsigned operands</li>
@@ -975,7 +984,13 @@ With brackets the value stored in the variable is taken.</p>
 <li>Parity: if parity is even</li>
 </ul>
 <h2 id="addition-with-carry-adc">Addition with Carry (<code>ADC</code>)</h2>
-<p>Adds the two operands and the carry flag. The result is written into the first operand. The first operand can not be a constant.</p>
+<p>Adds the two operands and the carry flag. The result is written into the first operand.</p>
+<ul>
+<li>The first operand can not be a constant (immediate)</li>
+<li>Both operands need to be of same size</li>
+<li>Only one operand can be memory</li>
+<li>The <code>adc</code> instruction should directly follow an inital <code>add</code> instruction otherwise the carry bit can be lost</li>
+</ul>
 <blockquote>
 <p>Addition of big signed operands can be splitted into several <code>ADC</code> commands.</p>
 </blockquote>
@@ -989,6 +1004,9 @@ With brackets the value stored in the variable is taken.</p>
 </ul>
 <h2 id="increment-inc">Increment (<code>INC</code>)</h2>
 <p>Adds one to the operand. The result is saved in the given operand.</p>
+<ul>
+<li>The operand can not be an immediate</li>
+</ul>
 <h3 id="affected-flags_2">Affected Flags</h3>
 <ul>
 <li>Overflow: with signed operands</li>
@@ -1001,7 +1019,12 @@ With brackets the value stored in the variable is taken.</p>
 <p><code>INC</code> can be used to increment a control variable in a loop without affecting the carry-flag.</p>
 </blockquote>
 <h2 id="subtraction-sub">Subtraction (<code>SUB</code>)</h2>
-<p>Subtracts the second operand from the first. The result is written into the first operand. The first operand can not be a constant.</p>
+<p>Subtracts the second operand from the first. The result is written into the first operand. </p>
+<ul>
+<li>The first operand can not be a constant (immediate)</li>
+<li>Only one operand can be memory</li>
+<li>Subtraction work same for signed and unsigned data</li>
+</ul>
 <h3 id="affected-flags_3">Affected Flags</h3>
 <ul>
 <li>Carry: with unsigned operands</li>
@@ -1048,14 +1071,88 @@ With brackets the value stored in the variable is taken.</p>
 </ul>
 <h2 id="multiplication-mul-imul">Multiplication (<code>MUL</code>, <code>IMUL</code>)</h2>
 <p>Multiplicates unsigned (<code>MUL</code>) or signed (<code>IMUL</code>) numbers.</p>
-<p>There is a explicit operand given after the command and an implicit operand in the <span class="caps">AX</span> or <span class="caps">AL</span> register.</p>
-<p>The explicit operand sets the size and defines the used implicit register. It can be either a register or a memory location.</p>
+<p>There is a explicit operand given after the command and an implicit operand in the A (<span class="caps">AL</span>, <span class="caps">AX</span>, ..) register.</p>
+<p>The explicit operand sets the size and defines the used implicit register. It can be either a register or a memory location but not
+an immediate.</p>
 <p>The result is always twice as big as the operands. It’s either the accumulator (<em><span class="caps">AX</span></em>)
 or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<span class="caps">AX</span></em>).</p>
 <p><img alt="The x86 MUL/IMUL commands" class="img-responsive" src="/images/intel_mul.svg"/></p>
 <div class="highlight"><pre><span></span><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
 <span class="nf">IMUL</span> <span class="nb">BX</span> <span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span>
 </pre></div>
+<p>Sizes (<code>mul</code>):</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Size</th>
+<th>Registers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Byte</td>
+<td><code>ax = al * &lt;src&gt;</code></td>
+</tr>
+<tr>
+<td>Word</td>
+<td><code>dx:ax = ax * &lt;src&gt;</code></td>
+</tr>
+<tr>
+<td>Double-word</td>
+<td><code>edx:eax = eax * &lt;src&gt;</code></td>
+</tr>
+<tr>
+<td>Quad-word</td>
+<td><code>rdx:rax = rax * &lt;src&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>imul</code> allows more operands:</p>
+<div class="highlight"><pre><span></span><span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">source</span><span class="o">&gt;</span>
+
+<span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">/</span><span class="nv">imm</span><span class="o">&gt;</span>
+<span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">imm</span><span class="o">&gt;</span>
+</pre></div>
+<p>For single operand (same as <code>mul</code>):</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Size</th>
+<th>Registers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Byte</td>
+<td><code>ax = al * &lt;src&gt;</code></td>
+</tr>
+<tr>
+<td>Word</td>
+<td><code>dx:ax = ax * &lt;src&gt;</code></td>
+</tr>
+<tr>
+<td>Double-word</td>
+<td><code>edx:eax = eax * &lt;src&gt;</code></td>
+</tr>
+<tr>
+<td>Quad-word</td>
+<td><code>rdx:rax = rax * &lt;src&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note: <code>&lt;src&gt;</code> operand can not be immediate</p>
+<p>For two operands:</p>
+<ul>
+<li><code>&lt;reg16&gt; = &lt;reg16&gt; * &lt;op16/imm&gt;</code></li>
+<li><code>&lt;reg32&gt; = &lt;reg32&gt; * &lt;op32/imm&gt;</code></li>
+<li><code>&lt;reg64&gt; = &lt;reg64&gt; * &lt;op64/imm&gt;</code></li>
+</ul>
+<p>For three operands:</p>
+<ul>
+<li><code>&lt;reg16&gt; = &lt;op16&gt; * &lt;imm&gt;</code></li>
+<li><code>&lt;reg32&gt; = &lt;op32&gt; * &lt;imm&gt;</code></li>
+<li><code>&lt;reg64&gt; = &lt;op64&gt; * &lt;imm&gt;</code></li>
+</ul>
 <h3 id="affected-flags_7">Affected Flags</h3>
 <ul>
 <li>Carry: set if operand extended accumulator is needed for saving result (<em><span class="caps">DX</span>/<span class="caps">AX</span></em>)</li>
