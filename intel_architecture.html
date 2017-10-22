@@ -1391,13 +1391,14 @@ is always inside the actual code segment (<em><span class="caps">CS</span></em>)
 <li><em><span class="caps">IP</span></em> is loaded with the value given by the memory position:<pre><strong>JMP</strong> mem16</pre></li>
 <li><em><span class="caps">CS</span></em> and <em><span class="caps">IP</span></em> are loaded with the value at the memory position:<pre><strong>JMP</strong> mem32</pre></li>
 </ul>
+<p>The unconditional jump are not limited in range.</p>
 <h2 id="conditional-jumps">Conditional Jumps</h2>
 <p>Conditional jumps check one or more flags and jump to a given address if a condition is met.</p>
 <p>Before the jump can be performed the flags need to be set by a logical or arithmetic command.
 Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.</p>
 <p>Conditional jumps can be divided into following groups:</p>
 <ul>
-<li>Arithmetic jumps: The jump depends on size difference of two operands. The two operands have to be <em>divided</em> in advance.
+<li>Arithmetic jumps: The jump depends on size difference of two operands. The two operands have to be compared in advance.
                     One or more flags have to be checked.</li>
 <li>Flag oriented jumps: A jump is performed if <em>one</em> given flag is set or deleted.</li>
 </ul>
@@ -1658,12 +1659,14 @@ are special commands that only affect the flags.</p>
    The result is not written anywhere.</li>
 </ul>
 <p>Both commands accept a register or a memory location as first operand and a register, a memory location
-or a constant as second operator.</p>
+or a constant (immediate) as second operator.</p>
+<p>Only one memory operand is allowed.</p>
+<p>The operands need to be of the same size.</p>
 <h1 id="loop-commands-loopx-jcxz">Loop Commands (<code>LOOPx</code>, <code>JCXZ</code>)</h1>
 <p>All loop commands accept an displacement operator (8-bit).</p>
 <p>None of the loop commands affects any flags!</p>
 <h2 id="loop-loop">Loop (<code>LOOP</code>)</h2>
-<p>Decrements <em><span class="caps">CX</span></em> by one (1). If <em><span class="caps">CX</span></em> is not zero (<em><span class="caps">CX</span></em> <span class="math">\(\neq\)</span> 0) it performs the jump.</p>
+<p>Decrements <em><span class="caps">RCX</span></em> by one (1). If <em><span class="caps">RCX</span></em> is not zero (<em><span class="caps">RCX</span></em> <span class="math">\(\neq\)</span> 0) it performs the jump.</p>
 <h2 id="loop-while-equal-and-loop-while-zero-loope-loopz">Loop while equal and Loop while zero (<code>LOOPE</code>, <code>LOOPZ</code>)</h2>
 <p><code>LOOPE</code> and <code>LOOPZ</code> are different mnemonics for the same command.</p>
 <p>Decrements <em><span class="caps">CX</span></em> by one (1). Performs the jump if if Zero Flag is set and <em><span class="caps">CX</span></em> is not zero (0).</p>
