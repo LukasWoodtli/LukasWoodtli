@@ -212,7 +212,7 @@
 <li><a href="#narrowing-conversions">Narrowing Conversions</a></li>
 <li><a href="#widening-conversions">Widening Conversions</a><ul>
 <li><a href="#unsigned-conversions-movzx">Unsigned Conversions (<span class="caps">MOVZX</span>)</a></li>
-<li><a href="#signed-conversions">Signed Conversions</a></li>
+<li><a href="#signed-conversions-cbw-cwd">Signed Conversions (<span class="caps">CBW</span>, <span class="caps">CWD</span>, …)</a></li>
 </ul>
 </li>
 </ul>
@@ -254,7 +254,6 @@
 <li><a href="#affected-flags_8">Affected Flags</a></li>
 </ul>
 </li>
-<li><a href="#convert-operand-size-cbw-cwd">Convert Operand Size (<span class="caps">CBW</span>, <span class="caps">CWD</span>)</a></li>
 </ul>
 </li>
 <li><a href="#logical-commands">Logical Commands</a><ul>
@@ -887,9 +886,11 @@ With brackets the value stored in the variable is taken.</p>
 <li>Only one memory operand is allowed</li>
 <li>Destination can not be an immediate</li>
 </ul>
-<h3 id="signed-conversions">Signed Conversions</h3>
+<h3 id="signed-conversions-cbw-cwd">Signed Conversions (<code>CBW</code>, <code>CWD</code>, …)</h3>
 <ul>
 <li>Widening conversion for singed values need adjustment of the upper order bits</li>
+<li>This is needed to keep the
+<a href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a> format</li>
 <li>The upper order bits must be set to 0’s or 1’s depending if original value was negative or positive</li>
 <li>There are general instructions: <code>movsx</code> and <code>movsxd</code><ul>
 <li>Only one operand can be memory</li>
@@ -897,7 +898,7 @@ With brackets the value stored in the variable is taken.</p>
 <li><code>movsxd</code> required for 32-bit to 64-bit extension</li>
 </ul>
 </li>
-<li>There are special instructions that convert values in a register : <code>bcw</code>, <code>cwd</code>, …<ul>
+<li>There are special instructions that convert values in a register : <em>convert byte to word</em> <code>cbw</code>, <em>convert word to double-word</em> <code>cwd</code>, …<ul>
 <li>These work only on the <code>A</code> register sometimes using <code>D</code> register for result</li>
 </ul>
 </li>
@@ -1215,10 +1216,6 @@ Setting the dividend correctly requires often to set two registers
 <p>If the result is too big for the register <em><span class="caps">AL</span></em> resp. <em><span class="caps">AX</span></em> a interrupt (<em>division error</em>) is caused.
 If it is not handled the <strong>program can crash</strong> (undefined behaviour).</p>
 </blockquote>
-<h2 id="convert-operand-size-cbw-cwd">Convert Operand Size (<code>CBW</code>, <code>CWD</code>)</h2>
-<p>The commands <em>convert byte to word</em> (<code>CBW</code>) and <em>convert word to double-word</em> (<code>CWD</code>) convert a <em>signed</em>
-number to a number of the same value but twice the size. This is needed to keep the
-<a href="https://en.wikipedia.org/wiki/Two%27s_complement">two’s complement</a> format.</p>
 <h1 id="logical-commands">Logical Commands</h1>
 <h2 id="and-or-and-xor-and-or-xor">And, Or and Xor (<code>AND</code>, <code>OR</code>, <code>XOR</code>)</h2>
 <p>Bit-wise <strong>and</strong>, <strong>or</strong> or <strong>xor</strong> operation. </p>
