@@ -128,6 +128,8 @@
           href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
         <a class="label label-primary" 
           href="http://lukaswoodtli.github.io/tag/freertos.html">FreeRTOS</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month06">06</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month06">16</a>
@@ -147,6 +149,75 @@ and: <a href="http://www.freertos.org/">FreeRtos</a></p>
 <p>The configuration of the kernel is set in <code>FreeRTOSConfig.h</code></p>
 <ul>
 <li><code>configTOTAL_HEAP_SIZE</code>: This must be enough space to allocate all tasks. If the kernel does’t start it could be that the heap is too small.</li>
+</ul>
+<h1 id="tasks">Tasks</h1>
+<ul>
+<li>Defined as free functions<ul>
+<li>Return type: <code>void</code></li>
+<li>Argument: <code>void *</code></li>
+</ul>
+</li>
+<li>Usally endless loop</li>
+<li>Will never exit (not allowed by kernel)</li>
+<li>A task function can be used to create multiple tasks</li>
+<li>It’s possible to create a task from another task</li>
+</ul>
+<h2 id="task-stack">Task Stack</h2>
+<p>Each task has its own stack (allocated by the kernel when the task is created)</p>
+<blockquote>
+<p>The stack size is given in <em>number of words</em> and not number of bytes</p>
+</blockquote>
+<p>The stack depth multiplied by the stack width must not be bigger than the maximum value that can be stored in a variable of type size_t.</p>
+<p>The stack size of the idle task is defined by <code>configMINIMAL_STACK_SIZE</code>.</p>
+<h2 id="task-states">Task States</h2>
+<p>Only the FreeRTOS kernel is allowed to change task state.</p>
+<ul>
+<li>Running</li>
+<li>Not running<ul>
+<li>Suspended</li>
+<li>Ready</li>
+<li>Blocked</li>
+</ul>
+</li>
+</ul>
+<p>Events and system calls can influence the scheduler for allowing
+different tasks to run.</p>
+<p>If more than one task of the same priority is able to run, the scheduler will switch each task in and out of the <em>Running</em> state, in turn.</p>
+<h2 id="task-priorities">Task Priorities</h2>
+<p>Can be assigned a valu form <code>0</code> (lowest) to <code>configMAX_PRIORITIES - 1</code> (highest).</p>
+<p>Priority can be changed after the scheduler has started.</p>
+<h2 id="scheduler">Scheduler</h2>
+<p>The scheduler is executed after each time slice to select the next task.
+A periodic (tick) interrupt is used for switching.</p>
+<p>The tick interrupt frequency is set by <code>configTICK_RATE_HZ</code>.</p>
+<p>To convert the number of ticks into milliseconds the constant
+<code>portTICK_RATE_MS</code> can be used.</p>
+<h1 id="resources">Resources</h1>
+<p>Used interrupts on Cortex-M3:
+- SysTick
+- PendSV
+- <span class="caps">SVC</span></p>
+<p>These interrupts are not available for the application.</p>
+<p>Memory (typical sizes):
+- Flash: 6 kB
+- <span class="caps">RAM</span>: 300-500 bytes</p>
+<h1 id="general">General</h1>
+<h2 id="real-time-requirements">Real-Time Requirements</h2>
+<p>Typically, applications of this type include a mix of both hard and soft real-time requirements</p>
+<ul>
+<li>Soft real-time requirements:<ul>
+<li>time deadline</li>
+<li>but breaching deadline does not render the system useles</li>
+<li>i.e. <span class="caps">GUI</span> (user interaction)</li>
+</ul>
+</li>
+<li>Hard real-time:<ul>
+<li>time deadline</li>
+<li>breaching the deadline: absolute failure of the system</li>
+<li>i.e. security related code in cars</li>
+</ul>
+</li>
+<li>Applications typically combine both types of real-time rocessing</li>
 </ul>
   </div>
 
