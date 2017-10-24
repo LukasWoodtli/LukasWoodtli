@@ -162,7 +162,7 @@
 <li><a href="#32-bit-memory-models">32-bit Memory Models</a></li>
 <li><a href="#64-bit-memory-models">64-bit Memory Models</a><ul>
 <li><a href="#windows">Windows</a></li>
-<li><a href="#linux-snd-bsd">Linux snd <span class="caps">BSD</span></a><ul>
+<li><a href="#linux-and-bsd">Linux and <span class="caps">BSD</span></a><ul>
 <li><a href="#small_1">Small</a></li>
 <li><a href="#medium_1">Medium</a></li>
 <li><a href="#large_1">Large</a></li>
@@ -451,7 +451,7 @@ Absolute 32-bit addresses are not often used.</p>
 <p>Stack and dynamically allocated data (data on heap) can exceed 2 <span class="caps">GB</span>.</p>
 <p>Pointers are usually 64 bits (sometimes 32 bits).</p>
 <p>Negative addresses are reserved for the kernel.</p>
-<h3 id="linux-snd-bsd">Linux snd <span class="caps">BSD</span></h3>
+<h3 id="linux-and-bsd">Linux and <span class="caps">BSD</span></h3>
 <h4 id="small_1">Small</h4>
 <p>Code an static data is limited to 2 <span class="caps">GB</span> and stored at addresses below <span class="math">\(2^{31}\)</span>.
 The compiler can use absolte signed 32-bit addresses.</p>
@@ -795,13 +795,15 @@ They are called xmm0-xmm15.</p>
 <p>A segment prefix (<strong><span class="caps">CS</span>:</strong>, <strong><span class="caps">DS</span>:</strong>, <strong><span class="caps">ES</span>:</strong> or <strong><span class="caps">SS</span>:</strong>) defines which segment register will be used for calculating the address.
 Default for most registers is <span class="caps">DS</span>. But for <span class="caps">BP</span> the default is <span class="caps">SS</span>.</p>
 <h4 id="x86-64">x86-64</h4>
-<p>The general for calculating a memory address is</p>
-<div class="math">$$\[baseAddress + \(indexRegister \cdot scaleValue\) + displacement\]$$</div>
-<p>Where:
-- <em>baseAddress</em>: any <span class="caps">GP</span> register or variable name
-- <em>indexRegister</em>: any <span class="caps">GP</span> register
-- <em>scaleValue</em>: immediate value of <em>1</em>, <em>2</em>, <em>4</em> or <em>8</em> (<em>1</em> does nothing)
-- <em>displacement</em>: 8-bit ot 32-bit constant</p>
+<p>The general for calculating a memory address is:</p>
+<div class="math">$$[baseAddress + (indexRegister \cdot scaleValue) + displacement]$$</div>
+<p>Where:</p>
+<ul>
+<li><em>baseAddress</em>: any <span class="caps">GP</span> register or variable name</li>
+<li><em>indexRegister</em>: any <span class="caps">GP</span> register</li>
+<li><em>scaleValue</em>: immediate value of <em>1</em>, <em>2</em>, <em>4</em> or <em>8</em> (<em>1</em> does nothing)</li>
+<li><em>displacement</em>: 8-bit or 32-bit constant</li>
+</ul>
 <p>Examples:</p>
 <div class="highlight"><pre><span></span><span class="nf">mov</span> <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">var</span><span class="p">]</span>
 <span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nb">rbx</span><span class="o">+</span><span class="nb">rsi</span><span class="p">]</span>
