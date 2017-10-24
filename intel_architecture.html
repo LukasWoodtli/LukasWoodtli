@@ -191,7 +191,9 @@
 <li><a href="#direct">Direct</a></li>
 <li><a href="#register-indirect">Register-Indirect</a><ul>
 <li><a href="#address">Address</a><ul>
+<li><a href="#real-mode">Real Mode</a></li>
 <li><a href="#segment-prefix">Segment Prefix</a></li>
+<li><a href="#x86-64">x86-64</a></li>
 <li><a href="#operand-size-word-dword">Operand Size (<span class="caps">WORD</span>, <span class="caps">DWORD</span>…)</a></li>
 <li><a href="#examples">Examples</a></li>
 </ul>
@@ -773,7 +775,8 @@ They are called xmm0-xmm15.</p>
 <p>i.e:</p>
 <pre>MOV <strong>[BX + DI]</strong>, CH; calculate the operand with the values from BX and DI</pre>
 <h3 id="address">Address</h3>
-<p>To calculate an address the following scheme is used:</p>
+<h4 id="real-mode">Real Mode</h4>
+<p>To calculate an address in processors with segmentation the following scheme is used:</p>
 <div class="math">$$Offset := \begin{Bmatrix}-\\CS:\\DS:\\SS:\\ES:\end{Bmatrix}\begin{Bmatrix}-\\BX\\BP\end{Bmatrix} +\begin{Bmatrix}-\\SI\\DI\end{Bmatrix} + \begin{Bmatrix}-\\displacement_8\\displacement_{16}\end{Bmatrix}$$</div>
 <p><span class="math">\(-\)</span> means that this element is not used.</p>
 <p>The three possible address parts are:</p>
@@ -791,6 +794,26 @@ They are called xmm0-xmm15.</p>
 <h4 id="segment-prefix">Segment Prefix</h4>
 <p>A segment prefix (<strong><span class="caps">CS</span>:</strong>, <strong><span class="caps">DS</span>:</strong>, <strong><span class="caps">ES</span>:</strong> or <strong><span class="caps">SS</span>:</strong>) defines which segment register will be used for calculating the address.
 Default for most registers is <span class="caps">DS</span>. But for <span class="caps">BP</span> the default is <span class="caps">SS</span>.</p>
+<h4 id="x86-64">x86-64</h4>
+<p>The general for calculating a memory address is</p>
+<div class="math">$$\[baseAddress + \(indexRegister \cdot scaleValue\) + displacement\]$$</div>
+<p>Where:
+- <em>baseAddress</em>: any <span class="caps">GP</span> register or variable name
+- <em>indexRegister</em>: any <span class="caps">GP</span> register
+- <em>scaleValue</em>: immediate value of <em>1</em>, <em>2</em>, <em>4</em> or <em>8</em> (<em>1</em> does nothing)
+- <em>displacement</em>: 8-bit ot 32-bit constant</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><span class="nf">mov</span> <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">var</span><span class="p">]</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nb">rbx</span><span class="o">+</span><span class="nb">rsi</span><span class="p">]</span>
+<span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="kt">word</span> <span class="p">[</span><span class="nv">lst</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
+<span class="nf">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="kt">word</span> <span class="p">[</span><span class="nv">lst</span><span class="o">+</span><span class="nb">rdx</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+<span class="nf">mov</span> <span class="nb">rcx</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">lst</span><span class="o">+</span><span class="p">(</span><span class="nb">rsi</span><span class="o">*</span><span class="mi">8</span><span class="p">)]</span>
+<span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="kt">byte</span> <span class="p">[</span><span class="nv">buffer</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="nb">rcx</span><span class="p">]</span>
+<span class="nf">mov</span> <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nb">rbx</span><span class="o">+</span><span class="p">(</span><span class="nb">rsi</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span>
+</pre></div>
+<p>Because addresses are always of 64-bit size (<code>qword</code>), a 64-bit 
+register is needed for memory addressing. Even when accessing 
+smaller sized values.</p>
 <h4 id="operand-size-word-dword">Operand Size (<code>WORD</code>, <code>DWORD</code>…)</h4>
 <p>In some cases the size of an operand can be given (for some cases it is even mandatory). Size types:</p>
 <p><code>BYTE</code>, <code>WORD</code>, <code>DWORD</code>, <code>QWORD</code>, <code>TBYTE</code>, <code>FAR</code>…</p>
