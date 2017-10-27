@@ -1702,14 +1702,18 @@ or a constant (immediate) as second operator.</p>
 <p>Jump if: <span class="caps">CX</span> <span class="math">\(=\)</span> 0</p>
 <h1 id="stack-and-function-calls">Stack and Function calls</h1>
 <p>The stack on x86 is always addressed by the Stack Segment (<em><span class="caps">SS</span></em>).</p>
-<p>Stack operations are word aligned (16-bit). So <code>PUSH</code> decrements <em><span class="caps">SP</span></em> by <em>2</em> and
-<code>POP</code> increments <em><span class="caps">SP</span></em> by <em>2</em>.</p>
-<p><em><span class="caps">SP</span></em> points to the <em>last written</em> word.</p>
+<p>On 80186 stack operations are word aligned (16-bit). So <code>PUSH</code> 
+decrements <em><span class="caps">SP</span></em> by <em>2</em> and <code>POP</code> increments <em><span class="caps">SP</span></em> by <em>2</em>.</p>
+<p>On x86-64 stack operations are quad-wor (64-bit) aligned.
+So <code>PUSH</code> decrements <em><span class="caps">RSP</span></em> by <em>8</em> and <code>POP</code> increments <em><span class="caps">RSP</span></em> by <em>8</em>.</p>
+<p>It’s possible to use pop and push instructions for operands smaller than 64-bits. But it’s not recomended.</p>
+<p>The stack on x86 grow downwards (reverse in memory).</p>
+<p><em><span class="caps">RSP</span></em> points to the <em>last written</em> item. It is the top of the stack (smallest address on stack).</p>
 <h2 id="push-and-pop-push-pushf-pusha-pop-popf-popa">Push and Pop (<code>PUSH</code>, <code>PUSHF</code>, <code>PUSHA</code>, <code>POP</code>, <code>POPF</code>, <code>POPA</code>)</h2>
 <p>The different push and pop commands save/restore 16-bit words to/from the stack.</p>
 <h3 id="push"><code>PUSH</code></h3>
-<p><code>PUSH</code> can be called with all registers as as operands or a memory operand. Immediate addressing
-is not possible with <code>PUSH</code>.</p>
+<p><code>PUSH</code> can be called with all registers as as operands or a memory 
+operand. Immediate addressing is not possible with <code>PUSH</code>.</p>
 <p>The registers that can be pushed are: <em><span class="caps">AX</span></em>, <em><span class="caps">BX</span></em>, <em><span class="caps">CX</span></em>, <em><span class="caps">DX</span></em>, <em><span class="caps">SP</span></em>, <em><span class="caps">BP</span></em>, <em><span class="caps">SI</span></em>, <em><span class="caps">DI</span></em>, <em><span class="caps">ES</span></em>, <em><span class="caps">SS</span></em>, <em><span class="caps">DS</span></em> and <em><span class="caps">CS</span></em>.</p>
 <h3 id="pop"><code>POP</code></h3>
 <p><code>POP</code> can use the same operands as <code>PUSH</code> with the exception of <em><span class="caps">CS</span></em>. Memory operands are also possible.</p>
