@@ -1737,6 +1737,7 @@ the end of all the pop operations.</p>
 and calls the function.</p>
 <p><code>RET</code> returns from the function by loading the stored address in to <em><span class="caps">IP</span></em> and decrements <em><span class="caps">SP</span></em> (by 2).</p>
 <h2 id="defining-a-function">Defining a Function</h2>
+<p>Functions need to be placed in the code segment.</p>
 <p>In <a href="http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/"><span class="caps">NASM</span></a> a function is defined as follows:</p>
 <div class="highlight"><pre><span></span><span class="nl">my_func:</span>
 
@@ -1745,9 +1746,10 @@ and calls the function.</p>
 <span class="nf">ret</span>
 </pre></div>
 <p>For calling the function:</p>
-<div class="highlight"><pre><span></span><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span> <span class="c1">;</span>
+<div class="highlight"><pre><span></span><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span>
 </pre></div>
 <p>The pseudo commands <code>PROC and</code><span class="caps">ENDP</span>` (as in <span class="caps">MASM</span>/<span class="caps">TASM</span>) are not supported by <span class="caps">NASM</span>.</p>
+<p>Function definitions can not be nested. </p>
 <h3 id="function-prologue">Function Prologue</h3>
 <p>At the beginning of each function some registers have to be saved. This code is called
 <a href="https://en.wikipedia.org/wiki/Function_prologue">function prologue</a>.</p>

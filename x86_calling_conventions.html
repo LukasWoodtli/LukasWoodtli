@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>x86 Calling&nbsp;Conventions · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/x86_calling_conventions.html">x86 Calling&nbsp;Conventions</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/assembler.html">Assembler</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month11">11</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month11">05</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>There are a lot of different calling conventions fir x86 processors.
+See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikipedia:x86 calling conventions</a></p>
+<h1 id="unix">Unix</h1>
+<p>System V <span class="caps">AMD64</span> <span class="caps">ABI</span>:</p>
+<ul>
+<li>Linux</li>
+<li>macOS</li>
+<li>FreeBSD</li>
+<li>Solaris</li>
+</ul>
+<p>This calling conventions are also used for C/C++ programs.</p>
+<h2 id="instructions">Instructions</h2>
+<ul>
+<li><code>call</code>: Save return address, implicitely pushing <code>RIP</code>to stack</li>
+<li><code>ret</code>: Pop’s corrent top of stack (<code>RSP</code>) into <code>RIP</code></li>
+</ul>
+<h2 id="argument-passing">Argument Passing</h2>
+<p>The first 6 arguments (integer or pointer) are passed in registers:</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Register</th>
+<th>Argument</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RDI</code></td>
+<td>1st argument</td>
+</tr>
+<tr>
+<td><code>RSI</code></td>
+<td>2nd argument</td>
+</tr>
+<tr>
+<td><code>RDX</code></td>
+<td>3rd argument</td>
+</tr>
+<tr>
+<td><code>RCX</code></td>
+<td>4th argument</td>
+</tr>
+<tr>
+<td><code>R8</code></td>
+<td>5th argument</td>
+</tr>
+<tr>
+<td><code>R9</code></td>
+<td>6th argument</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Additional arguments are located on the stack in reverse order (from right to left)</li>
+<li><code>R10</code> is used as static chain pointer for nested functions</li>
+<li><code>XMM0</code>- <code>XMM7</code> are used for certain floating point arguments</li>
+<li>Variadic functions:<ul>
+<li>Number of floating point arguments: <code>RAX</code></li>
+<li>The arguments are passed in the vector registers</li>
+</ul>
+</li>
+</ul>
+<h2 id="return-value">Return Value</h2>
+<p>The return value is passed in registers <code>RAX</code> and if needed also in <code>RDX</code>.</p>
+<h2 id="call-by-reference-out-params">Call by Reference (out params)</h2>
+<p>Output parameters need two steps to return a value:</p>
+<ol>
+<li>Get the address from the stack</li>
+<li>Use that address to return the value</li>
+</ol>
+<h2 id="registers">Registers</h2>
+<ul>
+<li>Calle: must save and restore <code>RBP</code>, <code>RBX</code> and <code>R12</code>-<code>R15</code> if they are used</li>
+<li>Caller: all other registers must be saved and restored if their content is needed after the function call</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Register</th>
+<th>Usage</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rax</code></td>
+<td>Return Value</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rbx</code></td>
+<td>Callee Saved</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rcx</code></td>
+<td>4th Argument</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>rdx</code></td>
+<td>3rd Argument</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>rsi</code></td>
+<td>2nd Argument</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>rdi</code></td>
+<td>1st Argument</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>rbp</code></td>
+<td>Callee Saved</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rsp</code></td>
+<td>Stack Pointer</td>
+<td></td>
+</tr>
+<tr>
+<td><code>r8</code></td>
+<td>5th Argument</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>r9</code></td>
+<td>6th Argument</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>r10</code></td>
+<td>Temporary</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>r11</code></td>
+<td>Temporary</td>
+<td>Not preserved during function call</td>
+</tr>
+<tr>
+<td><code>r12</code></td>
+<td>Callee Saved</td>
+<td></td>
+</tr>
+<tr>
+<td><code>r13</code></td>
+<td>Callee Saved</td>
+<td></td>
+</tr>
+<tr>
+<td><code>r14</code></td>
+<td>Callee Saved</td>
+<td></td>
+</tr>
+<tr>
+<td><code>r15</code></td>
+<td>Callee Saved</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="clean-up">Clean-Up</h2>
+<p>The caller is responsible for clearing the argument from the stack.
+This is usually donne by adjusting the <code>RSP</code>, instead of <code>POP</code> instructions.</p>
+<div class="highlight"><pre><span></span><span class="nf">add</span> <span class="nb">rsp</span><span class="p">,</span> <span class="nv">numberOfArguments</span> <span class="o">*</span> <span class="mi">8</span> <span class="c1">; number of arguments placed on stack</span>
+</pre></div>
+<h2 id="stack-frame">Stack Frame</h2>
+<p>The stack frame is the data on the stack that belong to one function call.
+It’s also called activation record or call frame.</p>
+<p><a href="https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64">Here</a> is a good explanation.</p>
+<ol>
+<li>Arguments that are not passed in registers</li>
+<li>Return address (saved by <code>call</code>)</li>
+<li>Saved <code>rbp</code> from last stack frame. <code>rbp</code> needs to point now to this address</li>
+<li>Local variables. <code>rsp</code> points to last used address</li>
+<li>After the last stack frame there are 128 bytes <em>red zone</em></li>
+</ol>
+<blockquote>
+<p>The System V <span class="caps">AMD64</span> <span class="caps">ABI</span> doesn’t require to use the base pointer</p>
+</blockquote>
+<p>To save and adjust <code>rbp</code>:</p>
+<div class="highlight"><pre><span></span><span class="c1">; prologue</span>
+<span class="nf">push</span> <span class="nb">rbp</span>
+   <span class="c1">; save the 'old' `rbp` on the stack</span>
+<span class="nf">mov</span> <span class="nb">rbp</span><span class="p">,</span> <span class="nb">rsp</span>   <span class="c1">; adjust `rbp` to point to the just saved 'old' `rbp`</span>
+</pre></div>
+<h2 id="the-red-zone">The Red Zone</h2>
+<ul>
+<li>The 128 bytes after the last stack frame are reserved for compiler optimization</li>
+<li>This range is not allowed to be changed asynchonically (e.g by signals or <span class="caps">IRQ</span> handlers)</li>
+<li>Some functions (i.e. leaf functions) don’t need a stack frame at all. They can use the red zone</li>
+</ul>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/intel_assembler_overview.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
