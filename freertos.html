@@ -219,6 +219,12 @@ A periodic (tick) interrupt is used for switching.</p>
 </li>
 <li>Applications typically combine both types of real-time rocessing</li>
 </ul>
+<h1 id="blocking-a-task">Blocking a Task</h1>
+<ul>
+<li>A task can be blocked if it currently has nothing to do</li>
+<li><code>vTaskDelay()</code> is usually called for a task to enter the blocked state</li>
+<li><code>vTaskDelayUntil()</code> should be used when a <em>fixed</em> execution period is required (e.g. <span class="caps">DSP</span>)</li>
+</ul>
   </div>
 
   <hr/>
