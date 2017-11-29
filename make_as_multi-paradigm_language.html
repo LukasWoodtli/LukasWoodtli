@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Linux System&nbsp;Calls · Lukas Woodtli</title>
+        <title>Make as multi-paradigm&nbsp;language · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/linux_system_calls.html">Linux System&nbsp;Calls</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/make_as_multi-paradigm_language.html">Make as multi-paradigm&nbsp;language</a></h1>
     </div>
 
         </div>
@@ -123,16 +123,12 @@
       href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/assembler.html">Assembler</a>
+          href="http://lukaswoodtli.github.io/tag/build_tools.html">Build Tools</a>
         <a class="label label-primary" 
           href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month11">11</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month11">06</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month11">11</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month11">29</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -142,73 +138,44 @@
   <hr/>
 
   <div id="article_content">
-    <p>A system call is the basic interface between applications and the kernel.</p>
-<p>Linux has more than 300 <a href="http://man7.org/linux/man-pages/man2/syscalls.2.html">system calls</a>.</p>
-<p>The syscalls are implemented by the <a href="http://man7.org/linux/man-pages/man2/syscall.2.html"><code>syscall</code> function</a>.</p>
-<h1 id="intel-x86-64">Intel x86-64</h1>
-<p>System calls use the default <a href="http://lukaswoodtli.github.io/x86_calling_conventions.html">calling convention</a> (System V <span class="caps">AMD64</span> <span class="caps">ABI</span>).</p>
-<p>Stack based arguments are not used. This limits the number
-of arguments to 6.</p>
-<p>Each system call has an unique call code. The call code are provided
-in the <code>rax</code> register.</p>
-<p>Call codes and arguments can be found <a href="https://filippo.io/linux-syscall-table/">here</a>.</p>
-<h2 id="registers">Registers</h2>
-<p>The registers are only used when needed.</p>
-<p>The call code is necessary.</p>
-<table class="table table-hover table-striped">
-<thead>
-<tr>
-<th>Register</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>rax</code></td>
-<td>Call code, return value after call</td>
-</tr>
-<tr>
-<td><code>rdi</code></td>
-<td>1st argument</td>
-</tr>
-<tr>
-<td><code>rsi</code></td>
-<td>2nd argument</td>
-</tr>
-<tr>
-<td><code>rdx</code></td>
-<td>3rd argument</td>
-</tr>
-<tr>
-<td><code>rcx</code></td>
-<td>4th argument</td>
-</tr>
-<tr>
-<td><code>r8</code></td>
-<td>5th argument</td>
-</tr>
-<tr>
-<td><code>r9</code></td>
-<td>6th argument</td>
-</tr>
-</tbody>
-</table>
-<h2 id="syscall-instruction"><code>SYSCALL</code> Instruction</h2>
-<p>After the call code and the arguments are placed in the registers
-the <code>syscall</code> instruction is executed. Then the current process
-will pause and control is passed to the kernel. When the system call
-returns the process will be resumed.</p>
+    <p>Make can be seen as a multi-paradigm programming language.</p>
+<p>It supports at least three paradigms:</p>
+<ol>
+<li>Declarative</li>
+<li>Imperative</li>
+<li>Functional</li>
+</ol>
+<h1 id="declarative">Declarative</h1>
+<p>Rules in makefiles are written in a declarative way:</p>
+<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
+<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
+    gcc -c $&lt; -o <span class="nv">$@</span>
+</pre></div>
+<h1 id="imperative">Imperative</h1>
+<p>Conditionals can be used as an imperative way to describe alternative actions in makefiles .</p>
+<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
+<span class="cp">ifeq ($(MSG),)</span>
+<span class="k">$(</span><span class="nv">warning</span> "<span class="nv">No</span> <span class="nv">message</span> <span class="nv">provided</span>"<span class="k">)</span>
+<span class="cp">endif</span>
+</pre></div>
+<h1 id="functional">Functional</h1>
+<p>Functions in make are evaluated in a functional way:</p>
+<p>Example: Calculate the factorial with help of <code>bc</code></p>
+<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
+<span class="nv">fact</span><span class="o">=</span><span class="k">$(if</span> <span class="k">$(</span>filter <span class="m">0</span>, <span class="k">$(</span><span class="m">1</span><span class="k">))</span>, <span class="m">1</span>, <span class="k">$(</span>shell <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span><span class="m">1</span><span class="k">)</span><span class="s2"> * </span><span class="k">$(</span>call fact, <span class="k">$(</span>shell <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span><span class="m">1</span><span class="k">)</span><span class="s2"> - 1"</span> <span class="p">|</span> bc<span class="k">))</span><span class="s2">"</span> <span class="p">|</span> bc<span class="k">))</span>
+<span class="nv">result</span><span class="o">=</span><span class="k">$(</span>call fact, <span class="m">4</span><span class="k">)</span> <span class="c1"># 24</span>
+</pre></div>
   </div>
 
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/make_as_multi-paradigm_language.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/x86_calling_conventions.html">
+          <a href="http://lukaswoodtli.github.io/linux_system_calls.html">
           Older &raquo;</a>
         </li>
       </ul>
