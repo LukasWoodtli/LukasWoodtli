@@ -185,13 +185,12 @@
 </ol>
 <h1 id="declarative">Declarative</h1>
 <p>Rules in makefiles are written in a declarative way:</p>
-<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
-<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
+<div class="highlight"><pre><span></span><span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
     gcc -c $&lt; -o <span class="nv">$@</span>
 </pre></div>
 <h1 id="imperative">Imperative</h1>
 <p>Conditionals can be used as an imperative way to describe alternative actions in makefiles .</p>
-<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make …</span></pre></div></li>
+<div class="highlight"><pre><span></span><span class="cp">ifeq ($(MSG …</span></pre></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/make_as_multi-paradigm_language.html#disqus_thread" title="comments">

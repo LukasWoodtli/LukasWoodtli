@@ -147,22 +147,20 @@
 </ol>
 <h1 id="declarative">Declarative</h1>
 <p>Rules in makefiles are written in a declarative way:</p>
-<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
-<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
+<div class="highlight"><pre><span></span><span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
     gcc -c $&lt; -o <span class="nv">$@</span>
 </pre></div>
 <h1 id="imperative">Imperative</h1>
 <p>Conditionals can be used as an imperative way to describe alternative actions in makefiles .</p>
-<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
-<span class="cp">ifeq ($(MSG),)</span>
+<div class="highlight"><pre><span></span><span class="cp">ifeq ($(MSG),)</span>
 <span class="k">$(</span><span class="nv">warning</span> "<span class="nv">No</span> <span class="nv">message</span> <span class="nv">provided</span>"<span class="k">)</span>
 <span class="cp">endif</span>
 </pre></div>
 <h1 id="functional">Functional</h1>
 <p>Functions in make are evaluated in a functional way:</p>
 <p>Example: Calculate the factorial with help of <code>bc</code></p>
-<div class="highlight"><pre><span></span><span class="err">:::</span> <span class="err">make</span>
-<span class="nv">fact</span><span class="o">=</span><span class="k">$(if</span> <span class="k">$(</span>filter <span class="m">0</span>, <span class="k">$(</span><span class="m">1</span><span class="k">))</span>, <span class="m">1</span>, <span class="k">$(</span>shell <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span><span class="m">1</span><span class="k">)</span><span class="s2"> * </span><span class="k">$(</span>call fact, <span class="k">$(</span>shell <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span><span class="m">1</span><span class="k">)</span><span class="s2"> - 1"</span> <span class="p">|</span> bc<span class="k">))</span><span class="s2">"</span> <span class="p">|</span> bc<span class="k">))</span>
+<div class="highlight"><pre><span></span><span class="nv">fact</span><span class="o">=</span><span class="k">$(if</span> <span class="k">$(</span>filter <span class="m">0</span>, <span class="k">$(</span><span class="m">1</span><span class="k">))</span>, <span class="m">1</span>, <span class="k">$(</span>shell <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span><span class="m">1</span><span class="k">)</span><span class="s2"> * \</span>
+    <span class="k">$(</span>call fact, <span class="k">$(</span>shell <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span><span class="m">1</span><span class="k">)</span><span class="s2"> - 1"</span> <span class="p">|</span> bc<span class="k">))</span><span class="s2">" | bc))</span>
 <span class="nv">result</span><span class="o">=</span><span class="k">$(</span>call fact, <span class="m">4</span><span class="k">)</span> <span class="c1"># 24</span>
 </pre></div>
   </div>
