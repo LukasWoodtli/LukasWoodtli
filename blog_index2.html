@@ -317,13 +317,36 @@
           </li>
           <li class="list-group-item"><p>This page contains some random notes for FreeRTOS.</p>
 <p>See also: <a href="https://github.com/LukasWoodtli/FreeRtosExamples">FreeRtosExamples</a>
-and: <a href="http://www.freertos.org/">FreeRtos</a></p>
-<h1 id="configuration">Configuration</h1>
-<p>The configuration of the kernel is set in <code>FreeRTOSConfig.h</code></p>
+and <a href="http://www.freertos.org/">FreeRtos</a></p>
+<div class="toc">
 <ul>
-<li><code>configTOTAL_HEAP_SIZE</code>: This must be enough space to allocate all tasks. If the kernel does’t start it could be that the heap is too small.</li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#tasks">Tasks</a><ul>
+<li><a href="#task-stack-and-tcb">Task Stack and <span class="caps">TCB</span></a></li>
 </ul>
-<h1 id="tasks">Tasks …</h1></li>
+</li>
+<li><a href="#stack-overflow">Stack Overflow</a><ul>
+<li><a href="#high-water-mark">High Water Mark</a></li>
+<li><a href="#runtime-checks">Runtime Checks</a><ul>
+<li><a href="#method-1">Method 1</a></li>
+<li><a href="#method-2">Method 2</a></li>
+<li><a href="#configuration_1">Configuration</a></li>
+</ul>
+</li>
+<li><a href="#task-states">Task States</a></li>
+<li><a href="#task-priorities">Task Priorities</a><ul>
+<li><a href="#selecting-task-priority">Selecting Task Priority</a><ul>
+<li><a href="#rate-monotonic-scheduling-rms">Rate Monotonic Scheduling (<span class="caps">RMS</span>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#blocking-a-task">Blocking a Task</a></li>
+<li><a href="#idle-task-hook">Idle Task Hook</a></li>
+</ul>
+</li>
+<li><a href="#scheduler">Scheduler</a><ul>
+<li><a href="#scheduling-algorithm">Scheduling …</a></li></ul></li></ul></div></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/freertos.html#disqus_thread" title="comments">
