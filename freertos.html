@@ -185,13 +185,125 @@ different tasks to run.</p>
 <p>If more than one task of the same priority is able to run, the scheduler will switch each task in and out of the <em>Running</em> state, in turn.</p>
 <h2 id="task-priorities">Task Priorities</h2>
 <p>Can be assigned a valu form <code>0</code> (lowest) to <code>configMAX_PRIORITIES - 1</code> (highest).</p>
-<p>Priority can be changed after the scheduler has started.</p>
-<h2 id="scheduler">Scheduler</h2>
+<p>Priority can be changed after the scheduler has started but are never changed by the scheduler itself.</p>
+<h3 id="selecting-task-priority">Selecting Task Priority</h3>
+<p>Rule of thumb:</p>
+<p>Tasks for hard real-time functionalities are assigned priorities above tasks for soft real-time functionalities.</p>
+<h4 id="rate-monotonic-scheduling-rms">Rate Monotonic Scheduling (<span class="caps">RMS</span>)</h4>
+<p>See <a href="https://en.wikipedia.org/wiki/Rate-monotonic_scheduling">Wikipedia:Rate-monotonic scheduling</a></p>
+<p>Each task is assiged a unique static priority. The priorities are assigned according to the cycle duration of the task.</p>
+<ul>
+<li>Task with the highest execution frequency (shorter cycle) is assigned highest priority is assigned </li>
+<li>Task with the lowest execution frequency is assigned lowest priority is assigned </li>
+</ul>
+<p><span class="caps">RMS</span> maximizes the <em>schedulability</em> of an application.</p>
+<h2 id="blocking-a-task">Blocking a Task</h2>
+<ul>
+<li>A task can be blocked if it currently has nothing to do</li>
+<li><code>vTaskDelay()</code> is usually called for a task to enter the blocked state</li>
+<li><code>vTaskDelayUntil()</code> should be used when a <em>fixed</em> execution period is required (e.g. <span class="caps">DSP</span>)</li>
+</ul>
+<h2 id="idle-task-hook">Idle Task Hook</h2>
+<p>It’s possible to add a callback to the idle task.
+It is called automatically once per iteration by the idle task loop.</p>
+<p>Following rules must be followed:</p>
+<ul>
+<li>The hook function must never block or suspend itself</li>
+<li>If the application make use of <code>vTaskDelete()</code> the hook function needs to return to its caller within reasonable time</li>
+</ul>
+<p>The idle task is responsible to clean up resources after a task has been deleted.</p>
+<h1 id="scheduler">Scheduler</h1>
 <p>The scheduler is executed after each time slice to select the next task.
 A periodic (tick) interrupt is used for switching.</p>
 <p>The tick interrupt frequency is set by <code>configTICK_RATE_HZ</code>.</p>
 <p>To convert the number of ticks into milliseconds the constant
 <code>portTICK_RATE_MS</code> can be used.</p>
+<h2 id="scheduling-algorithm">Scheduling Algorithm</h2>
+<p>FreeRTOS uses a <em>fixed priority pre-emptive scheduling</em> algorithm. But it can be configured to use a
+cooperative scheduling algorithm.</p>
+<ul>
+<li>Each task has a priority assigned</li>
+<li>Each task has a state</li>
+<li>Only one task is in running state</li>
+<li>The scheduler selects always the highest priority task (in <em>ready</em> state) to enter <em>running</em> state</li>
+</ul>
+<h1 id="synchronization">Synchronization</h1>
+<p>Tasks or ISRs send information to a queue or to a semaphore.
+These synchronization events are used to signal asynchronous activity.</p>
+<ul>
+<li>Semaphores: communicate events</li>
+<li>Queues: communicate events and data</li>
+</ul>
+<h2 id="queues">Queues</h2>
+<ul>
+<li>Fixed number and size of data items</li>
+<li><span class="caps">FIFO</span></li>
+<li>Writing and reading: byte-for-byte copy</li>
+<li>Accessible from multiple tasks<ul>
+<li>multiple writers is common</li>
+<li>multiple readers is not used often</li>
+</ul>
+</li>
+</ul>
+<h2 id="semaphores">Semaphores</h2>
+<p>Handles to all types of semaphores are stored in variables
+of type <code>xSemaphoreHandle</code>.</p>
+<h3 id="binary-semaphores">Binary Semaphores</h3>
+<p>See <a href="https://en.wikipedia.org/wiki/Semaphore_(programming)">Wikipedia:Semaphore</a></p>
+<ul>
+<li>Unblock a task each time an <span class="caps">IRQ</span> occurs</li>
+<li>Synchronization of tasks with interrupts</li>
+<li>Deferring processing to handler task</li>
+</ul>
+<p>Terminology:</p>
+<ul>
+<li><span class="math">\(P()\)</span> operation: ‘taking’ a semaphore</li>
+<li><span class="math">\(V()\)</span> operation: ‘giving’ a semaphore</li>
+</ul>
+<p><span class="caps">API</span> function <code>xSemaphoreGiveFromISR(..)</code>:</p>
+<ul>
+<li>All types of semapores <em>except recursive semaphores</em> can be
+‘given’ with <code>xSemaphoreGiveFromISR()</code>.</li>
+<li>Output argument <code>pxHigherPriorityTaskWoken</code>:<ul>
+<li>if set to pdTRUE a context switch should be performed before <span class="caps">ISR</span> exits</li>
+<li>this context switch needs to be done manually in <span class="caps">ISR</span> code</li>
+<li>the scheduler will switch to the highes prioriy task (in ready state)</li>
+</ul>
+</li>
+</ul>
+<h3 id="counting-semaphores">Counting Semaphores</h3>
+<p>Use cases:</p>
+<ol>
+<li>Counting events<ul>
+<li>Count value: difference between number of occured events and number of processed events</li>
+<li>Created with an initial count value of zero</li>
+</ul>
+</li>
+<li>Resource management<ul>
+<li>Count value: indicates number of available resources</li>
+<li>Created with an initial count value equal to number of available resources</li>
+</ul>
+</li>
+</ol>
+<h1 id="irqs">IRQs</h1>
+<p>Event processing:</p>
+<ol>
+<li>Detect event<ul>
+<li>IRQs</li>
+<li>polling</li>
+</ul>
+</li>
+<li>IRQs<ul>
+<li>how much processing in <span class="caps">ISR</span></li>
+<li>how much in main code</li>
+</ul>
+</li>
+<li>Communication of <span class="caps">IRS</span> to main code</li>
+</ol>
+<blockquote>
+<p>Only <span class="caps">API</span> functions and macros ending in <code>FromISR</code> or <code>FROM_ISR</code>
+are allowed to be called from interrupt service routines.</p>
+</blockquote>
 <h1 id="resources">Resources</h1>
 <p>Used interrupts on Cortex-M3:
 - SysTick
@@ -219,12 +331,61 @@ A periodic (tick) interrupt is used for switching.</p>
 </li>
 <li>Applications typically combine both types of real-time rocessing</li>
 </ul>
-<h1 id="blocking-a-task">Blocking a Task</h1>
-<ul>
-<li>A task can be blocked if it currently has nothing to do</li>
-<li><code>vTaskDelay()</code> is usually called for a task to enter the blocked state</li>
-<li><code>vTaskDelayUntil()</code> should be used when a <em>fixed</em> execution period is required (e.g. <span class="caps">DSP</span>)</li>
-</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
   <hr/>
