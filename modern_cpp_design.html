@@ -168,7 +168,7 @@ Class templates are customizable in ways not supported by regular classes.”</
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">Gadget</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">U</span><span class="o">&gt;::</span><span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="n">specialized</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span>
 </pre></div>
-<p>Policies and Policy Classes ~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<h3 id="policies-and-policy-classes">Policies and Policy Classes</h3>
 <p><em><span class="dquo">“</span>A <strong>policy</strong> defines a class interface or a class template interface. The interface consists of one or all of the following: inner type definitions, member functions, and member variables.”</em></p>
 <p><em><span class="dquo">“</span>Policies have much in common with <strong>traits</strong> but differ in that they put less emphasis on type and more emphasis on behavior. Also, policies are reminiscent of the <strong>Strategy design pattern</strong>, with the twist that policies are bound at compilation time.”</em></p>
 <p><em><span class="dquo">“</span>For a given policy, there can be an unlimited number of implementations. The implementations of a policy are called <strong>policy classes</strong>”</em></p>
@@ -176,7 +176,7 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p><em><span class="dquo">“</span>Policies are syntax oriented, not signature oriented.”</em></p>
 <p><em><span class="dquo">“</span>[A] policy does not specify that [a member function] must be static or virtual—the only requirement is that the class template define a [coresponding (with the expected signature)] member function.”</em></p>
 <p><em><span class="dquo">“</span>The classes that use one or more policies are called <strong>hosts</strong> or <strong>host classes</strong>”</em></p>
-<p>Implementing Policy Classes with Template Template Parameters ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<h3 id="implementing-policy-classes-with-template-template-parameters">Implementing Policy Classes with Template Template Parameters</h3>
 <p><em><span class="dquo">“</span>Library code can use template template parameters for specifying policies”</em></p>
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Created</span><span class="o">&gt;</span>
 <span class="k">class</span> <span class="nc">CreationPolicy</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">WidgetManager</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CreationPolicy</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="p">{</span> 
@@ -190,24 +190,50 @@ Class templates are customizable in ways not supported by regular classes.”</
 </pre></div>
 <p><em><span class="dquo">“</span>Policies are quite different from mere virtual functions. […] policies come with […] static binding.”</em></p>
 <p><em><span class="dquo">“</span>policies’ features also make them <strong>unsuitable</strong> for <strong>dynamic binding</strong> and <strong>binary interfaces</strong>, so in essence policies and classic interfaces do not compete.”</em></p>
-<p>Destructors of Policy Classes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<h3 id="destructors-of-policy-classes">Destructors of Policy Classes</h3>
 <p><em><span class="dquo">“</span>Defining a virtual destructor for a policy […] works against its static nature and hurts performance.”</em></p>
 <p><em><span class="dquo">“</span>The lightweight, effective solution that policies should use is to define a <strong>nonvirtual protected destructor</strong>”</em></p>
-<p>Optional Functionality Through Incomplete Instantiation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<h3 id="optional-functionality-through-incomplete-instantiation">Optional Functionality Through Incomplete Instantiation</h3>
 <p><em><span class="dquo">“</span>If a member function of a class template is never used, it is not even instantiated - the compiler does not look at it at all, except perhaps for syntax checking. This gives the host class a chance to specify and use optional features of a policy class.”</em></p>
-<p>Combining Policy Classes ~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<h3 id="combining-policy-classes">Combining Policy Classes</h3>
 <p><em><span class="dquo">“</span>The greatest usefulness of policies is apparent when you combine them. Typically, a highly configurable class uses several policies for various aspects of its workings. Then the library user selects the desired high-level behavior by combining several policy classes.”</em></p>
-<p>Decomposing a Class into Policies ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<h3 id="decomposing-a-class-into-policies">Decomposing a Class into Policies</h3>
 <p><em><span class="dquo">“</span>[To] decompose the functionality of a class in policies. The rule of thumb is to identify and name the design decisions that take part in a class’s behavior. Anything that can be done in more than one way should be identified and migrated from the class to a policy. Don’t forget: Design constraints buried in a class’s design are as bad as magic constants buried in code.”</em></p>
 <p><em><span class="dquo">“</span>When you decompose a class in policies, it is very important to find an orthogonal decomposition. An orthogonal decomposition yields policies that are completely independent of each other. You can easily spot a nonorthogonal decomposition when various policies need to know about each other.”</em></p>
-<p>Summary ~~~~~~~</p>
+<h3 id="summary">Summary</h3>
 <p><em><span class="dquo">“</span>The mechanics of policies consist of a combination of templates with multiple inheritance. A class that uses policies - a host class - is a template with many template parameters (often, template template parameters), each parameter being a policy. The host class “indirects” parts of its functionality through its policies and acts as a receptacle that combines several policies in a coherent aggregate.”</em></p>
 <p><em><span class="dquo">“</span>Policy-based classes support flexibility when it comes to conversions. If you use policy-by-policy copying, each policy can control which other policies it accepts, or converts to, by providing the appropriate conversion constructors, conversion operators, or both.”</em></p>
-<p><em><span class="dquo">“</span>wo important guidelines.”</em></p>
+<p><em><span class="dquo">“</span>Two important guidelines.”</em></p>
 <ol>
 <li><em><span class="dquo">“</span>One is to localize, name, and isolate design decisions in your class - things that are subject to a trade-off or could be sensibly implemented in various ways.”</em></li>
 <li><em><span class="dquo">“</span>The other guideline is to look for orthogonal policies, that is, policies that don’t need to interact with each other and that can be changed independently.”</em></li>
 </ol>
+<h2 id="techniques">Techniques</h2>
+<h3 id="partial-template-specialization">Partial Template Specialization</h3>
+<p><em><span class="dquo">“</span>In a partial specialization of a class template, you specify only some of the template arguments and leave the other ones generic.”</em></p>
+<p><em><span class="dquo">“</span>When you instantiate a template, the compiler does a pattern matching of existing partial and total specializations to find the best candidate; this gives you enormous flexibility.”</em></p>
+<p><em><span class="dquo">“</span>Unfortunately, partial template specialization does not apply to functions - be they member or nonmember - which somewhat reduces the flexibility and the granularity of what you can do.”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>Although you can totally specialize member functions of a class template, you <strong>cannot partially specialize member functions</strong>.”</em></li>
+<li><em><span class="dquo">“</span>You cannot partially specialize namespace-level (nonmember) template functions. The closest thing to partial specialization for namespace-level template functions is overloading. For practical purposes, this means that you have fine-grained specialization abilities only for the <strong>function parameters</strong> - <strong>not</strong> for the <strong>return value</strong> or for internally used types.”</em></li>
+</ul>
+<p>Overloading is the closest to partial specialization for functions:</p>
+<div class="highlight"><pre><span></span><span class="c1">// primary template</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">Fun</span><span class="p">(</span><span class="n">U</span> <span class="n">obj</span><span class="p">);</span>
+
+<span class="c1">// illegal partial specialization</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span> 
+<span class="kt">void</span> <span class="n">Fun</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">,</span> <span class="n">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">U</span> <span class="n">obj</span><span class="p">);</span>
+
+<span class="c1">// specialization legal (overloading)</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">Fun</span> <span class="p">(</span><span class="n">Window</span> <span class="n">obj</span><span class="p">);</span>
+</pre></div>
+<h3 id="local-classes">Local Classes</h3>
+<p>Local (nested) classes can be used (defined) inside of template functions:</p>
+<p><em><span class="dquo">“</span>What makes local classes truly interesting is that you can use them in template functions. Local classes defined inside template functions can use the template parameters of the enclosing function.”</em></p>
+<p><em><span class="dquo">“</span>Local classes do have a unique feature, though: They are <strong>final</strong>. Outside users cannot derive from a class hidden in a function.”</em></p>
   </div>
 
   <hr/>
