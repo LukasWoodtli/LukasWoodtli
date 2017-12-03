@@ -148,6 +148,51 @@ Class templates are customizable in ways not supported by regular classes.”</
 <li><em>Partial specialization of member functions does not scale. You can specialize any member function of a class template with one template parameter, but you cannot specialize individual member functions for templates with multiple template parameters.</em></li>
 <li><em><span class="dquo">“</span>The library writer cannot provide multiple default values. At best, a class template implementer can provide a single default implementation for each member function. You cannot provide several defaults for a template member function.”</em></li>
 </ol>
+<p>Member functions can be only fully specialized:</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> 
+<span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span> 
+    <span class="kt">void</span> <span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">..</span> <span class="n">generic</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// ok: specialization allowed</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="kt">void</span> <span class="n">Widget</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;::</span><span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="n">specialized</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div>
+<p>Partial specialization is not allowed:</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Gadget</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">..</span> <span class="n">generic</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span> 
+<span class="p">};</span>
+
+<span class="c1">// error: member functions can't be specialized partially</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Gadget</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">U</span><span class="o">&gt;::</span><span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="n">specialized</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div>
+<p>Policies and Policy Classes ~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<p><em><span class="dquo">“</span>A <strong>policy</strong> defines a class interface or a class template interface. The interface consists of one or all of the following: inner type definitions, member functions, and member variables.”</em></p>
+<p><em><span class="dquo">“</span>Policies have much in common with <strong>traits</strong> but differ in that they put less emphasis on type and more emphasis on behavior. Also, policies are reminiscent of the <strong>Strategy design pattern</strong>, with the twist that policies are bound at compilation time.”</em></p>
+<p><em><span class="dquo">“</span>For a given policy, there can be an unlimited number of implementations. The implementations of a policy are called <strong>policy classes</strong>”</em></p>
+<p><em><span class="dquo">“</span>Policy classes are not intended for stand-alone use […]”</em></p>
+<p><em><span class="dquo">“</span>Policies are syntax oriented, not signature oriented.”</em></p>
+<p><em><span class="dquo">“</span>[A] policy does not specify that [a member function] must be static or virtual—the only requirement is that the class template define a [coresponding (with the expected signature)] member function.”</em></p>
+<p><em><span class="dquo">“</span>The classes that use one or more policies are called <strong>hosts</strong> or <strong>host classes</strong>”</em></p>
+<p>Implementing Policy Classes with Template Template Parameters ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<p><em><span class="dquo">“</span>Library code can use template template parameters for specifying policies”</em></p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Created</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">CreationPolicy</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">WidgetManager</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CreationPolicy</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="p">{</span> 
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+<p><em><span class="dquo">“</span>The <code>Created</code> symbol does not contribute to the definition of <code>WidgetManager</code>. You cannot use <code>Created</code> inside <code>WidgetManager</code> - it is a formal argument for <code>CreationPolicy</code> (not <code>WidgetManager</code>) and can be simply omitted.”</em></p>
+<p><em><span class="dquo">“</span>First, you can change policies <strong>from the outside</strong> as easily as changing a template argument […]. Second, you can provide your own policies that are specific to your concrete application.”</em></p>
+<p><em><span class="dquo">“</span>[The author might] provide a default template argument for the policy that’s most commonly used:”</em></p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CreationPolicy</span> <span class="o">=</span> <span class="n">OpNewCreator</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">WidgetManager</span> <span class="p">...</span>
+</pre></div>
+<p><em><span class="dquo">“</span>Policies are quite different from mere virtual functions. […] policies come with […] static binding.”</em></p>
+<p><em><span class="dquo">“</span>policies’ features also make them <strong>unsuitable</strong> for <strong>dynamic binding</strong> and <strong>binary interfaces</strong>, so in essence policies and classic interfaces do not compete.”</em></p>
+<p>Destructors of Policy Classes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<p><em><span class="dquo">“</span>Defining a virtual destructor for a policy […] works against its static nature and hurts performance.”</em></p>
+<p><em><span class="dquo">“</span>The lightweight, effective solution that policies should use is to define a <strong>nonvirtual protected destructor</strong>”</em></p>
   </div>
 
   <hr/>
