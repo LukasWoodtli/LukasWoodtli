@@ -192,10 +192,10 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 </tr>
 </tbody>
 </table>
+<p>The first 8 floating point arguments are in the registers <code>xmm0</code> - <code>xmm7</code>.</p>
 <ul>
 <li>Additional arguments are located on the stack in reverse order (from right to left)</li>
 <li><code>R10</code> is used as static chain pointer for nested functions</li>
-<li><code>XMM0</code>- <code>XMM7</code> are used for certain floating point arguments</li>
 <li>Variadic functions:<ul>
 <li>Number of floating point arguments: <code>RAX</code></li>
 <li>The arguments are passed in the vector registers</li>
@@ -204,6 +204,7 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 </ul>
 <h2 id="return-value">Return Value</h2>
 <p>The return value is passed in registers <code>RAX</code> and if needed also in <code>RDX</code>.</p>
+<p>If the return value is a floating point number it is passed in <code>xmm0</code>.</p>
 <h2 id="call-by-reference-out-params">Call by Reference (out params)</h2>
 <p>Output parameters need two steps to return a value:</p>
 <ol>
@@ -213,7 +214,8 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 <h2 id="registers">Registers</h2>
 <ul>
 <li>Calle: must save and restore <code>RBP</code>, <code>RBX</code> and <code>R12</code>-<code>R15</code> if they are used</li>
-<li>Caller: all other registers must be saved and restored if their content is needed after the function call</li>
+<li>Caller: all other registers must be saved and restored if their content is needed after the function cal</li>
+<li>No <code>XMM</code> registers are preserved</li>
 </ul>
 <table class="table table-hover table-striped">
 <thead>
@@ -303,6 +305,11 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 <td><code>r15</code></td>
 <td>Callee Saved</td>
 <td></td>
+</tr>
+<tr>
+<td><code>xmm0</code> - <code>xmm15</code></td>
+<td></td>
+<td>Not preserved during function call</td>
 </tr>
 </tbody>
 </table>
