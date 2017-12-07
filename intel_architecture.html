@@ -258,6 +258,22 @@
 </li>
 </ul>
 </li>
+<li><a href="#floating-point-instructions">Floating Point Instructions</a><ul>
+<li><a href="#values">Values</a></li>
+<li><a href="#registers_1">Registers</a></li>
+<li><a href="#data-transfer-commands-movss-movsd">Data Transfer Commands (movss, movsd)</a></li>
+<li><a href="#conversion-instructions_1">Conversion Instructions</a></li>
+<li><a href="#arithmetic-instructions">Arithmetic Instructions</a><ul>
+<li><a href="#addition-addss-addsd">Addition (addss, addsd)</a></li>
+<li><a href="#substraction-subss-subsd">Substraction (subss, subsd)</a></li>
+<li><a href="#multiplication-mulss-mulsd">Multiplication (mulss, mulsd)</a></li>
+<li><a href="#division-divss-divsd">Division (divss, divsd)</a></li>
+<li><a href="#square-root-sqrtss-sqrtsd">Square Root (sqrtss, sqrtsd)</a></li>
+<li><a href="#control-instructions">Control Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#logical-commands">Logical Commands</a><ul>
 <li><a href="#and-or-and-xor-and-or-xor">And, Or and Xor (<span class="caps">AND</span>, <span class="caps">OR</span>, <span class="caps">XOR</span>)</a><ul>
 <li><a href="#affected-flags_9">Affected Flags</a></li>
@@ -1241,6 +1257,114 @@ Setting the dividend correctly requires often to set two registers
 <p>If the result is too big for the register <em><span class="caps">AL</span></em> resp. <em><span class="caps">AX</span></em> a interrupt (<em>division error</em>) is caused.
 If it is not handled the <strong>program can crash</strong> (undefined behaviour).</p>
 </blockquote>
+<h1 id="floating-point-instructions">Floating Point Instructions</h1>
+<p>There are special instructions for floating point numbers.</p>
+<p>Here are the most important x86-64 floating point instructions
+shown. They differ from the 32-bit floating point instructions.</p>
+<h2 id="values">Values</h2>
+<ul>
+<li>32-bit: single precision (<code>float</code> in C/C++)</li>
+<li>64-bit: double precision (<code>double</code> in C/C++)</li>
+</ul>
+<p>Single precision instuctions have a <code>s</code> postfix and
+double precision instuctions have a <code>d</code> postfix.</p>
+<h2 id="registers_1">Registers</h2>
+<p>There are 16 <code>XMM</code> registers <code>xmm0</code> - <code>xmm15</code> to be used
+for floating point instructions.</p>
+<p>They are 128 bits (on later processors 256 bits) long.</p>
+<h2 id="data-transfer-commands-movss-movsd">Data Transfer Commands (<code>movss</code>, <code>movsd</code>)</h2>
+<p>Copies a value to or from a <code>XMM</code> register.</p>
+<div class="highlight"><pre><span></span><span class="nf">movss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<span class="nf">movsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</pre></div>
+<ul>
+<li>Only one operand can be memory</li>
+<li>Operands can not be an immediate</li>
+</ul>
+<h2 id="conversion-instructions_1">Conversion Instructions</h2>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Conversions</th>
+<th>float (32-bit)</th>
+<th>double (64-bit)</th>
+<th>integer (32 bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float (32-bit)</td>
+<td>-</td>
+<td><code>cvtss2sd</code></td>
+<td><code>cvtss2si</code></td>
+</tr>
+<tr>
+<td>double (64-bit)</td>
+<td><code>cvtsd2ss</code></td>
+<td>-</td>
+<td><code>cvtsd2si</code></td>
+</tr>
+<tr>
+<td>integer (32 bit)</td>
+<td><code>cvtsi2ss</code></td>
+<td><code>cvtsi2sd</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="arithmetic-instructions">Arithmetic Instructions</h2>
+<h3 id="addition-addss-addsd">Addition (<code>addss</code>, <code>addsd</code>)</h3>
+<div class="highlight"><pre><span></span><span class="nf">addss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<span class="nf">addsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</pre></div>
+<ul>
+<li>Destination operands must be an <code>XMM</code> register</li>
+<li>Source operand can’t be an immediate</li>
+</ul>
+<h3 id="substraction-subss-subsd">Substraction (<code>subss</code>, <code>subsd</code>)</h3>
+<div class="highlight"><pre><span></span><span class="nf">subss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<span class="nf">subsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</pre></div>
+<ul>
+<li>Destination operands must be an <code>XMM</code> register</li>
+<li>Source operand can’t be an immediate</li>
+</ul>
+<h3 id="multiplication-mulss-mulsd">Multiplication (<code>mulss</code>, <code>mulsd</code>)</h3>
+<div class="highlight"><pre><span></span><span class="nf">mulss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<span class="nf">mulsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</pre></div>
+<ul>
+<li>Destination operands must be an <code>XMM</code> register</li>
+<li>Source operand can’t be an immediate</li>
+</ul>
+<h3 id="division-divss-divsd">Division (<code>divss</code>, <code>divsd</code>)</h3>
+<div class="highlight"><pre><span></span><span class="nf">divss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<span class="nf">divsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</pre></div>
+<ul>
+<li>Destination operands must be an <code>XMM</code> register</li>
+<li>Source operand can’t be an immediate</li>
+</ul>
+<h3 id="square-root-sqrtss-sqrtsd">Square Root (<code>sqrtss</code>, <code>sqrtsd</code>)</h3>
+<div class="highlight"><pre><span></span><span class="nf">sqrtss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<span class="nf">sqrtsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</pre></div>
+<ul>
+<li>Destination operands must be an <code>XMM</code> register</li>
+<li>Source operand can’t be an immediate</li>
+</ul>
+<h3 id="control-instructions">Control Instructions</h3>
+<p>There are ordered and unordered floating point compare instructions.
+Here only the unordered floating point instructions shown.</p>
+<div class="highlight"><pre><span></span><span class="nf">ucomiss</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+<span class="nf">ucomisd</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+</pre></div>
+<ul>
+<li>Operands are not changed</li>
+<li><code>op1</code> must be an <code>XMM</code> register</li>
+<li><code>op2</code> may be <code>XMM</code> register or memory</li>
+<li>No immediate operands are allowed</li>
+</ul>
 <h1 id="logical-commands">Logical Commands</h1>
 <h2 id="and-or-and-xor-and-or-xor">And, Or and Xor (<code>AND</code>, <code>OR</code>, <code>XOR</code>)</h2>
 <p>Bit-wise <strong>and</strong>, <strong>or</strong> or <strong>xor</strong> operation. </p>
