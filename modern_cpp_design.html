@@ -234,6 +234,67 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p>Local (nested) classes can be used (defined) inside of template functions:</p>
 <p><em><span class="dquo">“</span>What makes local classes truly interesting is that you can use them in template functions. Local classes defined inside template functions can use the template parameters of the enclosing function.”</em></p>
 <p><em><span class="dquo">“</span>Local classes do have a unique feature, though: They are <strong>final</strong>. Outside users cannot derive from a class hidden in a function.”</em></p>
+<h3 id="detecting-convertibility-and-inheritance-at-compile-time">Detecting Convertibility and Inheritance at Compile Time</h3>
+<p>See also <a href="http://en.cppreference.com/w/cpp/language/sfinae"><span class="caps">SFINAE</span></a></p>
+<p><em><span class="dquo">“</span>How can we write a function that accepts ‘anything else’? […] We need a match that’s ‘worse’ than an automatic conversion - that is, a conversion that kicks in if and only if there’s no automatic conversion. A quick look through the conversion rules applied for a function call yields the ellipsis match, which is the worst of all - the bottom of the list”</em></p>
+<p><em><span class="dquo">“</span>Passing a C++ object to a function with ellipses has undefined results, but this doesn’t matter. Nothing actually calls the function. It’s not even implemented. Recall that sizeof does not evaluate its argument.)”</em></p>
+<p>See also: <a href="https://stackoverflow.com/questions/3634564/type-safety-by-using-the-ellipsis-notation/3634934#3634934">stackoverflow</a></p>
+<p><em><span class="dquo">“</span>[…] how much you can do with functions […], that not only don’t do anything but don’t even really exist at all [(just declared but not defined)]?”</em></p>
+<p><em><span class="dquo">“</span>If template code applies const twice (to a type that’s already const), the second const is ignored.”</em></p>
+<h3 id="optimized-parameter-types">Optimized Parameter Types</h3>
+<p><em><span class="dquo">“</span>A detail that must be carefully handled is that C++ does not allow references to references. Thus, if <code>T</code> is already a reference, you should not add one more reference to it.”</em></p>
+<h2 id="typelists">Typelists</h2>
+<p><em><span class="dquo">“</span>templates cannot have a variable number of parameters”</em></p>
+<p><em><span class="dquo">“</span>virtual functions cannot be templates”</em></p>
+<h3 id="intermezzo">Intermezzo</h3>
+<p>About “meta functions” (like <code>Length</code>) for <code>Typelist</code>s that are implemented in a functional way:</p>
+<p><em><span class="dquo">“</span>Couldn’t we develop a version of Length that’s iterative, instead of recursive? After all, iteration is more natural to C++ than recursion.”</em></p>
+<p><em><span class="dquo">“</span>template specialization [..] provide the equivalent of if statements at compile time.”</em></p>
+<p><em><span class="dquo">“</span>All compile-time values are <strong>immutable</strong>. After you’ve defined an integral constant, say an enumerated value, you cannot change it (that is, assign another value to it).”</em></p>
+<p><em><span class="dquo">“</span>Type definitions (<code>typedef</code>s) can be seen as introducing named type constants. Again, after definition, they are frozen - you cannot later redefine a <code>typedef</code>d symbol to hold another type.”</em></p>
+<h3 id="erasing-a-type-from-a-typelist">Erasing a Type from a Typelist</h3>
+<p><em><span class="dquo">“</span>[If] there is no default version of [a] template […] you can instantiate [it] only with certain types.”</em></p>
+<h1 id="components">Components</h1>
+<h2 id="generalized-functors">Generalized Functors</h2>
+<p><em><span class="dquo">“</span>Generalized functors, [are] a powerful abstraction that allows decoupled interobject communication.”</em></p>
+<ul>
+<li><em><span class="dquo">“</span><strong>Encapsulates</strong> any processing invocation”</em></li>
+<li><em><span class="dquo">“</span>Is <strong>typesafe</strong>”</em></li>
+<li><em><span class="dquo">“</span>Is an <strong>object with value semantics</strong>: copying, assignment, and pass by value, does not expose virtual member functions”</em></li>
+<li><em><span class="dquo">“</span>Can store state and invoke member functions”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Two important aspects of the Command pattern:</em></p>
+<ul>
+<li><em>Interface separation. The invoker is isolated from the receiver.</em></li>
+<li><em>Time separation. Command stores a ready-to-go processing request that’s to be started later.</em>”</li>
+</ul>
+<h3 id="c-callable-entities">C++ Callable Entities</h3>
+<p><em><span class="dquo">“</span>In addition to simple callbacks [function pointers], C++ defines many more entities that support the function-call operator. Let’s enumerate all the things that support <code>operator()</code> in C++.”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>C-like functions”</em></li>
+<li><em><span class="dquo">“</span>C-like pointers to functions”</em></li>
+<li><em><span class="dquo">“</span>References to functions (which essentially act like const pointers to functions)”</em></li>
+<li><em><span class="dquo">“</span>Functors, that is, objects that define an <code>operator()</code><span class="dquo">“</span></em></li>
+<li><em><span class="dquo">“</span>The result of applying <code>operator.*</code> or <code>operator-&gt;*</code> having a pointer to a member function in the right-hand side of the expression”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>You can add a pair of parentheses to the right of any of the enumerated items, put an appropriate list of arguments inside, and get some processing done. No other objects in C++ allow this except the ones just listed.”</em> (before C++11)</p>
+<h3 id="the-functor-class-template-skeleton">The Functor Class Template Skeleton</h3>
+<p><em><span class="dquo">“</span>In C++ a bald pointer to a polymorphic type does not strictly have first-class semantics because of the ownership issue.”</em></p>
+<p><em><span class="dquo">“</span>C++ does not instantiate member functions for templates until they are <strong>actually used</strong>.”</em></p>
+<h3 id="handling-functors">Handling Functors</h3>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">R</span><span class="p">,</span> <span class="k">class</span> <span class="nc">TList</span><span class="o">&gt;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Fun</span><span class="o">&gt;</span> 
+<span class="n">Functor</span><span class="o">&lt;</span><span class="n">R</span><span class="p">,</span> <span class="n">TList</span><span class="o">&gt;::</span><span class="n">Functor</span><span class="p">(</span><span class="k">const</span> <span class="n">Fun</span><span class="o">&amp;</span> <span class="n">fun</span><span class="p">)</span> 
+  <span class="o">:</span> <span class="n">spImpl_</span><span class="p">(</span><span class="k">new</span> <span class="n">FunctorHandler</span><span class="o">&lt;</span><span class="n">Functor</span><span class="p">,</span> <span class="n">Fun</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fun</span><span class="p">))</span>
+<span class="p">{</span> <span class="p">}</span>
+</pre></div>
+<p><em><span class="dquo">“</span>The two template parameter sets are necessary: The <code>template &lt;typename R, class TList&gt;</code> stands for the class template <code>Functor</code>, and <code>template &lt;typename Fun&gt;</code> stands for the parameter that the constructor itself takes. […] is known as an ‘out-of-class member template definition’.”</em></p>
+<h3 id="argument-and-return-type-conversions">Argument and Return Type Conversions</h3>
+<p><em><span class="dquo">“</span>Template processing predates compiling, allowing you to operate at source-code level. In object-oriented programming, in contrast, the power comes from late (after compilation) binding of names to values. Thus, object-oriented programming fosters reuse in the form of binary components, whereas generic programming fosters reuse at the source-code level. […] The two techniques complement each other.”</em></p>
+<p><em><span class="dquo">“</span>pointers to member functions and their two related operators - <code>.*</code> and <code>-&gt;*</code> - reveals strange features. There is no C++ type for the result of <code>geronimo.*pActivity</code> and <code>pGeronimo-&gt;*pActivity</code>. Both are binary operators [that] return something to which you can apply the function-call operator immediately, but that ‘something’ does not have a type.”</em></p>
+<p><em><span class="dquo">“</span>The standard says, ‘If the result of <code>.*</code> or <code>-&gt;*</code> is a function, then that result can be used only as the operand for the function call <code>operator()</code>.”</em></p>
+<p><em><span class="dquo">“</span>You cannot store the result of <code>operator.*</code> or <code>operator-&gt;*</code> in any way, although there is an entity that holds the fusion between your object and the pointer to a member function”</em></p>
+<p><em><span class="dquo">“</span>pointers to member functions and the two related operators are a curiously half-baked concept in C++. And by the way, you cannot have references to member functions (although you can have references to regular functions).”</em></p>
   </div>
 
   <hr/>
