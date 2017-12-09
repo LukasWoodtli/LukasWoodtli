@@ -322,6 +322,28 @@ Class templates are customizable in ways not supported by regular classes.”</
 <li><em>Destructor of <code>PointerType</code></em></li>
 </ol>
 <p><em><span class="dquo">“</span>In a nutshell, you have a nifty way of implementing locked function calls. This idiom has broad uses with multithreading and locked resource access. You can have <code>PointerType</code><span class="quo">‘</span>s constructor lock the resource, and then you can access the resource; finally, <code>PointerType</code><span class="quo">‘</span>s destructor unlocks the resource.”</em></p>
+<h3 id="ownership-handling-strategies">Ownership-Handling Strategies</h3>
+<p><em><span class="dquo">“</span>A smart pointer is a first-class value that takes care of deleting the pointed-to object under the covers. The client can intervene in the pointee object’s lifetime by issuing calls to helper management functions.”</em></p>
+<p><em><span class="dquo">“</span>self-ownership, smart pointers must carefully track the pointee object, especially during copying, assignment, and destruction.”</em></p>
+<h3 id="copy-on-write">Copy on Write</h3>
+<p><em><span class="dquo">“</span>The idea that underlies <span class="caps">COW</span> is to clone the pointee object at the first attempt of modification; until then, several pointers can share the same object. Smart pointers, however, are not the best place to implement <span class="caps">COW</span>, because smart pointers cannot differentiate between calls to const and non- const member functions of the pointee object.”</em></p>
+<p><em><span class="dquo">“</span>Function invocations for the pointee object happen somewhere beyond the reach of the smart pointer.”</em></p>
+<h3 id="reference-counting">Reference Counting</h3>
+<p><em><span class="dquo">“</span>You should not keep dumb pointers and smart pointers to the same object.”</em></p>
+<p><em><span class="dquo">“</span>The actual counter must be shared among smart pointer objects”</em></p>
+<p><em><span class="dquo">“</span>Reference management - be it counting or linking - is a victim of the resource leak known as <strong>cyclic reference</strong>.”</em></p>
+<h3 id="destructive-copy">Destructive Copy</h3>
+<p><em><span class="dquo">“</span>C++ etiquette calls for the right-hand side of the copy constructor and the assignment operator to be a reference to a <code>const</code> object. Classes that foster destructive copy break this convention for obvious reasons. Because etiquette exists for a reason, you should expect negative consequences if you break it.”</em></p>
+<p><em><span class="dquo">“</span>Because they do not support value semantics, smart pointers with destructive copy cannot be stored in standard containers and in general must be handled with almost as much care as raw pointers.”</em></p>
+<p><em><span class="dquo">“</span>On the bright side, smart pointers with destructive copy have significant advantages:</em></p>
+<ul>
+<li><em>They incur almost no overhead.</em></li>
+<li><em>They are good at enforcing ownership transfer semantics.</em></li>
+<li><em>They are good as return values from functions.</em></li>
+<li><em>They are excellent as stack variables in functions that have multiple return paths.</em>”</li>
+</ul>
+<h3 id="the-address-of-operator">The Address-of Operator</h3>
+<p><em><span class="dquo">“</span>There are two reasons why overloading unary <code>operator&amp;</code> is not a very good idea. One reason is that exposing the address of the pointed-to object implies giving up any automatic ownership management. […] The second reason, a more pragmatic one, is that overloading unary <code>operator&amp;</code> makes the smart pointer unusable with <span class="caps">STL</span> containers. Actually, overloading unary <code>operator&amp;</code> for a type pretty much makes generic programming impossible for that type, because the address of an object is too fundamental a property to play with naively. Most generic code assumes that applying <code>&amp;</code> to an object of type <code>T</code> returns an object of type <code>T*</code> […] address-of is a fundamental concept. If you defy this concept, generic code behaves strangely either at compile time or - worse - at runtime.”</em></p>
   </div>
 
   <hr/>
