@@ -295,6 +295,33 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p><em><span class="dquo">“</span>The standard says, ‘If the result of <code>.*</code> or <code>-&gt;*</code> is a function, then that result can be used only as the operand for the function call <code>operator()</code>.”</em></p>
 <p><em><span class="dquo">“</span>You cannot store the result of <code>operator.*</code> or <code>operator-&gt;*</code> in any way, although there is an entity that holds the fusion between your object and the pointer to a member function”</em></p>
 <p><em><span class="dquo">“</span>pointers to member functions and the two related operators are a curiously half-baked concept in C++. And by the way, you cannot have references to member functions (although you can have references to regular functions).”</em></p>
+<h2 id="implementing-singletons">Implementing Singletons</h2>
+<h3 id="addressing-the-dead-reference-problem-ii-singletons-with-longevity">Addressing the Dead Reference Problem (<span class="caps">II</span>): Singletons with Longevity</h3>
+<p><em><span class="dquo">“</span>The concept emerging here is that of <strong>longevity control</strong> and is independent of the concept of a singleton: The greater longevity an object has, the later it will be destroyed. It doesn’t matter whether the object is a singleton or some global dynamically allocated object.”</em></p>
+<h3 id="the-double-checked-locking-pattern">The Double-Checked Locking Pattern</h3>
+<p><em><span class="dquo">“</span>Very experienced multithreaded programmers know that even the Double-Checked Locking pattern, although correct on paper, is not always correct in practice. In certain symmetric multiprocessor environments (the ones featuring the so-called relaxed memory model), the writes are committed to the main memory in bursts, rather than one by one. The bursts occur in increasing order of addresses, not in chronological order.”</em></p>
+<p><em><span class="dquo">“</span>Thus, sadly, the Double-Checked Locking pattern is known to be defective for such systems.”</em></p>
+<p><em><span class="dquo">“</span>Usually the platform offers alternative, nonportable concurrency-solving primitives, such as memory barriers, which ensure ordered access to memory.”</em></p>
+<p><em><span class="dquo">“</span>A reasonable compiler should generate correct, nonspeculative code around <code>volatile</code> objects.”</em></p>
+<h2 id="smart-pointers">Smart Pointers</h2>
+<p><em><span class="dquo">“</span>Smart pointers are C++ objects that simulate simple pointers by implementing <code>operator-&gt;</code> and the unary <code>operator*</code>. In addition to sporting pointer syntax and semantics, smart pointers often perform useful tasks - such as memory management or locking - under the covers, thus freeing the application from carefully managing the lifetime of pointed-to objects.”</em></p>
+<h3 id="the-deal">The Deal</h3>
+<p><em><span class="dquo">“</span>Smart pointers have value semantics, whereas some simple pointers do not. An object with value semantics is an object that you can <strong>copy</strong> and <strong>assign</strong> to. A plain <code>int</code> is the perfect example of a first-class object. You can create, copy, and change integer values freely. A pointer that you use to iterate in a buffer also has value semantics - you initialize it to point to the beginning of the buffer, and you bump it until you reach the end. Along the way, you can copy its value to other variables to hold temporary results. With pointers that hold values allocated with <code>new</code>, however, the story is very different. Once you have written</em></p>
+<div class="highlight"><pre><span></span><span class="n">Widget</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Widget</span><span class="p">;</span>
+</pre></div>
+<p><em>the variable <code>p</code> not only points to, but also <strong>owns</strong>, the memory allocated for the <code>Widget</code> object. This is because later you must issue <code>delete p</code> to ensure that the <code>Widget</code> object is destroyed and its memory is released.”</em></p>
+<p><em><span class="dquo">“</span>In short, in the smart pointers’ world, ownership is an important topic. By providing ownership management, smart pointers are able to support integrity guarantees and full value semantics. Because ownership has much to do with constructing, copying, and destroying smart pointers, it’s easy to figure out that these are the most vital functions of a smart pointer.”</em></p>
+<h3 id="storage-of-smart-pointers">Storage of Smart Pointers</h3>
+<p><em><span class="dquo">“</span>Each type that’s hardcoded in a piece of generic code decreases the genericity of the code. Hardcoded types are to generic code what magic constants are to regular code.”</em></p>
+<p><em><span class="dquo">“</span>When you apply <code>operator-&gt;</code> to a type that’s not a built-in pointer, the compiler does an interesting thing. After looking up and applying the user-defined <code>operator-&gt;</code> to that type, it applies <code>operator-&gt;</code> again to the result. The compiler keeps doing this recursively until it reaches a native pointer, and only then proceeds with member access. It follows that a smart pointer’s <code>operator-&gt;</code> does not have to return a pointer. It can return an object that in turn implements <code>operator-&gt;</code>, without changing the use syntax.”</em></p>
+<p><em><span class="dquo">“</span>If you return an object of type <code>PointerType</code> by value from <code>operator-&gt;</code>, the sequence of execution is as follows:</em></p>
+<ol>
+<li><em>Constructor of <code>PointerType</code></em></li>
+<li><em><code>PointerType::operator-&gt;</code> called; likely returns a pointer to an object of type <code>PointeeType</code></em></li>
+<li><em>Member access for <code>PointeeType</code> - likely a function call</em></li>
+<li><em>Destructor of <code>PointerType</code></em></li>
+</ol>
+<p><em><span class="dquo">“</span>In a nutshell, you have a nifty way of implementing locked function calls. This idiom has broad uses with multithreading and locked resource access. You can have <code>PointerType</code><span class="quo">‘</span>s constructor lock the resource, and then you can access the resource; finally, <code>PointerType</code><span class="quo">‘</span>s destructor unlocks the resource.”</em></p>
   </div>
 
   <hr/>
