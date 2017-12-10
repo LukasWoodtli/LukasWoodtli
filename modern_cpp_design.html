@@ -281,6 +281,7 @@ Class templates are customizable in ways not supported by regular classes.”</
 <h3 id="the-functor-class-template-skeleton">The Functor Class Template Skeleton</h3>
 <p><em><span class="dquo">“</span>In C++ a bald pointer to a polymorphic type does not strictly have first-class semantics because of the ownership issue.”</em></p>
 <p><em><span class="dquo">“</span>C++ does not instantiate member functions for templates until they are <strong>actually used</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Good C++ libraries sport this interesting feature: Whenever something ambiguous may appear, they allow the user to disambiguate it by writing some explicit code. At the other end of the spectrum are libraries that misuse silent C++ features (especially conversions and pointer ownership). They allow the user to type less, but at the cost of making dubious assumptions and decisions on the user’s behalf.”</em></p>
 <h3 id="handling-functors">Handling Functors</h3>
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">R</span><span class="p">,</span> <span class="k">class</span> <span class="nc">TList</span><span class="o">&gt;</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Fun</span><span class="o">&gt;</span> 
@@ -295,6 +296,8 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p><em><span class="dquo">“</span>The standard says, ‘If the result of <code>.*</code> or <code>-&gt;*</code> is a function, then that result can be used only as the operand for the function call <code>operator()</code>.”</em></p>
 <p><em><span class="dquo">“</span>You cannot store the result of <code>operator.*</code> or <code>operator-&gt;*</code> in any way, although there is an entity that holds the fusion between your object and the pointer to a member function”</em></p>
 <p><em><span class="dquo">“</span>pointers to member functions and the two related operators are a curiously half-baked concept in C++. And by the way, you cannot have references to member functions (although you can have references to regular functions).”</em></p>
+<h3 id="real-world-issues-ii-heap-allocation">Real-World Issues <span class="caps">II</span>: Heap Allocation</h3>
+<p><em><span class="dquo">“</span>You might expect a pointer to a member function to occupy 4 bytes, just as pointers to functions do. However, pointers to methods are actually little tagged unions. They deal with multiple virtual inheritance and virtual/nonvirtual functions.”</em></p>
 <h2 id="implementing-singletons">Implementing Singletons</h2>
 <h3 id="addressing-the-dead-reference-problem-ii-singletons-with-longevity">Addressing the Dead Reference Problem (<span class="caps">II</span>): Singletons with Longevity</h3>
 <p><em><span class="dquo">“</span>The concept emerging here is that of <strong>longevity control</strong> and is independent of the concept of a singleton: The greater longevity an object has, the later it will be destroyed. It doesn’t matter whether the object is a singleton or some global dynamically allocated object.”</em></p>
@@ -391,6 +394,9 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p><em><span class="dquo">“</span>The `dynamic_cast operator is designed to reach the right object in a class hierarchy, no matter how intricate its structure is.”</em></p>
 <p><em><span class="dquo">“</span><code>dynamic_cast</code> is much slower than <code>static_cast</code>. Its power comes at a cost.”</em></p>
 <p><em><span class="dquo">“</span>What is double dispatching? You can see it as finding a handler function (or functor) in a two-dimensional space. On one axis are the types of the left-hand operator. On the other axis are the types of the right-hand operator. At the intersection between two types, you find their respective handler function.”</em></p>
+<h3 id="summary_2">Summary</h3>
+<p><em><span class="dquo">“</span>Multimethods are dispatched depending on multiple classes simultaneously. This allows you to implement virtual functions for collections of types instead of one type at a time.”</em></p>
+<p><em><span class="dquo">“</span>Multimethods are needed in applications that call algorithms that depend on the type of two or more objects. Typical examples include collisions between polymorphic objects, intersections, and displaying objects on various target devices.”</em></p>
   </div>
 
   <hr/>
