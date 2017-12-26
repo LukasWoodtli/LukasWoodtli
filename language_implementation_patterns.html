@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Language Implementation&nbsp;Patterns · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/language_implementation_patterns.html">Language Implementation&nbsp;Patterns</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/parsing.html">Parsing</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month12">12</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month12">14</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>This page collects notes and citations from the book:</p>
+<p><a href="https://pragprog.com/book/tpdsl/language-implementation-patterns">Language Implementation Patterns by Terence Parr</a></p>
+<p>Some of my examples can be foudn <a href="LukasWoodtli/LanguageImplementationPatterns">here</a></p>
+<div class="toc">
+<ul>
+<li><a href="#getting-started-with-parsing">Getting Started with Parsing</a><ul>
+<li><a href="#basic-parsing-patterns">Basic Parsing Patterns</a><ul>
+<li><a href="#identifying-phrase-structure">Identifying Phrase Structure</a></li>
+<li><a href="#building-recursive-descent-parsers">Building Recursive-Descent Parsers</a></li>
+<li><a href="#parser-construction-using-a-grammar-dsl">Parser Construction Using a Grammar <span class="caps">DSL</span></a></li>
+<li><a href="#tokenizing-sentences">Tokenizing Sentences</a></li>
+<li><a href="#pattern-1-mapping-grammars-to-recursive-descent-recognizers">Pattern 1: Mapping Grammars to Recursive-Descent Recognizers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="getting-started-with-parsing">Getting Started with Parsing</h1>
+<h2 id="basic-parsing-patterns">Basic Parsing Patterns</h2>
+<p><em><span class="dquo">“</span>The act of recognizing a phrase by computer is called <strong>parsing</strong>.”</em></p>
+<p><em><span class="dquo">“</span>You can think of grammars as functional specifications or design documents for parsers.”</em></p>
+<p><em><span class="dquo">“</span>Grammars are more than designs, though. They are actually executable ‘programs’ written in a domain-specific language (<span class="caps">DSL</span>) specifically designed for expressing language structures.”</em></p>
+<h3 id="identifying-phrase-structure">Identifying Phrase Structure</h3>
+<p><em><span class="dquo">“</span>Vocabulary symbols (tokens) play different roles like variable and operator. We can even identify the role of token subsequences like expression.”</em></p>
+<p><em><span class="dquo">“</span>Parse trees are important because they tell us everything we need to know about the syntax (structure) of a phrase.”</em></p>
+<p><em><span class="dquo">“</span>To parse [is to generate] a two-dimensional parse tree from a flat token sequence.”</em></p>
+<h3 id="building-recursive-descent-parsers">Building Recursive-Descent Parsers</h3>
+<p><em><span class="dquo">“</span>A parser checks whether a sentence conforms to the syntax of a language.”</em></p>
+<p><em><span class="dquo">“</span>A language is just a set of valid sentences.”</em></p>
+<p><em><span class="dquo">“</span>A top-down parser […] starts at the top of the parse tree and works its way down to the token leaf nodes.”</em></p>
+<p><em><span class="dquo">“</span>Recursive-Descent Parser</em></p>
+<ul>
+<li><em><strong>Descent</strong> refers to its top-down nature, and</em></li>
+<li><em><strong>Recursive</strong> refers to the fact that its functions potentially call themselves.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Nesting in a parse tree begets [(Kind zeugen)] recursion in a recursive-descent parser.”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">LL</span>(1)</em></p>
+<ul>
+<li><em>The first <strong>L</strong> means ‘read the input from left to right.’</em></li>
+<li><em>The second <strong>L</strong> means ‘descend into parse tree children from left to right.’”</em></li>
+</ul>
+<h3 id="parser-construction-using-a-grammar-dsl">Parser Construction Using a Grammar <span class="caps">DSL</span></h3>
+<p><em><span class="dquo">“</span>[We can use] a <span class="caps">DSL</span> specifically designed for describing languages. ‘Programs’ in this <span class="caps">DSL</span> are called <strong>grammars</strong>. Tools that translate grammars to parsers are called <strong>parser generators</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Grammars are […] functional specifications for languages.”</em></p>
+<p><em><span class="dquo">“</span>Substructures in the parse tree and functions in the parser correspond to <strong>rules</strong> in a grammar.”</em></p>
+<p><em><span class="dquo">“</span>[Lexer:] combining input characters into vocabulary symbols (tokens).”</em></p>
+<h3 id="tokenizing-sentences">Tokenizing Sentences</h3>
+<p><em><span class="dquo">“</span>Recognizers that feed off character streams are called <strong>tokenizers</strong> or <strong>lexers</strong>”</em></p>
+<p><em><span class="dquo">“</span>At the character level, we refer to syntax as the <strong>lexical structure</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Grammars describe language structures, and so we can also use them for lexical specifications.”</em></p>
+<p><em><span class="dquo">“</span>Lexical rules start with an uppercase letter”</em></p>
+<p><em><span class="dquo">“</span>Lexer and parser design patterns […] are nearly identical. […] The only difference lies in the type of their input symbols, characters or tokens.”</em></p>
+<h3 id="pattern-1-mapping-grammars-to-recursive-descent-recognizers">Pattern 1: Mapping Grammars to Recursive-Descent Recognizers</h3>
+<p><em><span class="dquo">“</span>Even when building lexers and parsers by hand, the best starting point is a grammar.”</em></p>
+<p><em><span class="dquo">“</span><strong>Left recursion</strong> results in an infinite method invocation loop.”</em></p>
+<p><em><span class="dquo">“</span>The following rule yields a parser that does not terminate:</em>”</p>
+<div class="highlight"><pre><span></span><span class="nl">r</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p><em><span class="dquo">“</span>we’d end up with a function that immediately called itself”</em></p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="err">​</span> <span class="n">r</span><span class="o">()</span> <span class="o">{</span> <span class="n">r</span><span class="o">();</span> <span class="n">match</span><span class="o">(</span><span class="n">X</span><span class="o">);</span> <span class="o">}</span>
+</pre></div>
+<p><em><span class="dquo">“</span>Besides left-recursive rules, there are other grammar constructs that yield <strong>nondeterministic</strong> recursive-descent recognizers. A nondeterministic recognizer cannot decide which path to take.”</em></p>
+<p><em><span class="dquo">“</span>A grammar, G, is a set of rules from which we generate a class definition (in any object-oriented programming language) containing a method for each rule”</em></p>
+<p><em><span class="dquo">“</span>For each rule, r, defined in a grammar, we build a method of the same name”</em></p>
+<p><em><span class="dquo">“</span>Token references for token type <code>T</code> become calls to <code>match(T)</code>. match is a support method in Parser that consumes a token if <code>T</code> is the current lookahead token. If there is a mismatch, match throws an exception.”</em></p>
+<p><em><span class="dquo">“</span>Alternatives become either a switch or an if-then-else sequence”</em></p>
+<p><img alt="Alternatives" class="img-responsive" src="/images/language_implementation_patterns/alternatives.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">switch</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">token</span><span class="o">&gt;)</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;:</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;:</span>
+    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span>
+    <span class="k">break</span><span class="err">​</span><span class="o">;</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;:</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;:</span>
+    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span>
+    <span class="k">break</span><span class="err">​</span><span class="o">;</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;:</span>
+  <span class="k">case</span> <span class="err">​</span><span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;:</span>
+    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span>
+    <span class="k">break</span><span class="err">​</span><span class="o">;</span>
+  <span class="k">default</span><span class="o">:</span>
+    <span class="o">&lt;</span><span class="k">throw</span><span class="err">​</span><span class="o">-</span><span class="n">exception</span><span class="o">&gt;</span>
+  <span class="o">}</span>
+</pre></div>
+<p>*”Optional subrule <code>(T)?</code><span class="dquo">“</span></p>
+<p><img alt="Option" class="img-responsive" src="/images/language_implementation_patterns/option.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">is</span><span class="o">-</span><span class="n">T</span><span class="o">&gt;)</span> <span class="o">{</span> <span class="n">match</span><span class="o">(</span><span class="n">T</span><span class="o">);}</span> <span class="c1">// no error else clause</span>
+</pre></div>
+<p><em><span class="dquo">“</span>One or more <code>(...)+</code> subrules”</em></p>
+<p><img alt="One or more" class="img-responsive" src="/images/language_implementation_patterns/one_or_more.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">do</span> <span class="o">{</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
+<span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;);</span>
+</pre></div>
+<p><em><span class="dquo">“</span>Zero or more <code>(...)*</code> subrules”</em></p>
+<p><img alt="Zero or more" class="img-responsive" src="/images/language_implementation_patterns/zero_or_more.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;)</span> <span class="o">{</span>
+  <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
+</pre></div>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/make_as_multi-paradigm_language.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
