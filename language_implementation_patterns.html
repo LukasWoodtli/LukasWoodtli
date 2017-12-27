@@ -126,6 +126,8 @@
           href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
         <a class="label label-primary" 
           href="http://lukaswoodtli.github.io/tag/parsing.html">Parsing</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/design_patterns.html">Design Patterns</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month12">12</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month12">14</a>
@@ -149,7 +151,19 @@
 <li><a href="#building-recursive-descent-parsers">Building Recursive-Descent Parsers</a></li>
 <li><a href="#parser-construction-using-a-grammar-dsl">Parser Construction Using a Grammar <span class="caps">DSL</span></a></li>
 <li><a href="#tokenizing-sentences">Tokenizing Sentences</a></li>
-<li><a href="#pattern-1-mapping-grammars-to-recursive-descent-recognizers">Pattern 1: Mapping Grammars to Recursive-Descent Recognizers</a></li>
+<li><a href="#pattern-1-mapping-grammars-to-recursive-descent-recognizers">Pattern 1: Mapping Grammars to Recursive-Descent Recognizers</a><ul>
+<li><a href="#alternatives">Alternatives</a></li>
+<li><a href="#optional-subrule-t">Optional subrule (T)?</a></li>
+<li><a href="#one-or-more-subrules">One or more (…)+ subrules</a></li>
+<li><a href="#zero-or-more-subrules">Zero or more (…)* subrules</a></li>
+</ul>
+</li>
+<li><a href="#pattern-2-ll1-recursive-descent-lexer">Pattern 2: <span class="caps">LL</span>(1) Recursive-Descent Lexer</a></li>
+<li><a href="#pattern-3-ll1-recursive-descent-parser">Pattern 3: <span class="caps">LL</span>(1) Recursive-Descent Parser</a><ul>
+<li><a href="#deterministic-parsing-decisions">Deterministic Parsing Decisions</a></li>
+</ul>
+</li>
+<li><a href="#pattern-4-llk-recursive-descent-parser">Pattern 4: <span class="caps">LL</span>(k) Recursive-Descent Parser</a></li>
 </ul>
 </li>
 </ul>
@@ -204,6 +218,7 @@
 <p><em><span class="dquo">“</span>A grammar, G, is a set of rules from which we generate a class definition (in any object-oriented programming language) containing a method for each rule”</em></p>
 <p><em><span class="dquo">“</span>For each rule, r, defined in a grammar, we build a method of the same name”</em></p>
 <p><em><span class="dquo">“</span>Token references for token type <code>T</code> become calls to <code>match(T)</code>. match is a support method in Parser that consumes a token if <code>T</code> is the current lookahead token. If there is a mismatch, match throws an exception.”</em></p>
+<h4 id="alternatives">Alternatives</h4>
 <p><em><span class="dquo">“</span>Alternatives become either a switch or an if-then-else sequence”</em></p>
 <p><img alt="Alternatives" class="img-responsive" src="/images/language_implementation_patterns/alternatives.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">switch</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">token</span><span class="o">&gt;)</span> <span class="o">{</span>
@@ -223,20 +238,45 @@
     <span class="o">&lt;</span><span class="k">throw</span><span class="err">​</span><span class="o">-</span><span class="n">exception</span><span class="o">&gt;</span>
   <span class="o">}</span>
 </pre></div>
-<p>*”Optional subrule <code>(T)?</code><span class="dquo">“</span></p>
+<h4 id="optional-subrule-t">Optional subrule <code>(T)?</code></h4>
 <p><img alt="Option" class="img-responsive" src="/images/language_implementation_patterns/option.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">is</span><span class="o">-</span><span class="n">T</span><span class="o">&gt;)</span> <span class="o">{</span> <span class="n">match</span><span class="o">(</span><span class="n">T</span><span class="o">);}</span> <span class="c1">// no error else clause</span>
 </pre></div>
-<p><em><span class="dquo">“</span>One or more <code>(...)+</code> subrules”</em></p>
+<h4 id="one-or-more-subrules">One or more <code>(...)+</code> subrules</h4>
 <p><img alt="One or more" class="img-responsive" src="/images/language_implementation_patterns/one_or_more.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">do</span> <span class="o">{</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
 <span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;);</span>
 </pre></div>
-<p><em><span class="dquo">“</span>Zero or more <code>(...)*</code> subrules”</em></p>
+<h4 id="zero-or-more-subrules">Zero or more <code>(...)*</code> subrules</h4>
 <p><img alt="Zero or more" class="img-responsive" src="/images/language_implementation_patterns/zero_or_more.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;)</span> <span class="o">{</span>
   <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
 </pre></div>
+<h3 id="pattern-2-ll1-recursive-descent-lexer">Pattern 2: <span class="caps">LL</span>(1) Recursive-Descent Lexer</h3>
+<p><em><span class="dquo">“</span>Lexers derive a stream of tokens from a character stream by recognizing lexical patterns. Lexers are also called <strong>scanners</strong>, <strong>lexical analyzers</strong>, and <strong>tokenizers</strong>.”</em></p>
+<p><em><span class="dquo">“</span>This pattern can recognize nested lexical structures such as nested comments”</em></p>
+<p><em><span class="dquo">“</span>The goal of the lexer is to emit a sequence of tokens. Each token has two primary attributes: a <strong>token type</strong> (symbol category) and the text associated with it.”</em></p>
+<h3 id="pattern-3-ll1-recursive-descent-parser">Pattern 3: <span class="caps">LL</span>(1) Recursive-Descent Parser</h3>
+<p><em><span class="dquo">“</span>It’s the weakest form of recursive-descent parser but the easiest to understand and implement.”</em></p>
+<p><em><span class="dquo">“</span>To make parsing decisions, the parser tests the current lookahead token against the alternatives’ lookahead sets. A lookahead set is the set of tokens that can begin a particular alternative.”</em></p>
+<p><em><span class="dquo">“</span>Formally, we compute lookahead sets using two computations: <span class="caps">FIRST</span> and <span class="caps">FOLLOW</span>. In practice, though, it’s easier to simply ask ourselves, ‘What tokens can possibly start phrases beginning at this alternative?’”</em></p>
+<h4 id="deterministic-parsing-decisions">Deterministic Parsing Decisions</h4>
+<p><em><span class="dquo">“</span><span class="caps">LL</span> parsing decisions work only when the lookahead sets predicting the alternatives are disjoint”</em></p>
+<p><em><span class="dquo">“</span>If the lookahead sets overlap, though, the parser is <strong>nondeterministic</strong>-it cannot determine which alternative to choose.”</em></p>
+<p><em><span class="dquo">“</span>Building an <span class="caps">LL</span>(1) parser is the easiest way to learn about parsers. In practice, though, we really need more than a single token of lookahead.”</em></p>
+<h3 id="pattern-4-llk-recursive-descent-parser">Pattern 4: <span class="caps">LL</span>(k) Recursive-Descent Parser</h3>
+<p><em><span class="dquo">“</span>The strength of a recursive-descent parser depends entirely on the strength of its lookahead decisions.”</em></p>
+<p><em><span class="dquo">“</span>Having more lookahead is like being able to see farther down multiple paths emanating from a fork in a maze. The farther we can see ahead, the easier it is to decide which path to take. More powerful parsing decisions make it easier to build parsers.”</em></p>
+<p><em><span class="dquo">“</span>For example, we want to recognize input such as <code>[a, b=c, [d,e]]</code><span class="dquo">“</span></em></p>
+<div class="highlight"><pre><span></span><span class="nl">list</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">'['</span><span class="w"> </span><span class="nv">elements</span><span class="w"> </span><span class="s">']'</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="nl">elements</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">element</span><span class="w"> </span><span class="o">(</span><span class="err">​</span><span class="w"> </span><span class="s">','</span><span class="w"> </span><span class="err">​</span><span class="w"> </span><span class="nv">element</span><span class="o">)*</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="nl">element</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="s">'='</span><span class="w"> </span><span class="no">NAME</span><span class="w"></span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="no">NAME</span><span class="w"></span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="nv">list</span><span class="w"></span>
+<span class="w">        </span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p><em><span class="dquo">“</span><code>element</code> [is] non-<span class="caps">LL</span>(1) since the first two alternatives start with the same <code>NAME</code> token.”</em></p>
+<p><em><span class="dquo">“</span>The lookahead depth <strong>k</strong> in <span class="caps">LL</span>(k) is really a maximum not the exact, fixed amount of lookahead each parsing decision uses.”</em></p>
   </div>
 
   <hr/>
