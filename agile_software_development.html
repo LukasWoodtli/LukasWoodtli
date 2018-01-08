@@ -188,10 +188,15 @@
 </ul>
 </li>
 <li><a href="#tools">Tools</a><ul>
-<li><a href="#scrum-board">Scrum Board</a></li>
-<li><a href="#definition-of-donne">Definition of Donne</a></li>
+<li><a href="#scrum-board">Scrum Board</a><ul>
+<li><a href="#index-cards">Index Cards</a></li>
 </ul>
 </li>
+<li><a href="#definition-of-donne">Definition of Donne</a></li>
+<li><a href="#impediment-backlog">Impediment Backlog</a></li>
+</ul>
+</li>
+<li><a href="#extreme-programming-xp">eXtreme Programming (<span class="caps">XP</span>)</a></li>
 <li><a href="#general-notes">General Notes</a><ul>
 <li><a href="#tools-day">Tools Day</a></li>
 <li><a href="#knowledge-sync-up">Knowledge Sync-Up</a></li>
@@ -293,7 +298,7 @@ implemented in the new <strong>Sprint</strong>. They are put into the so called 
 </blockquote>
 <p>The meeting has three phases:</p>
 <ol>
-<li>The objective of the sprint (<span class="caps">PO</span>, 30 minutes)</li>
+<li>The objective (goal) of the sprint (<span class="caps">PO</span>, 30 minutes)</li>
 <li>Pre-Selection of requirements (<span class="caps">PO</span>, 3 hours)</li>
 <li>Analyze the requirements and split them to smaller tasks (activities)
 → put them in the Sprint Backlog (Team, 4 hours)</li>
@@ -370,6 +375,7 @@ It should not be a pure presentation but more like a workshop. In this
 meeting the <strong>Product Owner</strong> (alone) decides if all the requirements are
 implemented completely. For each requirement this is a pure yes or no
 criteria. The product that is shown at the review is potentially shippable to the users (Product increment).</p>
+<p>The review meeting should take about 4 hours and the team should need at most 2 hours to prepare it.</p>
 <blockquote>
 <p>The Sprint Review is about <strong>feedback</strong></p>
 </blockquote>
@@ -379,8 +385,11 @@ criteria. The product that is shown at the review is potentially shippable to th
 </ul>
 <p>Checklist:</p>
 <ul>
-<li>Present Sprint Goal</li>
+<li>Present Sprint Goal (<span class="caps">PO</span>)</li>
+<li>What was good/bad (team)</li>
 <li>Don’t waste time in preparing the Review</li>
+<li>Show product</li>
+<li>Workshop style: everybody is allowed to check out new features</li>
 <li>Focus on working code</li>
 <li>Fast and not beatiful</li>
 <li>Buisiness oriented<ul>
@@ -393,7 +402,7 @@ criteria. The product that is shown at the review is potentially shippable to th
 <h2 id="retrospective">Retrospective</h2>
 <p>The <strong>Retrospective</strong> is a very important meeting. All involved people have
 to attend this meeting (<span class="caps">PO</span>, <span class="caps">SM</span>, Team). No other people are allowed in this
-meeting. The topic of the meeting is to
+meeting. It is moderated my the Scrum Master. The topic of the meeting is to
 discuss the Scrum process of the last Sprint. There should be discussed
 what was good and what was bad. There have to be decided what steps will
 be donne to improve the production cycle.</p>
@@ -416,8 +425,12 @@ be donne to improve the production cycle.</p>
 <li>Summarize sprint</li>
 <li>Each person gets the chance to talk without getting interrupted<ul>
 <li>talk abut good things and what could be improved</li>
+<li>how they are feeling</li>
+<li>what is expected</li>
 </ul>
 </li>
+<li>Analyze processes and social topics</li>
+<li>Formulate goals for improvement and make them public (i.e next to Scrum Board)</li>
 </ul>
 <blockquote>
 <p>Focus on few improvements for new sprint</p>
@@ -467,13 +480,23 @@ Each team has a slightly different Scrum board but they have similarities.</p>
 </ul>
 <p>A backlog item moves from <em>Backlog</em> to <em>In Progress</em> when someone has started to work on it. After it’s finished it moves to the section <em>Donne</em> (see <em>Definition of Donne</em>).</p>
 <p>The items should be sorted by importance from top to bottom.</p>
-<p>Index Cards</p>
+<p>It’s possible to add additional information:</p>
+<ul>
+<li>Sort by importance (top to down)</li>
+<li>Add subtasks</li>
+<li>Add colors (issue, bug, test, documentatin …)</li>
+<li>Add a mark on the cards for each day that was worked on the topic</li>
+</ul>
+<h3 id="index-cards">Index Cards</h3>
 <p>All the Backlog items should be printed (or written) on index cards. So it’s easier to handle them on the Scrum Board.</p>
 <p>Handling items on index cards can also simplify the Sprint Planning Meeting or the Backlog Refinement.</p>
 <p>It’s a good idea to add a mark (sticker) on a index card for each day the issue is in the progress state. The marks can have different colors (i.e Coding, Testing, Documentation …)</p>
 <h2 id="definition-of-donne">Definition of Donne</h2>
 <p>The team with the <span class="caps">PO</span> need to decide what requirements need to be fulfiled
 for a story to be marked as <em>done</em>.</p>
+<blockquote>
+<p>Code complete is not feature complete!</p>
+</blockquote>
 <p>The best approach is to define a checklist for the stories. i.e:</p>
 <ul>
 <li>Feature/Bug is completely implemented</li>
@@ -484,6 +507,36 @@ for a story to be marked as <em>done</em>.</p>
 </ul>
 <p>Maybe for different kind of stories (features, bugs, …) a different
 checklist is needed.</p>
+<h2 id="impediment-backlog">Impediment Backlog</h2>
+<ul>
+<li>What do I need to fulfill my task. i.e<ul>
+<li>A server</li>
+<li>WiFi isn’t working</li>
+<li>Order a book</li>
+</ul>
+</li>
+</ul>
+<h1 id="extreme-programming-xp">eXtreme Programming (<span class="caps">XP</span>)</h1>
+<p>Extreme Programming has no roles and no process. There are just a few artefacts and about 25 rules:</p>
+<ul>
+<li>Pair Programing<ul>
+<li>Developers should thing loud</li>
+<li>Switch roles every 20 minutes</li>
+<li>It’s very tiring (exhausting)</li>
+</ul>
+</li>
+<li>No overtime (because it’s tiring)</li>
+<li>Refactoring<ul>
+<li>Regularly</li>
+<li>After small development steps</li>
+</ul>
+</li>
+<li><span class="caps">TDD</span>/Testing<ul>
+<li>Code coverage: 100%</li>
+</ul>
+</li>
+<li>Continous integration</li>
+</ul>
 <h1 id="general-notes">General Notes</h1>
 <h2 id="tools-day">Tools Day</h2>
 <p>Plan a fixed timebox each Sprint (i.e each Friday Afternoon) for working on tools and internal tasks.
