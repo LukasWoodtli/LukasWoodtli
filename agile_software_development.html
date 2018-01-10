@@ -173,6 +173,7 @@
 <li><a href="#stories-and-tasks">Stories and Tasks</a></li>
 </ul>
 </li>
+<li><a href="#overview">Overview</a></li>
 </ul>
 </li>
 <li><a href="#sprint-goal">Sprint Goal</a><ul>
@@ -182,7 +183,12 @@
 </ul>
 </li>
 <li><a href="#artefacts">Artefacts</a><ul>
-<li><a href="#product-backlog">Product Backlog</a></li>
+<li><a href="#product-backlog">Product Backlog</a><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#user-stories">User Stories</a></li>
+<li><a href="#tasks">Tasks</a></li>
+</ul>
+</li>
 <li><a href="#sprint-backlog">Sprint Backlog</a></li>
 <li><a href="#release-burndown">Release Burndown</a></li>
 </ul>
@@ -213,16 +219,15 @@
 <p>The <strong>Product Owner</strong> is the connection between the <strong>Team</strong> and the
 stakeholders or clients. He’s the only one who is allowed to give tasks
 to the Team. The Product Owner should not be part of the Team.
-The Product Owner maintains and manages the <strong>Product Backlog</strong>.</p>
-<p>There should be only one Product Owner per product.</p>
+The Product Owner maintains and manages the <strong>Product Backlog</strong>, release plane and the <em>Return of Investment</em>.</p>
+<p>The Product Owner is not part of the team and there should be only one Product Owner per product.</p>
 <h2 id="scrum-master-sm">Scrum Master (<span class="caps">SM</span>)</h2>
-<p>The <strong>Scrum Master</strong> is responsible that the Scrum process is realized
-properly. He’s also in charge if there are problems in the work progress
-of the Team. He has to solve sozial problems and organize anything that
-helps the Team to work productively. Ideally the Scrum Master isn’t a
+<p>The <strong>Scrum Master</strong> is responsible that the Scrum process is working properly and that everybody plays by the rules. He’s also in charge if there are problems in the work progress
+of the Team and to remove any impediments. He has to solve social problems and organize anything that
+helps the Team to work productively. Ideally the Scrum Master isn’t
 part of the Team. But often he is a member of the Developer-Team.</p>
 <h2 id="team">Team</h2>
-<p>The <strong>Team</strong> is the group of people (usually developers) that do the work.
+<p>The <strong>Team</strong> is the group of people (usually developers) that do the work. They turn the Backlog into an working increment of the product within a sprint.
 The team is self organizing. That means they decide how they do
 something. Ideally every teammember can do anything needed in the team.
 But sometimes there are special roles like teser, documentation writer
@@ -233,6 +238,7 @@ or specialists of any kind.</p>
 <li>Unit Tests</li>
 <li>Definition of Done</li>
 <li>Development Documentation</li>
+<li>Organize themselves</li>
 </ul>
 <h2 id="other">Other</h2>
 <p>There are no other people involved in the productive work cycle than
@@ -266,7 +272,14 @@ amount of risk. In Scrum they are called the Pigs.</p>
 <p>The most important timebox is the <strong>Sprint</strong>. It is a time span of two to four weeks (in most Teams it’s 2 weeks). In
 this time the team works on the tasks they have themselves comitted to
 at the <strong>Scrum Planning Meeting</strong>. At the end of this time span the team should be able to present
-a product that can be potentially delivered to the cusomer. To achieve
+a product that can be potentially delivered to the customer.</p>
+<p>The product should be (before the sprint ends):</p>
+<ul>
+<li>thoroughly tested</li>
+<li>documented (developer and customer documentation)</li>
+<li>well developed (architecture, unit tests, design…)</li>
+</ul>
+<p>To achieve
 this goal there are several meetings that help to do the work organized
 and on the right time.</p>
 <p>A Sprint has this pattern:</p>
@@ -292,7 +305,8 @@ release is created.</p>
 </blockquote>
 <p>At the beginning of each <strong>Sprint</strong> the <strong>Team</strong>, the <strong>Scrum Master</strong> and the <strong>Product Owner</strong> decide
 which of the requirements of the <strong>Product Backlog</strong> are going to be
-implemented in the new <strong>Sprint</strong>. They are put into the so called <strong>Sprint Backlog</strong>.</p>
+implemented in the new <strong>Sprint</strong>. They are put into the <strong>Sprint Backlog</strong>.
+If needed the User Stories can be split into smaller Tasks.</p>
 <blockquote>
 <p>The Planning Meeting takes about <strong>one day</strong> (take the needed time!)</p>
 </blockquote>
@@ -352,12 +366,63 @@ The user stories are estimated in story points. Don’t bother at first about ho
 easier. And it helps the team when implementing the story.</p>
 <p>The tasks don’t need to be represented in the backlog. It’s too detailed
 and they can change often.</p>
+<h2 id="overview">Overview</h2>
+<p>This is an overview of who attends which meetings and the aproximate time
+that the meeting should take (for a 2 week sprint).</p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Meeting</th>
+<th>Sprint Planning</th>
+<th>Daily Scrum</th>
+<th>Sprint Review</th>
+<th>Retrospective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="caps">PO</span></td>
+<td>Owner</td>
+<td>only if needed</td>
+<td>Paricipant</td>
+<td>Paricipant</td>
+</tr>
+<tr>
+<td><span class="caps">SM</span></td>
+<td>Paricipant</td>
+<td>Owner</td>
+<td>Paricipant</td>
+<td>Owner</td>
+</tr>
+<tr>
+<td>Team</td>
+<td>Paricipants</td>
+<td>Paricipants</td>
+<td>Owner</td>
+<td>Paricipants</td>
+</tr>
+<tr>
+<td>Others</td>
+<td>no</td>
+<td>may silently attend</td>
+<td>yes</td>
+<td>only if invited</td>
+</tr>
+<tr>
+<td>Timebox</td>
+<td>4 hours</td>
+<td>15 minutes</td>
+<td>2 hours</td>
+<td>2 hours</td>
+</tr>
+</tbody>
+</table>
 <h1 id="sprint-goal">Sprint Goal</h1>
 <p>It’s difficult to define a sprint goal. But it should be donne!</p>
 <p>Just ask the question: “Why are we doing this sprint? We could do something else.”</p>
 <p>The sprint goal should be in business terms, not technical terms</p>
 <h2 id="daily-scrum">Daily Scrum</h2>
-<p>Every day the Team gathers for fifteen minutes and every member gives
+<p>Every day the Team gathers for a fifteen minutes standup meeting and every member gives
 answers to the following questions:</p>
 <ul>
 <li>What have I donne since the last meeting.</li>
@@ -368,6 +433,7 @@ answers to the following questions:</p>
 <p>There should be no discussions in this meeting</p>
 </blockquote>
 <p>It’s just an information to the coworkers so people with similar interests or some good solutions can connect after the meeting.</p>
+<p>The sprint progress should be checked (by viewing the burndown chart) and adjustment to the sprint shall be made if necessary.</p>
 <h2 id="sprint-review-presentation">Sprint Review (Presentation)</h2>
 <p>When a Sprint is finished the <strong>Team</strong> presents the result. Anyone can join
 the presentation. Everybody is allowed to try out the resulting product.
@@ -484,9 +550,33 @@ the items. But he is not allowed to estimate the effort of an item. This can be 
 <p>It’s a good practice to estimate the most significant backlog items that
 are not estimated yet once a week.</p>
 <p>There should be only one Product Backlog per product.</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li><em>S</em>imple</li>
+<li><em>M</em>easurable</li>
+<li><em>A</em>chievable</li>
+<li><em>R</em>ealisitc</li>
+<li><em>T</em>raceable</li>
+</ul>
+<h3 id="user-stories">User Stories</h3>
+<ul>
+<li><em>I</em>ndependant</li>
+<li><em>N</em>egotiable</li>
+<li><em>V</em>aluable</li>
+<li><em>E</em>stimatable</li>
+<li><em>S</em>mall</li>
+<li><em>T</em>raceable</li>
+</ul>
+<h3 id="tasks">Tasks</h3>
+<ul>
+<li><em>T</em>ime boxed</li>
+<li><em>E</em>verybody can do it</li>
+<li><em>C</em>omplete</li>
+<li><em>H</em>uman readable</li>
+</ul>
 <h2 id="sprint-backlog">Sprint Backlog</h2>
 <p>The whole team should be involved in maintaining the Sprint Backlog</p>
-<p>Sprint Burndown</p>
+<p>Sprint Burndown Chart</p>
 <p><img alt="Sprint Burndown" class="img-responsive" src="/images/burndown.png"/></p>
 <p>There’s a good <a href="http://www.methodsandtools.com/archive/scrumburndown.php">article</a> about the Burndown Chart.</p>
 <hr/>
