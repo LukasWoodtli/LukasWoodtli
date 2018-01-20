@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Lukas Woodtli">
+    <meta name="author" content="Lukas Woodtli">
+
+        <title>Mastering Embedded Linux&nbsp;Programming · Lukas Woodtli</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
+                </li>
+
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
+                  </li>
+                </ul>
+              </li>
+                <li >
+                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
+                </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://lukaswoodtli.github.io/mastering_embedded_linux_programming.html">Mastering Embedded Linux&nbsp;Programming</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/unix.html">Unix</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2018">2018</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month01">01</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month01">20</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>Notes to the book <a href="https://www.packtpub.com/networking-and-servers/mastering-embedded-linux-programming">Mastering Embedded Linux Programming</a></p>
+<p>My code examples can be found here: <a href="https://github.com/LukasWoodtli/MasteringEmbeddedLinuxProgramming">GitHub</a></p>
+<p><em><span class="dquo">“</span>The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08”</em></p>
+<div class="toc">
+<ul>
+<li><a href="#chapter-1-starting-out">Chapter 1. Starting Out</a><ul>
+<li><a href="#selecting-the-right-operating-system">Selecting the right operating system</a></li>
+<li><a href="#project-lifecycle">Project lifecycle</a></li>
+<li><a href="#the-four-elements-of-embedded-linux">The four elements of embedded Linux</a></li>
+<li><a href="#hardware-for-embedded-linux">Hardware for embedded Linux</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="chapter-1-starting-out">Chapter 1. Starting Out</h1>
+<p><em><span class="dquo">“</span>At the heart of most embedded devices is a highly integrated chip that contains one or more processor cores and interfaces with main memory, mass storage, and peripherals of many types. This is referred to as a System on Chip, or SoC”</em></p>
+<h2 id="selecting-the-right-operating-system">Selecting the right operating system</h2>
+<p><em><span class="dquo">“</span>Some things to consider</em></p>
+<ul>
+<li><em>Is your hardware up to the job? Compared to a traditional <span class="caps">RTOS</span> […], Linux requires a lot more resources. It needs at least a 32-bit processor, and lots more memory.</em></li>
+<li><em>Do you have the right skill set? […] detailed knowledge of Linux and how it relates to your hardware.</em></li>
+<li><em>Is your system real-time? Linux can handle many real-time activities so long as you pay attention to certain details”</em></li>
+</ul>
+<h2 id="project-lifecycle">Project lifecycle</h2>
+<p><em><span class="dquo">“</span>Four sections that reflect the phases of a project. The phases are not necessarily sequential.”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>set up the development environment and create a working platform for the later phases. “board bring-up” phase.”</em></li>
+<li><em><span class="dquo">“</span>System architecture and design choices […] storage of programs and data, how to divide work between kernel device drivers and applications, and how to initialize the system.”</em></li>
+<li><em><span class="dquo">“</span>Writing embedded applications […] Linux process and threads model and how to manage memory in a resource-constrained device.”</em></li>
+<li><em><span class="dquo">“</span>Debugging and optimizing performance […] trace, profile, and debug your code in both the applications and the kernel.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Debugging and optimizing performance (chapters 12 and 13) describe how to trace, profile, and debug your code in both the applications and the kernel.”</em></p>
+<h2 id="the-four-elements-of-embedded-linux">The four elements of embedded Linux</h2>
+<ul>
+<li><em><span class="dquo">“</span>Toolchain: This consists of the compiler and other tools needed to create code for your target device. Everything else depends on the toolchain.”</em></li>
+<li><em><span class="dquo">“</span>Bootloader: This is necessary to initialize the board and to load and boot the Linux kernel.”</em></li>
+<li><em><span class="dquo">“</span>Kernel: This is the heart of the system, managing system resources and interfacing with hardware.”</em></li>
+<li><em><span class="dquo">“</span>Root filesystem: This contains the libraries and programs”</em></li>
+</ul>
+<h2 id="hardware-for-embedded-linux">Hardware for embedded Linux</h2>
+<p><em><span class="dquo">“</span>[In] source code for Linux 4.1, there are 30 architectures, each represented by a sub-directory in the <code>arch/</code> directory. They are all 32- or 64-bit architectures, most with a <strong>memory management unit (<span class="caps">MMU</span>)</strong>, but some without.”</em></p>
+<p><em><span class="dquo">“</span>There is another group that doesn’t have an <span class="caps">MMU</span> that runs a subset of Linux known as micro controller Linux or uClinux.”</em></p>
+<p><em><span class="dquo">“</span>[Linux needs] a reasonable amount of <span class="caps">RAM</span>. 16 MiB is a good minimum”</em></p>
+<p><em><span class="dquo">“</span>[We need] non-volatile storage, usually flash memory. 8 MiB is enough for a simple device”</em></p>
+<p><em><span class="dquo">“</span>Linux has extensive support for flash storage devices, including raw <span class="caps">NOR</span> and <span class="caps">NAND</span> flash chips and managed flash in the form of <span class="caps">SD</span> cards, eMMC chips, <span class="caps">USB</span> flash memory”</em></p>
+<p><em><span class="dquo">“</span>A debug port is very useful, most commonly an <span class="caps">RS</span>-232 serial port. It does not have to be fitted on production boards, but makes board bring-up, debugging, and development much easier.”</em></p>
+<p><em><span class="dquo">“</span>[We] need some means of loading software when starting from scratch. [For example <span class="caps">JTAG</span>] but modern SoCs have the ability to load boot code directly from removable media, especially <span class="caps">SD</span> and micro <span class="caps">SD</span> cards, or serial interfaces such as <span class="caps">RS</span>-232 or <span class="caps">USB</span>.”</em></p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/language_implementation_patterns.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
