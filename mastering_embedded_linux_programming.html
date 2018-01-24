@@ -154,6 +154,16 @@
 <li><a href="#hardware-for-embedded-linux">Hardware for embedded Linux</a></li>
 </ul>
 </li>
+<li><a href="#chapter-2-learning-about-toolchains">Chapter 2. Learning About Toolchains</a><ul>
+<li><a href="#what-is-a-toolchain">What is a toolchain?</a></li>
+<li><a href="#types-of-toolchain-native-versus-cross-toolchain">Types of toolchain - native versus cross toolchain</a></li>
+<li><a href="#cpu-architectures"><span class="caps">CPU</span> architectures</a><ul>
+<li><a href="#arm-oabi-eabi-and-eabihf"><span class="caps">ARM</span> <span class="caps">OABI</span>, <span class="caps">EABI</span> and <span class="caps">EABIHF</span></a></li>
+<li><a href="#gnu-prefix-tuple"><span class="caps">GNU</span> prefix tuple</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="chapter-1-starting-out">Chapter 1. Starting Out</h1>
@@ -189,6 +199,43 @@
 <p><em><span class="dquo">“</span>Linux has extensive support for flash storage devices, including raw <span class="caps">NOR</span> and <span class="caps">NAND</span> flash chips and managed flash in the form of <span class="caps">SD</span> cards, eMMC chips, <span class="caps">USB</span> flash memory”</em></p>
 <p><em><span class="dquo">“</span>A debug port is very useful, most commonly an <span class="caps">RS</span>-232 serial port. It does not have to be fitted on production boards, but makes board bring-up, debugging, and development much easier.”</em></p>
 <p><em><span class="dquo">“</span>[We] need some means of loading software when starting from scratch. [For example <span class="caps">JTAG</span>] but modern SoCs have the ability to load boot code directly from removable media, especially <span class="caps">SD</span> and micro <span class="caps">SD</span> cards, or serial interfaces such as <span class="caps">RS</span>-232 or <span class="caps">USB</span>.”</em></p>
+<h1 id="chapter-2-learning-about-toolchains">Chapter 2. Learning About Toolchains</h1>
+<h2 id="what-is-a-toolchain">What is a toolchain?</h2>
+<p><em><span class="dquo">“</span>A standard <span class="caps">GNU</span> toolchain consists of three main components:”</em></p>
+<ul>
+<li><a href="http://www.gnu.org/software/binutils/">Binutils</a>: Assembler, linker, (ld) and other tools</li>
+<li><a href="http://gcc.gnu.org/"><span class="caps">GCC</span></a>: Compilers for C, C++, Objective-C, Objective-C++, Java, Fortran, Ada, and Go. They all use a common back-end which produces assembler code for the <span class="caps">GNU</span> assembler (<span class="caps">GAS</span>)</li>
+<li><strong>C library</strong>: Standardized <span class="caps">API</span> based on <span class="caps">POSIX</span> (interface to the operating system kernel from applications)</li>
+</ul>
+<p><em><span class="dquo">“</span>As well as these, you will need a copy of the Linux kernel headers,”</em></p>
+<p><em><span class="dquo">“</span>of the header files in the include directory of your kernel source code. Those headers are intended for use in the kernel only and contain definitions that will cause conflicts if used in their raw state to compile regular Linux applications. Instead, you will need to generate a set of sanitized kernel headers”</em></p>
+<h2 id="types-of-toolchain-native-versus-cross-toolchain">Types of toolchain - native versus cross toolchain</h2>
+<p><em><span class="dquo">“</span>here are two types of toolchain:</em></p>
+<ul>
+<li><em>Native: This toolchain runs on the same type of system […] This is the usual case for desktops and servers, and it is becoming popular on certain classes of embedded devices. […]</em></li>
+<li><em>Cross: This toolchain runs on a different type of system than the target, allowing the development to be done on a fast desktop <span class="caps">PC</span> and then loaded onto the embedded target for testing.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Almost all embedded Linux development is done using a cross development toolchain, partly because most embedded devices are not well suited to program development since they lack computing power, memory, and storage, but also because it keeps the host and target environments separate.”</em></p>
+<p><em><span class="dquo">“</span>there is a counter argument in favor of native development. Cross development creates the burden of cross-compiling all the libraries and tools that you need for your target.”</em></p>
+<h2 id="cpu-architectures"><span class="caps">CPU</span> architectures</h2>
+<p><em><span class="dquo">“</span>toolchain has to be built according to the capabilities of the target <span class="caps">CPU</span>:</em></p>
+<ul>
+<li><em><span class="caps">CPU</span> architecture: arm, mips, x86_64, and so on</em></li>
+<li><em>Big- or little-endian operation: Some CPUs can operate in both modes, but the machine code is different for each</em></li>
+<li><em>Floating point support: Not all versions of embedded processors implement a hardware floating point unit, in which case, the toolchain can be configured to call a software floating point library instead</em></li>
+<li><em>Application Binary Interface (<span class="caps">ABI</span>): The calling convention used for passing parameters between function calls”</em></li>
+</ul>
+<h3 id="arm-oabi-eabi-and-eabihf"><span class="caps">ARM</span> <span class="caps">OABI</span>, <span class="caps">EABI</span> and <span class="caps">EABIHF</span></h3>
+<p><em><span class="dquo">“</span>With many architectures, the <span class="caps">ABI</span> is constant across the family of processors. One notable exception is <span class="caps">ARM</span>. The <span class="caps">ARM</span> architecture transitioned to the </em>Extended Application Binary Interface<em> (<strong><span class="caps">EABI</span></strong>) in the late 2000’s, resulting in the previous <span class="caps">ABI</span> being named the </em>Old Application Binary Interface<em> (<strong><span class="caps">OABI</span></strong>). While the <span class="caps">OABI</span> is now obsolete, you continue to see references to <span class="caps">EABI</span>. Since then, the </em><span class="caps">EABI</span> has split into two<em>, based on the way that floating point parameters are passed. The </em>original <span class="caps">EABI</span> uses general purpose (integer)<em> registers</em> while the <em>newer <strong><span class="caps">EABIHF</span></strong> uses floating point registers. The <span class="caps">EABIHF</span> is significantly faster at floating point operations since it removes the need for copying between integer and floating point registers, but it is not compatible with CPUs that do not have a floating point unit. The choice, then, is between two incompatible ABIs: </em>you cannot mix and match the two<em> and so you have to decide at this stage.”</em></p>
+<h3 id="gnu-prefix-tuple"><span class="caps">GNU</span> prefix tuple</h3>
+<p><em><span class="dquo">“</span><span class="caps">GNU</span> uses a prefix to the tools to identify the various combinations that can be generated, consisting of a tuple of three or four components separated by dashes:</em></p>
+<ul>
+<li><em><span class="caps">CPU</span>: The <span class="caps">CPU</span> architecture, such as arm, mips, or x86_64. If the <span class="caps">CPU</span> has both endian modes, they may be differentiated by adding <strong>el for little-endian</strong>, or <strong>eb for big-endian</strong>. Good examples are little-endian <span class="caps">MIPS</span>, mipsel and big-endian <span class="caps">ARM</span>, armeb.</em></li>
+<li><em>Vendor: This identifies the provider of the toolchain. Examples include buildroot, poky, or just unknown. Sometimes it is left out altogether.</em></li>
+<li><em>Kernel: For our purposes, it is always ‘linux’.</em></li>
+<li><em>Operating system: A name for the user space component, which might be <code>gnu</code> or <code>uclibcgnu</code>. The <span class="caps">ABI</span> may be appended here as well so, for <span class="caps">ARM</span> toolchains, you may see <code>gnueabi</code>, <code>gnueabihf</code>, <code>uclibcgnueabi</code>, or <code>uclibcgnueabihf</code>.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>You can find the tuple used when building the toolchain by using the <code>-dumpmachine</code> option of <code>gcc</code><span class="dquo">“</span></em></p>
   </div>
 
   <hr/>
