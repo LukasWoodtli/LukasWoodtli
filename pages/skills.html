@@ -142,7 +142,7 @@
 </tr>
 <tr>
 <td>Assembler (x86, <span class="caps">ARM</span>)</td>
-<td>basic</td>
+<td>good</td>
 </tr>
 <tr>
 <td>Java</td>
@@ -247,7 +247,7 @@
 </table>
 <h1 id="processor-architectures">Processor Architectures</h1>
 <ul>
-<li>Intel x86</li>
+<li>Intel x86 <span class="amp">&amp;</span> x64</li>
 <li><span class="caps">ARM</span> Cortex-M3 (Silicon Labs, STMicroelectronics)</li>
 <li><span class="caps">ARM</span> Cortex-A7 (Raspberry Pi 2)</li>
 <li>Atmel Atmega</li>
@@ -281,7 +281,7 @@
 </tr>
 <tr>
 <td>Eclipse</td>
-<td>basic</td>
+<td>good</td>
 </tr>
 </tbody>
 </table>
@@ -310,7 +310,7 @@
 </tbody>
 </table>
 <h1 id="build-tools">Build Tools</h1>
-<p><span class="caps">IDE</span>’s are nice. But often they are not flexible enough. So I prefer a platform independent build tool (CMake) and a highly cusomisable build server (Buildbot).</p>
+<p><span class="caps">IDE</span>’s are nice. But often they are not flexible enough. So I prefer a platform independent build tool (CMake) and a proven <span class="caps">CI</span> build server (Jenkins).</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -324,12 +324,12 @@
 <td>good</td>
 </tr>
 <tr>
-<td>Buildbot</td>
-<td>basic</td>
+<td>Travis <span class="caps">CI</span></td>
+<td>very good</td>
 </tr>
 <tr>
-<td>Travis <span class="caps">CI</span></td>
-<td>basic</td>
+<td>Gerrit</td>
+<td>good</td>
 </tr>
 </tbody>
 </table>
@@ -338,11 +338,15 @@
 <table class="table table-hover table-striped">
 <thead>
 <tr>
-<th>Test Harness</th>
+<th>Test Tool</th>
 <th>Knowledge</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Catch</td>
+<td>very good</td>
+</tr>
 <tr>
 <td>Google Test</td>
 <td>basic</td>
@@ -352,8 +356,8 @@
 <td>good</td>
 </tr>
 <tr>
-<td>Test Coverage (gcov <span class="amp">&amp;</span> lcov)</td>
-<td>basic</td>
+<td>Test Coverage (gcov <span class="amp">&amp;</span> gcovr)</td>
+<td>good</td>
 </tr>
 </tbody>
 </table>
@@ -377,7 +381,7 @@
 </tr>
 <tr>
 <td>Regexp</td>
-<td>basic</td>
+<td>good</td>
 </tr>
 <tr>
 <td><span class="caps">UX</span>/<span class="caps">UI</span> Design</td>
@@ -402,6 +406,10 @@
 <tr>
 <td><span class="caps">JSON</span></td>
 <td>good</td>
+</tr>
+<tr>
+<td>Debugging (gdb)</td>
+<td>very good</td>
 </tr>
 </tbody>
 </table>
@@ -447,6 +455,10 @@
 <td>CppCheck</td>
 <td>good</td>
 </tr>
+<tr>
+<td>Clang static analyzer (scan-build)</td>
+<td>good</td>
+</tr>
 </tbody>
 </table>
 <h1 id="dynamic-analysis">Dynamic Analysis</h1>
@@ -467,6 +479,10 @@
 <td>Instruments (XCode)</td>
 <td>basic</td>
 </tr>
+<tr>
+<td>Perf</td>
+<td>basic</td>
+</tr>
 </tbody>
 </table>
 <h1 id="version-control">Version Control</h1>
@@ -481,7 +497,7 @@
 <tbody>
 <tr>
 <td>Git</td>
-<td>good</td>
+<td>very good</td>
 </tr>
 <tr>
 <td><span class="caps">SVN</span></td>
