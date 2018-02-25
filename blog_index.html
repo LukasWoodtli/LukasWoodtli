@@ -195,14 +195,14 @@ LD_DEBUG LD_DEBUG_OUTPUT</p>
 <h1 id="readelf">readelf</h1>
 <h2 id="flags_1">Flags</h2>
 <p>-d</p>
+<h2 id="show-which-libraries-have-been-linked">Show which libraries have been linked</h2>
+<p><code>readelf -a &lt;prog&gt; | grep "Shared library"</code></p>
+<h2 id="show-the-run-time-linker">Show the run-time linker</h2>
+<p><code>readelf -a &lt;prog&gt; | grep "program interpreter"</code></p>
 <h1 id="objdump">objdump</h1>
 <h2 id="flags_2">Flags</h2>
 <p>-d: disassemble
--C: demangle C++ symbols</p>
-<h1 id="library-directories">Library Directories</h1>
-<p>https://stackoverflow.com/questions/9922949/how-to-print-the-ldlinker-search-path</p>
-<h1 id="ldd">ldd</h1>
-<p>ldd </p></li>
+-C: demangle …</p></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html#disqus_thread" title="comments">

@@ -157,6 +157,10 @@ LD_DEBUG LD_DEBUG_OUTPUT</p>
 <h1 id="readelf">readelf</h1>
 <h2 id="flags_1">Flags</h2>
 <p>-d</p>
+<h2 id="show-which-libraries-have-been-linked">Show which libraries have been linked</h2>
+<p><code>readelf -a &lt;prog&gt; | grep "Shared library"</code></p>
+<h2 id="show-the-run-time-linker">Show the run-time linker</h2>
+<p><code>readelf -a &lt;prog&gt; | grep "program interpreter"</code></p>
 <h1 id="objdump">objdump</h1>
 <h2 id="flags_2">Flags</h2>
 <p>-d: disassemble
