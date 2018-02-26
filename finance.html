@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Object File&nbsp;Formats · Lukas Woodtli</title>
+        <title>Finance · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/object_file_formats.html">Object File&nbsp;Formats</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/finance.html">Finance</a></h1>
     </div>
 
         </div>
@@ -120,13 +120,10 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+      href="http://lukaswoodtli.github.io/category/finance.html">Finance</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2015">2015</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">08</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2015Month08">05</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2018">2018</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month02">02</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month02">26</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -136,104 +133,93 @@
   <hr/>
 
   <div id="article_content">
-    <p>Most information of this page is taken from
-<a href="http://www.agner.org/optimize/#manuals">Calling conventions for different C++ compilers and operating systems</a>.</p>
-<h1 id="overview">Overview</h1>
+    <blockquote>
+<p>This article is work in progress</p>
+</blockquote>
+<p>Present Value (Barwert): value of expected income stream as of the valuation date (i.e. present). Concept of <em>time value of money</em></p>
+<p>Most common applied model uses compound interest:</p>
+<div class="math">$$PV = \frac{C}{(1+i)^n}$$</div>
+<p><span class="math">\(C\)</span>: Future amount of money
+<span class="math">\(n\)</span>: Number of compounding periods
+<span class="math">\(i\)</span>: Interest rate</p>
+<p>Assets = Liabilities + Equity</p>
+<p>Assets: Aktiva (“Vermögen”) , left side of balance sheet
+Liabilities: Passiva (“Schulden”), right side of balance sheet
+Equity: Eigenkapital</p>
+<p>Down Payment: Anzahlung</p>
+<p>Loan: Darlehen/Kredit</p>
+<p>Mortgage: Hypothek, Pfand</p>
+<p>Inflation</p>
+<ul>
+<li>Price inflation: goods and services get more expensive</li>
+<li>Monetary inflation: increase in money supply, leads usually to price inflation</li>
+</ul>
+<p>When people talk about inflation they usually mean price inflation.</p>
+<p>Bilanz (balance sheet):
+Aufstellung über Herkunft und Verwendung von Kapital</p>
+<ul>
+<li>Gegenüberstellung von
+    -Aktiva (assets): Vermögen und Investitionen<ul>
+<li>Passiva (liabilities): Schulden und Finanzierung</li>
+</ul>
+</li>
+<li>Bilanzsumme Aktiva ist immer gleich Bilanzsumme Passiva</li>
+<li>Die Bilanz ist eine Stichtagsbetrachtung</li>
+</ul>
+<p>Mindestanforderung an eine Bilanz (<span class="caps">OR</span> § 663)</p>
 <table class="table table-hover table-striped">
 <thead>
 <tr>
-<th>Object Format</th>
-<th>Platform</th>
+<th>Aktiva</th>
+<th>Passiva</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><span class="caps">COFF</span> / <span class="caps">PE</span></td>
-<td>Windows 32 (<span class="caps">PE</span>), Windows 64 (<span class="caps">PE32</span>+)</td>
+<td>Umlaufmittel</td>
+<td>Fremdkapital</td>
 </tr>
 <tr>
-<td><span class="caps">ELF</span></td>
-<td>Linux, <span class="caps">UNIX</span>, <span class="caps">BSD</span>…</td>
+<td>Anlagevermögen</td>
+<td>Eigenkapital</td>
 </tr>
 <tr>
-<td>Mach-O</td>
-<td><span class="caps">OS</span> X (Darwin)</td>
+<td>Reinverlust</td>
+<td>Reingweinn</td>
 </tr>
 <tr>
-<td>a.out</td>
-<td>Older versions of <span class="caps">UNIX</span></td>
+<td>=&gt; Bilanzsumme</td>
+<td>=&gt; Bilanzsumme</td>
 </tr>
 </tbody>
 </table>
-<h2 id="common-object-file-format-coff-pe">Common Object File Format (<span class="caps">COFF</span>, <span class="caps">PE</span>)</h2>
-<p>First used in <span class="caps">UNIX</span> System V, later superseeded by <span class="caps">ELF</span>.</p>
-<p><span class="caps">PE</span> (Portable Executable) is a modified version of <span class="caps">COFF</span> from
-Microsoft that is used for Windows.</p>
-<p>The same format is used for object files and for executables.</p>
-<p>Compilers that use <span class="caps">COFF</span> / <span class="caps">PE</span>:</p>
+<p>Nutzenfunktion (utility)
+Grenznutzen (marginal utility)</p>
+<p>Umsatz/Erlös (revenue)
+Gewinn (profit)
+Investition (investment)
+Return on Investment</p>
+<p>Betriebswirtschaftliche Kennzahlen:</p>
 <ul>
-<li>Visual C++</li>
-<li>Intel (Win)</li>
-<li><span class="caps">GCC</span> (Win)</li>
+<li>Kapitalrendite: Gewinn/Eigenkapital x 100</li>
+<li><span class="caps">EBIT</span> (earnings before interest and tax): Gewinn ohne Zinsen, Steuern und ausserordentichen Anteilen</li>
+<li>Eigenkapitalquote: Eigenkapital/Bilanzsumme x 100</li>
 </ul>
-<p><span class="caps">COFF</span> uses many different data structures. This makes it difficult to handle.
-Alignment handling of the data structures can be difficult.</p>
-<p>Properties: </p>
+<p>Verschiedene Daten:</p>
 <ul>
-<li>Can contain debug information</li>
-<li>Different implementations (<span class="caps">COFF</span>, <span class="caps">PE</span>, <span class="caps">XCOFF</span>, <span class="caps">ECOFF</span>) are not compatible</li>
+<li>Valuta:  Festsetzung des Kalenderdatums, an dem eine Gutschrift oder Belastung auf einem Konto wirksam bzw. zinswirksam wird.</li>
+<li>Schlusstag (tradedate): der Tag, an welchem Käufer und Verkäufer ein Geschäft über ein Handelsobjekt (Basiswert) verbindlich an der Börse abschliessen</li>
+<li>Buchungsdatum: Termin, an dem eine Transaktion durchgeführt bzw. gebucht wird</li>
 </ul>
-<p>Limitations:</p>
-<ul>
-<li>Segment word size: 32 or 64 bits.</li>
-<li>Max number of sections: 32k.</li>
-<li>Max file size: 4 <span class="caps">GB</span>.</li>
-<li>Max section size: 4 <span class="caps">GB</span>.</li>
-<li>Max relocations per section: 64k.</li>
-<li>Max library size: 4 <span class="caps">GB</span>.</li>
-</ul>
-<h2 id="executable-and-linkable-format-elf">Executable and Linkable Format (<span class="caps">ELF</span>)</h2>
-<p>Replaced older formats like a.out and <span class="caps">COFF</span> in Linux and <span class="caps">BSD</span>.</p>
-<p>Compilers:</p>
-<ul>
-<li><span class="caps">GCC</span> (Linux, <span class="caps">BSD</span>, Win…)</li>
-</ul>
-<p>Clear and robust design.</p>
-<p>Limitations:</p>
-<ul>
-<li>Segment word size: 32 or 64 bits.</li>
-<li>Max number of sections: 64k.</li>
-<li>Max file size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>Max section size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>String table size: 4 <span class="caps">GB</span>.</li>
-<li>Max number of symbols: 16M for 32 bits, 4G for 64 bits.</li>
-<li>Max library size: 4 <span class="caps">GB</span>.</li>
-</ul>
-<h2 id="mach-o-format">Mach-O Format</h2>
-<p>This format is used by <span class="caps">OS</span> X.
-Only the format for Intel Mac <span class="caps">OS</span> X is described here.</p>
-<p>Can be used for object files and executable files.</p>
-<p>Object files have only one segment record that contains several section records.</p>
-<p>Executable files contain several segment records.</p>
-<p>Mach-O allows address specifications relative to any reference point in any section.
-This is used for position-independent code.</p>
-<p>Limitations:</p>
-<ul>
-<li>Section name length: 16 characters.</li>
-<li>Max file size: 4 <span class="caps">GB</span>.</li>
-<li>Max section size: 16 <span class="caps">MB</span> for position-indep code, 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>Max number of sections: 16 M.</li>
-<li>Max number of symbols: 16 M.</li>
-<li>Max library size: 4 <span class="caps">GB</span>.</li>
-</ul>
-<h2 id="aout-format">a.out Format</h2>
-<p>Stands for ‘Assembler Output’.</p>
-<p>Is used in older <span class="caps">UNIX</span> systems.</p>
-<p><span class="quo">‘</span>a.out’ is often the default output file name of linkers. Even if the
-output format is an other one.</p>
-<p>Some tools still support the a.out format.</p>
-<h2 id="data-endianness">Data Endianness</h2>
-<p>All systems based on x86 (16-bit, 32-bit and 64-bit) use little endian.</p>
+<p>Das Valutadatum kann vor oder nach dem Buchungsdatum liegen</p>
+<p>Depretiation: Abschreibung</p>
+<p>Share/Stock (Aktie): part owner of company (security: equity)</p>
+<p>Bond (Anleihe): part lender to company (security: dept)
+- Zero-coupon bond (wikipedia)</p>
+<p>Security (Wertpapier): a tradable financial asset</p>
+<p>securities:
+- Going long: buying (buy low, sell high)
+- Going short (Leerverkauf): borrowing the security and selling it (sell high, buy low)</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -294,12 +280,12 @@ output format is an other one.</p>
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/linking_and_loading.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/preprocessor_defines.html">
+          <a href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html">
           Older &raquo;</a>
         </li>
       </ul>
