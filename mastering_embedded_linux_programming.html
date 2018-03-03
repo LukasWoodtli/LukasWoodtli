@@ -179,6 +179,9 @@
 <li><a href="#autotools">Autotools</a></li>
 </ul>
 </li>
+<li><a href="#package-configuration">Package configuration</a></li>
+<li><a href="#problems-with-cross-compiling">Problems with cross compiling</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -414,6 +417,20 @@
 <li><em><code>Host</code>: This is the computer the program will run on: for a native compile this is left blank and it defaults to be the same computer as build. For a <strong>cross compile</strong> you set it to be the <strong>tuple of your toolchain</strong>.</em></li>
 <li><em><code>Target</code>: This is the computer the program will generate code for: you would set this when building a cross compiler, for example.</em>”</li>
 </ul>
+<h2 id="package-configuration">Package configuration</h2>
+<p><em><span class="dquo">“</span>Tracking package dependencies is quite complex. The package configuration utility, <a href="http://www.freedesktop.org/wiki/Software/pkg-config"><code>pkg-config</code></a> helps track which packages are installed and which compile flags each needs by keeping a database of Autotools packages in <code>[sysroot]/usr/lib/pkgconfig</code>.”</em></p>
+<p><em><span class="dquo">“</span>You can use the utility pkg-config to extract information in a form that you can feed straight to gcc. In the case of a library […], you want to know the library name (<code>--libs</code>) and any special C flags (<code>--cflags</code>).”</em></p>
+<p><em><span class="dquo">“</span>You need to point it at the sysroot of the target toolchain by setting the shell variable <code>PKG_CONFIG_LIBDIR</code><span class="dquo">“</span></em></p>
+<p><code>PKG_CONFIG_LIBDIR=$(arm-cortex_a8-linux-gnueabihf-gcc -print-sysroot)/usr/lib/pkgconfig pkg-config sqlite3 --libs --cflags</code></p>
+<h2 id="problems-with-cross-compiling">Problems with cross compiling</h2>
+<p><em><span class="dquo">“</span>Typical pain points include:</em></p>
+<ul>
+<li><em>Home-grown build systems, zlib, for example, has a configure script but it does not behave like the Autotools configure</em></li>
+<li><em>Configure scripts that read <code>pkg-config</code> information, headers, and other files from the host, disregarding the <code>--host</code> override</em></li>
+<li><em>Scripts that insist on trying to run cross compiled code</em>”</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p><em><span class="dquo">“</span>Beware of toolchains or distributions that are offered to you for free as part of a hardware package: they are often poorly configured and not maintained. In any case, you should make the choice according to your situation, and then be consistent in its use throughout the project.”</em></p>
   </div>
 
   <hr/>
