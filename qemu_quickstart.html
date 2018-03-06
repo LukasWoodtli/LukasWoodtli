@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title>Tag: OS · Lukas Woodtli</title>
+        <title><span class="caps">QEMU</span>&nbsp;Quickstart · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,79 +111,75 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/os.html">Tag: OS</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/qemu_quickstart.html"><span class="caps">QEMU</span>&nbsp;Quickstart</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="OS" href="#OS">OS</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#OScollapse">
-          <span class="badge pull-right">12</span>
-        </a>
-    </div>
 
-    <div class="panel-body hidden"></div>
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a>
+        <a class="label label-primary" 
+          href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2018">2018</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month03">03</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month03">06</a>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="OScollapse">
-        <a href="http://lukaswoodtli.github.io/qemu_quickstart.html">
-          <li class="list-group-item">
-<span class="caps">QEMU</span>&nbsp;Quickstart</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html">
-          <li class="list-group-item">
-<span class="caps">GCC</span>, binutils and other developer&nbsp;tools</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/mastering_embedded_linux_programming.html">
-          <li class="list-group-item">
-Mastering Embedded Linux&nbsp;Programming</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/linux_system_calls.html">
-          <li class="list-group-item">
-Linux System&nbsp;Calls</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/freertos.html">
-          <li class="list-group-item">
-FreeRTOS</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/unix_system_files.html">
-          <li class="list-group-item">
-Unix System&nbsp;Files</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/unix_device_files.html">
-          <li class="list-group-item">
-Unix Device&nbsp;Files</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/unix_directory_structure.html">
-          <li class="list-group-item">
-Unix Directory&nbsp;Structure</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/files_and_file_descriptors_on_linux.html">
-          <li class="list-group-item">
-Files and File descriptors on&nbsp;Linux</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/linking_and_loading.html">
-          <li class="list-group-item">
-Linking and&nbsp;Loading</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/object_file_formats.html">
-          <li class="list-group-item">
-Object File&nbsp;Formats</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/modern_oss.html">
-          <li class="list-group-item">
-Modern <span class="caps">OS</span>&#8217;s</li>
-        </a>
-      </div>
-    </ul>
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
+  </span>
 
+  <hr/>
+
+  <div id="article_content">
+    <p>This shows a basic use for <span class="caps">QEMU</span>.</p>
+<p>Mostly taken from: <a href="https://www.packtpub.com/mapt/book/all_books/9781784392536">Mastering Embedded Linux Programming</a></p>
+<p><span class="caps">QEMU</span> can emulate different processor architectures:</p>
+<ul>
+<li><code>qemu-system-arm</code>: <span class="caps">ARM</span></li>
+<li><code>qemu-system-mips</code>: <span class="caps">MIPS</span> </li>
+<li><code>qemu-system-ppc</code>: PowerPC </li>
+<li><code>qemu-system-x86</code>: x86 and x86_64</li>
+</ul>
+<p><span class="caps">QEMU</span> emulates lot of hardware for each architecture which can be shown with the option <code>-machine help</code>.</p>
+<p>Example use:</p>
+<p><code>qemu-system-arm -machine vexpress-a9 -m 256M -drive file=rootfs.ext4,sd -net nic -net use -kernel zImage -dtb vexpress-v2p-ca9.dtb -append "console=ttyAMA0,115200 root=/dev/mmcblk0" -serial stdio -net nic,model=lan9118 -net tap,ifname=tap0</code></p>
+<p>The most important options are:</p>
+<ul>
+<li><code>-machine vexpress-a9</code>: emulation of <span class="caps">ARM</span> Versatile Express development board (with Cortex A-9 processor)</li>
+<li><code>-m 256M</code>: 256 MiB <span class="caps">RAM</span></li>
+<li><code>-drive file=rootfs.ext4,sd</code>: connect the sd interface to the file <code>rootfs.ext4</code> (filesystem image)</li>
+<li><code>-kernel zImage</code>: loads the Linux kernel from the file <code>zImage</code></li>
+<li><code>-dtb vexpress-v2p-ca9.dtb</code>: loads the device tree from the file <code>vexpress-v2p-ca9.dtb</code></li>
+<li><code>-append "..."</code>: supplies this string as the kernel command line</li>
+<li><code>-serial stdio</code>: connects the serial port to the terminal that launched <span class="caps">QEMU</span>, so you can log via the serial console</li>
+<li><code>-net nic,model=lan9118</code>: creates a network interface</li>
+<li><code>-net tap,ifname=tap0</code>: connects the network interface to the virtual network interface <code>tap0</code></li>
+</ul>
+<p>For configuring the network interface the command <code>tunctl</code> is used:</p>
+<p><code>sudo tunctl -u $(whoami) -t tap0</code></p>
+<p>The <code>tunctl</code> command is available from the <em>User Mode Linux (<span class="caps">UML</span>)</em> project.</p>
   </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://lukaswoodtli.github.io/sanitizers.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
 
         </div>
 
