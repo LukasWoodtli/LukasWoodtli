@@ -184,6 +184,40 @@
 2. Create storage places in the new environment for each <em>formal parameter</em>.
 3. Fill these placeswith the values of the <em>actual arguments</em>
 3. Evaluate the <em>function body</em> in the new environment.</p>
+<h1 id="comparison-of-ll-and-lr-parsers">Comparison of <span class="caps">LL</span>- and <span class="caps">LR</span>-Parsers</h1>
+<p>This overview is assembled mostly from
+<a href="http://blog.reverberate.org/2013/07/ll-and-lr-parsing-demystified.html"><span class="caps">LL</span> and <span class="caps">LR</span> Parsing Demystified</a></p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th></th>
+<th><span class="caps">LL</span> Parser</th>
+<th><span class="caps">LR</span> Parser</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>traversal</td>
+<td>pre-order  (visit the parent node before the children)</td>
+<td>post-order (visit the parent node after the children)</td>
+</tr>
+<tr>
+<td>derivations</td>
+<td>leftmost derivation</td>
+<td>reversed rightmost derivation</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>top-down</td>
+<td>bottom-up</td>
+</tr>
+<tr>
+<td>alternative description</td>
+<td>predictive parser</td>
+<td>shift-reduce parser</td>
+</tr>
+</tbody>
+</table>
   </div>
 
   <hr/>
