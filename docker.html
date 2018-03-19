@@ -176,20 +176,22 @@
 <p>Command: <code>docker rmi &lt;image-id&gt;</code></p>
 <p>or: <code>docker rmi &lt;image-name&gt;:&lt;tag&gt;</code></p>
 <h3 id="run-image">Run Image</h3>
-<h4 id="interactive-run">interactive Run</h4>
-<p>Command: <code>docker run -i -t &lt;image-name&gt;:&lt;tag&gt; &lt;command&gt;</code></p>
-<p>This will override the default command that is run when the container is started.</p>
+<p>Command: <code>docker run [flags] &lt;image-name&gt;:&lt;tag&gt; [command]</code></p>
 <p>Flags:</p>
 <ul>
 <li><code>-i</code>: interactive shell</li>
 <li><code>-t</code>: pseudo tty</li>
+<li><code>-d</code>: run as daemon</li>
+<li><code>-p &lt;host_port&gt;:&lt;container_port&gt;</code>: map ports</li>
 </ul>
+<p>If the interactive (<code>-i</code>) flag is provided a command sould be executed.
+This will override the default command that is run when the container is started.</p>
 <p>Example: <code>docker run -i -t fedora:latest /bin/bash</code></p>
-<h4 id="run-as-daemon">Run as Daemon</h4>
-<p>Command: <code>docker run -d &lt;image-name&gt;:&lt;tag&gt;</code></p>
 <h3 id="show-running-images">Show Running Images</h3>
 <p>Command: <code>docker ps</code></p>
 <p>To show also containers that are not running: <code>docker ps -a</code></p>
+<h3 id="logs">Logs</h3>
+<p>Command: <code>docker logs &lt;container-id-or-name&gt;</code></p>
   </div>
 
   <hr/>
