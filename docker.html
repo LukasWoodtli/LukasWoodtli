@@ -6,7 +6,7 @@
     <meta name="description" content="Lukas Woodtli">
     <meta name="author" content="Lukas Woodtli">
 
-        <title><span class="caps">QEMU</span>&nbsp;Quickstart · Lukas Woodtli</title>
+        <title>Docker · Lukas Woodtli</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -111,7 +111,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/qemu_quickstart.html"><span class="caps">QEMU</span>&nbsp;Quickstart</a></h1>
+        <h1><a href="http://lukaswoodtli.github.io/docker.html">Docker</a></h1>
     </div>
 
         </div>
@@ -123,12 +123,12 @@
       href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a>
+          href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a>
         <a class="label label-primary" 
           href="http://lukaswoodtli.github.io/tag/os.html">OS</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2018">2018</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month03">03</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month03">06</a>
+      <a href="http://lukaswoodtli.github.io/archives.html#Year2018">2018</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month03">03</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2018Month03">19</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -138,44 +138,69 @@
   <hr/>
 
   <div id="article_content">
-    <p>This shows a basic use for <span class="caps">QEMU</span>.</p>
-<p>Mostly taken from: <a href="https://www.packtpub.com/mapt/book/all_books/9781784392536">Mastering Embedded Linux Programming</a></p>
-<p><span class="caps">QEMU</span> can emulate different processor architectures:</p>
+    <p>These notes are mainly taken from
+<a href="https://www.packtpub.com/packt/free-ebook/what-you-need-know-about-docker">What You Need to Know about Docker</a>.</p>
+<h1 id="docker">Docker</h1>
+<h2 id="setup">Setup</h2>
+<p>Start the daemon (on Fedora): <code>sudo systemctl start docker</code></p>
+<p>Run as user:</p>
+<p>First create a docker group:</p>
+<p><code>sudo groupadd docker</code></p>
+<p>Then add the actual user to that group:</p>
+<p><code>sudo usermod -aG docker $USER</code></p>
+<p>After that log out and log in again.</p>
+<h2 id="images">Images</h2>
+<h3 id="list-images">List Images</h3>
+<p>Command: <code>docker images</code></p>
+<p>Columns:</p>
 <ul>
-<li><code>qemu-system-arm</code>: <span class="caps">ARM</span></li>
-<li><code>qemu-system-mips</code>: <span class="caps">MIPS</span> </li>
-<li><code>qemu-system-ppc</code>: PowerPC </li>
-<li><code>qemu-system-x86</code>: x86 and x86_64</li>
+<li><code>REPOSITORY</code>: name of the repository on the Docker Hub</li>
+<li><code>TAG</code>: the tag (version) of the image</li>
+<li><code>IMAGE ID</code>: first 12 digits of the unique (64 bit) image <span class="caps">ID</span></li>
+<li><code>CREATED</code>: the creation date</li>
+<li><code>SIZE</code>: size of the image</li>
 </ul>
-<p><span class="caps">QEMU</span> emulates lot of hardware for each architecture which can be shown with the option <code>-machine help</code>.</p>
-<p>Example use:</p>
-<p><code>qemu-system-arm -machine vexpress-a9 -m 256M -drive file=rootfs.ext4,sd -net nic -net use -kernel zImage -dtb vexpress-v2p-ca9.dtb -append "console=ttyAMA0,115200 root=/dev/mmcblk0" -serial stdio -net nic,model=lan9118 -net tap,ifname=tap0</code></p>
-<p>The most important options are:</p>
+<h3 id="search-images">Search Images</h3>
+<p>Command: <code>docker search &lt;image-name&gt;</code></p>
+<p>Columns:</p>
 <ul>
-<li><code>-machine vexpress-a9</code>: emulation of <span class="caps">ARM</span> Versatile Express development board (with Cortex A-9 processor)</li>
-<li><code>-m 256M</code>: 256 MiB <span class="caps">RAM</span></li>
-<li><code>-drive file=rootfs.ext4,sd</code>: connect the sd interface to the file <code>rootfs.ext4</code> (filesystem image)</li>
-<li><code>-kernel zImage</code>: loads the Linux kernel from the file <code>zImage</code></li>
-<li><code>-dtb vexpress-v2p-ca9.dtb</code>: loads the device tree from the file <code>vexpress-v2p-ca9.dtb</code></li>
-<li><code>-append "..."</code>: supplies this string as the kernel command line</li>
-<li><code>-serial stdio</code>: connects the serial port to the terminal that launched <span class="caps">QEMU</span>, so you can log via the serial console</li>
-<li><code>-net nic,model=lan9118</code>: creates a network interface</li>
-<li><code>-net tap,ifname=tap0</code>: connects the network interface to the virtual network interface <code>tap0</code></li>
+<li><code>NAME</code>: name of the repository</li>
+<li><code>DESCRIPTION</code>: Small description</li>
+<li><code>STARS</code>: Showing how many people like the repository</li>
+<li><code>OFFICIAL</code>: If it has been approved by the Docker team</li>
+<li><code>AUTOMATED</code>: If the build is automanted (on Docker Hub)</li>
 </ul>
-<p>For configuring the network interface the command <code>tunctl</code> is used:</p>
-<p><code>sudo tunctl -u $(whoami) -t tap0</code></p>
-<p>The <code>tunctl</code> command is available from the <em>User Mode Linux (<span class="caps">UML</span>)</em> project.</p>
+<h3 id="pull-images">Pull Images</h3>
+<p>Command: <code>docker pull &lt;image-name&gt;</code></p>
+<h3 id="remove-images">Remove Images</h3>
+<p>Command: <code>docker rmi &lt;image-id&gt;</code></p>
+<p>or: <code>docker rmi &lt;image-name&gt;:&lt;tag&gt;</code></p>
+<h3 id="run-image">Run Image</h3>
+<h4 id="interactive-run">interactive Run</h4>
+<p>Command: <code>docker run -i -t &lt;image-name&gt;:&lt;tag&gt; &lt;command&gt;</code></p>
+<p>This will override the default command that is run when the container is started.</p>
+<p>Flags:</p>
+<ul>
+<li><code>-i</code>: interactive shell</li>
+<li><code>-t</code>: pseudo tty</li>
+</ul>
+<p>Example: <code>docker run -i -t fedora:latest /bin/bash</code></p>
+<h4 id="run-as-daemon">Run as Daemon</h4>
+<p>Command: <code>docker run -d &lt;image-name&gt;:&lt;tag&gt;</code></p>
+<h3 id="show-running-images">Show Running Images</h3>
+<p>Command: <code>docker ps</code></p>
+<p>To show also containers that are not running: <code>docker ps -a</code></p>
   </div>
 
   <hr/>
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/docker.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://lukaswoodtli.github.io/sanitizers.html">
+          <a href="http://lukaswoodtli.github.io/qemu_quickstart.html">
           Older &raquo;</a>
         </li>
       </ul>
