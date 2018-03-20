@@ -149,7 +149,7 @@
 <p>Then add the actual user to that group:</p>
 <p><code>sudo usermod -aG docker $USER</code></p>
 <p>After that log out and log in again.</p>
-<h2 id="images">Images</h2>
+<h2 id="images-and-containers">Images and Containers</h2>
 <h3 id="list-images">List Images</h3>
 <p>Command: <code>docker images</code></p>
 <p>Columns:</p>
@@ -186,12 +186,51 @@
 </ul>
 <p>If the interactive (<code>-i</code>) flag is provided a command sould be executed.
 This will override the default command that is run when the container is started.</p>
+<p>A random name is assigned to the image.</p>
 <p>Example: <code>docker run -i -t fedora:latest /bin/bash</code></p>
 <h3 id="show-running-images">Show Running Images</h3>
 <p>Command: <code>docker ps</code></p>
 <p>To show also containers that are not running: <code>docker ps -a</code></p>
 <h3 id="logs">Logs</h3>
 <p>Command: <code>docker logs &lt;container-id-or-name&gt;</code></p>
+<h3 id="stopping-containers">Stopping Containers</h3>
+<p>Shutdown the container:</p>
+<p>Command: <code>docker stop &lt;container-id-or-name&gt;</code></p>
+<p>Force quit the container:</p>
+<p>Command: <code>docker kill &lt;container-id-or-name&gt;</code></p>
+<h3 id="renaming-containers">Renaming Containers</h3>
+<p>Command: <code>docker rename &lt;old-name&gt; &lt;new-name&gt;</code></p>
+<h3 id="getting-information-from-containers">Getting Information from Containers</h3>
+<p>Command: <code>docker stats &lt;container-name&gt;</code></p>
+<p>Command: <code>docker top &lt;container-name&gt;</code></p>
+<h3 id="removing-containers">Removing Containers</h3>
+<p>Command: <code>docker rm &lt;container-name&gt;</code></p>
+<h2 id="registries">Registries</h2>
+<p>There are three kinds of registries:</p>
+<ul>
+<li>Docker Hub: Hosted registry service by Docker</li>
+<li>Docker Trusted Registry: Hosted or on premise (backend maintained by Docker)</li>
+<li>Docker Registry: For running own Docker registry</li>
+</ul>
+<h2 id="docker-machine">Docker Machine</h2>
+<h3 id="create-machines">Create Machines</h3>
+<p>Create and manage machines running Docker.</p>
+<p>Example (creating a VirtualBox machine running Docker): <code>docker-machine create -d virtualbox node1</code></p>
+<h3 id="list-machines">List Machines</h3>
+<p>Command: <code>docker-machine ls</code></p>
+<p>Columns:</p>
+<ul>
+<li><code>NAME</code>: node name</li>
+<li><code>ACTIVE</code>: docker commands are run on the active node</li>
+<li><code>DRIVER</code>: which driver is used (e.g. virtualbox)</li>
+<li><code>STATE</code>: if it’s running</li>
+<li><code>URL</code>: its <span class="caps">URL</span></li>
+<li><code>SWARM</code>: if it’s part of a Docker Swarm cluster</li>
+<li><code>DOCKER</code>: version of Docker</li>
+<li><code>ERRORS</code>: any errors that occurred</li>
+</ul>
+<h3 id="restart-a-node">Restart a Node</h3>
+<p>Commmand: <code>docker-machine restart &lt;node-name&gt;</code></p>
   </div>
 
   <hr/>
