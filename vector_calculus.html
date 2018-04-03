@@ -149,12 +149,14 @@
 <p>For a 3-dimensional cartesian coordinate system:</p>
 <div class="math">$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}$$</div>
 <p>Sometimes <span class="math">\(\vec\nabla\)</span> is written instead of <span class="math">\(\nabla\)</span> to show that it’s basically a vector.</p>
+<p>The Nabla Operator can be seen as “Vector of partial derivative <em>operators</em>“. The dimension is same as the input dimension.</p>
+<p>Operator: takes as input a function an outputs an other function.</p>
 <h1 id="gradient-operatornamegrad">Gradient (<span class="math">\(\operatorname{grad}\)</span>)</h1>
 <p>The gradient represents the slope of the tangent of the graph of a function.</p>
 <p>Input: A <a href="https://en.wikipedia.org/wiki/Scalar_field">Scalar field</a></p>
 <p>Output: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a> </p>
-<p>The direction of the gradient at one position shows the direction of the biggest change in the scalar field.
-The length (absolute value) of the gradient at that point is a measurement of the change (slope).</p>
+<p>The direction of the gradient at one position shows the direction of the biggest change (steepest ascent) in the scalar field. The vectors are pointing “uphills”.
+The length (absolute value) of the gradient at that point is a measurement of the change (slope, steepness).</p>
 <div class="math">$$\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n$$</div>
 <p><span class="math">\(e_i\)</span>: The orthogonal unit vectors pointing in the coordinate directions</p>
 <h1 id="divergence-operatornamediv">Divergence (<span class="math">\(\operatorname{div}\)</span>)</h1>
