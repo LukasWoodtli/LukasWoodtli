@@ -140,17 +140,49 @@
   <div id="article_content">
     <p>These notes are mainly taken from
 <a href="https://www.packtpub.com/packt/free-ebook/what-you-need-know-about-docker">What You Need to Know about Docker</a>.</p>
-<h1 id="docker">Docker</h1>
-<h2 id="setup">Setup</h2>
+<div class="toc">
+<ul>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#images-and-containers">Images and Containers</a><ul>
+<li><a href="#list-images">List Images</a></li>
+<li><a href="#search-images">Search Images</a></li>
+<li><a href="#pull-images">Pull Images</a></li>
+<li><a href="#remove-images">Remove Images</a></li>
+<li><a href="#run-image">Run Image</a></li>
+<li><a href="#show-running-images">Show Running Images</a></li>
+<li><a href="#logs">Logs</a></li>
+<li><a href="#stopping-containers">Stopping Containers</a></li>
+<li><a href="#renaming-containers">Renaming Containers</a></li>
+<li><a href="#getting-information-from-containers">Getting Information from Containers</a></li>
+<li><a href="#removing-containers">Removing Containers</a></li>
+</ul>
+</li>
+<li><a href="#registries">Registries</a></li>
+<li><a href="#docker-machine">Docker Machine</a><ul>
+<li><a href="#create-machines">Create Machines</a></li>
+<li><a href="#list-machines">List Machines</a></li>
+<li><a href="#restart-a-node">Restart a Node</a></li>
+</ul>
+</li>
+<li><a href="#dockerfile">Dockerfile</a><ul>
+<li><a href="#instructions">Instructions</a></li>
+<li><a href="#label-informations">Label Informations</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="setup">Setup</h1>
 <p>Start the daemon (on Fedora): <code>sudo systemctl start docker</code></p>
+<p>Start the daemon on boot (on Fedora): <code>sudo systemctl enable docker</code></p>
 <p>Run as user:</p>
 <p>First create a docker group:</p>
 <p><code>sudo groupadd docker</code></p>
 <p>Then add the actual user to that group:</p>
 <p><code>sudo usermod -aG docker $USER</code></p>
 <p>After that log out and log in again.</p>
-<h2 id="images-and-containers">Images and Containers</h2>
-<h3 id="list-images">List Images</h3>
+<h1 id="images-and-containers">Images and Containers</h1>
+<h2 id="list-images">List Images</h2>
 <p>Command: <code>docker images</code></p>
 <p>Columns:</p>
 <ul>
@@ -160,7 +192,7 @@
 <li><code>CREATED</code>: the creation date</li>
 <li><code>SIZE</code>: size of the image</li>
 </ul>
-<h3 id="search-images">Search Images</h3>
+<h2 id="search-images">Search Images</h2>
 <p>Command: <code>docker search &lt;image-name&gt;</code></p>
 <p>Columns:</p>
 <ul>
@@ -170,12 +202,12 @@
 <li><code>OFFICIAL</code>: If it has been approved by the Docker team</li>
 <li><code>AUTOMATED</code>: If the build is automanted (on Docker Hub)</li>
 </ul>
-<h3 id="pull-images">Pull Images</h3>
+<h2 id="pull-images">Pull Images</h2>
 <p>Command: <code>docker pull &lt;image-name&gt;</code></p>
-<h3 id="remove-images">Remove Images</h3>
+<h2 id="remove-images">Remove Images</h2>
 <p>Command: <code>docker rmi &lt;image-id&gt;</code></p>
 <p>or: <code>docker rmi &lt;image-name&gt;:&lt;tag&gt;</code></p>
-<h3 id="run-image">Run Image</h3>
+<h2 id="run-image">Run Image</h2>
 <p>Command: <code>docker run [flags] &lt;image-name&gt;:&lt;tag&gt; [command]</code></p>
 <p>Flags:</p>
 <ul>
@@ -188,35 +220,35 @@
 This will override the default command that is run when the container is started.</p>
 <p>A random name is assigned to the image.</p>
 <p>Example: <code>docker run -i -t fedora:latest /bin/bash</code></p>
-<h3 id="show-running-images">Show Running Images</h3>
+<h2 id="show-running-images">Show Running Images</h2>
 <p>Command: <code>docker ps</code></p>
 <p>To show also containers that are not running: <code>docker ps -a</code></p>
-<h3 id="logs">Logs</h3>
+<h2 id="logs">Logs</h2>
 <p>Command: <code>docker logs &lt;container-id-or-name&gt;</code></p>
-<h3 id="stopping-containers">Stopping Containers</h3>
+<h2 id="stopping-containers">Stopping Containers</h2>
 <p>Shutdown the container:</p>
 <p>Command: <code>docker stop &lt;container-id-or-name&gt;</code></p>
 <p>Force quit the container:</p>
 <p>Command: <code>docker kill &lt;container-id-or-name&gt;</code></p>
-<h3 id="renaming-containers">Renaming Containers</h3>
+<h2 id="renaming-containers">Renaming Containers</h2>
 <p>Command: <code>docker rename &lt;old-name&gt; &lt;new-name&gt;</code></p>
-<h3 id="getting-information-from-containers">Getting Information from Containers</h3>
+<h2 id="getting-information-from-containers">Getting Information from Containers</h2>
 <p>Command: <code>docker stats &lt;container-name&gt;</code></p>
 <p>Command: <code>docker top &lt;container-name&gt;</code></p>
-<h3 id="removing-containers">Removing Containers</h3>
+<h2 id="removing-containers">Removing Containers</h2>
 <p>Command: <code>docker rm &lt;container-name&gt;</code></p>
-<h2 id="registries">Registries</h2>
+<h1 id="registries">Registries</h1>
 <p>There are three kinds of registries:</p>
 <ul>
 <li>Docker Hub: Hosted registry service by Docker</li>
 <li>Docker Trusted Registry: Hosted or on premise (backend maintained by Docker)</li>
 <li>Docker Registry: For running own Docker registry</li>
 </ul>
-<h2 id="docker-machine">Docker Machine</h2>
-<h3 id="create-machines">Create Machines</h3>
+<h1 id="docker-machine">Docker Machine</h1>
+<h2 id="create-machines">Create Machines</h2>
 <p>Create and manage machines running Docker.</p>
 <p>Example (creating a VirtualBox machine running Docker): <code>docker-machine create -d virtualbox node1</code></p>
-<h3 id="list-machines">List Machines</h3>
+<h2 id="list-machines">List Machines</h2>
 <p>Command: <code>docker-machine ls</code></p>
 <p>Columns:</p>
 <ul>
@@ -229,8 +261,33 @@ This will override the default command that is run when the container is starte
 <li><code>DOCKER</code>: version of Docker</li>
 <li><code>ERRORS</code>: any errors that occurred</li>
 </ul>
-<h3 id="restart-a-node">Restart a Node</h3>
+<h2 id="restart-a-node">Restart a Node</h2>
 <p>Commmand: <code>docker-machine restart &lt;node-name&gt;</code></p>
+<h1 id="dockerfile">Dockerfile</h1>
+<h2 id="instructions">Instructions</h2>
+<ul>
+<li><code>FROM</code>: The base image for this Docker image.</li>
+<li><code>MAINTAINER</code>: Responsible maintainer  (name and e-mail).</li>
+<li><code>RUN</code>: Install packages and run other commands.</li>
+<li><code>ADD</code>: Add files or folders to the Docker image. URLs can be provided. Automatically unpack or untar a compressed files.</li>
+<li><code>COPY</code>: Same as <code>ADD</code> but without <span class="caps">URL</span> handling or unpacking/untarring.</li>
+<li><code>EXPOSE</code>: Expose ports from the image to the outside world.</li>
+<li><code>LABEL</code>: Additional information (version number, text …). Each label add a layer to the image.</li>
+<li><code>CMD</code>: Execute commands and keep the container alive.</li>
+<li><code>ENTRYPOINT</code>: Similar to <code>CMD</code>. Can be used in conjunction with <code>CMD</code>.</li>
+<li><code>USER</code>: Specify which username to use. Influences <code>RUN</code>, <code>CMD</code> and <code>ENTRYPOINT</code> instructions that follow in the Dockerfile.</li>
+<li><code>WORKDIR</code>: Specify the directory where to execute instructions. Influences <code>RUN</code>, <code>CMD</code> and <code>ENTRYPOINT</code> instructions that follow in the Dockerfile</li>
+<li><code>ONBUILD</code>: Used if image is used as base in another Dockerfile. Executed as first statement after <code>FROM</code>. Use in conjunction with <code>ADD</code> or <code>RUN</code>.</li>
+</ul>
+<h2 id="label-informations">Label Informations</h2>
+<p>Command: <code>docker inspect &lt;image-id&gt;</code></p>
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li>Use a <code>.dockerignore</code> file.</li>
+<li>Install only necessary packages.</li>
+<li>Limit the number of layers. Every <code>RUN</code> command adds a layer.</li>
+<li>Execute only one process per container.</li>
+</ul>
   </div>
 
   <hr/>
