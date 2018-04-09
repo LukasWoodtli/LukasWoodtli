@@ -170,6 +170,10 @@
 <li><a href="#best-practices">Best Practices</a></li>
 </ul>
 </li>
+<li><a href="#docker-build">Docker build</a><ul>
+<li><a href="#the-dockerignore-file">The .dockerignore file</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="setup">Setup</h1>
@@ -266,7 +270,7 @@ This will override the default command that is run when the container is starte
 <h1 id="dockerfile">Dockerfile</h1>
 <h2 id="instructions">Instructions</h2>
 <ul>
-<li><code>FROM</code>: The base image for this Docker image.</li>
+<li><code>FROM</code>: The base image for this Docker image (<code>scratch</code> for empty base image).</li>
 <li><code>MAINTAINER</code>: Responsible maintainer  (name and e-mail).</li>
 <li><code>RUN</code>: Install packages and run other commands.</li>
 <li><code>ADD</code>: Add files or folders to the Docker image. URLs can be provided. Automatically unpack or untar a compressed files.</li>
@@ -288,6 +292,14 @@ This will override the default command that is run when the container is starte
 <li>Limit the number of layers. Every <code>RUN</code> command adds a layer.</li>
 <li>Execute only one process per container.</li>
 </ul>
+<h1 id="docker-build">Docker build</h1>
+<p><code>docker build -t &lt;docker-hub-username&gt;/&lt;repository-name&gt; &lt;directory&gt;</code></p>
+<p>or</p>
+<p><code>docker build -f &lt;path-do-dockerfile&gt; -t &lt;repository&gt;:&lt;tag&gt;</code></p>
+<p><code>&lt;repository&gt;</code>: repository name prefixed by Docker Hub username</p>
+<h2 id="the-dockerignore-file">The <code>.dockerignore</code> file</h2>
+<p>This file can be used to exclude files and folders from being sent to the Docker daemon for the build. It should be placed in the same
+folder as the <code>Dockerfile</code>.</p>
   </div>
 
   <hr/>
