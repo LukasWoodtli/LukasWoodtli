@@ -497,7 +497,7 @@ It’s mainly used to compare languages to each other about the possible casting
 <li>Much simpler</li>
 </ul>
 <h3 id="overview-of-type-systems-in-oo-languages">Overview of Type Systems in <span class="caps">OO</span>-Languages</h3>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -532,7 +532,7 @@ It’s mainly used to compare languages to each other about the possible casting
 <li>Semantic classification: Subtypes provide <em>at least the behaviour</em> of their supertypes.</li>
 </ul>
 <p>A type is a <em>set</em> of values. <em>Subtype relation</em> corresponds to <em>subset relation</em>.</p>
-<p><img alt="Subtyping and Sets" class="img-responsive" src="/images/coop_subtyping_and_sets.svg"/></p>
+<p><img alt="Subtyping and Sets" class="img-fluid" src="/images/coop_subtyping_and_sets.svg"/></p>
 <ul>
 <li>In <em>nominal</em> programming languages the <em>programmer</em> decides about subtype relation</li>
 <li>In <em>structural</em> programming languages the <em>type checker</em> decides about subtype relation</li>
@@ -541,13 +541,13 @@ It’s mainly used to compare languages to each other about the possible casting
 <p>Based on substitution principle.</p>
 <h4 id="covariance">Covariance</h4>
 <p>Ordering of types from more specific to more generic (in direction of inheritance hierarchy)</p>
-<p><img alt="Covariance" class="img-responsive" src="/images/covariance.svg"/></p>
+<p><img alt="Covariance" class="img-fluid" src="/images/covariance.svg"/></p>
 <h4 id="contravariance">Contravariance</h4>
 <p>Ordering of types from more generic to more specific (in oposite direction of inheritance hierarchy)</p>
-<p><img alt="Contravariance" class="img-responsive" src="/images/contravariance.svg"/></p>
+<p><img alt="Contravariance" class="img-fluid" src="/images/contravariance.svg"/></p>
 <h4 id="variance-for-oop">Variance for <span class="caps">OOP</span></h4>
 <p><a href="https://class.coursera.org/progfun-005/lecture/83">Coursera:Scala</a></p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -576,7 +576,7 @@ It’s mainly used to compare languages to each other about the possible casting
 </pre></div>
 <p><em>Super</em> is more <strong>general</strong> than <em>Sub</em>.</p>
 <p><em>Sub</em> is more <strong>specific</strong> than <em>Super</em>.</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Programming Language</th>
@@ -641,7 +641,7 @@ This is expressed as interface specifications (contracts)</p>
 <h3 id="types-as-contracts">Types as Contracts</h3>
 <p>Types can be seen as a kind of contracts.</p>
 <p>Overriding Methods must:</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Behavioral Subtyping (contracts)</th>
@@ -952,7 +952,7 @@ provided only the information needed.</p>
 <li>default access: friend interface</li>
 <li><code>private</code>: implementation</li>
 </ul>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Modifier</th>
@@ -1261,7 +1261,7 @@ provided only the information needed.</p>
 <li>Method invocation</li>
 </ul>
 <p>is determined by type combinator: ►</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>►</th>
@@ -1371,7 +1371,7 @@ provided only the information needed.</p>
 </ul>
 </li>
 </ul>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>►</th>
@@ -1413,7 +1413,7 @@ provided only the information needed.</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="Ownership Types Hierarchy" class="img-responsive" src="/images/coop_ownership_types_hierarchy.svg"/></p>
+<p><img alt="Ownership Types Hierarchy" class="img-fluid" src="/images/coop_ownership_types_hierarchy.svg"/></p>
 <h4 id="field-access-and-method-invocation-type-rules">Field Access and Method Invocation (Type Rules)</h4>
 <p><span class="math">\(\tau(a)\)</span>: Type of a</p>
 <p>Field <strong>Read</strong> or Method <strong>Parameters</strong>:</p>
@@ -1613,7 +1613,7 @@ provided only the information needed.</p>
 </ul>
 </li>
 </ul>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -1640,7 +1640,7 @@ provided only the information needed.</p>
 </tbody>
 </table>
 <p>No downcasts from unclassified to free or committed (no reasonable run-time checks).</p>
-<p><img alt="Construction types hierarchy" class="img-responsive" src="/images/coop_non-null_and_construction_types.png"/></p>
+<p><img alt="Construction types hierarchy" class="img-fluid" src="/images/coop_non-null_and_construction_types.png"/></p>
 <h2 id="local-initialization">Local Initialization</h2>
 <ul>
 <li>An object is locally initialized: all non-null fields have non-null values</li>
@@ -1649,7 +1649,7 @@ provided only the information needed.</p>
 <p>Field access:</p>
 <div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="na">f</span>
 </pre></div>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Field access</th>
@@ -1709,7 +1709,7 @@ provided only the information needed.</p>
 - <code>a</code><span class="quo">‘</span>s type is a non-null type (<code>!</code>)
 - <code>b</code><span class="quo">‘</span>s class and non-null type conforms to <code>a.f</code>
 - <strong><code>a</code><span class="quo">‘</span>s type is <em>free</em> or <code>b</code><span class="quo">‘</span>s type is <em>committed</em> </strong></p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>type of <code>a</code> \ type of <code>b</code></th>
@@ -1749,7 +1749,7 @@ provided only the information needed.</p>
 </li>
 </ul>
 <p>The type of <code>e.f</code> is:</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>type of e \ type of f</th>
@@ -2001,7 +2001,7 @@ it gets swalowed and rethrown as an unchecked exception.</p>
 <li>Performance can be wery bad</li>
 </ul>
 <p>Reflection and Typechecking:</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Degree of Reflection</th>

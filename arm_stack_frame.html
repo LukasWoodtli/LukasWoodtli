@@ -143,7 +143,7 @@
     <p>This page contains notes about the usual stack frame layout (calling convention) on <span class="caps">ARM</span> processors.</p>
 <p>Most information is taken from <a href="http://de.slideshare.net/StephanCadene/arm-procedure-calling-conventions-and-recursion"><span class="caps">ARM</span> procedure calling conventions and recursion </a>.</p>
 <p>The conventions are defined by <span class="caps">ARM</span> and are called <a href="http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042e/IHI0042E_aapcs.pdf"><span class="caps">PCSAA</span></a>.</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -214,11 +214,11 @@
 <ul>
 <li>The order of registers in <code>STMFD</code> and <code>LDMFD</code> is always the same: lower regisers at lower addresses</li>
 </ul>
-<p><img alt="Order of Registers on Stack" class="img-responsive" src="/images/arm_stack_frame_example.png"/></p>
+<p><img alt="Order of Registers on Stack" class="img-fluid" src="/images/arm_stack_frame_example.png"/></p>
 <ul>
 <li>More general stack frame:</li>
 </ul>
-<p><img alt="General Stack Frame" class="img-responsive" src="/images/arm_stack_frame_general.png"/></p>
+<p><img alt="General Stack Frame" class="img-fluid" src="/images/arm_stack_frame_general.png"/></p>
 <ul>
 <li>Quick clear down of stack frame: <code>MOV SP, FP</code></li>
 </ul>

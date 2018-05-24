@@ -367,7 +367,7 @@
 </ul>
 </div>
 <h1 id="general">General</h1>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -390,7 +390,7 @@
 </tbody>
 </table>
 <h1 id="operation-modes">Operation Modes</h1>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Mode</th>
@@ -498,7 +498,7 @@ signed addresses relative to any reference point.</p>
 code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresses can be used.</p>
 <h1 id="registers">Registers</h1>
 <h2 id="general-purpose-registers">General-Purpose Registers</h2>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>64-bit</th>
@@ -588,7 +588,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 <em>bx’s</em> high byte can be accessed as <em>bh</em> and low byte as <em>bl</em>.</p>
 <h2 id="segment-registers">Segment Registers</h2>
 <p>These registers are used in real mode and protected mode for memory segmentation.</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>cs</th>
@@ -615,7 +615,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 </tbody>
 </table>
 <h2 id="special-registers">Special Registers</h2>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -637,7 +637,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 </tbody>
 </table>
 <h2 id="values-after-reset">Values after Reset</h2>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -674,7 +674,7 @@ single Instruction Multiple Data (<span class="caps">SIMD</span>) and <span clas
 <p>There are 16 <span class="caps">XMM</span> registers with a size of 128 bits.
 They are called xmm0-xmm15.</p>
 <h2 id="flags-register">Flags Register</h2>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Bit</th>
@@ -949,7 +949,7 @@ With brackets the value stored in the variable is taken.</p>
 <span class="nf">movsxd</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span>
 </pre></div>
 <p>Special instructions:</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Instruction</th>
@@ -1118,12 +1118,12 @@ With brackets the value stored in the variable is taken.</p>
 an immediate.</p>
 <p>The result is always twice as big as the operands. It’s either the accumulator (<em><span class="caps">AX</span></em>)
 or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<span class="caps">AX</span></em>).</p>
-<p><img alt="The x86 MUL/IMUL commands" class="img-responsive" src="/images/intel_mul.svg"/></p>
+<p><img alt="The x86 MUL/IMUL commands" class="img-fluid" src="/images/intel_mul.svg"/></p>
 <div class="highlight"><pre><span></span><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
 <span class="nf">IMUL</span> <span class="nb">BX</span> <span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span>
 </pre></div>
 <p>Sizes (<code>mul</code>):</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Size</th>
@@ -1156,7 +1156,7 @@ or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<
 <span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">imm</span><span class="o">&gt;</span>
 </pre></div>
 <p>For single operand (same as <code>mul</code>):</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Size</th>
@@ -1219,7 +1219,7 @@ Setting the dividend correctly requires often to set two registers
 <span class="nf">IDIV</span> <span class="mh">0x34</span> <span class="c1">; Use AX as implicit operand. Result is saved in AL. Remainder is saved in AH.</span>
 </pre></div>
 <p>Unsigned and signed division (<code>div</code>, <code>idiv</code>):</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Size</th>
@@ -1245,7 +1245,7 @@ Setting the dividend correctly requires often to set two registers
 </tr>
 </tbody>
 </table>
-<p><img alt="The x86 DIV/IDIV commands" class="img-responsive" src="/images/intel_div.svg"/></p>
+<p><img alt="The x86 DIV/IDIV commands" class="img-fluid" src="/images/intel_div.svg"/></p>
 <blockquote>
 <p>Don’t divide by zero!</p>
 </blockquote>
@@ -1282,7 +1282,7 @@ for floating point instructions.</p>
 <li>Operands can not be an immediate</li>
 </ul>
 <h2 id="conversion-instructions_1">Conversion Instructions</h2>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Conversions</th>
@@ -1426,7 +1426,7 @@ power of two (2, 5, 8, …).</p>
 shift operators</em> need to be used.</p>
 <p>For a multiplication or a division of a <em>signed</em> number the 
 <em>arithmetic shift operators</em> need to be used.</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Direction</th>
@@ -1511,7 +1511,7 @@ performed if a check gives an expected result (i.e flags).</p>
 <li>Relative jumps: The target address is given relative to the actual position (<em><span class="caps">IP</span></em>)</li>
 </ul>
 <p>The 8086 has following possible jump commands:</p>
-<p><img alt="The Intel x86 jump commands" class="img-responsive" src="/images/intel_architecture_jump.svg"/></p>
+<p><img alt="The Intel x86 jump commands" class="img-fluid" src="/images/intel_architecture_jump.svg"/></p>
 <h2 id="intra-and-inter-segment-jumps">Intra- and Inter-Segment Jumps</h2>
 <p>All jumps change the <em><span class="caps">IP</span></em> register.</p>
 <p>Far jumps also change the <em><span class="caps">CS</span></em> register.</p>
@@ -1551,7 +1551,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 <h3 id="arithmetic-jumps">Arithmetic Jumps</h3>
 <p>The jump is performed if the size relation between two given operands is as expected.</p>
 <p>The relation is expressed differently for signed and unsigned operands:</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Relation</th>
@@ -1578,7 +1578,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 </tbody>
 </table>
 <h4 id="arithmetic-unsigned-jumps">Arithmetic <em>“unsigned”</em> Jumps</h4>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Relation</th>
@@ -1651,7 +1651,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 </tbody>
 </table>
 <h4 id="arithmetic-signed-jumps">Arithmetic <em>“signed”</em> Jumps</h4>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Relation</th>
@@ -1724,7 +1724,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 </tbody>
 </table>
 <h3 id="flag-oriented-jumps">Flag oriented Jumps</h3>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -1896,7 +1896,7 @@ This code is called function epilogue.</p>
 For some commands the accumulator (<em><span class="caps">AL</span></em>/<em><span class="caps">AX</span></em>) is used as operator.
 <em><span class="caps">SI</span></em> is <em><span class="caps">DS</span></em>-relative by default. But the segment can be overridden.
 <em><span class="caps">DI</span></em> is <em><span class="caps">ES</span></em>-relative by default. The segment can <strong>not</strong> be overridden.</p>
-<table class="table table-hover table-striped">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>

@@ -303,24 +303,29 @@
 </blockquote>
 <h1 id="ld">ld</h1>
 <h2 id="flags">Flags</h2>
-<p>-z now
--O1 (linker!)</p>
+<ul>
+<li><code>-z now</code></li>
+<li><code>-O1</code> (linker!)</li>
+</ul>
 <h2 id="environment-variables">Environment Variables</h2>
-<p>LD_BIND_NOW
-LD_PRELOAD
-LD_DEBUG LD_DEBUG_OUTPUT</p>
-<p>ld/gcc? —hash-style=gnu</p>
+<ul>
+<li><code>LD_BIND_NOW</code></li>
+<li><code>LD_PRELOAD</code></li>
+<li><code>LD_DEBUG</code></li>
+<li><code>LD_DEBUG_OUTPUT</code></li>
+</ul>
+<p>ld/gcc?</p>
+<p><code>--hash-style=gnu</code></p>
 <h1 id="readelf">readelf</h1>
-<h2 id="flags_1">Flags</h2>
-<p>-d</p>
 <h2 id="show-which-libraries-have-been-linked">Show which libraries have been linked</h2>
 <p><code>readelf -a &lt;prog&gt; | grep "Shared library"</code></p>
 <h2 id="show-the-run-time-linker">Show the run-time linker</h2>
 <p><code>readelf -a &lt;prog&gt; | grep "program interpreter"</code></p>
 <h1 id="objdump">objdump</h1>
-<h2 id="flags_2">Flags</h2>
-<p>-d: disassemble
--C: demangle …</p></li>
+<h2 id="flags_1">Flags</h2>
+<ul>
+<li><code>-d</code>: disassemble</li>
+<li><code>-C</code>: demangle C++ symbols …</li></ul></li>
          <!-- <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html#disqus_thread" title="comments">
