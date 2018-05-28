@@ -1,264 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Lukas Woodtli - Programming</title>
-        <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css" />
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Lukas Woodtli" />
+        <meta name="copyright" content="Lukas Woodtli" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli </a></h1>
-                <nav><ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/pages/resume.html">Resume</a></li>
-                    <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
-                    <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
-                    <li><a href="/pages/contact.html">Contact</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
-                </ul>
-                </nav>
-<div id="submenu">
-                    <ul>
-                            <li><a href="http://lukaswoodtli.github.io/category/emacs.html">Emacs</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/finance.html">Finance</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/misc.html">Misc</a></li>
-                            <li class="active"><a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a></li>
-                    </ul>
-                <div>
-        </header><!-- /#banner -->
-
-                <section id="content" class="body">
-                    <ol id="posts-list" class="hfeed" start="4">
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://lukaswoodtli.github.io/freertos.html" rel="bookmark"
-                           title="Permalink to FreeRTOS">FreeRTOS</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <span>Fri 16 June 2017</span>
-	        <span>| in <a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></span>
-<span>| tags: <a href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a><a href="http://lukaswoodtli.github.io/tag/os.html">OS</a><a href="http://lukaswoodtli.github.io/tag/freertos.html">FreeRTOS</a><a href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a></span>
-</footer><!-- /.post-info -->                <p>This page contains some random notes for FreeRTOS.</p>
-<p>See also: <a href="https://github.com/LukasWoodtli/FreeRtosExamples">FreeRtosExamples</a>
-and <a href="http://www.freertos.org/">FreeRtos</a></p>
-<div class="toc">
-<ul>
-<li><a href="#configuration">Configuration</a></li>
-<li><a href="#tasks">Tasks</a><ul>
-<li><a href="#task-stack-and-tcb">Task Stack and <span class="caps">TCB</span></a></li>
-</ul>
-</li>
-<li><a href="#stack-overflow">Stack Overflow</a><ul>
-<li><a href="#high-water-mark">High Water Mark</a></li>
-<li><a href="#runtime-checks">Runtime Checks</a><ul>
-<li><a href="#method-1">Method 1</a></li>
-<li><a href="#method-2">Method 2</a></li>
-<li><a href="#configuration_1">Configuration</a></li>
-</ul>
-</li>
-<li><a href="#task-states">Task States</a></li>
-<li><a href="#task-priorities">Task Priorities</a><ul>
-<li><a href="#selecting-task-priority">Selecting Task Priority</a><ul>
-<li><a href="#rate-monotonic-scheduling-rms">Rate Monotonic Scheduling (<span class="caps">RMS</span>)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#blocking-a-task">Blocking a Task</a></li>
-<li><a href="#idle-task-hook">Idle Task Hook</a></li>
-</ul>
-</li>
-<li><a href="#scheduler">Scheduler</a><ul>
-<li><a href="#scheduling-algorithm">Scheduling …</a></li></ul></li></ul></div>
-                <a class="readmore" href="http://lukaswoodtli.github.io/freertos.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://lukaswoodtli.github.io/cpp_on_embedded_systems.html" rel="bookmark"
-                           title="Permalink to C++ on Embedded Systems">C++ on Embedded&nbsp;Systems</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <span>Fri 31 March 2017</span>
-	        <span>| in <a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></span>
-<span>| tags: <a href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
-</footer><!-- /.post-info -->                <blockquote>
-<p>This page is still work in progress</p>
-</blockquote>
-<div class="toc">
-<ul></ul>
-</div>
-<ul>
-<li>No Exceptions (-fno-exception)<ul>
-<li>What do std functions that throw exeptions What happens with library functions that throw</li>
-</ul>
-</li>
-<li>No Run Time Type Information (<span class="caps">RTTI</span>) (-fno-rtti)</li>
-<li>check size of modules (linker map files)<ul>
-<li>Find weakness (according code size) of compiler and avoid this kind of …</li></ul></li></ul>
-                <a class="readmore" href="http://lukaswoodtli.github.io/cpp_on_embedded_systems.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://lukaswoodtli.github.io/software_development_priorities.html" rel="bookmark"
-                           title="Permalink to Software Development Priorities">Software Development&nbsp;Priorities</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <span>Fri 31 March 2017</span>
-	        <span>| in <a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></span>
-<span>| tags: <a href="http://lukaswoodtli.github.io/tag/software_development_methodology.html">Software Development Methodology</a></span>
-</footer><!-- /.post-info -->                <blockquote>
-<p>This page is still work in progress</p>
-</blockquote>
-<div class="toc">
-<ul>
-<li><a href="#correct-sw">Correct <span class="caps">SW</span></a></li>
-<li><a href="#maintainable-sw">Maintainable <span class="caps">SW</span></a></li>
-<li><a href="#optimal-efficient-optimized-sw">Optimal, efficient (Optimized) <span class="caps">SW</span></a></li>
-</ul>
-</div>
-<p>When developping software the priorities are as following:</p>
-<ol>
-<li>correctness</li>
-<li>maintainability</li>
-<li>efficiency</li>
-</ol>
-<h2 id="correct-sw">Correct <span class="caps">SW</span></h2>
-<ul>
-<li>Defensive Programming</li>
-<li>Unit Tests</li>
-<li>Contracts</li>
-<li>Static Analysis</li>
-</ul>
-<h2 id="maintainable-sw">Maintainable <span class="caps">SW</span></h2>
-<ul>
-<li>Architecture</li>
-<li>Design Patterns</li>
-<li>Idioms</li>
-<li>Readable/intuitive code</li>
-<li>Correct and Actual Documentation</li>
-</ul>
-<h2 id="optimal-efficient-optimized-sw">Optimal, efficient …</h2>
-                <a class="readmore" href="http://lukaswoodtli.github.io/software_development_priorities.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://lukaswoodtli.github.io/smart_pointers.html" rel="bookmark"
-                           title="Permalink to Smart Pointers">Smart&nbsp;Pointers</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <span>Mon 20 March 2017</span>
-	        <span>| in <a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></span>
-<span>| tags: <a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
-</footer><!-- /.post-info -->                <p>From:
-<a href="http://www.codeproject.com/Articles/8394/Smart-Pointers-to-boost-your-code">Smart Pointers to boost your code</a></p>
-<div class="toc">
-<ul>
-<li><a href="#unique_ptr">unique_ptr</a></li>
-<li><a href="#shared_ptr">shared_ptr</a></li>
-<li><a href="#weak_ptr">weak_ptr</a></li>
-<li><a href="#scoped_ptr-boost">scoped_ptr (Boost)</a></li>
-<li><a href="#other-smart-pointers-boost">Other smart pointers (Boost)</a></li>
-<li><a href="#rules-for-smart-pointers">Rules for smart pointers</a></li>
-</ul>
-</div>
-<h1 id="unique_ptr"><code>unique_ptr</code></h1>
-<ul>
-<li>unique ownership</li>
-<li>copying prevented</li>
-<li>use <code>std::move</code> to transfer ownership</li>
-<li>const prevents transfer</li>
-<li>can’t be used as elements in containers</li>
-<li>use as replacement for <code>auto_ptr</code></li>
-</ul>
-<h1 id="shared_ptr"><code>shared_ptr</code></h1>
-<ul>
-<li>reference counting …</li></ul>
-                <a class="readmore" href="http://lukaswoodtli.github.io/smart_pointers.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://lukaswoodtli.github.io/unix_system_files.html" rel="bookmark"
-                           title="Permalink to Unix System Files">Unix System&nbsp;Files</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <span>Mon 06 March 2017</span>
-	        <span>| in <a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></span>
-<span>| tags: <a href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a><a href="http://lukaswoodtli.github.io/tag/os.html">OS</a><a href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a><a href="http://lukaswoodtli.github.io/tag/unix.html">Unix</a></span>
-</footer><!-- /.post-info -->                <h1 id="etcpasswd"><code>/etc/passwd</code></h1>
-<p>Contains user informations. The information fields are separated by a colon.</p>
-<p><code>user-name:password:UID:GID:info:home-dir:shell</code></p>
-<ul>
-<li><code>user-name</code>: The name that the user needs to log in.</li>
-<li><code>password</code>: Usually the entry <code>x</code>, meaning that the password is saved in <code>/etc/shadow</code>.</li>
-<li><code>UID</code>: The user-id (usually greater than …</li></ul>
-                <a class="readmore" href="http://lukaswoodtli.github.io/unix_system_files.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-            </ol><!-- /#posts-list -->
-<p class="paginator">
-        <a href="http://lukaswoodtli.github.io/category/programming2.html">&laquo;</a>
-    Page 3 / 11
-        <a href="http://lukaswoodtli.github.io/category/programming4.html">&raquo;</a>
-</p>
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="https://www.linkedin.com/in/lukaswoodtli">LinkedIn</a></li>
-                            <li><a href="https://github.com/LukasWoodtli">github</a></li>
-                            <li><a href="https://careers.stackoverflow.com/lukaswoodtli">stack overflow</a></li>
-                            <li><a href="https://www.xing.com/profile/Lukas_Woodtli">XING</a></li>
+<meta property="og:title" content="Lukas Woodtli"/>
+<meta name="twitter:title" content="Lukas Woodtli">
+<meta property="og:url" content="http://lukaswoodtli.github.io" />
+<meta property="og:site_name" content="Lukas Woodtli" />
+<meta property="og:article:author" content="Lukas Woodtli" />
+        <title>Lukas Woodtli
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://lukaswoodtli.github.io/"><span class=site-name>Lukas Woodtli</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://lukaswoodtli.github.io">Home</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://lukaswoodtli.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<div class="row-fluid">
 
-        <footer id="contentinfo" class="body">
-                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
-        </footer><!-- /#contentinfo -->
+    <div class="row-fluid">
 
-</body>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <header>
+            <h1 id="recent-posts">Recent Posts <a id="allposts" href="http://lukaswoodtli.github.io/archives.html">all posts</a></h1>
+            </header>
+        <div class="recent-posts">
+            <article>
+                <a href="http://lukaswoodtli.github.io/docker.html">Docker  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2018-03-19T00:00:00+01:00">Mon 19 March 2018</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/qemu_quickstart.html"><span class="caps">QEMU</span>&nbsp;Quickstart  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2018-03-06T00:00:00+01:00">Tue 06 March 2018</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/sanitizers.html">Sanitizers  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2018-03-05T00:00:00+01:00">Mon 05 March 2018</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html"><span class="caps">GCC</span>, binutils and other developer&nbsp;tools  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2018-02-22T00:00:00+01:00">Thu 22 February 2018</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/mastering_embedded_linux_programming.html">Mastering Embedded Linux&nbsp;Programming  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2018-01-20T00:00:00+01:00">Sat 20 January 2018</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/language_implementation_patterns.html">Language Implementation&nbsp;Patterns  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-12-14T00:00:00+01:00">Thu 14 December 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/make_as_multi-paradigm_language.html">Make as multi-paradigm&nbsp;language  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-11-29T00:00:00+01:00">Wed 29 November 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/linux_system_calls.html">Linux System&nbsp;Calls  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-11-06T00:00:00+01:00">Mon 06 November 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/x86_calling_conventions.html">x86 Calling&nbsp;Conventions  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-11-05T00:00:00+01:00">Sun 05 November 2017</time>
+                </div>
+                </section>
+            </article>
+            <article>
+                <a href="http://lukaswoodtli.github.io/intel_assembler_overview.html">Intel Assembler&nbsp;Overview  </a>
+                <section>
+                    posted in
+                <a href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2017-10-17T00:00:00+02:00">Tue 17 October 2017</time>
+                </div>
+                </section>
+            </article>
+        </div>
+        </div>
+    </div>
+</div>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
 </html>

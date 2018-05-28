@@ -1,72 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Mastering Embedded Linux Programming</title>
-        <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css" />
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Lukas Woodtli" />
+        <meta name="copyright" content="Lukas Woodtli" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli </a></h1>
-                <nav><ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/pages/resume.html">Resume</a></li>
-                    <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
-                    <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
-                    <li><a href="/pages/contact.html">Contact</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
-    
-                        <li><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
-                </ul>
-                </nav>
-<div id="submenu">
-                    <ul>
-                            <li><a href="http://lukaswoodtli.github.io/category/emacs.html">Emacs</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/finance.html">Finance</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/misc.html">Misc</a></li>
-                            <li class="active"><a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></li>
-                            <li><a href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a></li>
-                    </ul>
-                <div>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="http://lukaswoodtli.github.io/mastering_embedded_linux_programming.html" rel="bookmark"
-           title="Permalink to Mastering Embedded Linux Programming">Mastering Embedded Linux&nbsp;Programming</a></h1>
+<meta name="keywords" content="Embedded Systems, OS, Linux, Unix, Programming, " />
+
+<meta property="og:title" content="Mastering Embedded Linux Programming "/>
+<meta property="og:url" content="http://lukaswoodtli.github.io/mastering_embedded_linux_programming.html" />
+<meta property="og:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …" />
+<meta property="og:site_name" content="Lukas Woodtli" />
+<meta property="og:article:author" content="Lukas Woodtli" />
+<meta property="og:article:published_time" content="2018-01-20T00:00:00+01:00" />
+<meta name="twitter:title" content="Mastering Embedded Linux Programming ">
+<meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
+
+        <title>Mastering Embedded Linux Programming  · Lukas Woodtli
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://lukaswoodtli.github.io/theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://lukaswoodtli.github.io/"><span class=site-name>Lukas Woodtli</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://lukaswoodtli.github.io">Home</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://lukaswoodtli.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://lukaswoodtli.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://lukaswoodtli.github.io/mastering_embedded_linux_programming.html"> Mastering Embedded Linux&nbsp;Programming  </a></h1>
     </header>
+</div>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <span>Sat 20 January 2018</span>
-	        <span>| in <a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></span>
-<span>| tags: <a href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a><a href="http://lukaswoodtli.github.io/tag/os.html">OS</a><a href="http://lukaswoodtli.github.io/tag/linux.html">Linux</a><a href="http://lukaswoodtli.github.io/tag/unix.html">Unix</a></span>
-</footer><!-- /.post-info -->      <p>Notes to the book <a href="https://www.packtpub.com/networking-and-servers/mastering-embedded-linux-programming">Mastering Embedded Linux Programming</a></p>
-<p>My code examples can be found here: <a href="https://github.com/LukasWoodtli/MasteringEmbeddedLinuxProgramming">GitHub</a></p>
-<p><em><span class="dquo">“</span>The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08”</em></p>
-<div class="toc">
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
 <ul>
 <li><a href="#chapter-1-starting-out">Chapter 1. Starting Out</a><ul>
 <li><a href="#selecting-the-right-operating-system">Selecting the right operating system</a></li>
@@ -107,6 +118,15 @@
 </li>
 </ul>
 </div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <p>Notes to the book <a href="https://www.packtpub.com/networking-and-servers/mastering-embedded-linux-programming">Mastering Embedded Linux Programming</a></p>
+<p>My code examples can be found here: <a href="https://github.com/LukasWoodtli/MasteringEmbeddedLinuxProgramming">GitHub</a></p>
+<p><em><span class="dquo">“</span>The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08”</em></p>
+
 <h1 id="chapter-1-starting-out">Chapter 1. Starting Out</h1>
 <p><em><span class="dquo">“</span>At the heart of most embedded devices is a highly integrated chip that contains one or more processor cores and interfaces with main memory, mass storage, and peripherals of many types. This is referred to as a System on Chip, or SoC”</em></p>
 <h2 id="selecting-the-right-operating-system">Selecting the right operating system</h2>
@@ -352,26 +372,67 @@
 </ul>
 <h2 id="summary">Summary</h2>
 <p><em><span class="dquo">“</span>Beware of toolchains or distributions that are offered to you for free as part of a hardware package: they are often poorly configured and not maintained. In any case, you should make the choice according to your situation, and then be consistent in its use throughout the project.”</em></p>
-    </div><!-- /.entry-content -->
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2018-01-20T00:00:00+01:00">Jan 20, 2018</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://lukaswoodtli.github.io/categories.html#programming-ref">Programming</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://lukaswoodtli.github.io/tags.html#embedded_systems-ref">Embedded Systems
+                    <span>8</span>
+</a></li>
+                <li><a href="http://lukaswoodtli.github.io/tags.html#linux-ref">Linux
+                    <span>9</span>
+</a></li>
+                <li><a href="http://lukaswoodtli.github.io/tags.html#os-ref">OS
+                    <span>13</span>
+</a></li>
+                <li><a href="http://lukaswoodtli.github.io/tags.html#unix-ref">Unix
+                    <span>5</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://www.linkedin.com/in/lukaswoodtli" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://github.com/LukasWoodtli" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://careers.stackoverflow.com/lukaswoodtli" title="My stack overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="https://www.xing.com/profile/Lukas_Woodtli" title="My XING Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-xing sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="https://www.linkedin.com/in/lukaswoodtli">LinkedIn</a></li>
-                            <li><a href="https://github.com/LukasWoodtli">github</a></li>
-                            <li><a href="https://careers.stackoverflow.com/lukaswoodtli">stack overflow</a></li>
-                            <li><a href="https://www.xing.com/profile/Lukas_Woodtli">XING</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
-        </footer><!-- /#contentinfo -->
-
-</body>
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
 </html>
