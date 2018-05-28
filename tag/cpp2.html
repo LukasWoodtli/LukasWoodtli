@@ -1,232 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
+        <meta charset="utf-8" />
+        <title>Lukas Woodtli - C++</title>
+        <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css" />
 
-        <title>Tag: C++ · Lukas Woodtli</title>
-
-
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli </a></h1>
+                <nav><ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/pages/resume.html">Resume</a></li>
+                    <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+                    <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/emacs.html">Emacs</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/finance.html">Finance</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/misc.html">Misc</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a></li>
                 </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
+                </nav>
+        </header><!-- /#banner -->
 
-        </ul>
-      </div><!-- /.navbar-collapse -->
+                <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="4">
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/systemc.html" rel="bookmark"
+                           title="Permalink to SystemC">SystemC</a></h1>
+                </header>
 
-    </div> <!--container-->
-  </nav>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Mon 15 February 2016</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a><a href="http://lukaswoodtli.github.io/tag/embedded_systems.html">Embedded Systems</a></span>
+</footer><!-- /.post-info -->                <p>SystemC is a system-level modeling language. It’s implemented as a C++ library.</p>
+<p>The library is open source and platform independent.</p>
+<p>It contains an event-driven simulation kernel for executing models.</p>
+<p><a href="http://accellera.org/">Accellera</a> is the main resource for SystemC.</p>
+<h1 id="simulation">Simulation</h1>
+<p>SystemC contains a kernel for discrete-event driven simulation.
+The main purpose of …</p>
+                <a class="readmore" href="http://lukaswoodtli.github.io/systemc.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/list_of_design_patterns.html" rel="bookmark"
+                           title="Permalink to List of Design Patterns">List of Design&nbsp;Patterns</a></h1>
+                </header>
 
-    <div class="container">
-      <div class="col-md-2">
-      </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Thu 17 September 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a><a href="http://lukaswoodtli.github.io/tag/python.html">Python</a><a href="http://lukaswoodtli.github.io/tag/oop.html">OOP</a></span>
+</footer><!-- /.post-info -->                <h2 id="overview-of-design-patterns">Overview of Design Patterns</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Creational Patterns</th>
+<th>Structural Patterns</th>
+<th>Behavioral Patterns</th>
+<th>Other Patterns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abstract Factory<sup id="fnref21-1"><a class="footnote-ref" href="#fn-1">1</a></sup> <sup id="fnref14-2"><a class="footnote-ref" href="#fn-2">2</a></sup></td>
+<td>Adapter<sup id="fnref22-1"><a class="footnote-ref" href="#fn-1">1</a></sup> <sup id="fnref15-2"><a class="footnote-ref" href="#fn-2">2</a></sup></td>
+<td>Chain of Responsibility<sup id="fnref23-1"><a class="footnote-ref" href="#fn-1">1</a></sup></td>
+<td>Business Delegate</td>
+</tr>
+<tr>
+<td>Builder<sup id="fnref18-1"><a class="footnote-ref" href="#fn-1">1</a></sup></td>
+<td>Composite<sup id="fnref19-1"><a class="footnote-ref" href="#fn-1">1</a></sup> <sup id="fnref12-2"><a class="footnote-ref" href="#fn-2">2</a></sup></td>
+<td>Command<sup id="fnref20-1"><a class="footnote-ref" href="#fn-1">1</a></sup> <sup id="fnref13-2"><a class="footnote-ref" href="#fn-2">2</a></sup></td>
+<td>Data Access Object</td>
+</tr>
+<tr>
+<td>Factory Method<sup id="fnref15-1"><a class="footnote-ref" href="#fn-1">1</a></sup> <sup id="fnref11-2"><a class="footnote-ref" href="#fn-2">2</a></sup></td>
+<td>Bridge<sup id="fnref16-1"><a class="footnote-ref" href="#fn-1">1</a></sup></td>
+<td>Interpreter<sup id="fnref17-1"><a class="footnote-ref" href="#fn-1">1</a></sup></td>
+<td>Data Transfer Object</td>
+</tr>
+<tr>
+<td>Prototype<sup id="fnref12-1"><a class="footnote-ref" href="#fn-1">1</a></sup></td>
+<td>Decorator …</td></tr></tbody></table>
+                <a class="readmore" href="http://lukaswoodtli.github.io/list_of_design_patterns.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/cpp.html">Tag: C++</a></h1>
-    </div>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/preprocessor_defines.html" rel="bookmark"
+                           title="Permalink to Preprocessor Defines">Preprocessor&nbsp;Defines</a></h1>
+                </header>
 
-        </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Sat 01 August 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/c.html">C</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
+</footer><!-- /.post-info -->                <h1 id="preprocessor-defines">Preprocessor Defines</h1>
+<p>This page lists commonly used preprocessor defines for C/C++</p>
+<h2 id="programming-language">Programming Language</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Language</th>
+<th>Define</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C++</td>
+<td><code>__cplusplus</code></td>
+</tr>
+<tr>
+<td>C 99</td>
+<td><code>__STDC__</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="compiler">Compiler</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Compiler</th>
+<th>Define</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="caps">GNU</span></td>
+<td><code>__GNUC__</code></td>
+</tr>
+<tr>
+<td>Visual Studio</td>
+<td><code>_MSC_VER_</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="processor">Processor</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Processor</th>
+<th>Defines</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x86</td>
+<td><code>_M_IX86</code>, <code>__INTEL__</code>, <code>__i386__</code></td>
+</tr>
+<tr>
+<td>x86-64</td>
+<td><code>_M_X64</code>, <code>__x86_64__</code></td>
+</tr>
+<tr>
+<td><span class="caps">IA64</span></td>
+<td><code>_IA64__</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="endianness">Endianness</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Byte Order</th>
+<th>Define</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Little Endian</td>
+<td><code>__LITTLE_ENDIAN__</code></td>
+</tr>
+<tr>
+<td>Big Endian …</td></tr></tbody></table>
+                <a class="readmore" href="http://lukaswoodtli.github.io/preprocessor_defines.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-        <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="C++" href="#C++">C++</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#C++collapse">
-          <span class="badge pull-right">14</span>
-        </a>
-    </div>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html" rel="bookmark"
+                           title="Permalink to Concepts of Object Oriented Programming">Concepts of Object Oriented&nbsp;Programming</a></h1>
+                </header>
 
-    <div class="panel-body hidden"></div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Mon 27 July 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a><a href="http://lukaswoodtli.github.io/tag/python.html">Python</a><a href="http://lukaswoodtli.github.io/tag/oop.html">OOP</a><a href="http://lukaswoodtli.github.io/tag/eth.html">ETH</a></span>
+</footer><!-- /.post-info -->                <div class="toc">
+<ul>
+<li><a href="#core-requirements-to-oop-languages">Core Requirements to <span class="caps">OOP</span> Languages</a></li>
+<li><a href="#the-object-model">The Object Model</a><ul>
+<li><a href="#interfaces-and-encapsulation">Interfaces and Encapsulation</a></li>
+<li><a href="#classification-and-polymorphism">Classification and Polymorphism</a><ul>
+<li><a href="#classification">Classification</a></li>
+<li><a href="#polymorphism">Polymorphism</a><ul>
+<li><a href="#subtype-polymorphism">Subtype Polymorphism</a></li>
+<li><a href="#parametric-polymorphism">Parametric Polymorphism</a></li>
+<li><a href="#method-overloading">Method Overloading</a></li>
+</ul>
+</li>
+<li><a href="#spezialization">Spezialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#types-and-subtyping">Types and Subtyping</a><ul>
+<li><a href="#types">Types</a><ul>
+<li><a href="#weak-and-strong-type-systems">Weak and Strong Type Systems</a><ul>
+<li><a href="#untyped-languages">Untyped Languages</a></li>
+<li><a href="#weakly-typed-languages">Weakly Typed Languages</a></li>
+<li><a href="#strongly-typed-languages">Strongly Typed Languages</a></li>
+</ul>
+</li>
+<li><a href="#nominal-and-structural-types">Nominal and Structural Types</a><ul>
+<li><a href="#nominal-types">Nominal Types</a></li>
+<li><a href="#structural-types">Structural Types</a></li>
+</ul>
+</li>
+<li><a href="#type-checking">Type Checking …</a></li></ul></li></ul></li></ul></div>
+                <a class="readmore" href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="C++collapse">
-        <a href="http://lukaswoodtli.github.io/sanitizers.html">
-          <li class="list-group-item">
-Sanitizers</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html">
-          <li class="list-group-item">
-<span class="caps">GCC</span>, binutils and other developer&nbsp;tools</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/cpp_on_embedded_systems.html">
-          <li class="list-group-item">
-C++ on Embedded&nbsp;Systems</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/smart_pointers.html">
-          <li class="list-group-item">
-Smart&nbsp;Pointers</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/modern_cpp_design.html">
-          <li class="list-group-item">
-Modern C++&nbsp;Design</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/systemc.html">
-          <li class="list-group-item">
-SystemC</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/list_of_design_patterns.html">
-          <li class="list-group-item">
-List of Design&nbsp;Patterns</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/preprocessor_defines.html">
-          <li class="list-group-item">
-Preprocessor&nbsp;Defines</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html">
-          <li class="list-group-item">
-Concepts of Object Oriented&nbsp;Programming</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">
-          <li class="list-group-item">
-Arrays in C and&nbsp;C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/endianness.html">
-          <li class="list-group-item">
-Endianness</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/memory_layout.html">
-          <li class="list-group-item">
-Memory&nbsp;Layout</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">
-          <li class="list-group-item">
-Macro Magic in C and&nbsp;C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">
-          <li class="list-group-item">
-Enums in C and&nbsp;C++</li>
-        </a>
-      </div>
-    </ul>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html" rel="bookmark"
+                           title="Permalink to Arrays in C and C++">Arrays in C and&nbsp;C++</a></h1>
+                </header>
 
-  </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Wed 15 July 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/c.html">C</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
+</footer><!-- /.post-info -->                <p>Arrays are simple but quite powerful constructs in C/C++.
+They are merely a representation of consecutive data in memory.</p>
+<p>They don’t contain any meta data (like size). But since they are
+stored in memory in such a simple manner processors can handle
+them very efficiently.</p>
+<div class="highlight"><pre><span></span><span class="c1">//     rows  columns</span>
+<span class="c1">//        |  |   </span>
+<span class="c1">//        v …</span></pre></div>
+                <a class="readmore" href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="http://lukaswoodtli.github.io/tag/cpp.html">&laquo;</a>
+    Page 2 / 3
+        <a href="http://lukaswoodtli.github.io/tag/cpp3.html">&raquo;</a>
+</p>
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
+        <footer id="contentinfo" class="body">
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
 </html>

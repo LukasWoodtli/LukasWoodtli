@@ -1,232 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
+        <meta charset="utf-8" />
+        <title>Lukas Woodtli - C++</title>
+        <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css" />
 
-        <title>Tag: C++ · Lukas Woodtli</title>
-
-
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli </a></h1>
+                <nav><ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/pages/resume.html">Resume</a></li>
+                    <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+                    <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/emacs.html">Emacs</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/finance.html">Finance</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/misc.html">Misc</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a></li>
                 </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
+                </nav>
+        </header><!-- /#banner -->
 
-        </ul>
-      </div><!-- /.navbar-collapse -->
+                <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="4">
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/endianness.html" rel="bookmark"
+                           title="Permalink to Endianness">Endianness</a></h1>
+                </header>
 
-    </div> <!--container-->
-  </nav>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Wed 17 June 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/c.html">C</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
+</footer><!-- /.post-info -->                <p>The endianness means the representation of a variable (if it is bigger than one byte) in the memory.</p>
+<blockquote>
+<p>Big-Endian: Most Significant Byte (<span class="caps">MSB</span>) is first (bigger end is first)</p>
+<p>Little Endian: Least Significant Byte (<span class="caps">LSB</span>) is first (little end is first)</p>
+</blockquote>
+<p><img alt="Big-Endian and Little-Endian" class="img-fluid" src="/images/endianness.png"/></p>
+<h1 id="cpus"><span class="caps">CPU</span>’s</h1>
+<h2 id="big-endian">Big-Endian:</h2>
+<ul>
+<li>Motorola-6800</li>
+<li>Motorola-68k</li>
+<li>Coldfire</li>
+<li>System-z</li>
+<li>Sun-<span class="caps">SPARC …</span></li></ul>
+                <a class="readmore" href="http://lukaswoodtli.github.io/endianness.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/memory_layout.html" rel="bookmark"
+                           title="Permalink to Memory Layout">Memory&nbsp;Layout</a></h1>
+                </header>
 
-    <div class="container">
-      <div class="col-md-2">
-      </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Tue 09 June 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/c.html">C</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
+</footer><!-- /.post-info -->                <p>When a process is started the operating system allocates memory for this process.
+On modern systems this memory is usually mapped to an virtual address space (using the <span class="caps">MMU</span>).</p>
+<p>But also on deeply embedded system the compiler and runtime environment need to define a memory
+layout. In this case there …</p>
+                <a class="readmore" href="http://lukaswoodtli.github.io/memory_layout.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/cpp.html">Tag: C++</a></h1>
-    </div>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html" rel="bookmark"
+                           title="Permalink to Macro Magic in C and C++">Macro Magic in C and&nbsp;C++</a></h1>
+                </header>
 
-        </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Fri 15 May 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/c.html">C</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
+</footer><!-- /.post-info -->                <h1 id="macro-tricks">Macro Tricks</h1>
+<h2 id="stringification">Stringification</h2>
+<p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
+<div class="highlight"><pre><span></span><span class="cp">#define stringize(s) _stringize(s)</span>
+<span class="cp">#define _stringize(s) #s</span>
+<span class="cp">#define IMPORTANT_CONST 23</span>
+</pre></div>
+<p>If you’d use the stingize operator <code>#</code> directly in …</p>
+                <a class="readmore" href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-        <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="C++" href="#C++">C++</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#C++collapse">
-          <span class="badge pull-right">14</span>
-        </a>
-    </div>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html" rel="bookmark"
+                           title="Permalink to Enums in C and C++">Enums in C and&nbsp;C++</a></h1>
+                </header>
 
-    <div class="panel-body hidden"></div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Thu 16 April 2015</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/c.html">C</a><a href="http://lukaswoodtli.github.io/tag/cpp.html">C++</a></span>
+</footer><!-- /.post-info -->                <p>Enums in C and C++ are a very simple construct. It’s just a collection of identifiers that have (usually) distinctive values. 
+By default the values increase by one in the stated order. But the values can defined by the programmer.
+Even if enums are a simple language construct there …</p>
+                <a class="readmore" href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="http://lukaswoodtli.github.io/tag/cpp2.html">&laquo;</a>
+    Page 3 / 3
+</p>
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="C++collapse">
-        <a href="http://lukaswoodtli.github.io/sanitizers.html">
-          <li class="list-group-item">
-Sanitizers</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/gcc_binutils_and_other_developer_tools.html">
-          <li class="list-group-item">
-<span class="caps">GCC</span>, binutils and other developer&nbsp;tools</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/cpp_on_embedded_systems.html">
-          <li class="list-group-item">
-C++ on Embedded&nbsp;Systems</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/smart_pointers.html">
-          <li class="list-group-item">
-Smart&nbsp;Pointers</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/modern_cpp_design.html">
-          <li class="list-group-item">
-Modern C++&nbsp;Design</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/systemc.html">
-          <li class="list-group-item">
-SystemC</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/list_of_design_patterns.html">
-          <li class="list-group-item">
-List of Design&nbsp;Patterns</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/preprocessor_defines.html">
-          <li class="list-group-item">
-Preprocessor&nbsp;Defines</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html">
-          <li class="list-group-item">
-Concepts of Object Oriented&nbsp;Programming</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html">
-          <li class="list-group-item">
-Arrays in C and&nbsp;C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/endianness.html">
-          <li class="list-group-item">
-Endianness</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/memory_layout.html">
-          <li class="list-group-item">
-Memory&nbsp;Layout</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html">
-          <li class="list-group-item">
-Macro Magic in C and&nbsp;C++</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/enums_in_c_and_cpp.html">
-          <li class="list-group-item">
-Enums in C and&nbsp;C++</li>
-        </a>
-      </div>
-    </ul>
-
-  </div>
-
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
+        <footer id="contentinfo" class="body">
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
 </html>

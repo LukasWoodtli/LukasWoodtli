@@ -1,192 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
+        <meta charset="utf-8" />
+        <title>Lukas Woodtli - Lisp</title>
+        <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css" />
 
-        <title>Tag: Lisp · Lukas Woodtli</title>
-
-
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli </a></h1>
+                <nav><ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/pages/resume.html">Resume</a></li>
+                    <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+                    <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/emacs.html">Emacs</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/finance.html">Finance</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/misc.html">Misc</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a></li>
                 </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
+                </nav>
+        </header><!-- /#banner -->
 
-        </ul>
-      </div><!-- /.navbar-collapse -->
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html">Structure and Interpretation of Computer&nbsp;Programs</a></h1>
+<footer class="post-info">
+        <span>Thu 10 November 2016</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a></span>
+</footer><!-- /.post-info --><p>Notes to the book</p>
+<blockquote>
+<p>Structure and Interpretation of Computer Programs, Second Edition
+Harold Abelson, Gerald Jay Sussman, Julie Sussman
+<span class="caps">MIT</span> Press</p>
+</blockquote>
+<div class="toc">
+<ul>
+<li><a href="#building-abstractions-with-procedures">Building Abstractions with Procedures</a><ul>
+<li><a href="#the-elements-of-programming">The Elements of Programming</a><ul>
+<li><a href="#evaluating-combinations">Evaluating Combinations</a></li>
+<li><a href="#the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</a><ul>
+<li><a href="#applicative-order-versus-normal-order">Applicative order versus normal order</a></li>
+</ul>
+</li>
+<li><a href="#the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</a></li>
+</ul>
+</li>
+<li><a href="#formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</a><ul>
+<li><a href="#constructing-procedures-using-lambda">Constructing Procedures Using lambda</a><ul>
+<li><a href="#using-let-to-create-local-variables">Using let to create local variables</a></li>
+<li><a href="#abstractions-and-first-class-procedures">Abstractions and first-class procedures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#building-abstractions-with-data">Building Abstractions with Data</a><ul>
+<li><a href="#what-is-meant-by-data">What Is Meant by Data?</a></li>
+<li><a href="#hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</a><ul>
+<li><a href="#sequences-as-conventional-interfaces">Sequences as Conventional Interfaces</a><ul>
+<li><a href="#sequence-operations">Sequence Operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="building-abstractions-with-procedures">Building Abstractions with Procedures</h1>
+<h2 id="the-elements-of-programming">The Elements of Programming</h2>
+<p><em><span class="dquo">“</span>[The] language provides for combining simple ideas to form more complex ideas.  Every powerful language has three mechanisms for accomplishing this:</em></p>
+<ul>
+<li><em><strong>primitive expressions</strong>, which represent the simplest entities the language is concerned with,</em></li>
+<li><em><strong>means of combination</strong>, by which compound elements are built from simpler ones, and</em></li>
+<li><em><strong>means of abstraction</strong>, by which compound elements can be named and manipulated as units.”</em></li>
+</ul>
+<h3 id="evaluating-combinations">Evaluating Combinations</h3>
+<p><em><span class="dquo">“</span>To evaluate a combination, do the following:</em>
+- <em>Evaluate the subexpressions of the combination.</em>
+- <em>Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands).</em>”</p>
+<p><em><span class="dquo">“</span>[…] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is<strong>recursive</strong> in nature”</em></p>
+<h3 id="the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</h3>
+<h4 id="applicative-order-versus-normal-order">Applicative order versus normal order</h4>
+<p><em><span class="dquo">“</span>interpreter first evaluates the operator and operands and then applies the resulting procedure to the resulting arguments”</em></p>
+<p><em><span class="dquo">“</span>[An] alternative evaluation model would not evaluate the operands until their values were needed. Instead it would first substitute operand expressions for parameters until it obtained an expression involving only primitive operators, and would then perform the evaluation”</em></p>
+<p><em><span class="dquo">“</span>This alternative ‘fully expand and then reduce’ evaluation method is known as <strong>normal-order evaluation</strong>, in contrast to the ‘evaluate the arguments and then apply’ method that the interpreter actually uses, which is called <strong>applicative-order evaluation</strong>”</em></p>
+<p><em><span class="dquo">“</span>normal-order and applicative-order evaluation produce the same value”</em></p>
+<p><em><span class="dquo">“</span>Lisp uses applicative-order evaluation”</em></p>
+<p><em><span class="dquo">“</span>Lisp obeys the convention that every expression has a value”</em></p>
+<h3 id="the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</h3>
+<p><em><span class="dquo">“</span>In the iterative case, the program variables provide a complete description of the state of the process at any point.”</em></p>
+<p><em><span class="dquo">“</span>In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive <strong>process</strong> with the notion of a recursive <strong>procedure</strong> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written.”</em></p>
+<p><em><span class="dquo">“</span>One reason that the distinction between process and procedure may be confusing is that most implementations of common languages (including Ada, Pascal, and C) are designed in such a way that the interpretation of any recursive procedure consumes an amount of memory that grows with the number of procedure calls, even when the process described is, in principle, iterative. As a consequence, these languages can describe iterative processes only by resorting to special-purpose ‘looping constructs’ such as <code>do</code>, <code>repeat</code>, <code>until</code>, <code>for</code>, and <code>while</code>.”</em></p>
+<p><em><span class="dquo">“</span>any iterative process can be realized ‘in hardware’ as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a <strong>stack</strong>.”</em></p>
+<h2 id="formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</h2>
+<h3 id="constructing-procedures-using-lambda">Constructing Procedures Using <code>lambda</code></h3>
+<h4 id="using-let-to-create-local-variables">Using <code>let</code> to create local variables</h4>
+<p><em><span class="dquo">“</span>we could use a lambda expression to specify an anonymous procedure for binding our local variables</em></p>
+<p><em>The general form of a <code>let</code> expression is</em></p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">let</span>
+   <span class="p">((</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="nv">&lt;exp</span> <span class="mi">1</span><span class="nv">&gt;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">2</span><span class="nv">&gt;</span> <span class="nv">&lt;exp</span> <span class="mi">2</span><span class="nv">&gt;</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="p">(</span><span class="nf">&lt;var</span> <span class="nv">n&gt;</span> <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">))</span>
+  <span class="nv">&lt;body&gt;</span><span class="p">)</span>
+</pre></div>
+<p><em>the <code>let</code> expression is interpreted as an alternate syntax for</em></p>
+<div class="highlight"><pre><span></span><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="o">...</span> <span class="nv">&lt;var</span> <span class="nv">n&gt;</span><span class="p">)</span>
+  <span class="nv">&lt;body&gt;</span><span class="p">)</span>
+    <span class="nv">&lt;exp</span> <span class="mi">1</span><span class="nv">&gt;</span>
+    <span class="o">...</span>
+    <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">)</span>
+</pre></div>
+<p><em>No new mechanism is required in the interpreter in order to provide local variables. A <code>let</code> expression is simply syntactic sugar for the underlying lambda application.”</em></p>
+<p><em><span class="dquo">“</span><code>Let</code> allows one to bind variables as locally as possible to where they are to be used.”</em></p>
+<h4 id="abstractions-and-first-class-procedures">Abstractions and first-class procedures</h4>
+<p><em><span class="dquo">“</span>programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have first-class status.”</em></p>
+<p><em><span class="dquo">“</span>Some of the ‘rights and privileges’ of first-class elements are:</em>
+- <em>They may be named by variables.</em>
+- <em>They may be passed as arguments to procedures.</em>
+- <em>They may be returned as the results of procedures.</em>
+- <em>They may be included in data structures.”</em></p>
+<h1 id="building-abstractions-with-data">Building Abstractions with Data</h1>
+<h3 id="what-is-meant-by-data">What Is Meant by Data?</h3>
+<p><em><span class="dquo">“</span>In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation.”</em></p>
+<p><em><span class="dquo">“</span>we could implement <code>cons</code>, <code>car</code>, and <code>cdr</code> without using any data structures at all but only using procedures. Here are the definitions:</em></p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+          <span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Argument not 0 or 1: CONS"</span> <span class="nv">m</span><span class="p">))))</span>
+   <span class="nv">dispatch</span><span class="p">)</span>
 
-    </div> <!--container-->
-  </nav>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+<h2 id="hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</h2>
+<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
+<h3 id="sequences-as-conventional-interfaces">Sequences as Conventional Interfaces</h3>
+<h4 id="sequence-operations">Sequence Operations</h4>
+<p><em><span class="dquo">“</span>The key to organizing programs so as to more clearly reflect the signal-flow structure is to concentrate on the ‘signals’ that flow from one stage in the process to the next. If we represent these signals as lists, then we can use list operations to implement the processing at each of the stages.”</em></p>
+<p><em><span class="dquo">“</span>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces. We can encourage modular design by providing a library of standard components together with a conventional interface for connecting the components in flexible ways.”</em></p>
+<p><em><span class="dquo">“</span>The Lisp community also (unfortunately) uses the word “closure” to describe a totally unrelated concept: A closure is an implementation technique for representing procedures with free variables.”</em></p>
+<p><em><span class="dquo">“</span>Unlike Lisp with its pairs, these languages have no built-in general-purpose glue that makes it easy to manipulate compound data in a uniform way.”</em></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <ol id="posts-list" class="hfeed">
 
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/scheme_frequently_used_functions.html" rel="bookmark"
+                           title="Permalink to Scheme: Frequently used Functions">Scheme: Frequently used&nbsp;Functions</a></h1>
+                </header>
 
-    <div class="container">
-      <div class="col-md-2">
-      </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Fri 14 October 2016</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a></span>
+</footer><!-- /.post-info -->                <h1 id="pairs-cons-car-and-cdr">Pairs (<code>cons</code>, <code>car</code> and <code>cdr</code>)</h1>
+<ul>
+<li><code>(cons a b)</code>: Construct a pair</li>
+<li><code>(car p)</code>: Get first element of pair (or list)</li>
+<li><code>(cdr p)</code>: Get second element of pair (or rest of list)</li>
+</ul>
+<h1 id="lists">Lists</h1>
+<ul>
+<li><code>(list a0 a1 a2 ... aN)</code>: create a list</li>
+</ul>
+<p>Equivalent to <code>(cons (cons a0 (cons a1 (cons a2 (cons …</code></p>
+                <a class="readmore" href="http://lukaswoodtli.github.io/scheme_frequently_used_functions.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/tag/lisp.html">Tag: Lisp</a></h1>
-    </div>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/closure.html" rel="bookmark"
+                           title="Permalink to Closure">Closure</a></h1>
+                </header>
 
-        </div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Thu 13 October 2016</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a></span>
+</footer><!-- /.post-info -->                <p>There are 2 concepts that are called <em>closure</em></p>
+<h1 id="lambdas">Lambdas</h1>
+<p>Closures are (anonymous) functions with free variables that capture the context of the calling function (stack).</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Closure_(computer_programming)">Wikipedia:Closure</a></p>
+<h1 id="the-closure-property">The Closure Property</h1>
+<p>From <a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2"><span class="caps">SICP</span>: 2.2 Hierarchical Data and the Closure Property</a>:</p>
+<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is …</em></p>
+                <a class="readmore" href="http://lukaswoodtli.github.io/closure.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-        <div class="row">
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="Lisp" href="#Lisp">Lisp</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#Lispcollapse">
-          <span class="badge pull-right">4</span>
-        </a>
-    </div>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://lukaswoodtli.github.io/scheme_lisp.html" rel="bookmark"
+                           title="Permalink to Scheme (Lisp)">Scheme&nbsp;(Lisp)</a></h1>
+                </header>
 
-    <div class="panel-body hidden"></div>
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Sun 24 July 2016</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/lisp.html">Lisp</a></span>
+</footer><!-- /.post-info -->                <p>This page collects notes about Scheme (an Lisp in general).</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#sources" id="id1">Sources</a></li>
+<li><a class="reference internal" href="#evaluation-rules" id="id2">Evaluation Rules</a></li>
+<li><a class="reference internal" href="#application-rules" id="id3">Application Rules</a></li>
+<li><a class="reference internal" href="#linear-recursion-and-iteration" id="id4">Linear Recursion and Iteration</a><ul>
+<li><a class="reference internal" href="#recursive-process" id="id5">Recursive Process</a></li>
+<li><a class="reference internal" href="#iterative-process" id="id6">Iterative Process</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expressions" id="id7">Expressions</a></li>
+<li><a class="reference internal" href="#sequences-as-conventional-interfaces" id="id8">Sequences as Conventional Interfaces</a></li>
+<li><a class="reference internal" href="#quotation" id="id9">Quotation</a></li>
+</ul>
+</div>
+<div class="section" id="sources">
+<h2><a class="toc-backref" href="#id1">Sources</a></h2>
+<p>Most information is taken from:</p>
+<p><a class="reference external" href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/">Structure and Interpretation of Computer Programs</a></p>
+<p><a class="reference external" href="https://github.com/LukasWoodtli/SchemeCourse">My Github repository with examples</a></p>
+</div>
+<div class="section" id="evaluation-rules">
+<h2><a class="toc-backref" href="#id2">Evaluation Rules</a></h2>
+<ol class="arabic simple">
+<li>If …</li></ol></div>
+                <a class="readmore" href="http://lukaswoodtli.github.io/scheme_lisp.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="Lispcollapse">
-        <a href="http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html">
-          <li class="list-group-item">
-Structure and Interpretation of Computer&nbsp;Programs</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/scheme_frequently_used_functions.html">
-          <li class="list-group-item">
-Scheme: Frequently used&nbsp;Functions</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/closure.html">
-          <li class="list-group-item">
-Closure</li>
-        </a>
-        <a href="http://lukaswoodtli.github.io/scheme_lisp.html">
-          <li class="list-group-item">
-Scheme&nbsp;(Lisp)</li>
-        </a>
-      </div>
-    </ul>
-
-  </div>
-
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
+        <footer id="contentinfo" class="body">
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
 </html>

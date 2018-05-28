@@ -1,144 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Lukas Woodtli">
-    <meta name="author" content="Lukas Woodtli">
+        <meta charset="utf-8" />
+        <title>Parsers and Lexers</title>
+        <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css" />
 
-        <title>Parsers and&nbsp;Lexers · Lukas Woodtli</title>
-
-
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://lukaswoodtli.github.io/theme/css/solarized-light.css">
-
-
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 </head>
 
-<body>
-  <div class="container" id="wrap">
-      <nav id="navbar" class="navbar navbar-default" role="navigation">
-    <div class="container">
-
-      <!--navbar-header-->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="http://lukaswoodtli.github.io">Lukas Woodtli</a>
-      </div> <!--navbar-header-->
-
-      <!-- Search Box -->
-
-      <!--Menuitems, collapable-->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
-                <li >
-                  <a href="http://lukaswoodtli.github.io/index.html">Home</a>
-                </li>
-
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a>
-                </li>
-
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Skills<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/skills.html">Hard Skills</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/books.html">Books</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a>
-                  </li>
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://lukaswoodtli.github.io/">Lukas Woodtli </a></h1>
+                <nav><ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/pages/resume.html">Resume</a></li>
+                    <li><a href="[(u'Hard Skills', u'/pages/skills.html'), (u'Courses', u'/pages/courses.html'), (u'Books', u'/pages/books.html'), (u'Projects', u'/pages/projects.html')]">Skills</a></li>
+                    <li><a href="[(u'Blog Index', u'/pages/blog.html'), (u'Categories', u'/categories.html'), (u'Tags', u'/tags.html'), (u'Chronological', u'/archives.html')]">Blog</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/blog.html">Blog</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/books.html">Books</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/courses.html">Courses</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html">Note to Recruiters and&nbsp;Headhunters</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/projects.html">Projects</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/resume.html">Resume</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/pages/skills.html">Skills</a></li>
+    
+                        <li><a href="http://lukaswoodtli.github.io/">Welcome to my&nbsp;Site</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/emacs.html">Emacs</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/finance.html">Finance</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/mathematics.html">Mathematics</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/misc.html">Misc</a></li>
+                    <li class="active"><a href="http://lukaswoodtli.github.io/category/programming.html">Programming</a></li>
+                    <li><a href="http://lukaswoodtli.github.io/category/version_control.html">Version Control</a></li>
                 </ul>
-              </li>
-              <li class="btn-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/pages/blog.html">Blog Index</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/categories.html">Categories</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/tags.html">Tags</a>
-                  </li>
-                  <li >
-                    <a href="http://lukaswoodtli.github.io/archives.html">Chronological</a>
-                  </li>
-                </ul>
-              </li>
-                <li >
-                  <a href="http://lukaswoodtli.github.io/pages/contact.html">Contact</a>
-                </li>
+                </nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://lukaswoodtli.github.io/parsers_and_lexers.html" rel="bookmark"
+           title="Permalink to Parsers and Lexers">Parsers and&nbsp;Lexers</a></h1>
+    </header>
 
-        </ul>
-      </div><!-- /.navbar-collapse -->
-
-    </div> <!--container-->
-  </nav>
-
-
-    <div class="container">
-      <div class="col-md-2">
-      </div>
-
-      <div class="col-md-8">
-        <div class="row">
-              <div class="page-header">
-        <h1><a href="http://lukaswoodtli.github.io/parsers_and_lexers.html">Parsers and&nbsp;Lexers</a></h1>
-    </div>
-
-        </div>
-
-        <div class="row">
-
-    <span id="article_info">
-    <a class="label label-primary" 
-      href="http://lukaswoodtli.github.io/category/programming.html">Programming</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/parsing.html">Parsing</a>
-        <a class="label label-primary" 
-          href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://lukaswoodtli.github.io/archives.html#Year2017">2017</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month01">01</a>-<a href="http://lukaswoodtli.github.io/archives.html#Year2017Month01">08</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://lukaswoodtli.github.io/author/lukas-woodtli.html">Lukas Woodtli</a>
-  </span>
-
-  <hr/>
-
-  <div id="article_content">
-    <blockquote>
+    <div class="entry-content">
+<footer class="post-info">
+        <span>Sun 08 January 2017</span>
+<span>| tags: <a href="http://lukaswoodtli.github.io/tag/parsing.html">Parsing</a><a href="http://lukaswoodtli.github.io/tag/computer_science.html">Computer Science</a></span>
+</footer><!-- /.post-info -->      <blockquote>
 <p>Most material on this page is from <a href="https://de.udacity.com/course/programming-languages--cs262/">Udacity: Programming Languages</a></p>
 </blockquote>
 <p><code>Source --[Lexer (break up in words)]--&gt; Tokens --[Parser (understand the structure)]--&gt; AST --[Find meaning]-&gt; ...</code></p>
@@ -218,56 +138,16 @@
 </tr>
 </tbody>
 </table>
-  </div>
+    </div><!-- /.entry-content -->
 
-  <hr/>
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
-      <ul class="pager">
-        <li class="previous">
-          <a href="http://lukaswoodtli.github.io/complexity.html">
-          &laquo; Newer</a>
-        </li>
-        <li class="next">
-          <a href="http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html">
-          Older &raquo;</a>
-        </li>
-      </ul>
-
-
-        </div>
-
-        <div class="row">
-        </div>
-
-      </div>
-
-      <div class="col-md-2">
-      </div>
-    </div>
-
-
-  </div>
-
-    <nav id="footer" class="navbar navbar-default">
-    <div class="container">
-        <p id="footer-text" class="navbar-text text-center">
-          <span id="engine">
-            Compiled using
-            <a href="http://docs.getpelican.com">Pelican</a>
-          </span>
-          <span id="theme">
-            with theme
-            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
-          </span>
-          <span id="bootstrap">
-            on top of
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-          </span>
-        </p>
-      </div>
-    </div>
-  </nav>
-
+        <footer id="contentinfo" class="body">
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
 </html>
