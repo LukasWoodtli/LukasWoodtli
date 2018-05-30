@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Lukas Woodtli" />
+        <meta name="copyright" content="Lukas Woodtli" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Philosophy, German, Mathematics, " />
+
+<meta property="og:title" content="Logik "/>
+<meta property="og:url" content="./logik.html" />
+<meta property="og:description" content="Notizen zur Vorlesung: Einführung in die Logik Übersicht Aussagelogik Prädikatenlogik Zeichensystem der Aussagelogik Wahrheitsfunkt. Verknüpfungen Aussagelogische Form Interpretation von Aussagelogischen Formeln Zeichensystem der Prädiketenlogik Klassifikation von Aussagen Prädikatenlogische Form Interpretation von Prädikatenlogischen Formeln Metalogik der Aussagelogik Objektebene vs. Metaebene Logische Wahrheit Falschheit Folgerung Äquivalenz Widerspruch Konsistenz Abhängigkeit Metalogik der Prädikatenlogik …" />
+<meta property="og:site_name" content="Lukas Woodtli" />
+<meta property="og:article:author" content="Lukas Woodtli" />
+<meta property="og:article:published_time" content="2016-07-24T00:00:00+02:00" />
+<meta property="" content="2016-07-24T00:00:00+02:00" />
+<meta name="twitter:title" content="Logik ">
+<meta name="twitter:description" content="Notizen zur Vorlesung: Einführung in die Logik Übersicht Aussagelogik Prädikatenlogik Zeichensystem der Aussagelogik Wahrheitsfunkt. Verknüpfungen Aussagelogische Form Interpretation von Aussagelogischen Formeln Zeichensystem der Prädiketenlogik Klassifikation von Aussagen Prädikatenlogische Form Interpretation von Prädikatenlogischen Formeln Metalogik der Aussagelogik Objektebene vs. Metaebene Logische Wahrheit Falschheit Folgerung Äquivalenz Widerspruch Konsistenz Abhängigkeit Metalogik der Prädikatenlogik …">
+
+        <title>Logik  · Lukas Woodtli
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="./"><span class=site-name>Lukas Woodtli</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href=".">Home</a></li>
+                            <li><a href="./pages/resume.html">Resume</a></li>
+                            <li><a href="./pages/skills.html">Skills</a></li>
+                            <li><a href="./pages/blog.html">Blog</a></li>
+                            <li><a href="./pages/contact.html">Contact</a></li>
+                            <!-- <li ><a href="./categories.html">Categories</a></li> -->
+                            <li ><a href="./tags.html">Tags</a></li>
+                            <li ><a href="./archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="./logik.html"> Logik  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc" id="">
+
+<ul class="simple">
+<li><a class="reference internal" href="#ubersicht" id="id1">Übersicht</a></li>
+<li><a class="reference internal" href="#formale-logik" id="id2">Formale Logik</a><ul>
+<li><a class="reference internal" href="#logische-folgerung" id="id3">Logische Folgerung</a><ul>
+<li><a class="reference internal" href="#fragen" id="id4">2 Fragen</a></li>
+<li><a class="reference internal" href="#merkmale" id="id5">Merkmale</a></li>
+<li><a class="reference internal" href="#allgemeine-formulierung" id="id6">Allgemeine Formulierung</a></li>
+<li><a class="reference internal" href="#logische-form" id="id7">Logische Form</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <p>Notizen zur Vorlesung: <a class="reference external" href="https://itunes.apple.com/de/itunes-u/einfuhrung-in-die-logik/id631959529?mt=10">Einführung in die Logik</a></p>
+
+<div class="section" id="ubersicht">
+<h2><a class="toc-backref" href="#id1">Übersicht</a></h2>
+<table border="1" class="docutils table-striped table borderless">
+<colgroup>
+<col width="47%"/>
+<col width="53%"/>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Aussagelogik</th>
+<th class="head">Prädikatenlogik</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first">Zeichensystem
+der Aussagelogik</p>
+<ul class="last simple">
+<li>Wahrheitsfunkt. Verknüpfungen</li>
+<li>Aussagelogische Form</li>
+<li>Interpretation
+von
+Aussagelogischen Formeln</li>
+</ul>
+</td>
+<td><p class="first">Zeichensystem
+der Prädiketenlogik</p>
+<ul class="last simple">
+<li>Klassifikation von Aussagen</li>
+<li>Prädikatenlogische Form</li>
+<li>Interpretation
+von
+Prädikatenlogischen Formeln</li>
+</ul>
+</td>
+</tr>
+<tr><td><p class="first">Metalogik der Aussagelogik</p>
+<ul class="last simple">
+<li>Objektebene vs. Metaebene</li>
+<li>Logische<ul>
+<li>Wahrheit</li>
+<li>Falschheit</li>
+<li>Folgerung</li>
+<li>Äquivalenz</li>
+<li>Widerspruch</li>
+<li>Konsistenz</li>
+<li>Abhängigkeit</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p class="first">Metalogik der Prädikatenlogik</p>
+<ul class="last simple">
+<li>Parallele zur
+Metalogik der Aussagelogik</li>
+<li>Logische<ul>
+<li>Wahrheit</li>
+<li>Falschheit</li>
+<li>Folgerung</li>
+<li>Äquivalenz</li>
+</ul>
+</li>
+<li>Weitere metalogische Begriffe</li>
+</ul>
+</td>
+</tr>
+<tr><td colspan="2">Mathematischer Zugang zur Aussagelogik</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="formale-logik">
+<h2><a class="toc-backref" href="#id2">Formale Logik</a></h2>
+<div class="section" id="logische-folgerung">
+<h3><a class="toc-backref" href="#id3">Logische Folgerung</a></h3>
+<p>Beispiel:</p>
+<table class="docutils field-list table-striped table" frame="void" rules="none">
+<col class="field-name"/>
+<col class="field-body"/>
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Prämissen (Voraussetzung):</th></tr>
+<tr class="field"><td> </td><td class="field-body"><p class="first">Alle Logiker sind Menschen.</p>
+<p>Alle Menschen sind schlafbedürftig.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Konklusion (Schlusssatz):</th></tr>
+<tr class="field"><td> </td><td class="field-body"><p class="first last">Alle Logiker sind schlafbedürftig.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Das Gesamte ist ein <strong>*Schluss*</strong>.</p>
+<div class="section" id="fragen">
+<h4><a class="toc-backref" href="#id4">2 Fragen</a></h4>
+<ol class="arabic simple">
+<li>Korrektheit des Schlusses</li>
+<li>Ist die Konklusion wahr?</li>
+</ol>
+</div>
+<div class="section" id="merkmale">
+<h4><a class="toc-backref" href="#id5">Merkmale</a></h4>
+<ol class="arabic simple">
+<li>Wenn die Prämissen wahr sind, dann ist auch die Konklusion wahr (‘Wahrheitstransfer’)</li>
+<li>Ob die Prämissen wahr sind, spielt für die Beurteilung der Korrektheit des Schlusses keine Rolle.</li>
+<li>Aus einem korrektem Schluss lassen sich viele weitere korrekte Schlüsse (mechanisch) erzeugen.</li>
+<li>Für die Korrektheit eines Schlusses sind die Bedeutungen der in ihm vorkommenden Begriffe unwesentlich.</li>
+<li>Die Gültigkeit von korrekten Schlüssen hängt von Wörtern wie <em>alle</em> und <em>einige</em> ab</li>
+</ol>
+<p>Prämissen können auch (manifest) falsch sein, der <em>Schluss</em> bleibt trotzdem korrekt!</p>
+<p>Beispiel:</p>
+<table class="docutils field-list table-striped table" frame="void" rules="none">
+<col class="field-name"/>
+<col class="field-body"/>
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Prämissen (Voraussetzung):</th></tr>
+<tr class="field"><td> </td><td class="field-body"><p class="first">Alle Logiker sind Menschen.</p>
+<p>Alle Menschen haben Eigenschaft <em>S</em>.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Konklusion (Schlusssatz):</th></tr>
+<tr class="field"><td> </td><td class="field-body"><p class="first last">Alle Logiker haben Eigenschaft <em>S</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Setze Eigenschaft S = Reptil sein</p>
+</div>
+<div class="section" id="allgemeine-formulierung">
+<h4><a class="toc-backref" href="#id6">Allgemeine Formulierung</a></h4>
+<table class="docutils field-list table-striped table" frame="void" rules="none">
+<col class="field-name"/>
+<col class="field-body"/>
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Prämissen (Voraussetzung):</th></tr>
+<tr class="field"><td> </td><td class="field-body"><p class="first">Alle <em>A</em> sind <em>B</em>.</p>
+<p>Alle <em>B</em> sind <em>C</em>.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Konklusion (Schlusssatz):</th></tr>
+<tr class="field"><td> </td><td class="field-body"><p class="first last">Alle <em>A</em> sind <em>C</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Der Schluss ist <em>korrekt</em> auch wenn man nicht weiss, was <em>A</em>, <em>B</em> und <em>C</em> bedeuten.</p>
+</div>
+<div class="section" id="logische-form">
+<h4><a class="toc-backref" href="#id7">Logische Form</a></h4>
+<ul class="simple">
+<li>Form: Elemente isolieren, von denen die <em>Korrektheit</em> eines <em>Schlusses</em> abhängt</li>
+<li>Inhalt: Elemente die übrig bleiben</li>
+</ul>
+<p>Verschiedene Logiken (z.B. Aussagelogik, Prädikatenlogik) können anhand ihrer unterschidlichen logischen Form differenziert werden.</p>
+</div>
+</div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./scheme_lisp.html" title="Previous: Scheme (Lisp)">Scheme (Lisp)</a></li>
+                <li class="next-article"><a href="./understanding_computation.html" title="Next: Understanding Computation">Understanding Computation</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2016-07-24T00:00:00+02:00">Jul 24, 2016</time>
+
+<h4>Last Updated</h4>
+<time datetime="2016-07-24T00:00:00+02:00">Jul 24, 2016</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags.html#german-ref">German
+                    <span>2</span>
+</a></li>
+                <li><a href="./tags.html#philosophy-ref">Philosophy
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://www.linkedin.com/in/lukaswoodtli" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://github.com/LukasWoodtli" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://careers.stackoverflow.com/lukaswoodtli" title="My stack-overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.xing.com/profile/Lukas_Woodtli" title="My XING Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-xing sidebar-social-links"></i></a>
+    <a href="/pages/contact.html" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

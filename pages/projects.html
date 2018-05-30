@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Lukas Woodtli" />
+        <meta name="copyright" content="Lukas Woodtli" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+
+<meta property="og:title" content="Projects "/>
+<meta property="og:url" content="../pages/projects.html" />
+<meta property="og:description" content="Markdown Generator for Python I started to develop this library for personal use. The aim was to generate some Markdown files for my homepage. I used just a part of the library for my home page. But I keep working on the project anyway. It is also a good exercise …" />
+<meta property="og:site_name" content="Lukas Woodtli" />
+<meta property="og:article:author" content="Lukas Woodtli" />
+<meta name="twitter:title" content="Projects ">
+<meta name="twitter:description" content="Markdown Generator for Python I started to develop this library for personal use. The aim was to generate some Markdown files for my homepage. I used just a part of the library for my home page. But I keep working on the project anyway. It is also a good exercise …">
+
+        <title>Projects  · Lukas Woodtli
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="../"><span class=site-name>Lukas Woodtli</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="..">Home</a></li>
+                            <li><a href="../pages/resume.html">Resume</a></li>
+                            <li><a href="../pages/skills.html">Skills</a></li>
+                            <li><a href="../pages/blog.html">Blog</a></li>
+                            <li><a href="../pages/contact.html">Contact</a></li>
+                            <!-- <li ><a href="../categories.html">Categories</a></li> -->
+                            <li ><a href="../tags.html">Tags</a></li>
+                            <li ><a href="../archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="../pages/projects.html"> Projects  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <h1 id="markdown-generator-for-python">Markdown Generator for Python</h1>
+<p>I started to develop <a href="https://github.com/LukasWoodtli/MarkdownGen">this library</a> for personal use. The aim was to generate some <strong>Markdown</strong> files for my homepage. I used just a part of the library for my home page.
+But I keep working on the project anyway. It is also a good exercise for me doing a complete Python project from start to end.</p>
+<!-- # FeatureTogglesPlusPlus
+[This](https://github.com/LukasWoodtli/FeatureTogglesPlusPlus) is a small personal project to provide lightweight feature toggles in C++. It should have no dependencies (maybe some to STL) and be highly configurable. With writing this library I want to improve my C++ knowledge. Mainly Templates and other **Modern C++** topics.
+
+I haven't been working on the project for a while. It's still in it's beginning and not meant for use yet.
+-->
+<h1 id="bachelor-thesis">Bachelor Thesis</h1>
+<p><a href="http://www.reely.ethz.ch/">Disney Copter</a> (2008-2009)</p>
+<p>The task of our bachelor thesis was to construct a flying device that entertains visitors at Disneyland. We created a <strong>quadcopter</strong> in the shape of a film reel.</p>
+<p>The project was part of the ‘Focusprojects’ at <span class="caps">ETH</span> Zürich. The team consisted of seven students working on the project over the course of two semesters. A fellow student and I were responsible for creating the controlling algorithm for the embedded hardware. Our task was to read the data from the sensors and calculate the rotation speed for every one of the four propellers.</p>
+<p>The embedded hardware comprises of various technological systems. There are two microprocessors. One of them is responsible for the sensors, the other one is used for the controlling algorithm and to drive the propellers. </p>
+<p>There are also many different <strong>sensors</strong> on the hardware board. We used:</p>
+<ul>
+<li>Gyroscopes</li>
+<li>A compass</li>
+<li>A pressure sensor</li>
+<li>Ultrasonic sensors</li>
+<li>Acceleration sensors</li>
+</ul>
+<p>To read all the sensor data we had to work with different <strong>interfaces</strong> such as:</p>
+<ul>
+<li><span class="caps">UART</span></li>
+<li>Bluetooth</li>
+<li>ZigBee</li>
+<li><span class="caps">SPI</span> </li>
+<li><span class="caps">I2C</span></li>
+<li><span class="caps">ADC</span></li>
+</ul>
+<p>There is also a <strong><span class="caps">GPS</span></strong> module connected to the hardware so we can always determine the position of the quadro copter.</p>
+<p>The bachelor thesis was rewarded with a grade of <strong>5.5</strong> (of 6).</p>
+<p>More information on the project can be found on the homepage: <a href="http://www.reely.ethz.ch">www.reely.ethz.ch</a></p>
+<h1 id="internship-at-schiller-ag">Internship at Schiller <span class="caps">AG</span></h1>
+<p>The main task during the internship was to create a computer program that reads and writes <strong><span class="caps">XML</span></strong> files. In these files the configuration of different filters for electrocardiogram devices are stored. The software reads the configuration from the file and shows it graphically as connected boxes which represent the filters. It’s also possible to create an <span class="caps">XML</span> file. For that the filters can be placed on a workspace via drag and drop. They then can be connected with mouse clicks. The software was programmed in <strong>C++</strong> mainly with <strong>Qt</strong>, <strong><span class="caps">STL</span></strong>, <strong>Boost</strong> and the <strong>Xerces <span class="caps">XML</span></strong> library.</p>
+            
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+<h4>Contact</h4>
+    <a href="https://www.linkedin.com/in/lukaswoodtli" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://github.com/LukasWoodtli" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://careers.stackoverflow.com/lukaswoodtli" title="My stack-overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.xing.com/profile/Lukas_Woodtli" title="My XING Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-xing sidebar-social-links"></i></a>
+    <a href="/pages/contact.html" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+    </div>
+    </article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
