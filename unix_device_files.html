@@ -97,7 +97,7 @@ closed with <code>close()</code>. Reading and writing to the file is donne with 
 <li><code>/dev/null</code>: used to redirect unused streams to ‘nowhere’</li>
 <li><code>/dev/zero</code>: ‘infinite’ sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>
 <li><code>/dev/pts/</code>: virtual consoles (s.a. <a href="http://unix.stackexchange.com/questions/93531/what-is-stored-in-dev-pts-files-and-can-we-open-them/93640#93640">stackexchange</a>)</li>
-<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block, <code>/dev/urandom</code> doesn’t block)</li>
+<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block (high entropy), <code>/dev/urandom</code> doesn’t block)</li>
 <li><code>/dev/full</code>: can be used to simulate writing to a file when the disk is full (sets <code>errno</code> to <code>ENOSPC</code>)</li>
 </ul>
             

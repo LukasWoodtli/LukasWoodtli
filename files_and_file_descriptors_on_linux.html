@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="Files and File descriptors on Linux "/>
 <meta property="og:url" content="./files_and_file_descriptors_on_linux.html" />
-<meta property="og:description" content="Files on Linux Some information on this page is taken from here (German). Here is another good resource (English). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next …" />
+<meta property="og:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-06-03T00:00:00+02:00" />
-<meta property="" content="2016-06-03T00:00:00+02:00" />
+<meta property="" content="2018-05-30T00:00:00+02:00" />
 <meta name="twitter:title" content="Files and File descriptors on Linux ">
-<meta name="twitter:description" content="Files on Linux Some information on this page is taken from here (German). Here is another good resource (English). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next …">
+<meta name="twitter:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …">
 
         <title>Files and File descriptors on Linux  · Lukas Woodtli
 </title>
@@ -76,9 +76,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>Files on Linux</p>
-<p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
-<p><a href="http://www.usna.edu/Users/cs/aviv/classes/ic221/s15/lec/21/lec.html">Here</a> is another good resource (English).</p>
+            <p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
 <h1 id="process-control-block-pcb">Process Control Block (<span class="caps">PCB</span>)</h1>
 <p>Contains the information about a process.</p>
 <ul>
@@ -164,28 +162,7 @@
 <li>Links (Soft- and Hardlinks)</li>
 </ul>
 <h1 id="special-device-files">Special Device Files</h1>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>File</th>
-<th>Use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/dev/null</code></td>
-<td>Write or read <em>nothing</em></td>
-</tr>
-<tr>
-<td><code>/dev/zero</code></td>
-<td>Read zero (<code>0</code>)</td>
-</tr>
-<tr>
-<td><code>/dev/urandom</code></td>
-<td>Read random bytes</td>
-</tr>
-</tbody>
-</table>
+<p>See <a href="./unix_device_files.html">here</a> for a descrption for device files.</p>
             
             
             <hr/>
@@ -204,7 +181,7 @@
             <time pubdate="pubdate" datetime="2016-06-03T00:00:00+02:00">Jun 3, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2016-06-03T00:00:00+02:00">Jun 3, 2016</time>
+<time datetime="2018-05-30T00:00:00+02:00">May 30, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
