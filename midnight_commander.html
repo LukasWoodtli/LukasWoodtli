@@ -10,18 +10,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Computer Science, OS, Linux, Unix, Programming, " />
+<meta name="keywords" content="Tools, Cheat Sheet, Unix, Linux, Programming, " />
 
-<meta property="og:title" content="Linking and Loading "/>
-<meta property="og:url" content="./linking_and_loading.html" />
-<meta property="og:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …" />
+<meta property="og:title" content="Midnight Commander "/>
+<meta property="og:url" content="./midnight_commander.html" />
+<meta property="og:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias: ::: bash alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; Panels Keys …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2015-08-11T00:00:00+02:00" />
-<meta name="twitter:title" content="Linking and Loading ">
-<meta name="twitter:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …">
+<meta property="og:article:published_time" content="2018-06-05T00:00:00+02:00" />
+<meta property="" content="2018-06-05T00:00:00+02:00" />
+<meta name="twitter:title" content="Midnight Commander ">
+<meta name="twitter:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias: ::: bash alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; Panels Keys …">
 
-        <title>Linking and Loading  · Lukas Woodtli
+        <title>Midnight Commander  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -67,7 +68,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./linking_and_loading.html"> Linking and&nbsp;Loading  </a></h1>
+    <h1><a href="./midnight_commander.html"> Midnight&nbsp;Commander  </a></h1>
     </header>
 </div>
 
@@ -75,46 +76,172 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>The different forms of Linking</p>
-<p>There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking.</p>
-<p>This explanations are mainly for Linux. On other <span class="caps">OS</span>’s the same concepts apply but with some minor differences.</p>
-<p>See also: <a href="./executable_loader.html">Executable Loader</a></p>
-<h1 id="static-linking">Static Linking</h1>
+            <h1 id="function-keys">Function Keys</h1>
+<p>The function keys (<code>F1</code> - <code>F10</code>) can be emulated by using <code>ESC + 1</code> - <code>ESC + 0</code></p>
+<h1 id="mc-wrapper"><code>mc-wrapper</code></h1>
+<p>The <code>mc-wrapper</code> script allows that the shell changes to the current directory when exiting <code>mc</code>.</p>
+<p>It can be activated by setting an alias:</p>
+<div class="highlight"><pre><span></span>::: bash
+<span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/libexec/mc/mc-wrapper.sh'</span>
+</pre></div>
+<h1 id="panels">Panels</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Keys</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ALT + u</code></td>
+<td>Swap panels</td>
+</tr>
+<tr>
+<td><code>ALT + t</code></td>
+<td>Switch listing mode (full, brief, long …)</td>
+</tr>
+<tr>
+<td><code>ALT + i</code></td>
+<td>Show current directory in other panel (synchronize)</td>
+</tr>
+<tr>
+<td><code>ALT + ,</code></td>
+<td>Toggle layout between left-right and top-bottom</td>
+</tr>
+</tbody>
+</table>
+<h1 id="navigation">Navigation</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Keys</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CTRL + PgUp</code></td>
+<td>Change to parent directory</td>
+</tr>
+<tr>
+<td><code>ALT + o</code></td>
+<td>Open selected directory (or parent directory if file is selected) in other panel</td>
+</tr>
+<tr>
+<td><code>ALT + SHIFT + h</code></td>
+<td>Show directory history</td>
+</tr>
+<tr>
+<td><code>ALT + y</code></td>
+<td>Open previous directory from history</td>
+</tr>
+<tr>
+<td><code>ALT + u</code></td>
+<td>Open next directory from history</td>
+</tr>
+</tbody>
+</table>
+<h1 id="searching">Searching</h1>
 <ul>
-<li>Combine object files and archives to binaries (executables and shared libraries)</li>
-<li>Usually a step in the build process (after compiling)</li>
-<li>Not very flexible</li>
-<li>Not very suitable for libraries<ul>
-<li>Libraries should be linked dynamically to executables</li>
-<li>Libraries are usually created by statically linking object files together</li>
+<li>Search dialog: <code>ALT + ?</code></li>
+<li>Quick search:<ul>
+<li><code>ALT + s</code> (or <code>CTRL + s</code>)</li>
+<li>use same shortcut jump to next match</li>
+<li>wildcards (<code>*</code>, <code>?</code>) can be used</li>
 </ul>
 </li>
-<li>Order of symbol resolution can be tricky (e. g. same symbol in multiple object files)</li>
 </ul>
-<h1 id="dynamic-linking">Dynamic Linking</h1>
-<p>Shared libraries (so, dll, dylib) are loaded at runtime.</p>
-<h2 id="loading">Loading</h2>
+<h1 id="file-selections">File Selections</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Keys (Alternative)</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INS</code> (<code>CTRL + t</code>)</td>
+<td>Select current file</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Select files by pattern</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>Un-select files by pattern</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Reverse selection</td>
+</tr>
+</tbody>
+</table>
+<h1 id="shell">Shell</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Keys</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ESC</code> <code>Tab</code></td>
+<td>Shell completion, 2x for list of possibities, works also in dialog fields</td>
+</tr>
+<tr>
+<td><code>CTRL + O</code></td>
+<td>Toggle between shell and <code>mc</code></td>
+</tr>
+<tr>
+<td><code>ALT + ENTER</code></td>
+<td>Copy current file name to shell</td>
+</tr>
+</tbody>
+</table>
+<h1 id="viewing-and-editing">Viewing and Editing</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Keys</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F3</code></td>
+<td>Internal viewer</td>
+</tr>
+<tr>
+<td><code>SHIFT + F3</code></td>
+<td>View rav content</td>
+</tr>
+<tr>
+<td><code>F4</code></td>
+<td>Edit</td>
+</tr>
+</tbody>
+</table>
+<p>The editor can be changed:</p>
 <ul>
-<li>Often just called: dynamic linking</li>
-<li>Shared libraries are passed to linker in build process (like with static linking)</li>
-<li>Dynamic loader loads library to process address space when executable is started (or can be lazy loaded)</li>
-<li>Mostly used for libraries that are available at build time</li>
+<li>Disable <code>Options &gt; Configuration &gt; Use internal edit</code></li>
+<li>Set envronment variable <code>EDIT</code> to preferred editor</li>
 </ul>
-<h2 id="manual-loading-dlopen">Manual loading (dlopen)</h2>
+<h1 id="terminal-emulator-settings">Terminal Emulator Settings</h1>
+<h2 id="gnome-terminal-3282"><span class="caps">GNOME</span> Terminal (3.28.2)</h2>
 <ul>
-<li>Same mechanism as dynamic linking</li>
-<li>But linking happens manually (programmatically)</li>
-<li>‘dlopen’ on Linux/<span class="caps">UNIX</span></li>
-<li>Can load library at run time</li>
-<li>Used for plug-in mechanism</li>
+<li>Disable <code>Edit &gt; Preferences &gt; General &gt; Enable the menu accelerator key (F10 by default)</code></li>
+<li>Change <code>Edit &gt; Preferences &gt; Shortcuts &gt; Help &gt; Contetns</code> to <code>Shift+Ctrl+F1</code></li>
+<li>Change <code>Edit &gt; Preferences &gt; Shortcuts &gt; Tabs &gt; Switch to Previous Tab</code> to <code>Alt+Page Up</code></li>
+<li>Change <code>Edit &gt; Preferences &gt; Shortcuts &gt; Tabs &gt; Switch to Next Tab</code> to <code>Alt+Page Down</code></li>
 </ul>
-<h2 id="preloading">Preloading</h2>
+<h1 id="references">References</h1>
 <ul>
-<li>The dynamic linker looks for libraries in ‘LD_PATH’</li>
-<li>Possible to hook into loading process with ‘LD_PRELOAD’</li>
-<li>Libraries provided in ‘LD_PRELOAD’ are loaded instead of libraries in ‘LD_PATH’</li>
-<li>Can be used for overwriting or extending system functions (e. g. allocators: ‘malloc’, ‘free’, ‘realloc’ …)</li>
-<li>Special checks (security) are performed before library is preloaded</li>
+<li><a href="http://klimer.eu/2015/05/01/use-midnight-commander-like-a-pro/">Use Midnight Commander like a pro</a></li>
+<li><a href="http://www.trembath.co.za/mctutorial.html"><span class="caps">MC</span> Tutorial</a></li>
 </ul>
             
             
@@ -122,8 +249,7 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./object_file_formats.html" title="Previous: Object File Formats">Object File Formats</a></li>
-                <li class="next-article"><a href="./executable_loader.html" title="Next: Executable Loader">Executable Loader</a> »</li>
+                <li class="previous-article">« <a href="./object_oriented_design_principles.html" title="Previous: Object Oriented Design Principles">Object Oriented Design Principles</a></li>
             </ul>
             </nav>
             </aside>
@@ -131,19 +257,23 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2015-08-11T00:00:00+02:00">Aug 11, 2015</time>
+            <time pubdate="pubdate" datetime="2018-06-05T00:00:00+02:00">Jun 5, 2018</time>
+
+<h4>Last Updated</h4>
+<time datetime="2018-06-05T00:00:00+02:00">Jun 5, 2018</time>
+
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#computer_science-ref">Computer Science
-                    <span>24</span>
+                <li><a href="./tags.html#cheat_sheet-ref">Cheat Sheet
+                    <span>2</span>
 </a></li>
                 <li><a href="./tags.html#linux-ref">Linux
                     <span>10</span>
 </a></li>
-                <li><a href="./tags.html#os-ref">OS
-                    <span>13</span>
+                <li><a href="./tags.html#tools-ref">Tools
+                    <span>1</span>
 </a></li>
                 <li><a href="./tags.html#unix-ref">Unix
                     <span>6</span>
