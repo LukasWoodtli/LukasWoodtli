@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="Midnight Commander "/>
 <meta property="og:url" content="./midnight_commander.html" />
-<meta property="og:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias: alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; Panels Keys Function …" />
+<meta property="og:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias. On Linux: alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; On …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-06-05T00:00:00+02:00" />
 <meta property="" content="2018-06-05T00:00:00+02:00" />
 <meta name="twitter:title" content="Midnight Commander ">
-<meta name="twitter:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias: alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; Panels Keys Function …">
+<meta name="twitter:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias. On Linux: alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; On …">
 
         <title>Midnight Commander  · Lukas Woodtli
 </title>
@@ -103,8 +103,12 @@
 <p>The function keys (<code>F1</code> - <code>F10</code>) can be emulated by using <code>ESC + 1</code> - <code>ESC + 0</code></p>
 <h1 id="mc-wrapper"><code>mc-wrapper</code></h1>
 <p>The <code>mc-wrapper</code> script allows that the shell changes to the current directory when exiting <code>mc</code>.</p>
-<p>It can be activated by setting an alias:</p>
+<p>It can be activated by setting an alias.</p>
+<p>On Linux:</p>
 <div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/libexec/mc/mc-wrapper.sh'</span>
+</pre></div>
+<p>On macOS (homebrew):</p>
+<div class="highlight"><pre><span></span> <span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/local/opt/midnight-commander/libexec/mc/mc-wrapper.sh'</span>
 </pre></div>
 <h1 id="panels">Panels</h1>
 <table class="table table-striped">
