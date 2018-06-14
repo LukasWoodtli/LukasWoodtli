@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="Sanitizers "/>
 <meta property="og:url" content="./sanitizers.html" />
-<meta property="og:description" content="Sanitizers Address Sanitizer (and Leak Sanitizer) Compile and link with the flag -fsanitize=address It might be necessary to link with -lasan with older gcc/ld versions. Run-time flags Flags for the sanitizers can be provided with the ASAN_OPTIONS and LSAN_OPTIONS environment variables. They take a colon (:) separated list and …" />
+<meta property="og:description" content="Sanitizers Address Sanitizer (and Leak Sanitizer) Compile and link with the flag -fsanitize=address It might be necessary to link with -lasan with older gcc/ld versions. When linking shared libraries (dso’s) the sanitizer run-time library (libasan.so) is not linked. This hapens only when executables are linked. It …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2018-05-24T10:07:58+02:00" />
-<meta property="" content="2018-06-06T13:36:18+02:00" />
+<meta property="og:article:published_time" content="2018-05-26T12:09:19+02:00" />
+<meta property="" content="2018-06-14T07:26:30+02:00" />
 <meta name="twitter:title" content="Sanitizers ">
-<meta name="twitter:description" content="Sanitizers Address Sanitizer (and Leak Sanitizer) Compile and link with the flag -fsanitize=address It might be necessary to link with -lasan with older gcc/ld versions. Run-time flags Flags for the sanitizers can be provided with the ASAN_OPTIONS and LSAN_OPTIONS environment variables. They take a colon (:) separated list and …">
+<meta name="twitter:description" content="Sanitizers Address Sanitizer (and Leak Sanitizer) Compile and link with the flag -fsanitize=address It might be necessary to link with -lasan with older gcc/ld versions. When linking shared libraries (dso’s) the sanitizer run-time library (libasan.so) is not linked. This hapens only when executables are linked. It …">
 
         <title>Sanitizers  · Lukas Woodtli
 </title>
@@ -104,6 +104,10 @@
 <h2 id="address-sanitizer-and-leak-sanitizer">Address Sanitizer (and Leak Sanitizer)</h2>
 <p>Compile and link with the flag <code>-fsanitize=address</code>
 It might be necessary to link with <code>-lasan</code> with older gcc/ld versions.</p>
+<p>When linking shared libraries (dso’s) the sanitizer run-time library (<code>libasan.so</code>) is not linked. This hapens only when executables are linked.
+It can lead to problems with some linker flags. For example <code>-Wl,--no-undefined</code> or <code>-Wl,-z,defs</code> don’t work with with sanitizer because the compiler
+adds sanatizer related code into object files but the linker does not link the run-time library (leading to linker errors due to undefined symbols).</p>
+<p>To solve this problem either don’t use the mentioned linker flags or compile only files needed in executables (and not in shared libraries) with the sanatizer flag.</p>
 <h3 id="run-time-flags">Run-time flags</h3>
 <p>Flags for the sanitizers can be provided with the <code>ASAN_OPTIONS</code> and <code>LSAN_OPTIONS</code> environment variables. They take a colon (<code>:</code>) separated list and should be exported in the environment, before running a sanatized executable.</p>
 <h3 id="leak-sanitizer-and-additional-checks">Leak Sanitizer and Additional Checks</h3>
@@ -168,10 +172,10 @@ of any output can be increased.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2018-05-24T10:07:58+02:00">May 24, 2018</time>
+            <time pubdate="pubdate" datetime="2018-05-26T12:09:19+02:00">May 26, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-06-06T13:36:18+02:00">Jun 6, 2018</time>
+<time datetime="2018-06-14T07:26:30+02:00">Jun 14, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
