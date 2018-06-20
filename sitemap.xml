@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2018-06-20T12:12:55-00:00</lastmod>
+<lastmod>2018-06-20T12:33:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2018-06-20T12:12:55-00:00</lastmod>
+<lastmod>2018-06-20T12:33:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2018-06-20T12:12:55-00:00</lastmod>
+<lastmod>2018-06-20T12:33:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2018-06-20T12:12:55-00:00</lastmod>
+<lastmod>2018-06-20T12:33:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -438,6 +438,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://lukaswoodtli.github.io/open_source_software.html</loc>
+<lastmod>2018-06-20T12:28:22+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://lukaswoodtli.github.io/os_x_keymap.html</loc>
 <lastmod>2018-05-30T21:05:28+02:00</lastmod>
 <changefreq>daily</changefreq>
@@ -635,7 +642,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
-<lastmod>2018-06-20T12:09:33+01:00</lastmod>
+<lastmod>2018-06-20T12:28:22+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -887,7 +894,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2018-06-20T12:09:33+01:00</lastmod>
+<lastmod>2018-06-20T12:28:22+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
