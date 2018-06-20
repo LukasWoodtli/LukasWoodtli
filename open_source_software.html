@@ -10,19 +10,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Computer Science, OS, Linux, Unix, Programming, " />
+<meta name="keywords" content=", Programming, " />
 
-<meta property="og:title" content="Linking and Loading "/>
-<meta property="og:url" content="./linking_and_loading.html" />
-<meta property="og:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …" />
+<meta property="og:title" content="Open Source Software "/>
+<meta property="og:url" content="./open_source_software.html" />
+<meta property="og:description" content="Open Source, Free Software, Proprietary and Companies interests I’m a big fan of Open Source/Free Software. I’m very exited how many projects are around and widely used and supported. But I also observe the fear of companies with a more traditional background to touch anything that has …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2017-11-24T13:06:00+01:00" />
-<meta property="" content="2018-05-30T21:05:28+02:00" />
-<meta name="twitter:title" content="Linking and Loading ">
-<meta name="twitter:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …">
+<meta property="og:article:published_time" content="2016-01-19T21:26:52+01:00" />
+<meta property="" content="2018-06-20T12:28:22+02:00" />
+<meta name="twitter:title" content="Open Source Software ">
+<meta name="twitter:description" content="Open Source, Free Software, Proprietary and Companies interests I’m a big fan of Open Source/Free Software. I’m very exited how many projects are around and widely used and supported. But I also observe the fear of companies with a more traditional background to touch anything that has …">
 
-        <title>Linking and Loading  · Lukas Woodtli
+        <title>Open Source Software  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -68,7 +68,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./linking_and_loading.html"> Linking and&nbsp;Loading  </a></h1>
+    <h1><a href="./open_source_software.html"> Open Source&nbsp;Software  </a></h1>
     </header>
 </div>
 
@@ -76,55 +76,24 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>The different forms of Linking</p>
-<p>There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking.</p>
-<p>This explanations are mainly for Linux. On other <span class="caps">OS</span>’s the same concepts apply but with some minor differences.</p>
-<p>See also: <a href="./executable_loader.html">Executable Loader</a></p>
-<h1 id="static-linking">Static Linking</h1>
-<ul>
-<li>Combine object files and archives to binaries (executables and shared libraries)</li>
-<li>Usually a step in the build process (after compiling)</li>
-<li>Not very flexible</li>
-<li>Not very suitable for libraries<ul>
-<li>Libraries should be linked dynamically to executables</li>
-<li>Libraries are usually created by statically linking object files together</li>
-</ul>
-</li>
-<li>Order of symbol resolution can be tricky (e. g. same symbol in multiple object files)</li>
-</ul>
-<h1 id="dynamic-linking">Dynamic Linking</h1>
-<p>Shared libraries (so, dll, dylib) are loaded at runtime.</p>
-<h2 id="loading">Loading</h2>
-<ul>
-<li>Often just called: dynamic linking</li>
-<li>Shared libraries are passed to linker in build process (like with static linking)</li>
-<li>Dynamic loader loads library to process address space when executable is started (or can be lazy loaded)</li>
-<li>Mostly used for libraries that are available at build time</li>
-</ul>
-<h2 id="manual-loading-dlopen">Manual loading (dlopen)</h2>
-<ul>
-<li>Same mechanism as dynamic linking</li>
-<li>But linking happens manually (programmatically)</li>
-<li>‘dlopen’ on Linux/<span class="caps">UNIX</span></li>
-<li>Can load library at run time</li>
-<li>Used for plug-in mechanism</li>
-</ul>
-<h2 id="preloading">Preloading</h2>
-<ul>
-<li>The dynamic linker looks for libraries in ‘LD_PATH’</li>
-<li>Possible to hook into loading process with ‘LD_PRELOAD’</li>
-<li>Libraries provided in ‘LD_PRELOAD’ are loaded instead of libraries in ‘LD_PATH’</li>
-<li>Can be used for overwriting or extending system functions (e. g. allocators: ‘malloc’, ‘free’, ‘realloc’ …)</li>
-<li>Special checks (security) are performed before library is preloaded</li>
-</ul>
+            <h1 id="open-source-free-software-proprietary-and-companies-interests">Open Source, Free Software, Proprietary and Companies interests</h1>
+<p>I’m a big fan of Open Source/Free Software. I’m very exited how many projects are around and widely used and supported. But I also observe the fear of companies with a more traditional background to touch anything that has to do with open source let alone to put some of their work into the public.</p>
+<h1 id="open-source-or-free-software-or-beer-or-speech-or-gratis-or">Open Source or Free Software or Beer or Speech or Gratis or …</h1>
+<p>All this different expressions for the same concepts are just confusing. And arguing about them doesn’t help to make the idea behind this buzzwords
+to get a broader acceptance.</p>
+<h1 id="permissive-copy-leftright">Permissive Copy Left/Right</h1>
+<p>There are a lot of confusing different license strategies. If a new project is started it’s important choose (or define an new) license carefully. It not only gives the initiator of the project the legal security, but it is also a statement to the public.</p>
+<p>Companies might consider to use open source with a permissive license than an copy left one since they don’t need to publish the source code of their product.
+They might even do some improvements that then get’s back to the community. And it could even happen that they consider to give the comunity something back and release some library or tool to the public.</p>
+<p>Companies should release at least some libraries or frameworks as open source. They might get improvements from the community. And if the architecture is usable for other projects it means it’s flexible, extensible and decoupled from other code.</p>
             
             
             <hr/>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./linux_system_calls.html" title="Previous: Linux System Calls">Linux System Calls</a></li>
-                <li class="next-article"><a href="./make_as_multi-paradigm_language.html" title="Next: Make as multi-paradigm language">Make as multi-paradigm language</a> »</li>
+                <li class="previous-article">« <a href="./cosine_distance.html" title="Previous: Cosine Distance">Cosine Distance</a></li>
+                <li class="next-article"><a href="./systemc.html" title="Next: SystemC">SystemC</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -132,28 +101,13 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-11-24T13:06:00+01:00">Nov 24, 2017</time>
+            <time pubdate="pubdate" datetime="2016-01-19T21:26:52+01:00">Jan 19, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2018-06-20T12:28:22+02:00">Jun 20, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#computer_science-ref">Computer Science
-                    <span>24</span>
-</a></li>
-                <li><a href="./tags.html#linux-ref">Linux
-                    <span>10</span>
-</a></li>
-                <li><a href="./tags.html#os-ref">OS
-                    <span>13</span>
-</a></li>
-                <li><a href="./tags.html#unix-ref">Unix
-                    <span>6</span>
-</a></li>
-            </ul>
 <h4>Contact</h4>
     <a href="https://www.linkedin.com/in/lukaswoodtli" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-linkedin sidebar-social-links"></i></a>
