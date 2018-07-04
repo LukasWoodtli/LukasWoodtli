@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="tmux "/>
 <meta property="og:url" content="./tmux.html" />
-<meta property="og:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the prefix is: CTRL + b Sessions Commands Function Additional Flags tmux new -s &lt;name&gt; Create a named session -d Create in background (detached) tmux ls List current sessions tmux …" />
+<meta property="og:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Commands Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux a …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-07-03T16:18:14+02:00" />
-<meta property="" content="2018-07-04T06:26:56+02:00" />
+<meta property="" content="2018-07-04T14:32:47+02:00" />
 <meta name="twitter:title" content="tmux ">
-<meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the prefix is: CTRL + b Sessions Commands Function Additional Flags tmux new -s &lt;name&gt; Create a named session -d Create in background (detached) tmux ls List current sessions tmux …">
+<meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Commands Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux a …">
 
         <title>tmux  · Lukas Woodtli
 </title>
@@ -79,7 +79,11 @@
         <div class="toc">
 <ul>
 <li><a href="#prefix-key">Prefix Key</a></li>
-<li><a href="#sessions">Sessions</a></li>
+<li><a href="#sessions">Sessions</a><ul>
+<li><a href="#additional-flags-for-new">Additional Flags for new</a></li>
+</ul>
+</li>
+<li><a href="#windows">Windows</a></li>
 </ul>
 </div>
         </nav>
@@ -90,7 +94,7 @@
             
 <h1 id="prefix-key">Prefix Key</h1>
 <p>The prefix key combination needs to be pressed before any command for tmux (when tmux is running).</p>
-<p>By default the prefix is:</p>
+<p>By default the <code>PREFIX</code> is:</p>
 <p><code>CTRL + b</code></p>
 <h1 id="sessions">Sessions</h1>
 <table class="table table-striped">
@@ -98,29 +102,77 @@
 <tr>
 <th>Commands</th>
 <th>Function</th>
-<th>Additional Flags</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>tmux new -s &lt;name&gt;</code></td>
 <td>Create a named session</td>
-<td><code>-d</code> Create in background (detached)</td>
 </tr>
 <tr>
 <td><code>tmux ls</code></td>
 <td>List current sessions</td>
-<td></td>
 </tr>
 <tr>
 <td><code>tmux a</code></td>
 <td>Attach to last session</td>
-<td></td>
 </tr>
 <tr>
 <td><code>tmux a -t &lt;name&gt;</code></td>
 <td>Attach to named session</td>
-<td></td>
+</tr>
+<tr>
+<td><code>tmux kill-session -t &lt;name&gt;</code></td>
+<td>Kill named session</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-flags-for-new">Additional Flags for <code>new</code></h2>
+<ul>
+<li><code>-d</code>: Create in background (detached) </li>
+<li><code>-n &lt;name&gt;</code>: Name the first windows</li>
+</ul>
+<h1 id="windows">Windows</h1>
+<p>Like tabs in browser.</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Commands</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PREFIX c</code></td>
+<td>Create a new window</td>
+</tr>
+<tr>
+<td><code>PREFIX ,</code></td>
+<td>Rename current window</td>
+</tr>
+<tr>
+<td><code>PREFIX n</code></td>
+<td>Move to next window</td>
+</tr>
+<tr>
+<td><code>PREFIX p</code></td>
+<td>Move to previous window</td>
+</tr>
+<tr>
+<td><code>PREFIX &lt;num&gt;</code></td>
+<td>Move to window by index</td>
+</tr>
+<tr>
+<td><code>PREFIX f</code></td>
+<td>Find named window</td>
+</tr>
+<tr>
+<td><code>PREFIX w</code></td>
+<td>Show menu with all windows</td>
+</tr>
+<tr>
+<td><code>PREFIX &amp;</code></td>
+<td>Close current window</td>
 </tr>
 </tbody>
 </table>
@@ -141,7 +193,7 @@
             <time pubdate="pubdate" datetime="2018-07-03T16:18:14+02:00">Jul 3, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-07-04T06:26:56+02:00">Jul 4, 2018</time>
+<time datetime="2018-07-04T14:32:47+02:00">Jul 4, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
