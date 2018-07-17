@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Projects "/>
 <meta property="og:url" content="../pages/projects.html" />
-<meta property="og:description" content="Work Experience Internship at Schiller AG The main task during the internship was to create a computer program that reads and writes XML files. In these files the configuration of different filters for electrocardiogram devices are stored. The software reads the configuration from the file and shows it graphically as …" />
+<meta property="og:description" content="Work Experience Profidata AG Currently I’m working as a senior software developer at Profidata. My main task there is the development, improvement and maintenance of the Xentis investment platform. Xentis is a large scale, highly scalable and parallelized C++ Server application with a broad ecosystem. Besides learning a lot …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-03-03T13:27:11+01:00" />
-<meta property="" content="2018-06-20T07:05:56+02:00" />
+<meta property="" content="2018-07-17T19:53:35+02:00" />
 <meta name="twitter:title" content="Projects ">
-<meta name="twitter:description" content="Work Experience Internship at Schiller AG The main task during the internship was to create a computer program that reads and writes XML files. In these files the configuration of different filters for electrocardiogram devices are stored. The software reads the configuration from the file and shows it graphically as …">
+<meta name="twitter:description" content="Work Experience Profidata AG Currently I’m working as a senior software developer at Profidata. My main task there is the development, improvement and maintenance of the Xentis investment platform. Xentis is a large scale, highly scalable and parallelized C++ Server application with a broad ecosystem. Besides learning a lot …">
 
         <title>Projects  · Lukas Woodtli
 </title>
@@ -77,10 +77,18 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#work-experience">Work Experience</a><ul>
-<li><a href="#internship-at-schiller-ag">Internship at Schiller <span class="caps">AG</span></a></li>
+<li><a href="#work-experience">Work Experience</a></li>
+<li><a href="#profidata-ag">Profidata <span class="caps">AG</span></a></li>
+<li><a href="#kaba">Kaba:</a><ul>
+<li><a href="#portable-configuration-and-programming-device-pd1460">Portable Configuration and Programming Device (<span class="caps">PD1460</span>)</a></li>
+<li><a href="#electronic-locks">Electronic Locks</a></li>
+<li><a href="#c-and-software-architect">C++ and Software Architect</a></li>
+<li><a href="#other-tasks">Other Tasks</a></li>
 </ul>
 </li>
+<li><a href="#codecheck-ag">CodeCheck <span class="caps">AG</span></a></li>
+<li><a href="#schiller-ag">Schiller <span class="caps">AG</span></a></li>
+<li><a href="#aim-industrielle-montage-ag"><span class="caps">AIM</span> Industrielle Montage <span class="caps">AG</span></a></li>
 <li><a href="#educational-projects">Educational Projects</a><ul>
 <li><a href="#bachelor-thesis">Bachelor Thesis</a></li>
 </ul>
@@ -98,15 +106,45 @@
 
             
 <h1 id="work-experience">Work Experience</h1>
-<h2 id="internship-at-schiller-ag">Internship at Schiller <span class="caps">AG</span></h2>
-<p>The main task during the internship was to create a computer program that reads and writes <strong><span class="caps">XML</span></strong> files. In these files the configuration of different filters for electrocardiogram devices are stored. The software reads the configuration from the file and shows it graphically as connected boxes which represent the filters. It’s also possible to create an <span class="caps">XML</span> file. For that the filters can be placed on a workspace via drag and drop. They then can be connected with mouse clicks. The software was programmed in <strong>C++</strong> mainly with <strong>Qt</strong>, <strong><span class="caps">STL</span></strong>, <strong>Boost</strong> and the <strong>Xerces <span class="caps">XML</span></strong> library.</p>
+<h1 id="profidata-ag">Profidata <span class="caps">AG</span></h1>
+<p>Currently I’m working as a senior software developer at Profidata.
+My main task there is the development, improvement and maintenance of the Xentis investment platform. Xentis is a large scale, highly scalable and parallelized C++ Server application with a broad ecosystem. 
+Besides learning a lot about financial markets, investment and fintech I’m improving my C++ knowledge towards  a modern and generic style. I also became an expert in development on Linux.
+In past projects I connected external functionality such as a price service with <span class="caps">REST</span> interfaces and am currently working on providing Xentis functionality as <span class="caps">REST</span> services to be used outside of our core application.
+As quality is always an important part of software development I’m also involved in maintaining our continuous integration infrastructure (Jenkins, pipeline), integration of static and dynamic analysis tools (sanitizers, clang static analyzer …) as well as regression- and unit-tests.</p>
+<h1 id="kaba">Kaba:</h1>
+<h2 id="portable-configuration-and-programming-device-pd1460">Portable Configuration and Programming Device (<span class="caps">PD1460</span>)</h2>
+<p>At first I was responsible for the development of the firmware for a programming device. The programmer consists of a lot of peripheral devices including a <span class="caps">LCD</span> display, a keypad, <span class="caps">NFC</span>, <span class="caps">USB</span>, <span class="caps">RS</span>-232 and <span class="caps">SD</span> card. It runs on an <span class="caps">ARM</span> controller. The firmware was developed in C.</p>
+<h2 id="electronic-locks">Electronic Locks</h2>
+<p>Later I was involved in the embedded software development of electronic locks that were based on different micro controller architectures as <span class="caps">ARM</span> Cortex, Atmel (ATmega, <span class="caps">AVR</span>) and Coldfire. There were also a Windows simulation of the access control devices (software and hardware) for simplifying development, testing and bug fixing. The simulation had to be extended and maintained.</p>
+<h2 id="c-and-software-architect">C++ and Software Architect</h2>
+<p>After a decision to do a big rewrite and refactoring of the firmware I took the role of a software architect. In the process we changed from C to C++ (even on 8 Bit controllers). This was an opportunity for me to act as main software architect and drive the development of an modular, object oriented design. It was optimized for usability, testability, extensibility and reuse.
+Because quality and security were important unit tests and system tests were implemented. A good part of the software was written with a Test Driven Development approach.
+I was also supporting my colleagues with using C++ in an deeply embedded environment with low resources (battery driven, small memory, slow processor, bare metal).</p>
+<h2 id="other-tasks">Other Tasks</h2>
+<p>Besides programming I defined functional requirements, specifications and maintained and extended a lot of documentation. I did some maintenance of existing products and did some project management for developing a customer specific device.</p>
+<h1 id="codecheck-ag">CodeCheck <span class="caps">AG</span></h1>
+<p>As a small project at CodeCheck I developed a
+complete mobile app for Symbian with Qt and C++. Learned a lot about development for mobile platforms and <span class="caps">REST</span> services. Improved my C++ and Qt skills. In the process of developing the app I also ported a barcode scanner from Objective-C to C++.</p>
+<h1 id="schiller-ag">Schiller <span class="caps">AG</span></h1>
+<p>After my studies as electronic engineer I worked as an intern at Schiller.
+There I created an application for the configuration and combination of filters for electrocardiograph devices (<span class="caps">ECG</span>). 
+The software reads the configuration from a <span class="caps">XML</span> file and shows it graphically as connected boxes which represent the filters. The configuration can be stored again in a <span class="caps">XML</span> file. For creating and editing configurations the filters are placed on a workspace via drag and drop and they can be connected with mouse clicks.
+The application was developed in C++ with Qt, Boost and Xerces for Windows and Linux.
+Beside improving my C++ skills I also learned a lot of general programming tools and techniques as Design Patterns, <span class="caps">OOA</span>/<span class="caps">OOD</span>, <span class="caps">UML</span>, <span class="caps">XML</span> (<span class="caps">SAX</span>/<span class="caps">DOM</span>), Doxygen.
+I not only learned a lot of technical stuff but also about medical engineering.
+As side projects I set up automated integration testing for the <span class="caps">GUI</span> of an <span class="caps">ECG</span> application and evaluated installer tools for Windows and Linux.</p>
+<h1 id="aim-industrielle-montage-ag"><span class="caps">AIM</span> Industrielle Montage <span class="caps">AG</span></h1>
+<p>After my apprenticeship I worked at <span class="caps">AIM</span> as mechanical engineer.
+There I assembled mechanical devices and fabricated small series and individual mechanical parts. I also made some improvements on existing parts.
+An other task was to manage the warehouse of mechanical parts and devices (logistics).</p>
 <h1 id="educational-projects">Educational Projects</h1>
 <h2 id="bachelor-thesis">Bachelor Thesis</h2>
 <p><a href="http://www.reely.ethz.ch/">Disney Copter</a> (2008-2009)</p>
-<p>The task of our bachelor thesis was to construct a flying device that entertains visitors at Disneyland. We created a <strong>quadcopter</strong> in the shape of a film reel.</p>
+<p>The task of our bachelor thesis was to construct a flying device that entertains visitors at Disneyland. We created a quadcopter in the shape of a film reel.</p>
 <p>The project was part of the ‘Focusprojects’ at <span class="caps">ETH</span> Zürich. The team consisted of seven students working on the project over the course of two semesters. A fellow student and I were responsible for creating the controlling algorithm for the embedded hardware. Our task was to read the data from the sensors and calculate the rotation speed for every one of the four propellers.</p>
 <p>The embedded hardware comprises of various technological systems. There are two microprocessors. One of them is responsible for the sensors, the other one is used for the controlling algorithm and to drive the propellers. </p>
-<p>There are also many different <strong>sensors</strong> on the hardware board. We used:</p>
+<p>There are also many different sensors on the hardware board. We used:</p>
 <ul>
 <li>Gyroscopes</li>
 <li>A compass</li>
@@ -114,7 +152,7 @@
 <li>Ultrasonic sensors</li>
 <li>Acceleration sensors</li>
 </ul>
-<p>To read all the sensor data we had to work with different <strong>interfaces</strong> such as:</p>
+<p>To read all the sensor data we had to work with different interfaces such as:</p>
 <ul>
 <li><span class="caps">UART</span></li>
 <li>Bluetooth</li>
@@ -123,14 +161,14 @@
 <li><span class="caps">I2C</span></li>
 <li><span class="caps">ADC</span></li>
 </ul>
-<p>There is also a <strong><span class="caps">GPS</span></strong> module connected to the hardware so we can always determine the position of the quadro copter.</p>
+<p>There is also a <span class="caps">GPS</span> module connected to the hardware so we can always determine the position of the quadro copter.</p>
 <p>The bachelor thesis was rewarded with a grade of <strong>5.5</strong> (of 6).</p>
 <p>More information on the project can be found on the homepage: <a href="http://www.reely.ethz.ch">www.reely.ethz.ch</a></p>
 <h1 id="private-projects">Private Projects</h1>
 <h2 id="design-by-contract-for-c">Design by Contract for C++</h2>
 <p>This small <a href="https://github.com/LukasWoodtli/DesignByContractPlusPlus">library</a> allows to define contracts in C++ that are checked at specific points (for example at scope exit). It can help to improve the quality of code and is a good addition to unit tests.</p>
 <h2 id="markdown-generator-for-python">Markdown Generator for Python</h2>
-<p>I started to develop <a href="https://github.com/LukasWoodtli/MarkdownGen">this library</a> for personal use. The aim was to generate some <strong>Markdown</strong> files for my homepage. I used just a part of the library for my home page.
+<p>I started to develop <a href="https://github.com/LukasWoodtli/MarkdownGen">this library</a> for personal use. The aim was to generate some Markdown files for my homepage. I used just a part of the library for my home page.
 But I keep working on the project anyway. It is also a good exercise for me doing a complete Python project from start to end.</p>
             
         </div>
