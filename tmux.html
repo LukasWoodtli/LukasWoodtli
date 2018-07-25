@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="tmux "/>
 <meta property="og:url" content="./tmux.html" />
-<meta property="og:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Command Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux a …" />
+<meta property="og:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-07-03T16:18:14+02:00" />
-<meta property="" content="2018-07-12T09:07:02+02:00" />
+<meta property="" content="2018-07-25T13:59:01+02:00" />
 <meta name="twitter:title" content="tmux ">
-<meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Command Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux a …">
+<meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux …">
 
         <title>tmux  · Lukas Woodtli
 </title>
@@ -89,6 +89,7 @@
 <li><a href="#pane-layouts">Pane Layouts</a></li>
 </ul>
 </li>
+<li><a href="#send-shell-commands">Send Shell Commands</a></li>
 <li><a href="#config">Config</a></li>
 </ul>
 </div>
@@ -105,7 +106,7 @@
 <table class="table table-striped">
 <thead>
 <tr>
-<th>Command</th>
+<th>Key Binding</th>
 <th>Function</th>
 </tr>
 </thead>
@@ -140,9 +141,21 @@
 </tr>
 </tbody>
 </table>
+<p>Commands can be provided directly to tmux as arguments or can be entered
+in command line (<code>PREFIX :</code>).</p>
+<p>Commands:</p>
+<ul>
+<li>Check if a session is running: <code>has-session</code><ul>
+<li><code>-t</code>: Target session</li>
+</ul>
+</li>
+</ul>
 <h2 id="the-target-flag-t">The Target Flag (<code>-t</code>)</h2>
-<p>Commands can be provided directly to tmux as arguments. To specify the
-target session for the command the flag <code>-t &lt;session-name&gt;</code> is used.</p>
+<p>To specify the target session, window and pane for a command the flag <code>-t &lt;session-name&gt;:&lt;window-id&gt;.&lt;pane-id&gt;</code> is used.</p>
+<ul>
+<li><code>&lt;session-name&gt;</code>: The name of the session</li>
+<li><code>&lt;window-id&gt;</code> and <code>&lt;pane-id&gt;</code> (optional): id number of window or pane</li>
+</ul>
 <p>Examples:</p>
 <ul>
 <li><code>tmux split-window -v -t mysession</code></li>
@@ -157,7 +170,7 @@ target session for the command the flag <code>-t &lt;session-name&gt;</code> is�
 <table class="table table-striped">
 <thead>
 <tr>
-<th>Command</th>
+<th>Key Binding</th>
 <th>Function</th>
 </tr>
 </thead>
@@ -196,11 +209,23 @@ target session for the command the flag <code>-t &lt;session-name&gt;</code> is�
 </tr>
 </tbody>
 </table>
+<p>Commands:</p>
+<ul>
+<li>Create window: <code>new-window</code><ul>
+<li><code>-n</code>: name</li>
+<li><code>-t</code>: Target session</li>
+</ul>
+</li>
+<li>Change to a window: <code>select-window</code><ul>
+<li><code>-t</code>: Target session and window</li>
+</ul>
+</li>
+</ul>
 <h1 id="panes">Panes</h1>
 <table class="table table-striped">
 <thead>
 <tr>
-<th>Command</th>
+<th>Key Binding</th>
 <th>Function</th>
 </tr>
 </thead>
@@ -235,8 +260,18 @@ target session for the command the flag <code>-t &lt;session-name&gt;</code> is�
 </tr>
 </tbody>
 </table>
+<p>Commands:</p>
+<ul>
+<li>Create new pane: <code>split-window</code><ul>
+<li><code>-v</code> or <code>-h</code>: vertically or horizontally</li>
+<li><code>-p</code> Percent of split</li>
+<li><code>-t</code> Target</li>
+</ul>
+</li>
+</ul>
 <h2 id="pane-layouts">Pane Layouts</h2>
-<p>There are following layouts:</p>
+<p>Command: <code>select-layout -t &lt;session&gt; &lt;layout-type&gt;</code></p>
+<p>There are following layout types:</p>
 <ul>
 <li><code>even-horizontal</code></li>
 <li><code>even-vertical</code></li>
@@ -245,9 +280,23 @@ target session for the command the flag <code>-t &lt;session-name&gt;</code> is�
 <li><code>tiled</code></li>
 </ul>
 <p>Cycle through layouts: <code>PREFIX SPACEBAR</code></p>
+<h1 id="send-shell-commands">Send Shell Commands</h1>
+<p>Shell commands can be sent to tmux:</p>
+<p><code>tmux send-keys -t &lt;session-name&gt;:&lt;window-id&gt;.&lt;pane-id&gt; '&lt;command&gt;' C-m</code></p>
+<p>Arguments and Flags:</p>
+<ul>
+<li><code>-t</code>: Target</li>
+<li><code>&lt;command&gt;</code>: Can be any shell command</li>
+<li><code>C-m</code>: Carriage return (enter, <code>CTRL</code>-<code>M</code>)</li>
+</ul>
 <h1 id="config">Config</h1>
 <ul>
 <li>Personal config file: <code>~/.tmux.conf</code></li>
+<li>A custom config file can be supplied when tmux is started<ul>
+<li><code>tmux -f &lt;file-name&gt;</code></li>
+<li>add <code>source-file ~/.tmux.conf</code> as first line to get settings from default file</li>
+</ul>
+</li>
 <li>Reload file: <code>source-file &lt;file-name&gt;</code></li>
 <li>Bind commands to keys: <code>bind [-nr] &lt;key&gt; &lt;command0&gt; \; &lt;command1&gt; ...</code><ul>
 <li><code>-n</code>: Don’t use <code>PREFIX</code></li>
@@ -273,7 +322,7 @@ target session for the command the flag <code>-t &lt;session-name&gt;</code> is�
             <time pubdate="pubdate" datetime="2018-07-03T16:18:14+02:00">Jul 3, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-07-12T09:07:02+02:00">Jul 12, 2018</time>
+<time datetime="2018-07-25T13:59:01+02:00">Jul 25, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
