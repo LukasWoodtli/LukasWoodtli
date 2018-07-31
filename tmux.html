@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-07-03T16:18:14+02:00" />
-<meta property="" content="2018-07-31T13:58:21+02:00" />
+<meta property="" content="2018-07-31T15:03:35+02:00" />
 <meta name="twitter:title" content="tmux ">
 <meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux …">
 
@@ -81,6 +81,8 @@
 <li><a href="#prefix-key">Prefix Key</a></li>
 <li><a href="#sessions">Sessions</a><ul>
 <li><a href="#the-target-flag-t">The Target Flag (-t)</a></li>
+<li><a href="#grouped-sessions">Grouped Sessions</a></li>
+<li><a href="#server-sockets">Server Sockets</a></li>
 <li><a href="#additional-flags-for-tmux-new">Additional Flags for tmux new</a></li>
 </ul>
 </li>
@@ -162,6 +164,21 @@ in command line (<code>PREFIX :</code>).</p>
 <ul>
 <li><code>tmux split-window -v -t mysession</code></li>
 </ul>
+<h2 id="grouped-sessions">Grouped Sessions</h2>
+<p>Grouped sessions allow different users to share a session but work in different windows.
+This is useful for pair-programming.</p>
+<p>Create main session:</p>
+<p><code>tmux new-session -s mainSession</code></p>
+<p>Create new session with main session as target</p>
+<p><code>tmux new-session -t mainSession -s subSession</code></p>
+<h2 id="server-sockets">Server Sockets</h2>
+<p>Sessions can be created with a custom server socket where other users can connect to.
+This can also be used for pair-programming.</p>
+<p>Create session with server socket:</p>
+<p><code>tmux -S /var/mysocket</code></p>
+<p>Attach to socket</p>
+<p><code>tmux -S /var/mysocket attach</code></p>
+<p>The socket is created if needed.</p>
 <h2 id="additional-flags-for-tmux-new">Additional Flags for <code>tmux new</code></h2>
 <ul>
 <li><code>-d</code>: Create in background (detached)</li>
@@ -402,7 +419,7 @@ in command line (<code>PREFIX :</code>).</p>
             <time pubdate="pubdate" datetime="2018-07-03T16:18:14+02:00">Jul 3, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-07-31T13:58:21+02:00">Jul 31, 2018</time>
+<time datetime="2018-07-31T15:03:35+02:00">Jul 31, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
