@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-03-05T20:05:09+01:00" />
-<meta property="" content="2018-06-14T07:26:30+02:00" />
+<meta property="" content="2018-08-15T15:54:24+02:00" />
 <meta name="twitter:title" content="Sanitizers ">
 <meta name="twitter:description" content="Sanitizers Address Sanitizer (and Leak Sanitizer) Compile and link with the flag -fsanitize=address It might be necessary to link with -lasan with older gcc/ld versions. When linking shared libraries (dso’s) the sanitizer run-time library (libasan.so) is not linked. This hapens only when executables are linked. It …">
 
@@ -87,6 +87,7 @@
 <li><a href="#custom-signal-handlers">Custom Signal Handlers</a></li>
 <li><a href="#suppressions">Suppressions</a></li>
 <li><a href="#virtual-memory-max-map-count">Virtual Memory Max Map Count</a></li>
+<li><a href="#docker">Docker</a></li>
 <li><a href="#help-and-debugging">Help and Debugging</a></li>
 </ul>
 </li>
@@ -151,6 +152,8 @@ the number of virtual memory maps that a process can have.</p>
 <p>The number of maps needs to be adjusted per use case (just experiment).</p>
 <p>The setting is also available at <code>/proc/sys/vm/max_map_count</code></p>
 <p>See also: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">Elasticsearch: Virtual memory</a></p>
+<h3 id="docker">Docker</h3>
+<p>To run an sanitized executable in a docker container the argument <code>--cap-add SYS_PTRACE</code> needs to be added to the <code>docker run</code> command.</p>
 <h3 id="help-and-debugging">Help and Debugging</h3>
 <p>It’s possible to print debug information when using the sanitizer. Also the verbosity
 of any output can be increased.</p>
@@ -175,7 +178,7 @@ of any output can be increased.</p>
             <time pubdate="pubdate" datetime="2018-03-05T20:05:09+01:00">Mar 5, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-06-14T07:26:30+02:00">Jun 14, 2018</time>
+<time datetime="2018-08-15T15:54:24+02:00">Aug 15, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
