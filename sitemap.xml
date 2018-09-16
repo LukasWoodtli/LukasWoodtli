@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2018-09-14T20:42:41-00:00</lastmod>
+<lastmod>2018-09-16T21:29:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2018-09-14T20:42:41-00:00</lastmod>
+<lastmod>2018-09-16T21:29:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2018-09-14T20:42:41-00:00</lastmod>
+<lastmod>2018-09-16T21:29:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2018-09-14T20:42:41-00:00</lastmod>
+<lastmod>2018-09-16T21:29:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -96,7 +96,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/configuration_space_and_degrees_of_freedoms.html</loc>
-<lastmod>2018-09-14T20:39:43+02:00</lastmod>
+<lastmod>2018-09-16T21:27:38+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -649,7 +649,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/mechanics.html</loc>
-<lastmod>2018-09-14T20:39:43+01:00</lastmod>
+<lastmod>2018-09-16T21:27:38+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -803,7 +803,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/robotics.html</loc>
-<lastmod>2018-09-14T20:39:43+01:00</lastmod>
+<lastmod>2018-09-16T21:27:38+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -922,7 +922,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2018-09-14T20:40:30+01:00</lastmod>
+<lastmod>2018-09-16T21:27:38+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
