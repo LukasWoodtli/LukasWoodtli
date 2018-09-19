@@ -10,19 +10,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Computer Science, OS, Linux, Unix, Programming, " />
+<meta name="keywords" content="Tools, Cheat Sheet, Unix, Linux, Programming, " />
 
-<meta property="og:title" content="Linking and Loading "/>
-<meta property="og:url" content="./linking_and_loading.html" />
-<meta property="og:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …" />
+<meta property="og:title" content="Setup a new Machine "/>
+<meta property="og:url" content="./setup_a_new_machine.html" />
+<meta property="og:description" content="Some notes on what to do to setup a new machine for my development projects. Linux Create new user with given (fixed) uid and gid only when needed for NFS Setup /etc/fstab for NFS mounts Setup /etc/exports and /etc/samba/smb.conf for exported mounts Install: with package …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2017-11-24T13:06:00+01:00" />
-<meta property="" content="2018-05-30T21:05:28+02:00" />
-<meta name="twitter:title" content="Linking and Loading ">
-<meta name="twitter:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …">
+<meta property="og:article:published_time" content="2018-09-19T10:48:26+02:00" />
+<meta property="" content="2018-09-19T10:48:26+02:00" />
+<meta name="twitter:title" content="Setup a new Machine ">
+<meta name="twitter:description" content="Some notes on what to do to setup a new machine for my development projects. Linux Create new user with given (fixed) uid and gid only when needed for NFS Setup /etc/fstab for NFS mounts Setup /etc/exports and /etc/samba/smb.conf for exported mounts Install: with package …">
 
-        <title>Linking and Loading  · Lukas Woodtli
+        <title>Setup a new Machine  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -68,7 +68,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./linking_and_loading.html"> Linking and&nbsp;Loading  </a></h1>
+    <h1><a href="./setup_a_new_machine.html"> Setup a new&nbsp;Machine  </a></h1>
     </header>
 </div>
 
@@ -76,46 +76,25 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>The different forms of Linking</p>
-<p>There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking.</p>
-<p>This explanations are mainly for Linux. On other <span class="caps">OS</span>’s the same concepts apply but with some minor differences.</p>
-<p>See also: <a href="./executable_loader.html">Executable Loader</a></p>
-<h1 id="static-linking">Static Linking</h1>
+            <p>Some notes on what to do to setup a new machine for my development projects.</p>
+<h1 id="linux">Linux</h1>
 <ul>
-<li>Combine object files and archives to binaries (executables and shared libraries)</li>
-<li>Usually a step in the build process (after compiling)</li>
-<li>Not very flexible</li>
-<li>Not very suitable for libraries<ul>
-<li>Libraries should be linked dynamically to executables</li>
-<li>Libraries are usually created by statically linking object files together</li>
+<li>Create new user with given (fixed) <code>uid</code> and <code>gid</code><ul>
+<li>only when needed for <span class="caps">NFS</span></li>
 </ul>
 </li>
-<li>Order of symbol resolution can be tricky (e. g. same symbol in multiple object files)</li>
+<li>Setup <code>/etc/fstab</code> for <span class="caps">NFS</span> mounts</li>
+<li>Setup <code>/etc/exports</code> and <code>/etc/samba/smb.conf</code> for exported mounts</li>
+<li>Install:<ul>
+<li>with package manager: mc tmux vim zsh ranger docker kate gcc clang make cmake python3 doxygen graphviz cgdb docker git htop</li>
+<li>fzf: use git and install script (otherwithe key bindings are not setup properly)</li>
 </ul>
-<h1 id="dynamic-linking">Dynamic Linking</h1>
-<p>Shared libraries (so, dll, dylib) are loaded at runtime.</p>
-<h2 id="loading">Loading</h2>
-<ul>
-<li>Often just called: dynamic linking</li>
-<li>Shared libraries are passed to linker in build process (like with static linking)</li>
-<li>Dynamic loader loads library to process address space when executable is started (or can be lazy loaded)</li>
-<li>Mostly used for libraries that are available at build time</li>
-</ul>
-<h2 id="manual-loading-dlopen">Manual loading (dlopen)</h2>
-<ul>
-<li>Same mechanism as dynamic linking</li>
-<li>But linking happens manually (programmatically)</li>
-<li>‘dlopen’ on Linux/<span class="caps">UNIX</span></li>
-<li>Can load library at run time</li>
-<li>Used for plug-in mechanism</li>
-</ul>
-<h2 id="preloading">Preloading</h2>
-<ul>
-<li>The dynamic linker looks for libraries in ‘LD_PATH’</li>
-<li>Possible to hook into loading process with ‘LD_PRELOAD’</li>
-<li>Libraries provided in ‘LD_PRELOAD’ are loaded instead of libraries in ‘LD_PATH’</li>
-<li>Can be used for overwriting or extending system functions (e. g. allocators: ‘malloc’, ‘free’, ‘realloc’ …)</li>
-<li>Special checks (security) are performed before library is preloaded</li>
+</li>
+<li>Restore keys in <code>~/.ssh/</code></li>
+<li>Restore shell config files (.bashrc, .zshrc, .commonrc?) and oh-my-zsh</li>
+<li>Restore <code>vim</code> config (github)</li>
+<li>Restore <code>tmux</code> config (github)</li>
+<li>Resore <code>.gitconfig</code>, set <code>git config --global --add user.useConfigOnly true</code> (https://collectiveidea.com/blog/archives/2016/04/04/multiple-personalities-in-git)</li>
 </ul>
             
             
@@ -123,8 +102,7 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./linux_system_calls.html" title="Previous: Linux System Calls">Linux System Calls</a></li>
-                <li class="next-article"><a href="./make_as_multi-paradigm_language.html" title="Next: Make as multi-paradigm language">Make as multi-paradigm language</a> »</li>
+                <li class="previous-article">« <a href="./configuration_space_and_degrees_of_freedoms.html" title="Previous: Configuration Space and Degrees of Freedoms">Configuration Space and Degrees of Freedoms</a></li>
             </ul>
             </nav>
             </aside>
@@ -132,23 +110,23 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-11-24T13:06:00+01:00">Nov 24, 2017</time>
+            <time pubdate="pubdate" datetime="2018-09-19T10:48:26+02:00">Sep 19, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2018-09-19T10:48:26+02:00">Sep 19, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#computer_science-ref">Computer Science
-                    <span>24</span>
+                <li><a href="./tags.html#cheat_sheet-ref">Cheat Sheet
+                    <span>4</span>
 </a></li>
                 <li><a href="./tags.html#linux-ref">Linux
                     <span>12</span>
 </a></li>
-                <li><a href="./tags.html#os-ref">OS
-                    <span>13</span>
+                <li><a href="./tags.html#tools-ref">Tools
+                    <span>4</span>
 </a></li>
                 <li><a href="./tags.html#unix-ref">Unix
                     <span>8</span>
