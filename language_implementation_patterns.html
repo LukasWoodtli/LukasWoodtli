@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Lukas Woodtli" />
+        <meta name="copyright" content="Lukas Woodtli" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Computer Science, Parsing, Design Patterns, Programming, " />
+
+<meta property="og:title" content="Language Implementation Patterns "/>
+<meta property="og:url" content="./language_implementation_patterns.html" />
+<meta property="og:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …" />
+<meta property="og:site_name" content="Lukas Woodtli" />
+<meta property="og:article:author" content="Lukas Woodtli" />
+<meta property="og:article:published_time" content="2017-12-26T18:34:32+01:00" />
+<meta property="" content="2018-05-30T23:05:28+02:00" />
+<meta name="twitter:title" content="Language Implementation Patterns ">
+<meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
+
+        <title>Language Implementation Patterns  · Lukas Woodtli
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="./"><span class=site-name>Lukas Woodtli</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href=".">Home</a></li>
+                            <li><a href="./pages/resume.html">Resume</a></li>
+                            <li><a href="./pages/skills.html">Skills</a></li>
+                            <li><a href="./pages/books.html">Books</a></li>
+                            <li><a href="./pages/courses.html">Courses</a></li>
+                            <li><a href="./pages/projects.html">Projects</a></li>
+                            <li><a href="./pages/blog.html">Blog</a></li>
+                            <li><a href="./pages/contact.html">Contact</a></li>
+                            <!-- <li ><a href="./categories.html">Categories</a></li> -->
+                            <!-- <li ><a href="./tags.html">Tags</a></li> -->
+                            <!-- <li ><a href="./archives.html">Archives</a></li> -->
+                            <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="./language_implementation_patterns.html"> Language Implementation&nbsp;Patterns  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#getting-started-with-parsing">Getting Started with Parsing</a><ul>
+<li><a href="#basic-parsing-patterns">Basic Parsing Patterns</a><ul>
+<li><a href="#identifying-phrase-structure">Identifying Phrase Structure</a></li>
+<li><a href="#building-recursive-descent-parsers">Building Recursive-Descent Parsers</a></li>
+<li><a href="#parser-construction-using-a-grammar-dsl">Parser Construction Using a Grammar <span class="caps">DSL</span></a></li>
+<li><a href="#tokenizing-sentences">Tokenizing Sentences</a></li>
+<li><a href="#pattern-1-mapping-grammars-to-recursive-descent-recognizers">Pattern 1: Mapping Grammars to Recursive-Descent Recognizers</a><ul>
+<li><a href="#alternatives">Alternatives</a></li>
+<li><a href="#optional-subrule-t">Optional subrule (T)?</a></li>
+<li><a href="#one-or-more-subrules">One or more (…)+ subrules</a></li>
+<li><a href="#zero-or-more-subrules">Zero or more (…)* subrules</a></li>
+</ul>
+</li>
+<li><a href="#pattern-2-ll1-recursive-descent-lexer">Pattern 2: <span class="caps">LL</span>(1) Recursive-Descent Lexer</a></li>
+<li><a href="#pattern-3-ll1-recursive-descent-parser">Pattern 3: <span class="caps">LL</span>(1) Recursive-Descent Parser</a><ul>
+<li><a href="#deterministic-parsing-decisions">Deterministic Parsing Decisions</a></li>
+</ul>
+</li>
+<li><a href="#pattern-4-llk-recursive-descent-parser">Pattern 4: <span class="caps">LL</span>(k) Recursive-Descent Parser</a></li>
+</ul>
+</li>
+<li><a href="#enhanced-parsing-patterns">Enhanced Parsing Patterns</a><ul>
+<li><a href="#parsing-with-arbitrary-lookahead">Parsing with Arbitrary Lookahead</a></li>
+<li><a href="#parsing-like-a-pack-rat">Parsing like a Pack Rat</a></li>
+<li><a href="#directing-the-parse-with-semantic-information">Directing the Parse with Semantic Information</a></li>
+<li><a href="#pattern-5-backtracking-parser">Pattern 5 Backtracking Parser</a><ul>
+<li><a href="#dealing-with-actions-while-backtracking">Dealing with Actions While Backtracking</a></li>
+</ul>
+</li>
+<li><a href="#pattern-6-memoizing-parser">Pattern 6 Memoizing Parser</a></li>
+<li><a href="#pattern-7-predicated-parser">Pattern 7 Predicated Parser</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <p>This page collects notes and citations from the book:</p>
+<p><a href="https://pragprog.com/book/tpdsl/language-implementation-patterns">Language Implementation Patterns by Terence Parr</a></p>
+<p>Some of my examples can be foudn <a href="LukasWoodtli/LanguageImplementationPatterns">here</a></p>
+
+<h1 id="getting-started-with-parsing">Getting Started with Parsing</h1>
+<h2 id="basic-parsing-patterns">Basic Parsing Patterns</h2>
+<p><em><span class="dquo">“</span>The act of recognizing a phrase by computer is called <strong>parsing</strong>.”</em></p>
+<p><em><span class="dquo">“</span>You can think of grammars as functional specifications or design documents for parsers.”</em></p>
+<p><em><span class="dquo">“</span>Grammars are more than designs, though. They are actually executable ‘programs’ written in a domain-specific language (<span class="caps">DSL</span>) specifically designed for expressing language structures.”</em></p>
+<h3 id="identifying-phrase-structure">Identifying Phrase Structure</h3>
+<p><em><span class="dquo">“</span>Vocabulary symbols (tokens) play different roles like variable and operator. We can even identify the role of token subsequences like expression.”</em></p>
+<p><em><span class="dquo">“</span>Parse trees are important because they tell us everything we need to know about the syntax (structure) of a phrase.”</em></p>
+<p><em><span class="dquo">“</span>To parse [is to generate] a two-dimensional parse tree from a flat token sequence.”</em></p>
+<h3 id="building-recursive-descent-parsers">Building Recursive-Descent Parsers</h3>
+<p><em><span class="dquo">“</span>A parser checks whether a sentence conforms to the syntax of a language.”</em></p>
+<p><em><span class="dquo">“</span>A language is just a set of valid sentences.”</em></p>
+<p><em><span class="dquo">“</span>A top-down parser […] starts at the top of the parse tree and works its way down to the token leaf nodes.”</em></p>
+<p><em><span class="dquo">“</span>Recursive-Descent Parser</em></p>
+<ul>
+<li><em><strong>Descent</strong> refers to its top-down nature, and</em></li>
+<li><em><strong>Recursive</strong> refers to the fact that its functions potentially call themselves.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Nesting in a parse tree begets [(Kind zeugen)] recursion in a recursive-descent parser.”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">LL</span>(1)</em></p>
+<ul>
+<li><em>The first <strong>L</strong> means ‘read the input from left to right.’</em></li>
+<li><em>The second <strong>L</strong> means ‘descend into parse tree children from left to right.’”</em></li>
+</ul>
+<h3 id="parser-construction-using-a-grammar-dsl">Parser Construction Using a Grammar <span class="caps">DSL</span></h3>
+<p><em><span class="dquo">“</span>[We can use] a <span class="caps">DSL</span> specifically designed for describing languages. ‘Programs’ in this <span class="caps">DSL</span> are called <strong>grammars</strong>. Tools that translate grammars to parsers are called <strong>parser generators</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Grammars are […] functional specifications for languages.”</em></p>
+<p><em><span class="dquo">“</span>Substructures in the parse tree and functions in the parser correspond to <strong>rules</strong> in a grammar.”</em></p>
+<p><em><span class="dquo">“</span>[Lexer:] combining input characters into vocabulary symbols (tokens).”</em></p>
+<h3 id="tokenizing-sentences">Tokenizing Sentences</h3>
+<p><em><span class="dquo">“</span>Recognizers that feed off character streams are called <strong>tokenizers</strong> or <strong>lexers</strong>”</em></p>
+<p><em><span class="dquo">“</span>At the character level, we refer to syntax as the <strong>lexical structure</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Grammars describe language structures, and so we can also use them for lexical specifications.”</em></p>
+<p><em><span class="dquo">“</span>Lexical rules start with an uppercase letter”</em></p>
+<p><em><span class="dquo">“</span>Lexer and parser design patterns […] are nearly identical. […] The only difference lies in the type of their input symbols, characters or tokens.”</em></p>
+<h3 id="pattern-1-mapping-grammars-to-recursive-descent-recognizers">Pattern 1: Mapping Grammars to Recursive-Descent Recognizers</h3>
+<p><em><span class="dquo">“</span>Even when building lexers and parsers by hand, the best starting point is a grammar.”</em></p>
+<p><em><span class="dquo">“</span><strong>Left recursion</strong> results in an infinite method invocation loop.”</em></p>
+<p><em><span class="dquo">“</span>The following rule yields a parser that does not terminate:</em>”</p>
+<div class="highlight"><pre><span></span><span class="nl">r</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p><em><span class="dquo">“</span>we’d end up with a function that immediately called itself”</em></p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">r</span><span class="o">()</span> <span class="o">{</span> <span class="n">r</span><span class="o">();</span> <span class="n">match</span><span class="o">(</span><span class="n">X</span><span class="o">);</span> <span class="o">}</span>
+</pre></div>
+<p><em><span class="dquo">“</span>Besides left-recursive rules, there are other grammar constructs that yield <strong>nondeterministic</strong> recursive-descent recognizers. A nondeterministic recognizer cannot decide which path to take.”</em></p>
+<p><em><span class="dquo">“</span>A grammar, G, is a set of rules from which we generate a class definition (in any object-oriented programming language) containing a method for each rule”</em></p>
+<p><em><span class="dquo">“</span>For each rule, r, defined in a grammar, we build a method of the same name”</em></p>
+<p><em><span class="dquo">“</span>Token references for token type <code>T</code> become calls to <code>match(T)</code>. match is a support method in Parser that consumes a token if <code>T</code> is the current lookahead token. If there is a mismatch, match throws an exception.”</em></p>
+<h4 id="alternatives">Alternatives</h4>
+<p><em><span class="dquo">“</span>Alternatives become either a switch or an if-then-else sequence”</em></p>
+<p><img alt="Alternatives" class="img-fluid" src="/images/language_implementation_patterns/alternatives.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">switch</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">token</span><span class="o">&gt;)</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;:</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;:</span>
+    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span>
+    <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;:</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;:</span>
+    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span>
+    <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;:</span>
+  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;:</span>
+    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span>
+    <span class="k">break</span><span class="o">;</span>
+  <span class="k">default</span><span class="o">:</span>
+    <span class="o">&lt;</span><span class="k">throw</span><span class="o">-</span><span class="n">exception</span><span class="o">&gt;</span>
+  <span class="o">}</span>
+</pre></div>
+<h4 id="optional-subrule-t">Optional subrule <code>(T)?</code></h4>
+<p><img alt="Option" class="img-fluid" src="/images/language_implementation_patterns/option.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">is</span><span class="o">-</span><span class="n">T</span><span class="o">&gt;)</span> <span class="o">{</span> <span class="n">match</span><span class="o">(</span><span class="n">T</span><span class="o">);}</span> <span class="c1">// no error else clause</span>
+</pre></div>
+<h4 id="one-or-more-subrules">One or more <code>(...)+</code> subrules</h4>
+<p><img alt="One or more" class="img-fluid" src="/images/language_implementation_patterns/one_or_more.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">do</span> <span class="o">{</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
+<span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;);</span>
+</pre></div>
+<h4 id="zero-or-more-subrules">Zero or more <code>(...)*</code> subrules</h4>
+<p><img alt="Zero or more" class="img-fluid" src="/images/language_implementation_patterns/zero_or_more.svg"/></p>
+<div class="highlight"><pre><span></span><span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;)</span> <span class="o">{</span>
+  <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
+</pre></div>
+<h3 id="pattern-2-ll1-recursive-descent-lexer">Pattern 2: <span class="caps">LL</span>(1) Recursive-Descent Lexer</h3>
+<p><em><span class="dquo">“</span>Lexers derive a stream of tokens from a character stream by recognizing lexical patterns. Lexers are also called <strong>scanners</strong>, <strong>lexical analyzers</strong>, and <strong>tokenizers</strong>.”</em></p>
+<p><em><span class="dquo">“</span>This pattern can recognize nested lexical structures such as nested comments”</em></p>
+<p><em><span class="dquo">“</span>The goal of the lexer is to emit a sequence of tokens. Each token has two primary attributes: a <strong>token type</strong> (symbol category) and the text associated with it.”</em></p>
+<h3 id="pattern-3-ll1-recursive-descent-parser">Pattern 3: <span class="caps">LL</span>(1) Recursive-Descent Parser</h3>
+<p><em><span class="dquo">“</span>It’s the weakest form of recursive-descent parser but the easiest to understand and implement.”</em></p>
+<p><em><span class="dquo">“</span>To make parsing decisions, the parser tests the current lookahead token against the alternatives’ lookahead sets. A lookahead set is the set of tokens that can begin a particular alternative.”</em></p>
+<p><em><span class="dquo">“</span>Formally, we compute lookahead sets using two computations: <span class="caps">FIRST</span> and <span class="caps">FOLLOW</span>. In practice, though, it’s easier to simply ask ourselves, ‘What tokens can possibly start phrases beginning at this alternative?’”</em></p>
+<h4 id="deterministic-parsing-decisions">Deterministic Parsing Decisions</h4>
+<p><em><span class="dquo">“</span><span class="caps">LL</span> parsing decisions work only when the lookahead sets predicting the alternatives are disjoint”</em></p>
+<p><em><span class="dquo">“</span>If the lookahead sets overlap, though, the parser is <strong>nondeterministic</strong>-it cannot determine which alternative to choose.”</em></p>
+<p><em><span class="dquo">“</span>Building an <span class="caps">LL</span>(1) parser is the easiest way to learn about parsers. In practice, though, we really need more than a single token of lookahead.”</em></p>
+<h3 id="pattern-4-llk-recursive-descent-parser">Pattern 4: <span class="caps">LL</span>(k) Recursive-Descent Parser</h3>
+<p><em><span class="dquo">“</span>The strength of a recursive-descent parser depends entirely on the strength of its lookahead decisions.”</em></p>
+<p><em><span class="dquo">“</span>Having more lookahead is like being able to see farther down multiple paths emanating from a fork in a maze. The farther we can see ahead, the easier it is to decide which path to take. More powerful parsing decisions make it easier to build parsers.”</em></p>
+<p><em><span class="dquo">“</span>For example, we want to recognize input such as <code>[a, b=c, [d,e]]</code><span class="dquo">“</span></em></p>
+<div class="highlight"><pre><span></span><span class="nl">list</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">'['</span><span class="w"> </span><span class="nv">elements</span><span class="w"> </span><span class="s">']'</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="nl">elements</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">element</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="s">','</span><span class="w"> </span><span class="nv">element</span><span class="o">)*</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="nl">element</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="s">'='</span><span class="w"> </span><span class="no">NAME</span><span class="w"></span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="no">NAME</span><span class="w"></span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="nv">list</span><span class="w"></span>
+<span class="w">        </span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p><em><span class="dquo">“</span><code>element</code> [is] non-<span class="caps">LL</span>(1) since the first two alternatives start with the same <code>NAME</code> token.”</em></p>
+<p><em><span class="dquo">“</span>The lookahead depth <strong>k</strong> in <span class="caps">LL</span>(k) is really a maximum not the exact, fixed amount of lookahead each parsing decision uses.”</em></p>
+<h2 id="enhanced-parsing-patterns">Enhanced Parsing Patterns</h2>
+<h3 id="parsing-with-arbitrary-lookahead">Parsing with Arbitrary Lookahead</h3>
+<p><em><span class="dquo">“</span>[Some] language constructs […] only differ on the right side. For example, C++ function definitions and declarations are identical until the parser sees <code>;</code> or <code>{</code> :”</em></p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{...}</span> <span class="c1">// a function definition</span>
+<span class="kt">void</span> <span class="nf">bar</span><span class="p">();</span> <span class="c1">// a function declaration</span>
+</pre></div>
+<p><em><span class="dquo">“</span>function headers can be arbitrarily long, the distinguishing token does not appear at a fixed lookahead position from the left side of the statement.”</em></p>
+<p><em><span class="dquo">“</span>The parser can speculatively parse as far ahead as it needs.”</em></p>
+<p><em><span class="dquo">“</span>Speculatively matching the alternatives of a rule effectively orders them. The first alternative that matches wins. This is great because we can use ordering to specify precedence.”</em></p>
+<p><em><span class="dquo">“</span>With ordered alternatives, there is no ambiguity because the parser consistently chooses the first of two ambiguous alternatives. By having the parser pay attention to the order of alternatives”</em></p>
+<p><em><span class="dquo">“</span>Though speculative parsing has a lot of advantages, there are two drawbacks. First, it can make debugging more difficult. When the parser speculatively parses ahead, it’s easy to get lost with all of the scanning ahead and rewinding. Second, backtracking can be extremely slow. Fortunately, we can fix the efficiency issue.”</em></p>
+<h3 id="parsing-like-a-pack-rat">Parsing like a Pack Rat</h3>
+<p><em><span class="dquo">“</span>Almost by definition, we use backtracking parsers only when we need to distinguish between similar language constructs. If the constructs are similar, the associated grammar likely contains repeated references to the same rule.”</em></p>
+<h3 id="directing-the-parse-with-semantic-information">Directing the Parse with Semantic Information</h3>
+<p><em><span class="dquo">“</span>The parsers we’re working with in this book recognize <strong>context-free languages</strong>. A context-free language is a language whose constructs don’t depend on the presence of other constructs.
+Unfortunately, some programming languages have context-sensitive phrases. To handle context-sensitive phrases with a context-free parser, we have to predicate alternatives. In effect, a predicate is just a run-time boolean test that says when it’s <span class="caps">OK</span> to match an alternative. The predicates gate the associated alternatives in and out.”</em></p>
+<p><em><span class="dquo">“</span>In C++, the expression <code>T(6)</code> is either a function call or a constructor-style typecast depending on whether <code>T</code> is a function or type name. A C++ parser literally does not know how to interpret <code>T(6)</code> without seeing the definition of <code>T</code>. Such a construct is <strong>context sensitive</strong> and, in this case, ambiguous from a purely syntactic point of view.”</em></p>
+<p><em><span class="dquo">“</span>Ambiguous grammars lead to <strong>nondeterministic parsers</strong>”</em></p>
+<h3 id="pattern-5-backtracking-parser">Pattern 5 Backtracking Parser</h3>
+<p><em><span class="dquo">“</span>This pattern adds speculative parsing support (arbitrary lookahead) to any recursive-descent recognizer.”</em></p>
+<p><em><span class="dquo">“</span>[…] we can’t map all grammars to recursive-descent parsers. Only <strong>non-left-recursive grammars</strong> work (no rule can directly or indirectly invoke itself without consuming a token).”</em></p>
+<p><em><span class="dquo">“</span>[…] we can’t always get properly functioning (deterministic) parsers even from non-left-recursive grammars. The problem is that fixed lookahead <span class="caps">LL</span> parsers need the lookahead sets predicting alternatives to be disjoint.”</em></p>
+<p><em><span class="dquo">“</span>This pattern overcomes this lookahead issue by allowing arbitrary lookahead […]. To look arbitrarily ahead, we need infrastructure to support backtracking. Backtracking also gives us a way to specify the precedence of ambiguous rule alternatives (alternatives that can match the same input). Backtracking parsers, by definition, try the alternatives in order.”</em></p>
+<p><em><span class="dquo">“</span>Syntactic predicates are grammar fragments that specify the lookahead language predicting an alternative.”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">ANTLR</span>’s notion of grammars plus syntactic predicates [are called] Parsing Expression Grammars (PEGs)”</em></p>
+<p><em><span class="dquo">“</span>In the functional language world, syntactic predicates are called <strong>parser combinators</strong>”</em></p>
+<p><em><span class="dquo">“</span>Syntactic predicates and speculative parsing are extremely useful when parsing phrases that look the same from the left edge. Distinguishing between C++ function definitions and declarations is a prime example”</em></p>
+<h4 id="dealing-with-actions-while-backtracking">Dealing with Actions While Backtracking</h4>
+<p><em><span class="dquo">“</span>Either we disallow actions or disallow actions with side effects, or we parse winning alternatives twice.”</em></p>
+<p><em><span class="dquo">“</span>During speculation, all actions are off. Once the parser knows an alternative will match, however, it can match the alternative again “with feeling” to do the actions.”</em></p>
+<h3 id="pattern-6-memoizing-parser">Pattern 6 Memoizing Parser</h3>
+<p><em><span class="dquo">“</span>This pattern records partial parsing results during backtracking to guarantee linear parsing performance, at the cost of a small amount of memory.”</em></p>
+<p><em><span class="dquo">“</span>Memoizing is a form of dynamic programming”</em></p>
+<p><em><span class="dquo">“</span>Another name for <strong>memoizing recursive-descent parser</strong> is <strong>packrat parser</strong>”</em></p>
+<p><em><span class="dquo">“</span>Memoization only helps us, though, if we invoke the same rule at the same input position more than once.”</em></p>
+<p><em><span class="dquo">“</span>For example, upon input <code>(3+4);</code>, a backtracking parser derived from the following rule invokes <code>expr</code> twice:”</em></p>
+<div class="highlight"><pre><span></span><span class="nl">s</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">expr</span><span class="w"> </span><span class="s">'!'</span><span class="w"> </span><span class="c">// assume backtracking parser tries this alternative</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nv">expr</span><span class="w"> </span><span class="s">';'</span><span class="w"> </span><span class="c">// and then this one</span><span class="w"></span>
+<span class="w">  </span><span class="p">;</span><span class="w"></span>
+<span class="nl">expr</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c">// match input such as "(3+4)"</span><span class="w"></span>
+</pre></div>
+<p><em><span class="dquo">“</span>Rule <code>s</code> invokes <code>expr</code> to speculatively match the first alternative. <code>expr</code> succeeds, but <code>s</code> finds that the next 
+input symbol is <code>;</code> and not <code>!</code>. Rule <code>s</code> rewinds the input and tries the second alternative. The parser immediately calls
+<code>expr</code> again and at the same input position. […] To avoid reparsing, all we have to do is remember that <code>expr</code> succeeded 
+the last time we tried it at this position.”</em></p>
+<p><em><span class="dquo">“</span>Packrat parsers are guaranteed to have linear performance [and also] linear space complexity.”</em></p>
+<h3 id="pattern-7-predicated-parser">Pattern 7 Predicated Parser</h3>
+<p><em><span class="dquo">“</span>This pattern augments any top-down parser with arbitrary boolean expressions that help make parsing decisions.”</em></p>
+<p><em><span class="dquo">“</span>These boolean expressions are called semantic predicates and specify the semantic applicability of an alternative.
+Predicates that evaluate to false effectively “turn off” a parser decision path. From a grammar point of view, false
+predicates make alternatives invisible.”</em></p>
+<p><em><span class="dquo">“</span>We need semantic predicates when the parser cannot use syntax alone to make parsing decisions, that is, when the parser
+cannot distinguish between alternatives without using run-time information. The most common case is when we need to use symbol
+table information to guide the parse.”</em></p>
+<p><em><span class="dquo">“</span>Predicates are also useful when a parser must recognize multiple versions of an input language. For example, the <span class="caps">GCC</span> C
+compiler adds a number of extensions beyond C. Java 5.0 introduced the enum keyword to support enumerated types.”</em></p>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./make_as_multi-paradigm_language.html" title="Previous: Make as multi-paradigm language">Make as multi-paradigm language</a></li>
+                <li class="next-article"><a href="./mastering_embedded_linux_programming.html" title="Next: Mastering Embedded Linux Programming">Mastering Embedded Linux Programming</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2017-12-26T18:34:32+01:00">Dec 26, 2017</time>
+
+<h4>Last Updated</h4>
+<time datetime="2018-05-30T23:05:28+02:00">May 30, 2018</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#programming-ref">Programming</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags.html#computer_science-ref">Computer Science
+                    <span>24</span>
+</a></li>
+                <li><a href="./tags.html#design_patterns-ref">Design Patterns
+                    <span>1</span>
+</a></li>
+                <li><a href="./tags.html#parsing-ref">Parsing
+                    <span>2</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://www.linkedin.com/in/lukaswoodtli" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://github.com/LukasWoodtli" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/lukaswoodtli" title="My stack-overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.xing.com/profile/Lukas_Woodtli" title="My XING Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-xing sidebar-social-links"></i></a>
+    <a href="/pages/contact.html" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
