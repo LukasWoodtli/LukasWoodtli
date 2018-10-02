@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="Object Oriented Design Principles "/>
 <meta property="og:url" content="./object_oriented_design_principles.html" />
-<meta property="og:description" content="Encapsulate what varies (Encapsulation Is Not Information Hiding) Prefer Composition to inheritance Program to Interface, not Implementation: Liskov substitution principle Cohesion: Objects should only interact with ‘friends’ (objects in their neighborhood) Ineracting Objects should aim for loose coupling Open-Closed principle: Classes should be open for extension, but closed for modification …" />
+<meta property="og:description" content="General Use Coding conventions Keep it simple, stupid (KISS) Boy Scout Rule: “Always leave the campground cleaner than you found it” - Robert C. Martin Broken Window Theory: Don’t Live with Broken Windows Fix root cause (root cause analysis, no workaraounds): otherwise it will get you again [You aren’t …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-05-31T15:28:46+02:00" />
-<meta property="" content="2018-05-31T15:28:46+02:00" />
+<meta property="" content="2018-10-02T16:17:24+02:00" />
 <meta name="twitter:title" content="Object Oriented Design Principles ">
-<meta name="twitter:description" content="Encapsulate what varies (Encapsulation Is Not Information Hiding) Prefer Composition to inheritance Program to Interface, not Implementation: Liskov substitution principle Cohesion: Objects should only interact with ‘friends’ (objects in their neighborhood) Ineracting Objects should aim for loose coupling Open-Closed principle: Classes should be open for extension, but closed for modification …">
+<meta name="twitter:description" content="General Use Coding conventions Keep it simple, stupid (KISS) Boy Scout Rule: “Always leave the campground cleaner than you found it” - Robert C. Martin Broken Window Theory: Don’t Live with Broken Windows Fix root cause (root cause analysis, no workaraounds): otherwise it will get you again [You aren’t …">
 
         <title>Object Oriented Design Principles  · Lukas Woodtli
 </title>
@@ -76,15 +76,51 @@
         <div class="span8 offset2 article-content">
 
             
-            <ul>
+            <h1 id="general">General</h1>
+<ul>
+<li>Use <a href="https://en.wikipedia.org/wiki/Coding_conventions">Coding conventions</a></li>
+<li><a href="https://en.wikipedia.org/wiki/KISS_principle">Keep it simple, stupid (<span class="caps">KISS</span>)</a></li>
+<li>Boy Scout Rule: “Always leave the campground cleaner than you found it” - Robert C. Martin</li>
+<li><a href="https://pragprog.com/the-pragmatic-programmer/extracts/software-entropy">Broken Window Theory</a>: Don’t Live with Broken Windows</li>
+<li>Fix root cause (root cause analysis, no workaraounds): otherwise it will get you again</li>
+<li>[You aren’t gonna need it (<span class="caps">YAGNI</span>)]: implement things when you need them</li>
+</ul>
+<h1 id="class-design">Class Design</h1>
+<h2 id="solid"><span class="caps">SOLID</span></h2>
+<ul>
+<li><em>S</em>: Single responsibility principle (only one reason to change)</li>
+<li><em>O</em>: Open/closed principle (open for extension, closed for modification)</li>
+<li><em>L</em>: Liskov substitution principle</li>
+<li><em>I</em>: Interface segregation principle</li>
+<li><em>D</em>: Dependency inversion principle (dependency injection can be used)</li>
+</ul>
+<p>See <a href="https://en.wikipedia.org/wiki/SOLID"><span class="caps">SOLID</span></a></p>
+<h1 id="package-design">Package Design</h1>
+<p>See <a href="https://en.wikipedia.org/wiki/Package_principles">Package principles</a></p>
+<h2 id="package-cohesion">Package Cohesion</h2>
+<h3 id="reuse-release-equivalence-principle-rep">Reuse-release Equivalence Principle (<span class="caps">REP</span>)</h3>
+<ul>
+<li>A package must contain reusable classes</li>
+<li>All of the classes inside the package are reusable (or none of them are)</li>
+<li>The classes must be of the same family</li>
+</ul>
+<h3 id="common-reuse-principle-crp">Common-Reuse Principle (<span class="caps">CRP</span>)</h3>
+<p>Classes that are reused together belong in the same package</p>
+<h3 id="common-closure-principle-ccp">Common-Closure Principle (<span class="caps">CCP</span>)</h3>
+<ul>
+<li>A package should not have more than one reason to change</li>
+<li>Changes to an application shall occur only in one package</li>
+<li>If classes are tightly coupled, they belong to the same package</li>
+</ul>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/index.html">97 Things Every Programmer Should Know</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Encapsulation_%28computer_programming%29">Encapsulate</a> what varies (<a href="http://c2.com/cgi/wiki?EncapsulationIsNotInformationHiding">Encapsulation Is Not Information Hiding</a>)</li>
 <li><a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">Prefer Composition to inheritance</a></li>
 <li>Program to Interface, not Implementation: <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov substitution principle</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Cohesion_%28computer_science%29">Cohesion</a>: Objects should only interact with ‘friends’ (objects in their neighborhood)</li>
 <li>Ineracting Objects should aim for <a href="https://en.wikipedia.org/wiki/Loose_coupling">loose coupling</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Open/closed_principle">Open-Closed principle</a>: Classes should be open for extension, but closed for modification</li>
 <li><a href="http://martinfowler.com/bliki/TellDontAsk.html">Tell don’t ask</a>: Tell Objects what to do with their data, don’t ask for the data to operate on it</li>
-<li><a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">Single-Responibility-Principle</a>: A class should have only one responsibility (one reason to change)</li>
 </ul>
             
             
@@ -104,7 +140,7 @@
             <time pubdate="pubdate" datetime="2018-05-31T15:28:46+02:00">May 31, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-31T15:28:46+02:00">May 31, 2018</time>
+<time datetime="2018-10-02T16:17:24+02:00">Oct 2, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

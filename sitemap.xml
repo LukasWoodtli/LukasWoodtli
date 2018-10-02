@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2018-10-01T20:40:47-00:00</lastmod>
+<lastmod>2018-10-02T16:19:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2018-10-01T20:40:47-00:00</lastmod>
+<lastmod>2018-10-02T16:19:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2018-10-01T20:40:47-00:00</lastmod>
+<lastmod>2018-10-02T16:19:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2018-10-01T20:40:47-00:00</lastmod>
+<lastmod>2018-10-02T16:19:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -103,7 +103,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/setup_a_new_machine.html</loc>
-<lastmod>2018-10-01T20:31:26+02:00</lastmod>
+<lastmod>2018-10-02T14:07:58+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -131,7 +131,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/object_oriented_design_principles.html</loc>
-<lastmod>2018-05-31T15:28:46+02:00</lastmod>
+<lastmod>2018-10-02T16:17:24+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -677,7 +677,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
-<lastmod>2018-10-01T20:31:26+01:00</lastmod>
+<lastmod>2018-10-02T16:17:24+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -733,14 +733,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/unix.html</loc>
-<lastmod>2018-10-01T20:31:26+01:00</lastmod>
+<lastmod>2018-10-02T14:07:58+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/linux.html</loc>
-<lastmod>2018-10-01T20:31:26+01:00</lastmod>
+<lastmod>2018-10-02T14:07:58+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -754,7 +754,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/tools.html</loc>
-<lastmod>2018-10-01T20:31:26+01:00</lastmod>
+<lastmod>2018-10-02T14:07:58+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -824,7 +824,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/python.html</loc>
-<lastmod>2018-05-31T15:28:46+01:00</lastmod>
+<lastmod>2018-10-02T16:17:24+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -838,7 +838,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/cheat_sheet.html</loc>
-<lastmod>2018-10-01T20:31:26+01:00</lastmod>
+<lastmod>2018-10-02T14:07:58+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -852,7 +852,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/oop.html</loc>
-<lastmod>2018-05-31T15:28:46+01:00</lastmod>
+<lastmod>2018-10-02T16:17:24+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -915,7 +915,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/cpp.html</loc>
-<lastmod>2018-08-15T15:54:24+01:00</lastmod>
+<lastmod>2018-10-02T16:17:24+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -936,7 +936,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2018-10-01T20:38:41+01:00</lastmod>
+<lastmod>2018-10-02T16:17:24+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
