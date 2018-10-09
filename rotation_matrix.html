@@ -12,17 +12,17 @@
 
 <meta name="keywords" content="Robotics, Mechanics, " />
 
-<meta property="og:title" content="Mechanical Constraints "/>
-<meta property="og:url" content="./mechanical_constraints.html" />
-<meta property="og:description" content="Pfaffian Constraints A Pfaffian constraint is a set of \(k\) (\(k \leq n\)) linearly independent constraints so that: $$A(q)\dot{q} = 0$$ Where: \(A(q) \in \mathbb{R}^{k \times n}\) \(\dot{q}\): derivative of \(q\) with respect to time \(k\): number of constraints \(n\): number of variables needed …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width" />
+<meta property="og:title" content="Rotation Matrix "/>
+<meta property="og:url" content="./rotation_matrix.html" />
+<meta property="og:description" content="This page is work in progress Space frame \(\{s\}\) Body frame \(\{b\}\) Expressing orientation of \(\{b\}\) relative to \(\{s\}\): writing the unit coordinate axis of \(\{b\}\) as column vectors in the coordinates of \(\{s\}\) Form a matrix from the column vectors Example: $$\begin{matrix} \hat{x}_b = \begin{bmatrix} 0 …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2018-10-07T20:22:53+02:00" />
-<meta property="" content="2018-10-07T20:53:06+02:00" />
-<meta name="twitter:title" content="Mechanical Constraints ">
-<meta name="twitter:description" content="Pfaffian Constraints A Pfaffian constraint is a set of \(k\) (\(k \leq n\)) linearly independent constraints so that: $$A(q)\dot{q} = 0$$ Where: \(A(q) \in \mathbb{R}^{k \times n}\) \(\dot{q}\): derivative of \(q\) with respect to time \(k\): number of constraints \(n\): number of variables needed …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width">
+<meta property="og:article:published_time" content="2018-10-09T20:26:37+02:00" />
+<meta property="" content="2018-10-09T20:26:37+02:00" />
+<meta name="twitter:title" content="Rotation Matrix ">
+<meta name="twitter:description" content="This page is work in progress Space frame \(\{s\}\) Body frame \(\{b\}\) Expressing orientation of \(\{b\}\) relative to \(\{s\}\): writing the unit coordinate axis of \(\{b\}\) as column vectors in the coordinates of \(\{s\}\) Form a matrix from the column vectors Example: $$\begin{matrix} \hat{x}_b = \begin{bmatrix} 0 …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width">
 
-        <title>Mechanical Constraints  · Lukas Woodtli
+        <title>Rotation Matrix  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -68,7 +68,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./mechanical_constraints.html"> Mechanical&nbsp;Constraints  </a></h1>
+    <h1><a href="./rotation_matrix.html"> Rotation&nbsp;Matrix  </a></h1>
     </header>
 </div>
 
@@ -76,39 +76,91 @@
         <div class="span8 offset2 article-content">
 
             
-            <h1 id="pfaffian-constraints">Pfaffian Constraints</h1>
-<p>A Pfaffian constraint is a set of <span class="math">\(k\)</span> (<span class="math">\(k \leq n\)</span>) linearly independent constraints so that:</p>
-<div class="math">$$A(q)\dot{q} = 0$$</div>
+            <blockquote>
+<p>This page is work in progress</p>
+</blockquote>
+<p>Space frame <span class="math">\(\{s\}\)</span>
+Body frame <span class="math">\(\{b\}\)</span></p>
+<p>Expressing orientation of <span class="math">\(\{b\}\)</span> relative to <span class="math">\(\{s\}\)</span>:</p>
+<ul>
+<li>writing the unit coordinate axis of <span class="math">\(\{b\}\)</span> as column vectors in the coordinates of <span class="math">\(\{s\}\)</span></li>
+<li>Form a matrix from the column vectors</li>
+</ul>
+<p>Example:</p>
+<div class="math">$$\begin{matrix}
+\hat{x}_b = \begin{bmatrix}
+0\\ 
+1\\ 
+0
+\end{bmatrix} &amp;  
+\hat{y}_b = \begin{bmatrix}
+-1\\ 
+0\\ 
+0
+\end{bmatrix}
+&amp;
+\hat{z}_b = \begin{bmatrix}
+0\\ 
+0\\ 
+1
+\end{bmatrix} 
+\end{matrix}$$</div>
 <p>Where:</p>
 <ul>
-<li><span class="math">\(A(q) \in \mathbb{R}^{k \times n}\)</span></li>
-<li><span class="math">\(\dot{q}\)</span>: derivative of <span class="math">\(q\)</span> with respect to time</li>
-<li><span class="math">\(k\)</span>: number of constraints</li>
-<li><span class="math">\(n\)</span>: number of variables needed to define robots configuration (implicit representation)</li>
+<li><span class="math">\(\hat{x}_b\)</span>, <span class="math">\(\hat{y}_b\)</span>, <span class="math">\(\hat{z}_b\)</span>: Unit vectors of <span class="math">\(\{b\}\)</span> represented in coordinates of <span class="math">\(\{s\}\)</span></li>
 </ul>
-<h2 id="holonomic-constraints">Holonomic Constraints</h2>
+<p>Combined unit vectors:</p>
+<div class="math">$$R_{sb}=\begin{bmatrix}
+\hat{x}_b &amp; \hat{y}_b &amp; \hat{z}_b
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 &amp; -1 &amp; 0\\ 
+1 &amp; 0 &amp; 0\\ 
+0 &amp; 0 &amp; 1 
+\end{bmatrix}$$</div>
+<p>Where:</p>
 <ul>
-<li>Holonomic constraints can be defined independent of <span class="math">\(\dot{q}\)</span> (i.e. <span class="math">\(f(q,t)= 0\)</span>)</li>
-<li>Holonomic constraints reduce the dimension of the C-space (geometric limitation)</li>
-<li>C-space can be viewed as a surface of dimension <span class="math">\(n-k\)</span> embedded in <span class="math">\(\mathbb{R}^n\)</span><ul>
-<li><span class="math">\(n\)</span>: number of variables to define robots configuration</li>
-<li><span class="math">\(k\)</span>: independent holonomic constraints</li>
-<li><span class="math">\(n-k\)</span>: dimension of C-space, degree of freedom</li>
+<li>$R_{sb}:<ul>
+<li>Subscript <span class="math">\(s\)</span>: Reference frame</li>
+<li>Subscript <span class="math">\(b\)</span>: frame whose orientation is being represented</li>
 </ul>
 </li>
-<li>Integrable constraints:<ul>
-<li>Kinematic constraints may be integrable. In this case, the constraints are geometric constraints</li>
-<li>the velocity constraints that they imply can be integrated to give equivalent configuration (geometric) constraints</li>
 </ul>
-</li>
-</ul>
-<h2 id="nonholonomic-constraints">Nonholonomic Constraints</h2>
+<p>Constraints:</p>
+<p>There are only <span class="math">\(3\)</span> dimensions for orientation of a rigid body in space. But the <span class="math">\(3 \times 3\)</span> rotation matrix has <span class="math">\(9\)</span> numbers.
+So <span class="math">\(6\)</span> constraints are required.</p>
 <ul>
-<li>A nonholonomic mechanical system cannot move in arbitrary directions (in its C-space)</li>
-<li>Constraints can not be integrated</li>
-<li>They reduce the dimension of the feasible velocities of the system (kinematic/velocity limitation)</li>
-<li>They do not reduce the dimension of the reachable C-space</li>
+<li>All <span class="math">\(3\)</span> column vectors are <em>unit vectors</em></li>
+<li>Dot product of any <span class="math">\(2\)</span> column vectors is zero (they are all orthogonal to each other</li>
 </ul>
+<blockquote>
+<p>These constraints ensure that the determinant or <span class="math">\(R\)</span> is <span class="math">\(1\)</span> for right-handed frames</p>
+</blockquote>
+<div class="math">$$R^TR = I$$</div>
+<p>Where:</p>
+<ul>
+<li><span class="math">\(I = <div class="math">\begin{bmatrix}
+1 &amp; 0 &amp; 0\\ 
+0 &amp; 1 &amp; 0\\ 
+0 &amp; 0 &amp; 1
+\end{bmatrix}</div>\)</span>: Identity matrix</li>
+</ul>
+<h2 id="special-orthogonal-group">Special Orthogonal Group</h2>
+<p>The Special Orthogonal Group <span class="math">\(SO(3)\)</span> is the set of all possible <span class="math">\(3 \times 3\)</span> real matrices <span class="math">\(R\)</span> satisfying:</p>
+<div class="math">$$R^TR = I$$</div>
+<div class="math">$$det R = 1$$</div>
+<h2 id="properties-of-rotation-matrices">Properties of Rotation Matrices</h2>
+<ul>
+<li>Inverse: <span class="math">\(R^{-1} = R^T \in SO(3)\)</span></li>
+<li>Closure: <span class="math">\(R_1 R_2 \in SO(3)\)</span></li>
+<li>Associative <span class="math">\((R_1 R_2) R_3 = R_1 (R_2 R_3)\)</span></li>
+<li><em>Not</em> commutative: <span class="math">\(R_1 R_2 \neq R_2 R_1\)</span></li>
+<li>Rotating a vector doesn’t change its length: <span class="math">\(x \in \mathbb{R}^3, \left \| Rx \right \| = \left \| x \right \|\)</span></li>
+</ul>
+<h1 id="literature">Literature</h1>
+<p>Notes taken from:</p>
+<p><a href="http://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics: Mechanics, Planning, and Control</a> by Kevin M. Lynch and Frank C. Park, Cambridge University Press, 2017</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -170,8 +222,7 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./space_topology.html" title="Previous: Space Topology">Space Topology</a></li>
-                <li class="next-article"><a href="./rotation_matrix.html" title="Next: Rotation Matrix">Rotation Matrix</a> »</li>
+                <li class="previous-article">« <a href="./mechanical_constraints.html" title="Previous: Mechanical Constraints">Mechanical Constraints</a></li>
             </ul>
             </nav>
             </aside>
@@ -179,10 +230,10 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2018-10-07T20:22:53+02:00">Oct 7, 2018</time>
+            <time pubdate="pubdate" datetime="2018-10-09T20:26:37+02:00">Oct 9, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-10-07T20:53:06+02:00">Oct 7, 2018</time>
+<time datetime="2018-10-09T20:26:37+02:00">Oct 9, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
