@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="Midnight Commander "/>
 <meta property="og:url" content="./midnight_commander.html" />
-<meta property="og:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias. On Linux: alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; On …" />
+<meta property="og:description" content="Panels Keys Function ALT + u Swap panels ALT + t Switch listing mode (full, brief, long …) ALT + i Show current directory in other panel (synchronize) ALT + , Toggle layout between left-right and top-bottom Navigation Keys Function CTRL + PgUp Change to parent directory ALT + o Open selected directory (or parent directory if file …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-06-05T14:56:14+02:00" />
-<meta property="" content="2018-06-06T09:59:12+02:00" />
+<meta property="" content="2018-10-17T12:09:03+02:00" />
 <meta name="twitter:title" content="Midnight Commander ">
-<meta name="twitter:description" content="Function Keys The function keys (F1 - F10) can be emulated by using ESC + 1 - ESC + 0 mc-wrapper The mc-wrapper script allows that the shell changes to the current directory when exiting mc. It can be activated by setting an alias. On Linux: alias mc=&#39;. /usr/libexec/mc/mc-wrapper.sh&#39; On …">
+<meta name="twitter:description" content="Panels Keys Function ALT + u Swap panels ALT + t Switch listing mode (full, brief, long …) ALT + i Show current directory in other panel (synchronize) ALT + , Toggle layout between left-right and top-bottom Navigation Keys Function CTRL + PgUp Change to parent directory ALT + o Open selected directory (or parent directory if file …">
 
         <title>Midnight Commander  · Lukas Woodtli
 </title>
@@ -78,14 +78,14 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#function-keys">Function Keys</a></li>
-<li><a href="#mc-wrapper">mc-wrapper</a></li>
 <li><a href="#panels">Panels</a></li>
 <li><a href="#navigation">Navigation</a></li>
 <li><a href="#searching">Searching</a></li>
 <li><a href="#file-selections">File Selections</a></li>
 <li><a href="#shell">Shell</a></li>
 <li><a href="#viewing-and-editing">Viewing and Editing</a></li>
+<li><a href="#function-keys">Function Keys</a></li>
+<li><a href="#wrapper-script-mc-wrapper">Wrapper Script (mc-wrapper)</a></li>
 <li><a href="#terminal-emulator-settings">Terminal Emulator Settings</a><ul>
 <li><a href="#gnome-terminal-3282"><span class="caps">GNOME</span> Terminal (3.28.2)</a></li>
 </ul>
@@ -99,17 +99,6 @@
 
             
             
-<h1 id="function-keys">Function Keys</h1>
-<p>The function keys (<code>F1</code> - <code>F10</code>) can be emulated by using <code>ESC + 1</code> - <code>ESC + 0</code></p>
-<h1 id="mc-wrapper"><code>mc-wrapper</code></h1>
-<p>The <code>mc-wrapper</code> script allows that the shell changes to the current directory when exiting <code>mc</code>.</p>
-<p>It can be activated by setting an alias.</p>
-<p>On Linux:</p>
-<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/libexec/mc/mc-wrapper.sh'</span>
-</pre></div>
-<p>On macOS (homebrew):</p>
-<div class="highlight"><pre><span></span> <span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/local/opt/midnight-commander/libexec/mc/mc-wrapper.sh'</span>
-</pre></div>
 <h1 id="panels">Panels</h1>
 <table class="table table-striped">
 <thead>
@@ -243,7 +232,7 @@
 </tr>
 <tr>
 <td><code>SHIFT + F3</code></td>
-<td>View rav content</td>
+<td>View raw content</td>
 </tr>
 <tr>
 <td><code>F4</code></td>
@@ -256,6 +245,17 @@
 <li>Disable <code>Options &gt; Configuration &gt; Use internal edit</code></li>
 <li>Set envronment variable <code>EDIT</code> to preferred editor</li>
 </ul>
+<h1 id="function-keys">Function Keys</h1>
+<p>The function keys (<code>F1</code> - <code>F10</code>) can be emulated by using <code>ESC + 1</code> - <code>ESC + 0</code></p>
+<h1 id="wrapper-script-mc-wrapper">Wrapper Script (<code>mc-wrapper</code>)</h1>
+<p>The <code>mc-wrapper</code> script allows that the shell changes to the current directory when exiting <code>mc</code>.</p>
+<p>It can be activated by setting an alias.</p>
+<p>On Linux:</p>
+<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/libexec/mc/mc-wrapper.sh'</span>
+</pre></div>
+<p>On macOS (homebrew):</p>
+<div class="highlight"><pre><span></span> <span class="nb">alias</span> <span class="nv">mc</span><span class="o">=</span><span class="s1">'. /usr/local/opt/midnight-commander/libexec/mc/mc-wrapper.sh'</span>
+</pre></div>
 <h1 id="terminal-emulator-settings">Terminal Emulator Settings</h1>
 <h2 id="gnome-terminal-3282"><span class="caps">GNOME</span> Terminal (3.28.2)</h2>
 <ul>
@@ -287,7 +287,7 @@
             <time pubdate="pubdate" datetime="2018-06-05T14:56:14+02:00">Jun 5, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-06-06T09:59:12+02:00">Jun 6, 2018</time>
+<time datetime="2018-10-17T12:09:03+02:00">Oct 17, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
