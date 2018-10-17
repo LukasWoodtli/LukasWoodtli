@@ -10,19 +10,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="C, C++, Programming, " />
+<meta name="keywords" content="C++, Programming, " />
 
-<meta property="og:title" content="Endianness "/>
-<meta property="og:url" content="./endianness.html" />
-<meta property="og:description" content="The endianness means the representation of a variable (if it is bigger than one byte) in the memory. Big-Endian: Most Significant Byte (MSB) is first (bigger end is first) Little Endian: Least Significant Byte (LSB) is first (little end is first) CPU’s Big-Endian: Motorola-6800 Motorola-68k Coldfire System-z Sun-SPARC …" />
+<meta property="og:title" content="Practical C++ Metaprogramming "/>
+<meta property="og:url" content="./practical_cpp_metaprogramming.html" />
+<meta property="og:description" content="Notes taken from: Practical C++ Metaprogramming Edouard Alligand and Joel Falcou O’Reilly Media, Inc. My repository with examples on Github Chapter 1. Introduction The Early History of Metaprogramming “LISP macros were able to be used to extend the languages from within.” “[In C/C++] An X-macro is, in fact …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2015-06-17T19:49:33+02:00" />
-<meta property="" content="2018-05-30T21:05:28+02:00" />
-<meta name="twitter:title" content="Endianness ">
-<meta name="twitter:description" content="The endianness means the representation of a variable (if it is bigger than one byte) in the memory. Big-Endian: Most Significant Byte (MSB) is first (bigger end is first) Little Endian: Least Significant Byte (LSB) is first (little end is first) CPU’s Big-Endian: Motorola-6800 Motorola-68k Coldfire System-z Sun-SPARC …">
+<meta property="og:article:published_time" content="2018-10-17T14:37:12+02:00" />
+<meta property="" content="2018-10-17T14:37:12+02:00" />
+<meta name="twitter:title" content="Practical C++ Metaprogramming ">
+<meta name="twitter:description" content="Notes taken from: Practical C++ Metaprogramming Edouard Alligand and Joel Falcou O’Reilly Media, Inc. My repository with examples on Github Chapter 1. Introduction The Early History of Metaprogramming “LISP macros were able to be used to extend the languages from within.” “[In C/C++] An X-macro is, in fact …">
 
-        <title>Endianness  · Lukas Woodtli
+        <title>Practical C++ Metaprogramming  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -68,7 +68,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./endianness.html"> Endianness  </a></h1>
+    <h1><a href="./practical_cpp_metaprogramming.html"> Practical C++&nbsp;Metaprogramming  </a></h1>
     </header>
 </div>
 
@@ -76,63 +76,49 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>The endianness means the representation of a variable (if it is bigger than one byte) in the memory.</p>
-<blockquote>
-<p>Big-Endian: Most Significant Byte (<span class="caps">MSB</span>) is first (bigger end is first)</p>
-<p>Little Endian: Least Significant Byte (<span class="caps">LSB</span>) is first (little end is first)</p>
-</blockquote>
-<p><img alt="Big-Endian and Little-Endian" class="img-fluid" src="/images/endianness.png"/></p>
-<h1 id="cpus"><span class="caps">CPU</span>’s</h1>
-<h2 id="big-endian">Big-Endian:</h2>
+            <p>Notes taken from:</p>
+<p>Practical C++ Metaprogramming
+Edouard Alligand and Joel Falcou
+O’Reilly Media, Inc.</p>
+<p>My repository with examples on <a href="https://github.com/LukasWoodtli/PracticalCppMetaprogramming">Github</a></p>
+<h1 id="chapter-1-introduction">Chapter 1. Introduction</h1>
+<h2 id="the-early-history-of-metaprogramming">The Early History of Metaprogramming</h2>
+<p><em><span class="dquo">“</span><span class="caps">LISP</span> macros were able to be used to extend the languages from within.”</em></p>
+<p><em><span class="dquo">“</span>[In C/C++] An X-macro is, in fact, a header file containing a list of similar macro invocations—often called the components—which can be included multiple times. Each inclusion is prefixed by the redefinition of said macro to generate different code fragments for the same list of components.”</em></p>
+<h2 id="enter-c-templates">Enter C++ Templates</h2>
+<p><em><span class="dquo">“</span>It was quickly discovered that by supporting partial specialization, compile-time equivalents of recursion or conditional statements were feasible.”</em></p>
+<p><em><span class="dquo">“</span>We could turn templates into a very crude and syntactically impractical functional language, which [is] Turing-complete.”</em></p>
+<p><em><span class="dquo">“</span>Applications of C++ template metaprogramming includes the following:</em></p>
 <ul>
-<li>Motorola-6800</li>
-<li>Motorola-68k</li>
-<li>Coldfire</li>
-<li>System-z</li>
-<li>Sun-<span class="caps">SPARC</span></li>
-<li>PowerPC (some models can be switched to little-endian)</li>
-<li>Atmel <span class="caps">AVR32</span></li>
-<li><span class="caps">TMS9900</span></li>
+<li><em>Complex constant computations</em></li>
+<li><em>Programmatic type constructions</em></li>
+<li><em>Code fragment generation and replication”</em></li>
 </ul>
-<h2 id="little-endian">Little-Endian:</h2>
-<ul>
-<li>6502</li>
-<li><span class="caps">NEC</span>-V800</li>
-<li>PICmicro</li>
-<li>Intel-x86</li>
-<li>Alpha</li>
-<li>Altera Nios</li>
-<li>Atmel <span class="caps">AVR</span></li>
-<li><span class="caps">SH3</span>/<span class="caps">SH4</span> (some)</li>
-<li><span class="caps">VAX</span></li>
-</ul>
-<h2 id="configurable">Configurable:</h2>
-<ul>
-<li>PowerPC (some models)</li>
-<li><span class="caps">IA</span>-64 (Hewlett-Packard and Intel)</li>
-<li><span class="caps">ARM</span> (and XScale, little-endian as default)</li>
-</ul>
-<h1 id="uses">Uses</h1>
-<h2 id="technical">Technical</h2>
-<p><span class="caps">IP</span> and Ethernet Network Byte Order: Big-Endian</p>
-<h2 id="real-life-use">Real-Life use</h2>
-<h3 id="big-endian_1">Big-Endian:</h3>
-<ul>
-<li>written arabic numbers: 1234 (thousend-two-hundert-thirty-four)</li>
-<li>Time: 18:34</li>
-</ul>
-<h3 id="little-endian_1">Little-Endian:</h3>
-<ul>
-<li>European Date (dd. <span class="caps">MM</span> <span class="caps">YYYY</span>): 17. June 2015</li>
-</ul>
+<p><em><span class="dquo">“</span>Those applications are usually backed up by some libraries, like Boost.<span class="caps">MPL</span> or Boost.Fusion, and a set of patterns including tag dispatching, recursive inheritance, and <span class="caps">SFINAE</span>.”</em></p>
+<h1 id="chapter-2-c-metaprogramming-in-practice">Chapter 2. C++ Metaprogramming in Practice</h1>
+<h2 id="the-stdtuple-pattern">The <code>std::tuple&lt;&gt;</code> pattern</h2>
+<p><em><span class="dquo">“</span>”return a bunch of otherwise unrelated stuff.” This is a common pattern in modern C++”</em></p>
+<h2 id="returning-auto">Returning auto`</h2>
+<p><em><span class="dquo">“</span>In template metaprogramming, there is no iterative construct.”</em></p>
+<p><em><span class="dquo">“</span>You can, however, use recursion to apply a callable on every member of the tuple.”</em></p>
+<p><em><span class="dquo">“</span>Whenever you can, you should use the <code>...</code> operator to apply a callable to every member of a list. This is faster, it doesn’t generate all the unneeded intermediate types, and the code is often more concise.”</em></p>
+<p><code>std :: index_sequence</code>: <em>“The trick is to create an index sequence - whose sole purpose is to give us an index on which to apply the <code>...</code> operator - of the right size. This is done as follows:”</em></p>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">params_count</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">...(</span><span class="n">Params</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="n">params_count</span><span class="o">&gt;</span><span class="p">();</span>
+</pre></div>
+<p><em><span class="dquo">“</span>At compile time, when you need to know how many elements you have in your list, you use sizeof…().”</em></p>
+<h1 id="chapter-3-c-metaprogramming-and-application-design">Chapter 3. C++ Metaprogramming and Application Design</h1>
+<h1 id="meta-axiom-1">Meta-Axiom #1</h1>
+<p><em><span class="dquo">“</span>Types are first-class values inside compile-time programs.”</em></p>
+<h1 id="meta-axiom-2">Meta-Axiom #2</h1>
+<p><em><span class="dquo">“</span>Any template class accepting a variable number of type parameters can be considered a type container.”</em></p>
             
             
             <hr/>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./memory_layout.html" title="Previous: Memory Layout">Memory Layout</a></li>
-                <li class="next-article"><a href="./intel_architecture.html" title="Next: Intel Architecture">Intel Architecture</a> »</li>
+                <li class="previous-article">« <a href="./rotation_matrix.html" title="Previous: Rotation Matrix">Rotation Matrix</a></li>
             </ul>
             </nav>
             </aside>
@@ -140,18 +126,15 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2015-06-17T19:49:33+02:00">Jun 17, 2015</time>
+            <time pubdate="pubdate" datetime="2018-10-17T14:37:12+02:00">Oct 17, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2018-10-17T14:37:12+02:00">Oct 17, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#c-ref">C
-                    <span>9</span>
-</a></li>
                 <li><a href="./tags.html#cpp-ref">C++
                     <span>17</span>
 </a></li>
