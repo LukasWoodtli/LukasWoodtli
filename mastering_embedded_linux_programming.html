@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2018-08-13T19:28:42+02:00" />
+<meta property="" content="2018-11-10T21:07:05+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -142,6 +142,22 @@
 <li><a href="#boot-image-format">Boot image format</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#chapter-4-configuring-and-building-the-kernel">Chapter 4. Configuring and Building the Kernel</a><ul>
+<li><a href="#what-does-the-kernel-do">What does the kernel do?</a></li>
+<li><a href="#stable-and-long-term-support-releases">Stable and long term support releases</a></li>
+<li><a href="#vendor-support">Vendor support</a></li>
+<li><a href="#licensing">Licensing</a></li>
+<li><a href="#getting-the-source">Getting the source</a></li>
+<li><a href="#understanding-kernel-configuration-kconfig">Understanding kernel configuration - Kconfig</a></li>
+<li><a href="#using-localversion-to-identify-your-kernel">Using <span class="caps">LOCALVERSION</span> to identify your kernel</a></li>
+<li><a href="#kernel-modules">Kernel modules</a></li>
+<li><a href="#finding-out-which-kernel-target-to-build">Finding out which kernel target to build</a></li>
+<li><a href="#build-artifacts">Build artifacts</a></li>
+<li><a href="#compiling-device-trees">Compiling device trees</a></li>
+<li><a href="#compiling-modules">Compiling modules</a></li>
+<li><a href="#cleaning-kernel-sources">Cleaning kernel sources</a></li>
 </ul>
 </li>
 </ul>
@@ -498,6 +514,95 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 <div class="highlight"><pre><span></span>mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 <span class="se">\</span>
 -e 0x80008000 -n <span class="s1">'Linux'</span> -d zImage uImage
 </pre></div>
+<h1 id="chapter-4-configuring-and-building-the-kernel">Chapter 4. Configuring and Building the Kernel</h1>
+<h2 id="what-does-the-kernel-do">What does the kernel do?</h2>
+<p><em><span class="dquo">“</span>The system call interface uses an architecture-specific method, such as a trap or a software interrupt, to switch the <span class="caps">CPU</span> from low privilege user mode to high privilege kernel mode, which allows access to all memory addresses and <span class="caps">CPU</span> registers.”</em></p>
+<p><em><span class="dquo">“</span>Interrupts can only be handled in a device driver, never by a user space application.”</em></p>
+<h2 id="stable-and-long-term-support-releases">Stable and long term support releases</h2>
+<p><em><span class="dquo">“</span>[…] stable releases and long term releases. After the release of a mainline kernel (maintained by Linus Torvalds) it is moved to the stable tree (maintained by Greg Kroah-Hartman).”</em></p>
+<p><em><span class="dquo">“</span>some kernels are labeled <strong>long term</strong> and maintained for two or more years. There is at least one long term kernel release each year.”</em></p>
+<p><a href="www.kernel.org">https://www.kernel.org/</a></p>
+<p><a href="kernelnewbies.org">http://kernelnewbies.org/LinuxVersions</a></p>
+<h2 id="vendor-support">Vendor support</h2>
+<p><em><span class="dquo">“</span>You may find support for your board or SoC from independent open source projects, Linaro or the Yocto Project, for example, or from companies providing third party support for embedded Linux, but in many cases you will be obliged to look to the vendor of your SoC or board for a working kernel.”</em></p>
+<h2 id="licensing">Licensing</h2>
+<p><em><span class="dquo">“</span>The Linux source code is licensed under <span class="caps">GPL</span> v2”</em></p>
+<p><em><span class="dquo">“</span>it is now accepted practice that the <span class="caps">GPL</span> does not <strong>necessarily</strong> apply to kernel modules. This is codified by the kernel <code>MODULE_LICENSE</code> macro, which may take the value <code>Proprietary</code> to indicate that it is not released under the <span class="caps">GPL</span>.”</em></p>
+<p>*”[…] an oft-quoted e-mail thread titled “Linux <span class="caps">GPL</span> and binary module exception clause?” which is archived at <a href="http://yarchive.net">http://yarchive.net/comp/linux/gpl_modules.html</a></p>
+<h2 id="getting-the-source">Getting the source</h2>
+<p><em><span class="dquo">“</span>The main directories of interest are:</em></p>
+<ul>
+<li><code>arch</code>: <em>architecture-specific files, one subdirectory per architecture.</em></li>
+<li><code>Documentation</code>: *kernel documentation. Always look here first *</li>
+<li><code>drivers</code>: <em>device drivers, a subdirectory for each type of driver.</em></li>
+<li><code>fs</code>: <em>filesystem code.</em></li>
+<li><code>include</code>: <em>kernel header files, including those required when building the toolchain.</em></li>
+<li><code>init</code>: <em>the kernel start-up code.</em></li>
+<li><code>kernel</code>: <em>core functions, including scheduling, locking, timers, power management, and debug/trace code.</em></li>
+<li><code>mm</code>: <em>memory management.</em></li>
+<li><code>net</code>: <em>network protocols.</em></li>
+<li><code>scripts</code>: <em>many useful scripts, including the device tree compiler, <span class="caps">DTC</span>.</em></li>
+<li><code>tools</code>: <em>many useful tools.”</em></li>
+</ul>
+<h2 id="understanding-kernel-configuration-kconfig">Understanding kernel configuration - Kconfig</h2>
+<p>*”The value you put into <code>ARCH</code> is one of the subdirectories you find in directory arch, with the oddity that <code>ARCH=i386</code> and <code>ARCH=x86_64</code> both source <code>arch/x86/Kconfig</code>.</p>
+<p>*”[search function] in <code>menuconfig</code> by pressing the forward slash key, <code>/</code><span class="dquo">“</span>.</p>
+<p><em><span class="dquo">“</span>There are a set of known working configuration files in <code>arch/$ARCH/configs</code>, each containing suitable configuration values for a single SoC or a group of SoCs.”</em></p>
+<p><em><span class="dquo">“</span>[There is a] target named <code>oldconfig</code>. This takes an existing <code>.config</code> file and asks you to supply configuration values for any options that don’t have them. You would use it when moving a configuration to a newer kernel version; copy <code>.config</code> from the old kernel to the new source directory and run the <code>make ARCH=arm oldconfig</code> command to bring it up to date. It can also be used to validate a <code>.config</code> file that you have edited manually”</em></p>
+<h2 id="using-localversion-to-identify-your-kernel">Using <span class="caps">LOCALVERSION</span> to identify your kernel</h2>
+<div class="highlight"><pre><span></span>make <span class="nv">ARCH</span><span class="o">=</span>arm kernelversion
+</pre></div>
+<p><em><span class="dquo">“</span>If you change the configuration from the default, it is advisable to append your own version information, which you can configure by setting <code>CONFIG_LOCALVERSION</code><span class="dquo">“</span></em></p>
+<h2 id="kernel-modules">Kernel modules</h2>
+<p><em><span class="dquo">“</span>[A] few cases where kernel modules are a good idea in embedded systems:</em></p>
+<ul>
+<li><em>proprietary modules</em></li>
+<li><em>reduce boot time by deferring the loading of non-essential drivers</em></li>
+<li><em>[it] would take up too much memory to compile [all drivers] statically</em></li>
+</ul>
+<h2 id="finding-out-which-kernel-target-to-build">Finding out which kernel target to build</h2>
+<p><em><span class="dquo">“</span>To build a kernel image, you need to know what your bootloader expects.</em></p>
+<ul>
+<li><strong>U-Boot</strong>: <em>Traditionally, U-Boot has required <code>uImage</code>, but newer versions can load a <code>zImage</code> file using the <code>bootz</code> command</em></li>
+<li><strong>x86 targets</strong>: <em>Requires a <code>bzImage</code>file</em></li>
+<li><strong>Most other bootloaders</strong>: <em>Require a <code>zImage</code> file”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>There is a small issue with building a uImage file for <span class="caps">ARM</span> with multi-platform support […]. It allows a single kernel binary to run on multiple platforms and is a step on the road toward having a small number of kernels for all <span class="caps">ARM</span> devices. The kernel selects the correct platform by reading the machine number or the device tree passed to it by the bootloader.
+The problem occurs because the location of physical memory might be different for each platform, and so the relocation address for the kernel (usually <code>0x8000</code> bytes from the start of physical <span class="caps">RAM</span>) might also be different.”</em></p>
+<p><em><span class="dquo">“</span>The <code>uImage</code> format is not compatible with multi-platform images.”</em></p>
+<p><em><span class="dquo">“</span>You can still create a uImage binary from a multi-platform build, so long as you give the <code>LOADADDR</code> of the particular SoC you are hoping to boot this kernel on. You can find the load address by looking in <code>mach -[your SoC]/Makefile.boot</code> and noting the value of <code>zreladdr-y</code>:”</em></p>
+<div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">LOADADDR</span><span class="o">=</span>0x80008000 uImage
+</pre></div>
+<h2 id="build-artifacts">Build artifacts</h2>
+<p><em><span class="dquo">“</span>If you have compiled your kernel with debug enabled (<code>CONFIG_DEBUG_INFO=y</code>), it will contain debug symbols which can be used with debuggers like <code>kgdb</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span><code>System.map</code> contains the symbol table in a human readable form.”</em></p>
+<p><em><span class="dquo">“</span>Most bootloaders cannot handle <span class="caps">ELF</span> code directly. There is a further stage of processing which takes vmlinux and places those binaries in `arch/$<span class="caps">ARCH</span>/boot that are suitable for the various bootloaders:</em></p>
+<ul>
+<li><code>Image</code>: <em><code>vmlinux</code> converted to raw binary format.</em></li>
+<li><code>zImage</code>: <em>For the PowerPC architecture, this is just a compressed version of <code>Image</code> […] the bootloader must do the decompression. For all other architectures, [<code>Image</code> contains] a stub of code that decompresses and relocates it.</em></li>
+<li><code>uImage</code>: <em><code>zImage</code> plus a 64-byte U-Boot header.</em>”</li>
+</ul>
+<h2 id="compiling-device-trees">Compiling device trees</h2>
+<p><em><span class="dquo">“</span>The <code>dtbs</code> target builds device trees according to the rules in <code>arch/$ARCH/boot/dts/Makefile</code><span class="dquo">“</span></em> , using the device tree source files in that directory.”*</p>
+<div class="highlight"><pre><span></span>make <span class="nv">ARCH</span><span class="o">=</span>arm dtbs
+</pre></div>
+<p><em><span class="dquo">“</span>The compiled <code>.dtb</code> files are generated in the same directory as the sources.”</em></p>
+<h2 id="compiling-modules">Compiling modules</h2>
+<p><em><span class="dquo">“</span>Build [modules] separately using the <code>modules</code> target:”</em></p>
+<div class="highlight"><pre><span></span>make -j <span class="m">4</span> <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- modules
+</pre></div>
+<p><em><span class="dquo">“</span>The compiled modules have a <code>.ko</code> suffix and are generated in the same directory as the source code”</em></p>
+<p><em><span class="dquo">“</span>Use the <code>modules_install</code> <code>make</code> target to install them in the right place.”</em></p>
+<p><em><span class="dquo">“</span>To install them into the staging area of your root filesystem […], provide the path using <code>INSTALL_MOD_PATH</code>:”</em></p>
+<div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">INSTALL_MOD_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/rootfs modules_install
+</pre></div>
+<h2 id="cleaning-kernel-sources">Cleaning kernel sources</h2>
+<p>Make targets:</p>
+<ul>
+<li><span class="dquo">“</span><code>clean</code>: <em>Removes object files and most intermediates.</em></li>
+<li><code>mrproper</code>: <em>Removes all intermediate files, including the <code>.config</code> file. [Return] the source tree to the state it was in immediately after cloning</em></li>
+<li><code>distclean</code>: <em>This is the same as <code>mrproper</code>, but also deletes editor backup files, patch files, and other artifacts of software development.</em>”</li>
+</ul>
             
             
             <hr/>
@@ -516,7 +621,7 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-08-13T19:28:42+02:00">Aug 13, 2018</time>
+<time datetime="2018-11-10T21:07:05+01:00">Nov 10, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
