@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2018-11-10T21:07:05+01:00" />
+<meta property="" content="2018-11-12T21:01:15+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -158,6 +158,11 @@
 <li><a href="#compiling-device-trees">Compiling device trees</a></li>
 <li><a href="#compiling-modules">Compiling modules</a></li>
 <li><a href="#cleaning-kernel-sources">Cleaning kernel sources</a></li>
+<li><a href="#early-user-space">Early user space</a></li>
+<li><a href="#kernel-messages">Kernel messages</a></li>
+<li><a href="#kernel-command-line">Kernel command line</a></li>
+<li><a href="#porting-linux-to-a-new-board">Porting Linux to a new board</a></li>
+<li><a href="#summary_1">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -603,6 +608,102 @@ The problem occurs because the location of physical memory might be different fo
 <li><code>mrproper</code>: <em>Removes all intermediate files, including the <code>.config</code> file. [Return] the source tree to the state it was in immediately after cloning</em></li>
 <li><code>distclean</code>: <em>This is the same as <code>mrproper</code>, but also deletes editor backup files, patch files, and other artifacts of software development.</em>”</li>
 </ul>
+<h2 id="early-user-space">Early user space</h2>
+<p><em><span class="dquo">“</span>In order to transition from kernel initialization to user space, the kernel has to mount a root filesystem and execute a program in that root filesystem. This can be achieved via a ramdisk or by mounting a real filesystem on a block device.”</em></p>
+<p><em><span class="dquo">“</span>The code for all of this is in <code>init/main.c</code>, starting with the function <code>rest_init()</code>, which creates the first thread with <span class="caps">PID</span> 1 and runs the code in <code>kernel_init()</code>.”</em></p>
+<p><em><span class="dquo">“</span>If there is a ramdisk, it will try to execute the program <code>/init</code> […]. If fails to find and run <code>/init</code>, it tries to mount a filesystem by calling the function <code>prepare_namespace()</code> in <code>init/do_mounts.c</code>. This requires a <code>root=</code> command line to give the name of the block device to use for mounting, usually in the form:”</em></p>
+<div class="highlight"><pre><span></span><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;&lt;partition number&gt;
+</pre></div>
+<p><em><span class="dquo">“</span>Or, for <span class="caps">SD</span> cards and eMMC:”</em></p>
+<div class="highlight"><pre><span></span><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;p&lt;partition number&gt;
+</pre></div>
+<p><em><span class="dquo">“</span>If the mount succeeds, it will try to execute <code>/sbin/init</code>, followed by <code>/etc/init</code>, <code>/bin/init</code>, and then <code>/bin/sh</code>, stopping at the first one that works.”</em></p>
+<h2 id="kernel-messages">Kernel messages</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Level</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KERN_EMERG</td>
+<td>0</td>
+<td>The system is unusable</td>
+</tr>
+<tr>
+<td>KERN_ALERT</td>
+<td>1</td>
+<td>Action must be taken immediately</td>
+</tr>
+<tr>
+<td>KERN_CRIT</td>
+<td>2</td>
+<td>Critical conditions</td>
+</tr>
+<tr>
+<td>KERN_ERR</td>
+<td>3</td>
+<td>Error conditions</td>
+</tr>
+<tr>
+<td>KERN_WARNING</td>
+<td>4</td>
+<td>Warning conditions</td>
+</tr>
+<tr>
+<td>KERN_NOTICE</td>
+<td>5</td>
+<td>Normal but significant conditions</td>
+</tr>
+<tr>
+<td>KERN_INFO</td>
+<td>6</td>
+<td>Informational</td>
+</tr>
+<tr>
+<td>KERN_DEBUG</td>
+<td>7</td>
+<td>Debug-level messages</td>
+</tr>
+</tbody>
+</table>
+<p><em><span class="dquo">“</span>They are first written to a buffer, <code>__log_buf</code>, the size of which is two to the power of <code>CONFIG_LOG_BUF_SHIFT</code>.”</em></p>
+<p><em><span class="dquo">“</span>You can dump the entire buffer using the command <code>dmesg</code>.”</em></p>
+<p><em><span class="dquo">“</span>The default console log level is <code>7</code>, meaning that messages of level <code>6</code> and lower are displayed”</em></p>
+<h2 id="kernel-command-line">Kernel command line</h2>
+<p><em><span class="dquo">“</span>[The kernel command line string can be set] via the <code>bootargs</code> variable in the case of U-Boot; it can also be defined in the device tree, or set as part of the kernel configuration in <code>CONFIG_CMDLINE</code>.”</em></p>
+<p><em><span class="dquo">“</span>There is a complete list in <code>Documentation/kernel-parameters.txt</code><span class="dquo">“</span></em></p>
+<ul>
+<li><code>debug</code>: Sets the console log level to the highest level <code>8</code></li>
+<li><code>init=</code>: The init program to run from a mounted root filesystem (default: <code>/sbin/init</code>)</li>
+<li><code>lpj=</code>: Sets <code>loops_per_jiffy</code> to a given constant</li>
+<li><code>panic=</code> when the kernel panics: if the value is greater than zero, it gives the number of seconds before rebooting; if it is zero, it waits forever (default); or if it is less than zero, it reboots without any delay.</li>
+<li><code>quiet</code> suppressing all but emergency messages</li>
+<li><code>rdinit=</code>: The init program to run from a ramdisk (defaults: <code>/init</code>)</li>
+<li><code>ro</code>: Mounts the root device as read-only (no effect on a ramdisk)</li>
+<li><code>root=</code>: Device to mount the root filesystem</li>
+<li>
+<p><code>rootdelay=</code>: The number of seconds to wait before trying to mount the root device (default: zero)</p>
+</li>
+<li>
+<p><code>rootfstype=</code>: The filesystem type for the root device. In many cases, it is auto-detected (required for <code>jffs2</code> filesystems)</p>
+</li>
+<li><code>rootwait</code>: Waits indefinitely for the root device to be detected. Usually necessary with mmc devices.</li>
+<li><code>rw</code>: Mounts the root device as read-write (default).</li>
+</ul>
+<p><em><span class="dquo">“</span>During initialization, the kernel loops for approximately 250 ms to calibrate a delay loop. The value is stored in the variable <code>loops_per_jiffy</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>If the kernel always runs on the same hardware, it will always calculate the same value. You can shave 250 ms off the boot time by adding <code>lpj=&lt;value_reported_to_console&gt;</code> to the command line.”</em></p>
+<h2 id="porting-linux-to-a-new-board">Porting Linux to a new board</h2>
+<p><em><span class="dquo">“</span>The organization of architecture-specific code in <code>arch/$ARCH</code> differs from one system to another.”</em></p>
+<p><em><span class="dquo">“</span>The x86 architecture is pretty clean because most hardware details are detected at runtime. […]. The <span class="caps">ARM</span> architecture, on the other hand, is quite messy, in part because there is a lot of variability between the many <span class="caps">ARM</span>-based SoCs. Platform-dependent code is put in directories named <code>mach-\*</code> , approximately one per SoC. There are other directories named <code>plat-\*</code> which contain code common to several versions of an SoC. In the case of the BeagleBone Black, the relevant directory is <code>arch/arm/mach-omap2</code>. […] it contains support for <span class="caps">OMAP2</span>, 3, and 4 chips, as well as the AM33xx family of chips that the BeagleBone uses.”</em></p>
+<h2 id="summary_1">Summary</h2>
+<p><em><span class="dquo">“</span>The customization of the kernel for a particular target may consist of changes to the core kernel code, additional drivers for devices that are not in mainline Linux, a default kernel configuration file, and a device tree source file.”</em></p>
+<p><em><span class="dquo">“</span>One of the things you should consider […] is whether the kernel features and drivers should be compiled as modules or built-in.”</em></p>
+<p><em><span class="dquo">“</span>Building the kernel produces a compressed kernel image file, named <code>zImage</code>, <code>bzImage</code>, or <code>uImage</code>, depending on the bootloader you will be using and the target architecture. A kernel build will also generate any kernel modules (as <code>.ko</code> files) that you have configured, and device tree binaries (as <code>.dtb</code> files) if your target requires them.”</em></p>
+<p><em><span class="dquo">“</span>The root filesystem can be a ramdisk or a filesystem accessed via a block device,”</em></p>
             
             
             <hr/>
@@ -621,7 +722,7 @@ The problem occurs because the location of physical memory might be different fo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-11-10T21:07:05+01:00">Nov 10, 2018</time>
+<time datetime="2018-11-12T21:01:15+01:00">Nov 12, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
