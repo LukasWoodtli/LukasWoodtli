@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2018-12-01T09:19:44-00:00</lastmod>
+<lastmod>2018-12-07T14:10:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2018-12-01T09:19:44-00:00</lastmod>
+<lastmod>2018-12-07T14:10:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2018-12-01T09:19:44-00:00</lastmod>
+<lastmod>2018-12-07T14:10:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2018-12-01T09:19:44-00:00</lastmod>
+<lastmod>2018-12-07T14:10:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -96,7 +96,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/pose_and_position.html</loc>
-<lastmod>2018-11-16T11:32:55+01:00</lastmod>
+<lastmod>2018-12-07T14:08:51+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -691,7 +691,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/mechanics.html</loc>
-<lastmod>2018-12-01T09:11:03+01:00</lastmod>
+<lastmod>2018-12-07T14:08:51+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -845,7 +845,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/robotics.html</loc>
-<lastmod>2018-12-01T09:11:03+01:00</lastmod>
+<lastmod>2018-12-07T14:08:51+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -964,7 +964,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2018-12-01T09:11:03+01:00</lastmod>
+<lastmod>2018-12-07T14:08:51+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
