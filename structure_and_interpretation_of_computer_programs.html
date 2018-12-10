@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-11-10T21:53:38+01:00" />
-<meta property="" content="2018-06-20T21:08:26+02:00" />
+<meta property="" content="2018-12-10T10:45:54+01:00" />
 <meta name="twitter:title" content="Structure and Interpretation of Computer Programs ">
 <meta name="twitter:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) Building Abstractions with Procedures The Elements of Programming “[The] language provides for combining simple ideas to form more complex ideas …">
 
@@ -134,18 +134,20 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <li><em><strong>means of abstraction</strong>, by which compound elements can be named and manipulated as units.”</em></li>
 </ul>
 <h3 id="evaluating-combinations">Evaluating Combinations</h3>
-<p><em><span class="dquo">“</span>To evaluate a combination, do the following:</em>
-- <em>Evaluate the subexpressions of the combination.</em>
-- <em>Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands).</em>”</p>
-<p><em><span class="dquo">“</span>[…] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is<strong>recursive</strong> in nature”</em></p>
+<p><em><span class="dquo">“</span>To evaluate a combination, do the following:</em></p>
+<ul>
+<li><em>Evaluate the subexpressions of the combination.</em></li>
+<li><em>Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands).</em>”</li>
+</ul>
+<p><em><span class="dquo">“</span>[…] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is <strong>recursive</strong> in nature”</em></p>
 <h3 id="the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</h3>
 <h4 id="applicative-order-versus-normal-order">Applicative order versus normal order</h4>
-<p><em><span class="dquo">“</span>interpreter first evaluates the operator and operands and then applies the resulting procedure to the resulting arguments”</em></p>
-<p><em><span class="dquo">“</span>[An] alternative evaluation model would not evaluate the operands until their values were needed. Instead it would first substitute operand expressions for parameters until it obtained an expression involving only primitive operators, and would then perform the evaluation”</em></p>
-<p><em><span class="dquo">“</span>This alternative ‘fully expand and then reduce’ evaluation method is known as <strong>normal-order evaluation</strong>, in contrast to the ‘evaluate the arguments and then apply’ method that the interpreter actually uses, which is called <strong>applicative-order evaluation</strong>”</em></p>
-<p><em><span class="dquo">“</span>normal-order and applicative-order evaluation produce the same value”</em></p>
-<p><em><span class="dquo">“</span>Lisp uses applicative-order evaluation”</em></p>
-<p><em><span class="dquo">“</span>Lisp obeys the convention that every expression has a value”</em></p>
+<p><em><span class="dquo">“</span>[The] interpreter first evaluates the operator and operands and then applies the resulting procedure to the resulting arguments.”</em></p>
+<p><em><span class="dquo">“</span>[An] alternative evaluation model would not evaluate the operands until their values were needed. Instead it would first substitute operand expressions for parameters until it obtained an expression involving only primitive operators, and would then perform the evaluation.”</em></p>
+<p><em><span class="dquo">“</span>This alternative ‘fully expand and then reduce’ evaluation method is known as <strong>normal-order evaluation</strong>, in contrast to the ‘evaluate the arguments and then apply’ method that the interpreter actually uses, which is called <strong>applicative-order evaluation</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Normal-order and applicative-order evaluation produce the same value.”</em></p>
+<p><em><span class="dquo">“</span>Lisp uses applicative-order evaluation.”</em></p>
+<p><em><span class="dquo">“</span>Lisp obeys the convention that every expression has a value.”</em></p>
 <h3 id="the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</h3>
 <p><em><span class="dquo">“</span>In the iterative case, the program variables provide a complete description of the state of the process at any point.”</em></p>
 <p><em><span class="dquo">“</span>In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive <strong>process</strong> with the notion of a recursive <strong>procedure</strong> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written.”</em></p>
@@ -219,7 +221,7 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
             <time pubdate="pubdate" datetime="2016-11-10T21:53:38+01:00">Nov 10, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-06-20T21:08:26+02:00">Jun 20, 2018</time>
+<time datetime="2018-12-10T10:45:54+01:00">Dec 10, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
