@@ -14,13 +14,13 @@
 
 <meta property="og:title" content="Structure and Interpretation of Computer Programs "/>
 <meta property="og:url" content="./structure_and_interpretation_of_computer_programs.html" />
-<meta property="og:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) Building Abstractions with Procedures The Elements of Programming “[The] language provides for combining simple ideas to form more complex ideas …" />
+<meta property="og:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) 1 Building Abstractions with Procedures 1.1 The Elements of Programming “[The] language provides for combining simple ideas to form …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-11-10T21:53:38+01:00" />
-<meta property="" content="2018-12-10T11:02:28+01:00" />
+<meta property="" content="2018-12-22T17:16:25+01:00" />
 <meta name="twitter:title" content="Structure and Interpretation of Computer Programs ">
-<meta name="twitter:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) Building Abstractions with Procedures The Elements of Programming “[The] language provides for combining simple ideas to form more complex ideas …">
+<meta name="twitter:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) 1 Building Abstractions with Procedures 1.1 The Elements of Programming “[The] language provides for combining simple ideas to form …">
 
         <title>Structure and Interpretation of Computer Programs  · Lukas Woodtli
 </title>
@@ -78,18 +78,18 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#building-abstractions-with-procedures">Building Abstractions with Procedures</a><ul>
-<li><a href="#the-elements-of-programming">The Elements of Programming</a><ul>
-<li><a href="#evaluating-combinations">Evaluating Combinations</a></li>
-<li><a href="#the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</a><ul>
+<li><a href="#1-building-abstractions-with-procedures">1 Building Abstractions with Procedures</a><ul>
+<li><a href="#11-the-elements-of-programming">1.1 The Elements of Programming</a><ul>
+<li><a href="#113-evaluating-combinations">1.1.3 Evaluating Combinations</a></li>
+<li><a href="#115-the-substitution-model-for-procedure-application">1.1.5 The Substitution Model for Procedure Application</a><ul>
 <li><a href="#applicative-order-versus-normal-order">Applicative order versus normal order</a></li>
 </ul>
 </li>
-<li><a href="#the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</a></li>
+<li><a href="#121-linear-recursion-and-iteration">1.2.1 Linear Recursion and Iteration</a></li>
 </ul>
 </li>
-<li><a href="#formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</a><ul>
-<li><a href="#constructing-procedures-using-lambda">Constructing Procedures Using lambda</a><ul>
+<li><a href="#13-formulating-abstractions-with-higher-order-procedures">1.3 Formulating Abstractions with Higher-Order Procedures</a><ul>
+<li><a href="#132-constructing-procedures-using-lambda">1.3.2 Constructing Procedures Using lambda</a><ul>
 <li><a href="#using-let-to-create-local-variables">Using let to create local variables</a></li>
 <li><a href="#abstractions-and-first-class-procedures">Abstractions and first-class procedures</a></li>
 </ul>
@@ -98,11 +98,36 @@
 </li>
 </ul>
 </li>
-<li><a href="#building-abstractions-with-data">Building Abstractions with Data</a><ul>
-<li><a href="#what-is-meant-by-data">What Is Meant by Data?</a></li>
-<li><a href="#hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</a><ul>
-<li><a href="#sequences-as-conventional-interfaces">Sequences as Conventional Interfaces</a><ul>
+<li><a href="#2-building-abstractions-with-data">2 Building Abstractions with Data</a><ul>
+<li><a href="#213-what-is-meant-by-data">2.1.3 What Is Meant by Data?</a></li>
+<li><a href="#22-hierarchical-data-and-the-closure-property">2.2 Hierarchical Data and the Closure Property</a><ul>
+<li><a href="#223-sequences-as-conventional-interfaces">2.2.3 Sequences as Conventional Interfaces</a><ul>
 <li><a href="#sequence-operations">Sequence Operations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-modularity-objects-and-state">3 Modularity, Objects, and State</a><ul>
+<li><a href="#31-assignment-and-local-state">3.1 Assignment and Local State</a><ul>
+<li><a href="#311-local-state-variables">3.1.1 Local State Variables</a></li>
+<li><a href="#312-the-benefits-of-introducing-assignment">3.1.2 The Benefits of Introducing Assignment</a></li>
+<li><a href="#313-the-costs-of-introducing-assignment">3.1.3 The Costs of Introducing Assignment</a><ul>
+<li><a href="#sameness-and-change">Sameness and change</a></li>
+<li><a href="#pitfalls-of-imperative-programming">Pitfalls of imperative programming</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#32-the-environment-model-of-evaluation">3.2 The Environment Model of Evaluation</a><ul>
+<li><a href="#321-the-rules-for-evaluation">3.2.1 The Rules for Evaluation</a></li>
+</ul>
+</li>
+<li><a href="#33-modeling-with-mutable-data">3.3 Modeling with Mutable Data</a><ul>
+<li><a href="#331-mutable-list-structure">3.3.1 Mutable List Structure</a><ul>
+<li><a href="#sharing-and-identity">Sharing and identity</a></li>
+<li><a href="#mutation-is-just-assignment">Mutation is just assignment</a></li>
 </ul>
 </li>
 </ul>
@@ -125,22 +150,22 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <p><a href="https://github.com/LukasWoodtli/SchemeCourse">My Github repository with examples</a></p>
 <p>See also <a href="./scheme_lisp.html">Scheme (Lisp)</a></p>
 
-<h1 id="building-abstractions-with-procedures">Building Abstractions with Procedures</h1>
-<h2 id="the-elements-of-programming">The Elements of Programming</h2>
+<h1 id="1-building-abstractions-with-procedures">1 Building Abstractions with Procedures</h1>
+<h2 id="11-the-elements-of-programming">1.1 The Elements of Programming</h2>
 <p><em><span class="dquo">“</span>[The] language provides for combining simple ideas to form more complex ideas.  Every powerful language has three mechanisms for accomplishing this:</em></p>
 <ul>
 <li><em><strong>primitive expressions</strong>, which represent the simplest entities the language is concerned with,</em></li>
 <li><em><strong>means of combination</strong>, by which compound elements are built from simpler ones, and</em></li>
 <li><em><strong>means of abstraction</strong>, by which compound elements can be named and manipulated as units.”</em></li>
 </ul>
-<h3 id="evaluating-combinations">Evaluating Combinations</h3>
+<h3 id="113-evaluating-combinations">1.1.3 Evaluating Combinations</h3>
 <p><em><span class="dquo">“</span>To evaluate a combination, do the following:</em></p>
 <ul>
 <li><em>Evaluate the subexpressions of the combination.</em></li>
 <li><em>Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands).</em>”</li>
 </ul>
 <p><em><span class="dquo">“</span>[…] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is <strong>recursive</strong> in nature”</em></p>
-<h3 id="the-substitution-model-for-procedure-application">The Substitution Model for Procedure Application</h3>
+<h3 id="115-the-substitution-model-for-procedure-application">1.1.5 The Substitution Model for Procedure Application</h3>
 <h4 id="applicative-order-versus-normal-order">Applicative order versus normal order</h4>
 <p><em><span class="dquo">“</span>[The] interpreter first evaluates the operator and operands and then applies the resulting procedure to the resulting arguments.”</em></p>
 <p><em><span class="dquo">“</span>[An] alternative evaluation model would not evaluate the operands until their values were needed. Instead it would first substitute operand expressions for parameters until it obtained an expression involving only primitive operators, and would then perform the evaluation.”</em></p>
@@ -148,13 +173,13 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <p><em><span class="dquo">“</span>Normal-order and applicative-order evaluation produce the same value.”</em></p>
 <p><em><span class="dquo">“</span>Lisp uses applicative-order evaluation.”</em></p>
 <p><em><span class="dquo">“</span>Lisp obeys the convention that every expression has a value.”</em></p>
-<h3 id="the-substitution-model-for-procedure-application_1">The Substitution Model for Procedure Application</h3>
+<h3 id="121-linear-recursion-and-iteration">1.2.1 Linear Recursion and Iteration</h3>
 <p><em><span class="dquo">“</span>In the iterative case, the program variables provide a complete description of the state of the process at any point.”</em></p>
 <p><em><span class="dquo">“</span>In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive <strong>process</strong> with the notion of a recursive <strong>procedure</strong> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written.”</em></p>
 <p><em><span class="dquo">“</span>One reason that the distinction between process and procedure may be confusing is that most implementations of common languages (including Ada, Pascal, and C) are designed in such a way that the interpretation of any recursive procedure consumes an amount of memory that grows with the number of procedure calls, even when the process described is, in principle, iterative. As a consequence, these languages can describe iterative processes only by resorting to special-purpose ‘looping constructs’ such as <code>do</code>, <code>repeat</code>, <code>until</code>, <code>for</code>, and <code>while</code>.”</em></p>
 <p><em><span class="dquo">“</span>any iterative process can be realized ‘in hardware’ as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a <strong>stack</strong>.”</em></p>
-<h2 id="formulating-abstractions-with-higher-order-procedures">Formulating Abstractions with Higher-Order Procedures</h2>
-<h3 id="constructing-procedures-using-lambda">Constructing Procedures Using <code>lambda</code></h3>
+<h2 id="13-formulating-abstractions-with-higher-order-procedures">1.3 Formulating Abstractions with Higher-Order Procedures</h2>
+<h3 id="132-constructing-procedures-using-lambda">1.3.2 Constructing Procedures Using <code>lambda</code></h3>
 <h4 id="using-let-to-create-local-variables">Using <code>let</code> to create local variables</h4>
 <p><em><span class="dquo">“</span>we could use a lambda expression to specify an anonymous procedure for binding our local variables</em></p>
 <p><em>The general form of a <code>let</code> expression is</em></p>
@@ -183,8 +208,8 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <li><em>They may be returned as the results of procedures.</em></li>
 <li><em>They may be included in data structures.”</em></li>
 </ul>
-<h1 id="building-abstractions-with-data">Building Abstractions with Data</h1>
-<h3 id="what-is-meant-by-data">What Is Meant by Data?</h3>
+<h1 id="2-building-abstractions-with-data">2 Building Abstractions with Data</h1>
+<h3 id="213-what-is-meant-by-data">2.1.3 What Is Meant by Data?</h3>
 <p><em><span class="dquo">“</span>In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation.”</em></p>
 <p><em><span class="dquo">“</span>we could implement <code>cons</code>, <code>car</code>, and <code>cdr</code> without using any data structures at all but only using procedures. Here are the definitions:</em></p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
@@ -197,14 +222,115 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
-<h2 id="hierarchical-data-and-the-closure-property">Hierarchical Data and the Closure Property</h2>
+<h2 id="22-hierarchical-data-and-the-closure-property">2.2 Hierarchical Data and the Closure Property</h2>
 <p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
-<h3 id="sequences-as-conventional-interfaces">Sequences as Conventional Interfaces</h3>
+<h3 id="223-sequences-as-conventional-interfaces">2.2.3 Sequences as Conventional Interfaces</h3>
 <h4 id="sequence-operations">Sequence Operations</h4>
 <p><em><span class="dquo">“</span>The key to organizing programs so as to more clearly reflect the signal-flow structure is to concentrate on the ‘signals’ that flow from one stage in the process to the next. If we represent these signals as lists, then we can use list operations to implement the processing at each of the stages.”</em></p>
 <p><em><span class="dquo">“</span>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces. We can encourage modular design by providing a library of standard components together with a conventional interface for connecting the components in flexible ways.”</em></p>
 <p><em><span class="dquo">“</span>The Lisp community also (unfortunately) uses the word “closure” to describe a totally unrelated concept: A closure is an implementation technique for representing procedures with free variables.”</em></p>
 <p><em><span class="dquo">“</span>Unlike Lisp with its pairs, these languages have no built-in general-purpose glue that makes it easy to manipulate compound data in a uniform way.”</em></p>
+<h1 id="3-modularity-objects-and-state">3 Modularity, Objects, and State</h1>
+<h2 id="31-assignment-and-local-state">3.1 Assignment and Local State</h2>
+<h3 id="311-local-state-variables">3.1.1 Local State Variables</h3>
+<p><em><span class="dquo">“</span>The <code>set!</code> special form, whose syntax is:”</em></p>
+<div class="highlight"><pre><span></span><span class="k">set! </span><span class="nv">&lt;name&gt;</span> <span class="nv">&lt;new-value&gt;</span>
+</pre></div>
+<p><em><span class="dquo">“</span>Here <code>&lt;name&gt;</code> is a symbol and <code>&lt;new-value&gt;</code> is any expression.
+<code>Set!</code> changes <code>&lt;name&gt;</code> so that its value is the result obtained by
+evaluating <code>&lt;new-value&gt;</code>.”</em></p>
+<p><em><span class="dquo">“</span>The value of a <code>set!</code> expression is implementation-dependent. <code>Set!</code> should be used only for its effect, not for its value.”</em></p>
+<h3 id="312-the-benefits-of-introducing-assignment">3.1.2 The Benefits of Introducing Assignment</h3>
+<p><em><span class="dquo">“</span>From the point of view of one part of a complex process, the other parts appear to change with time. They have hidden time-varying local state. If we wish to write computer programs whose structure reflects this decomposition, we make computational objects whose behavior changes with time. We model state with local state variables, and we model the changes of state with assignments to those variables.”</em></p>
+<h3 id="313-the-costs-of-introducing-assignment">3.1.3 The Costs of Introducing Assignment</h3>
+<h4 id="sameness-and-change">Sameness and change</h4>
+<p><em><span class="dquo">“</span>A language that supports the concept that “equals can be substituted for equals” in an expression without changing the value of the expression is said to be referentially transparent. Referential transparency is violated when we include <code>set!</code> in our computer language. This makes it tricky to determine when we can simplify expressions by substituting equivalent expressions. Consequently, reasoning about programs that use assignment becomes drastically more difficult.”</em></p>
+<p><em><span class="dquo">“</span>The phenomenon of a single computational object being accessed by more than one name is known as aliasing.”</em></p>
+<h4 id="pitfalls-of-imperative-programming">Pitfalls of imperative programming</h4>
+<p><em><span class="dquo">“</span>programs written in imperative style are susceptible to bugs that cannot occur in functional programs.”</em></p>
+<h2 id="32-the-environment-model-of-evaluation">3.2 The Environment Model of Evaluation</h2>
+<p><em><span class="dquo">“</span>Once we admit assignment into our programming language […], a variable can no longer be considered to be merely a name for a value. Rather, a variable must somehow designate a “place” in which values can be stored. In our new model of evaluation, these places will be maintained in structures called environments.”</em></p>
+<p><em><span class="dquo">“</span>An environment is a sequence of frames. Each frame is a table (possibly empty) of bindings, which associate variable names with their corresponding values.”</em></p>
+<p><em><span class="dquo">“</span>Each frame also has a pointer to its enclosing environment […]. The value of a variable with respect to an environment is the value given by the binding of the variable in the first frame in the environment that contains a binding for that variable. If no frame in the sequence specifies a binding for the variable, then the variable is said to be unbound in the environment.”</em></p>
+<p><em><span class="dquo">“</span>Indeed, one could say that expressions in a programming language do not, in themselves, have any meaning. Rather, an expression acquires a meaning only with respect to some environment in which it is evaluated.”</em></p>
+<h3 id="321-the-rules-for-evaluation">3.2.1 The Rules for Evaluation</h3>
+<p><em><span class="dquo">“</span>In the environment model of evaluation, a procedure is always a pair consisting of some code and a pointer to an environment. Procedures are created in one way only: by evaluating a <span class="math">\(\lambda\)</span>-expression. This produces a procedure whose code is obtained from the text of the <span class="math">\(\lambda\)</span>-expression and whose environment is the environment in which the <span class="math">\(\lambda\)</span>-expression was evaluated to produce the procedure.”</em></p>
+<p><em><span class="dquo">“</span>In general, <code>define</code> creates definitions by adding bindings to frames.”</em></p>
+<p><em><span class="dquo">“</span>Now that we have seen how procedures are created, we can describe how procedures are applied. The environment model specifies: To apply a procedure to arguments, create a new environment containing a frame that binds the parameters to the values of the arguments. The enclosing environment of this frame is the environment specified by the procedure. Now, within this new environment, evaluate the procedure body.”</em></p>
+<p><em><span class="dquo">“</span>The environment model of procedure application can be summarized by two rules:</em></p>
+<ul>
+<li>
+<p><em>A procedure object is applied to a set of arguments by constructing a frame, binding the formal parameters of the procedure to the arguments of the call, and then evaluating the body of the procedure in the context of the new environment constructed. The new frame has as its enclosing environment the environment part of the procedure object being applied.</em></p>
+</li>
+<li>
+<p><em>A procedure is created by evaluating a <span class="math">\(\lambda\)</span>-expression relative to a given environment. The resulting procedure object is a pair consisting of the text of the <span class="math">\(\lambda\)</span>-expression and a pointer to the environment in which the procedure was created.”</em></p>
+</li>
+</ul>
+<p><em><span class="dquo">“</span>We also specify that defining a symbol using <code>define</code> creates a binding in the current environment frame and assigns to the symbol the indicated value.”</em></p>
+<p><em><span class="dquo">“</span>Evaluating the expression (<code>set! &lt;variable&gt; &lt;value&gt;</code>) in some environment locates the binding of the variable in the environment and changes that binding to indicate the new value. That is, one finds the first frame in the environment that contains a binding for the variable and modifies that frame. If the variable is unbound in the environment, then <code>set!</code> signals an error.”</em></p>
+<h2 id="33-modeling-with-mutable-data">3.3 Modeling with Mutable Data</h2>
+<h3 id="331-mutable-list-structure">3.3.1 Mutable List Structure</h3>
+<h4 id="sharing-and-identity">Sharing and identity</h4>
+<p><em><span class="dquo">“</span>One way to detect sharing in list structures is to use the predicate <code>eq?</code>, […] as a way to test whether two symbols are equal. More generally, (<code>eq? x y</code>) tests whether <code>x</code> and <code>y</code> are the same object (that is, whether <code>x</code> and <code>y</code> are equal as pointers).”</em></p>
+<h4 id="mutation-is-just-assignment">Mutation is just assignment</h4>
+<p><em><span class="dquo">“</span>We can implement mutable data objects as procedures using assignment and local state.”</em></p>
+<p><em><span class="dquo">“</span>Assignment is all that is needed, theoretically, to account for the behavior of mutable data. As soon as we admit <code>set!</code> to our language, we raise all the issues, not only of assignment, but of mutable data in general.”</em></p>
+<p><em><span class="dquo">“</span>On the other hand, from the viewpoint of implementation, assignment requires us to modify the environment, which is itself a mutable data structure. Thus, assignment and mutation are equipotent: Each can be implemented in terms of the other.”</em></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             
             
             <hr/>
@@ -223,7 +349,7 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
             <time pubdate="pubdate" datetime="2016-11-10T21:53:38+01:00">Nov 10, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-12-10T11:02:28+01:00">Dec 10, 2018</time>
+<time datetime="2018-12-22T17:16:25+01:00">Dec 22, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
