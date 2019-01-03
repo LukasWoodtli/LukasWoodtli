@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-03T14:58:54+01:00" />
+<meta property="" content="2019-01-03T15:16:20+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -168,6 +168,7 @@
 <li><a href="#building-a-root-filesystem">Building a Root Filesystem</a><ul>
 <li><a href="#what-should-be-in-the-root-filesystem">What should be in the root filesystem?</a></li>
 <li><a href="#the-directory-layout">The directory layout</a></li>
+<li><a href="#posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</a></li>
 </ul>
 </li>
 </ul>
@@ -742,6 +743,93 @@ The problem occurs because the location of physical memory might be different fo
 </ul>
 <p><em><span class="dquo">“</span>The difference between <code>/bin</code> and <code>/sbin</code> is simply that the latter need not be included in the search path for non-root users.”</em></p>
 <p><em><span class="dquo">“</span>The significance of <code>/usr</code> is that it maybe in a separate partition from the root filesystem, so it cannot contain anything that is needed to boot the system up.”</em></p>
+<h2 id="posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</h2>
+<p>$$
+</p>
+<div class="math">\begin{matrix}
+\left.\begin{matrix}</div>
+<p>
+400 <span class="amp">&amp;</span> r <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> -\ 
+200 <span class="amp">&amp;</span> - <span class="amp">&amp;</span> w <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> -\ 
+100 <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> x <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> - <span class="amp">&amp;</span> -
+\end{matrix}\right} \text{Owner permissions}\ </p>
+<p>\left.</p>
+<div class="math">\begin{matrix}
+040 &amp; - &amp; - &amp; - &amp; r &amp; - &amp; - &amp; - &amp; - &amp; -\\ 
+020 &amp; - &amp; - &amp; - &amp; - &amp; w &amp; - &amp; - &amp; - &amp; -\\ 
+010 &amp; - &amp; - &amp; - &amp; - &amp; - &amp; x &amp; - &amp; - &amp; -
+\end{matrix}</div>
+<p>\right} \text{Group permissions}\ </p>
+<p>\left.</p>
+<div class="math">\begin{matrix}
+004 &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; r &amp; - &amp; -\\ 
+002 &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; w &amp; -\\ 
+001 &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; x
+\end{matrix}</div>
+<p>\right} \text{World permissions}
+\end{matrix} $$</p>
+<p><em><span class="dquo">“</span>There is a further group of three bits that have special meanings:</em></p>
+<ul>
+<li><em><span class="caps">SUID</span> (4): If the file is executable, it changes the effective <span class="caps">UID</span> of the process to that of the owner of the file when the program is run.</em></li>
+<li><em><span class="caps">SGID</span> (2): Similar to <span class="caps">SUID</span>, this changes the effective <span class="caps">GID</span> of the process to that of the group of the file.</em></li>
+<li><em>Sticky (1): In a directory, this restricts deletion so that one user cannot delete files that are owned by another user. This is usually set on <code>/tmp</code> and <code>/var/tmp</code>.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>The <span class="caps">SUID</span> bit is probably used most often. It gives non-root users a temporary privilege escalation to superuser to perform a task. […] for normal users to use <code>ping</code>, [which] is owned by user <code>root</code> and has the <span class="caps">SUID</span> bit set so that when you run <code>ping</code>, it executes with <span class="caps">UID</span> 0 regardless of your <span class="caps">UID</span>.”</em></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             
             
             <hr/>
@@ -760,7 +848,7 @@ The problem occurs because the location of physical memory might be different fo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-03T14:58:54+01:00">Jan 3, 2019</time>
+<time datetime="2019-01-03T15:16:20+01:00">Jan 3, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
