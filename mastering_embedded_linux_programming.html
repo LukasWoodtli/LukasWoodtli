@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2018-11-12T21:01:15+01:00" />
+<meta property="" content="2019-01-03T14:58:54+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -163,6 +163,11 @@
 <li><a href="#kernel-command-line">Kernel command line</a></li>
 <li><a href="#porting-linux-to-a-new-board">Porting Linux to a new board</a></li>
 <li><a href="#summary_1">Summary</a></li>
+</ul>
+</li>
+<li><a href="#building-a-root-filesystem">Building a Root Filesystem</a><ul>
+<li><a href="#what-should-be-in-the-root-filesystem">What should be in the root filesystem?</a></li>
+<li><a href="#the-directory-layout">The directory layout</a></li>
 </ul>
 </li>
 </ul>
@@ -704,6 +709,39 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>One of the things you should consider […] is whether the kernel features and drivers should be compiled as modules or built-in.”</em></p>
 <p><em><span class="dquo">“</span>Building the kernel produces a compressed kernel image file, named <code>zImage</code>, <code>bzImage</code>, or <code>uImage</code>, depending on the bootloader you will be using and the target architecture. A kernel build will also generate any kernel modules (as <code>.ko</code> files) that you have configured, and device tree binaries (as <code>.dtb</code> files) if your target requires them.”</em></p>
 <p><em><span class="dquo">“</span>The root filesystem can be a ramdisk or a filesystem accessed via a block device,”</em></p>
+<h1 id="building-a-root-filesystem">Building a Root Filesystem</h1>
+<h2 id="what-should-be-in-the-root-filesystem">What should be in the root filesystem?</h2>
+<p><em><span class="dquo">“</span>The kernel will get a root filesystem, either an <code>initramfs</code>, passed as a pointer from the bootloader, or by mounting the block device given on the kernel command line by the <code>root=</code> parameter. Once it has a root filesystem, the kernel will execute the first program, by default named <code>init</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>To make a minimal root filesystem, you need these components:</em></p>
+<ul>
+<li><em><code>init</code>: This is the program that starts everything off, usually by running a series of scripts.</em></li>
+<li><em>Shell: You need a shell to give you a command prompt but, more importantly, also to run the shell scripts called by init and other programs.</em></li>
+<li><em>Daemons: A daemon is a background program that provides a service to others.</em></li>
+<li><em>Shared libraries: Most programs are linked with shared libraries, and so they must be present in the root filesystem.</em></li>
+<li><em>Configuration files: The configuration for <code>init</code> and other daemons is stored in a series of text files, usually in the <code>/etc</code> directory.</em></li>
+<li><em>Device nodes: These are the special files that give access to various device drivers.</em></li>
+<li><em><code>/proc</code> and <code>/sys</code>: These two pseudo filesystems represent kernel data structures as a hierarchy of directories and files. Many programs and library functions depend on proc and sys.</em></li>
+<li><em>Kernel modules: If you have configured some parts of your kernel to be modules, they need to be installed in the root filesystem, usually in <code>/lib/modules/[kernel version]</code><span class="dquo">“</span></em></li>
+</ul>
+<h2 id="the-directory-layout">The directory layout</h2>
+<p><em><span class="dquo">“</span>The Linux kernel does not care about the layout of files and directories beyond the existence of the program named by <code>init=</code> or <code>rdinit=</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>However, many programs expect certain files to be in certain places”</em></p>
+<p><em><span class="dquo">“</span>The basic layout of a Linux system is defined in the <a href="http://refspecs.linuxfoundation.org/fhs.shtml">Filesystem Hierarchy Standard (<span class="caps">FHS</span>)</a>”</em></p>
+<p><em><span class="dquo">“</span>Embedded devices tend to use a subset based on their needs, but it usually includes the following:</em></p>
+<ul>
+<li><code>/bin</code>: <em>Programs essential for all users</em></li>
+<li><code>/dev</code>: <em>Device nodes and other special files</em></li>
+<li><code>/etc</code>: <em>System configuration files</em></li>
+<li><code>/lib</code>: <em>Essential shared libraries</em> [i.e. the C-library]</li>
+<li><code>/proc</code>: <em>The <code>proc</code> filesystem</em></li>
+<li><code>/sbin</code>: <em>Programs essential to the system administrator</em></li>
+<li><code>/sys</code>: <em>The <code>sysfs</code> filesystem</em></li>
+<li><code>/tmp</code>: <em>A place to put temporary or volatile files</em></li>
+<li><code>/usr</code>: <em>Additional programs, libraries, and system administrator utilities, in the directories <code>/usr/bin</code>, <code>/usr/lib</code> and <code>/usr/sbin</code>, respectively</em></li>
+<li><code>/var</code>: <em>A hierarchy of files and directories that may be modified at runtime, for example, log messages, some of which must be retained after boot</em>”</li>
+</ul>
+<p><em><span class="dquo">“</span>The difference between <code>/bin</code> and <code>/sbin</code> is simply that the latter need not be included in the search path for non-root users.”</em></p>
+<p><em><span class="dquo">“</span>The significance of <code>/usr</code> is that it maybe in a separate partition from the root filesystem, so it cannot contain anything that is needed to boot the system up.”</em></p>
             
             
             <hr/>
@@ -722,7 +760,7 @@ The problem occurs because the location of physical memory might be different fo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-11-12T21:01:15+01:00">Nov 12, 2018</time>
+<time datetime="2019-01-03T14:58:54+01:00">Jan 3, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
