@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-03T15:58:04+01:00" />
+<meta property="" content="2019-01-03T20:14:14+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -169,6 +169,10 @@
 <li><a href="#what-should-be-in-the-root-filesystem">What should be in the root filesystem?</a></li>
 <li><a href="#the-directory-layout">The directory layout</a></li>
 <li><a href="#posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</a></li>
+<li><a href="#busybox-to-the-rescue">BusyBox to the rescue!</a></li>
+<li><a href="#toybox-an-alternative-to-busybox">ToyBox - an alternative to BusyBox</a></li>
+<li><a href="#reducing-the-size-by-stripping">Reducing the size by stripping</a></li>
+<li><a href="#device-nodes">Device nodes</a></li>
 </ul>
 </li>
 </ul>
@@ -768,6 +772,37 @@ The problem occurs because the location of physical memory might be different fo
 <li><em>Sticky (1): In a directory, this restricts deletion so that one user cannot delete files that are owned by another user. This is usually set on <code>/tmp</code> and <code>/var/tmp</code>.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>The <span class="caps">SUID</span> bit is probably used most often. It gives non-root users a temporary privilege escalation to superuser to perform a task. […] for normal users to use <code>ping</code>, [which] is owned by user <code>root</code> and has the <span class="caps">SUID</span> bit set so that when you run <code>ping</code>, it executes with <span class="caps">UID</span> 0 regardless of your <span class="caps">UID</span>.”</em></p>
+<h2 id="busybox-to-the-rescue">BusyBox to the rescue!</h2>
+<p><em><span class="dquo">“</span>BusyBox tools implement a subset of the functions of the desktop equivalents, but they do enough of it to be useful in the majority of cases. Another trick BusyBox employs is to combine all the tools together into a single binary”</em></p>
+<p><em><span class="dquo">“</span>BusyBox has over three hundred applets including an init program, several shells of varying levels of complexity, and utilities for most admin tasks. There is even a simple version of the vi editor, so you can change text files on your device.”</em></p>
+<h2 id="toybox-an-alternative-to-busybox">ToyBox - an alternative to BusyBox</h2>
+<p><em><span class="dquo">“</span>ToyBox has the same aim as BusyBox, but with more emphasis on complying with standards, especially <span class="caps">POSIX</span>-2008 and <span class="caps">LSB</span> 4.1”</em></p>
+<p><em><span class="dquo">“</span>it implements fewer applets [than BusyBox]”</em></p>
+<p><em><span class="dquo">“</span>[The] main difference is the license, which is <span class="caps">BSD</span> rather than <span class="caps">GPL</span> v2.”</em></p>
+<h2 id="reducing-the-size-by-stripping">Reducing the size by stripping</h2>
+<div class="highlight"><pre><span></span>arm-cortex_a8-linux-gnueabihf-strip rootfs/lib/libc-2.22.so
+</pre></div>
+<blockquote>
+<p>Be careful about stripping kernel modules. Some symbols are required by the module loader to relocate the module code, and so the module will fail to load if they are stripped out. Use this command to remove debug symbols while keeping those used for relocation: strip —strip-unneeded <module name="">.</module></p>
+</blockquote>
+<h2 id="device-nodes">Device nodes</h2>
+<p><em><span class="dquo">“</span>[…] Unix philosophy that everything is a file (except network interfaces, which are sockets).”</em></p>
+<p><em><span class="dquo">“</span>Block devices are mass storage devices, such as <span class="caps">SD</span> cards or hard drives. A character device is pretty much anything else, once again with the exception of network interfaces.”</em></p>
+<p><em><span class="dquo">“</span>Device nodes are created using the program named <code>mknod</code> (short for make node):</em>”</p>
+<div class="highlight"><pre><span></span>mknod &lt;name&gt; &lt;type&gt; &lt;major&gt; &lt;minor&gt;
+</pre></div>
+<p><em><span class="dquo">“</span>The parameters to <code>mknod</code> are as follows:</em></p>
+<ul>
+<li><em><code>name</code> is the name of the device node that you want to create.</em></li>
+<li><em><code>type</code> is either <code>c</code> for character devices or <code>b</code> for a block.</em> </li>
+<li><em><code>major</code> and <code>minor</code> are a pair of numbers, which are used by the kernel to route file requests to the appropriate device driver code. There is a list of standard major and minor numbers in the kernel source in the file <code>Documentation/devices.txt</code>.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>In a really minimal root filesystem, you need just two nodes to boot with BusyBox: <code>console</code> and <code>null</code>.”</em></p>
+<p><em><span class="dquo">“</span>The <code>console</code> only needs to be accessible to <code>root</code>, the owner of the device node, so the access permissions are <code>600</code>. The <code>null</code> device should be readable and writable by everyone, so the mode is <code>666</code>. You can use the <code>-m</code> option for <code>mknod</code> to set the mode when creating the node. You need to be <code>root</code> to create device nodes, as shown here:”</em></p>
+<div class="highlight"><pre><span></span>sudo mknod -m <span class="m">666</span> dev/null c <span class="m">1</span> <span class="m">3</span>
+sudo mknod -m <span class="m">600</span> dev/console c <span class="m">5</span> <span class="m">1</span>
+</pre></div>
+<p><em><span class="dquo">“</span>You can delete device nodes using the standard <code>rm</code> command: there is no <code>rmnod</code> command because, once created, they are just files.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -841,7 +876,7 @@ The problem occurs because the location of physical memory might be different fo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-03T15:58:04+01:00">Jan 3, 2019</time>
+<time datetime="2019-01-03T20:14:14+01:00">Jan 3, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
