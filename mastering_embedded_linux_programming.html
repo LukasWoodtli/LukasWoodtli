@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-03T20:14:14+01:00" />
+<meta property="" content="2019-01-04T06:52:31+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -173,6 +173,7 @@
 <li><a href="#toybox-an-alternative-to-busybox">ToyBox - an alternative to BusyBox</a></li>
 <li><a href="#reducing-the-size-by-stripping">Reducing the size by stripping</a></li>
 <li><a href="#device-nodes">Device nodes</a></li>
+<li><a href="#the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</a></li>
 </ul>
 </li>
 </ul>
@@ -783,7 +784,7 @@ The problem occurs because the location of physical memory might be different fo
 <div class="highlight"><pre><span></span>arm-cortex_a8-linux-gnueabihf-strip rootfs/lib/libc-2.22.so
 </pre></div>
 <blockquote>
-<p>Be careful about stripping kernel modules. Some symbols are required by the module loader to relocate the module code, and so the module will fail to load if they are stripped out. Use this command to remove debug symbols while keeping those used for relocation: strip —strip-unneeded <module name="">.</module></p>
+<p>Be careful about stripping kernel modules. Some symbols are required by the module loader to relocate the module code, and so the module will fail to load if they are stripped out. Use this command to remove debug symbols while keeping those used for relocation: strip <code>--strip-unneeded &lt;module name&gt;</code>.</p>
 </blockquote>
 <h2 id="device-nodes">Device nodes</h2>
 <p><em><span class="dquo">“</span>[…] Unix philosophy that everything is a file (except network interfaces, which are sockets).”</em></p>
@@ -803,6 +804,19 @@ The problem occurs because the location of physical memory might be different fo
 sudo mknod -m <span class="m">600</span> dev/console c <span class="m">5</span> <span class="m">1</span>
 </pre></div>
 <p><em><span class="dquo">“</span>You can delete device nodes using the standard <code>rm</code> command: there is no <code>rmnod</code> command because, once created, they are just files.”</em></p>
+<h2 id="the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</h2>
+<p><em><span class="dquo">“</span><code>proc</code> and <code>sysfs</code> are two pseudo filesystems”</em></p>
+<p><em><span class="dquo">“</span>when you read one of the files [in <code>proc</code> or <code>sysfs</code>], the contents you see do not come from disk storage; it has been formatted on-the-fly by a function in the kernel. Some files are also writable, meaning that a kernel function is called with the new data you have written and, if it is of the correct format and you have sufficient permissions, it will modify the value stored in the kernel’s memory. In other words, <code>proc</code> and <code>sysfs</code> provide another way to interact with device drivers and other kernel code.”</em></p>
+<p><em><span class="dquo">“</span>The <code>proc</code> and <code>sysfs</code> filesystems should be mounted on the directories called <code>/proc</code> and <code>/sys</code>:</em>”</p>
+<div class="highlight"><pre><span></span>mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+</pre></div>
+<p><em><span class="dquo">“</span>[The] purpose [of <code>proc</code>] was to expose information about processes to user space”</em></p>
+<p><em><span class="dquo">“</span>there is a directory for each process named <code>/proc/&lt;PID&gt;</code>, which contains information about its state.”</em></p>
+<p><em><span class="dquo">“</span>there are files that give information about other parts of the kernel, for example, <code>/proc/cpuinfo</code> tells you about the <span class="caps">CPU</span>, <code>/proc/interrupts</code> has information about interrupts”</em></p>
+<p><em><span class="dquo">“</span>in <code>/proc/sys</code>, there are files that display and control the state and behavior of kernel subsystems, especially scheduling, memory management, and networking.”</em></p>
+<p><a href="http://man7.org/linux/man-pages/man5/proc.5.html">man 5 proc</a></p>
+<p><em><span class="dquo">“</span>the role of <code>sysfs</code> is to present the kernel driver model to user space. It exports a hierarchy of files relating to devices and device drivers and the way they are connected to each other.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -876,7 +890,7 @@ sudo mknod -m <span class="m">600</span> dev/console c <span class="m">5</span> 
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-03T20:14:14+01:00">Jan 3, 2019</time>
+<time datetime="2019-01-04T06:52:31+01:00">Jan 4, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
