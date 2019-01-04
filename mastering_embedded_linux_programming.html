@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-04T06:52:31+01:00" />
+<meta property="" content="2019-01-04T20:38:56+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -174,6 +174,20 @@
 <li><a href="#reducing-the-size-by-stripping">Reducing the size by stripping</a></li>
 <li><a href="#device-nodes">Device nodes</a></li>
 <li><a href="#the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</a></li>
+<li><a href="#mounting-filesystems">Mounting filesystems</a></li>
+<li><a href="#kernel-modules_1">Kernel modules</a></li>
+<li><a href="#transferring-the-root-filesystem-to-the-target">Transferring the root filesystem to the target</a></li>
+<li><a href="#creating-a-boot-initramfs">Creating a boot initramfs</a></li>
+<li><a href="#booting-with-qemu">Booting with <span class="caps">QEMU</span></a></li>
+<li><a href="#building-an-initramfs-into-the-kernel-image">Building an initramfs into the kernel image</a></li>
+<li><a href="#building-an-initramfs-using-a-device-table">Building an initramfs using a device table</a></li>
+<li><a href="#the-old-initrd-format">The old initrd format</a></li>
+<li><a href="#the-init-program">The init program</a></li>
+<li><a href="#adding-user-accounts-to-the-root-filesystem">Adding user accounts to the root filesystem</a></li>
+<li><a href="#a-better-way-of-managing-device-nodes">A better way of managing device nodes</a></li>
+<li><a href="#an-example-using-devtmpfs">An example using devtmpfs</a></li>
+<li><a href="#an-example-using-mdev">An example using mdev</a></li>
+<li><a href="#additional-reading">Additional reading</a></li>
 </ul>
 </li>
 </ul>
@@ -817,6 +831,75 @@ mount -t sysfs sysfs /sys
 <p><em><span class="dquo">“</span>in <code>/proc/sys</code>, there are files that display and control the state and behavior of kernel subsystems, especially scheduling, memory management, and networking.”</em></p>
 <p><a href="http://man7.org/linux/man-pages/man5/proc.5.html">man 5 proc</a></p>
 <p><em><span class="dquo">“</span>the role of <code>sysfs</code> is to present the kernel driver model to user space. It exports a hierarchy of files relating to devices and device drivers and the way they are connected to each other.”</em></p>
+<h2 id="mounting-filesystems">Mounting filesystems</h2>
+<p><em><span class="dquo">“</span>The <code>mount</code> command allows us to attach one filesystem to a directory within another, forming a hierarchy of filesystems.”</em></p>
+<p><em><span class="dquo">“</span>The format of the mount command is as follows:”</em></p>
+<div class="highlight"><pre><span></span>mount <span class="o">[</span>-t vfstype<span class="o">]</span> <span class="o">[</span>-o options<span class="o">]</span> device directory
+</pre></div>
+<p><a href="http://man7.org/linux/man-pages/man8/mount.8.html">man 8 mount</a></p>
+<p><em><span class="dquo">“</span>Looking at the example of mounting the <code>proc</code> filesystem, there is something odd: there is no device node, such as <code>/dev/proc</code>, since it is a pseudo filesystem and not a real one. But the <code>mount</code> command requires a device parameter. Consequently, we have to give a string where <code>device</code> should go, but it does not matter much what that string is.”</em></p>
+<h2 id="kernel-modules_1">Kernel modules</h2>
+<p><em><span class="dquo">“</span>Kernel modules […] need to be installed into the root filesystem, using the kernel make target <code>modules_install</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>This will copy them into the directory called <code>/lib/modules/&lt;kernel version&gt;</code> together with the configuration files needed by the <code>modprobe</code> command.”</em></p>
+<h2 id="transferring-the-root-filesystem-to-the-target">Transferring the root filesystem to the target</h2>
+<p>Multiple posibilities:</p>
+<ul>
+<li><em><span class="dquo">“</span>initramfs: Also known as a ramdisk, […] a filesystem image that is loaded into <span class="caps">RAM</span> by the bootloader. Ramdisks are easy to create and have no dependencies on mass storage drivers. They can be used in fallback maintenance mode when the main root filesystem needs updating. They can even be used as the main root filesystem in small embedded devices, and they are commonly used as the early user space in mainstream Linux distributions. […] the contents of the root filesystem are volatile, and any changes […] will be lost when the system next boots.”</em></li>
+<li><em><span class="dquo">“</span>Disk image: This is a copy of the root filesystem formatted and ready to be loaded onto a mass storage device on the target. […] Creating a disk image is probably the most common option.”</em></li>
+<li><em><span class="dquo">“</span>Network filesystem: The staging directory can be exported to the network via an <span class="caps">NFS</span> server and mounted by the target at boot time. This is often done during the development phase”</em></li>
+</ul>
+<h2 id="creating-a-boot-initramfs">Creating a boot initramfs</h2>
+<p><em><span class="dquo">“</span><code>initramfs</code> is a compressed <code>cpio</code> archive.”</em></p>
+<p><em><span class="dquo">“</span>You need to configure your kernel with <code>CONFIG_BLK_DEV_INITRD</code> to support <code>initramfs</code>.”</em></p>
+<p><em><span class="dquo">“</span>there are three different ways to create a boot ramdisk: as a standalone <code>cpio</code> archive, as a <code>cpio</code> archive embedded in the kernel image, and as a device table which the kernel build system processes as part of the build.”</em></p>
+<h2 id="booting-with-qemu">Booting with <span class="caps">QEMU</span></h2>
+<p><em><span class="dquo">“</span><span class="caps">QEMU</span> has the option called <code>-initrd</code> to load <code>initramfs</code> into memory.”</em></p>
+<div class="highlight"><pre><span></span><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none <span class="se">\</span>
+qemu-system-arm -m 256M -nographic -M versatilepb <span class="se">\</span>
+-kernel zImage -append <span class="s2">"console=ttyAMA0 rdinit=/bin/sh"</span> <span class="se">\</span>
+-dtb versatile-pb.dtb -initrd initramfs.cpio.gz
+</pre></div>
+<h2 id="building-an-initramfs-into-the-kernel-image">Building an initramfs into the kernel image</h2>
+<p><em><span class="dquo">“</span>Linux can be configured to incorporate <code>initramfs</code> into the kernel image. To do this […] set <code>CONFIG_INITRAMFS_SOURCE</code> to the full path of the <code>cpio</code> archive. […] Note that it has to be the uncompressed <code>cpio</code> file ending in <code>.cpio</code>, not the gzipped version. […] Booting is the same as before, except that there is no ramdisk file.”</em></p>
+<p>For <span class="caps">QEMU</span>:</p>
+<div class="highlight"><pre><span></span><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none qemu-system-arm -m 256M <span class="se">\</span>
+-nographic -M versatilepb -kernel zImage <span class="se">\</span>
+-append <span class="s2">"console=ttyAMA0 rdinit=/bin/sh"</span> <span class="se">\</span>
+-dtb versatile-pb.dtb
+</pre></div>
+<p>For BeagleBone Black (U-Boot):</p>
+<div class="highlight"><pre><span></span>fatload mmc <span class="m">0</span>:1 0x80200000 zImage
+fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bootargs <span class="nv">console</span><span class="o">=</span>ttyO0,115200 <span class="nv">rdinit</span><span class="o">=</span>/bin/sh bootz 0x80200000 – 0x80f00000
+</pre></div>
+<h2 id="building-an-initramfs-using-a-device-table">Building an initramfs using a device table</h2>
+<p><em><span class="dquo">“</span>A device table is a text file that lists the files, directories, device nodes, and links that go into an archive or filesystem image. The overwhelming advantage is that it allows you to create entries in the archive file that are owned by the <code>root</code> user, or any other <span class="caps">UID</span>, without having root privileges yourself.”</em></p>
+<p><em><span class="dquo">“</span>It is only when it is expanded by Linux at boot time that real files and directories get created, using the attributes you have specified.”</em></p>
+<p><em><span class="dquo">“</span>You write the device table file, and then point <code>CONFIG_INITRAMFS_SOURCE</code> at it. Then, when you build the kernel, it creates the <code>cpio</code> archive from the instructions in the device table. At no point do you need root access.”</em></p>
+<p><em><span class="dquo">“</span>Creating an <code>initramfs</code> device table from scratch is made easier by a script in the kernel source code in <code>scripts/gen_initramfs_list.sh</code>, which creates a device table from a given directory.”</em></p>
+<h2 id="the-old-initrd-format">The old initrd format</h2>
+<p><em><span class="dquo">“</span>There is an older format for a Linux ramdisk, known as <code>initrd</code>. It was the only format available before Linux 2.6 and is still needed if you are using the mmu-less variant of Linux, uClinux. It is pretty obscure […]. There is more information in the kernel source in <code>Documentation/initrd.txt</code><span class="dquo">“</span></em></p>
+<h2 id="the-init-program">The init program</h2>
+<p><em><span class="dquo">“</span>The init program [of BusyBox] begins by reading the configuration file, <code>/etc/inittab</code>.”</em></p>
+<h2 id="adding-user-accounts-to-the-root-filesystem">Adding user accounts to the root filesystem</h2>
+<p><em><span class="dquo">“</span>Add to your staging directory the files <code>etc/passwd</code>, <code>etc/shadow</code>, and <code>etc/group</code> […]. Make sure that the permissions of <code>shadow</code> are <code>0600</code>. Next, you need to initiate the login procedure by starting a program called <code>getty</code>.”</em></p>
+<h2 id="a-better-way-of-managing-device-nodes">A better way of managing device nodes</h2>
+<p><em><span class="dquo">“</span>There are other ways to create device nodes automatically on demand:</em></p>
+<ul>
+<li><code>devtmpfs</code>: <em>This is a pseudo filesystem that you mount over <code>/dev</code> at boot time. The kernel populates it with device nodes for all the devices that the kernel currently knows about […]. Take a look at the Linux source file: <code>drivers/char/mem.c</code> and see how <code>struct memdev</code> is initialized.</em></li>
+<li><code>mdev</code>: <em>This is a BusyBox applet that is used to populate a directory with device nodes and to create new nodes as needed. There is a configuration file, <code>/etc/mdev.conf</code>, which contains rules for ownership and the mode of the nodes.</em></li>
+<li><code>udev</code>: This is the mainstream equivalent of <code>mdev</code>. You will find it on desktop Linux and in some embedded devices. […] It is now part of <code>systemd</code>.”*</li>
+</ul>
+<h2 id="an-example-using-devtmpfs">An example using devtmpfs</h2>
+<p><em><span class="dquo">“</span>Support for the <code>devtmpfs</code> filesystem is controlled by kernel configuration variable: <code>CONFIG_DEVTMPFS</code>.”</em></p>
+<p><em><span class="dquo">“</span>If you enable <code>CONFIG_DEVTMPFS_MOUNT</code> in your kernel configuration, the kernel will automatically mount <code>devtmpfs</code> just after mounting the root filesystem. However, this option has no effect when booting <code>initramfs</code><span class="dquo">“</span></em></p>
+<h2 id="an-example-using-mdev">An example using mdev</h2>
+<p><em><span class="dquo">“</span>While <code>mdev</code> is a bit more complex to set up, it does allow you to modify the permissions of device nodes as they are created. You begin by running <code>mdev</code> with the <code>-s</code> option, which causes it to scan the <code>/sys</code> directory looking for information about current devices. From this information, it populates the <code>/dev</code> directory with the corresponding nodes. If you want to keep track of new devices coming online and create nodes for them as well, you need to make <code>mdev</code> a hot plug client by writing to `/proc/sys/kernel/hotplug.”</em></p>
+<p><em><span class="dquo">“</span>[It] is documented in the BusyBox source code in <code>docs/mdev.txt</code><span class="dquo">“</span></em></p>
+<h2 id="additional-reading">Additional reading</h2>
+<ul>
+<li><a href="http://refspecs.linuxfoundation.org/fhs.shtml">Filesystem Hierarchy Standard, Version 3.0</a></li>
+<li><em>ramfs</em>, <em>rootfs</em> and <em>initramfs</em>, Rob Landley, October 17, 2005, which is part of the Linux source in <code>Documentation/filesystems/ramfs-rootfs-initramfs.txt</code></li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -890,7 +973,7 @@ mount -t sysfs sysfs /sys
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-04T06:52:31+01:00">Jan 4, 2019</time>
+<time datetime="2019-01-04T20:38:56+01:00">Jan 4, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
