@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-04T20:38:56+01:00" />
+<meta property="" content="2019-01-09T20:31:42+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -188,6 +188,25 @@
 <li><a href="#an-example-using-devtmpfs">An example using devtmpfs</a></li>
 <li><a href="#an-example-using-mdev">An example using mdev</a></li>
 <li><a href="#additional-reading">Additional reading</a></li>
+</ul>
+</li>
+<li><a href="#updating-software-in-the-field">Updating Software in the Field</a><ul>
+<li><a href="#bootloader">Bootloader</a></li>
+<li><a href="#kernel">Kernel</a></li>
+<li><a href="#root-filesystem">Root filesystem</a></li>
+<li><a href="#system-applications">System applications</a></li>
+<li><a href="#device-specific-data">Device-specific data</a></li>
+<li><a href="#making-updates-robust">Making updates robust</a></li>
+<li><a href="#making-updates-fail-safe">Making updates fail-safe</a></li>
+<li><a href="#making-updates-secure">Making updates secure</a></li>
+<li><a href="#types-of-update-mechanism">Types of update mechanism</a><ul>
+<li><a href="#symmetric-image-update">Symmetric image update</a></li>
+<li><a href="#asymmetric-image-update">Asymmetric image update</a></li>
+<li><a href="#atomic-file-updates">Atomic file updates</a></li>
+</ul>
+</li>
+<li><a href="#ota-updates"><span class="caps">OTA</span> updates</a></li>
+<li><a href="#summary_2">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -900,6 +919,55 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <li><a href="http://refspecs.linuxfoundation.org/fhs.shtml">Filesystem Hierarchy Standard, Version 3.0</a></li>
 <li><em>ramfs</em>, <em>rootfs</em> and <em>initramfs</em>, Rob Landley, October 17, 2005, which is part of the Linux source in <code>Documentation/filesystems/ramfs-rootfs-initramfs.txt</code></li>
 </ul>
+<h1 id="updating-software-in-the-field">Updating Software in the Field</h1>
+<h2 id="bootloader">Bootloader</h2>
+<p><em><span class="dquo">“</span>Updating the bootloader is risky: what happens if the system powers down midway? Consequently, most update solutions leave the bootloader alone. This is not a big problem, because the bootloader only runs for a short time at power-on and is not normally a great source of run- time bugs.”</em></p>
+<h2 id="kernel">Kernel</h2>
+<p><em><span class="dquo">“</span>There are several parts to the kernel [that need to be updated]:</em></p>
+<ul>
+<li><em>A binary image loaded by the bootloader, often stored in the root filesystem.</em></li>
+<li><em>Many devices also have a Device Tree Binary (<span class="caps">DTB</span>) […]. The <span class="caps">DTB</span> is usually stored alongside the kernel binary.</em></li>
+<li><em>There may be kernel modules in the root filesystem.”</em></li>
+</ul>
+<h2 id="root-filesystem">Root filesystem</h2>
+<p><em><span class="dquo">“</span>The root filesystem contains the essential system libraries, utilities, and scripts needed to make the system work. It is very desirable to be able to replace and upgrade all of these. The mechanism depends on the implementation.”</em></p>
+<h2 id="system-applications">System applications</h2>
+<p><em><span class="dquo">“</span>[The system applications] may be bundled with the root filesystem, but it is also common for them to be placed in a separate filesystem to make updating easier and to maintain separation between the system files, which are usually open source, and the application files, which are often proprietary.”</em></p>
+<h2 id="device-specific-data">Device-specific data</h2>
+<p><em><span class="dquo">“</span>[Files that comntain] settings, logs, user-supplied data, and the like. It is not often that they need to be updated, but they do need to be preserved during an update”</em></p>
+<h2 id="making-updates-robust">Making updates robust</h2>
+<p><em><span class="dquo">“</span>The update as a whole must be atomic: there should be no stage at which part of the system is updated but not other parts. There must be a single, uninterruptible change to the system that switches to the new version of software.”</em></p>
+<h2 id="making-updates-fail-safe">Making updates fail-safe</h2>
+<p><em><span class="dquo">“</span>[It’s possible to configure] the kernel to reboot a number of seconds after a panic. You can do this either when you build the kernel by setting <code>CONFIG_PANIC_TIMEOUT</code> or by setting the kernel command line to panic [e.g <code>panic=5</code> for reboot after 5 seconds].”</em></p>
+<p><em><span class="dquo">“</span>To enable panic on Oops in the kernel configuration, set <code>CONFIG_PANIC_ON_OOPS=y</code> or, on the kernel command line, <code>oops=panic</code>.”</em></p>
+<p><em><span class="dquo">“</span>If you are using systemd, you can use the inbuilt watchdog function”</em></p>
+<p><em><span class="dquo">“</span>[Otherwise] you may want to enable the watchdog support built into Linux, as described in the kernel source code in <code>Documentation/watchdog</code>.”</em></p>
+<h2 id="making-updates-secure">Making updates secure</h2>
+<p><em><span class="dquo">“</span>Remote update […] need a secure transfer channel, such as <span class="caps">HTTPS</span>.”</em></p>
+<p><em><span class="dquo">“</span>[…] secure boot protocol in the bootloader. If the kernel image is signed at the factory with a digital key, the bootloader can check the key before it loads the kernel and refuse to load it if the keys do not match”</em></p>
+<p><em><span class="dquo">“</span>U-Boot implements such a mechanism, which is described in the U-Boot source code in <code>doc/uImage.FIT/verified-boot.txt</code>.”</em></p>
+<h2 id="types-of-update-mechanism">Types of update mechanism</h2>
+<h3 id="symmetric-image-update">Symmetric image update</h3>
+<p><em><span class="dquo">“</span>There are several open source projects that implement symmetric image update. One is the <strong>Mender</strong> client operating in standalone mode […]. Another is <strong>SWUpdate</strong> […]. A third example is <strong><span class="caps">RAUC</span></strong>, the <strong>Robust Auto-Update Controller</strong>”</em></p>
+<p><em><span class="dquo">“</span>There are some drawbacks with this scheme. One is that by updating an entire filesystem image, the size of the update package is large.”</em></p>
+<p><em><span class="dquo">“</span>A second drawback is the need to keep storage space for a redundant copy of the root filesystem and other components.”</em></p>
+<h3 id="asymmetric-image-update">Asymmetric image update</h3>
+<p><em><span class="dquo">“</span>You can reduce storage requirements by keeping a minimal recovery operating system purely for updating the main one”</em></p>
+<p><em><span class="dquo">“</span>Once the Recovery <span class="caps">OS</span> is running, it can stream updates to the main operating system image.”</em></p>
+<p><em><span class="dquo">“</span>The Recovery <span class="caps">OS</span> is usually a lot smaller than the main operating system, maybe only a few megabytes.”</em></p>
+<p><em><span class="dquo">“</span>For open source implementations of asymmetric image update, you could consider <strong>SWUpdate</strong> or <strong><span class="caps">RAUC</span></strong>”</em></p>
+<h3 id="atomic-file-updates">Atomic file updates</h3>
+<p><em><span class="dquo">“</span>Another approach is to have redundant copies of a root filesystem present in multiple directories of a single filesystem and then use the <code>chroot(8)</code> command to choose one of them at boot time.”</em></p>
+<p><em><span class="dquo">“</span>The OSTree project, now renamed libOSTree, is the most popular implementation of this idea”</em></p>
+<p><em><span class="dquo">“</span>It is one of the update methods available in <strong>Automotive Grade Linux (<span class="caps">AGL</span>)</strong>, and it is available in the Yocto Project through the meta-update layer, which is supported by <strong>Advanced Telematic Systems (<span class="caps">ATS</span>)</strong>.”</em></p>
+<h2 id="ota-updates"><span class="caps">OTA</span> updates</h2>
+<p><em><span class="dquo">“</span>Two examples of open source projects […] for <span class="caps">OTA</span> update:</em></p>
+<ul>
+<li><em>Mender in managed mode</em></li>
+<li><em>The hawkBit in conjunction with an updater client such as <strong>SWUpdate</strong> or <strong><span class="caps">RAUC</span></strong>”</em></li>
+</ul>
+<h2 id="summary_2">Summary</h2>
+<p><em><span class="dquo">“</span>The approach used most often, and also the one with most real-world testing, is the symmetric image (<strong>A/B</strong>) update, or its cousin the asymmetric (recovery) image update. Here, you have the choice of SWUpdate, <span class="caps">RAUC</span>, and Mender.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -973,7 +1041,7 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-04T20:38:56+01:00">Jan 4, 2019</time>
+<time datetime="2019-01-09T20:31:42+01:00">Jan 9, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
