@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-09T20:31:42+01:00" />
+<meta property="" content="2019-01-11T20:34:58+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -207,6 +207,13 @@
 </li>
 <li><a href="#ota-updates"><span class="caps">OTA</span> updates</a></li>
 <li><a href="#summary_2">Summary</a></li>
+</ul>
+</li>
+<li><a href="#interfacing-with-device-drivers">Interfacing with Device Drivers</a><ul>
+<li><a href="#the-role-of-device-drivers">The role of device drivers</a></li>
+<li><a href="#character-devices">Character devices</a></li>
+<li><a href="#block-devices">Block devices</a></li>
+<li><a href="#network-devices">Network devices</a></li>
 </ul>
 </li>
 </ul>
@@ -968,6 +975,33 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 </ul>
 <h2 id="summary_2">Summary</h2>
 <p><em><span class="dquo">“</span>The approach used most often, and also the one with most real-world testing, is the symmetric image (<strong>A/B</strong>) update, or its cousin the asymmetric (recovery) image update. Here, you have the choice of SWUpdate, <span class="caps">RAUC</span>, and Mender.”</em></p>
+<h1 id="interfacing-with-device-drivers">Interfacing with Device Drivers</h1>
+<p><em><span class="dquo">“</span>In many cases, you will find that there are device drivers provided for you, and you can achieve everything you want without writing any kernel code. For example, you can manipulate <span class="caps">GPIO</span> pins and LEDs using files in <strong>sysfs</strong>, and there are libraries to access serial buses, including <strong><span class="caps">SPI</span> (Serial Peripheral Interface)</strong> and <strong><span class="caps">I2C</span> (Inter-Integrated Circuit)</strong>.”</em></p>
+<h2 id="the-role-of-device-drivers">The role of device drivers</h2>
+<p><em><span class="dquo">“</span>One driver may control multiple devices of the same kind.”</em></p>
+<p><em><span class="dquo">“</span>Kernel device driver code runs at a high privilege level, as does the rest of the kernel. It has full access to the processor address space and hardware registers. It can handle interrupts and <span class="caps">DMA</span> transfers.”</em></p>
+<p><em><span class="dquo">“</span>Device drivers should be as simple as possible by just providing information to applications where the real decisions are made.”</em></p>
+<p><em><span class="dquo">“</span>In Linux, there are three main types of device driver:</em></p>
+<ul>
+<li><em>Character: This is for an unbuffered I/O with a rich range of functions and a thin layer between the application code and the driver. It is the first choice when implementing custom device drivers.</em></li>
+<li><em>Block: This has an interface tailored for block I/O to and from mass storage devices. There is a thick layer of buffering designed to make disk reads and writes as fast as possible, which makes it unsuitable for anything else.</em></li>
+<li><em>Network: This is similar to a block device but is used for transmitting and receiving network packets rather than disk blocks.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>There is also a fourth type that presents itself as a group of files in one of the pseudo file systems. For example, you might access the <span class="caps">GPIO</span> driver through a group of files in <code>/sys/class/gpio</code><span class="dquo">“</span></em></p>
+<h2 id="character-devices">Character devices</h2>
+<p><em><span class="dquo">“</span>Character devices are identified in user space by a special file called a <strong>device node</strong>. This file name is mapped to a device driver using the major and minor numbers associated with it. Broadly speaking, the <strong>major number</strong> maps the device node to a particular device driver, and the <strong>minor number</strong> tells the driver which interface is being accessed.”</em></p>
+<p><em><span class="dquo">“</span>The list of standard major and minor numbers can be found in the kernel documentation in <code>Documentation/devices.txt</code>. The list does not get updated very often.”</em></p>
+<p><em><span class="dquo">“</span>When you open a character device node, the kernel checks to see whether the major and minor numbers fall into a range registered by a character device driver. If so, it passes the call to the driver, otherwise the open call fails. The device driver can extract the minor number to find out which hardware interface to use.”</em></p>
+<p><em><span class="dquo">“</span>[One could use] the stream I/O functions, <code>fopen(3)</code>, <code>fread(3)</code>, and <code>fclose(3)</code> instead [of <code>open(2)</code>, <code>read(2)</code>, and <code>close(2)</code>], but the buffering implicit in these functions often causes unexpected behavior.”</em></p>
+<h2 id="block-devices">Block devices</h2>
+<p><em><span class="dquo">“</span>Although character and block devices are identified using major and minor numbers, they are in different namespaces. A character driver with a major number 4 is in no way related to a block driver with a major number 4.”</em></p>
+<p><em><span class="dquo">“</span>With block devices, the major number is used to identify the device driver and the minor number is used to identify the partition.”</em></p>
+<p><em><span class="dquo">“</span>Both the <span class="caps">MMC</span> and <span class="caps">SCSI</span> block drivers expect to find a partiton table at the start of the disk. The partition table is created using utilities such as <code>fdisk</code>, <code>sfidsk</code>, or <code>parted</code>.”</em></p>
+<p><em><span class="dquo">“</span>Both the <span class="caps">MMC</span> and <span class="caps">SCSI</span> block drivers expect to find a partiton table at the start of the disk. The partition table is created using utilities such as fdisk, sfidsk, or parted.”</em></p>
+<h2 id="network-devices">Network devices</h2>
+<p><em><span class="dquo">“</span>Network devices are not accessed through device nodes, and they do not have major and minor numbers. Instead, a network device is allocated a name by the kernel, based on a string and an instance number.”</em></p>
+<p><em><span class="dquo">“</span>[User space programs] interact with the network driver indirectly by opening sockets”</em></p>
+<p><em><span class="dquo">“</span>It is possible to access network devices directly from user space by creating a socket and using the ioctl commands listed in <code>include/linux/sockios.h</code><span class="dquo">“</span></em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1041,7 +1075,7 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-09T20:31:42+01:00">Jan 9, 2019</time>
+<time datetime="2019-01-11T20:34:58+01:00">Jan 11, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
