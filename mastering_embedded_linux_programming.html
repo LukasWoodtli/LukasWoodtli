@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-11T20:34:58+01:00" />
+<meta property="" content="2019-01-12T20:34:46+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -214,6 +214,28 @@
 <li><a href="#character-devices">Character devices</a></li>
 <li><a href="#block-devices">Block devices</a></li>
 <li><a href="#network-devices">Network devices</a></li>
+<li><a href="#finding-out-about-drivers-at-runtime">Finding out about drivers at runtime</a><ul>
+<li><a href="#getting-information-from-sysfs">Getting information from sysfs</a><ul>
+<li><a href="#the-devices-sysdevices">The devices: /sys/devices</a></li>
+<li><a href="#the-drivers-sysclass">The drivers: /sys/class</a><ul>
+<li><a href="#the-block-drivers-sysblock">The block drivers: /sys/block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#finding-the-right-device-driver">Finding the right device driver</a></li>
+<li><a href="#device-drivers-in-user-space">Device drivers in user space</a><ul>
+<li><a href="#gpio"><span class="caps">GPIO</span></a><ul>
+<li><a href="#handling-interrupts-from-gpio">Handling interrupts from <span class="caps">GPIO</span></a></li>
+</ul>
+</li>
+<li><a href="#leds">LEDs</a></li>
+<li><a href="#i2c">\(I^2C\)</a></li>
+<li><a href="#serial-peripheral-interface-spi">Serial Peripheral Interface (<span class="caps">SPI</span>)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1002,6 +1024,75 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <p><em><span class="dquo">“</span>Network devices are not accessed through device nodes, and they do not have major and minor numbers. Instead, a network device is allocated a name by the kernel, based on a string and an instance number.”</em></p>
 <p><em><span class="dquo">“</span>[User space programs] interact with the network driver indirectly by opening sockets”</em></p>
 <p><em><span class="dquo">“</span>It is possible to access network devices directly from user space by creating a socket and using the ioctl commands listed in <code>include/linux/sockios.h</code><span class="dquo">“</span></em></p>
+<h2 id="finding-out-about-drivers-at-runtime">Finding out about drivers at runtime</h2>
+<p><em><span class="dquo">“</span>You can find out a lot by reading the files in <code>/proc</code> and <code>/sys</code>.”</em></p>
+<div class="highlight"><pre><span></span>cat /proc/devices
+</pre></div>
+<p><em><span class="dquo">“</span>For each driver, you can see the major number and the base name.”</em></p>
+<p><em><span class="dquo">“</span>network devices do not appear in this list, because they do not have device nodes.”</em></p>
+<div class="highlight"><pre><span></span>ip link show
+</pre></div>
+<h3 id="getting-information-from-sysfs">Getting information from <code>sysfs</code></h3>
+<p><em><span class="dquo">“</span><code>sysfs</code> [is a] representation of kernel objects, attributes, and relationships. A kernel object is a directory, an attribute is a file, and a relationship is a symbolic link from one object to another”</em></p>
+<p><em><span class="dquo">“</span>You can see the kernel’s view of the system laid out before you by looking in <code>/sys</code>.”</em></p>
+<h4 id="the-devices-sysdevices">The devices: <code>/sys/devices</code></h4>
+<p><em><span class="dquo">“</span>There are three directories that are present on all systems:</em></p>
+<ul>
+<li><em><code>system/</code>: This contains devices at the heart of the system, including CPUs and clocks.</em></li>
+<li><em><code>virtual/</code>: This contains devices that are memory-based. You will find the memory devices that appear as <code>/dev/null</code>, <code>/dev/random</code>, and <code>/dev/zero</code> in <code>virtual/mem</code>. You will find the loopback device, <code>lo</code>, in <code>virtual/net</code>.</em></li>
+<li><em><code>platform/</code>: This is a catch-all for devices that are not connected via a conventional hardware bus. This maybe almost everything on an embedded device.</em>”</li>
+</ul>
+<p><em><span class="dquo">“</span>The other devices appear in directories that correspond to actual system buses.”</em></p>
+<p><em><span class="dquo">“</span>Navigating this hierarchy is quite hard, because it requires some knowledge of the topology of your system, and the path-names become quite long and hard to remember. To make life easier, <code>/sys/class</code> and <code>/sys/block</code> offer two different views of the devices.”</em></p>
+<h4 id="the-drivers-sysclass">The drivers: <code>/sys/class</code></h4>
+<p><em><span class="dquo">“</span>This is a view of the device drivers presented by their type. In other words, it is a software view rather than a hardware view.”</em></p>
+<h5 id="the-block-drivers-sysblock">The block drivers: <code>/sys/block</code></h5>
+<p><em><span class="dquo">“</span>There is a subdirectory for each block device.”</em></p>
+<p><em><span class="dquo">“</span>The conclusion, then, is that you can learn a lot about the devices (the hardware) and the drivers (the software) that are present on a system by reading <code>sysfs</code>.”</em></p>
+<h2 id="finding-the-right-device-driver">Finding the right device driver</h2>
+<p><em><span class="dquo">“</span>Where do you start to look for device drivers to support all of these peripherals?”</em></p>
+<p><em><span class="dquo">“</span>There maybe support in your kernel already: there are many thousands of drivers in mainline Linux and there are many vendor-specific drivers in the vendor kernels. Begin by running <code>make menuconfig</code> (or <code>xconfig</code>) and search for the product name or number.”</em></p>
+<p><em><span class="dquo">“</span>Next, try searching through the code in the drivers directory”</em></p>
+<h2 id="device-drivers-in-user-space">Device drivers in user space</h2>
+<p><em><span class="dquo">“</span>There are generic device drivers for many common types of device that allow you to interact with hardware directly from user space without having to write a line of kernel code. User space code is certainly easier to write and debug. It is also not covered by the <span class="caps">GPL</span>.”</em></p>
+<p><em><span class="dquo">“</span>These drivers fall into two broad categories: those that you control through files in <code>sysfs</code>, including <span class="caps">GPIO</span> and LEDs, and serial buses that expose a generic interface through a device node, such as <span class="math">\(I^2C\)</span>.”</em></p>
+<h3 id="gpio"><span class="caps">GPIO</span></h3>
+<p><em><span class="dquo">“</span>Each [pin] can be in one of two states: either high or low. In most cases you can configure the <span class="caps">GPIO</span> pin to be either an input or an output. You can even use a group of <span class="caps">GPIO</span> pins to create higher level interfaces such as <span class="math">\(I^2C\)</span> or <span class="caps">SPI</span> by manipulating each bit in software, a technique that is called <strong>bit banging</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Generally speaking, it is hard to achieve timer accuracy better than a millisecond unless you configure a real-time kernel.”</em></p>
+<p><em><span class="dquo">“</span>More common use cases for <span class="caps">GPIO</span> are for reading push buttons and digital sensors and controlling LEDs, motors, and relays.”</em></p>
+<p><em><span class="dquo">“</span>All this diversity is handled by a kernel subsystem known as <code>gpiolib</code>, which is not actually a library but the infrastructure <span class="caps">GPIO</span> drivers use to expose I/O in a consistent way. There are details about the implementation of gpiolib in the kernel source in <code>Documentation/gpio</code> and the code for the drivers themselves is in <code>drivers/gpio</code>.”</em></p>
+<p><em><span class="dquo">“</span>Applications can interact with gpiolib through files in the <code>/sys/class/gpio</code> directory.”</em></p>
+<p><em><span class="dquo">“</span>The file named <code>base</code> contains the number of the first <span class="caps">GPIO</span> pin in the register and <code>ngpio</code> contains the number of bits in the register.”</em></p>
+<p><em><span class="dquo">“</span>To control a <span class="caps">GPIO</span> bit from user space, you first have to export it from kernel space, which you do by writing the <span class="caps">GPIO</span> number to <code>/sys/class/gpio/export</code>.”</em></p>
+<p><em><span class="dquo">“</span>You can remove a <span class="caps">GPIO</span> from user space control by writing the <span class="caps">GPIO</span> number to <code>/sys/class/gpio/unexport</code>.”</em></p>
+<h4 id="handling-interrupts-from-gpio">Handling interrupts from <span class="caps">GPIO</span></h4>
+<p><em><span class="dquo">“</span>If the <span class="caps">GPIO</span> bit can generate interrupts, the file called <code>edge</code>    exists. Initially, it has the value called <code>none</code>, meaning that it does not generate interrupts. To enable interrupts, you can set it to one of these values:</em></p>
+<ul>
+<li><em><code>rising</code>: Interrupt on rising edge</em></li>
+<li><em><code>falling</code>: Interrupt on falling edge</em></li>
+<li><em><code>both</code>: Interrupt on both rising and falling edges</em></li>
+<li><em><code>none</code>: No interrupts (default)”</em></li>
+</ul>
+<h3 id="leds">LEDs</h3>
+<p><em><span class="dquo">“</span>LEDs are often controlled though a <span class="caps">GPIO</span> pin, but there is another kernel subsystem that offers more specialized control specific to the purpose. The <code>leds</code> kernel subsystem adds the ability to set brightness, should the <span class="caps">LED</span> have that ability, and it can handle LEDs connected in other ways than a simple <span class="caps">GPIO</span> pin.”</em></p>
+<p><em><span class="dquo">“</span>You will have to configure your kernel with the option, <code>CONFIG_LEDS_CLASS</code>, and with the <span class="caps">LED</span> trigger actions that are appropriate to you. There is more information on <code>Documentation/leds/</code>, and the drivers are in <code>drivers/leds/</code>.”</em></p>
+<p><em><span class="dquo">“</span>LEDs are controlled through an interface in <code>sysfs</code> in the directory <code>/sys/class/leds</code>.”</em></p>
+<h3 id="i2c"><span class="math">\(I^2C\)</span></h3>
+<p><em><span class="dquo">“</span>There is a related standard known as <strong>system management bus</strong> (<strong>SMBus</strong>) that is found on PCs, which is used to access temperature and voltage sensors. SMBus is a subset of <span class="caps">I2C</span>.”</em></p>
+<p><em><span class="dquo">“</span><span class="math">\(I^2C\)</span> is a master-slave protocol with the master being one or more host controllers on the SoC. Slaves have a 7-bit address assigned by the manufacturer (read the data sheet).”</em></p>
+<p><em><span class="dquo">“</span>The master may initiate a read or write transactions with one of the slaves. Frequently, the first byte is used to specify a register on the slave, and the remaining bytes are the data read from or written to that register.”</em></p>
+<p><em><span class="dquo">“</span>There is one device node for each host controller”</em></p>
+<div class="highlight"><pre><span></span>ls -l /dev/i2c*
+</pre></div>
+<p><em><span class="dquo">“</span>The device interface provides a series of <code>ioctl</code> commands that query the host controller and send the <code>read</code> and <code>write</code> commands to <span class="math">\(I^2C\)</span> slaves. There is a package named i2c-tools.”</em></p>
+<p><em><span class="dquo">“</span>The <code>i2c-tools</code> package is available in Buildroot and the Yocto Project as well as most mainstream distributions.”</em></p>
+<h3 id="serial-peripheral-interface-spi">Serial Peripheral Interface (<span class="caps">SPI</span>)</h3>
+<p><em><span class="dquo">“</span>The <span class="caps">SPI</span> bus is similar to <span class="caps">I2C</span>, but is a lot faster, up to tens of MHz.”</em></p>
+<p><em><span class="dquo">“</span>There is a generic <span class="caps">SPI</span> device driver, which you can enable through the kernel configuration <code>CONFIG_SPI_SPIDEV</code>.”</em></p>
+<p><em><span class="dquo">“</span>The device nodes are named <code>spidev[bus].[chip select]</code><span class="dquo">“</span></em></p>
+<div class="highlight"><pre><span></span>ls -l /dev/spi*
+</pre></div>
+<p><em><span class="dquo">“</span>[There is] example code in <code>Documentation/spi</code>.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1075,7 +1166,7 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-11T20:34:58+01:00">Jan 11, 2019</time>
+<time datetime="2019-01-12T20:34:46+01:00">Jan 12, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
