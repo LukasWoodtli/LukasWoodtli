@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-13T21:08:00+01:00" />
+<meta property="" content="2019-01-14T08:14:42+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -80,13 +80,15 @@
 <ul>
 <li><a href="#chapter-1-starting-out">Chapter 1. Starting Out</a><ul>
 <li><a href="#selecting-the-right-operating-system">Selecting the right operating system</a></li>
-<li><a href="#project-lifecycle">Project lifecycle</a></li>
+<li><a href="#project-lifecycle">Project lifecycle</a><ul>
 <li><a href="#the-four-elements-of-embedded-linux">The four elements of embedded Linux</a></li>
+</ul>
+</li>
 <li><a href="#hardware-for-embedded-linux">Hardware for embedded Linux</a></li>
 </ul>
 </li>
 <li><a href="#chapter-2-learning-about-toolchains">Chapter 2. Learning About Toolchains</a><ul>
-<li><a href="#what-is-a-toolchain">What is a toolchain?</a></li>
+<li><a href="#what-is-a-toolchain">What is a toolchain?</a><ul>
 <li><a href="#types-of-toolchain-native-versus-cross-toolchain">Types of toolchain - native versus cross toolchain</a></li>
 <li><a href="#cpu-architectures"><span class="caps">CPU</span> architectures</a><ul>
 <li><a href="#arm-oabi-eabi-and-eabihf"><span class="caps">ARM</span> <span class="caps">OABI</span>, <span class="caps">EABI</span> and <span class="caps">EABIHF</span></a></li>
@@ -94,6 +96,8 @@
 </ul>
 </li>
 <li><a href="#choosing-the-c-library">Choosing the C library</a></li>
+</ul>
+</li>
 <li><a href="#finding-a-toolchain">Finding a toolchain</a></li>
 <li><a href="#finding-out-about-your-cross-compiler">Finding out about your cross compiler</a></li>
 <li><a href="#the-sysroot-library-and-header-files">The sysroot, library, and header files</a></li>
@@ -146,59 +150,95 @@
 </li>
 <li><a href="#chapter-4-configuring-and-building-the-kernel">Chapter 4. Configuring and Building the Kernel</a><ul>
 <li><a href="#what-does-the-kernel-do">What does the kernel do?</a></li>
+<li><a href="#choosing-a-kernel">Choosing a kernel</a><ul>
 <li><a href="#stable-and-long-term-support-releases">Stable and long term support releases</a></li>
 <li><a href="#vendor-support">Vendor support</a></li>
 <li><a href="#licensing">Licensing</a></li>
+</ul>
+</li>
+<li><a href="#building-the-kernel">Building the kernel</a><ul>
 <li><a href="#getting-the-source">Getting the source</a></li>
 <li><a href="#understanding-kernel-configuration-kconfig">Understanding kernel configuration - Kconfig</a></li>
 <li><a href="#using-localversion-to-identify-your-kernel">Using <span class="caps">LOCALVERSION</span> to identify your kernel</a></li>
 <li><a href="#kernel-modules">Kernel modules</a></li>
+</ul>
+</li>
+<li><a href="#compiling-kbuild">Compiling - Kbuild</a><ul>
 <li><a href="#finding-out-which-kernel-target-to-build">Finding out which kernel target to build</a></li>
 <li><a href="#build-artifacts">Build artifacts</a></li>
 <li><a href="#compiling-device-trees">Compiling device trees</a></li>
 <li><a href="#compiling-modules">Compiling modules</a></li>
 <li><a href="#cleaning-kernel-sources">Cleaning kernel sources</a></li>
+</ul>
+</li>
+<li><a href="#booting-the-kernel">Booting the kernel</a><ul>
 <li><a href="#early-user-space">Early user space</a></li>
 <li><a href="#kernel-messages">Kernel messages</a></li>
 <li><a href="#kernel-command-line">Kernel command line</a></li>
+</ul>
+</li>
 <li><a href="#porting-linux-to-a-new-board">Porting Linux to a new board</a></li>
 <li><a href="#summary_1">Summary</a></li>
 </ul>
 </li>
-<li><a href="#building-a-root-filesystem">Building a Root Filesystem</a><ul>
-<li><a href="#what-should-be-in-the-root-filesystem">What should be in the root filesystem?</a></li>
+<li><a href="#chapter-5-building-a-root-filesystem">Chapter 5. Building a Root Filesystem</a><ul>
+<li><a href="#what-should-be-in-the-root-filesystem">What should be in the root filesystem?</a><ul>
 <li><a href="#the-directory-layout">The directory layout</a></li>
 <li><a href="#posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</a></li>
+<li><a href="#programs-for-the-root-filesystem">Programs for the root filesystem</a><ul>
 <li><a href="#busybox-to-the-rescue">BusyBox to the rescue!</a></li>
 <li><a href="#toybox-an-alternative-to-busybox">ToyBox - an alternative to BusyBox</a></li>
+</ul>
+</li>
+<li><a href="#libraries-for-the-root-filesystem">Libraries for the root filesystem</a><ul>
 <li><a href="#reducing-the-size-by-stripping">Reducing the size by stripping</a></li>
+</ul>
+</li>
 <li><a href="#device-nodes">Device nodes</a></li>
-<li><a href="#the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</a></li>
+<li><a href="#the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</a><ul>
 <li><a href="#mounting-filesystems">Mounting filesystems</a></li>
+</ul>
+</li>
 <li><a href="#kernel-modules_1">Kernel modules</a></li>
+</ul>
+</li>
 <li><a href="#transferring-the-root-filesystem-to-the-target">Transferring the root filesystem to the target</a></li>
-<li><a href="#creating-a-boot-initramfs">Creating a boot initramfs</a></li>
+<li><a href="#creating-a-boot-initramfs">Creating a boot initramfs</a><ul>
 <li><a href="#booting-with-qemu">Booting with <span class="caps">QEMU</span></a></li>
 <li><a href="#building-an-initramfs-into-the-kernel-image">Building an initramfs into the kernel image</a></li>
 <li><a href="#building-an-initramfs-using-a-device-table">Building an initramfs using a device table</a></li>
 <li><a href="#the-old-initrd-format">The old initrd format</a></li>
-<li><a href="#the-init-program">The init program</a></li>
+</ul>
+</li>
+<li><a href="#the-init-program">The init program</a><ul>
 <li><a href="#adding-user-accounts-to-the-root-filesystem">Adding user accounts to the root filesystem</a></li>
-<li><a href="#a-better-way-of-managing-device-nodes">A better way of managing device nodes</a></li>
+</ul>
+</li>
+<li><a href="#a-better-way-of-managing-device-nodes">A better way of managing device nodes</a><ul>
 <li><a href="#an-example-using-devtmpfs">An example using devtmpfs</a></li>
 <li><a href="#an-example-using-mdev">An example using mdev</a></li>
+</ul>
+</li>
 <li><a href="#additional-reading">Additional reading</a></li>
 </ul>
 </li>
-<li><a href="#updating-software-in-the-field">Updating Software in the Field</a><ul>
+<li><a href="#chapter-8-updating-software-in-the-field">Chapter 8. Updating Software in the Field</a><ul>
+<li><a href="#what-to-update">What to update?</a><ul>
 <li><a href="#bootloader">Bootloader</a></li>
-<li><a href="#kernel">Kernel</a></li>
+</ul>
+</li>
+<li><a href="#kernel">Kernel</a><ul>
 <li><a href="#root-filesystem">Root filesystem</a></li>
 <li><a href="#system-applications">System applications</a></li>
 <li><a href="#device-specific-data">Device-specific data</a></li>
+</ul>
+</li>
+<li><a href="#the-basics-of-software-update">The basics of software update</a><ul>
 <li><a href="#making-updates-robust">Making updates robust</a></li>
 <li><a href="#making-updates-fail-safe">Making updates fail-safe</a></li>
 <li><a href="#making-updates-secure">Making updates secure</a></li>
+</ul>
+</li>
 <li><a href="#types-of-update-mechanism">Types of update mechanism</a><ul>
 <li><a href="#symmetric-image-update">Symmetric image update</a></li>
 <li><a href="#asymmetric-image-update">Asymmetric image update</a></li>
@@ -209,7 +249,7 @@
 <li><a href="#summary_2">Summary</a></li>
 </ul>
 </li>
-<li><a href="#interfacing-with-device-drivers">Interfacing with Device Drivers</a><ul>
+<li><a href="#chapter-9-interfacing-with-device-drivers">Chapter 9. Interfacing with Device Drivers</a><ul>
 <li><a href="#the-role-of-device-drivers">The role of device drivers</a></li>
 <li><a href="#character-devices">Character devices</a></li>
 <li><a href="#block-devices">Block devices</a></li>
@@ -236,12 +276,16 @@
 <li><a href="#serial-peripheral-interface-spi">Serial Peripheral Interface (<span class="caps">SPI</span>)</a></li>
 </ul>
 </li>
-<li><a href="#writing-a-kernel-device-driver">Writing a kernel device driver</a></li>
+<li><a href="#writing-a-kernel-device-driver">Writing a kernel device driver</a><ul>
 <li><a href="#designing-a-character-driver-interface">Designing a character driver interface</a></li>
 <li><a href="#compiling-kernel-modules">Compiling kernel modules</a></li>
 <li><a href="#loading-kernel-modules">Loading kernel modules</a></li>
-<li><a href="#discovering-the-hardware-configuration">Discovering the hardware configuration</a></li>
+</ul>
+</li>
+<li><a href="#discovering-the-hardware-configuration">Discovering the hardware configuration</a><ul>
 <li><a href="#linking-hardware-with-device-drivers">Linking hardware with device drivers</a></li>
+</ul>
+</li>
 <li><a href="#summary_3">Summary</a></li>
 </ul>
 </li>
@@ -274,7 +318,7 @@
 <li><em><span class="dquo">“</span>Debugging and optimizing performance […] trace, profile, and debug your code in both the applications and the kernel.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>Debugging and optimizing performance (chapters 12 and 13) describe how to trace, profile, and debug your code in both the applications and the kernel.”</em></p>
-<h2 id="the-four-elements-of-embedded-linux">The four elements of embedded Linux</h2>
+<h3 id="the-four-elements-of-embedded-linux">The four elements of embedded Linux</h3>
 <ul>
 <li><em><span class="dquo">“</span>Toolchain: This consists of the compiler and other tools needed to create code for your target device. Everything else depends on the toolchain.”</em></li>
 <li><em><span class="dquo">“</span>Bootloader: This is necessary to initialize the board and to load and boot the Linux kernel.”</em></li>
@@ -299,7 +343,7 @@
 </ul>
 <p><em><span class="dquo">“</span>As well as these, you will need a copy of the Linux kernel headers,”</em></p>
 <p><em><span class="dquo">“</span>of the header files in the include directory of your kernel source code. Those headers are intended for use in the kernel only and contain definitions that will cause conflicts if used in their raw state to compile regular Linux applications. Instead, you will need to generate a set of sanitized kernel headers”</em></p>
-<h2 id="types-of-toolchain-native-versus-cross-toolchain">Types of toolchain - native versus cross toolchain</h2>
+<h3 id="types-of-toolchain-native-versus-cross-toolchain">Types of toolchain - native versus cross toolchain</h3>
 <p><em><span class="dquo">“</span>here are two types of toolchain:</em></p>
 <ul>
 <li><em>Native: This toolchain runs on the same type of system […] This is the usual case for desktops and servers, and it is becoming popular on certain classes of embedded devices. […]</em></li>
@@ -307,7 +351,7 @@
 </ul>
 <p><em><span class="dquo">“</span>Almost all embedded Linux development is done using a cross development toolchain, partly because most embedded devices are not well suited to program development since they lack computing power, memory, and storage, but also because it keeps the host and target environments separate.”</em></p>
 <p><em><span class="dquo">“</span>there is a counter argument in favor of native development. Cross development creates the burden of cross-compiling all the libraries and tools that you need for your target.”</em></p>
-<h2 id="cpu-architectures"><span class="caps">CPU</span> architectures</h2>
+<h3 id="cpu-architectures"><span class="caps">CPU</span> architectures</h3>
 <p><em><span class="dquo">“</span>toolchain has to be built according to the capabilities of the target <span class="caps">CPU</span>:</em></p>
 <ul>
 <li><em><span class="caps">CPU</span> architecture: arm, mips, x86_64, and so on</em></li>
@@ -315,9 +359,9 @@
 <li><em>Floating point support: Not all versions of embedded processors implement a hardware floating point unit, in which case, the toolchain can be configured to call a software floating point library instead</em></li>
 <li><em>Application Binary Interface (<span class="caps">ABI</span>): The calling convention used for passing parameters between function calls”</em></li>
 </ul>
-<h3 id="arm-oabi-eabi-and-eabihf"><span class="caps">ARM</span> <span class="caps">OABI</span>, <span class="caps">EABI</span> and <span class="caps">EABIHF</span></h3>
+<h4 id="arm-oabi-eabi-and-eabihf"><span class="caps">ARM</span> <span class="caps">OABI</span>, <span class="caps">EABI</span> and <span class="caps">EABIHF</span></h4>
 <p><em><span class="dquo">“</span>With many architectures, the <span class="caps">ABI</span> is constant across the family of processors. One notable exception is <span class="caps">ARM</span>. The <span class="caps">ARM</span> architecture transitioned to the </em>Extended Application Binary Interface<em> (<strong><span class="caps">EABI</span></strong>) in the late 2000’s, resulting in the previous <span class="caps">ABI</span> being named the </em>Old Application Binary Interface<em> (<strong><span class="caps">OABI</span></strong>). While the <span class="caps">OABI</span> is now obsolete, you continue to see references to <span class="caps">EABI</span>. Since then, the </em><span class="caps">EABI</span> has split into two<em>, based on the way that floating point parameters are passed. The </em>original <span class="caps">EABI</span> uses general purpose (integer)<em> registers</em> while the <em>newer <strong><span class="caps">EABIHF</span></strong> uses floating point registers. The <span class="caps">EABIHF</span> is significantly faster at floating point operations since it removes the need for copying between integer and floating point registers, but it is not compatible with CPUs that do not have a floating point unit. The choice, then, is between two incompatible ABIs: </em>you cannot mix and match the two<em> and so you have to decide at this stage.”</em></p>
-<h3 id="gnu-prefix-tuple"><span class="caps">GNU</span> prefix tuple</h3>
+<h4 id="gnu-prefix-tuple"><span class="caps">GNU</span> prefix tuple</h4>
 <p><em><span class="dquo">“</span><span class="caps">GNU</span> uses a prefix to the tools to identify the various combinations that can be generated, consisting of a tuple of three or four components separated by dashes:</em></p>
 <ul>
 <li><em><span class="caps">CPU</span>: The <span class="caps">CPU</span> architecture, such as arm, mips, or x86_64. If the <span class="caps">CPU</span> has both endian modes, they may be differentiated by adding <strong>el for little-endian</strong>, or <strong>eb for big-endian</strong>. Good examples are little-endian <span class="caps">MIPS</span>, mipsel and big-endian <span class="caps">ARM</span>, armeb.</em></li>
@@ -326,7 +370,7 @@
 <li><em>Operating system: A name for the user space component, which might be <code>gnu</code> or <code>uclibcgnu</code>. The <span class="caps">ABI</span> may be appended here as well so, for <span class="caps">ARM</span> toolchains, you may see <code>gnueabi</code>, <code>gnueabihf</code>, <code>uclibcgnueabi</code>, or <code>uclibcgnueabihf</code>.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>You can find the tuple used when building the toolchain by using the <code>-dumpmachine</code> option of <code>gcc</code><span class="dquo">“</span></em></p>
-<h2 id="choosing-the-c-library">Choosing the C library</h2>
+<h3 id="choosing-the-c-library">Choosing the C library</h3>
 <p><em><span class="dquo">“</span>The programming interface to the Unix operating system is defined in the C language, which is now defined by the <strong><span class="caps">POSIX</span></strong> standards. The C library is the implementation of that interface”</em></p>
 <p><em><span class="dquo">“</span>There are several C libraries:</em></p>
 <ul>
@@ -603,18 +647,20 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 <h2 id="what-does-the-kernel-do">What does the kernel do?</h2>
 <p><em><span class="dquo">“</span>The system call interface uses an architecture-specific method, such as a trap or a software interrupt, to switch the <span class="caps">CPU</span> from low privilege user mode to high privilege kernel mode, which allows access to all memory addresses and <span class="caps">CPU</span> registers.”</em></p>
 <p><em><span class="dquo">“</span>Interrupts can only be handled in a device driver, never by a user space application.”</em></p>
-<h2 id="stable-and-long-term-support-releases">Stable and long term support releases</h2>
+<h2 id="choosing-a-kernel">Choosing a kernel</h2>
+<h3 id="stable-and-long-term-support-releases">Stable and long term support releases</h3>
 <p><em><span class="dquo">“</span>[…] stable releases and long term releases. After the release of a mainline kernel (maintained by Linus Torvalds) it is moved to the stable tree (maintained by Greg Kroah-Hartman).”</em></p>
 <p><em><span class="dquo">“</span>some kernels are labeled <strong>long term</strong> and maintained for two or more years. There is at least one long term kernel release each year.”</em></p>
 <p><a href="www.kernel.org">https://www.kernel.org/</a></p>
 <p><a href="kernelnewbies.org">http://kernelnewbies.org/LinuxVersions</a></p>
-<h2 id="vendor-support">Vendor support</h2>
+<h3 id="vendor-support">Vendor support</h3>
 <p><em><span class="dquo">“</span>You may find support for your board or SoC from independent open source projects, Linaro or the Yocto Project, for example, or from companies providing third party support for embedded Linux, but in many cases you will be obliged to look to the vendor of your SoC or board for a working kernel.”</em></p>
-<h2 id="licensing">Licensing</h2>
+<h3 id="licensing">Licensing</h3>
 <p><em><span class="dquo">“</span>The Linux source code is licensed under <span class="caps">GPL</span> v2”</em></p>
 <p><em><span class="dquo">“</span>it is now accepted practice that the <span class="caps">GPL</span> does not <strong>necessarily</strong> apply to kernel modules. This is codified by the kernel <code>MODULE_LICENSE</code> macro, which may take the value <code>Proprietary</code> to indicate that it is not released under the <span class="caps">GPL</span>.”</em></p>
 <p>*”[…] an oft-quoted e-mail thread titled “Linux <span class="caps">GPL</span> and binary module exception clause?” which is archived at <a href="http://yarchive.net">http://yarchive.net/comp/linux/gpl_modules.html</a></p>
-<h2 id="getting-the-source">Getting the source</h2>
+<h2 id="building-the-kernel">Building the kernel</h2>
+<h3 id="getting-the-source">Getting the source</h3>
 <p><em><span class="dquo">“</span>The main directories of interest are:</em></p>
 <ul>
 <li><code>arch</code>: <em>architecture-specific files, one subdirectory per architecture.</em></li>
@@ -629,23 +675,24 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 <li><code>scripts</code>: <em>many useful scripts, including the device tree compiler, <span class="caps">DTC</span>.</em></li>
 <li><code>tools</code>: <em>many useful tools.”</em></li>
 </ul>
-<h2 id="understanding-kernel-configuration-kconfig">Understanding kernel configuration - Kconfig</h2>
+<h3 id="understanding-kernel-configuration-kconfig">Understanding kernel configuration - Kconfig</h3>
 <p>*”The value you put into <code>ARCH</code> is one of the subdirectories you find in directory arch, with the oddity that <code>ARCH=i386</code> and <code>ARCH=x86_64</code> both source <code>arch/x86/Kconfig</code>.</p>
 <p>*”[search function] in <code>menuconfig</code> by pressing the forward slash key, <code>/</code><span class="dquo">“</span>.</p>
 <p><em><span class="dquo">“</span>There are a set of known working configuration files in <code>arch/$ARCH/configs</code>, each containing suitable configuration values for a single SoC or a group of SoCs.”</em></p>
 <p><em><span class="dquo">“</span>[There is a] target named <code>oldconfig</code>. This takes an existing <code>.config</code> file and asks you to supply configuration values for any options that don’t have them. You would use it when moving a configuration to a newer kernel version; copy <code>.config</code> from the old kernel to the new source directory and run the <code>make ARCH=arm oldconfig</code> command to bring it up to date. It can also be used to validate a <code>.config</code> file that you have edited manually”</em></p>
-<h2 id="using-localversion-to-identify-your-kernel">Using <span class="caps">LOCALVERSION</span> to identify your kernel</h2>
+<h3 id="using-localversion-to-identify-your-kernel">Using <span class="caps">LOCALVERSION</span> to identify your kernel</h3>
 <div class="highlight"><pre><span></span>make <span class="nv">ARCH</span><span class="o">=</span>arm kernelversion
 </pre></div>
 <p><em><span class="dquo">“</span>If you change the configuration from the default, it is advisable to append your own version information, which you can configure by setting <code>CONFIG_LOCALVERSION</code><span class="dquo">“</span></em></p>
-<h2 id="kernel-modules">Kernel modules</h2>
+<h3 id="kernel-modules">Kernel modules</h3>
 <p><em><span class="dquo">“</span>[A] few cases where kernel modules are a good idea in embedded systems:</em></p>
 <ul>
 <li><em>proprietary modules</em></li>
 <li><em>reduce boot time by deferring the loading of non-essential drivers</em></li>
 <li><em>[it] would take up too much memory to compile [all drivers] statically</em></li>
 </ul>
-<h2 id="finding-out-which-kernel-target-to-build">Finding out which kernel target to build</h2>
+<h2 id="compiling-kbuild">Compiling - Kbuild</h2>
+<h3 id="finding-out-which-kernel-target-to-build">Finding out which kernel target to build</h3>
 <p><em><span class="dquo">“</span>To build a kernel image, you need to know what your bootloader expects.</em></p>
 <ul>
 <li><strong>U-Boot</strong>: <em>Traditionally, U-Boot has required <code>uImage</code>, but newer versions can load a <code>zImage</code> file using the <code>bootz</code> command</em></li>
@@ -658,7 +705,7 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>You can still create a uImage binary from a multi-platform build, so long as you give the <code>LOADADDR</code> of the particular SoC you are hoping to boot this kernel on. You can find the load address by looking in <code>mach -[your SoC]/Makefile.boot</code> and noting the value of <code>zreladdr-y</code>:”</em></p>
 <div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">LOADADDR</span><span class="o">=</span>0x80008000 uImage
 </pre></div>
-<h2 id="build-artifacts">Build artifacts</h2>
+<h3 id="build-artifacts">Build artifacts</h3>
 <p><em><span class="dquo">“</span>If you have compiled your kernel with debug enabled (<code>CONFIG_DEBUG_INFO=y</code>), it will contain debug symbols which can be used with debuggers like <code>kgdb</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span><code>System.map</code> contains the symbol table in a human readable form.”</em></p>
 <p><em><span class="dquo">“</span>Most bootloaders cannot handle <span class="caps">ELF</span> code directly. There is a further stage of processing which takes vmlinux and places those binaries in `arch/$<span class="caps">ARCH</span>/boot that are suitable for the various bootloaders:</em></p>
@@ -667,12 +714,12 @@ The problem occurs because the location of physical memory might be different fo
 <li><code>zImage</code>: <em>For the PowerPC architecture, this is just a compressed version of <code>Image</code> […] the bootloader must do the decompression. For all other architectures, [<code>Image</code> contains] a stub of code that decompresses and relocates it.</em></li>
 <li><code>uImage</code>: <em><code>zImage</code> plus a 64-byte U-Boot header.</em>”</li>
 </ul>
-<h2 id="compiling-device-trees">Compiling device trees</h2>
+<h3 id="compiling-device-trees">Compiling device trees</h3>
 <p><em><span class="dquo">“</span>The <code>dtbs</code> target builds device trees according to the rules in <code>arch/$ARCH/boot/dts/Makefile</code><span class="dquo">“</span></em> , using the device tree source files in that directory.”*</p>
 <div class="highlight"><pre><span></span>make <span class="nv">ARCH</span><span class="o">=</span>arm dtbs
 </pre></div>
 <p><em><span class="dquo">“</span>The compiled <code>.dtb</code> files are generated in the same directory as the sources.”</em></p>
-<h2 id="compiling-modules">Compiling modules</h2>
+<h3 id="compiling-modules">Compiling modules</h3>
 <p><em><span class="dquo">“</span>Build [modules] separately using the <code>modules</code> target:”</em></p>
 <div class="highlight"><pre><span></span>make -j <span class="m">4</span> <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- modules
 </pre></div>
@@ -681,14 +728,15 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>To install them into the staging area of your root filesystem […], provide the path using <code>INSTALL_MOD_PATH</code>:”</em></p>
 <div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">INSTALL_MOD_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/rootfs modules_install
 </pre></div>
-<h2 id="cleaning-kernel-sources">Cleaning kernel sources</h2>
+<h3 id="cleaning-kernel-sources">Cleaning kernel sources</h3>
 <p>Make targets:</p>
 <ul>
 <li><span class="dquo">“</span><code>clean</code>: <em>Removes object files and most intermediates.</em></li>
 <li><code>mrproper</code>: <em>Removes all intermediate files, including the <code>.config</code> file. [Return] the source tree to the state it was in immediately after cloning</em></li>
 <li><code>distclean</code>: <em>This is the same as <code>mrproper</code>, but also deletes editor backup files, patch files, and other artifacts of software development.</em>”</li>
 </ul>
-<h2 id="early-user-space">Early user space</h2>
+<h2 id="booting-the-kernel">Booting the kernel</h2>
+<h3 id="early-user-space">Early user space</h3>
 <p><em><span class="dquo">“</span>In order to transition from kernel initialization to user space, the kernel has to mount a root filesystem and execute a program in that root filesystem. This can be achieved via a ramdisk or by mounting a real filesystem on a block device.”</em></p>
 <p><em><span class="dquo">“</span>The code for all of this is in <code>init/main.c</code>, starting with the function <code>rest_init()</code>, which creates the first thread with <span class="caps">PID</span> 1 and runs the code in <code>kernel_init()</code>.”</em></p>
 <p><em><span class="dquo">“</span>If there is a ramdisk, it will try to execute the program <code>/init</code> […]. If fails to find and run <code>/init</code>, it tries to mount a filesystem by calling the function <code>prepare_namespace()</code> in <code>init/do_mounts.c</code>. This requires a <code>root=</code> command line to give the name of the block device to use for mounting, usually in the form:”</em></p>
@@ -698,7 +746,7 @@ The problem occurs because the location of physical memory might be different fo
 <div class="highlight"><pre><span></span><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;p&lt;partition number&gt;
 </pre></div>
 <p><em><span class="dquo">“</span>If the mount succeeds, it will try to execute <code>/sbin/init</code>, followed by <code>/etc/init</code>, <code>/bin/init</code>, and then <code>/bin/sh</code>, stopping at the first one that works.”</em></p>
-<h2 id="kernel-messages">Kernel messages</h2>
+<h3 id="kernel-messages">Kernel messages</h3>
 <table class="table table-striped">
 <thead>
 <tr>
@@ -753,7 +801,7 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>They are first written to a buffer, <code>__log_buf</code>, the size of which is two to the power of <code>CONFIG_LOG_BUF_SHIFT</code>.”</em></p>
 <p><em><span class="dquo">“</span>You can dump the entire buffer using the command <code>dmesg</code>.”</em></p>
 <p><em><span class="dquo">“</span>The default console log level is <code>7</code>, meaning that messages of level <code>6</code> and lower are displayed”</em></p>
-<h2 id="kernel-command-line">Kernel command line</h2>
+<h3 id="kernel-command-line">Kernel command line</h3>
 <p><em><span class="dquo">“</span>[The kernel command line string can be set] via the <code>bootargs</code> variable in the case of U-Boot; it can also be defined in the device tree, or set as part of the kernel configuration in <code>CONFIG_CMDLINE</code>.”</em></p>
 <p><em><span class="dquo">“</span>There is a complete list in <code>Documentation/kernel-parameters.txt</code><span class="dquo">“</span></em></p>
 <ul>
@@ -784,7 +832,7 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>One of the things you should consider […] is whether the kernel features and drivers should be compiled as modules or built-in.”</em></p>
 <p><em><span class="dquo">“</span>Building the kernel produces a compressed kernel image file, named <code>zImage</code>, <code>bzImage</code>, or <code>uImage</code>, depending on the bootloader you will be using and the target architecture. A kernel build will also generate any kernel modules (as <code>.ko</code> files) that you have configured, and device tree binaries (as <code>.dtb</code> files) if your target requires them.”</em></p>
 <p><em><span class="dquo">“</span>The root filesystem can be a ramdisk or a filesystem accessed via a block device,”</em></p>
-<h1 id="building-a-root-filesystem">Building a Root Filesystem</h1>
+<h1 id="chapter-5-building-a-root-filesystem">Chapter 5. Building a Root Filesystem</h1>
 <h2 id="what-should-be-in-the-root-filesystem">What should be in the root filesystem?</h2>
 <p><em><span class="dquo">“</span>The kernel will get a root filesystem, either an <code>initramfs</code>, passed as a pointer from the bootloader, or by mounting the block device given on the kernel command line by the <code>root=</code> parameter. Once it has a root filesystem, the kernel will execute the first program, by default named <code>init</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span>To make a minimal root filesystem, you need these components:</em></p>
@@ -798,7 +846,7 @@ The problem occurs because the location of physical memory might be different fo
 <li><em><code>/proc</code> and <code>/sys</code>: These two pseudo filesystems represent kernel data structures as a hierarchy of directories and files. Many programs and library functions depend on proc and sys.</em></li>
 <li><em>Kernel modules: If you have configured some parts of your kernel to be modules, they need to be installed in the root filesystem, usually in <code>/lib/modules/[kernel version]</code><span class="dquo">“</span></em></li>
 </ul>
-<h2 id="the-directory-layout">The directory layout</h2>
+<h3 id="the-directory-layout">The directory layout</h3>
 <p><em><span class="dquo">“</span>The Linux kernel does not care about the layout of files and directories beyond the existence of the program named by <code>init=</code> or <code>rdinit=</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span>However, many programs expect certain files to be in certain places”</em></p>
 <p><em><span class="dquo">“</span>The basic layout of a Linux system is defined in the <a href="http://refspecs.linuxfoundation.org/fhs.shtml">Filesystem Hierarchy Standard (<span class="caps">FHS</span>)</a>”</em></p>
@@ -817,7 +865,7 @@ The problem occurs because the location of physical memory might be different fo
 </ul>
 <p><em><span class="dquo">“</span>The difference between <code>/bin</code> and <code>/sbin</code> is simply that the latter need not be included in the search path for non-root users.”</em></p>
 <p><em><span class="dquo">“</span>The significance of <code>/usr</code> is that it maybe in a separate partition from the root filesystem, so it cannot contain anything that is needed to boot the system up.”</em></p>
-<h2 id="posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</h2>
+<h3 id="posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</h3>
 <div class="math">$$\begin{matrix}
 \left.\begin{matrix}
 400 &amp; r &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; -\\ 
@@ -842,20 +890,22 @@ The problem occurs because the location of physical memory might be different fo
 <li><em>Sticky (1): In a directory, this restricts deletion so that one user cannot delete files that are owned by another user. This is usually set on <code>/tmp</code> and <code>/var/tmp</code>.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>The <span class="caps">SUID</span> bit is probably used most often. It gives non-root users a temporary privilege escalation to superuser to perform a task. […] for normal users to use <code>ping</code>, [which] is owned by user <code>root</code> and has the <span class="caps">SUID</span> bit set so that when you run <code>ping</code>, it executes with <span class="caps">UID</span> 0 regardless of your <span class="caps">UID</span>.”</em></p>
-<h2 id="busybox-to-the-rescue">BusyBox to the rescue!</h2>
+<h3 id="programs-for-the-root-filesystem">Programs for the root filesystem</h3>
+<h4 id="busybox-to-the-rescue">BusyBox to the rescue!</h4>
 <p><em><span class="dquo">“</span>BusyBox tools implement a subset of the functions of the desktop equivalents, but they do enough of it to be useful in the majority of cases. Another trick BusyBox employs is to combine all the tools together into a single binary”</em></p>
 <p><em><span class="dquo">“</span>BusyBox has over three hundred applets including an init program, several shells of varying levels of complexity, and utilities for most admin tasks. There is even a simple version of the vi editor, so you can change text files on your device.”</em></p>
-<h2 id="toybox-an-alternative-to-busybox">ToyBox - an alternative to BusyBox</h2>
+<h4 id="toybox-an-alternative-to-busybox">ToyBox - an alternative to BusyBox</h4>
 <p><em><span class="dquo">“</span>ToyBox has the same aim as BusyBox, but with more emphasis on complying with standards, especially <span class="caps">POSIX</span>-2008 and <span class="caps">LSB</span> 4.1”</em></p>
 <p><em><span class="dquo">“</span>it implements fewer applets [than BusyBox]”</em></p>
 <p><em><span class="dquo">“</span>[The] main difference is the license, which is <span class="caps">BSD</span> rather than <span class="caps">GPL</span> v2.”</em></p>
-<h2 id="reducing-the-size-by-stripping">Reducing the size by stripping</h2>
+<h3 id="libraries-for-the-root-filesystem">Libraries for the root filesystem</h3>
+<h4 id="reducing-the-size-by-stripping">Reducing the size by stripping</h4>
 <div class="highlight"><pre><span></span>arm-cortex_a8-linux-gnueabihf-strip rootfs/lib/libc-2.22.so
 </pre></div>
 <blockquote>
 <p>Be careful about stripping kernel modules. Some symbols are required by the module loader to relocate the module code, and so the module will fail to load if they are stripped out. Use this command to remove debug symbols while keeping those used for relocation: strip <code>--strip-unneeded &lt;module name&gt;</code>.</p>
 </blockquote>
-<h2 id="device-nodes">Device nodes</h2>
+<h3 id="device-nodes">Device nodes</h3>
 <p><em><span class="dquo">“</span>[…] Unix philosophy that everything is a file (except network interfaces, which are sockets).”</em></p>
 <p><em><span class="dquo">“</span>Block devices are mass storage devices, such as <span class="caps">SD</span> cards or hard drives. A character device is pretty much anything else, once again with the exception of network interfaces.”</em></p>
 <p><em><span class="dquo">“</span>Device nodes are created using the program named <code>mknod</code> (short for make node):</em>”</p>
@@ -873,7 +923,7 @@ The problem occurs because the location of physical memory might be different fo
 sudo mknod -m <span class="m">600</span> dev/console c <span class="m">5</span> <span class="m">1</span>
 </pre></div>
 <p><em><span class="dquo">“</span>You can delete device nodes using the standard <code>rm</code> command: there is no <code>rmnod</code> command because, once created, they are just files.”</em></p>
-<h2 id="the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</h2>
+<h3 id="the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</h3>
 <p><em><span class="dquo">“</span><code>proc</code> and <code>sysfs</code> are two pseudo filesystems”</em></p>
 <p><em><span class="dquo">“</span>when you read one of the files [in <code>proc</code> or <code>sysfs</code>], the contents you see do not come from disk storage; it has been formatted on-the-fly by a function in the kernel. Some files are also writable, meaning that a kernel function is called with the new data you have written and, if it is of the correct format and you have sufficient permissions, it will modify the value stored in the kernel’s memory. In other words, <code>proc</code> and <code>sysfs</code> provide another way to interact with device drivers and other kernel code.”</em></p>
 <p><em><span class="dquo">“</span>The <code>proc</code> and <code>sysfs</code> filesystems should be mounted on the directories called <code>/proc</code> and <code>/sys</code>:</em>”</p>
@@ -886,14 +936,14 @@ mount -t sysfs sysfs /sys
 <p><em><span class="dquo">“</span>in <code>/proc/sys</code>, there are files that display and control the state and behavior of kernel subsystems, especially scheduling, memory management, and networking.”</em></p>
 <p><a href="http://man7.org/linux/man-pages/man5/proc.5.html">man 5 proc</a></p>
 <p><em><span class="dquo">“</span>the role of <code>sysfs</code> is to present the kernel driver model to user space. It exports a hierarchy of files relating to devices and device drivers and the way they are connected to each other.”</em></p>
-<h2 id="mounting-filesystems">Mounting filesystems</h2>
+<h4 id="mounting-filesystems">Mounting filesystems</h4>
 <p><em><span class="dquo">“</span>The <code>mount</code> command allows us to attach one filesystem to a directory within another, forming a hierarchy of filesystems.”</em></p>
 <p><em><span class="dquo">“</span>The format of the mount command is as follows:”</em></p>
 <div class="highlight"><pre><span></span>mount <span class="o">[</span>-t vfstype<span class="o">]</span> <span class="o">[</span>-o options<span class="o">]</span> device directory
 </pre></div>
 <p><a href="http://man7.org/linux/man-pages/man8/mount.8.html">man 8 mount</a></p>
 <p><em><span class="dquo">“</span>Looking at the example of mounting the <code>proc</code> filesystem, there is something odd: there is no device node, such as <code>/dev/proc</code>, since it is a pseudo filesystem and not a real one. But the <code>mount</code> command requires a device parameter. Consequently, we have to give a string where <code>device</code> should go, but it does not matter much what that string is.”</em></p>
-<h2 id="kernel-modules_1">Kernel modules</h2>
+<h3 id="kernel-modules_1">Kernel modules</h3>
 <p><em><span class="dquo">“</span>Kernel modules […] need to be installed into the root filesystem, using the kernel make target <code>modules_install</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span>This will copy them into the directory called <code>/lib/modules/&lt;kernel version&gt;</code> together with the configuration files needed by the <code>modprobe</code> command.”</em></p>
 <h2 id="transferring-the-root-filesystem-to-the-target">Transferring the root filesystem to the target</h2>
@@ -907,14 +957,14 @@ mount -t sysfs sysfs /sys
 <p><em><span class="dquo">“</span><code>initramfs</code> is a compressed <code>cpio</code> archive.”</em></p>
 <p><em><span class="dquo">“</span>You need to configure your kernel with <code>CONFIG_BLK_DEV_INITRD</code> to support <code>initramfs</code>.”</em></p>
 <p><em><span class="dquo">“</span>there are three different ways to create a boot ramdisk: as a standalone <code>cpio</code> archive, as a <code>cpio</code> archive embedded in the kernel image, and as a device table which the kernel build system processes as part of the build.”</em></p>
-<h2 id="booting-with-qemu">Booting with <span class="caps">QEMU</span></h2>
+<h3 id="booting-with-qemu">Booting with <span class="caps">QEMU</span></h3>
 <p><em><span class="dquo">“</span><span class="caps">QEMU</span> has the option called <code>-initrd</code> to load <code>initramfs</code> into memory.”</em></p>
 <div class="highlight"><pre><span></span><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none <span class="se">\</span>
 qemu-system-arm -m 256M -nographic -M versatilepb <span class="se">\</span>
 -kernel zImage -append <span class="s2">"console=ttyAMA0 rdinit=/bin/sh"</span> <span class="se">\</span>
 -dtb versatile-pb.dtb -initrd initramfs.cpio.gz
 </pre></div>
-<h2 id="building-an-initramfs-into-the-kernel-image">Building an initramfs into the kernel image</h2>
+<h3 id="building-an-initramfs-into-the-kernel-image">Building an initramfs into the kernel image</h3>
 <p><em><span class="dquo">“</span>Linux can be configured to incorporate <code>initramfs</code> into the kernel image. To do this […] set <code>CONFIG_INITRAMFS_SOURCE</code> to the full path of the <code>cpio</code> archive. […] Note that it has to be the uncompressed <code>cpio</code> file ending in <code>.cpio</code>, not the gzipped version. […] Booting is the same as before, except that there is no ramdisk file.”</em></p>
 <p>For <span class="caps">QEMU</span>:</p>
 <div class="highlight"><pre><span></span><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none qemu-system-arm -m 256M <span class="se">\</span>
@@ -926,16 +976,16 @@ qemu-system-arm -m 256M -nographic -M versatilepb <span class="se">\</span>
 <div class="highlight"><pre><span></span>fatload mmc <span class="m">0</span>:1 0x80200000 zImage
 fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bootargs <span class="nv">console</span><span class="o">=</span>ttyO0,115200 <span class="nv">rdinit</span><span class="o">=</span>/bin/sh bootz 0x80200000 – 0x80f00000
 </pre></div>
-<h2 id="building-an-initramfs-using-a-device-table">Building an initramfs using a device table</h2>
+<h3 id="building-an-initramfs-using-a-device-table">Building an initramfs using a device table</h3>
 <p><em><span class="dquo">“</span>A device table is a text file that lists the files, directories, device nodes, and links that go into an archive or filesystem image. The overwhelming advantage is that it allows you to create entries in the archive file that are owned by the <code>root</code> user, or any other <span class="caps">UID</span>, without having root privileges yourself.”</em></p>
 <p><em><span class="dquo">“</span>It is only when it is expanded by Linux at boot time that real files and directories get created, using the attributes you have specified.”</em></p>
 <p><em><span class="dquo">“</span>You write the device table file, and then point <code>CONFIG_INITRAMFS_SOURCE</code> at it. Then, when you build the kernel, it creates the <code>cpio</code> archive from the instructions in the device table. At no point do you need root access.”</em></p>
 <p><em><span class="dquo">“</span>Creating an <code>initramfs</code> device table from scratch is made easier by a script in the kernel source code in <code>scripts/gen_initramfs_list.sh</code>, which creates a device table from a given directory.”</em></p>
-<h2 id="the-old-initrd-format">The old initrd format</h2>
+<h3 id="the-old-initrd-format">The old initrd format</h3>
 <p><em><span class="dquo">“</span>There is an older format for a Linux ramdisk, known as <code>initrd</code>. It was the only format available before Linux 2.6 and is still needed if you are using the mmu-less variant of Linux, uClinux. It is pretty obscure […]. There is more information in the kernel source in <code>Documentation/initrd.txt</code><span class="dquo">“</span></em></p>
 <h2 id="the-init-program">The init program</h2>
 <p><em><span class="dquo">“</span>The init program [of BusyBox] begins by reading the configuration file, <code>/etc/inittab</code>.”</em></p>
-<h2 id="adding-user-accounts-to-the-root-filesystem">Adding user accounts to the root filesystem</h2>
+<h3 id="adding-user-accounts-to-the-root-filesystem">Adding user accounts to the root filesystem</h3>
 <p><em><span class="dquo">“</span>Add to your staging directory the files <code>etc/passwd</code>, <code>etc/shadow</code>, and <code>etc/group</code> […]. Make sure that the permissions of <code>shadow</code> are <code>0600</code>. Next, you need to initiate the login procedure by starting a program called <code>getty</code>.”</em></p>
 <h2 id="a-better-way-of-managing-device-nodes">A better way of managing device nodes</h2>
 <p><em><span class="dquo">“</span>There are other ways to create device nodes automatically on demand:</em></p>
@@ -944,10 +994,10 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <li><code>mdev</code>: <em>This is a BusyBox applet that is used to populate a directory with device nodes and to create new nodes as needed. There is a configuration file, <code>/etc/mdev.conf</code>, which contains rules for ownership and the mode of the nodes.</em></li>
 <li><code>udev</code>: This is the mainstream equivalent of <code>mdev</code>. You will find it on desktop Linux and in some embedded devices. […] It is now part of <code>systemd</code>.”*</li>
 </ul>
-<h2 id="an-example-using-devtmpfs">An example using devtmpfs</h2>
+<h3 id="an-example-using-devtmpfs">An example using devtmpfs</h3>
 <p><em><span class="dquo">“</span>Support for the <code>devtmpfs</code> filesystem is controlled by kernel configuration variable: <code>CONFIG_DEVTMPFS</code>.”</em></p>
 <p><em><span class="dquo">“</span>If you enable <code>CONFIG_DEVTMPFS_MOUNT</code> in your kernel configuration, the kernel will automatically mount <code>devtmpfs</code> just after mounting the root filesystem. However, this option has no effect when booting <code>initramfs</code><span class="dquo">“</span></em></p>
-<h2 id="an-example-using-mdev">An example using mdev</h2>
+<h3 id="an-example-using-mdev">An example using mdev</h3>
 <p><em><span class="dquo">“</span>While <code>mdev</code> is a bit more complex to set up, it does allow you to modify the permissions of device nodes as they are created. You begin by running <code>mdev</code> with the <code>-s</code> option, which causes it to scan the <code>/sys</code> directory looking for information about current devices. From this information, it populates the <code>/dev</code> directory with the corresponding nodes. If you want to keep track of new devices coming online and create nodes for them as well, you need to make <code>mdev</code> a hot plug client by writing to `/proc/sys/kernel/hotplug.”</em></p>
 <p><em><span class="dquo">“</span>[It] is documented in the BusyBox source code in <code>docs/mdev.txt</code><span class="dquo">“</span></em></p>
 <h2 id="additional-reading">Additional reading</h2>
@@ -955,8 +1005,9 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <li><a href="http://refspecs.linuxfoundation.org/fhs.shtml">Filesystem Hierarchy Standard, Version 3.0</a></li>
 <li><em>ramfs</em>, <em>rootfs</em> and <em>initramfs</em>, Rob Landley, October 17, 2005, which is part of the Linux source in <code>Documentation/filesystems/ramfs-rootfs-initramfs.txt</code></li>
 </ul>
-<h1 id="updating-software-in-the-field">Updating Software in the Field</h1>
-<h2 id="bootloader">Bootloader</h2>
+<h1 id="chapter-8-updating-software-in-the-field">Chapter 8. Updating Software in the Field</h1>
+<h2 id="what-to-update">What to update?</h2>
+<h3 id="bootloader">Bootloader</h3>
 <p><em><span class="dquo">“</span>Updating the bootloader is risky: what happens if the system powers down midway? Consequently, most update solutions leave the bootloader alone. This is not a big problem, because the bootloader only runs for a short time at power-on and is not normally a great source of run- time bugs.”</em></p>
 <h2 id="kernel">Kernel</h2>
 <p><em><span class="dquo">“</span>There are several parts to the kernel [that need to be updated]:</em></p>
@@ -965,20 +1016,21 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <li><em>Many devices also have a Device Tree Binary (<span class="caps">DTB</span>) […]. The <span class="caps">DTB</span> is usually stored alongside the kernel binary.</em></li>
 <li><em>There may be kernel modules in the root filesystem.”</em></li>
 </ul>
-<h2 id="root-filesystem">Root filesystem</h2>
+<h3 id="root-filesystem">Root filesystem</h3>
 <p><em><span class="dquo">“</span>The root filesystem contains the essential system libraries, utilities, and scripts needed to make the system work. It is very desirable to be able to replace and upgrade all of these. The mechanism depends on the implementation.”</em></p>
-<h2 id="system-applications">System applications</h2>
+<h3 id="system-applications">System applications</h3>
 <p><em><span class="dquo">“</span>[The system applications] may be bundled with the root filesystem, but it is also common for them to be placed in a separate filesystem to make updating easier and to maintain separation between the system files, which are usually open source, and the application files, which are often proprietary.”</em></p>
-<h2 id="device-specific-data">Device-specific data</h2>
+<h3 id="device-specific-data">Device-specific data</h3>
 <p><em><span class="dquo">“</span>[Files that comntain] settings, logs, user-supplied data, and the like. It is not often that they need to be updated, but they do need to be preserved during an update”</em></p>
-<h2 id="making-updates-robust">Making updates robust</h2>
+<h2 id="the-basics-of-software-update">The basics of software update</h2>
+<h3 id="making-updates-robust">Making updates robust</h3>
 <p><em><span class="dquo">“</span>The update as a whole must be atomic: there should be no stage at which part of the system is updated but not other parts. There must be a single, uninterruptible change to the system that switches to the new version of software.”</em></p>
-<h2 id="making-updates-fail-safe">Making updates fail-safe</h2>
+<h3 id="making-updates-fail-safe">Making updates fail-safe</h3>
 <p><em><span class="dquo">“</span>[It’s possible to configure] the kernel to reboot a number of seconds after a panic. You can do this either when you build the kernel by setting <code>CONFIG_PANIC_TIMEOUT</code> or by setting the kernel command line to panic [e.g <code>panic=5</code> for reboot after 5 seconds].”</em></p>
 <p><em><span class="dquo">“</span>To enable panic on Oops in the kernel configuration, set <code>CONFIG_PANIC_ON_OOPS=y</code> or, on the kernel command line, <code>oops=panic</code>.”</em></p>
 <p><em><span class="dquo">“</span>If you are using systemd, you can use the inbuilt watchdog function”</em></p>
 <p><em><span class="dquo">“</span>[Otherwise] you may want to enable the watchdog support built into Linux, as described in the kernel source code in <code>Documentation/watchdog</code>.”</em></p>
-<h2 id="making-updates-secure">Making updates secure</h2>
+<h3 id="making-updates-secure">Making updates secure</h3>
 <p><em><span class="dquo">“</span>Remote update […] need a secure transfer channel, such as <span class="caps">HTTPS</span>.”</em></p>
 <p><em><span class="dquo">“</span>[…] secure boot protocol in the bootloader. If the kernel image is signed at the factory with a digital key, the bootloader can check the key before it loads the kernel and refuse to load it if the keys do not match”</em></p>
 <p><em><span class="dquo">“</span>U-Boot implements such a mechanism, which is described in the U-Boot source code in <code>doc/uImage.FIT/verified-boot.txt</code>.”</em></p>
@@ -1004,7 +1056,7 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 </ul>
 <h2 id="summary_2">Summary</h2>
 <p><em><span class="dquo">“</span>The approach used most often, and also the one with most real-world testing, is the symmetric image (<strong>A/B</strong>) update, or its cousin the asymmetric (recovery) image update. Here, you have the choice of SWUpdate, <span class="caps">RAUC</span>, and Mender.”</em></p>
-<h1 id="interfacing-with-device-drivers">Interfacing with Device Drivers</h1>
+<h1 id="chapter-9-interfacing-with-device-drivers">Chapter 9. Interfacing with Device Drivers</h1>
 <p><em><span class="dquo">“</span>In many cases, you will find that there are device drivers provided for you, and you can achieve everything you want without writing any kernel code. For example, you can manipulate <span class="caps">GPIO</span> pins and LEDs using files in <strong>sysfs</strong>, and there are libraries to access serial buses, including <strong><span class="caps">SPI</span> (Serial Peripheral Interface)</strong> and <strong><span class="caps">I2C</span> (Inter-Integrated Circuit)</strong>.”</em></p>
 <h2 id="the-role-of-device-drivers">The role of device drivers</h2>
 <p><em><span class="dquo">“</span>One driver may control multiple devices of the same kind.”</em></p>
@@ -1102,7 +1154,7 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <p><em><span class="dquo">“</span>[There is] example code in <code>Documentation/spi</code>.”</em></p>
 <h2 id="writing-a-kernel-device-driver">Writing a kernel device driver</h2>
 <p><em><span class="dquo">“</span>Character drivers are the most flexible and should cover 90% of all your needs.”</em></p>
-<h2 id="designing-a-character-driver-interface">Designing a character driver interface</h2>
+<h3 id="designing-a-character-driver-interface">Designing a character driver interface</h3>
 <p><em><span class="dquo">“</span>There are other ways to communicate with device drivers than just <code>read</code> and <code>write</code> [check the book for more details]:</em></p>
 <ul>
 <li><em><code>ioctl</code>: The kernel maintainers dislike <code>ioctl</code> because it makes kernel code and application code too interdependent</em></li>
@@ -1111,15 +1163,15 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
 <li><em><code>debugfs</code>: This is another pseudo filesystem. […] There is a good description of <code>debugfs</code> in the kernel documentation, <code>Documentation/filesystems/debugfs.txt</code>.</em></li>
 <li><em><code>netlink</code>: creates a socket that links kernel space to user space.</em>”</li>
 </ul>
-<h2 id="compiling-kernel-modules">Compiling kernel modules</h2>
+<h3 id="compiling-kernel-modules">Compiling kernel modules</h3>
 <p><em><span class="dquo">“</span>Kernel modules are not binary compatible between kernel releases and configurations: the module will only load on the kernel it was compiled with.”</em></p>
-<h2 id="loading-kernel-modules">Loading kernel modules</h2>
+<h3 id="loading-kernel-modules">Loading kernel modules</h3>
 <p><em><span class="dquo">“</span>You can load, unload, and list modules using the simple <code>insmod</code>, <code>lsmod</code>, and <code>rmmod</code> commands”</em></p>
 <p><em><span class="dquo">“</span>If the module is placed in a subdirectory in <code>/lib/modules/&lt;kernel release&gt;</code>, you can create a <strong>modules dependency database</strong> using the command, <code>depmod -a</code><span class="dquo">“</span></em></p>
 <h2 id="discovering-the-hardware-configuration">Discovering the hardware configuration</h2>
 <p><em><span class="dquo">“</span>Devices on a discoverable bus such as <span class="caps">PCI</span> or <span class="caps">USB</span> have a query mode, which returns resource requirements and a unique identifier.”</em></p>
 <p><em><span class="dquo">“</span>Most of the hardware blocks on an embedded board do not have such identifiers. You have to provide the information yourself in the form of a <strong>device tree</strong> or as C structures known as <strong>platform data</strong>.”</em></p>
-<h2 id="linking-hardware-with-device-drivers">Linking hardware with device drivers</h2>
+<h3 id="linking-hardware-with-device-drivers">Linking hardware with device drivers</h3>
 <p><em><span class="dquo">“</span>For most drivers, specific bindings are documented in <code>Documentation/devicetree/bindings</code>.”</em></p>
 <h2 id="summary_3">Summary</h2>
 <p><em><span class="dquo">“</span>Character driver interface is the most flexible and therefore, the most common. Linux drivers fit into a framework known as the driver model, which is exposed through <code>sysfs</code>. Pretty much the entire state of the devices and drivers is visible in <code>/sys</code>.”</em></p>
@@ -1196,7 +1248,7 @@ fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bo
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-13T21:08:00+01:00">Jan 13, 2019</time>
+<time datetime="2019-01-14T08:14:42+01:00">Jan 14, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
