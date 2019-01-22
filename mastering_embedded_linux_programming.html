@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-17T21:01:24+01:00" />
+<meta property="" content="2019-01-22T13:16:50+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -349,6 +349,13 @@
 </li>
 <li><a href="#chapter-10-starting-up-the-init-program">Chapter 10. Starting Up - The init Program</a><ul>
 <li><a href="#after-the-kernel-has-booted">After the kernel has booted</a></li>
+<li><a href="#busybox-init">BusyBox init</a></li>
+<li><a href="#system-v-init">System V init</a><ul>
+<li><a href="#inittab">inittab</a></li>
+<li><a href="#the-initd-scripts">The init.d scripts</a></li>
+<li><a href="#starting-and-stopping-services">Starting and stopping services</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1481,6 +1488,49 @@ login shell.</em></li>
 <li><em>It handles the system shutdown.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>[<code>systemd</code> also handles] other runtime events, such as a new hardware and the loading and unloading of modules.”</em></p>
+<h2 id="busybox-init">BusyBox init</h2>
+<p><em><span class="dquo">“</span><code>init</code> begins by reading <code>/etc/inittab</code>. This contains a list of programs to run, one per line.”</em></p>
+<p>Check the book for details about the format of <code>/etc/inittab</code> for BusyBox.</p>
+<h2 id="system-v-init">System V init</h2>
+<p><em><span class="dquo">“</span>Compared to the BusyBox <code>init</code>, System V <code>init</code> has two advantages. Firstly, the boot scripts are written in a well-known,
+modular format, making it easy to add new packages at build time or runtime. Secondly, it has the concept of <strong>runlevels</strong>, which allow a
+collection of programs to be started or stopped in one go when switching from one runlevel to another.”</em></p>
+<p><em><span class="dquo">“</span>There are 8 runlevels numbered from 0 to 6, plus S:</em></p>
+<ul>
+<li><em><code>S</code>: Runs startup tasks</em></li>
+<li><em><code>0</code>: Halts the system</em></li>
+<li><em><code>1</code> to <code>5</code>: Available for general use</em></li>
+<li><em><code>6</code>: Reboots the system”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Levels 1 to 5 can be used as you please. On the desktop Linux distributions, they are conventionally assigned as follows:</em></p>
+<ul>
+<li><em><code>1</code>: Single user</em></li>
+<li><em><code>2</code>: Multi-user with no network configuration</em></li>
+<li><em><code>3</code>: Multi-user with network configuration</em></li>
+<li><em><code>4</code>: Not used</em></li>
+<li><em><code>5</code>: Multi-user with graphical login”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>The <code>init</code> program starts the default <code>runlevel</code> given by the <code>initdefault</code> line in <code>/etc/inittab</code>.
+You can change the runlevel at runtime using the command <code>telinit [runlevel]</code>, which sends a message to <code>init</code>.
+You can find the current runlevel and the previous one using the <code>runlevel</code> command.”</em></p>
+<p><em><span class="dquo">“</span>The <code>halt</code> and <code>reboot</code> commands switch to runlevels called <code>0</code> and <code>6</code> respectively.”</em></p>
+<p><em><span class="dquo">“</span>Runlevels are not used that much in embedded Linux: most devices simply 
+boot to the default runlevel and stay there.”</em></p>
+<blockquote>
+<p>Runlevels are a simple and convenient way to switch between modes, for
+example, from production to maintenance mode.</p>
+</blockquote>
+<h3 id="inittab">inittab</h3>
+<p><em><span class="dquo">“</span>The <code>init</code> program begins by reading <code>/etc/inttab</code>, which contains entries that define what happens at each runlevel.”</em></p>
+<p>Check the book for details about the format of <code>/etc/inittab</code> for System V <code>init</code>.</p>
+<h3 id="the-initd-scripts">The init.d scripts</h3>
+<p><em><span class="dquo">“</span>Each component that needs to respond to a runlevel change has a script in <code>/etc/init.d</code> to perform the change.
+The script should expect two parameters: <code>start</code> and <code>stop</code>.”</em></p>
+<h3 id="starting-and-stopping-services">Starting and stopping services</h3>
+<p><em><span class="dquo">“</span>You can interact with the scripts in <code>/etc/init.d</code> by calling them directly.”</em></p>
+<p><em><span class="dquo">“</span>All scripts implement <code>start</code> and <code>stop</code>, and they should also implement <code>help</code>.
+Some implement <code>status</code> as well, which will tell you whether the service is running or not.
+Mainstream distributions that still use System V <code>init</code> have a command named <code>service</code> to start and stop services, which hide the details of calling the scripts directly.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1554,7 +1604,7 @@ login shell.</em></li>
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-17T21:01:24+01:00">Jan 17, 2019</time>
+<time datetime="2019-01-22T13:16:50+01:00">Jan 22, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
