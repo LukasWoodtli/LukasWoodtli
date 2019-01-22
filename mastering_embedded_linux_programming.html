@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-22T13:16:50+01:00" />
+<meta property="" content="2019-01-22T15:43:29+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -356,6 +356,18 @@
 <li><a href="#starting-and-stopping-services">Starting and stopping services</a></li>
 </ul>
 </li>
+<li><a href="#systemd">systemd</a><ul>
+<li><a href="#introducing-targets-services-and-units">Introducing targets, services, and units</a><ul>
+<li><a href="#units">Units</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#targets">Targets</a></li>
+</ul>
+</li>
+<li><a href="#how-systemd-boots-the-system">How systemd boots the system</a></li>
+<li><a href="#adding-a-watchdog">Adding a watchdog</a></li>
+</ul>
+</li>
+<li><a href="#summary_4">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -1531,6 +1543,82 @@ The script should expect two parameters: <code>start</code> and <code>stop</code
 <p><em><span class="dquo">“</span>All scripts implement <code>start</code> and <code>stop</code>, and they should also implement <code>help</code>.
 Some implement <code>status</code> as well, which will tell you whether the service is running or not.
 Mainstream distributions that still use System V <code>init</code> have a command named <code>service</code> to start and stop services, which hide the details of calling the scripts directly.”</em></p>
+<h2 id="systemd">systemd</h2>
+<p><em><span class="dquo">“</span>[<code>systemd</code> is a] set of tools for managing a Linux system based around an <code>init</code> daemon. It also includes device management (<code>udev</code>) and logging,
+among other things. `systemd? is state of the art and is still evolving rapidly.”</em></p>
+<p><em><span class="dquo">“</span>how is it better than System V <code>init</code> for embedded systems?</em></p>
+<ul>
+<li><em>The configuration is simpler and more logical (once you understand it). Rather than the sometimes convoluted shell scripts of System V <code>init</code>, <code>systemd</code> has unit configuration files, which are written in a well-defined format.</em></li>
+<li><em>There are explicit dependencies between services rather than a two digit code that merely sets the sequence in which the scripts are run.</em></li>
+<li><em>It is easy to set the permissions and resource limits for each service, which is important for the security.</em></li>
+<li><em>It can monitor services and restart them if needed.</em></li>
+<li><em>There are watchdogs for each service and for <code>systemd</code> itself.</em></li>
+<li><em>Services are started in parallel, potentially reducing boot time.”</em></li>
+</ul>
+<h3 id="introducing-targets-services-and-units">Introducing targets, services, and units</h3>
+<p><em><span class="dquo">“</span>[There are] three key concepts:</em></p>
+<ul>
+<li><em><strong>Unit</strong>, which is a configuration file that describes a target, a service, and several other things. Units are text files that contain properties and values.</em></li>
+<li><em><strong>Service</strong>, which is a daemon that can be started and stopped, very much like a System V <code>init</code> service.</em></li>
+<li><em><strong>Target</strong>, which is a group of services, similar to, but more general than, a System V <code>init</code> runlevel. There is a default target which is the group of services that are started at boot time.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>You can change states and find out what is going on using the <code>systemctl</code> command.”</em></p>
+<h4 id="units">Units</h4>
+<p><em><span class="dquo">“</span>The basic item of configuration is the unit file. Unit files are found in three different places:</em>
+- <code>/etc/systemd/system</code>: <em>Local configuration</em>
+- <code>/run/systemd/system</code>: <em>Runtime configuration</em>
+- <code>/lib/systemd/system</code>: <em>Distribution-wide configuration”</em></p>
+<p><em><span class="dquo">“</span>When looking for a unit, <code>systemd</code> searches the directories in that order, stopping as soon as
+it finds a match, and allowing you to override the behavior of a distribution-wide unit by
+placing a unit of the same name in <code>/etc/systemd/system</code>. You can disable a unit
+completely by creating a local file that is empty or linked to <code>/dev/null</code>.”</em></p>
+<p><em><span class="dquo">“</span>Dependencies in the Unit section are expressed though the keywords <code>Requires</code>, <code>Wants</code>,
+and <code>Conflicts</code>:</em></p>
+<ul>
+<li><code>Requires</code>: This is a list of units that this unit depends on, which are started when this unit is started*</li>
+<li><code>Wants</code>: This is a weaker form of <code>Requires</code>; the units listed are started but the current unit is not stopped if any of them fail*</li>
+<li><code>Conflicts</code>: This is a negative dependency; the units listed are stopped when this one is started and, conversely, if one of them is started, this one is stopped”*</li>
+</ul>
+<p><em><span class="dquo">“</span>These three keywords define <strong>outgoing dependencies</strong>. They are used mostly to create dependencies between targets. There is another sort of dependency called an
+<strong>incoming dependency</strong>, which is used to create a link between a service and a target. In other words, outgoing dependencies are used to create the list of targets
+that need to be started as the system goes from one state to another, and incoming dependencies are used to determine the services that should be started or stopped
+in any particular state. Incoming dependencies are created by the <code>WantedBy</code> keyword.”</em></p>
+<p><em><span class="dquo">“</span>Processing the dependencies produces a list of units that should be started or stopped. The keywords <code>Before</code> and `After determine the order in which they
+are started. The order of stopping is just the reverse of the start order:</em></p>
+<ul>
+<li><em><code>Before</code>: This unit should be started before the units listed</em></li>
+<li><em><code>After</code>: This unit should be started after the units listed”</em></li>
+</ul>
+<h4 id="services">Services</h4>
+<p><em><span class="dquo">“</span>A service is a daemon that can be started and stopped, equivalent to a System V <code>init</code> service.”</em></p>
+<p><em><span class="dquo">“</span>Refer to the manual page for <code>systemd.service(5)</code> [and to the book for more information].”</em></p>
+<h4 id="targets">Targets</h4>
+<p><em><span class="dquo">“</span>A target is another type of unit, which groups services (or other types of unit). It is a type of unit that only has dependencies.”</em></p>
+<p><em><span class="dquo">“</span>A target is a desired state, which performs the same role as System V <code>init</code> runlevels.”</em></p>
+<h3 id="how-systemd-boots-the-system">How systemd boots the system</h3>
+<p><em><span class="dquo">“</span>[…] how <code>systemd</code> implements the bootstrap. <code>systemd</code> is run by the kernel as a result of <code>/sbin/init</code> being symbolically linked to <code>/lib/systemd/systemd</code>.
+It runs the default target, <code>default.target</code>, which is always a link to a desired target.”</em></p>
+<p><em><span class="dquo">“</span>You can also list all the services and their current state using:”</em></p>
+<div class="highlight"><pre><span></span>systemctl list-units --type service
+</pre></div>
+<p><em><span class="dquo">“</span>And the same for targets using:”</em></p>
+<div class="highlight"><pre><span></span>systemctl list-units --type target
+</pre></div>
+<h3 id="adding-a-watchdog">Adding a watchdog</h3>
+<p><em><span class="dquo">“</span>On most embedded SoCs,
+there is a hardware watchdog, which can be accessed via the <code>/dev/watchdog</code> device node.”</em></p>
+<p><em><span class="dquo">“</span>The interface with the watchdog driver is described in the kernel source 
+in <code>Documentation/watchdog</code> and the code for the drivers is in <code>drivers/watchdog</code>.”</em></p>
+<p><em><span class="dquo">“</span><code>systemd</code> has a useful feature that distributes the watchdog between multiple services.”</em></p>
+<p><em><span class="dquo">“</span><code>systemd</code> can be configured to expect a regular keepalive call from a service and take action if it is not received,
+creating a per-service software watchdog. For this to work, you have to add code to the daemon to send the <code>keepalive</code> messages.”</em></p>
+<p><em><span class="dquo">“</span>There are examples in the <code>systemd</code> source code.”</em></p>
+<p><em><span class="dquo">“</span>If <code>systemd</code> itself fails, the kernel crashes, or the hardware locks up.
+In those cases, we need to tell <code>systemd</code> to use the watchdog driver”</em></p>
+<h2 id="summary_4">Summary</h2>
+<p><em><span class="dquo">“</span>In terms of reducing boot time, <code>systemd</code> is faster than System V <code>init</code>
+for a similar workload. However, if you are looking for a very fast boot,
+nothing can beat a simple BusyBox <code>init</code> with minimal boot scripts.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1604,7 +1692,7 @@ Mainstream distributions that still use System V <code>init</code> have a comman
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-22T13:16:50+01:00">Jan 22, 2019</time>
+<time datetime="2019-01-22T15:43:29+01:00">Jan 22, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
