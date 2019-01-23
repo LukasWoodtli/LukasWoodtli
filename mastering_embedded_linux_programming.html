@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-22T15:43:29+01:00" />
+<meta property="" content="2019-01-23T15:21:23+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -368,6 +368,27 @@
 </ul>
 </li>
 <li><a href="#summary_4">Summary</a></li>
+</ul>
+</li>
+<li><a href="#chapter-11-managing-power">Chapter 11. Managing Power</a><ul>
+<li><a href="#measuring-power-usage">Measuring power usage</a></li>
+<li><a href="#scaling-the-clock-frequency">Scaling the clock frequency</a><ul>
+<li><a href="#the-cpufreq-driver">The CPUFreq driver</a></li>
+</ul>
+</li>
+<li><a href="#selecting-the-best-idle-state">Selecting the best idle state</a><ul>
+<li><a href="#the-cpuidle-driver">The CPUIdle driver</a></li>
+<li><a href="#tickless-operation">Tickless operation</a></li>
+</ul>
+</li>
+<li><a href="#powering-down-peripherals">Powering down peripherals</a></li>
+<li><a href="#putting-the-system-to-sleep">Putting the system to sleep</a><ul>
+<li><a href="#power-states">Power states</a></li>
+<li><a href="#wakeup-events">Wakeup events</a></li>
+<li><a href="#timed-wakeups-from-the-real-time-clock">Timed wakeups from the real-time clock</a></li>
+</ul>
+</li>
+<li><a href="#summary_5">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -1619,6 +1640,130 @@ In those cases, we need to tell <code>systemd</code> to use the watchdog driver
 <p><em><span class="dquo">“</span>In terms of reducing boot time, <code>systemd</code> is faster than System V <code>init</code>
 for a similar workload. However, if you are looking for a very fast boot,
 nothing can beat a simple BusyBox <code>init</code> with minimal boot scripts.”</em></p>
+<h1 id="chapter-11-managing-power">Chapter 11. Managing Power</h1>
+<p><em><span class="dquo">“</span>Even for devices running on mains power, reducing power usage has
+benefits in reducing the need for cooling and energy costs.”</em></p>
+<h2 id="measuring-power-usage">Measuring power usage</h2>
+<p><em><span class="dquo">“</span>Measuring power externally, from outside the system, we just need an
+ammeter to measure the current and a voltmeter to measure the voltage, and
+then multiply the two together in order to get the wattage.”</em></p>
+<p><em><span class="dquo">“</span>[There are] monitoring systems that are built into Linux. You will find
+that plenty of information is reported to you via <code>sysfs</code>.
+There is also a very useful program called <strong>PowerTOP</strong>, which gathers
+information together from various sources and presents it in a single place.”</em></p>
+<div class="highlight"><pre><span></span>cat /sys/power/state
+</pre></div>
+<h2 id="scaling-the-clock-frequency">Scaling the clock frequency</h2>
+<p><em><span class="dquo">“</span>Reducing the frequency may actually increase the power budget because it
+takes longer for the <span class="caps">CPU</span> to enter an idle state. So, in these conditions, 
+it is best to use the highest frequency possible so that the <span class="caps">CPU</span> can go
+back to idle quickly. This is called the <strong>race to idle</strong>.”</em></p>
+<p><em><span class="dquo">“</span>There is another motivation to reduce frequency: <strong>thermal management</strong>.
+It may become necessary to operate at a lower frequency just to keep the
+temperature of the package within bounds.”</em></p>
+<p><em><span class="dquo">“</span>Therefore, if we want to save power, we have to be able to change the
+voltage that the <span class="caps">CPU</span> core operates at. But for any given voltage, there
+is a maximum frequency beyond which the switching of the gates become unreliable.”</em></p>
+<p><em><span class="dquo">“</span>Many SoCs implement such a feature: it is called
+<strong>Dynamic Voltage and Frequency Scaling</strong>, or <strong><span class="caps">DVFS</span></strong>. Manufacturers
+calculate optimum combinations of core frequency and voltage. Each
+combination is called <strong>Operating Performance Point</strong>, or <strong><span class="caps">OPP</span></strong>.
+The <span class="caps">ACPI</span> specification refers to them as P-states, with <code>P0</code> being
+the <span class="caps">OPP</span> with the highest frequency. Although an <span class="caps">OPP</span> is a combination
+of a frequency and a voltage, they are most often referred to by the
+frequency component alone.”</em></p>
+<h3 id="the-cpufreq-driver">The CPUFreq driver</h3>
+<p><em><span class="dquo">“</span>Linux has a component named <code>CPUFreq</code> that manages the transitions
+between OPPs. It is part of the board support for the package for each
+SoC. <code>CPUFreq</code> consists of drivers in <code>drivers/cpufreq</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>It is controlled per-<span class="caps">CPU</span> via the <code>/sys/devices/system/cpu/cpuN/cpufreq</code>
+directory, with <code>N</code> being the <span class="caps">CPU</span> number.”</em></p>
+<h2 id="selecting-the-best-idle-state">Selecting the best idle state</h2>
+<p><em><span class="dquo">“</span>Most CPUs have multiple idle states that use varying amounts of power.
+Usually, there is a trade-off between the power usage and the latency, or
+the length of time, it takes to exit the state. In the <span class="caps">ACPI</span> specification,
+they are called <strong>C-states</strong>.”</em></p>
+<p><em><span class="dquo">“</span>The key to selecting the right idle state is to have a good idea of how 
+long the <span class="caps">CPU</span> is going to be quiescent.”</em></p>
+<p><em><span class="dquo">“</span>[Monitor] the current <span class="caps">CPU</span> load: if it is high now, it is likely to
+continue to be so in the immediate future, so a deep sleep would not be
+beneficial. Even if the load is low, it is worth looking to see whether 
+there is a timer event that expires soon. If there is no load and
+no timer, then a deeper idle state is justified.”</em></p>
+<p><em><span class="dquo">“</span>The part of Linux that selects the best idle state is the CPUIdle 
+driver. There is a good deal of information about it in the kernel source
+code in the <code>Documentation/cpuidle</code> directory.”</em></p>
+<h3 id="the-cpuidle-driver">The CPUIdle driver</h3>
+<p><em><span class="dquo">“</span>CPUIdle exposes information about each of the idle states in the
+<code>/sys/devices/system/cpu/cpu0/cpuidle</code> directory, in which there is a
+subdirectory for each of the sleep states, named <code>state0</code> to <code>stateN</code>.
+<code>state0</code> is the <strong>lightest</strong> sleep and <code>stateN</code> the deepest. Note that
+the numbering does not match that of the C-states and that
+CPUIdle does not have a state equivalent to <code>C0</code> (running)”</em></p>
+<h3 id="tickless-operation">Tickless operation</h3>
+<p><em><span class="dquo">“</span>A related topic is the tickles, or <code>NOHZ</code>, option. If the system is
+truly idle, the most likely source of interruptions will be the system
+timer, which is programmed to generate a regular time tick at a rate of
+<code>HZ</code> per second, where <code>HZ</code> is typically 100. Historically, Linux uses the
+timer tick as the main time base for measuring time-outs.”</em></p>
+<p><em><span class="dquo">“</span>And yet it is plainly wasteful to wake the <span class="caps">CPU</span> up to process a timer 
+interruption if no timer events are registered for that particular moment.
+The dynamic tick kernel configuration option, <code>CONFIG_NO_HZ</code>, looks at the
+timer queue at the end of the timer processing routine
+and schedules the next interruption at the time of the next event”</em></p>
+<p><em><span class="dquo">“</span>In any power-sensitive application, the kernel should be configured
+with this option enabled.”</em></p>
+<h2 id="powering-down-peripherals">Powering down peripherals</h2>
+<p><em><span class="dquo">“</span>This is managed by the <strong>runtime power management</strong> system, or
+<strong>runtime pm</strong> for short. It works with drivers that support runtime pm,
+shutting down those that are not in use and waking them again when they
+are next needed. It is dynamic and should be transparent to user space.”</em></p>
+<p><em><span class="dquo">“</span>The runtime power management is exposed via a <code>sysfs</code> interface. Each
+device has a subdirectory named <code>power</code>, in which you will find 
+[different] files.”</em></p>
+<p>Check the book for more information about the files.</p>
+<p><em><span class="dquo">“</span>For more information on runtime pm, look in the kernel source code at
+<code>Documentation/power/runtime_pm.txt</code>.”</em></p>
+<h2 id="putting-the-system-to-sleep">Putting the system to sleep</h2>
+<p><em><span class="dquo">“</span>In the Linux kernel, this is known as <strong>system sleep</strong>. It is usually user-initiated”</em></p>
+<p><em><span class="dquo">“</span>There are usually two options: suspend or hibernate. The first,
+also known as <strong>suspend to <span class="caps">RAM</span></strong>, shuts everything down except the
+system memory, so the machine is still consuming a little power.”</em></p>
+<p><em><span class="dquo">“</span>If I select the <strong>hibernate</strong> option, the contents of memory are saved
+to the hard drive. The system consumes no power at all, and so it can stay
+in this state indefinitely, but on wake-up, it takes some time to restore
+the memory from disk. Hibernate is very seldom used in embedded systems”</em></p>
+<p><em><span class="dquo">“</span>For more information, look at the kernel source code in the <code>Documentation/power</code> directory.”</em></p>
+<h3 id="power-states">Power states</h3>
+<p><em><span class="dquo">“</span>In the <span class="caps">ACPI</span> specification, the sleep states are called <strong>S-states</strong>. Linux supports four sleep states.”</em></p>
+<p>See the book for more details.</p>
+<p><em><span class="dquo">“</span>Not all systems have support for all states. You can find out which are available by reading the <code>/sys/power/state</code> file”</em></p>
+<p><em><span class="dquo">“</span>To enter one of the system sleep states, you just have to write the 
+desired state to <code>/sys/power/state</code>.”</em></p>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> mem &gt; /sys/power/state
+</pre></div>
+<h3 id="wakeup-events">Wakeup events</h3>
+<p><em><span class="dquo">“</span>Before you suspend a device, you must have a method of waking it again.”</em></p>
+<p><em><span class="dquo">“</span>Some parts of the system have to remain powered on even during the
+deepest sleep. This usually involves the <strong>Power Management <span class="caps">IC</span></strong> 
+(<strong><span class="caps">PMIC</span></strong>), the <strong>real-time clock</strong> (<strong><span class="caps">RTC</span></strong>), and may additionally 
+include interfaces such as <span class="caps">GPIO</span>, <span class="caps">UART</span>, and Ethernet.”</em></p>
+<p><em><span class="dquo">“</span>Wakeup events are controlled through <code>sysfs</code>. Each device in
+<code>/sys/device</code> has a subdirectory power containing a <code>wakeup</code> file”</em></p>
+<p>See the book for more information.</p>
+<p><em><span class="dquo">“</span>To get a list of devices that can generate wakeups, we can search for
+all devices where wakeup contains either <code>enabled</code> or <code>disabled</code>:”</em></p>
+<div class="highlight"><pre><span></span>find /sys/devices -name wakeup <span class="p">|</span> xargs grep “abled”
+</pre></div>
+<h3 id="timed-wakeups-from-the-real-time-clock">Timed wakeups from the real-time clock</h3>
+<p><em><span class="dquo">“</span>Most systems have an <span class="caps">RTC</span> that can generate alarm interruptions up to
+24 hours in the future. If so, the directory <code>/sys/class/rtc/rtc0</code> will
+exist. It should contain the <code>wakealarm</code> file. Writing a number to
+<code>wakealarm</code> will cause it to generate an alarm that number of seconds
+later. If you also enable wake up events from <code>rtc</code>, it will resume a
+suspended device.”</em></p>
+<h2 id="summary_5">Summary</h2>
+<p><em><span class="dquo">“</span>The majority of the power management is done for you by the <span class="caps">BSP</span>.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1692,7 +1837,7 @@ nothing can beat a simple BusyBox <code>init</code> with minimal boot scripts.�
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-22T15:43:29+01:00">Jan 22, 2019</time>
+<time datetime="2019-01-23T15:21:23+01:00">Jan 23, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
