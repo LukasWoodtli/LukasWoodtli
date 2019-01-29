@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-25T20:57:25+01:00" />
+<meta property="" content="2019-01-29T20:35:37+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -407,6 +407,16 @@
 <li><a href="#terminating-a-thread">Terminating a thread</a></li>
 <li><a href="#compiling-a-program-with-threads">Compiling a program with threads</a></li>
 <li><a href="#changing-conditions">Changing conditions</a></li>
+</ul>
+</li>
+<li><a href="#scheduling">Scheduling</a><ul>
+<li><a href="#fairness-versus-determinism">Fairness versus determinism</a></li>
+<li><a href="#time-shared-policies">Time-shared policies</a><ul>
+<li><a href="#niceness">Niceness</a></li>
+</ul>
+</li>
+<li><a href="#real-time-policies">Real-time policies</a></li>
+<li><a href="#choosing-a-real-time-priority">Choosing a real-time priority</a></li>
 </ul>
 </li>
 </ul>
@@ -1862,6 +1872,73 @@ or <code>false</code> result.”</em></p>
 <p><em><span class="dquo">“</span>The only complexity [of condition variables] is that the
 condition is, by definition, a shared resource and so has to be
 protected by a mutex.”</em></p>
+<h2 id="scheduling">Scheduling</h2>
+<p><em><span class="dquo">“</span>The Linux scheduler has a queue of threads that are ready to
+run, and its job is to schedule them on CPUs as they become
+available. Each thread has a scheduling policy that may be
+time-shared or real-time. The time-shared threads have a niceness
+value that increases or reduces their entitlement to <span class="caps">CPU</span> time. The
+real-time threads have a priority such that a higher prior”</em></p>
+<p><em><span class="dquo">“</span>The scheduler runs when:</em></p>
+<ul>
+<li><em>A thread is blocked by calling <code>sleep()</code> or another blocking system call</em></li>
+<li><em>A time-shared thread exhausts its time slice</em></li>
+<li><em>An interruption causes a thread to be unblocked, for example, because of I/O completing”</em></li>
+</ul>
+<h3 id="fairness-versus-determinism">Fairness versus determinism</h3>
+<p><em><span class="dquo">“</span>If you have a real-time program, fairness is not helpful.
+Instead, you then want a policy that is deterministic, which will
+give you at least minimal guarantees that your real-time threads
+will be scheduled at the right time so that they don’t miss their
+deadlines. This means that a real-time thread must preempt
+time-shared threads. Real-time threads also have a static priority
+that the scheduler can use to choose between them “</em></p>
+<p><em><span class="dquo">“</span>Both types of thread can coexist. Those requiring deterministic
+scheduling are scheduled first and the time remaining is divided
+between the time-shared threads.”</em></p>
+<h3 id="time-shared-policies">Time-shared policies</h3>
+<p><em><span class="dquo">“</span>The scheduler used has been <strong>Completely Fair Scheduler</strong>
+(<strong><span class="caps">CFS</span></strong>). It does not use timeslices in the normal sense of the
+word. Instead, it calculates a running tally of the length of time
+a thread would be entitled to run if it had its fair share of <span class="caps">CPU</span>
+time, and it balances that with the actual amount of time it has
+run for. If it exceeds its entitlement and there are other
+time-shared threads waiting to run, the scheduler will suspend the
+thread and run a waiting thread instead.”</em></p>
+<p><em><span class="dquo">“</span>The time-shared policies are as follows:</em></p>
+<ul>
+<li><em><code>SCHED_NORMAL</code> (also known as <code>SCHED_OTHER</code>): This is the default policy. The vast majority of Linux threads use this policy.</em></li>
+<li><em><code>SCHED_BATCH</code>: This is similar to <code>SCHED_NORMAL</code> except that threads are scheduled with a larger granularity […]. The intention is to reduce the number of context switches for background processing (batch jobs) and reduce the amount of <span class="caps">CPU</span> cache churn.</em></li>
+<li><em><code>SCHED_IDLE</code>: These threads are run only when there are no threads of any other policy ready to run. It is the lowest possible priority.”</em></li>
+</ul>
+<h4 id="niceness">Niceness</h4>
+<p><em><span class="dquo">“</span>A thread becomes <code>nice</code> by reducing its load on the system, or moves in the opposite direction by increasing it. The range of values is from <code>19</code>, which is really nice, to <code>-20</code>, which is really not nice. The default value is <code>0</code>.”</em></p>
+<p><em><span class="dquo">“</span>The nice value can be changed for <code>SCHED_NORMAL</code> and <code>SCHED_BATCH</code> threads.”</em></p>
+<p><em><span class="dquo">“</span>You can use a <span class="caps">TID</span> in place of a <span class="caps">PID</span> to change the <code>nice</code> value of an individual thread. “</em></p>
+<h3 id="real-time-policies">Real-time policies</h3>
+<p><em><span class="dquo">“</span>Real-time policies are intended for determinism. The real-time
+scheduler will always run the highest priority real-time thread
+that is ready to run. Real-time threads always preempt timeshare
+threads. In essence, by selecting a real-time policy over a
+timeshare policy, you are saying that you have inside knowledge of
+the expected scheduling of this thread and wish to override the
+scheduler’s built-in assumptions.</em>”</p>
+<p><em><span class="dquo">“</span>There are two real-time policies:</em></p>
+<ul>
+<li><em><code>SCHED_FIFO</code>: This is a run to completion algorithm, which means that once the thread starts to run, it will continue until it is preempted by a higher priority real-time thread, it is blocked in a system call, or until it terminates (completes).</em></li>
+<li><em><code>SCHED_RR</code>: This a round robin algorithm that will cycle between threads of the same priority if they exceed their time slice, which is 100 ms by default. [It is] possible to control the timeslice value through /proc/sys/kernel/sched_rr_timeslice_ms. Apart from this, it behaves in the same way as SCHED_FIFO.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Each real-time thread has a priority in the range 1 to 99, with 99 being the highest.”</em></p>
+<p><em><span class="dquo">“</span>The scheduler has, by default, reserved 5% of <span class="caps">CPU</span> time for non- real-time threads so that even a runaway real-time thread cannot completely halt the system. It is configured via two kernel controls:</em></p>
+<ul>
+<li><em><code>/proc/sys/kernel/sched_rt_period_us</code></em></li>
+<li><em><code>/proc/sys/kernel/sched_rt_runtime_u</code><span class="dquo">“</span></em></li>
+</ul>
+<p><em><span class="dquo">“</span>[Another] option is to use a watchdog, either hardware or software, to monitor the execution of key threads.”</em></p>
+<h3 id="choosing-a-real-time-priority">Choosing a real-time priority</h3>
+<p><em><span class="dquo">“</span>The most widely used procedure for choosing priorities is known 
+as <strong>Rate Monotonic Analysis</strong> (<strong><span class="caps">RMA</span></strong>).”</em></p>
+<p><em><span class="dquo">“</span>The goal is to balance the load so that all threads can complete their execution phase before the next period.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1935,7 +2012,7 @@ protected by a mutex.”</em></p>
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-25T20:57:25+01:00">Jan 25, 2019</time>
+<time datetime="2019-01-29T20:35:37+01:00">Jan 29, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
