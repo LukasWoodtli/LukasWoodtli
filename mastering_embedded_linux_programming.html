@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-29T20:35:37+01:00" />
+<meta property="" content="2019-01-31T13:13:29+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -419,6 +419,31 @@
 <li><a href="#choosing-a-real-time-priority">Choosing a real-time priority</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#chapter-13-managing-memory">Chapter 13. Managing Memory</a><ul>
+<li><a href="#virtual-memory-basics">Virtual memory basics</a></li>
+<li><a href="#kernel-space-memory-layout">Kernel space memory layout</a><ul>
+<li><a href="#how-much-memory-does-the-kernel-use">How much memory does the kernel use?</a></li>
+</ul>
+</li>
+<li><a href="#user-space-memory-layout">User space memory layout</a></li>
+<li><a href="#the-process-memory-map">The process memory map</a></li>
+<li><a href="#swapping">Swapping</a></li>
+<li><a href="#mapping-memory-with-mmap">Mapping memory with mmap</a><ul>
+<li><a href="#using-mmap-to-access-device-memory">Using mmap to access device memory</a></li>
+</ul>
+</li>
+<li><a href="#how-much-memory-does-my-application-use">How much memory does my application use?</a></li>
+<li><a href="#per-process-memory-usage">Per-process memory usage</a><ul>
+<li><a href="#using-smem">Using smem</a></li>
+</ul>
+</li>
+<li><a href="#identifying-memory-leaks">Identifying memory leaks</a><ul>
+<li><a href="#mtrace">mtrace</a></li>
+</ul>
+</li>
+<li><a href="#running-out-of-memory">Running out of memory</a></li>
 </ul>
 </li>
 </ul>
@@ -1939,6 +1964,87 @@ scheduler’s built-in assumptions.</em>”</p>
 <p><em><span class="dquo">“</span>The most widely used procedure for choosing priorities is known 
 as <strong>Rate Monotonic Analysis</strong> (<strong><span class="caps">RMA</span></strong>).”</em></p>
 <p><em><span class="dquo">“</span>The goal is to balance the load so that all threads can complete their execution phase before the next period.”</em></p>
+<h1 id="chapter-13-managing-memory">Chapter 13. Managing Memory</h1>
+<h2 id="virtual-memory-basics">Virtual memory basics</h2>
+<p><em><span class="dquo">“</span>Linux divides this virtual address space into an area for applications, called <strong>user space</strong>, and an area for the kernel, called <strong>kernel space</strong>. The split between the two is set by a kernel configuration parameter named <code>PAGE_OFFSET</code>.”</em></p>
+<p><em><span class="dquo">“</span>The user address space is allocated per process so that each process runs in a sandbox, separated from the others. The kernel address space is the same for all processes: there is only one kernel.”</em></p>
+<p><em><span class="dquo">“</span>Each page of virtual memory may be:</em></p>
+<ul>
+<li><em>Unmapped, so that trying to access these addresses will result in a <code>SIGSEGV</code></em></li>
+<li><em>Mapped to a page of physical memory that is private to the process</em></li>
+<li><em>Mapped to a page of physical memory that is shared with other processes</em></li>
+<li><em>Mapped and shared with a copy on write (CoW) flag set: a write is trapped in the kernel, which makes a copy of the page and maps it to the process in place of the original page before allowing the write to take place</em></li>
+<li><em>Mapped to a page of physical memory that is used by the kernel”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>The kernel may additionally map pages to reserved memory regions, for example, to access registers and memory buffers in device drivers.”</em></p>
+<p><em><span class="dquo">“</span>The default allocation strategy is to over-commit, which leads to tricky out-of-memory situations.”</em></p>
+<p><em><span class="dquo">“</span>The delays introduced by the memory management code in handling exceptions - page faults - make the system less deterministic, which is important for real-time programs.”</em></p>
+<h2 id="kernel-space-memory-layout">Kernel space memory layout</h2>
+<p><em><span class="dquo">“</span>Kernel memory […] is not demand-paged, which means that for every allocation using <code>kmalloc()</code> or a similar function, there is real physical memory. Kernel memory is never discarded or paged out.”</em></p>
+<h3 id="how-much-memory-does-the-kernel-use">How much memory does the kernel use?</h3>
+<p><em><span class="dquo">“</span>You can see the memory taken up by the kernel code and data in the kernel log […] or you can use the <code>size</code> command, as follows:”</em></p>
+<div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-size vmlinux
+</pre></div>
+<p><em><span class="dquo">“</span>There is an ongoing effort to allow small kernels to be built: […] <a href="https://tiny.wiki.kernel.org">Linux Kernel Tinification</a>.”</em></p>
+<p><em><span class="dquo">“</span>You can get more information about memory usage by reading <code>/proc/meminfo</code>.”</em></p>
+<p><em><span class="dquo">“</span>There is a description of each of [the] fields on the manual page <code>proc(5)</code>. “</em></p>
+<p><em><span class="dquo">“</span>With modules, you can use <code>lsmod</code> to find out the memory space taken up”</em></p>
+<h2 id="user-space-memory-layout">User space memory layout</h2>
+<p><em><span class="dquo">“</span>Linux employs a lazy allocation strategy for user space, only mapping physical pages of memory when the program accesses it.”</em></p>
+<p><em><span class="dquo">“</span>For example, allocating a buffer […] using <code>malloc(3)</code> returns a pointer to a block of memory addresses but no actual physical memory. A flag is set in the page 
+table entries such that any read or write access is trapped by the kernel. This is known as a <strong>page fault</strong>. Only at this point does the kernel attempt to find a page 
+of physical memory and add it to the page table mapping for the process.”</em></p>
+<p><em><span class="dquo">“</span>There are two kinds of page faults: <strong>minor</strong> and <strong>major</strong>. With a minor fault, the kernel just has to find a page of physical memory and map it to the process 
+address space […]. A major page fault occurs when the virtual memory is mapped to a file, for example, using <code>mmap(2)</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>Major faults are much more expensive in time and system resources.”</em></p>
+<h2 id="the-process-memory-map">The process memory map</h2>
+<p><em><span class="dquo">“</span>You can see the memory map for a process through the <code>proc</code> filesystem.”</em></p>
+<p><em><span class="dquo">“</span>The maximum size of [the heap and stack] is controlled by the process’s ulimit:</em></p>
+<ul>
+<li><em>Heap: <code>ulimit -d</code>, default unlimited</em></li>
+<li><em>Stack: <code>ulimit -s</code>, default 8 MiB”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Allocations that exceed the limit are rejected by <code>SIGSEGV</code>.”</em></p>
+<h2 id="swapping">Swapping</h2>
+<p><em><span class="dquo">“</span>On a system that has too little real memory for the workload it is carrying and so swapping becomes the main activity. This is sometimes known as
+<strong>disk thrashing</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Swap is seldom used on embedded devices because it does not work well with flash storage, where constant writing would wear it out quickly. However, you may want to 
+consider swapping to compressed <span class="caps">RAM</span> (zram).”</em> ​</p>
+<h2 id="mapping-memory-with-mmap">Mapping memory with mmap</h2>
+<p><em><span class="dquo">“</span>A process can also manipulate its memory map in an explicit way
+using <code>mmap(2)</code><span class="dquo">“</span></em></p>
+<h3 id="using-mmap-to-access-device-memory">Using mmap to access device memory</h3>
+<p><em><span class="dquo">“</span>One example is the Linux framebuffer, <code>/dev/fb0</code>. The interface is
+defined in <code>/usr/include/linux/fb.h</code>, including an <code>ioctl</code> function to get
+the size of the display and the bits per pixel. You can then use <code>mmap</code> to
+ask the video driver to share the framebuffer with the application and
+read and write pixels.”</em></p>
+<h2 id="how-much-memory-does-my-application-use">How much memory does my application use?</h2>
+<p><em><span class="dquo">“</span>Linux believes that free memory is wasted memory and the kernel uses
+free memory for buffers and caches with the knowledge that they can be
+shrunk when the need arises.”</em></p>
+<h2 id="per-process-memory-usage">Per-process memory usage</h2>
+<p><em><span class="dquo">“</span>The ps and top commands [show]:</em></p>
+<ul>
+<li><em>Vss [virtual set size]: Called <span class="caps">VSZ</span> in the <code>ps</code> command and <span class="caps">VIRT</span> in <code>top</code>, this is the total amount of memory mapped by a process. It is the sum of all the regions shown in <code>/proc/&lt;PID&gt;/map</code>. This number is of limited interest since only part of the virtual memory is committed to physical memory at any time.</em></li>
+<li><em>Rss [resident memory size]: Called <span class="caps">RSS</span> in <code>ps</code> and <span class="caps">RES</span> in <code>top</code>, this is the sum of memory that is mapped to physical pages of memory. This gets closer to the actual memory budget of the process, but there is a problem: if you add the Rss of all the processes, you will get an overestimate of the memory in use because some pages will be shared.”</em></li>
+</ul>
+<h3 id="using-smem">Using smem</h3>
+<p><em><span class="dquo">“</span>[There are 2 more metrics]: <strong>unique set size</strong>, or <strong>Uss</strong>, and <strong>proportional set size</strong>, or <strong>Pss</strong>”</em></p>
+<p>Check the book for more information.</p>
+<p><em><span class="dquo">“</span>Information about Pss is available in <code>/proc/&lt;PID&gt;/smaps</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>There is a tool named <strong>smem</strong> that collates information from the smaps files and presents it in various ways”</em></p>
+<h2 id="identifying-memory-leaks">Identifying memory leaks</h2>
+<h3 id="mtrace">mtrace</h3>
+<p><em><span class="dquo">“</span><strong>mtrace</strong> is a component of glibc that traces calls to malloc , free , and related functions.”</em></p>
+<h2 id="running-out-of-memory">Running out of memory</h2>
+<p><em><span class="dquo">“</span>There is a tuning parameter for kernel allocations in <code>/proc/sys/vm/overcommit_memory</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>There is another important variable in <code>/proc/meminfo:Committed_AS</code>. This is the total
+amount of memory that is needed to fulfill all the allocations made so far.”</em></p>
+<p><em><span class="dquo">“</span>The final defense is <code>oom-killer</code>. It uses a heuristic method to calculate a badness score between 0 and 1,000 for each process,
+and then terminates those with the highest score until there is enough free memory.”</em></p>
+<p><em><span class="dquo">“</span>You can influence the badness score for a process by writing an adjustment value to
+<code>/proc/&lt;PID&gt;/oom_score_adj</code>.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -2012,7 +2118,7 @@ as <strong>Rate Monotonic Analysis</strong> (<strong><span class="caps">RMA</spa
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-29T20:35:37+01:00">Jan 29, 2019</time>
+<time datetime="2019-01-31T13:13:29+01:00">Jan 31, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
