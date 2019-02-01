@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-01-31T21:55:45+01:00" />
+<meta property="" content="2019-02-01T14:47:20+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -448,13 +448,28 @@
 </li>
 <li><a href="#chapter-14-debugging-with-gdb">Chapter 14. Debugging with <span class="caps">GDB</span></a><ul>
 <li><a href="#preparing-to-debug">Preparing to debug</a></li>
+<li><a href="#debugging-applications">Debugging applications</a><ul>
 <li><a href="#remote-debugging-using-gdbserver">Remote debugging using gdbserver</a></li>
+</ul>
+</li>
+<li><a href="#starting-to-debug">Starting to debug</a><ul>
 <li><a href="#connecting-gdb-and-gdbserver">Connecting <span class="caps">GDB</span> and gdbserver</a></li>
 <li><a href="#setting-the-sysroot">Setting the sysroot</a></li>
+</ul>
+</li>
 <li><a href="#just-in-time-debugging">Just-in-time debugging</a></li>
 <li><a href="#debugging-forks-and-threads">Debugging forks and threads</a></li>
-<li><a href="#core-files">Core files</a></li>
+<li><a href="#core-files">Core files</a><ul>
 <li><a href="#using-gdb-to-look-at-core-files">Using <span class="caps">GDB</span> to look at core files</a></li>
+</ul>
+</li>
+<li><a href="#debugging-kernel-code">Debugging kernel code</a><ul>
+<li><a href="#debugging-kernel-code-with-kgdb">Debugging kernel code with kgdb</a></li>
+<li><a href="#debugging-modules">Debugging modules</a></li>
+<li><a href="#debugging-kernel-code-with-kdb">Debugging kernel code with kdb</a></li>
+<li><a href="#looking-at-an-oops">Looking at an Oops</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2061,7 +2076,8 @@ and then terminates those with the highest score until there is enough free mem
 <p><em><span class="dquo">“</span>In most cases, <code>-g</code> suffices: reserve <code>-g3</code> or <code>-ggdb3</code> for if you are having problems stepping through code, especially if it contains macros.”</em></p>
 <p><em><span class="dquo">“</span>You will most likely need to compile without optimization, leaving out the <code>-O</code> compile switch, or using <code>-Og</code>, which enables optimizations that do not interfere with debugging.”</em></p>
 <p><em><span class="dquo">“</span>On some architectures, <span class="caps">GCC</span> will not generate stack-frame pointers with the higher levels of optimization (<code>-O2</code> and above). If you find yourself in the situation that you really have to compile with <code>-O2</code> but still want backtraces, you can override the default behavior with <code>-fno-omit-frame-pointer</code>.”</em></p>
-<h2 id="remote-debugging-using-gdbserver">Remote debugging using gdbserver</h2>
+<h2 id="debugging-applications">Debugging applications</h2>
+<h3 id="remote-debugging-using-gdbserver">Remote debugging using gdbserver</h3>
 <p><em><span class="dquo">“</span><code>gdbserver</code> connects to a copy of <span class="caps">GDB</span> running on the host machine via a network connection or a serial interface.”</em></p>
 <p><em><span class="dquo">“</span>Debugging through <code>gdbserver</code> is almost, but not quite, the same as debugging natively. The differences are mostly centered around the fact that there are two computers involved and they have to be in the right state for debugging to take place. Here are some things to look out for [check the book for more details]:</em></p>
 <ul>
@@ -2071,7 +2087,8 @@ and then terminates those with the highest score until there is enough free mem
 <li><em>The <span class="caps">GDB</span>/gdbserver combination does not support all the features of natively running <span class="caps">GDB</span>: for example, gdbserver cannot follow the child process after a <code>fork</code>, whereas native <span class="caps">GDB</span> can.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>For applications and shared libraries, <code>--strip-all</code> (the default) is fine, but when it comes to kernel modules, you will find that it will stop the module from loading. Use <code>--strip-unneeded</code> instead. “</em></p>
-<h2 id="connecting-gdb-and-gdbserver">Connecting <span class="caps">GDB</span> and gdbserver</h2>
+<h2 id="starting-to-debug">Starting to debug</h2>
+<h3 id="connecting-gdb-and-gdbserver">Connecting <span class="caps">GDB</span> and gdbserver</h3>
 <p><em>” In the case of a network connection, you launch <code>gdbserver</code> with the <span class="caps">TCP</span> port number to listen on and, optionally, an <span class="caps">IP</span> address to accept connections from. In most cases, you don’t care which <span class="caps">IP</span> address is going to connect, so you can just provide the port number. In this example, <code>gdbserver</code> waits for a connection on port 10000 from any host:”</em></p>
 <div class="highlight"><pre><span></span>gdbserver :10000 ./hello-world
 </pre></div>
@@ -2090,7 +2107,7 @@ and then terminates those with the highest score until there is enough free mem
 <div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> serial baud <span class="m">115200</span>
 <span class="o">(</span>gdb<span class="o">)</span> target remote /dev/ttyUSB0
 </pre></div>
-<h2 id="setting-the-sysroot">Setting the sysroot</h2>
+<h3 id="setting-the-sysroot">Setting the sysroot</h3>
 <p><em><span class="caps">GDB</span> needs to know where to find debug information and source code for the program and shared libraries you are debugging. When debugging natively, the paths are well known and built in to <span class="caps">GDB</span>, but when using a cross toolchain, <span class="caps">GDB</span> has no way to guess where the root of the target filesystem is. You have to give it this information.”</em></p>
 <div class="highlight"><pre><span></span> <span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> sysroot /opt/poky/2.2.1/sysroots/cortexa8hf-neon-poky-linux-gnueabi
 </pre></div>
@@ -2112,7 +2129,7 @@ and then terminates those with the highest score until there is enough free mem
 <p><em><span class="dquo">“</span>Core files are not created by default, but only when the core file resource limit for the process is non-zero. You can change it for the current shell using <code>ulimit -c</code>.”</em></p>
 <p><em><span class="dquo">“</span>There are two files that control the naming and placement of core files. The first is <code>/proc/sys/kernel/core_uses_pid</code>. Writing a <code>1</code> to it causes the <span class="caps">PID</span> number of the dying process to be appended to the filename. […] Much more useful is <code>/proc/sys/kernel/core_pattern</code>, which gives you a lot more control over core files.”</em></p>
 <p><em><span class="dquo">“</span>You can also use a pattern that begins with an absolute directory name so that all core files are gathered together in one place.”</em></p>
-<h2 id="using-gdb-to-look-at-core-files">Using <span class="caps">GDB</span> to look at core files</h2>
+<h3 id="using-gdb-to-look-at-core-files">Using <span class="caps">GDB</span> to look at core files</h3>
 <p><em><span class="dquo">“</span>Here is a sample <span class="caps">GDB</span> session looking at a core file:”</em></p>
 <div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-gdb sort-debug /tmp/corefiles/core.sort-debug.1431425613
 </pre></div>
@@ -2123,6 +2140,27 @@ and then terminates those with the highest score until there is enough free mem
 <span class="o">(</span>gdb<span class="o">)</span> bt
 ...
 </pre></div>
+<h2 id="debugging-kernel-code">Debugging kernel code</h2>
+<h3 id="debugging-kernel-code-with-kgdb">Debugging kernel code with kgdb</h3>
+<p><em><span class="dquo">“</span>The kernel is a complex system, with real-time behaviors. Don’t expect debugging to be as easy as it is for applications. Stepping through code that changes the memory mapping or switches context is likely to produce odd results.”</em></p>
+<p><em><span class="dquo">“</span><code>kgdb</code> is the name given to the kernel <span class="caps">GDB</span> stubs that have been part of mainline Linux for many years now. There is a user manual in the kernel DocBook, and you can find an online version at https://www.kernel.org/doc/htmldocs/kgdb/index.html.”</em></p>
+<p><em><span class="dquo">“</span>In addition to the <code>zImage</code> or <code>uImage</code> compressed kernel image, you will need the kernel image in <span class="caps">ELF</span> object format so that <span class="caps">GDB</span> can load the symbols into memory. This is the file called <code>vmlinux</code> that is generated in the directory where Linux is built.”</em></p>
+<h3 id="debugging-modules">Debugging modules</h3>
+<p><em><span class="dquo">“</span>The relocation addresses for each section of the module are stored in <code>/sys/module/&lt;module name&gt;/sections</code> [see also for hidden files, i.e .text].”</em></p>
+<h3 id="debugging-kernel-code-with-kdb">Debugging kernel code with kdb</h3>
+<p><em><span class="dquo">“</span>Although <code>kdb</code> does not have the features of <code>kgdb</code> and <span class="caps">GDB</span>, it does have its uses, and being self-hosted, there are no external dependencies to worry about. kdb has a simple command-line interface that you can use on a serial console. You can use it to inspect memory, registers, process lists, and <code>dmesg</code> and even set breakpoints to stop at a certain location.”</em></p>
+<p><em><span class="dquo">“</span><code>kdb</code> is not a source-level debugger, so you can’t see the source code or single-step. However, you can display a backtrace using the <code>bt</code> command”</em></p>
+<h3 id="looking-at-an-oops">Looking at an Oops</h3>
+<p><em><span class="dquo">“</span>When the kernel performs an invalid memory access or executes an illegal instruction, a kernel Oops message is written to the kernel log.”</em></p>
+<p><em><span class="dquo">“</span>[One] can use the <span class="caps">GDB</span> command disassemble with the <code>/s</code> modifier so that it shows source and assembler code together.”</em></p>
+<div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-gdb mbx.ko
+
+:::bash
+<span class="o">(</span>gdb<span class="o">)</span> disassemble /s mbx_write
+</pre></div>
+<blockquote>
+<p>The offsets are displayed in decimal, not hex!</p>
+</blockquote>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -2196,7 +2234,7 @@ and then terminates those with the highest score until there is enough free mem
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-01-31T21:55:45+01:00">Jan 31, 2019</time>
+<time datetime="2019-02-01T14:47:20+01:00">Feb 1, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
