@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-01-20T21:39:58+01:00" />
-<meta property="" content="2019-02-09T21:01:27+01:00" />
+<meta property="" content="2019-02-10T13:28:10+01:00" />
 <meta name="twitter:title" content="Mastering Embedded Linux Programming ">
 <meta name="twitter:description" content="Notes to the book Mastering Embedded Linux Programming My code examples can be found here: GitHub “The versions of the main packages […] are U-Boot 2015.07, Linux 4.1, Yocto Project 1.8 “Fido”, and Buildroot 2015.08” Chapter 1. Starting Out “At the heart of most embedded devices is …">
 
@@ -496,6 +496,26 @@
 </li>
 <li><a href="#chapter-16-real-time-programming">Chapter 16. Real-Time Programming</a><ul>
 <li><a href="#what-is-real-time">What is real time?</a></li>
+<li><a href="#identifying-sources-of-non-determinism">Identifying sources of non-determinism</a></li>
+<li><a href="#kernel-preemption">Kernel preemption</a></li>
+<li><a href="#the-real-time-linux-kernel-preempt_rt">The real-time Linux kernel (PREEMPT_RT)</a><ul>
+<li><a href="#threaded-interrupt-handlers">Threaded interrupt handlers</a></li>
+</ul>
+</li>
+<li><a href="#preemptible-kernel-locks">Preemptible kernel locks</a><ul>
+<li><a href="#getting-the-preempt_rt-patches">Getting the PREEMPT_RT patches</a></li>
+</ul>
+</li>
+<li><a href="#high-resolution-timers">High-resolution timers</a></li>
+<li><a href="#avoiding-page-faults">Avoiding page faults</a></li>
+<li><a href="#interrupt-shielding">Interrupt shielding</a></li>
+<li><a href="#measuring-scheduling-latencies">Measuring scheduling latencies</a><ul>
+<li><a href="#cyclictest">cyclictest</a></li>
+<li><a href="#using-ftrace">Using Ftrace</a></li>
+<li><a href="#combining-cyclictest-and-ftrace">Combining cyclictest and Ftrace</a></li>
+</ul>
+</li>
+<li><a href="#summary_6">Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -2264,8 +2284,142 @@ milliseconds, and a kernel with the <code>PREEMPT_RT</code> patch is good for
 soft and hard real-time mission-critical systems with deadlines
 down to several hundreds of microseconds.”</em></p>
 <blockquote>
-<p>It is a myth of real-time computing that it is fast. This is not so, the more deterministic a system is, the lower the maximum throughput.</p>
+<p>It is a myth of real-time computing that it is fast. This is not so,
+the more deterministic a system is, the lower the maximum throughput.</p>
 </blockquote>
+<h2 id="identifying-sources-of-non-determinism">Identifying sources of non-determinism</h2>
+<p><em><span class="dquo">“</span>Here are some problem areas:</em></p>
+<ul>
+<li><em><strong>Scheduling</strong>: Real-time threads must be scheduled before others, and so they must have a real-time policy, <code>SCHED_FIFO</code> or <code>SCHED_RR</code>. Additionally, they should have priorities assigned in descending order starting with the one with the shortest deadline, according to the theory of Rate Monotonic Analysis</em></li>
+<li><em><strong>Scheduling latency</strong>: The kernel must be able to reschedule as soon as an event such as an interrupt or timer occurs, and not be subject to unbounded delays.</em></li>
+<li><em><strong>Priority inversion</strong>: This is a consequence of priority-based scheduling, which leads to unbounded delays when a high-priority thread is blocked on a mutex held by a low-priority thread […] User space has priority inheritance and priority ceiling mutexes; in kernel space, we have rt-mutexes, which implement priority inheritance […]</em></li>
+<li><em><strong>Accurate timers</strong>: If you want to manage deadlines in the region of low milliseconds or microseconds, you need timers that match. High-resolution timers are crucial and are a configuration option on almost all kernels.</em></li>
+<li><em><strong>Page faults</strong>: A page fault while executing a critical section of code will upset all timing estimates. You can avoid them by locking memory</em></li>
+<li><em><strong>Interrupts</strong>: They occur at unpredictable times and can result in an unexpected processing overhead if there is a sudden flood of them. There are two ways to avoid this. One is to run interrupts as kernel threads, and the other, on multi-core devices, is to shield one or more CPUs from interrupt handling.</em></li>
+<li><em><strong>Processor caches</strong>: These provide a buffer between the <span class="caps">CPU</span> and the main memory and, like all caches, are a source of non-determinism, especially on multi-core devices.</em></li>
+<li>*<em><em>Memory bus contention</em>: When peripherals access memory directly through a <span class="caps">DMA</span> channel, they use up a slice of memory bus bandwidth, which slows down access from the <span class="caps">CPU</span> core (or cores) and so contributes to non-deterministic execution of the program.”</em></li>
+</ul>
+<h2 id="kernel-preemption">Kernel preemption</h2>
+<p><em><span class="dquo">“</span>Mainline Linux has three settings for preemption:</em></p>
+<ul>
+<li><em><code>CONFIG_PREEMPT_NONE</code>: No preemption</em></li>
+<li><em><code>CONFIG_PREEMPT_VOLUNTARY</code>: This enables additional checks for requests for preemption</em></li>
+<li><em>`CONFIG_PREEMPT: This allows the kernel to be preempted”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>With preemption set to <code>none</code>, kernel code will continue without
+rescheduling until it either returns via a <code>syscall</code> back to user
+space, where preemption is always allowed, or it encounters a
+sleeping wait that stops the current thread. […]  It is the
+default for servers and some desktop kernels, where throughput is
+more important than responsiveness.”</em></p>
+<p><em><span class="dquo">“</span>[<code>CONFIG_PREEMPT</code>] is often described as a soft real-time option, and most embedded kernels are configured in this way.”</em></p>
+<h2 id="the-real-time-linux-kernel-preempt_rt">The real-time Linux kernel (PREEMPT_RT)</h2>
+<p><em><span class="dquo">“</span>The central plan is to reduce the amount of time the kernel spends running in an <strong>atomic context</strong>, which is where it is not safe to call the scheduler and switch to a different thread. Typical atomic contexts are when the kernel is in the following states:</em></p>
+<ul>
+<li><em>Running an interrupt or trap handler.</em></li>
+<li><em>Holding a spinlock or in an <span class="caps">RCU</span> critical section. Spin lock and <span class="caps">RCU</span> are kernel-locking primitives</em></li>
+<li><em>Between calls to <code>preempt_disable()</code> and <code>preempt_enable()</code>.</em></li>
+<li><em>Hardware interrupts are disabled (IRQs off)”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>The changes that are part of <code>PREEMPT_RT</code> fall into two main
+areas: one is to reduce the impact of interrupt handlers by
+turning them into kernel threads, and the other is to make locks
+preemptible so that a thread can sleep while holding one. […]
+there is a large overhead in these changes, which makes
+average-case interrupt handling slower but much more deterministic.”</em></p>
+<h3 id="threaded-interrupt-handlers">Threaded interrupt handlers</h3>
+<p><em><span class="dquo">“</span>Not all interrupts are triggers for real-time tasks, but all
+interrupts steal cycles from real-time tasks. Threaded interrupt
+handlers allow a priority to be associated with the interrupt and
+for it to be scheduled at an appropriate time.”</em></p>
+<p><em><span class="dquo">“</span>You can make threaded IRQs the default by configuring the kernel 
+with <code>CONFIG_IRQ_FORCED_THREADING=y</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>When you apply the <code>PREEMPT_RT</code> patches, interrupts are, by 
+default, configured as threads in this way.”</em></p>
+<p><em><span class="dquo">“</span>It is normal that the timer interrupt handler be run inline.”</em></p>
+<p><em><span class="dquo">“</span>[See the book for a] suggested order of descending thread priorities”</em></p>
+<p><em><span class="dquo">“</span>You can change the priorities using the <code>chrt</code> command as 
+part of the boot script.”</em></p>
+<h2 id="preemptible-kernel-locks">Preemptible kernel locks</h2>
+<p><em><span class="dquo">“</span>A spin lock is a busy-wait mutex that does not require a context 
+switch in the contended case, and so it is very efficient as long 
+as the lock is held for a short time. Ideally, they should be 
+locked for less than the time it would take to reschedule twice.”</em></p>
+<p><em><span class="dquo">“</span>In mainline Linux, locking a spin lock disables kernel
+preemption, creating an atomic context. This means that a low
+priority thread that holds a spin lock can prevent a high-priority
+thread from being scheduled.”</em></p>
+<p><em><span class="dquo">“</span>The solution adopted by <code>PREEMPT_RT</code> is to replace almost all
+spin locks with <span class="caps">RT</span>-mutexes. A mutex is slower than a spin lock,
+but it is fully preemptible. Not only that, but <span class="caps">RT</span>-mutexes
+implement priority inheritance and so are not susceptible to
+priority inversion.”</em></p>
+<h3 id="getting-the-preempt_rt-patches">Getting the PREEMPT_RT patches</h3>
+<p><em><span class="dquo">“</span>The <span class="caps">RT</span> developers do not create patch sets for every kernel version because of the amount of effort involved.”</em></p>
+<p><em><span class="dquo">“</span>The patches are available at
+<a href="https://www.kernel.org/pub/linux/kernel/projects/rt">https://www.kernel.org/pub/linux/kernel/projects/rt</a>.”</em></p>
+<p><em><span class="dquo">“</span>If you are using the Yocto Project, there is an <code>rt</code> version
+of the kernel already.”</em></p>
+<h2 id="high-resolution-timers">High-resolution timers</h2>
+<p><em><span class="dquo">“</span>Timer resolution is important if you have precise timing
+requirements, which is typical for real-time applications. The
+default timer in Linux is a clock that runs at a configurable
+rate, typically 100 Hz for embedded systems and 250 Hz for servers
+and desktops. The interval between two timer ticks is known as a
+<strong>jiffy</strong> and [is for example] 10 milliseconds on an embedded
+SoC and four milliseconds on a server.”</em></p>
+<h2 id="avoiding-page-faults">Avoiding page faults</h2>
+<p><em><span class="dquo">“</span>A page fault occurs when an application reads or writes to
+memory that is not committed to physical memory. It is impossible
+(or very hard) to predict when a page fault will happen, so they
+are another source of non-determinism in computers.
+Fortunately, there is a function that allows you to commit all the
+memory used by the process and lock it down so that it cannot
+cause a page fault. It is <code>mlockall(2)</code><span class="dquo">“</span></em></p>
+<h2 id="interrupt-shielding">Interrupt shielding</h2>
+<p><em><span class="dquo">“</span>Using a multi-core processor, you can take a different approach
+and shield one or more cores from processing interrupts
+completely, allowing them to be dedicated to real-time tasks
+instead. This works either with a normal Linux kernel or a
+<code>PREEMPT_RT</code> kernel.”</em></p>
+<p><em><span class="dquo">“</span>You can set the <span class="caps">CPU</span> affinity of a thread or process using the
+command-line tool <code>taskset</code>, or you can use the
+<code>sched_setaffinity(2)</code> and <code>pthread_setaffinity_np(3)</code> functions.”</em></p>
+<p><em><span class="dquo">“</span>To set the affinity of an interrupt, first note that there is a
+subdirectory for each interrupt number in
+<code>/proc/irq/&lt;IRQ number&gt;</code>. The control files for the interrupt
+are in there.”</em></p>
+<h2 id="measuring-scheduling-latencies">Measuring scheduling latencies</h2>
+<h3 id="cyclictest">cyclictest</h3>
+<p><em><span class="dquo">“</span><code>cyclictest</code> measures scheduling latencies by comparing the
+actual time taken for a sleep to the requested time. If there was
+no latency, they would be the same, and the reported latency would
+be zero. <code>cyclictest</code> assumes a timer resolution of less than one microsecond.”</em></p>
+<p><em><span class="dquo">“</span>To be of real use, you would run tests over a 24-hour period
+or longer while running a load representative of the maximum you expect.”</em></p>
+<p><em><span class="dquo">“</span>Of the numbers produced by <code>cyclictest</code>, the maximum latency is
+the most interesting, but it would be nice to get an idea of the
+spread of the values. You can get that by adding <code>-h &lt;N&gt;</code> to
+obtain a histogram of samples that are up to <code>N</code>
+microseconds late.”</em></p>
+<h3 id="using-ftrace">Using Ftrace</h3>
+<p><em><span class="dquo">“</span>The kernel function tracer has tracers to help track down
+kernel latencies.”</em></p>
+<p><em><span class="dquo">“</span>Be aware that running Ftrace adds a lot of latency, in the order
+of tens of milliseconds, every time it captures a new maximum,
+which Ftrace itself can ignore. However, it skews the results of
+user space tracers such as cyclictest. […] ignore the results of
+<code>cyclictest</code> if you run it while capturing traces.”</em></p>
+<h3 id="combining-cyclictest-and-ftrace">Combining cyclictest and Ftrace</h3>
+<p><em><span class="dquo">“</span>If <code>cyclictest</code> reports unexpectedly long latencies, you can use
+the <code>breaktrace</code> option to abort the program and trigger <code>ftrace</code>
+to obtain more information.”</em></p>
+<h2 id="summary_6">Summary</h2>
+<p><em><span class="dquo">“</span>Tuning Linux and your application to handle real-time events
+means making it more deterministic so that the real-time threads
+can meet their deadlines reliably.”</em></p>
+<p><em><span class="dquo">“</span>To improve determinism, you need to consider both the
+application and the kernel.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -2339,7 +2493,7 @@ down to several hundreds of microseconds.”</em></p>
             <time pubdate="pubdate" datetime="2018-01-20T21:39:58+01:00">Jan 20, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-02-09T21:01:27+01:00">Feb 9, 2019</time>
+<time datetime="2019-02-10T13:28:10+01:00">Feb 10, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
