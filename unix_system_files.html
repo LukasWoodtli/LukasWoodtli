@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Lukas Woodtli" />
-        <meta name="copyright" content="Lukas Woodtli" />
 
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -18,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-03-06T20:58:15+01:00" />
-<meta property="" content="2018-09-26T07:44:53+02:00" />
+<meta property="og:article:modified_time" content="2018-09-26T07:44:53+02:00" />
 <meta name="twitter:title" content="Unix System Files ">
 <meta name="twitter:description" content="/etc/passwd Contains user informations. The information fields are separated by a colon. user-name:password:UID:GID:info:home-dir:shell user-name: The name that the user needs to log in. password: Usually the entry x, meaning that the password is saved in /etc/shadow. UID: The user-id (usually greater than …">
 
@@ -29,7 +28,11 @@
         <link rel="stylesheet" type="text/css" href="./theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+
+
     </head>
     <body>
         <div id="content-sans-footer">
@@ -45,16 +48,9 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href=".">Home</a></li>
-                            <li><a href="./pages/resume.html">Resume</a></li>
-                            <li><a href="./pages/skills.html">Skills</a></li>
-                            <li><a href="./pages/books.html">Books</a></li>
-                            <li><a href="./pages/courses.html">Courses</a></li>
-                            <li><a href="./pages/projects.html">Projects</a></li>
-                            <li><a href="./pages/blog.html">Blog</a></li>
-                            <li><a href="./pages/contact.html">Contact</a></li>
-                            <!-- <li ><a href="./categories.html">Categories</a></li> -->
-                            <!-- <li ><a href="./tags.html">Tags</a></li> -->
-                            <!-- <li ><a href="./archives.html">Archives</a></li> -->
+                            <li ><a href="./categories">Categories</a></li>
+                            <li ><a href="./tags">Tags</a></li>
+                            <li ><a href="./archives">Archives</a></li>
                             <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
@@ -65,7 +61,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-<article>
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
     <h1><a href="./unix_system_files.html"> Unix System&nbsp;Files  </a></h1>
@@ -141,6 +137,11 @@
 </ul>
 <h2 id="references">References</h2>
 <p><a href="https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/">Zsh/Bash startup files loading order</a></p>
+            <div>
+            <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
+                </span><br />
+</div>
+
             
             
             <hr/>
@@ -156,7 +157,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-03-06T20:58:15+01:00">Mar 6, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-03-06T20:58:15+01:00">Mar 6, 2017</time>
 
 <h4>Last Updated</h4>
 <time datetime="2018-09-26T07:44:53+02:00">Sep 26, 2018</time>
@@ -165,16 +166,16 @@
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#computer_science-ref">Computer Science
+                <li><a href="./tags#computer_science-ref">Computer Science
                     <span>24</span>
 </a></li>
-                <li><a href="./tags.html#linux-ref">Linux
+                <li><a href="./tags#linux-ref">Linux
                     <span>12</span>
 </a></li>
-                <li><a href="./tags.html#os-ref">OS
+                <li><a href="./tags#os-ref">OS
                     <span>13</span>
 </a></li>
-                <li><a href="./tags.html#unix-ref">Unix
+                <li><a href="./tags#unix-ref">Unix
                     <span>8</span>
 </a></li>
             </ul>
@@ -202,10 +203,10 @@
 <footer>
 <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
 </div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -217,5 +218,5 @@
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+    License : MIT -->
 </html>

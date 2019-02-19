@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Lukas Woodtli" />
-        <meta name="copyright" content="Lukas Woodtli" />
 
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -21,7 +20,11 @@
         <link rel="stylesheet" type="text/css" href="../theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+
+
+
     </head>
     <body>
         <div id="content-sans-footer">
@@ -37,16 +40,9 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href="..">Home</a></li>
-                            <li><a href="../pages/resume.html">Resume</a></li>
-                            <li><a href="../pages/skills.html">Skills</a></li>
-                            <li><a href="../pages/books.html">Books</a></li>
-                            <li><a href="../pages/courses.html">Courses</a></li>
-                            <li><a href="../pages/projects.html">Projects</a></li>
-                            <li><a href="../pages/blog.html">Blog</a></li>
-                            <li><a href="../pages/contact.html">Contact</a></li>
-                            <!-- <li ><a href="../categories.html">Categories</a></li> -->
-                            <!-- <li ><a href="../tags.html">Tags</a></li> -->
-                            <!-- <li ><a href="../archives.html">Archives</a></li> -->
+                            <li ><a href="../categories">Categories</a></li>
+                            <li ><a href="../tags">Tags</a></li>
+                            <li ><a href="../archives">Archives</a></li>
                             <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
@@ -66,106 +62,106 @@
     <div class="row-fluid">
         <div class="span8 offset2">
             <header>
-            <h1 id="recent-posts">Recent Posts <a id="allposts" href="../archives.html">all posts</a></h1>
+            <h1 id="recent-posts">Recent Posts <a id="allposts" href="../archives">all posts</a></h1>
             </header>
         <div class="recent-posts">
-            <article>
+            <article itemscope>
                 <a href="../eigenvectors_and_eigenvalues.html">Eigenvectors and&nbsp;Eigenvalues  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mathematics-ref">Mathematics</a>
+                <a href="../categories#mathematics-ref">Mathematics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2019-02-09T16:06:39+01:00">Sat 09 February 2019</time>
+                <time itemprop="dateCreated" datetime="2019-02-09T16:06:39+01:00">Sat 09 February 2019</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../electrical_motors.html">Electrical&nbsp;Motors  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2019-01-05T21:06:58+01:00">Sat 05 January 2019</time>
+                <time itemprop="dateCreated" datetime="2019-01-05T21:06:58+01:00">Sat 05 January 2019</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../twist,_screw_and_wrench.html">Twist, Screw and&nbsp;Wrench  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-12-27T20:06:50+01:00">Thu 27 December 2018</time>
+                <time itemprop="dateCreated" datetime="2018-12-27T20:06:50+01:00">Thu 27 December 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../pose_and_position.html">Pose and&nbsp;Position  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-11-10T10:39:04+01:00">Sat 10 November 2018</time>
+                <time itemprop="dateCreated" datetime="2018-11-10T10:39:04+01:00">Sat 10 November 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../practical_cpp_metaprogramming.html">Practical C++&nbsp;Metaprogramming  </a>
                 <section>
                     posted in
-                <a href="../categories.html#programming-ref">Programming</a>
+                <a href="../categories#programming-ref">Programming</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-10-17T14:37:12+02:00">Wed 17 October 2018</time>
+                <time itemprop="dateCreated" datetime="2018-10-17T14:37:12+02:00">Wed 17 October 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../rotation_matrix.html">Rotation&nbsp;Matrix  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-10-09T20:26:37+02:00">Tue 09 October 2018</time>
+                <time itemprop="dateCreated" datetime="2018-10-09T20:26:37+02:00">Tue 09 October 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../mechanical_constraints.html">Mechanical&nbsp;Constraints  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-10-07T20:22:53+02:00">Sun 07 October 2018</time>
+                <time itemprop="dateCreated" datetime="2018-10-07T20:22:53+02:00">Sun 07 October 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../space_topology.html">Space&nbsp;Topology  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-09-19T20:46:46+02:00">Wed 19 September 2018</time>
+                <time itemprop="dateCreated" datetime="2018-09-19T20:46:46+02:00">Wed 19 September 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../setup_a_new_machine.html">Setup a new&nbsp;Machine  </a>
                 <section>
                     posted in
-                <a href="../categories.html#programming-ref">Programming</a>
+                <a href="../categories#programming-ref">Programming</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-09-19T10:48:26+02:00">Wed 19 September 2018</time>
+                <time itemprop="dateCreated" datetime="2018-09-19T10:48:26+02:00">Wed 19 September 2018</time>
                 </div>
                 </section>
             </article>
-            <article>
+            <article itemscope>
                 <a href="../configuration_space_and_degrees_of_freedoms.html">Configuration Space and Degrees of&nbsp;Freedoms  </a>
                 <section>
                     posted in
-                <a href="../categories.html#mechanics-ref">Mechanics</a>
+                <a href="../categories#mechanics-ref">Mechanics</a>
                 <div class="recent-posts-time">
-                <time pubdate="pubdate" datetime="2018-09-14T20:16:44+02:00">Fri 14 September 2018</time>
+                <time itemprop="dateCreated" datetime="2018-09-14T20:16:44+02:00">Fri 14 September 2018</time>
                 </div>
                 </section>
             </article>
@@ -182,10 +178,10 @@
 <footer>
 <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
 </div>
-</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
+</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -195,5 +191,5 @@
         </script>
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+    License : MIT -->
 </html>

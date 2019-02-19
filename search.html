@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Lukas Woodtli" />
-        <meta name="copyright" content="Lukas Woodtli" />
 
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -24,7 +23,11 @@
         <link rel="stylesheet" type="text/css" href="./theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+
+
     </head>
     <body>
         <div id="content-sans-footer">
@@ -40,16 +43,9 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href=".">Home</a></li>
-                            <li><a href="./pages/resume.html">Resume</a></li>
-                            <li><a href="./pages/skills.html">Skills</a></li>
-                            <li><a href="./pages/books.html">Books</a></li>
-                            <li><a href="./pages/courses.html">Courses</a></li>
-                            <li><a href="./pages/projects.html">Projects</a></li>
-                            <li><a href="./pages/blog.html">Blog</a></li>
-                            <li><a href="./pages/contact.html">Contact</a></li>
-                            <!-- <li ><a href="./categories.html">Categories</a></li> -->
-                            <!-- <li ><a href="./tags.html">Tags</a></li> -->
-                            <!-- <li ><a href="./archives.html">Archives</a></li> -->
+                            <li ><a href="./categories">Categories</a></li>
+                            <li ><a href="./tags">Tags</a></li>
+                            <li ><a href="./archives">Archives</a></li>
                             <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
@@ -74,23 +70,25 @@
 <footer>
 <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
 </div>
-</footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+</footer><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="./theme/tipuesearch/tipuesearch_set.js"></script>
 <script type="text/javascript" src="./theme/tipuesearch/tipuesearch.min.js"></script>
+
+<script src="./tipuesearch_content.js"></script>
+
 <script>
 $(document).ready(function() {
      $('#tipue_search_input').tipuesearch({
              'mode' : 'json',
          'show': 10,
          'newWindow': false,
-             'contentLocation': 'tipuesearch_content.json'
      });
 });
 </script>
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+    License : MIT -->
 </html>

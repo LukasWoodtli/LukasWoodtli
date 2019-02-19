@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Lukas Woodtli" />
-        <meta name="copyright" content="Lukas Woodtli" />
 
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -18,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-02-26T10:39:03+01:00" />
-<meta property="" content="2018-05-30T21:05:28+02:00" />
+<meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Finance and Capital Markets ">
 <meta name="twitter:description" content="This article is work in progress Present Value (Barwert): value of expected income stream as of the valuation date (i.e. present). Concept of time value of money Most common applied model uses compound interest: $$PV = \frac{C}{(1+i)^n}$$ \(C\): Future amount of money \(n\): Number of compounding …">
 
@@ -29,7 +28,11 @@
         <link rel="stylesheet" type="text/css" href="./theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+
+
     </head>
     <body>
         <div id="content-sans-footer">
@@ -45,16 +48,9 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href=".">Home</a></li>
-                            <li><a href="./pages/resume.html">Resume</a></li>
-                            <li><a href="./pages/skills.html">Skills</a></li>
-                            <li><a href="./pages/books.html">Books</a></li>
-                            <li><a href="./pages/courses.html">Courses</a></li>
-                            <li><a href="./pages/projects.html">Projects</a></li>
-                            <li><a href="./pages/blog.html">Blog</a></li>
-                            <li><a href="./pages/contact.html">Contact</a></li>
-                            <!-- <li ><a href="./categories.html">Categories</a></li> -->
-                            <!-- <li ><a href="./tags.html">Tags</a></li> -->
-                            <!-- <li ><a href="./archives.html">Archives</a></li> -->
+                            <li ><a href="./categories">Categories</a></li>
+                            <li ><a href="./tags">Tags</a></li>
+                            <li ><a href="./archives">Archives</a></li>
                             <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
@@ -65,7 +61,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-<article>
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
     <h1><a href="./finance_and_capital_markets.html"> Finance and Capital&nbsp;Markets  </a></h1>
@@ -243,6 +239,11 @@
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
+            <div>
+            <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
+                </span><br />
+</div>
+
             
             
             <hr/>
@@ -258,7 +259,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2018-02-26T10:39:03+01:00">Feb 26, 2018</time>
+            <time itemprop="dateCreated" datetime="2018-02-26T10:39:03+01:00">Feb 26, 2018</time>
 
 <h4>Last Updated</h4>
 <time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
@@ -289,10 +290,10 @@
 <footer>
 <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
 </div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -304,5 +305,5 @@
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+    License : MIT -->
 </html>
