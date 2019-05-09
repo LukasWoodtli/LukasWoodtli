@@ -85,34 +85,34 @@
 and realise later that what you’ve been doing might have been a bad
 idea, and you would rather it were on a topic branch. If the commit
 graph looks like this:</p>
-<div class="highlight"><pre><span></span>   last version from another repository
-      |
-      v
-  M---N-----O----P---Q ("master")
+<div class="highlight"><pre><span></span>   <span class="k">last</span> <span class="k">version</span> <span class="k">from</span> <span class="n">another</span> <span class="n">repository</span>
+      <span class="o">|</span>
+      <span class="n">v</span>
+  <span class="n">M</span><span class="c1">---N-----O----P---Q ("master")</span>
 </pre></div>
 <p>Then you separate out your work with the following set of commands
 (where the diagrams show how the state has changed after them):</p>
-<div class="highlight"><pre><span></span>$ git branch dubious-experiment
+<div class="highlight"><pre><span></span>$ <span class="nv">git</span> <span class="nv">branch</span> <span class="nv">dubious</span><span class="o">-</span><span class="nv">experiment</span>
 
-  M---N-----O----P---Q <span class="o">(</span><span class="s2">"master"</span> and <span class="s2">"dubious-experiment"</span><span class="o">)</span>
+  <span class="nv">M</span><span class="o">---</span><span class="nv">N</span><span class="o">-----</span><span class="nv">O</span><span class="o">----</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">"</span><span class="s">master</span><span class="s2">"</span> <span class="nv">and</span> <span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span><span class="ss">)</span>
 
-$ git checkout master
-  <span class="c1"># Be careful with this next command: make sure "git status" is</span>
-  <span class="c1"># clean, you're definitely on "master" and the</span>
-  <span class="c1"># "dubious-experiment" branch has the commits you were working</span>
-  <span class="c1"># on first...</span>
+$ <span class="nv">git</span> <span class="nv">checkout</span> <span class="nv">master</span>
+  # <span class="nv">Be</span> <span class="nv">careful</span> <span class="nv">with</span> <span class="nv">this</span> <span class="k">next</span> <span class="nv">command</span>: <span class="nv">make</span> <span class="nv">sure</span> <span class="s2">"</span><span class="s">git status</span><span class="s2">"</span> <span class="nv">is</span>
+  # <span class="nv">clean</span>, <span class="nv">you</span><span class="s1">'</span><span class="s">re definitely on "master" and the</span>
+  # <span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span> <span class="nv">branch</span> <span class="nv">has</span> <span class="nv">the</span> <span class="nv">commits</span> <span class="nv">you</span> <span class="nv">were</span> <span class="nv">working</span>
+  # <span class="nv">on</span> <span class="nv">first</span>...
 
-$ git reset --hard &lt;SHA1sum of commit N&gt;
+$ <span class="nv">git</span> <span class="nv">reset</span> <span class="o">--</span><span class="nv">hard</span> <span class="o">&lt;</span><span class="nv">SHA1sum</span> <span class="nv">of</span> <span class="nv">commit</span> <span class="nv">N</span><span class="o">&gt;</span>
 
-       <span class="o">(</span><span class="s2">"master"</span><span class="o">)</span>
-  M---N-------------O----P---Q <span class="o">(</span><span class="s2">"dubious-experiment"</span><span class="o">)</span>
+       <span class="ss">(</span><span class="s2">"</span><span class="s">master</span><span class="s2">"</span><span class="ss">)</span>
+  <span class="nv">M</span><span class="o">---</span><span class="nv">N</span><span class="o">-------------</span><span class="nv">O</span><span class="o">----</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span><span class="ss">)</span>
 
-$ git pull <span class="c1"># Or something that updates "master" from</span>
-           <span class="c1"># somewhere else...</span>
+$ <span class="nv">git</span> <span class="nv">pull</span> # <span class="nv">Or</span> <span class="nv">something</span> <span class="nv">that</span> <span class="nv">updates</span> <span class="s2">"</span><span class="s">master</span><span class="s2">"</span> <span class="nv">from</span>
+           # <span class="nv">somewhere</span> <span class="k">else</span>...
 
-  M--N----R---S <span class="o">(</span><span class="s2">"master"</span><span class="o">)</span>
-      <span class="se">\</span>
-       O---P---Q <span class="o">(</span><span class="s2">"dubious-experiment"</span><span class="o">)</span>
+  <span class="nv">M</span><span class="o">--</span><span class="nv">N</span><span class="o">----</span><span class="nv">R</span><span class="o">---</span><span class="nv">S</span> <span class="ss">(</span><span class="s2">"</span><span class="s">master</span><span class="s2">"</span><span class="ss">)</span>
+      \
+       <span class="nv">O</span><span class="o">---</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span><span class="ss">)</span>
 </pre></div>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -

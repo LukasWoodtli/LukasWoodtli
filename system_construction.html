@@ -739,7 +739,7 @@ find the right documents.</p>
 </ul>
 <h4 id="object-file-format">Object File Format</h4>
 <p>Compiler flags:</p>
-<div class="highlight"><pre><span></span>Compiler.Compile -b=ARM --objectFile=Minos
+<div class="highlight"><pre><span></span><span class="n">Compiler</span><span class="p">.</span><span class="n">Compile</span> <span class="o">-</span><span class="n">b</span><span class="o">=</span><span class="n">ARM</span> <span class="c1">--objectFile=Minos</span>
 </pre></div>
 <ul>
 <li>The object file is very compact</li>
@@ -759,7 +759,7 @@ find the right documents.</p>
 <li>Predefined loading address and entry point (0x8000 for <span class="caps">RPI2</span>)</li>
 </ul>
 <p>Boot-Linking command in host system</p>
-<div class="highlight"><pre><span></span>MinosLinker.Link minimalinit.img 108000H kernel.img OFSRamVolumes SerialLog Minos  ~
+<div class="highlight"><pre><span></span><span class="n">MinosLinker</span><span class="p">.</span><span class="n">Link</span> <span class="n">minimalinit</span><span class="p">.</span><span class="n">img</span> <span class="mi">108000</span><span class="n">H</span> <span class="n">kernel</span><span class="p">.</span><span class="n">img</span> <span class="n">OFSRamVolumes</span> <span class="n">SerialLog</span> <span class="n">Minos</span>  <span class="o">~</span>
 </pre></div>
 <p>Image header: <code>minimalinit.img</code>
 Start address: <code>108000H</code>

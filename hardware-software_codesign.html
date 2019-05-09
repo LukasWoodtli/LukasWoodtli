@@ -1914,15 +1914,15 @@ occurring in the program (addresses, register contents, local and global variab
 </ul>
 <h4 id="cache-analysis">Cache Analysis</h4>
 <p>Statically precompute cache contents:</p>
-<div class="highlight"><pre><span></span>- Must Analysis
-    - For each program point (and calling context) find out which blocks *are in the cache*
-    - Determines safe information about cache hits
-    - Predicted cache hit *reduces* **WCET**
-- May Analysis
-    - For each program point (and calling context) find out which blocks *may be in the cache*
-    - *Complement* says what is **not** in the cache
-    - Determines safe information about cache misses
-    - Each predicted cache miss *increases* **BCET**
+<div class="highlight"><pre><span></span><span class="o">-</span> <span class="nv">Must</span> <span class="nv">Analysis</span>
+    <span class="o">-</span> <span class="k">For</span> <span class="nv">each</span> <span class="nv">program</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">calling</span> <span class="nv">context</span><span class="ss">)</span> <span class="nv">find</span> <span class="nv">out</span> <span class="nv">which</span> <span class="nv">blocks</span> <span class="o">*</span><span class="nv">are</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span><span class="o">*</span>
+    <span class="o">-</span> <span class="nv">Determines</span> <span class="nv">safe</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">cache</span> <span class="nv">hits</span>
+    <span class="o">-</span> <span class="nv">Predicted</span> <span class="nv">cache</span> <span class="nv">hit</span> <span class="o">*</span><span class="nv">reduces</span><span class="o">*</span> <span class="o">**</span><span class="nv">WCET</span><span class="o">**</span>
+<span class="o">-</span> <span class="nv">May</span> <span class="nv">Analysis</span>
+    <span class="o">-</span> <span class="k">For</span> <span class="nv">each</span> <span class="nv">program</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">calling</span> <span class="nv">context</span><span class="ss">)</span> <span class="nv">find</span> <span class="nv">out</span> <span class="nv">which</span> <span class="nv">blocks</span> <span class="o">*</span><span class="nv">may</span> <span class="nv">be</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span><span class="o">*</span>
+    <span class="o">-</span> <span class="o">*</span><span class="nv">Complement</span><span class="o">*</span> <span class="nv">says</span> <span class="nv">what</span> <span class="nv">is</span> <span class="o">**</span><span class="nv">not</span><span class="o">**</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span>
+    <span class="o">-</span> <span class="nv">Determines</span> <span class="nv">safe</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">cache</span> <span class="nv">misses</span>
+    <span class="o">-</span> <span class="nv">Each</span> <span class="nv">predicted</span> <span class="nv">cache</span> <span class="nv">miss</span> <span class="o">*</span><span class="nv">increases</span><span class="o">*</span> <span class="o">**</span><span class="nv">BCET</span><span class="o">**</span>
 </pre></div>
 <h5 id="must-cache">Must Cache</h5>
 <ul>

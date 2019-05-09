@@ -550,7 +550,7 @@
 <li><span class="caps">DD</span></li>
 </ul>
 <p><span class="caps">SQL</span></p>
-<div class="highlight"><pre><span></span>CREATE TABLE name ...
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">name</span> <span class="p">...</span>
 </pre></div>
 <p>Java</p>
 <div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
@@ -562,7 +562,7 @@
 <li><span class="caps">DM</span></li>
 </ul>
 <p><span class="caps">SQL</span></p>
-<div class="highlight"><pre><span></span>UPDATE name ...
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">name</span> <span class="p">...</span>
 </pre></div>
 <p>Java</p>
 <div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">Person</span><span class="o">()</span>
@@ -572,7 +572,7 @@
 <li>Querying</li>
 </ul>
 <p><span class="caps">SQL</span></p>
-<div class="highlight"><pre><span></span>SELECT col_name ...
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">col_name</span> <span class="p">...</span>
 </pre></div>
 <p>Java</p>
 <div class="highlight"><pre><span></span><span class="o">...</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">name</span>
@@ -826,9 +826,9 @@
 </ul>
 <h3 id="object-query-language-oql">Object Query Language (<span class="caps">OQL</span>)</h3>
 <p>Based on <span class="caps">ODMG</span> Object Model and <span class="caps">SQL</span>-92</p>
-<div class="highlight"><pre><span></span>select  list_of_values
-from    list_of_collections_and_typical_members
-where   condition
+<div class="highlight"><pre><span></span><span class="k">select</span>  <span class="n">list_of_values</span>
+<span class="k">from</span>    <span class="n">list_of_collections_and_typical_members</span>
+<span class="k">where</span>   <span class="n">condition</span>
 </pre></div>
 <ul>
 <li><code>SELECT</code>: Get attributes</li>
@@ -845,36 +845,36 @@ where   condition
 <p><span class="caps">ODMG</span> defines Extents.</p>
 <h4 id="difference-to-sql">Difference to <span class="caps">SQL</span></h4>
 <p>This is illegal as the “dot” operator cannot be applied to a collection of objects:</p>
-<div class="highlight"><pre><span></span>select a.authors.title
-from   Authors a
-where  a.name = "Tilmann Zaeschke"
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">authors</span><span class="p">.</span><span class="n">title</span>
+<span class="k">from</span>   <span class="n">Authors</span> <span class="n">a</span>
+<span class="k">where</span>  <span class="n">a</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="ss">"Tilmann Zaeschke"</span>
 </pre></div>
 <p>Correct solution based on <em>correlated</em> variables:</p>
-<div class="highlight"><pre><span></span>select p.title
-from Authors a, a.authors p
-where a.name = "Tilmann Zaeschke"
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">p</span><span class="p">.</span><span class="n">title</span>
+<span class="k">from</span> <span class="n">Authors</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">authors</span> <span class="n">p</span>
+<span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="ss">"Tilmann Zaeschke"</span>
 </pre></div>
 <h4 id="return-types">Return Types</h4>
 <ul>
 <li>Queries return sets, bags or lists</li>
 </ul>
 <p>As a default, queries return a <em>bag</em></p>
-<div class="highlight"><pre><span></span>select first: p.authored_by[1], p.title, p.year
-from   Publications p
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">first</span><span class="p">:</span> <span class="n">p</span><span class="p">.</span><span class="n">authored_by</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="k">year</span>
+<span class="k">from</span>   <span class="n">Publications</span> <span class="n">p</span>
 </pre></div>
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><span class="n">Bag</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">Author</span> <span class="n">first</span><span class="o">,</span> <span class="n">string</span> <span class="n">title</span><span class="o">,</span> <span class="n">integer</span> <span class="n">year</span> <span class="o">}&gt;</span>
 </pre></div>
 <p>Queries with <code>DISTINCT</code> return a <em>set</em></p>
-<div class="highlight"><pre><span></span>select distinct a.name
-from   Authors a
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">distinct</span> <span class="n">a</span><span class="p">.</span><span class="n">name</span>
+<span class="k">from</span>   <span class="n">Authors</span> <span class="n">a</span>
 </pre></div>
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
 </pre></div>
 <p>Queries with <code>ORDER BY</code> return a <em>list</em></p>
-<div class="highlight"><pre><span></span>select p.title
-from Publications s order by p.year desc
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">p</span><span class="p">.</span><span class="n">title</span>
+<span class="k">from</span> <span class="n">Publications</span> <span class="n">s</span> <span class="k">order</span> <span class="k">by</span> <span class="n">p</span><span class="p">.</span><span class="k">year</span> <span class="k">desc</span>
 </pre></div>
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="o">{</span> <span class="n">string</span> <span class="n">name</span> <span class="o">}&gt;</span>
@@ -1263,12 +1263,12 @@ from Publications s order by p.year desc
 <li>Join Tables to map complex associations</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span>CREATE TABLE AUTHOR(AUTHOR_ID BIGINT NOT NULL PRIMARY KEY, ...)
-CREATE TABLE AUTHORSPUBLICATIONS(
-  AUTHOR_ID BIGINT NOT NULL,
-  PUBLICATION_ID BIGINT NOT NULL,
-  PRIMARY KEY(AUTHOR_ID, PUBLICATION_ID))
-CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">AUTHOR</span><span class="p">(</span><span class="n">AUTHOR_ID</span> <span class="nb">BIGINT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="p">...)</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">AUTHORSPUBLICATIONS</span><span class="p">(</span>
+  <span class="n">AUTHOR_ID</span> <span class="nb">BIGINT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="n">PUBLICATION_ID</span> <span class="nb">BIGINT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">AUTHOR_ID</span><span class="p">,</span> <span class="n">PUBLICATION_ID</span><span class="p">))</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">PUBLICATION</span><span class="p">(</span><span class="n">PUBLICATION_ID</span> <span class="nb">BIGINT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="p">...</span> <span class="p">)</span>
 </pre></div>
 <h2 id="mapping-inheritance">Mapping Inheritance</h2>
 <ul>
