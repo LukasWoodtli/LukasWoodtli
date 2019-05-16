@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Practical C++ Metaprogramming "/>
 <meta property="og:url" content="./practical_cpp_metaprogramming.html" />
-<meta property="og:description" content="Notes taken from: Practical C++ Metaprogramming Edouard Alligand and Joel Falcou O’Reilly Media, Inc. My repository with examples on Github Chapter 1. Introduction The Early History of Metaprogramming “LISP macros were able to be used to extend the languages from within.” “[In C/C++] An X-macro is, in fact …" />
+<meta property="og:description" content="Notes taken from: Practical C++ Metaprogramming Edouard Alligand and Joel Falcou O’Reilly Media, Inc. My repository with examples on Github Chapter 1. Introduction The Early History of Metaprogramming “LISP macros were able to be used to extend the languages from within.” “[In C/C++] An X-macro is, in fact …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-10-17T14:37:12+02:00" />
 <meta property="og:article:modified_time" content="2018-10-17T14:37:12+02:00" />
 <meta name="twitter:title" content="Practical C++ Metaprogramming ">
-<meta name="twitter:description" content="Notes taken from: Practical C++ Metaprogramming Edouard Alligand and Joel Falcou O’Reilly Media, Inc. My repository with examples on Github Chapter 1. Introduction The Early History of Metaprogramming “LISP macros were able to be used to extend the languages from within.” “[In C/C++] An X-macro is, in fact …">
+<meta name="twitter:description" content="Notes taken from: Practical C++ Metaprogramming Edouard Alligand and Joel Falcou O’Reilly Media, Inc. My repository with examples on Github Chapter 1. Introduction The Early History of Metaprogramming “LISP macros were able to be used to extend the languages from within.” “[In C/C++] An X-macro is, in fact …">
 
         <title>Practical C++ Metaprogramming  · Lukas Woodtli
 </title>
@@ -80,42 +80,44 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>Notes taken from:</p>
+            <p>Notes taken&nbsp;from:</p>
 <p>Practical C++ Metaprogramming
 Edouard Alligand and Joel Falcou
-O’Reilly Media, Inc.</p>
+O&#8217;Reilly Media,&nbsp;Inc.</p>
 <p>My repository with examples on <a href="https://github.com/LukasWoodtli/PracticalCppMetaprogramming">Github</a></p>
-<h1 id="chapter-1-introduction">Chapter 1. Introduction</h1>
-<h2 id="the-early-history-of-metaprogramming">The Early History of Metaprogramming</h2>
-<p><em><span class="dquo">“</span><span class="caps">LISP</span> macros were able to be used to extend the languages from within.”</em></p>
-<p><em><span class="dquo">“</span>[In C/C++] An X-macro is, in fact, a header file containing a list of similar macro invocations—often called the components—which can be included multiple times. Each inclusion is prefixed by the redefinition of said macro to generate different code fragments for the same list of components.”</em></p>
-<h2 id="enter-c-templates">Enter C++ Templates</h2>
-<p><em><span class="dquo">“</span>It was quickly discovered that by supporting partial specialization, compile-time equivalents of recursion or conditional statements were feasible.”</em></p>
-<p><em><span class="dquo">“</span>We could turn templates into a very crude and syntactically impractical functional language, which [is] Turing-complete.”</em></p>
-<p><em><span class="dquo">“</span>Applications of C++ template metaprogramming includes the following:</em></p>
+<h1 id="chapter-1-introduction">Chapter 1.&nbsp;Introduction</h1>
+<h2 id="the-early-history-of-metaprogramming">The Early History of&nbsp;Metaprogramming</h2>
+<p><em><span class="dquo">&#8220;</span><span class="caps">LISP</span> macros were able to be used to extend the languages from&nbsp;within.&#8221;</em></p>
+<p><em><span class="dquo">&#8220;</span>[In C/C++] An X-macro is, in fact, a header file containing a list of similar macro invocations—often called the components—which can be included multiple times. Each inclusion is prefixed by the redefinition of said macro to generate different code fragments for the same list of&nbsp;components.&#8221;</em></p>
+<h2 id="enter-c-templates">Enter C++&nbsp;Templates</h2>
+<p><em><span class="dquo">&#8220;</span>It was quickly discovered that by supporting partial specialization, compile-time equivalents of recursion or conditional statements were&nbsp;feasible.&#8221;</em></p>
+<p><em><span class="dquo">&#8220;</span>We could turn templates into a very crude and syntactically impractical functional language, which [is]&nbsp;Turing-complete.&#8221;</em></p>
+<p><em><span class="dquo">&#8220;</span>Applications of C++ template metaprogramming includes the&nbsp;following:</em></p>
 <ul>
-<li><em>Complex constant computations</em></li>
-<li><em>Programmatic type constructions</em></li>
-<li><em>Code fragment generation and replication”</em></li>
+<li><em>Complex constant&nbsp;computations</em></li>
+<li><em>Programmatic type&nbsp;constructions</em></li>
+<li><em>Code fragment generation and&nbsp;replication&#8221;</em></li>
 </ul>
-<p><em><span class="dquo">“</span>Those applications are usually backed up by some libraries, like Boost.<span class="caps">MPL</span> or Boost.Fusion, and a set of patterns including tag dispatching, recursive inheritance, and <span class="caps">SFINAE</span>.”</em></p>
-<h1 id="chapter-2-c-metaprogramming-in-practice">Chapter 2. C++ Metaprogramming in Practice</h1>
+<p><em><span class="dquo">&#8220;</span>Those applications are usually backed up by some libraries, like Boost.<span class="caps">MPL</span> or Boost.Fusion, and a set of patterns including tag dispatching, recursive inheritance, and <span class="caps">SFINAE</span>.&#8221;</em></p>
+<h1 id="chapter-2-c-metaprogramming-in-practice">Chapter 2. C++ Metaprogramming in&nbsp;Practice</h1>
 <h2 id="the-stdtuple-pattern">The <code>std::tuple&lt;&gt;</code> pattern</h2>
-<p><em><span class="dquo">“</span>”return a bunch of otherwise unrelated stuff.” This is a common pattern in modern C++”</em></p>
-<h2 id="returning-auto">Returning auto`</h2>
-<p><em><span class="dquo">“</span>In template metaprogramming, there is no iterative construct.”</em></p>
-<p><em><span class="dquo">“</span>You can, however, use recursion to apply a callable on every member of the tuple.”</em></p>
-<p><em><span class="dquo">“</span>Whenever you can, you should use the <code>...</code> operator to apply a callable to every member of a list. This is faster, it doesn’t generate all the unneeded intermediate types, and the code is often more concise.”</em></p>
-<p><code>std :: index_sequence</code>: <em>“The trick is to create an index sequence - whose sole purpose is to give us an index on which to apply the <code>...</code> operator - of the right size. This is done as follows:”</em></p>
+<p><em><span class="dquo">&#8220;</span>&#8221;return a bunch of otherwise unrelated stuff.&#8221; This is a common pattern in modern&nbsp;C++&#8221;</em></p>
+<h2 id="returning-auto">Returning&nbsp;auto`</h2>
+<p><em><span class="dquo">&#8220;</span>In template metaprogramming, there is no iterative&nbsp;construct.&#8221;</em></p>
+<p><em><span class="dquo">&#8220;</span>You can, however, use recursion to apply a callable on every member of the&nbsp;tuple.&#8221;</em></p>
+<p><em><span class="dquo">&#8220;</span>Whenever you can, you should use the <code>...</code> operator to apply a callable to every member of a list. This is faster, it doesn&#8217;t generate all the unneeded intermediate types, and the code is often more&nbsp;concise.&#8221;</em></p>
+<p><code>std :: index_sequence</code>: <em>&#8220;The trick is to create an index sequence - whose sole purpose is to give us an index on which to apply the <code>...</code> operator - of the right size. This is done as&nbsp;follows:&#8221;</em></p>
 <div class="highlight"><pre><span></span><span class="k">static</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">params_count</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">...(</span><span class="n">Params</span><span class="p">);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="n">params_count</span><span class="o">&gt;</span><span class="p">();</span>
 </pre></div>
-<p><em><span class="dquo">“</span>At compile time, when you need to know how many elements you have in your list, you use sizeof…().”</em></p>
-<h1 id="chapter-3-c-metaprogramming-and-application-design">Chapter 3. C++ Metaprogramming and Application Design</h1>
-<h1 id="meta-axiom-1">Meta-Axiom #1</h1>
-<p><em><span class="dquo">“</span>Types are first-class values inside compile-time programs.”</em></p>
-<h1 id="meta-axiom-2">Meta-Axiom #2</h1>
-<p><em><span class="dquo">“</span>Any template class accepting a variable number of type parameters can be considered a type container.”</em></p>
+
+
+<p><em><span class="dquo">&#8220;</span>At compile time, when you need to know how many elements you have in your list, you use&nbsp;sizeof&#8230;().&#8221;</em></p>
+<h1 id="chapter-3-c-metaprogramming-and-application-design">Chapter 3. C++ Metaprogramming and Application&nbsp;Design</h1>
+<h1 id="meta-axiom-1">Meta-Axiom&nbsp;#1</h1>
+<p><em><span class="dquo">&#8220;</span>Types are first-class values inside compile-time&nbsp;programs.&#8221;</em></p>
+<h1 id="meta-axiom-2">Meta-Axiom&nbsp;#2</h1>
+<p><em><span class="dquo">&#8220;</span>Any template class accepting a variable number of type parameters can be considered a type&nbsp;container.&#8221;</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />

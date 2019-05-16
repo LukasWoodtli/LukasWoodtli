@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Macro Magic in C and C++ "/>
 <meta property="og:url" content="./macro_magic_in_c_and_cpp.html" />
-<meta property="og:description" content="Macro Tricks Stringification The # operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal. #define stringize(s) _stringize(s) #define _stringize(s) #s #define IMPORTANT_CONST 23 If you’d use the stingize operator # directly in …" />
+<meta property="og:description" content="Macro Tricks Stringification The # operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal. #define stringize(s) _stringize(s) #define _stringize(s) #s #define IMPORTANT_CONST 23 If you’d use the stingize operator # directly in …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-05-15T18:24:20+02:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Macro Magic in C and C++ ">
-<meta name="twitter:description" content="Macro Tricks Stringification The # operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal. #define stringize(s) _stringize(s) #define _stringize(s) #s #define IMPORTANT_CONST 23 If you’d use the stingize operator # directly in …">
+<meta name="twitter:description" content="Macro Tricks Stringification The # operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal. #define stringize(s) _stringize(s) #define _stringize(s) #s #define IMPORTANT_CONST 23 If you’d use the stingize operator # directly in …">
 
         <title>Macro Magic in C and C++  · Lukas Woodtli
 </title>
@@ -80,37 +80,45 @@
         <div class="span8 offset2 article-content">
 
             
-            <h1 id="macro-tricks">Macro Tricks</h1>
+            <h1 id="macro-tricks">Macro&nbsp;Tricks</h1>
 <h2 id="stringification">Stringification</h2>
-<p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string literal.</p>
+<p>The <code>#</code> operator allows to create a string out of a macro parameter. With the stringize trick any defined constant can be converted into a string&nbsp;literal.</p>
 <div class="highlight"><pre><span></span><span class="cp">#define stringize(s) _stringize(s)</span>
 <span class="cp">#define _stringize(s) #s</span>
 <span class="cp">#define IMPORTANT_CONST 23</span>
 </pre></div>
-<p>If you’d use the stingize operator <code>#</code> directly in a macro you won’t get the intended string:</p>
+
+
+<p>If you&#8217;d use the stingize operator <code>#</code> directly in a macro you won&#8217;t get the intended&nbsp;string:</p>
 <div class="highlight"><pre><span></span><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
 </pre></div>
+
+
 <blockquote>
-<p><span class="dquo">“</span>IMPORTANT_CONST”</p>
+<p><span class="dquo">&#8220;</span>IMPORTANT_CONST&#8221;</p>
 </blockquote>
-<p>Thats why there is an other macro calling the first one:</p>
+<p>Thats why there is an other macro calling the first&nbsp;one:</p>
 <div class="highlight"><pre><span></span> <span class="n">stringize</span> <span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
 </pre></div>
+
+
 <blockquote>
 <p>stringize(4)  </p>
 <p>_stringize(4)  </p>
-<p><span class="dquo">“</span>4”  </p>
+<p><span class="dquo">&#8220;</span>4&#8221;  </p>
 </blockquote>
 <h2 id="concatenation">Concatenation</h2>
-<p>With the <code>##</code> operator in a preprocessor macro it’s possible to combine two tokens.</p>
+<p>With the <code>##</code> operator in a preprocessor macro it&#8217;s possible to combine two&nbsp;tokens.</p>
 <div class="highlight"><pre><span></span><span class="cp">#define CREATE_ID(name) ID_##name</span>
 
 <span class="n">CREATE_ID</span><span class="p">(</span><span class="n">IMPORTANT_THING</span><span class="p">)</span>
 </pre></div>
+
+
 <blockquote>
 <p>ID_IMPORTANT_THING</p>
 </blockquote>
-<h2 id="further-reading">Further Reading</h2>
+<h2 id="further-reading">Further&nbsp;Reading</h2>
 <p>There is a good explanation in the <span class="caps">GCC</span> online docs:
 <a href="https://gcc.gnu.org/onlinedocs/cpp/Macros.html#Macros">Macros</a></p>
             <!--             <div>

@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="x86 Calling Conventions "/>
 <meta property="og:url" content="./x86_calling_conventions.html" />
-<meta property="og:description" content="There are a lot of different calling conventions fir x86 processors. See also Wikipedia:x86 calling conventions Unix System V AMD64 ABI: Linux macOS FreeBSD Solaris This calling conventions are also used for C/C++ programs. Instructions call: Save return address, implicitely pushing RIPto stack ret: Pop’s corrent …" />
+<meta property="og:description" content="There are a lot of different calling conventions fir x86 processors. See also Wikipedia:x86 calling conventions Unix System V AMD64 ABI: Linux macOS FreeBSD Solaris This calling conventions are also used for C/C++ programs. Instructions call: Save return address, implicitely pushing RIPto stack ret: Pop’s corrent …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-11-05T19:56:51+01:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="x86 Calling Conventions ">
-<meta name="twitter:description" content="There are a lot of different calling conventions fir x86 processors. See also Wikipedia:x86 calling conventions Unix System V AMD64 ABI: Linux macOS FreeBSD Solaris This calling conventions are also used for C/C++ programs. Instructions call: Save return address, implicitely pushing RIPto stack ret: Pop’s corrent …">
+<meta name="twitter:description" content="There are a lot of different calling conventions fir x86 processors. See also Wikipedia:x86 calling conventions Unix System V AMD64 ABI: Linux macOS FreeBSD Solaris This calling conventions are also used for C/C++ programs. Instructions call: Save return address, implicitely pushing RIPto stack ret: Pop’s corrent …">
 
         <title>x86 Calling Conventions  · Lukas Woodtli
 </title>
@@ -81,7 +81,7 @@
 
             
             <p>There are a lot of different calling conventions fir x86 processors.
-See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikipedia:x86 calling conventions</a></p>
+See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikipedia:x86 calling&nbsp;conventions</a></p>
 <h1 id="unix">Unix</h1>
 <p>System V <span class="caps">AMD64</span> <span class="caps">ABI</span>:</p>
 <ul>
@@ -90,15 +90,15 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 <li>FreeBSD</li>
 <li>Solaris</li>
 </ul>
-<p>This calling conventions are also used for C/C++ programs.</p>
+<p>This calling conventions are also used for C/C++&nbsp;programs.</p>
 <h2 id="instructions">Instructions</h2>
 <ul>
-<li><code>call</code>: Save return address, implicitely pushing <code>RIP</code>to stack</li>
-<li><code>ret</code>: Pop’s corrent top of stack (<code>RSP</code>) into <code>RIP</code></li>
+<li><code>call</code>: Save return address, implicitely pushing <code>RIP</code>to&nbsp;stack</li>
+<li><code>ret</code>: Pop&#8217;s corrent top of stack (<code>RSP</code>) into <code>RIP</code></li>
 </ul>
-<h2 id="argument-passing">Argument Passing</h2>
-<p>The first 6 arguments (integer or pointer) are passed in registers:</p>
-<table class="table table-striped">
+<h2 id="argument-passing">Argument&nbsp;Passing</h2>
+<p>The first 6 arguments (integer or pointer) are passed in&nbsp;registers:</p>
+<table>
 <thead>
 <tr>
 <th>Register</th>
@@ -134,30 +134,30 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 </table>
 <p>The first 8 floating point arguments are in the registers <code>xmm0</code> - <code>xmm7</code>.</p>
 <ul>
-<li>Additional arguments are located on the stack in reverse order (from right to left)</li>
-<li><code>R10</code> is used as static chain pointer for nested functions</li>
+<li>Additional arguments are located on the stack in reverse order (from right to&nbsp;left)</li>
+<li><code>R10</code> is used as static chain pointer for nested&nbsp;functions</li>
 <li>Variadic functions:<ul>
 <li>Number of floating point arguments: <code>RAX</code></li>
-<li>The arguments are passed in the vector registers</li>
+<li>The arguments are passed in the vector&nbsp;registers</li>
 </ul>
 </li>
 </ul>
-<h2 id="return-value">Return Value</h2>
+<h2 id="return-value">Return&nbsp;Value</h2>
 <p>The return value is passed in registers <code>RAX</code> and if needed also in <code>RDX</code>.</p>
 <p>If the return value is a floating point number it is passed in <code>xmm0</code>.</p>
-<h2 id="call-by-reference-out-params">Call by Reference (out params)</h2>
-<p>Output parameters need two steps to return a value:</p>
+<h2 id="call-by-reference-out-params">Call by Reference (out&nbsp;params)</h2>
+<p>Output parameters need two steps to return a&nbsp;value:</p>
 <ol>
-<li>Get the address from the stack</li>
-<li>Use that address to return the value</li>
+<li>Get the address from the&nbsp;stack</li>
+<li>Use that address to return the&nbsp;value</li>
 </ol>
 <h2 id="registers">Registers</h2>
 <ul>
-<li>Calle: must save and restore <code>RBP</code>, <code>RBX</code> and <code>R12</code>-<code>R15</code> if they are used</li>
-<li>Caller: all other registers must be saved and restored if their content is needed after the function cal</li>
-<li>No <code>XMM</code> registers are preserved</li>
+<li>Calle: must save and restore <code>RBP</code>, <code>RBX</code> and <code>R12</code>-<code>R15</code> if they are&nbsp;used</li>
+<li>Caller: all other registers must be saved and restored if their content is needed after the function&nbsp;cal</li>
+<li>No <code>XMM</code> registers are&nbsp;preserved</li>
 </ul>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th>Register</th>
@@ -258,31 +258,35 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 This is usually donne by adjusting the <code>RSP</code>, instead of <code>POP</code> instructions.</p>
 <div class="highlight"><pre><span></span><span class="nf">add</span> <span class="nb">rsp</span><span class="p">,</span> <span class="nv">numberOfArguments</span> <span class="o">*</span> <span class="mi">8</span> <span class="c1">; number of arguments placed on stack</span>
 </pre></div>
-<h2 id="stack-frame">Stack Frame</h2>
+
+
+<h2 id="stack-frame">Stack&nbsp;Frame</h2>
 <p>The stack frame is the data on the stack that belong to one function call.
-It’s also called activation record or call frame.</p>
-<p><a href="https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64">Here</a> is a good explanation.</p>
+It&#8217;s also called activation record or call&nbsp;frame.</p>
+<p><a href="https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64">Here</a> is a good&nbsp;explanation.</p>
 <ol>
-<li>Arguments that are not passed in registers</li>
+<li>Arguments that are not passed in&nbsp;registers</li>
 <li>Return address (saved by <code>call</code>)</li>
-<li>Saved <code>rbp</code> from last stack frame. <code>rbp</code> needs to point now to this address</li>
-<li>Local variables. <code>rsp</code> points to last used address</li>
-<li>After the last stack frame there are 128 bytes <em>red zone</em></li>
+<li>Saved <code>rbp</code> from last stack frame. <code>rbp</code> needs to point now to this&nbsp;address</li>
+<li>Local variables. <code>rsp</code> points to last used&nbsp;address</li>
+<li>After the last stack frame there are 128 bytes <em>red&nbsp;zone</em></li>
 </ol>
 <blockquote>
-<p>The System V <span class="caps">AMD64</span> <span class="caps">ABI</span> doesn’t require to use the base pointer</p>
+<p>The System V <span class="caps">AMD64</span> <span class="caps">ABI</span> doesn&#8217;t require to use the base&nbsp;pointer</p>
 </blockquote>
 <p>To save and adjust <code>rbp</code>:</p>
 <div class="highlight"><pre><span></span><span class="c1">; prologue</span>
 <span class="nf">push</span> <span class="nb">rbp</span>
-   <span class="c1">; save the 'old' `rbp` on the stack</span>
-<span class="nf">mov</span> <span class="nb">rbp</span><span class="p">,</span> <span class="nb">rsp</span>   <span class="c1">; adjust `rbp` to point to the just saved 'old' `rbp`</span>
+   <span class="c1">; save the &#39;old&#39; `rbp` on the stack</span>
+<span class="nf">mov</span> <span class="nb">rbp</span><span class="p">,</span> <span class="nb">rsp</span>   <span class="c1">; adjust `rbp` to point to the just saved &#39;old&#39; `rbp`</span>
 </pre></div>
-<h2 id="the-red-zone">The Red Zone</h2>
+
+
+<h2 id="the-red-zone">The Red&nbsp;Zone</h2>
 <ul>
-<li>The 128 bytes after the last stack frame are reserved for compiler optimization</li>
-<li>This range is not allowed to be changed asynchonically (e.g by signals or <span class="caps">IRQ</span> handlers)</li>
-<li>Some functions (i.e. leaf functions) don’t need a stack frame at all. They can use the red zone</li>
+<li>The 128 bytes after the last stack frame are reserved for compiler&nbsp;optimization</li>
+<li>This range is not allowed to be changed asynchonically (e.g by signals or <span class="caps">IRQ</span>&nbsp;handlers)</li>
+<li>Some functions (i.e. leaf functions) don&#8217;t need a stack frame at all. They can use the red&nbsp;zone</li>
 </ul>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -

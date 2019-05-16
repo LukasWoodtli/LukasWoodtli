@@ -178,7 +178,7 @@
 <p><em><span class="dquo">“</span>Token references for token type <code>T</code> become calls to <code>match(T)</code>. match is a support method in Parser that consumes a token if <code>T</code> is the current lookahead token. If there is a mismatch, match throws an exception.”</em></p>
 <h4 id="alternatives">Alternatives</h4>
 <p><em><span class="dquo">“</span>Alternatives become either a switch or an if-then-else sequence”</em></p>
-<p><img alt="Alternatives" class="img-fluid" src="/images/language_implementation_patterns/alternatives.svg"/></p>
+<p><img alt="Alternatives" src="/images/language_implementation_patterns/alternatives.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">switch</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">token</span><span class="o">&gt;)</span> <span class="o">{</span>
   <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;:</span>
   <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;:</span>
@@ -197,16 +197,16 @@
   <span class="o">}</span>
 </pre></div>
 <h4 id="optional-subrule-t">Optional subrule <code>(T)?</code></h4>
-<p><img alt="Option" class="img-fluid" src="/images/language_implementation_patterns/option.svg"/></p>
+<p><img alt="Option" src="/images/language_implementation_patterns/option.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">is</span><span class="o">-</span><span class="n">T</span><span class="o">&gt;)</span> <span class="o">{</span> <span class="n">match</span><span class="o">(</span><span class="n">T</span><span class="o">);}</span> <span class="c1">// no error else clause</span>
 </pre></div>
 <h4 id="one-or-more-subrules">One or more <code>(...)+</code> subrules</h4>
-<p><img alt="One or more" class="img-fluid" src="/images/language_implementation_patterns/one_or_more.svg"/></p>
+<p><img alt="One or more" src="/images/language_implementation_patterns/one_or_more.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">do</span> <span class="o">{</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
 <span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;);</span>
 </pre></div>
 <h4 id="zero-or-more-subrules">Zero or more <code>(...)*</code> subrules</h4>
-<p><img alt="Zero or more" class="img-fluid" src="/images/language_implementation_patterns/zero_or_more.svg"/></p>
+<p><img alt="Zero or more" src="/images/language_implementation_patterns/zero_or_more.svg"/></p>
 <div class="highlight"><pre><span></span><span class="k">while</span><span class="o">(&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;)</span> <span class="o">{</span>
   <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="o">}</span>
 </pre></div>

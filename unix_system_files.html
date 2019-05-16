@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Unix System Files "/>
 <meta property="og:url" content="./unix_system_files.html" />
-<meta property="og:description" content="/etc/passwd Contains user informations. The information fields are separated by a colon. user-name:password:UID:GID:info:home-dir:shell user-name: The name that the user needs to log in. password: Usually the entry x, meaning that the password is saved in /etc/shadow. UID: The user-id (usually greater than …" />
+<meta property="og:description" content="/etc/passwd Contains user informations. The information fields are separated by a colon. user-name:password:UID:GID:info:home-dir:shell user-name: The name that the user needs to log in. password: Usually the entry x, meaning that the password is saved in /etc/shadow. UID: The user-id (usually greater than …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-03-06T20:58:15+01:00" />
 <meta property="og:article:modified_time" content="2018-09-26T07:44:53+02:00" />
 <meta name="twitter:title" content="Unix System Files ">
-<meta name="twitter:description" content="/etc/passwd Contains user informations. The information fields are separated by a colon. user-name:password:UID:GID:info:home-dir:shell user-name: The name that the user needs to log in. password: Usually the entry x, meaning that the password is saved in /etc/shadow. UID: The user-id (usually greater than …">
+<meta name="twitter:description" content="/etc/passwd Contains user informations. The information fields are separated by a colon. user-name:password:UID:GID:info:home-dir:shell user-name: The name that the user needs to log in. password: Usually the entry x, meaning that the password is saved in /etc/shadow. UID: The user-id (usually greater than …">
 
         <title>Unix System Files  · Lukas Woodtli
 </title>
@@ -81,61 +81,61 @@
 
             
             <h1 id="etcpasswd"><code>/etc/passwd</code></h1>
-<p>Contains user informations. The information fields are separated by a colon.</p>
+<p>Contains user informations. The information fields are separated by a&nbsp;colon.</p>
 <p><code>user-name:password:UID:GID:info:home-dir:shell</code></p>
 <ul>
-<li><code>user-name</code>: The name that the user needs to log in.</li>
+<li><code>user-name</code>: The name that the user needs to log&nbsp;in.</li>
 <li><code>password</code>: Usually the entry <code>x</code>, meaning that the password is saved in <code>/etc/shadow</code>.</li>
-<li><code>UID</code>: The user-id (usually greater than 1000).</li>
-<li><code>GID</code>: The group-id.</li>
-<li><code>info</code>: Additional information such as the real name. Subfields separated by coma.</li>
-<li><code>home-dir</code>: The home dir of the user.</li>
+<li><code>UID</code>: The user-id (usually greater than&nbsp;1000).</li>
+<li><code>GID</code>: The&nbsp;group-id.</li>
+<li><code>info</code>: Additional information such as the real name. Subfields separated by&nbsp;coma.</li>
+<li><code>home-dir</code>: The home dir of the&nbsp;user.</li>
 <li><code>shell</code>: The login-shell of the user (needs to be listed in <code>/etc/shells</code>).</li>
 </ul>
 <h1 id="etcshadow"><code>/etc/shadow</code></h1>
-<p>Saves the user password and related information. The file can be read only by root.</p>
+<p>Saves the user password and related information. The file can be read only by&nbsp;root.</p>
 <p><code>name:password:DOC:minDay:maxDay:warn:deaktIn:deaktSince:unused</code></p>
 <ul>
 <li><code>name</code>: User name (same as in <code>/etc/passwd</code>).</li>
-<li><code>password</code>: Encrypted password.</li>
-<li><code>DOC</code>: Day of last change (number of days since 1.1.1970).</li>
-<li><code>minDay</code>: Earliest possible day to change password.</li>
-<li><code>maxDay</code>: Latest possible day to change password.</li>
-<li><code>warn</code>: Number of days before <code>maxDay</code> that a warning occures.</li>
-<li><code>deaktIn</code>: Day when password expires.</li>
-<li><code>deaktSince</code>: Number of days since password expired.</li>
-<li><code>unused</code>: For feature use.</li>
+<li><code>password</code>: Encrypted&nbsp;password.</li>
+<li><code>DOC</code>: Day of last change (number of days since&nbsp;1.1.1970).</li>
+<li><code>minDay</code>: Earliest possible day to change&nbsp;password.</li>
+<li><code>maxDay</code>: Latest possible day to change&nbsp;password.</li>
+<li><code>warn</code>: Number of days before <code>maxDay</code> that a warning&nbsp;occures.</li>
+<li><code>deaktIn</code>: Day when password&nbsp;expires.</li>
+<li><code>deaktSince</code>: Number of days since password&nbsp;expired.</li>
+<li><code>unused</code>: For feature&nbsp;use.</li>
 </ul>
 <h1 id="etcgroup"><code>/etc/group</code></h1>
-<p>Stores informations about groups.</p>
+<p>Stores informations about&nbsp;groups.</p>
 <p><code>groupName:password:groupId:member1,memger2,...</code></p>
 <ul>
-<li><code>groupName</code>: Name of the group.</li>
+<li><code>groupName</code>: Name of the&nbsp;group.</li>
 <li><code>password</code>: Usually <code>x</code>, meaning that the password is saved in <code>/etc/passwd</code>.</li>
 <li><code>groupId</code>: Group <span class="caps">ID</span> (<span class="caps">GID</span>).</li>
-<li><code>member1,memger2,...</code>: User names of the members of the group (comma separated).</li>
+<li><code>member1,memger2,...</code>: User names of the members of the group (comma&nbsp;separated).</li>
 </ul>
 <h1 id="mounts">Mounts</h1>
 <ul>
-<li><code>/etc/fstab</code>: Lists drives to mount at startup</li>
+<li><code>/etc/fstab</code>: Lists drives to mount at&nbsp;startup</li>
 <li><code>/etc/exports</code>: Folders provided to clients over <span class="caps">NFS</span></li>
 </ul>
-<h1 id="network-files">Network Files</h1>
+<h1 id="network-files">Network&nbsp;Files</h1>
 <ul>
 <li><code>/etc/services</code>: Services provided on the network, mapping of ports to processes (see <code>getservbyname()</code> and <code>getservbyport()</code>).</li>
 <li><code>etc/networks</code>: Informations about connected networks (see <code>getnetbyname()</code> and <code>getnetbyaddr()</code>)</li>
 <li><code>/etc/protocols</code>: Information about network portocols (see <code>getprotobyname()</code> and <code>getprotobynumber()</code>)</li>
-<li><code>/etc/hosts</code>: Mapping from hostnames to <span class="caps">IP</span>’s, mainly replaced by <span class="caps">DNS</span> (see <code>gethostbyname()</code> and <code>gethostbyaddr()</code>)</li>
+<li><code>/etc/hosts</code>: Mapping from hostnames to <span class="caps">IP</span>&#8217;s, mainly replaced by <span class="caps">DNS</span> (see <code>gethostbyname()</code> and <code>gethostbyaddr()</code>)</li>
 </ul>
 <h1 id="logging">Logging</h1>
 <ul>
-<li><code>/etc/syslog.conf</code>: Configuration of applications that use syslog</li>
-<li><code>/etc/asl.conf</code>: Additional config on macOS</li>
+<li><code>/etc/syslog.conf</code>: Configuration of applications that use&nbsp;syslog</li>
+<li><code>/etc/asl.conf</code>: Additional config on&nbsp;macOS</li>
 </ul>
 <h1 id="cron-jobs"><code>cron</code> Jobs</h1>
 <ul>
 <li>The config file is usually: <code>/var/spool/cron</code></li>
-<li>use <code>crontab -e</code> to edit the right file</li>
+<li>use <code>crontab -e</code> to edit the right&nbsp;file</li>
 </ul>
 <h1 id="shell">Shell</h1>
 <p>Configurations:</p>
@@ -144,7 +144,7 @@
 <li>zsh: use <code>~/.zshrc</code></li>
 </ul>
 <h2 id="references">References</h2>
-<p><a href="https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/">Zsh/Bash startup files loading order</a></p>
+<p><a href="https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/">Zsh/Bash startup files loading&nbsp;order</a></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />

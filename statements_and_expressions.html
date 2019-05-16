@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Statements and Expressions "/>
 <meta property="og:url" content="./statements_and_expressions.html" />
-<meta property="og:description" content="“The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine.” [Tom Stuart, Understanding Computation] Statements often contain expressions but not the other way around. $$\underbrace{x = \overbrace{1 …" />
+<meta property="og:description" content="“The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine.” [Tom Stuart, Understanding Computation] Statements often contain expressions but not the other way around. $$\underbrace{x = \overbrace{1 …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-07-04T12:31:51+02:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Statements and Expressions ">
-<meta name="twitter:description" content="“The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine.” [Tom Stuart, Understanding Computation] Statements often contain expressions but not the other way around. $$\underbrace{x = \overbrace{1 …">
+<meta name="twitter:description" content="“The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine.” [Tom Stuart, Understanding Computation] Statements often contain expressions but not the other way around. $$\underbrace{x = \overbrace{1 …">
 
         <title>Statements and Expressions  · Lukas Woodtli
 </title>
@@ -80,45 +80,45 @@
         <div class="span8 offset2 article-content">
 
             
-            <p><span class="dquo">“</span>The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine.” [Tom Stuart, Understanding Computation]</p>
-<p>Statements often contain expressions but not the other way around.</p>
+            <p><span class="dquo">&#8220;</span>The purpose of an expression is to be evaluated to produce another expression; a statement, on the other hand, is evaluated to make some change to the state of the abstract machine.&#8221; [Tom Stuart, Understanding&nbsp;Computation]</p>
+<p>Statements often contain expressions but not the other way&nbsp;around.</p>
 <div class="math">$$\underbrace{x = \overbrace{1 + 2}^{\text{expression}}}_{\text{statement}}$$</div>
-<h1 id="expressions-ausdruck">Expressions (Ausdruck)</h1>
+<h1 id="expressions-ausdruck">Expressions&nbsp;(Ausdruck)</h1>
 <ul>
-<li>is <em>evaluated</em> according to semantics in a context</li>
-<li><span class="quo">‘</span>returns’ a value</li>
-<li>can have side-effects (in most languages)</li>
-<li>some languages have expressions as only construct (functional, declarative)</li>
-<li>some languages have declarations for defining context of expression (among other things)</li>
-<li>can be nested with each other</li>
+<li>is <em>evaluated</em> according to semantics in a&nbsp;context</li>
+<li><span class="quo">&#8216;</span>returns&#8217; a&nbsp;value</li>
+<li>can have side-effects (in most&nbsp;languages)</li>
+<li>some languages have expressions as only construct (functional,&nbsp;declarative)</li>
+<li>some languages have declarations for defining context of expression (among other&nbsp;things)</li>
+<li>can be nested with each&nbsp;other</li>
 </ul>
-<h1 id="statement-anweisung">Statement (Anweisung)</h1>
+<h1 id="statement-anweisung">Statement&nbsp;(Anweisung)</h1>
 <ul>
-<li>mostly just in imperative languages</li>
+<li>mostly just in imperative&nbsp;languages</li>
 <li>
-<p>is <em>executed</em>, action to be carried out</p>
+<p>is <em>executed</em>, action to be carried&nbsp;out</p>
 <ul>
-<li>in most languages no result/value (no eval)</li>
-<li>only side-effects (change of state)</li>
-</ul>
-</li>
-<li>
-<p>in assembly languages statements are often called instruction/command</p>
-</li>
-<li>most languages have fixed set of statements (can not be changed/extended)</li>
-<li>
-<p>statements are often language keywords</p>
-<ul>
-<li>can’t be redefined</li>
+<li>in most languages no result/value (no&nbsp;eval)</li>
+<li>only side-effects (change of&nbsp;state)</li>
 </ul>
 </li>
 <li>
-<p>some statements can be expressions</p>
+<p>in assembly languages statements are often called&nbsp;instruction/command</p>
+</li>
+<li>most languages have fixed set of statements (can not be&nbsp;changed/extended)</li>
+<li>
+<p>statements are often language&nbsp;keywords</p>
+<ul>
+<li>can&#8217;t be&nbsp;redefined</li>
+</ul>
+</li>
+<li>
+<p>some statements can be&nbsp;expressions</p>
 <ul>
 <li>assignment</li>
 <li>increment</li>
-<li>function calls</li>
-<li>…</li>
+<li>function&nbsp;calls</li>
+<li>&#8230;</li>
 </ul>
 </li>
 <li>
@@ -126,57 +126,57 @@
 <ul>
 <li>Assignments</li>
 <li>
-<p>Control statements</p>
+<p>Control&nbsp;statements</p>
 <ul>
 <li>jumps</li>
 <li>loops</li>
-<li>conditionals (if, else, switch, …)</li>
-<li>…</li>
+<li>conditionals (if, else, switch,&nbsp;&#8230;)</li>
+<li>&#8230;</li>
 </ul>
 </li>
 <li>
-<p>procedure calls</p>
+<p>procedure&nbsp;calls</p>
 </li>
 <li>assertion</li>
 <li>declarations</li>
-<li>class/type definitions</li>
+<li>class/type&nbsp;definitions</li>
 </ul>
 </li>
 <li>
-<p>statements often begin with a identifier/keyword</p>
+<p>statements often begin with a&nbsp;identifier/keyword</p>
 </li>
 <li>
-<p>the syntax of statements can be described with</p>
+<p>the syntax of statements can be described&nbsp;with</p>
 <ul>
 <li><code>BNF &lt;https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form&gt;</code>_</li>
 <li><code>Syntax diagram &lt;https://en.wikipedia.org/wiki/Syntax_diagram&gt;</code>_</li>
 </ul>
 </li>
 <li>
-<p>statements differ from subroutine calls by handling of parameters</p>
+<p>statements differ from subroutine calls by handling of&nbsp;parameters</p>
 <ul>
-<li>subroutine parameters are evaluated once</li>
+<li>subroutine parameters are evaluated&nbsp;once</li>
 <li>
-<p>statement parameters can be evaluated multiple times (e.g. condition in while loop)</p>
+<p>statement parameters can be evaluated multiple times (e.g. condition in while&nbsp;loop)</p>
 <ul>
-<li>call-by-name (lazy evaluation)</li>
+<li>call-by-name (lazy&nbsp;evaluation)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>can’t be nested with each others or with expressions</p>
+<p>can&#8217;t be nested with each others or with&nbsp;expressions</p>
 </li>
 </ul>
 <h1 id="declaration">Declaration</h1>
 <ul>
 <li>
-<p>set properties</p>
+<p>set&nbsp;properties</p>
 <ul>
-<li>identifier (word/name)</li>
+<li>identifier&nbsp;(word/name)</li>
 <li>dimension</li>
 <li>scope</li>
-<li>…</li>
+<li>&#8230;</li>
 </ul>
 </li>
 <li>
@@ -188,7 +188,7 @@
 <li>classes</li>
 <li>enums</li>
 <li>type-defs</li>
-<li>…</li>
+<li>&#8230;</li>
 </ul>
 </li>
 </ul>

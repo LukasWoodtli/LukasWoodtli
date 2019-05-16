@@ -288,7 +288,7 @@
 <h3 id="documentation">Documentation</h3>
 <p>There is a lot of good documentation for the <span class="caps">ARM</span> processors available. But it’s difficult to
 find the right documents.</p>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th>Document</th>
@@ -337,7 +337,7 @@ find the right documents.</p>
 <li>Registers are shadowed (banked) in different modes</li>
 <li>System Mode: privileged but same registers as user mode</li>
 </ul>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th>Privilege Level</th>
@@ -473,7 +473,7 @@ find the right documents.</p>
 </ul>
 <h2 id="minos-and-oberon">Minos and Oberon</h2>
 <h3 id="history-of-oberon">History of Oberon</h3>
-<p><img alt="Oberon Language and OS Family" class="img-fluid" src="/images/syscon_oberon_history.png"/></p>
+<p><img alt="Oberon Language and OS Family" src="/images/syscon_oberon_history.png"/></p>
 <h3 id="oberon">Oberon</h3>
 <ul>
 <li>Modules can be compiled separately</li>
@@ -751,7 +751,7 @@ find the right documents.</p>
 </ul>
 </li>
 </ul>
-<p><img alt="Minos Object Files" class="img-fluid" src="/images/syscon_minos_object_file.png"/></p>
+<p><img alt="Minos Object Files" src="/images/syscon_minos_object_file.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <h4 id="boot-file">Boot-file</h4>
 <ul>
@@ -1027,7 +1027,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </li>
 </ul>
 <h4 id="exception-numbers">Exception Numbers</h4>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th>Vector #</th>
@@ -1351,7 +1351,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <blockquote>
 <p>Java doesn’t make difference between waiting on a condition or a lock.</p>
 </blockquote>
-<p><img alt="A2 Activities States" class="img-fluid" src="/images/syscon_a2_activieties_states.png"/></p>
+<p><img alt="A2 Activities States" src="/images/syscon_a2_activieties_states.png"/></p>
 <h3 id="run-time-data-structures">Run-Time Data Structures</h3>
 <ul>
 <li>Running Array/List<ul>
@@ -1504,7 +1504,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 </ul>
 </li>
 </ul>
-<p><img alt="Priority Inversion" class="img-fluid" src="/images/syscon_priority_inversion.png"/></p>
+<p><img alt="Priority Inversion" src="/images/syscon_priority_inversion.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <h4 id="priority-inheritance">Priority Inheritance</h4>
 <ul>
@@ -1544,7 +1544,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <li>Implies freedom from starvation</li>
 </ul>
 <p>Progress Conditions:</p>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -1626,7 +1626,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 fails to recognise that a memory location was
 modified temporarily by another thread and therefore erroneously assumes
 that the overall state has not been changed.</p>
-<p><img alt="ABA Problem" class="img-fluid" src="/images/syscon_aba_problem.png"/></p>
+<p><img alt="ABA Problem" src="/images/syscon_aba_problem.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <ul>
 <li>The <span class="caps">ABA</span> Problem makes it difficult to reuse nodes in a stack structure<ul>
@@ -1698,7 +1698,7 @@ that the overall state has not been changed.</p>
 <!-- End of Week 8 -->
 <!-- Beginning of Week 9 -->
 <h4 id="queue-data-structures">Queue Data Structures</h4>
-<p><img alt="Queue Data Structures" class="img-fluid" src="/images/syscon_queue_data_structure.png"/></p>
+<p><img alt="Queue Data Structures" src="/images/syscon_queue_data_structure.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <ul>
 <li>Hazard Pointers: in use (writing)</li>
@@ -1788,7 +1788,7 @@ that the overall state has not been changed.</p>
 <li>Parallel: Several instances of the <span class="caps">GC</span> can run at once</li>
 </ul>
 <p>Data Structures:</p>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -2326,7 +2326,7 @@ that the overall state has not been changed.</p>
 <span class="k">assign</span> <span class="no">BL</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">15</span><span class="p">);</span>
 <span class="k">assign</span> <span class="no">LDH</span> <span class="o">=</span> <span class="no">MOV</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">3</span><span class="p">];</span> <span class="k">assign</span> <span class="no">BLR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">11</span><span class="p">)</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="no">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">];</span>
 </pre></div>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th><span class="caps">IR</span>[17:14]</th>
@@ -2526,7 +2526,7 @@ that the overall state has not been changed.</p>
 </ul>
 </li>
 </ol>
-<p><img alt="Active Cells 3 Toolchain" class="img-fluid" src="/images/syscon_active_cells_3_toolchain.png"/></p>
+<p><img alt="Active Cells 3 Toolchain" src="/images/syscon_active_cells_3_toolchain.png"/></p>
 <p>This image is taken from the lecture slides provided by Felix Friedrich</p>
 <!-- End of Notes Week 14 -->
 <!-- End of Course -->

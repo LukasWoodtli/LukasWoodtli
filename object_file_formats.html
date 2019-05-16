@@ -83,7 +83,7 @@
             <p>Most information of this page is taken from
 <a href="http://www.agner.org/optimize/#manuals">Calling conventions for different C++ compilers and operating systems</a>.</p>
 <h1 id="overview">Overview</h1>
-<table class="table table-striped">
+<table>
 <thead>
 <tr>
 <th>Object Format</th>
@@ -97,7 +97,7 @@
 </tr>
 <tr>
 <td><span class="caps">ELF</span></td>
-<td>Linux, <span class="caps">UNIX</span>, <span class="caps">BSD</span>…</td>
+<td>Linux, <span class="caps">UNIX</span>, <span class="caps">BSD</span>&#8230;</td>
 </tr>
 <tr>
 <td>Mach-O</td>
@@ -112,72 +112,72 @@
 <h2 id="common-object-file-format-coff-pe">Common Object File Format (<span class="caps">COFF</span>, <span class="caps">PE</span>)</h2>
 <p>First used in <span class="caps">UNIX</span> System V, later superseeded by <span class="caps">ELF</span>.</p>
 <p><span class="caps">PE</span> (Portable Executable) is a modified version of <span class="caps">COFF</span> from
-Microsoft that is used for Windows.</p>
-<p>The same format is used for object files and for executables.</p>
+Microsoft that is used for&nbsp;Windows.</p>
+<p>The same format is used for object files and for&nbsp;executables.</p>
 <p>Compilers that use <span class="caps">COFF</span> / <span class="caps">PE</span>:</p>
 <ul>
-<li>Visual C++</li>
-<li>Intel (Win)</li>
-<li><span class="caps">GCC</span> (Win)</li>
+<li>Visual&nbsp;C++</li>
+<li>Intel&nbsp;(Win)</li>
+<li><span class="caps">GCC</span>&nbsp;(Win)</li>
 </ul>
 <p><span class="caps">COFF</span> uses many different data structures. This makes it difficult to handle.
-Alignment handling of the data structures can be difficult.</p>
+Alignment handling of the data structures can be&nbsp;difficult.</p>
 <p>Properties: </p>
 <ul>
-<li>Can contain debug information</li>
-<li>Different implementations (<span class="caps">COFF</span>, <span class="caps">PE</span>, <span class="caps">XCOFF</span>, <span class="caps">ECOFF</span>) are not compatible</li>
+<li>Can contain debug&nbsp;information</li>
+<li>Different implementations (<span class="caps">COFF</span>, <span class="caps">PE</span>, <span class="caps">XCOFF</span>, <span class="caps">ECOFF</span>) are not&nbsp;compatible</li>
 </ul>
 <p>Limitations:</p>
 <ul>
-<li>Segment word size: 32 or 64 bits.</li>
-<li>Max number of sections: 32k.</li>
+<li>Segment word size: 32 or 64&nbsp;bits.</li>
+<li>Max number of sections:&nbsp;32k.</li>
 <li>Max file size: 4 <span class="caps">GB</span>.</li>
 <li>Max section size: 4 <span class="caps">GB</span>.</li>
-<li>Max relocations per section: 64k.</li>
+<li>Max relocations per section:&nbsp;64k.</li>
 <li>Max library size: 4 <span class="caps">GB</span>.</li>
 </ul>
 <h2 id="executable-and-linkable-format-elf">Executable and Linkable Format (<span class="caps">ELF</span>)</h2>
 <p>Replaced older formats like a.out and <span class="caps">COFF</span> in Linux and <span class="caps">BSD</span>.</p>
 <p>Compilers:</p>
 <ul>
-<li><span class="caps">GCC</span> (Linux, <span class="caps">BSD</span>, Win…)</li>
+<li><span class="caps">GCC</span> (Linux, <span class="caps">BSD</span>,&nbsp;Win&#8230;)</li>
 </ul>
-<p>Clear and robust design.</p>
+<p>Clear and robust&nbsp;design.</p>
 <p>Limitations:</p>
 <ul>
-<li>Segment word size: 32 or 64 bits.</li>
-<li>Max number of sections: 64k.</li>
-<li>Max file size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>Max section size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
+<li>Segment word size: 32 or 64&nbsp;bits.</li>
+<li>Max number of sections:&nbsp;64k.</li>
+<li>Max file size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64&nbsp;bits.</li>
+<li>Max section size: 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64&nbsp;bits.</li>
 <li>String table size: 4 <span class="caps">GB</span>.</li>
-<li>Max number of symbols: 16M for 32 bits, 4G for 64 bits.</li>
+<li>Max number of symbols: 16M for 32 bits, 4G for 64&nbsp;bits.</li>
 <li>Max library size: 4 <span class="caps">GB</span>.</li>
 </ul>
-<h2 id="mach-o-format">Mach-O Format</h2>
+<h2 id="mach-o-format">Mach-O&nbsp;Format</h2>
 <p>This format is used by <span class="caps">OS</span> X.
-Only the format for Intel Mac <span class="caps">OS</span> X is described here.</p>
-<p>Can be used for object files and executable files.</p>
-<p>Object files have only one segment record that contains several section records.</p>
-<p>Executable files contain several segment records.</p>
+Only the format for Intel Mac <span class="caps">OS</span> X is described&nbsp;here.</p>
+<p>Can be used for object files and executable&nbsp;files.</p>
+<p>Object files have only one segment record that contains several section&nbsp;records.</p>
+<p>Executable files contain several segment&nbsp;records.</p>
 <p>Mach-O allows address specifications relative to any reference point in any section.
-This is used for position-independent code.</p>
+This is used for position-independent&nbsp;code.</p>
 <p>Limitations:</p>
 <ul>
-<li>Section name length: 16 characters.</li>
+<li>Section name length: 16&nbsp;characters.</li>
 <li>Max file size: 4 <span class="caps">GB</span>.</li>
-<li>Max section size: 16 <span class="caps">MB</span> for position-indep code, 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64 bits.</li>
-<li>Max number of sections: 16 M.</li>
-<li>Max number of symbols: 16 M.</li>
+<li>Max section size: 16 <span class="caps">MB</span> for position-indep code, 4 <span class="caps">GB</span> for 32 bits, <span class="math">\(2^{64}\)</span> for 64&nbsp;bits.</li>
+<li>Max number of sections: 16&nbsp;M.</li>
+<li>Max number of symbols: 16&nbsp;M.</li>
 <li>Max library size: 4 <span class="caps">GB</span>.</li>
 </ul>
-<h2 id="aout-format">a.out Format</h2>
-<p>Stands for ‘Assembler Output’.</p>
-<p>Is used in older <span class="caps">UNIX</span> systems.</p>
-<p><span class="quo">‘</span>a.out’ is often the default output file name of linkers. Even if the
-output format is an other one.</p>
-<p>Some tools still support the a.out format.</p>
-<h2 id="data-endianness">Data Endianness</h2>
-<p>All systems based on x86 (16-bit, 32-bit and 64-bit) use little endian.</p>
+<h2 id="aout-format">a.out&nbsp;Format</h2>
+<p>Stands for &#8216;Assembler&nbsp;Output&#8217;.</p>
+<p>Is used in older <span class="caps">UNIX</span>&nbsp;systems.</p>
+<p><span class="quo">&#8216;</span>a.out&#8217; is often the default output file name of linkers. Even if the
+output format is an other&nbsp;one.</p>
+<p>Some tools still support the a.out&nbsp;format.</p>
+<h2 id="data-endianness">Data&nbsp;Endianness</h2>
+<p>All systems based on x86 (16-bit, 32-bit and 64-bit) use little&nbsp;endian.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

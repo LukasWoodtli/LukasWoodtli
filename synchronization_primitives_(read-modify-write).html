@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Synchronization Primitives (Read-Modify-Write) "/>
 <meta property="og:url" content="./synchronization_primitives_(read-modify-write).html" />
-<meta property="og:description" content="Read-Modify-Write Compare-And-Swap Todo Load-Link/Store-Conditional This works: load_link(R); // ... store_conditional(R,x); // ok! But this fails: load_link(R); // ... store_conditional(R,x); // possibly other thread (ok!) // ... store_conditional(R,x); // fails! Test and Set Pseudo code: // atomic test_and_set(V: mem_address): // V in {0,1} tmp := V V := 1 return temp Reset: // normal …" />
+<meta property="og:description" content="Read-Modify-Write Compare-And-Swap Todo Load-Link/Store-Conditional This works: load_link(R); // ... store_conditional(R,x); // ok! But this fails: load_link(R); // ... store_conditional(R,x); // possibly other thread (ok!) // ... store_conditional(R,x); // fails! Test and Set Pseudo code: // atomic test_and_set(V: mem_address): // V in {0,1} tmp := V V := 1 return temp Reset: // normal …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-04-06T22:07:36+02:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Synchronization Primitives (Read-Modify-Write) ">
-<meta name="twitter:description" content="Read-Modify-Write Compare-And-Swap Todo Load-Link/Store-Conditional This works: load_link(R); // ... store_conditional(R,x); // ok! But this fails: load_link(R); // ... store_conditional(R,x); // possibly other thread (ok!) // ... store_conditional(R,x); // fails! Test and Set Pseudo code: // atomic test_and_set(V: mem_address): // V in {0,1} tmp := V V := 1 return temp Reset: // normal …">
+<meta name="twitter:description" content="Read-Modify-Write Compare-And-Swap Todo Load-Link/Store-Conditional This works: load_link(R); // ... store_conditional(R,x); // ok! But this fails: load_link(R); // ... store_conditional(R,x); // possibly other thread (ok!) // ... store_conditional(R,x); // fails! Test and Set Pseudo code: // atomic test_and_set(V: mem_address): // V in {0,1} tmp := V V := 1 return temp Reset: // normal …">
 
         <title>Synchronization Primitives (Read-Modify-Write)  · Lukas Woodtli
 </title>
@@ -86,14 +86,16 @@
 <p>Todo</p>
 </blockquote>
 <h2 id="load-linkstore-conditional">Load-Link/Store-Conditional</h2>
-<p>This works:</p>
+<p>This&nbsp;works:</p>
 <div class="highlight"><pre><span></span><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
 
 <span class="c1">// ...</span>
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// ok!</span>
 </pre></div>
-<p>But this fails:</p>
+
+
+<p>But this&nbsp;fails:</p>
 <div class="highlight"><pre><span></span><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
 
 <span class="c1">// ...</span>
@@ -104,36 +106,44 @@
 
 <span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// fails!</span>
 </pre></div>
-<h2 id="test-and-set">Test and Set</h2>
-<p>Pseudo code:</p>
+
+
+<h2 id="test-and-set">Test and&nbsp;Set</h2>
+<p>Pseudo&nbsp;code:</p>
 <div class="highlight"><pre><span></span><span class="c1">// atomic</span>
 <span class="n">test_and_set</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">)</span><span class="o">:</span> <span class="c1">// V in {0,1}</span>
     <span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span> <span class="n">V</span>
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">temp</span>
 </pre></div>
+
+
 <p>Reset:</p>
 <div class="highlight"><pre><span></span><span class="c1">// normal write</span>
 <span class="n">reset</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">)</span><span class="o">:</span>
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
 </pre></div>
+
+
 <h2 id="generic-rwm">Generic <span class="caps">RWM</span></h2>
-<p>Pseudo code:</p>
+<p>Pseudo&nbsp;code:</p>
 <div class="highlight"><pre><span></span><span class="n">rwm</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">,</span> <span class="nl">f</span><span class="p">:</span> <span class="n">function</span><span class="p">)</span> <span class="k">return</span> <span class="n">value</span>
     <span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span> <span class="n">V</span>
     <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span>
 </pre></div>
-<h1 id="mutex-shared-memory">Mutex (Shared Memory)</h1>
+
+
+<h1 id="mutex-shared-memory">Mutex (Shared&nbsp;Memory)</h1>
 <ul>
 <li>
-<p>Mainly asynchronous shared memory systems</p>
+<p>Mainly asynchronous shared memory&nbsp;systems</p>
 </li>
 <li>
-<p>read/write: atomic but only either read or write at a time</p>
+<p>read/write: atomic but only either read or write at a&nbsp;time</p>
 </li>
 <li>
-<p>Mutex code</p>
+<p>Mutex&nbsp;code</p>
 </li>
 </ul>
 <!-- TODO:
@@ -144,26 +154,27 @@
  Remainder -> Enter
 
 -->
+
 <p>Requirements:</p>
 <ol>
-<li>At most one process in critical section</li>
+<li>At most one process in critical&nbsp;section</li>
 <li>No deadlocks<ul>
-<li>if there is a process in the entry section then later there is a process (maybe an <em>other</em> one) in the critical section</li>
+<li>if there is a process in the entry section then later there is a process (maybe an <em>other</em> one) in the critical&nbsp;section</li>
 </ul>
 </li>
 <li>No lockout (starving)<ul>
-<li>if there is a process in the entry section then later the <em>same</em> process is in the critical section</li>
+<li>if there is a process in the entry section then later the <em>same</em> process is in the critical&nbsp;section</li>
 </ul>
 </li>
 <li>Unobstructed exit<ul>
-<li>no process is stuck in the exit section (no loops…)</li>
+<li>no process is stuck in the exit section (no&nbsp;loops&#8230;)</li>
 </ul>
 </li>
 </ol>
 <p>General:</p>
 <ul>
-<li>1 bit suffices for mutex without deadlock</li>
-<li>O(log(n)) bits needed for fairness</li>
+<li>1 bit suffices for mutex without&nbsp;deadlock</li>
+<li>O(log(n)) bits needed for&nbsp;fairness</li>
 </ul>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -

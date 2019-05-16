@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Linking and Loading "/>
 <meta property="og:url" content="./linking_and_loading.html" />
-<meta property="og:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …" />
+<meta property="og:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-11-24T13:06:00+01:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Linking and Loading ">
-<meta name="twitter:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …">
+<meta name="twitter:description" content="The different forms of Linking There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking. This explanations are mainly for Linux. On other OS’s the same concepts apply but with some minor differences. See also: Executable Loader Static …">
 
         <title>Linking and Loading  · Lukas Woodtli
 </title>
@@ -80,46 +80,46 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>The different forms of Linking</p>
-<p>There are two major forms of linking: static and dynamic. But there are some subtle details in each form of linking.</p>
-<p>This explanations are mainly for Linux. On other <span class="caps">OS</span>’s the same concepts apply but with some minor differences.</p>
-<p>See also: <a href="./executable_loader.html">Executable Loader</a></p>
-<h1 id="static-linking">Static Linking</h1>
+            <p>The different forms of&nbsp;Linking</p>
+<p>There are two major forms of linking: static and dynamic. But there are some subtle details in each form of&nbsp;linking.</p>
+<p>This explanations are mainly for Linux. On other <span class="caps">OS</span>’s the same concepts apply but with some minor&nbsp;differences.</p>
+<p>See also: <a href="./executable_loader.html">Executable&nbsp;Loader</a></p>
+<h1 id="static-linking">Static&nbsp;Linking</h1>
 <ul>
-<li>Combine object files and archives to binaries (executables and shared libraries)</li>
-<li>Usually a step in the build process (after compiling)</li>
-<li>Not very flexible</li>
+<li>Combine object files and archives to binaries (executables and shared&nbsp;libraries)</li>
+<li>Usually a step in the build process (after&nbsp;compiling)</li>
+<li>Not very&nbsp;flexible</li>
 <li>Not very suitable for libraries<ul>
-<li>Libraries should be linked dynamically to executables</li>
-<li>Libraries are usually created by statically linking object files together</li>
+<li>Libraries should be linked dynamically to&nbsp;executables</li>
+<li>Libraries are usually created by statically linking object files&nbsp;together</li>
 </ul>
 </li>
-<li>Order of symbol resolution can be tricky (e. g. same symbol in multiple object files)</li>
+<li>Order of symbol resolution can be tricky (e. g. same symbol in multiple object&nbsp;files)</li>
 </ul>
-<h1 id="dynamic-linking">Dynamic Linking</h1>
-<p>Shared libraries (so, dll, dylib) are loaded at runtime.</p>
+<h1 id="dynamic-linking">Dynamic&nbsp;Linking</h1>
+<p>Shared libraries (so, dll, dylib) are loaded at&nbsp;runtime.</p>
 <h2 id="loading">Loading</h2>
 <ul>
-<li>Often just called: dynamic linking</li>
-<li>Shared libraries are passed to linker in build process (like with static linking)</li>
-<li>Dynamic loader loads library to process address space when executable is started (or can be lazy loaded)</li>
-<li>Mostly used for libraries that are available at build time</li>
+<li>Often just called: dynamic&nbsp;linking</li>
+<li>Shared libraries are passed to linker in build process (like with static&nbsp;linking)</li>
+<li>Dynamic loader loads library to process address space when executable is started (or can be lazy&nbsp;loaded)</li>
+<li>Mostly used for libraries that are available at build&nbsp;time</li>
 </ul>
-<h2 id="manual-loading-dlopen">Manual loading (dlopen)</h2>
+<h2 id="manual-loading-dlopen">Manual loading&nbsp;(dlopen)</h2>
 <ul>
-<li>Same mechanism as dynamic linking</li>
-<li>But linking happens manually (programmatically)</li>
+<li>Same mechanism as dynamic&nbsp;linking</li>
+<li>But linking happens manually&nbsp;(programmatically)</li>
 <li>‘dlopen’ on Linux/<span class="caps">UNIX</span></li>
-<li>Can load library at run time</li>
-<li>Used for plug-in mechanism</li>
+<li>Can load library at run&nbsp;time</li>
+<li>Used for plug-in&nbsp;mechanism</li>
 </ul>
 <h2 id="preloading">Preloading</h2>
 <ul>
-<li>The dynamic linker looks for libraries in ‘LD_PATH’</li>
-<li>Possible to hook into loading process with ‘LD_PRELOAD’</li>
-<li>Libraries provided in ‘LD_PRELOAD’ are loaded instead of libraries in ‘LD_PATH’</li>
-<li>Can be used for overwriting or extending system functions (e. g. allocators: ‘malloc’, ‘free’, ‘realloc’ …)</li>
-<li>Special checks (security) are performed before library is preloaded</li>
+<li>The dynamic linker looks for libraries in&nbsp;‘LD_PATH’</li>
+<li>Possible to hook into loading process with&nbsp;‘LD_PRELOAD’</li>
+<li>Libraries provided in ‘LD_PRELOAD’ are loaded instead of libraries in&nbsp;‘LD_PATH’</li>
+<li>Can be used for overwriting or extending system functions (e. g. allocators: ‘malloc’, ‘free’, ‘realloc’&nbsp;&#8230;)</li>
+<li>Special checks (security) are performed before library is&nbsp;preloaded</li>
 </ul>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
