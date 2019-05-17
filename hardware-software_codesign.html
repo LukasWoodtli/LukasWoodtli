@@ -326,7 +326,7 @@
 <li>Stricter requirements (usually update not possible)</li>
 </ul>
 <h3 id="difference-embedded-systems-general-purpose-computing">Difference Embedded Systems ↔ General Purpose Computing</h3>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Embedded Systems</th>
@@ -602,7 +602,7 @@
 <li><em>binds</em> communication between processes to architecture communication paths</li>
 <li>specifies <em>resource sharing</em> and <em>scheduling</em></li>
 </ul>
-<p><img alt="Partitioning and Mapping" src="/images/hscd_partitioning_mapping.svg"/></p>
+<p><img alt="Partitioning and Mapping" class="img-fluid" src="/images/hscd_partitioning_mapping.svg"/></p>
 <!-- TODO: Repeat Slides 3-10 to 3-14 -->
 <h1 id="4-system-partitioning">4. System Partitioning</h1>
 <blockquote>
@@ -704,7 +704,7 @@
 <li>optimize for a load balanced system</li>
 </ul>
 <p>Scheduling:</p>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Task</th>
@@ -732,7 +732,7 @@
 </tbody>
 </table>
 <p>Run Times:</p>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Run time</th>
@@ -987,7 +987,7 @@ all objectives, i.e:</p>
 <li>Solutions of the set from 4. are selected based on their merit to construct the new <em>parent</em> set (<em>environmental selection</em>).</li>
 <li>continue at 2.</li>
 </ol>
-<p><img alt="Evolutionary Algorithm" src="/images/hscd_evolutionary_algorithm.svg" style="float:right"/></p>
+<p><img alt="Evolutionary Algorithm" class="img-fluid" src="/images/hscd_evolutionary_algorithm.svg" style="float:right"/></p>
 <ul>
 <li>Cross-over operator: Take best parts of two solutions</li>
 <li>Mutation operator: same as in simulated annealing (make small variations)</li>
@@ -1804,7 +1804,7 @@ and exits at the end, without stopping in-between or branching (except at the e
 </ul>
 </li>
 </ul>
-<p><img alt="WCET Calculation" src="/images/hscd_wcet_calculation.png"/></p>
+<p><img alt="WCET Calculation" class="img-fluid" src="/images/hscd_wcet_calculation.png"/></p>
 <p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
 <p>Flow Equations (sum of incoming edges equals sum of outgoing edges)</p>
 <div class="math">$$\begin{align*}
@@ -2030,7 +2030,7 @@ occurring in the program (addresses, register contents, local and global variab
 <p>Abstract model</p>
 </li>
 </ul>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Concrete instance (real world)</th>
@@ -2153,7 +2153,7 @@ occurring in the program (addresses, register contents, local and global variab
 </ul>
 </li>
 </ul>
-<p><img alt="Plus-times calculus" src="/images/hscd_plus_times.svg"/></p>
+<p><img alt="Plus-times calculus" class="img-fluid" src="/images/hscd_plus_times.svg"/></p>
 <div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
 <ul>
 <li>
@@ -2171,7 +2171,7 @@ occurring in the program (addresses, register contents, local and global variab
 </ul>
 </li>
 </ul>
-<p><img alt="Min-plus calculus" src="/images/hscd_min_plus.svg"/></p>
+<p><img alt="Min-plus calculus" class="img-fluid" src="/images/hscd_min_plus.svg"/></p>
 <div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
 <!-- End of Notes Week 12 -->
 <!-- Beginning of Notes Week 13 -->
@@ -2190,7 +2190,7 @@ occurring in the program (addresses, register contents, local and global variab
 <li>Arrival and Service Curves work on <em>time intervals</em> as domain (<span class="math">\(\Delta\)</span>)</li>
 </ul>
 <h1 id="overview-of-methods-and-algorithms">Overview of Methods and Algorithms</h1>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th></th>

@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Scheme: Frequently used Functions "/>
 <meta property="og:url" content="./scheme:_frequently_used_functions.html" />
-<meta property="og:description" content="Pairs (cons, car and cdr) (cons a b): Construct a pair (car p): Get first element of pair (or list) (cdr p): Get second element of pair (or rest of list) Lists (list a0 a1 a2 ... aN): create a list Equivalent to (cons (cons a0 (cons a1 (cons a2 (cons …" />
+<meta property="og:description" content="Pairs (cons, car and cdr) (cons a b): Construct a pair (car p): Get first element of pair (or list) (cdr p): Get second element of pair (or rest of list) Lists (list a0 a1 a2 ... aN): create a list Equivalent to (cons (cons a0 (cons a1 (cons a2 (cons …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-10-14T03:44:04+02:00" />
 <meta property="og:article:modified_time" content="2019-02-27T09:38:47+01:00" />
 <meta name="twitter:title" content="Scheme: Frequently used Functions ">
-<meta name="twitter:description" content="Pairs (cons, car and cdr) (cons a b): Construct a pair (car p): Get first element of pair (or list) (cdr p): Get second element of pair (or rest of list) Lists (list a0 a1 a2 ... aN): create a list Equivalent to (cons (cons a0 (cons a1 (cons a2 (cons …">
+<meta name="twitter:description" content="Pairs (cons, car and cdr) (cons a b): Construct a pair (car p): Get first element of pair (or list) (cdr p): Get second element of pair (or rest of list) Lists (list a0 a1 a2 ... aN): create a list Equivalent to (cons (cons a0 (cons a1 (cons a2 (cons …">
 
         <title>Scheme: Frequently used Functions  · Lukas Woodtli
 </title>
@@ -82,42 +82,40 @@
             
             <h1 id="pairs-cons-car-and-cdr">Pairs (<code>cons</code>, <code>car</code> and <code>cdr</code>)</h1>
 <ul>
-<li><code>(cons a b)</code>: Construct a&nbsp;pair</li>
-<li><code>(car p)</code>: Get first element of pair (or&nbsp;list)</li>
-<li><code>(cdr p)</code>: Get second element of pair (or rest of&nbsp;list)</li>
+<li><code>(cons a b)</code>: Construct a pair</li>
+<li><code>(car p)</code>: Get first element of pair (or list)</li>
+<li><code>(cdr p)</code>: Get second element of pair (or rest of list)</li>
 </ul>
 <h1 id="lists">Lists</h1>
 <ul>
-<li><code>(list a0 a1 a2 ... aN)</code>: create a&nbsp;list</li>
+<li><code>(list a0 a1 a2 ... aN)</code>: create a list</li>
 </ul>
 <p>Equivalent to <code>(cons (cons a0 (cons a1 (cons a2 (cons ... (cons (cons aN nil))...)))))</code></p>
 <ul>
 <li><code>nil</code>: end of list marker (equivalent to the empty list <code>'()</code>)</li>
 <li><code>(null? p)</code>: checks if the given element is <code>nil</code></li>
-<li><code>(pair? e)</code>: checks if the given element is a&nbsp;pair</li>
+<li><code>(pair? e)</code>: checks if the given element is a pair</li>
 </ul>
 <blockquote>
-<p>the empty list satisfies <code>null?</code> and also is <em>not</em> a&nbsp;pair</p>
+<p>the empty list satisfies <code>null?</code> and also is <em>not</em> a pair</p>
 </blockquote>
 <ul>
-<li><code>(cons a lst)</code> makes a list like the original one (<code>lst</code>), but with an additional item (<code>a</code>) at the&nbsp;beginning</li>
+<li><code>(cons a lst)</code> makes a list like the original one (<code>lst</code>), but with an additional item (<code>a</code>) at the beginning</li>
 </ul>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">cons </span><span class="mi">10</span> <span class="nv">a</span><span class="p">)</span>
 <span class="nv">&gt;&gt;</span> <span class="p">(</span><span class="mi">10</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
-
-
 <ul>
-<li><code>(list-ref lst i)</code>: retrieves element at index <code>i</code> (index is&nbsp;zero-based)</li>
-<li><code>(length lst)</code>: returns the length of a&nbsp;list</li>
-<li><code>(append lst1 lst2)</code>: combines the elements of two lists into one new&nbsp;list</li>
-<li><code>(map fun lst)</code>: applies the function <code>fun</code> to each element of <code>lst</code> and returns a new list with the&nbsp;results</li>
+<li><code>(list-ref lst i)</code>: retrieves element at index <code>i</code> (index is zero-based)</li>
+<li><code>(length lst)</code>: returns the length of a list</li>
+<li><code>(append lst1 lst2)</code>: combines the elements of two lists into one new list</li>
+<li><code>(map fun lst)</code>: applies the function <code>fun</code> to each element of <code>lst</code> and returns a new list with the results</li>
 </ul>
-<p>The <code>map</code> function can be applied on multiple&nbsp;lists:</p>
-<p><em><span class="dquo">&#8220;</span>This more general <code>map</code> takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the&nbsp;results.</em></p>
-<p><em>For example:</em>&#8221;</p>
+<p>The <code>map</code> function can be applied on multiple lists:</p>
+<p><em><span class="dquo">“</span>This more general <code>map</code> takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
+<p><em>For example:</em>”</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span><span class="p">)</span>
@@ -129,80 +127,66 @@
     <span class="p">(</span><span class="nb">list </span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
 <span class="nv">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">9</span> <span class="mi">12</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div>
-
-
-<p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1"><span class="caps">SICP</span>:2.2.1  Representing Sequences:Mapping over&nbsp;lists</a></p>
+<p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1"><span class="caps">SICP</span>:2.2.1  Representing Sequences:Mapping over lists</a></p>
 <ul>
-<li><code>(for-each fun lst)</code>: applies a function <code>fun</code> to each element in the list <code>lst</code> but doesn&#8217;t create a new list. The return value of the function is&nbsp;ignored.</li>
+<li><code>(for-each fun lst)</code>: applies a function <code>fun</code> to each element in the list <code>lst</code> but doesn’t create a new list. The return value of the function is ignored.</li>
 </ul>
-<p><em><span class="dquo">&#8220;</span>The procedure <code>for-each</code> is similar to map. It takes as arguments a procedure and a list of elements. However, rather than forming a list of the results, <code>for-each</code> just applies the procedure to each of the elements in turn, from left to right. The values returned by applying the procedure to the elements are not used at all - <code>for-each</code> is used with procedures that perform an action, such as&nbsp;printing.&#8221;</em></p>
-<p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1"><span class="caps">SICP</span>:2.2.1  Representing Sequences:Exercise&nbsp;2.23</a></p>
+<p><em><span class="dquo">“</span>The procedure <code>for-each</code> is similar to map. It takes as arguments a procedure and a list of elements. However, rather than forming a list of the results, <code>for-each</code> just applies the procedure to each of the elements in turn, from left to right. The values returned by applying the procedure to the elements are not used at all - <code>for-each</code> is used with procedures that perform an action, such as printing.”</em></p>
+<p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1"><span class="caps">SICP</span>:2.2.1  Representing Sequences:Exercise 2.23</a></p>
 <ul>
 <li>
-<p><code>(flatten t)</code>: flattens a tree structure into a&nbsp;list</p>
+<p><code>(flatten t)</code>: flattens a tree structure into a list</p>
 </li>
 <li>
-<p><code>(filter p lst)</code>: Creates a new list with the elements of <code>lst</code> for which the predicate <code>p</code> is&nbsp;satisfied</p>
+<p><code>(filter p lst)</code>: Creates a new list with the elements of <code>lst</code> for which the predicate <code>p</code> is satisfied</p>
 </li>
 <li>
 <p><code>(foldr f b lst)</code>: applies the function <code>f</code> to the next element of the list and the result of the previous element. <code>b</code> is the initial begining value. The list is traversed from right to left. Also known as <code>acumulate</code> (<a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.3"><span class="caps">SICP</span>:2.2.3</a>)</p>
 </li>
 <li>
-<p><code>(foldl f b lst)</code>: Same as <code>foldlr</code> but the list is traversed from left to&nbsp;right.</p>
+<p><code>(foldl f b lst)</code>: Same as <code>foldlr</code> but the list is traversed from left to right.</p>
 </li>
 <li>
-<p><code>(reduce f lst)</code>: Same as <code>foldl</code> but take the first (leftmost) element as starting&nbsp;element.</p>
+<p><code>(reduce f lst)</code>: Same as <code>foldl</code> but take the first (leftmost) element as starting element.</p>
 </li>
 </ul>
 <p>If <code>reduce</code> is not available (e.g in Racket) it can be defined in terms of <code>foldl</code>:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reduce</span> <span class="nv">f</span> <span class="nv">xs</span><span class="p">)</span>
     <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">xs</span><span class="p">))</span> <span class="p">(</span><span class="nf">foldl</span> <span class="nv">f</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">xs</span><span class="p">)</span> <span class="p">(</span><span class="nf">rest</span> <span class="nv">xs</span><span class="p">))))</span>
 </pre></div>
-
-
-<p><a href="http://stackoverflow.com/a/25211454/1272072">Stack&nbsp;Overflow</a></p>
+<p><a href="http://stackoverflow.com/a/25211454/1272072">Stack Overflow</a></p>
 <ul>
 <li><code>(memq  v lst)</code>: find element <code>v</code> in list <code>lst</code> and return the rest of the list starting at the found element. If element is not found <code>#f</code> is returned. Similar functions: <code>member</code>, <code>memv</code>, <code>memf</code></li>
 </ul>
-<h1 id="local-binding">Local&nbsp;Binding</h1>
-<p><code>let</code> is syntactic sugar for a procedure&nbsp;call:</p>
+<h1 id="local-binding">Local Binding</h1>
+<p><code>let</code> is syntactic sugar for a procedure call:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">&lt;var&gt;</span> <span class="nv">&lt;exp&gt;</span><span class="p">))</span> <span class="nv">&lt;body&gt;</span><span class="p">)</span>
 </pre></div>
-
-
-<p>is interpreted as an alternate syntax&nbsp;for</p>
+<p>is interpreted as an alternate syntax for</p>
 <div class="highlight"><pre><span></span><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var&gt;</span><span class="p">)</span> <span class="nv">&lt;body&gt;</span><span class="p">)</span> <span class="nv">&lt;exp&gt;</span><span class="p">)</span>
 </pre></div>
-
-
-<h1 id="delayed-evaluation">Delayed&nbsp;Evaluation</h1>
+<h1 id="delayed-evaluation">Delayed Evaluation</h1>
 <p><code>delay</code> is a special form that returns a <em>delayed object</em>. It is a 
-<em>promise</em> to evaluate the given expression at some future&nbsp;time.</p>
+<em>promise</em> to evaluate the given expression at some future time.</p>
 <p><code>force</code> takes a <em>delayed object</em> and performs the evaluation. It forces
-the <code>delay</code> to fulfill its&nbsp;promise.</p>
-<p>Delay can be a special form such&nbsp;that:</p>
+the <code>delay</code> to fulfill its promise.</p>
+<p>Delay can be a special form such that:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">delay </span><span class="nv">&lt;exp&gt;</span><span class="p">)</span>
 </pre></div>
-
-
-<p>is syntactic sugar&nbsp;for</p>
+<p>is syntactic sugar for</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="nv">&lt;exp&gt;</span><span class="p">)</span>
 </pre></div>
-
-
 <p>Force simply calls the procedure (of no arguments) pro-
-duced by delay, so we can implement force as a proce-&nbsp;dure:</p>
+duced by delay, so we can implement force as a proce- dure:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">force </span><span class="nv">delayed-object</span><span class="p">)</span> <span class="p">(</span><span class="nf">delayed-object</span><span class="p">))</span>
 </pre></div>
-
-
-<h1 id="dotted-tail-notation">Dotted-tail&nbsp;Notation</h1>
+<h1 id="dotted-tail-notation">Dotted-tail Notation</h1>
 <ul>
-<li>Used for functions with arbitrary number of&nbsp;arguments</li>
+<li>Used for functions with arbitrary number of arguments</li>
 </ul>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">x</span> <span class="nv">a</span> <span class="nv">b</span> <span class="o">.</span> <span class="nv">c</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">x</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; in the body of x: a=1, b=2, c=&#39;(3 4 5)</span>
+<span class="p">(</span><span class="nf">x</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; in the body of x: a=1, b=2, c='(3 4 5)</span>
 </pre></div>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -

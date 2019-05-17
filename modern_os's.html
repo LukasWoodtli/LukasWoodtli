@@ -202,7 +202,7 @@
 <p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I’m using for learning about Operating Systems.</p>
 
 <h1 id="overview-of-kernels">Overview of Kernels</h1>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Kernel</th>
@@ -548,7 +548,7 @@ array is equal to the number of processors.</p>
 <li>has-lock (<strong>hl</strong>)</li>
 <li>must-wait (<strong>mw</strong>)</li>
 </ul>
-<p><img alt="The flag array structure" src="/images/array_based_queuing_lock.png"/></p>
+<p><img alt="The flag array structure" class="img-fluid" src="/images/array_based_queuing_lock.png"/></p>
 <p>Only one slot can be marked as <strong>hl</strong>.</p>
 <p>The slots are not statically associated with a particular processor.</p>
 <div class="highlight"><pre><span></span><span class="nv">LOCK</span><span class="ss">(</span><span class="nv">L</span><span class="ss">)</span>:

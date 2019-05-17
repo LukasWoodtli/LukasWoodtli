@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Files and File descriptors on Linux "/>
 <meta property="og:url" content="./files_and_file_descriptors_on_linux.html" />
-<meta property="og:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …" />
+<meta property="og:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-06-03T15:56:39+02:00" />
 <meta property="og:article:modified_time" content="2018-09-14T20:40:30+02:00" />
 <meta name="twitter:title" content="Files and File descriptors on Linux ">
-<meta name="twitter:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …">
+<meta name="twitter:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …">
 
         <title>Files and File descriptors on Linux  · Lukas Woodtli
 </title>
@@ -80,54 +80,54 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a>&nbsp;(German).</p>
+            <p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
 <h1 id="process-control-block-pcb">Process Control Block (<span class="caps">PCB</span>)</h1>
-<p>Contains the information about a&nbsp;process.</p>
+<p>Contains the information about a process.</p>
 <ul>
 <li>C struct <code>task_struct</code></li>
-<li>Pointer to code section&nbsp;(text)</li>
-<li>Pointer to data&nbsp;section</li>
-<li>State: running, ready, blocked,&nbsp;terminated</li>
-<li>Instruction pointer (<span class="caps">IP</span>): next instruction to&nbsp;execute</li>
-<li>Saved&nbsp;registers</li>
-<li>Memory information:&nbsp;pages</li>
+<li>Pointer to code section (text)</li>
+<li>Pointer to data section</li>
+<li>State: running, ready, blocked, terminated</li>
+<li>Instruction pointer (<span class="caps">IP</span>): next instruction to execute</li>
+<li>Saved registers</li>
+<li>Memory information: pages</li>
 <li>Scheduler information<ul>
 <li>Priority</li>
-<li>Pointer to scheduler&nbsp;queue</li>
+<li>Pointer to scheduler queue</li>
 </ul>
 </li>
-<li>Table with open file descriptors hold by this&nbsp;process</li>
+<li>Table with open file descriptors hold by this process</li>
 </ul>
-<h1 id="file-table">File&nbsp;Table</h1>
+<h1 id="file-table">File Table</h1>
 <ul>
-<li>1 entry for each open&nbsp;file</li>
-<li>different processes can point to the same&nbsp;entry</li>
+<li>1 entry for each open file</li>
+<li>different processes can point to the same entry</li>
 <li>Entry:<ul>
-<li>number of&nbsp;i-nodes</li>
-<li>position&nbsp;pointer</li>
-<li>mode (read, write,&nbsp;append&#8230;)</li>
-<li>pointer to v-node&nbsp;table</li>
+<li>number of i-nodes</li>
+<li>position pointer</li>
+<li>mode (read, write, append…)</li>
+<li>pointer to v-node table</li>
 </ul>
 </li>
 </ul>
-<h1 id="v-node-table">v-node&nbsp;Table</h1>
+<h1 id="v-node-table">v-node Table</h1>
 <ul>
 <li>i-node information<ul>
-<li>copied to v-node table when file is&nbsp;opened</li>
+<li>copied to v-node table when file is opened</li>
 <li>owner</li>
 <li>rights</li>
-<li>user/group&nbsp;ids</li>
-<li>number of&nbsp;links</li>
+<li>user/group ids</li>
+<li>number of links</li>
 </ul>
 </li>
-<li>file&nbsp;information</li>
-<li>file&nbsp;size</li>
-<li>functions (file system&nbsp;dependent)</li>
+<li>file information</li>
+<li>file size</li>
+<li>functions (file system dependent)</li>
 </ul>
-<h1 id="file-descriptors">File&nbsp;Descriptors</h1>
-<p>File descriptors are unique <span class="caps">ID</span>&#8217;s (ints) that identify an open&nbsp;file.</p>
+<h1 id="file-descriptors">File Descriptors</h1>
+<p>File descriptors are unique <span class="caps">ID</span>’s (ints) that identify an open file.</p>
 <p>3 descriptors are reserved by the system in <code>&lt;unistd.h&gt;</code>:</p>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Constant</th>
@@ -153,20 +153,20 @@
 </tr>
 </tbody>
 </table>
-<p>The number can differ but the given ones are&nbsp;common.</p>
-<p>Functions that return a file descriptor (e.g. <code>open(...)</code>or <code>creat(...)</code>) return <code>-1</code> if en error&nbsp;occurred.</p>
-<h1 id="file-types">File&nbsp;Types</h1>
-<p>There are 6 different file types in&nbsp;Linux:</p>
+<p>The number can differ but the given ones are common.</p>
+<p>Functions that return a file descriptor (e.g. <code>open(...)</code>or <code>creat(...)</code>) return <code>-1</code> if en error occurred.</p>
+<h1 id="file-types">File Types</h1>
+<p>There are 6 different file types in Linux:</p>
 <ul>
-<li>Regular&nbsp;files</li>
+<li>Regular files</li>
 <li>Directories</li>
-<li>Device&nbsp;files</li>
+<li>Device files</li>
 <li>Sockets</li>
-<li>Pipes (named Pipes and&nbsp;FIFOs)</li>
-<li>Links (Soft- and&nbsp;Hardlinks)</li>
+<li>Pipes (named Pipes and FIFOs)</li>
+<li>Links (Soft- and Hardlinks)</li>
 </ul>
-<h1 id="special-device-files">Special Device&nbsp;Files</h1>
-<p>See <a href="./unix_device_files.html">here</a> for a description for device&nbsp;files.</p>
+<h1 id="special-device-files">Special Device Files</h1>
+<p>See <a href="./unix_device_files.html">here</a> for a description for device files.</p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />

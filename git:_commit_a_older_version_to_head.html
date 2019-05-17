@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Git: Commit a older version to HEAD "/>
 <meta property="og:url" content="./git:_commit_a_older_version_to_head.html" />
-<meta property="og:description" content="If a HEAD has to be reset to a older version this is a possible workflow. The solution is from stackoverflow First checkout the version that should be the new HEAD. git checkout &lt;SHA-1 id of commit&gt; Now we create a temp branch and check it out. git checkout -b …" />
+<meta property="og:description" content="If a HEAD has to be reset to a older version this is a possible workflow. The solution is from stackoverflow First checkout the version that should be the new HEAD. git checkout &lt;SHA-1 id of commit&gt; Now we create a temp branch and check it out. git checkout -b …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-11-18T21:19:05+01:00" />
 <meta property="og:article:modified_time" content="2018-06-06T15:24:09+02:00" />
 <meta name="twitter:title" content="Git: Commit a older version to HEAD ">
-<meta name="twitter:description" content="If a HEAD has to be reset to a older version this is a possible workflow. The solution is from stackoverflow First checkout the version that should be the new HEAD. git checkout &lt;SHA-1 id of commit&gt; Now we create a temp branch and check it out. git checkout -b …">
+<meta name="twitter:description" content="If a HEAD has to be reset to a older version this is a possible workflow. The solution is from stackoverflow First checkout the version that should be the new HEAD. git checkout &lt;SHA-1 id of commit&gt; Now we create a temp branch and check it out. git checkout -b …">
 
         <title>Git: Commit a older version to HEAD  · Lukas Woodtli
 </title>
@@ -80,31 +80,23 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>If a <code>HEAD</code> has to be reset to a older version this is a possible&nbsp;workflow.</p>
+            <p>If a <code>HEAD</code> has to be reset to a older version this is a possible workflow.</p>
 <p>The solution is from <a href="http://stackoverflow.com/a/5772882">stackoverflow</a></p>
 <p>First checkout the version that should be the new <code>HEAD</code>.</p>
 <div class="highlight"><pre><span></span>git checkout &lt;SHA-1 id of commit&gt;
 </pre></div>
-
-
-<p>Now we create a <code>temp</code> branch and check it&nbsp;out.</p>
+<p>Now we create a <code>temp</code> branch and check it out.</p>
 <div class="highlight"><pre><span></span>git checkout -b temp
 </pre></div>
-
-
 <p>This is equivalent to <code>git branch temp</code> followed by <code>git checkout temp</code>.</p>
-<p>Now we want <code>master</code> (or an other branch) to point to&nbsp;it.</p>
+<p>Now we want <code>master</code> (or an other branch) to point to it.</p>
 <div class="highlight"><pre><span></span>git checkout -B master temp
 </pre></div>
-
-
 <p>This is equivalent to <code>git branch -f master temp</code>followed by <code>git checkout master</code>.</p>
 <p>Now we can delete the <code>temp</code> branch:</p>
 <div class="highlight"><pre><span></span>git branch -d temp
 </pre></div>
-
-
-<p>Now we can push to a remote (<code>-f</code> might be&nbsp;needed):</p>
+<p>Now we can push to a remote (<code>-f</code> might be needed):</p>
 <div class="highlight"><pre><span></span>git push -f origin master
 </pre></div>
             <!--             <div>

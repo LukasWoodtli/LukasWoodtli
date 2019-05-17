@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Configuration Space and Degrees of Freedoms "/>
 <meta property="og:url" content="./configuration_space_and_degrees_of_freedoms.html" />
-<meta property="og:description" content="Joints Every joint connects exactly two links. A joint: provides freedoms to allow one rigid body to move relative to another. provides constraints on the possible motions of the two rigid bodies it connects. \(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\ joint)\) Typical Joints Joint type …" />
+<meta property="og:description" content="Joints Every joint connects exactly two links. A joint: provides freedoms to allow one rigid body to move relative to another. provides constraints on the possible motions of the two rigid bodies it connects. \(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\ joint)\) Typical Joints Joint type …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-09-14T20:16:44+02:00" />
 <meta property="og:article:modified_time" content="2018-10-02T20:51:10+02:00" />
 <meta name="twitter:title" content="Configuration Space and Degrees of Freedoms ">
-<meta name="twitter:description" content="Joints Every joint connects exactly two links. A joint: provides freedoms to allow one rigid body to move relative to another. provides constraints on the possible motions of the two rigid bodies it connects. \(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\ joint)\) Typical Joints Joint type …">
+<meta name="twitter:description" content="Joints Every joint connects exactly two links. A joint: provides freedoms to allow one rigid body to move relative to another. provides constraints on the possible motions of the two rigid bodies it connects. \(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\ joint)\) Typical Joints Joint type …">
 
         <title>Configuration Space and Degrees of Freedoms  · Lukas Woodtli
 </title>
@@ -81,15 +81,15 @@
 
             
             <h1 id="joints">Joints</h1>
-<p>Every joint connects <em>exactly</em> two&nbsp;links.</p>
-<p>A&nbsp;joint:</p>
+<p>Every joint connects <em>exactly</em> two links.</p>
+<p>A joint:</p>
 <ul>
-<li>provides freedoms to allow one rigid body to move relative to&nbsp;another.</li>
-<li>provides constraints on the possible motions of the two rigid bodies it&nbsp;connects.</li>
+<li>provides freedoms to allow one rigid body to move relative to another.</li>
+<li>provides constraints on the possible motions of the two rigid bodies it connects.</li>
 </ul>
-<p><span class="math">\(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\&nbsp;joint)\)</span></p>
-<h2 id="typical-joints">Typical&nbsp;Joints</h2>
-<table>
+<p><span class="math">\(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\ joint)\)</span></p>
+<h2 id="typical-joints">Typical Joints</h2>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Joint type</th>
@@ -131,32 +131,32 @@
 </tr>
 </tbody>
 </table>
-<h1 id="configuration-space">Configuration&nbsp;Space</h1>
-<p>Configuration: a specification of the positions of all points of the&nbsp;robot.</p>
-<p>Configuration space&nbsp;(C-space):</p>
+<h1 id="configuration-space">Configuration Space</h1>
+<p>Configuration: a specification of the positions of all points of the robot.</p>
+<p>Configuration space (C-space):</p>
 <ul>
-<li>The space of all&nbsp;configurations.</li>
-<li>The n-dimensional space containing all possible configurations of the&nbsp;robot.</li>
+<li>The space of all configurations.</li>
+<li>The n-dimensional space containing all possible configurations of the robot.</li>
 </ul>
-<p>The configuration of a robot is represented by a point in its&nbsp;C-space.</p>
-<h1 id="degrees-of-freedom-dof">Degrees of Freedom&nbsp;(dof)</h1>
+<p>The configuration of a robot is represented by a point in its C-space.</p>
+<h1 id="degrees-of-freedom-dof">Degrees of Freedom (dof)</h1>
 <p>Degrees of freedom: smallest number of <em>real-valued</em> coordinates needed to represent its configuration.
-It&#8217;s the dimension of the C-space or minimum number of real-valued numbers needed to represent the&nbsp;configuration.</p>
+It’s the dimension of the C-space or minimum number of real-valued numbers needed to represent the configuration.</p>
 <div class="math">$$dof = (sum\ of\ freedoms\ of\ the\ bodies) - (number\ of\ independent\ constraints)$$</div>
-<p>Degree of freedom depends&nbsp;on:</p>
+<p>Degree of freedom depends on:</p>
 <ul>
-<li>Number of&nbsp;links</li>
-<li>Number of&nbsp;joints</li>
-<li>Types of&nbsp;joints</li>
-<li>Distribution of joints within&nbsp;mechanism</li>
+<li>Number of links</li>
+<li>Number of joints</li>
+<li>Types of joints</li>
+<li>Distribution of joints within mechanism</li>
 </ul>
-<p>It does not depend on length of&nbsp;links.</p>
-<h2 id="rigid-body-number-of-degrees-of-freedom">Rigid body (number of degrees of&nbsp;freedom)</h2>
+<p>It does not depend on length of links.</p>
+<h2 id="rigid-body-number-of-degrees-of-freedom">Rigid body (number of degrees of freedom)</h2>
 <ul>
-<li>2D (planar bodies):&nbsp;3</li>
-<li>3D (spatial bodies):&nbsp;6</li>
+<li>2D (planar bodies): 3</li>
+<li>3D (spatial bodies): 6</li>
 </ul>
-<h2 id="degrees-of-freedom-in-3d">Degrees of freedom in&nbsp;3D:</h2>
+<h2 id="degrees-of-freedom-in-3d">Degrees of freedom in 3D:</h2>
 <ul>
 <li>x</li>
 <li>y</li>
@@ -165,24 +165,24 @@ It&#8217;s the dimension of the C-space or minimum number of real-valued numbers
 <li>pitch</li>
 <li>yaw</li>
 </ul>
-<h1 id="grublers-formula">Grübler&#8217;s&nbsp;Formula</h1>
+<h1 id="grublers-formula">Grübler’s Formula</h1>
 <ul>
-<li><span class="math">\(N\)</span>: Number of links (ground is also a&nbsp;link)</li>
-<li><span class="math">\(J\)</span>: Number of&nbsp;joints</li>
-<li><span class="math">\(m\)</span>: Degrees of freedom of rigid body (3 in 2D, 6 in&nbsp;3D)</li>
+<li><span class="math">\(N\)</span>: Number of links (ground is also a link)</li>
+<li><span class="math">\(J\)</span>: Number of joints</li>
+<li><span class="math">\(m\)</span>: Degrees of freedom of rigid body (3 in 2D, 6 in 3D)</li>
 <li><span class="math">\(f_i\)</span>: Number of freedoms of joint <span class="math">\(i\)</span></li>
 <li><span class="math">\(c_i\)</span>: Number of constraints of joint <span class="math">\(i\)</span></li>
-<li>where <span class="math">\(\forall i;f_i + c_i =&nbsp;m\)</span></li>
+<li>where <span class="math">\(\forall i;f_i + c_i = m\)</span></li>
 </ul>
 <div class="math">$$\begin{align*}
 dof &amp;= \underbrace{m(N-1)}_{rigid\ body \ freedoms} - \underbrace{\sum_{i=1}^Jc_i}_{joint\ constraints}\\ 
  &amp;= m(N-1)-\sum_{i=1}^J(m-f_i)\\ 
  &amp;= m(N-1-J)+\sum_{i=1}^Jf_i
 \end{align*}$$</div>
-<p>The formula holds only if all constraints for the joints are&nbsp;independent.</p>
+<p>The formula holds only if all constraints for the joints are independent.</p>
 <h1 id="literature">Literature</h1>
-<p>Notes taken&nbsp;from:</p>
-<p><a href="http://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics: Mechanics, Planning, and Control</a> by Kevin M. Lynch and Frank C. Park, Cambridge University Press,&nbsp;2017</p>
+<p>Notes taken from:</p>
+<p><a href="http://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics: Mechanics, Planning, and Control</a> by Kevin M. Lynch and Frank C. Park, Cambridge University Press, 2017</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

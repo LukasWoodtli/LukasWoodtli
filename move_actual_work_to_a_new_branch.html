@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Move actual work to a new Branch "/>
 <meta property="og:url" content="./move_actual_work_to_a_new_branch.html" />
-<meta property="og:description" content="This useful description is taken from: git: fetch and merge, don’t pull Suppose you’re working on the main branch of a project (called ‘master’) and realise later that what you’ve been doing might have been a bad idea, and you would rather it were on a topic …" />
+<meta property="og:description" content="This useful description is taken from: git: fetch and merge, don’t pull Suppose you’re working on the main branch of a project (called ‘master’) and realise later that what you’ve been doing might have been a bad idea, and you would rather it were on a topic …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-05-29T16:17:55+02:00" />
 <meta property="og:article:modified_time" content="2018-06-06T15:24:09+02:00" />
 <meta name="twitter:title" content="Move actual work to a new Branch ">
-<meta name="twitter:description" content="This useful description is taken from: git: fetch and merge, don’t pull Suppose you’re working on the main branch of a project (called ‘master’) and realise later that what you’ve been doing might have been a bad idea, and you would rather it were on a topic …">
+<meta name="twitter:description" content="This useful description is taken from: git: fetch and merge, don’t pull Suppose you’re working on the main branch of a project (called ‘master’) and realise later that what you’ve been doing might have been a bad idea, and you would rather it were on a topic …">
 
         <title>Move actual work to a new Branch  · Lukas Woodtli
 </title>
@@ -80,41 +80,39 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>This useful description is taken from: <a href="http://longair.net/blog/2009/04/16/git-fetch-and-merge/">git: fetch and merge, don’t&nbsp;pull</a></p>
-<p>Suppose you&#8217;re working on the main branch of a project (called &#8216;master&#8217;)
+            <p>This useful description is taken from: <a href="http://longair.net/blog/2009/04/16/git-fetch-and-merge/">git: fetch and merge, don’t pull</a></p>
+<p>Suppose you’re working on the main branch of a project (called ‘master’)
 and realise later that what you’ve been doing might have been a bad
 idea, and you would rather it were on a topic branch. If the commit
-graph looks like&nbsp;this:</p>
+graph looks like this:</p>
 <div class="highlight"><pre><span></span>   <span class="k">last</span> <span class="k">version</span> <span class="k">from</span> <span class="n">another</span> <span class="n">repository</span>
       <span class="o">|</span>
       <span class="n">v</span>
-  <span class="n">M</span><span class="c1">---N-----O----P---Q (&quot;master&quot;)</span>
+  <span class="n">M</span><span class="c1">---N-----O----P---Q ("master")</span>
 </pre></div>
-
-
 <p>Then you separate out your work with the following set of commands
-(where the diagrams show how the state has changed after&nbsp;them):</p>
+(where the diagrams show how the state has changed after them):</p>
 <div class="highlight"><pre><span></span>$ <span class="nv">git</span> <span class="nv">branch</span> <span class="nv">dubious</span><span class="o">-</span><span class="nv">experiment</span>
 
-  <span class="nv">M</span><span class="o">---</span><span class="nv">N</span><span class="o">-----</span><span class="nv">O</span><span class="o">----</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">&quot;</span><span class="s">master</span><span class="s2">&quot;</span> <span class="nv">and</span> <span class="s2">&quot;</span><span class="s">dubious-experiment</span><span class="s2">&quot;</span><span class="ss">)</span>
+  <span class="nv">M</span><span class="o">---</span><span class="nv">N</span><span class="o">-----</span><span class="nv">O</span><span class="o">----</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">"</span><span class="s">master</span><span class="s2">"</span> <span class="nv">and</span> <span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span><span class="ss">)</span>
 
 $ <span class="nv">git</span> <span class="nv">checkout</span> <span class="nv">master</span>
-  # <span class="nv">Be</span> <span class="nv">careful</span> <span class="nv">with</span> <span class="nv">this</span> <span class="k">next</span> <span class="nv">command</span>: <span class="nv">make</span> <span class="nv">sure</span> <span class="s2">&quot;</span><span class="s">git status</span><span class="s2">&quot;</span> <span class="nv">is</span>
-  # <span class="nv">clean</span>, <span class="nv">you</span><span class="s1">&#39;</span><span class="s">re definitely on &quot;master&quot; and the</span>
-  # <span class="s2">&quot;</span><span class="s">dubious-experiment</span><span class="s2">&quot;</span> <span class="nv">branch</span> <span class="nv">has</span> <span class="nv">the</span> <span class="nv">commits</span> <span class="nv">you</span> <span class="nv">were</span> <span class="nv">working</span>
+  # <span class="nv">Be</span> <span class="nv">careful</span> <span class="nv">with</span> <span class="nv">this</span> <span class="k">next</span> <span class="nv">command</span>: <span class="nv">make</span> <span class="nv">sure</span> <span class="s2">"</span><span class="s">git status</span><span class="s2">"</span> <span class="nv">is</span>
+  # <span class="nv">clean</span>, <span class="nv">you</span><span class="s1">'</span><span class="s">re definitely on "master" and the</span>
+  # <span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span> <span class="nv">branch</span> <span class="nv">has</span> <span class="nv">the</span> <span class="nv">commits</span> <span class="nv">you</span> <span class="nv">were</span> <span class="nv">working</span>
   # <span class="nv">on</span> <span class="nv">first</span>...
 
 $ <span class="nv">git</span> <span class="nv">reset</span> <span class="o">--</span><span class="nv">hard</span> <span class="o">&lt;</span><span class="nv">SHA1sum</span> <span class="nv">of</span> <span class="nv">commit</span> <span class="nv">N</span><span class="o">&gt;</span>
 
-       <span class="ss">(</span><span class="s2">&quot;</span><span class="s">master</span><span class="s2">&quot;</span><span class="ss">)</span>
-  <span class="nv">M</span><span class="o">---</span><span class="nv">N</span><span class="o">-------------</span><span class="nv">O</span><span class="o">----</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">&quot;</span><span class="s">dubious-experiment</span><span class="s2">&quot;</span><span class="ss">)</span>
+       <span class="ss">(</span><span class="s2">"</span><span class="s">master</span><span class="s2">"</span><span class="ss">)</span>
+  <span class="nv">M</span><span class="o">---</span><span class="nv">N</span><span class="o">-------------</span><span class="nv">O</span><span class="o">----</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span><span class="ss">)</span>
 
-$ <span class="nv">git</span> <span class="nv">pull</span> # <span class="nv">Or</span> <span class="nv">something</span> <span class="nv">that</span> <span class="nv">updates</span> <span class="s2">&quot;</span><span class="s">master</span><span class="s2">&quot;</span> <span class="nv">from</span>
+$ <span class="nv">git</span> <span class="nv">pull</span> # <span class="nv">Or</span> <span class="nv">something</span> <span class="nv">that</span> <span class="nv">updates</span> <span class="s2">"</span><span class="s">master</span><span class="s2">"</span> <span class="nv">from</span>
            # <span class="nv">somewhere</span> <span class="k">else</span>...
 
-  <span class="nv">M</span><span class="o">--</span><span class="nv">N</span><span class="o">----</span><span class="nv">R</span><span class="o">---</span><span class="nv">S</span> <span class="ss">(</span><span class="s2">&quot;</span><span class="s">master</span><span class="s2">&quot;</span><span class="ss">)</span>
+  <span class="nv">M</span><span class="o">--</span><span class="nv">N</span><span class="o">----</span><span class="nv">R</span><span class="o">---</span><span class="nv">S</span> <span class="ss">(</span><span class="s2">"</span><span class="s">master</span><span class="s2">"</span><span class="ss">)</span>
       \
-       <span class="nv">O</span><span class="o">---</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">&quot;</span><span class="s">dubious-experiment</span><span class="s2">&quot;</span><span class="ss">)</span>
+       <span class="nv">O</span><span class="o">---</span><span class="nv">P</span><span class="o">---</span><span class="nv">Q</span> <span class="ss">(</span><span class="s2">"</span><span class="s">dubious-experiment</span><span class="s2">"</span><span class="ss">)</span>
 </pre></div>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -

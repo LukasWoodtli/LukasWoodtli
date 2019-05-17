@@ -82,15 +82,15 @@
             
             <p>Enums in C and C++ are a very simple construct. It’s just a collection of identifiers that have (usually) distinctive values. 
 By default the values increase by one in the stated order. But the values can defined by the programmer.
-Even if enums are a simple language construct there are special precautions that need to be taken when using&nbsp;them:</p>
+Even if enums are a simple language construct there are special precautions that need to be taken when using them:</p>
 <ul>
-<li>Is a enum continuous (i.e. can I iterate over&nbsp;it?)</li>
-<li>Have the enum values meaning outside of my software or&nbsp;module</li>
-<li>what is the size (in Bytes) of an enum&nbsp;variable</li>
+<li>Is a enum continuous (i.e. can I iterate over it?)</li>
+<li>Have the enum values meaning outside of my software or module</li>
+<li>what is the size (in Bytes) of an enum variable</li>
 </ul>
-<h1 id="iterating-over-enums">Iterating over&nbsp;enums</h1>
+<h1 id="iterating-over-enums">Iterating over enums</h1>
 <p>Be careful if you iterate over an enum. If the enum is not continuously defined your code is probably doing some things you don’t want it to do.
-For&nbsp;exampe:</p>
+For exampe:</p>
 <div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span>
 <span class="p">{</span>
   <span class="n">VAL_1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
@@ -104,16 +104,14 @@ For&nbsp;exampe:</p>
   <span class="kt">int</span> <span class="n">enum_var</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">enum_var</span> <span class="o">=</span> <span class="n">VAL_1</span><span class="p">;</span> <span class="n">enum_var</span> <span class="o">&lt;</span> <span class="n">VAL_NB</span><span class="p">;</span> <span class="o">++</span><span class="n">enum_var</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">enum_var</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">enum_var</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-
-
-<p><code>printf</code> is called 11 times with the values 10 to 20. That’s usually not what we&nbsp;want.</p>
-<p>So what&#8217;s the solution? Don’t iterate over enums that have fixed values assigned. If you have to do it there is a trick called <strong>X Macros</strong> 
-that I’ll cover in another&nbsp;post.</p>
-<p>There is one exception. You can assign a value to the first enum&nbsp;type:</p>
+<p><code>printf</code> is called 11 times with the values 10 to 20. That’s usually not what we want.</p>
+<p>So what’s the solution? Don’t iterate over enums that have fixed values assigned. If you have to do it there is a trick called <strong>X Macros</strong> 
+that I’ll cover in another post.</p>
+<p>There is one exception. You can assign a value to the first enum type:</p>
 <div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span>
 <span class="p">{</span>
     <span class="n">VAL_1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
@@ -122,47 +120,43 @@ that I’ll cover in another&nbsp;post.</p>
     <span class="n">VAL_NB</span>
 <span class="p">}</span> <span class="n">my_enum_t</span><span class="p">;</span>
 </pre></div>
-
-
-<p>If you call the same loop as above you’ll get calls to <code>printf</code> with the&nbsp;values:</p>
+<p>If you call the same loop as above you’ll get calls to <code>printf</code> with the values:</p>
 <blockquote>
-<p>10 (VAL_1), 11 (VAL_2) and 12&nbsp;(VAL_3).</p>
+<p>10 (VAL_1), 11 (VAL_2) and 12 (VAL_3).</p>
 </blockquote>
-<h1 id="enums-with-fixed-values">Enums with fixed&nbsp;values</h1>
-<p>If you don’t need to iterate over your enum it’s usually a good practice to assign a defined value to your enum fields. This is even mandatory if your enum has a meaning across your software (or module) or even different versions of the same software. Add defined values to your enums&nbsp;if:</p>
+<h1 id="enums-with-fixed-values">Enums with fixed values</h1>
+<p>If you don’t need to iterate over your enum it’s usually a good practice to assign a defined value to your enum fields. This is even mandatory if your enum has a meaning across your software (or module) or even different versions of the same software. Add defined values to your enums if:</p>
 <ul>
-<li>the value can be saved to a&nbsp;file</li>
-<li>the value is sent (or received) over a physical&nbsp;interface</li>
-<li>the value is needed in an other software (or library…) or a different version of the same software (i. e. feature&nbsp;release)</li>
+<li>the value can be saved to a file</li>
+<li>the value is sent (or received) over a physical interface</li>
+<li>the value is needed in an other software (or library…) or a different version of the same software (i. e. feature release)</li>
 </ul>
-<p>But if you do so, don’t iterate over your&nbsp;enum!</p>
+<p>But if you do so, don’t iterate over your enum!</p>
 <p>If you serialize/deserialize your values (i.e. save into a file, send over an interface) be careful about the enum size and the endianness of 
-the used&nbsp;platform.</p>
-<h1 id="size-and-endianness">Size and&nbsp;endianness</h1>
+the used platform.</p>
+<h1 id="size-and-endianness">Size and endianness</h1>
 <p>The size (and endianness) of a enum variable depends on the compiler and on the target platform. So if you write platform independent code (and you should always do that) take care of this.
-There are some language extension in different compilers to address this topic. For example in Visual&nbsp;Studio:</p>
+There are some language extension in different compilers to address this topic. For example in Visual Studio:</p>
 <div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="o">:</span> <span class="kt">uint8_t</span>
 <span class="p">{</span> <span class="n">VAL_1</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="cm">/* … */</span><span class="p">,</span> <span class="n">VAL_NB</span><span class="p">}</span> <span class="n">my_enum_t</span><span class="p">;</span>
 </pre></div>
-
-
 <p>For platform independent code you can do: <code>#define ENUM_AS_UINT8 : uint8_t</code></p>
-<h1 id="romable-values">Romable&nbsp;values</h1>
+<h1 id="romable-values">Romable values</h1>
 <p>Another use of enums is mainly used in embedded systems development. In embedded systems you are often concerned that a constant is stored in the program flash. Otherwise it has to be loaded from <span class="caps">RAM</span> at runtime (and even stored there at start time). The usual way is to use defines. 
-But they are not really type safe. So for int-types it’s possible to use enums. If your compiler(s) support it you can even use anonymous&nbsp;enums.</p>
-<h1 id="advanced-enum-constructs-c11-qt">Advanced enum constructs (C++11,&nbsp;Qt)</h1>
-<p>C++11 introduces the enum class. And Qt some extensions for enums (Q_ENUMS) that I’ll not cover here. If you can use one of this advanced enum constructs then do&nbsp;it!</p>
+But they are not really type safe. So for int-types it’s possible to use enums. If your compiler(s) support it you can even use anonymous enums.</p>
+<h1 id="advanced-enum-constructs-c11-qt">Advanced enum constructs (C++11, Qt)</h1>
+<p>C++11 introduces the enum class. And Qt some extensions for enums (Q_ENUMS) that I’ll not cover here. If you can use one of this advanced enum constructs then do it!</p>
 <h1 id="conclusion">Conclusion</h1>
 <ul>
-<li>If you have to iterate over your enum: don’t add explicit values to your enum, but add and {identifier}_NB value to the end (or something similar) to check when the iteration is&nbsp;finished</li>
-<li>If your enum value is meaningful (serialization…): assign a defined value and take care about endianness and size of the enum&nbsp;variables</li>
-<li>Use (anonymous) enums to make values&nbsp;Romable</li>
-<li>Use an advanced enum type (C++11, Qt) if you&nbsp;can</li>
-<li>If you need fixed enum values and you want to iterate over the values you need two enums. Use X Macros for it (there is going to be a feature post on&nbsp;that)</li>
+<li>If you have to iterate over your enum: don’t add explicit values to your enum, but add and {identifier}_NB value to the end (or something similar) to check when the iteration is finished</li>
+<li>If your enum value is meaningful (serialization…): assign a defined value and take care about endianness and size of the enum variables</li>
+<li>Use (anonymous) enums to make values Romable</li>
+<li>Use an advanced enum type (C++11, Qt) if you can</li>
+<li>If you need fixed enum values and you want to iterate over the values you need two enums. Use X Macros for it (there is going to be a feature post on that)</li>
 </ul>
 <h1 id="references">References</h1>
-<p><a href="http://en.wikipedia.org/wiki/Endianness">Endianness (Wikipedia)</a>  <br>
-<a href="http://stackoverflow.com/questions/7147008/the-usage-of-anonymous-enums">The usage of anonymous enums (Stack&nbsp;Overflow)</a>  </p>
+<p><a href="http://en.wikipedia.org/wiki/Endianness">Endianness (Wikipedia)</a> <br/>
+<a href="http://stackoverflow.com/questions/7147008/the-usage-of-anonymous-enums">The usage of anonymous enums (Stack Overflow)</a> </p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />

@@ -81,7 +81,7 @@
 
             
             <h1 id="linux">Linux</h1>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Directory</th>
@@ -163,14 +163,14 @@
 </tr>
 </tbody>
 </table>
-<p>Any directory ending with <code>bin/</code> contains binary executable files (or links to&nbsp;them)</p>
+<p>Any directory ending with <code>bin/</code> contains binary executable files (or links to them)</p>
 <h1 id="procfs">Procfs</h1>
-<p>The <code>/proc</code> file system is a pseudo filesystem that allows to get informations from the&nbsp;kernel.</p>
+<p>The <code>/proc</code> file system is a pseudo filesystem that allows to get informations from the kernel.</p>
 <p>The man page can be found with: <code>man 5 proc</code></p>
-<p>There are also informations available in the <code>/sys</code> file&nbsp;system.</p>
+<p>There are also informations available in the <code>/sys</code> file system.</p>
 <h2 id="processes">Processes</h2>
 <p>Each running process has a subfolder in <code>/proc</code> which is named after its <span class="caps">PID</span>.</p>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Directory</th>
@@ -200,7 +200,7 @@
 </tr>
 <tr>
 <td><code>/proc/$pid/status</code></td>
-<td>General formated information: <span class="caps">PID</span>, real and effective <span class="caps">UID</span> and <span class="caps">GID</span>, memory use, bitmasks &#8230;</td>
+<td>General formated information: <span class="caps">PID</span>, real and effective <span class="caps">UID</span> and <span class="caps">GID</span>, memory use, bitmasks …</td>
 </tr>
 <tr>
 <td><code>/proc/$pid/stat</code></td>
@@ -233,7 +233,7 @@
 <li>Information about filesystems are found under <code>/proc/filesystems</code> and <code>/proc/mounts</code></li>
 </ul>
 <h2 id="hardware">Hardware</h2>
-<table>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Directory</th>
@@ -243,7 +243,7 @@
 <tbody>
 <tr>
 <td><code>/proc/devices</code></td>
-<td>List devices (character- and block-devices), <span class="caps">HD</span>&#8217;s, <span class="caps">SSD</span>&#8217;s, ports &#8230;</td>
+<td>List devices (character- and block-devices), <span class="caps">HD</span>’s, <span class="caps">SSD</span>’s, ports …</td>
 </tr>
 <tr>
 <td><code>/proc/dma</code></td>
@@ -255,7 +255,7 @@
 </tr>
 <tr>
 <td><code>/proc/ioports</code></td>
-<td>List of all used I/O port (<span class="caps">HD</span>&#8217;s, ethernet, <span class="caps">USB</span> &#8230;).</td>
+<td>List of all used I/O port (<span class="caps">HD</span>’s, ethernet, <span class="caps">USB</span> …).</td>
 </tr>
 <tr>
 <td><code>/proc/iomem</code></td>
@@ -267,7 +267,7 @@
 </tr>
 <tr>
 <td><code>/proc/uptime</code></td>
-<td>Number of seconds that the system is running and idle time of <span class="caps">CPU</span>&#8217;s.</td>
+<td>Number of seconds that the system is running and idle time of <span class="caps">CPU</span>’s.</td>
 </tr>
 <tr>
 <td><code>/proc/scsi/</code></td>
@@ -291,7 +291,7 @@
 </tr>
 <tr>
 <td><code>/proc/cpuinfo</code></td>
-<td>Information about <span class="caps">CPU</span>&#8217;s.</td>
+<td>Information about <span class="caps">CPU</span>’s.</td>
 </tr>
 </tbody>
 </table>

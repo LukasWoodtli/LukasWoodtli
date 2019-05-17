@@ -83,29 +83,29 @@
             <p>When a process is started the operating system allocates memory for this process.
 On modern systems this memory is usually mapped to an virtual address space (using the <span class="caps">MMU</span>).</p>
 <p>But also on deeply embedded system the compiler and runtime environment need to define a memory
-layout. In this case there is only one process and there is no virtual&nbsp;memory.</p>
-<h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating&nbsp;Systems</h1>
-<p>The use of the memory for a process is different in each operating&nbsp;system.</p>
+layout. In this case there is only one process and there is no virtual memory.</p>
+<h1 id="memory-layout-on-different-operating-systems">Memory Layout on different Operating Systems</h1>
+<p>The use of the memory for a process is different in each operating system.</p>
 <p>This example overwiew is taken from <em>Secure Coding in C and C++, by Robert Seacord</em>:</p>
-<p><img alt="Memory layouts on different OS's" src="/images/memory_layout.png"></p>
-<p>See also <a href="http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory/">Anatomy of a Program in&nbsp;Memory</a></p>
-<h1 id="stack-growth">Stack&nbsp;Growth</h1>
-<p>Depending on the platform the stack grows in different&nbsp;directions:</p>
+<p><img alt="Memory layouts on different OS's" class="img-fluid" src="/images/memory_layout.png"/></p>
+<p>See also <a href="http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory/">Anatomy of a Program in Memory</a></p>
+<h1 id="stack-growth">Stack Growth</h1>
+<p>Depending on the platform the stack grows in different directions:</p>
 <ul>
-<li>Downwards (descending): the stack grows from high adresses to low&nbsp;ones</li>
-<li>Upwards (ascending): it grows from high addresses to low&nbsp;ones</li>
+<li>Downwards (descending): the stack grows from high adresses to low ones</li>
+<li>Upwards (ascending): it grows from high addresses to low ones</li>
 </ul>
-<p>There is also a distinction on where a stack pointer points&nbsp;to:</p>
+<p>There is also a distinction on where a stack pointer points to:</p>
 <ul>
-<li>Full: on the last written&nbsp;position.</li>
-<li>Empty: on the position where the next value is going to be&nbsp;written.</li>
+<li>Full: on the last written position.</li>
+<li>Empty: on the position where the next value is going to be written.</li>
 </ul>
-<p>So for example x86 and <span class="caps">ARM</span> (usually) have a full descending&nbsp;stack.</p>
-<p><a href="http://stackoverflow.com/a/3844164">Here</a> is a short&nbsp;explanation.</p>
-<p>On most platforms the stack grows downwards. But there are some&nbsp;exeptions.</p>
+<p>So for example x86 and <span class="caps">ARM</span> (usually) have a full descending stack.</p>
+<p><a href="http://stackoverflow.com/a/3844164">Here</a> is a short explanation.</p>
+<p>On most platforms the stack grows downwards. But there are some exeptions.</p>
 <p>This table is an inclomplete (but hopefully correct) overview. Most data in this
-table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a>&nbsp;code.</p>
-<table>
+table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a> code.</p>
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Architecture</th>
@@ -155,7 +155,7 @@ table is taken from the <a href="http://www.freertos.org/">FreeRTOS</a>&nbsp;cod
 <td>downwards</td>
 </tr>
 <tr>
-<td>ATMega323, <span class="caps">AVR32</span> <span class="caps">UC3</span>, <span class="caps">ATSAM7S64</span>, <span class="caps">SAM9XE</span>&#8230;</td>
+<td>ATMega323, <span class="caps">AVR32</span> <span class="caps">UC3</span>, <span class="caps">ATSAM7S64</span>, <span class="caps">SAM9XE</span>…</td>
 <td><span class="caps">GCC</span>, <span class="caps">IAR</span></td>
 <td>downwards</td>
 </tr>

@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Mechanical Constraints "/>
 <meta property="og:url" content="./mechanical_constraints.html" />
-<meta property="og:description" content="Pfaffian Constraints A Pfaffian constraint is a set of \(k\) (\(k \leq n\)) linearly independent constraints so that: $$A(q)\dot{q} = 0$$ Where: \(A(q) \in \mathbb{R}^{k \times n}\) \(\dot{q}\): derivative of \(q\) with respect to time \(k\): number of constraints \(n\): number of variables needed …" />
+<meta property="og:description" content="Pfaffian Constraints A Pfaffian constraint is a set of \(k\) (\(k \leq n\)) linearly independent constraints so that: $$A(q)\dot{q} = 0$$ Where: \(A(q) \in \mathbb{R}^{k \times n}\) \(\dot{q}\): derivative of \(q\) with respect to time \(k\): number of constraints \(n\): number of variables needed …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-10-07T20:22:53+02:00" />
 <meta property="og:article:modified_time" content="2018-10-07T20:53:06+02:00" />
 <meta name="twitter:title" content="Mechanical Constraints ">
-<meta name="twitter:description" content="Pfaffian Constraints A Pfaffian constraint is a set of \(k\) (\(k \leq n\)) linearly independent constraints so that: $$A(q)\dot{q} = 0$$ Where: \(A(q) \in \mathbb{R}^{k \times n}\) \(\dot{q}\): derivative of \(q\) with respect to time \(k\): number of constraints \(n\): number of variables needed …">
+<meta name="twitter:description" content="Pfaffian Constraints A Pfaffian constraint is a set of \(k\) (\(k \leq n\)) linearly independent constraints so that: $$A(q)\dot{q} = 0$$ Where: \(A(q) \in \mathbb{R}^{k \times n}\) \(\dot{q}\): derivative of \(q\) with respect to time \(k\): number of constraints \(n\): number of variables needed …">
 
         <title>Mechanical Constraints  · Lukas Woodtli
 </title>
@@ -80,38 +80,38 @@
         <div class="span8 offset2 article-content">
 
             
-            <h1 id="pfaffian-constraints">Pfaffian&nbsp;Constraints</h1>
-<p>A Pfaffian constraint is a set of <span class="math">\(k\)</span> (<span class="math">\(k \leq n\)</span>) linearly independent constraints so&nbsp;that:</p>
+            <h1 id="pfaffian-constraints">Pfaffian Constraints</h1>
+<p>A Pfaffian constraint is a set of <span class="math">\(k\)</span> (<span class="math">\(k \leq n\)</span>) linearly independent constraints so that:</p>
 <div class="math">$$A(q)\dot{q} = 0$$</div>
 <p>Where:</p>
 <ul>
-<li><span class="math">\(A(q) \in \mathbb{R}^{k \times&nbsp;n}\)</span></li>
-<li><span class="math">\(\dot{q}\)</span>: derivative of <span class="math">\(q\)</span> with respect to&nbsp;time</li>
-<li><span class="math">\(k\)</span>: number of&nbsp;constraints</li>
-<li><span class="math">\(n\)</span>: number of variables needed to define robots configuration (implicit&nbsp;representation)</li>
+<li><span class="math">\(A(q) \in \mathbb{R}^{k \times n}\)</span></li>
+<li><span class="math">\(\dot{q}\)</span>: derivative of <span class="math">\(q\)</span> with respect to time</li>
+<li><span class="math">\(k\)</span>: number of constraints</li>
+<li><span class="math">\(n\)</span>: number of variables needed to define robots configuration (implicit representation)</li>
 </ul>
-<h2 id="holonomic-constraints">Holonomic&nbsp;Constraints</h2>
+<h2 id="holonomic-constraints">Holonomic Constraints</h2>
 <ul>
 <li>Holonomic constraints can be defined independent of <span class="math">\(\dot{q}\)</span> (i.e. <span class="math">\(f(q,t)= 0\)</span>)</li>
-<li>Holonomic constraints reduce the dimension of the C-space (geometric&nbsp;limitation)</li>
+<li>Holonomic constraints reduce the dimension of the C-space (geometric limitation)</li>
 <li>C-space can be viewed as a surface of dimension <span class="math">\(n-k\)</span> embedded in <span class="math">\(\mathbb{R}^n\)</span><ul>
-<li><span class="math">\(n\)</span>: number of variables to define robots&nbsp;configuration</li>
-<li><span class="math">\(k\)</span>: independent holonomic&nbsp;constraints</li>
-<li><span class="math">\(n-k\)</span>: dimension of C-space, degree of&nbsp;freedom</li>
+<li><span class="math">\(n\)</span>: number of variables to define robots configuration</li>
+<li><span class="math">\(k\)</span>: independent holonomic constraints</li>
+<li><span class="math">\(n-k\)</span>: dimension of C-space, degree of freedom</li>
 </ul>
 </li>
 <li>Integrable constraints:<ul>
-<li>Kinematic constraints may be integrable. In this case, the constraints are geometric&nbsp;constraints</li>
-<li>the velocity constraints that they imply can be integrated to give equivalent configuration (geometric)&nbsp;constraints</li>
+<li>Kinematic constraints may be integrable. In this case, the constraints are geometric constraints</li>
+<li>the velocity constraints that they imply can be integrated to give equivalent configuration (geometric) constraints</li>
 </ul>
 </li>
 </ul>
-<h2 id="nonholonomic-constraints">Nonholonomic&nbsp;Constraints</h2>
+<h2 id="nonholonomic-constraints">Nonholonomic Constraints</h2>
 <ul>
-<li>A nonholonomic mechanical system cannot move in arbitrary directions (in its&nbsp;C-space)</li>
-<li>Constraints can not be&nbsp;integrated</li>
-<li>They reduce the dimension of the feasible velocities of the system (kinematic/velocity&nbsp;limitation)</li>
-<li>They do not reduce the dimension of the reachable&nbsp;C-space</li>
+<li>A nonholonomic mechanical system cannot move in arbitrary directions (in its C-space)</li>
+<li>Constraints can not be integrated</li>
+<li>They reduce the dimension of the feasible velocities of the system (kinematic/velocity limitation)</li>
+<li>They do not reduce the dimension of the reachable C-space</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

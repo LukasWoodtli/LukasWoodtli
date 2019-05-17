@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Unix Device Files "/>
 <meta property="og:url" content="./unix_device_files.html" />
-<meta property="og:description" content="Device files provide access to drivers through files. They are listed under /dev. There are two kinds of device drivers (as shown with ls -l) c: character device b: block device Character devices provide a stream of bytes (e. g. serial ports, USB, system consoles …) Block devices allow random access …" />
+<meta property="og:description" content="Device files provide access to drivers through files. They are listed under /dev. There are two kinds of device drivers (as shown with ls -l) c: character device b: block device Character devices provide a stream of bytes (e. g. serial ports, USB, system consoles …) Block devices allow random access …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-03-05T20:19:33+01:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Unix Device Files ">
-<meta name="twitter:description" content="Device files provide access to drivers through files. They are listed under /dev. There are two kinds of device drivers (as shown with ls -l) c: character device b: block device Character devices provide a stream of bytes (e. g. serial ports, USB, system consoles …) Block devices allow random access …">
+<meta name="twitter:description" content="Device files provide access to drivers through files. They are listed under /dev. There are two kinds of device drivers (as shown with ls -l) c: character device b: block device Character devices provide a stream of bytes (e. g. serial ports, USB, system consoles …) Block devices allow random access …">
 
         <title>Unix Device Files  · Lukas Woodtli
 </title>
@@ -80,29 +80,29 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>Device files provide access to drivers through&nbsp;files.</p>
+            <p>Device files provide access to drivers through files.</p>
 <p>They are listed under <code>/dev</code>.
  There are two kinds of device drivers (as shown with <code>ls -l</code>)
 <code>c</code>: character device
-<code>b</code>: block&nbsp;device</p>
+<code>b</code>: block device</p>
 <ul>
-<li>Character devices provide a stream of bytes (e. g. serial ports, <span class="caps">USB</span>, system consoles&nbsp;&#8230;)</li>
-<li>Block devices allow random access of blocks of information (e. g. <span class="caps">HD</span>, <span class="caps">SSD</span>&nbsp;&#8230;).</li>
+<li>Character devices provide a stream of bytes (e. g. serial ports, <span class="caps">USB</span>, system consoles …)</li>
+<li>Block devices allow random access of blocks of information (e. g. <span class="caps">HD</span>, <span class="caps">SSD</span> …).</li>
 </ul>
 <p>The device files have a major and a minor number. The same major number means that the same device
 driver is responsible for the file/device. The minor number is used to distinguish different devices
-of the same type that use the same device&nbsp;driver.</p>
+of the same type that use the same device driver.</p>
 <h1 id="functions">Functions</h1>
 <p>A file descriptor for a device file can be aquired by the common <code>open()</code> function. Afer use it can be
 closed with <code>close()</code>. Reading and writing to the file is donne with <code>read()</code> and <code>write()</code>.</p>
 <p>Contol of device drivers is acomplished with the <code>ioctl()</code> function.</p>
-<p>Man page: <code>man ioctl</code> and <code>man ioctl_list</code> (only&nbsp;Linux).</p>
-<h1 id="special-device-files">Special Device&nbsp;Files</h1>
+<p>Man page: <code>man ioctl</code> and <code>man ioctl_list</code> (only Linux).</p>
+<h1 id="special-device-files">Special Device Files</h1>
 <ul>
-<li><code>/dev/null</code>: used to redirect unused streams to&nbsp;&#8216;nowhere&#8217;</li>
-<li><code>/dev/zero</code>: &#8216;infinite&#8217; sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>
+<li><code>/dev/null</code>: used to redirect unused streams to ‘nowhere’</li>
+<li><code>/dev/zero</code>: ‘infinite’ sized file filled with <code>0</code> (s.a. <code>mmap()</code>)</li>
 <li><code>/dev/pts/</code>: virtual consoles (s.a. <a href="http://unix.stackexchange.com/questions/93531/what-is-stored-in-dev-pts-files-and-can-we-open-them/93640#93640">stackexchange</a>)</li>
-<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block (high entropy), <code>/dev/urandom</code> doesn&#8217;t&nbsp;block)</li>
+<li><code>/dev/random</code> and <code>/dev/urandom</code>: provide random numbers (<code>/dev/random</code> might block (high entropy), <code>/dev/urandom</code> doesn’t block)</li>
 <li><code>/dev/full</code>: can be used to simulate writing to a file when the disk is full (sets <code>errno</code> to <code>ENOSPC</code>)</li>
 </ul>
             <!--             <div>

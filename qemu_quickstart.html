@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="QEMU Quickstart "/>
 <meta property="og:url" content="./qemu_quickstart.html" />
-<meta property="og:description" content="This shows a basic use for QEMU. Mostly taken from: Mastering Embedded Linux Programming QEMU can emulate different processor architectures: qemu-system-arm: ARM qemu-system-mips: MIPS qemu-system-ppc: PowerPC qemu-system-x86: x86 and x86_64 QEMU emulates lot of hardware for each architecture which can be shown with the option -machine help. Example use: qemu-system-arm …" />
+<meta property="og:description" content="This shows a basic use for QEMU. Mostly taken from: Mastering Embedded Linux Programming QEMU can emulate different processor architectures: qemu-system-arm: ARM qemu-system-mips: MIPS qemu-system-ppc: PowerPC qemu-system-x86: x86 and x86_64 QEMU emulates lot of hardware for each architecture which can be shown with the option -machine help. Example use: qemu-system-arm …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-03-06T19:49:20+01:00" />
 <meta property="og:article:modified_time" content="2019-01-03T11:04:50+01:00" />
 <meta name="twitter:title" content="QEMU Quickstart ">
-<meta name="twitter:description" content="This shows a basic use for QEMU. Mostly taken from: Mastering Embedded Linux Programming QEMU can emulate different processor architectures: qemu-system-arm: ARM qemu-system-mips: MIPS qemu-system-ppc: PowerPC qemu-system-x86: x86 and x86_64 QEMU emulates lot of hardware for each architecture which can be shown with the option -machine help. Example use: qemu-system-arm …">
+<meta name="twitter:description" content="This shows a basic use for QEMU. Mostly taken from: Mastering Embedded Linux Programming QEMU can emulate different processor architectures: qemu-system-arm: ARM qemu-system-mips: MIPS qemu-system-ppc: PowerPC qemu-system-x86: x86 and x86_64 QEMU emulates lot of hardware for each architecture which can be shown with the option -machine help. Example use: qemu-system-arm …">
 
         <title>QEMU Quickstart  · Lukas Woodtli
 </title>
@@ -81,33 +81,33 @@
 
             
             <p>This shows a basic use for <span class="caps">QEMU</span>.</p>
-<p>Mostly taken from: <a href="https://www.packtpub.com/mapt/book/all_books/9781784392536">Mastering Embedded Linux&nbsp;Programming</a></p>
-<p><span class="caps">QEMU</span> can emulate different processor&nbsp;architectures:</p>
+<p>Mostly taken from: <a href="https://www.packtpub.com/mapt/book/all_books/9781784392536">Mastering Embedded Linux Programming</a></p>
+<p><span class="caps">QEMU</span> can emulate different processor architectures:</p>
 <ul>
 <li><code>qemu-system-arm</code>: <span class="caps">ARM</span></li>
 <li><code>qemu-system-mips</code>: <span class="caps">MIPS</span> </li>
-<li><code>qemu-system-ppc</code>:&nbsp;PowerPC </li>
-<li><code>qemu-system-x86</code>: x86 and&nbsp;x86_64</li>
+<li><code>qemu-system-ppc</code>: PowerPC </li>
+<li><code>qemu-system-x86</code>: x86 and x86_64</li>
 </ul>
 <p><span class="caps">QEMU</span> emulates lot of hardware for each architecture which can be shown with the option <code>-machine help</code>.</p>
-<p>Example&nbsp;use:</p>
+<p>Example use:</p>
 <p><code>qemu-system-arm -machine vexpress-a9 -m 256M -drive file=rootfs.ext4,sd -net nic -net use -kernel zImage -dtb vexpress-v2p-ca9.dtb -append "console=ttyAMA0,115200 root=/dev/mmcblk0" -serial stdio -net nic,model=lan9118 -net tap,ifname=tap0</code></p>
-<p>The most important options&nbsp;are:</p>
+<p>The most important options are:</p>
 <ul>
-<li><code>-machine vexpress-a9</code>: emulation of <span class="caps">ARM</span> Versatile Express development board (with Cortex A-9&nbsp;processor)</li>
+<li><code>-machine vexpress-a9</code>: emulation of <span class="caps">ARM</span> Versatile Express development board (with Cortex A-9 processor)</li>
 <li><code>-m 256M</code>: 256 MiB <span class="caps">RAM</span></li>
-<li><code>-drive file=rootfs.ext4,sd</code>: connect the sd interface to the file <code>rootfs.ext4</code> (filesystem&nbsp;image)</li>
+<li><code>-drive file=rootfs.ext4,sd</code>: connect the sd interface to the file <code>rootfs.ext4</code> (filesystem image)</li>
 <li><code>-kernel zImage</code>: loads the Linux kernel from the file <code>zImage</code></li>
 <li><code>-dtb vexpress-v2p-ca9.dtb</code>: loads the device tree from the file <code>vexpress-v2p-ca9.dtb</code></li>
-<li><code>-append "..."</code>: supplies this string as the kernel command&nbsp;line</li>
-<li><code>-serial stdio</code>: connects the serial port to the terminal that launched <span class="caps">QEMU</span>, so you can log via the serial&nbsp;console</li>
-<li><code>-net nic,model=lan9118</code>: creates a network&nbsp;interface</li>
+<li><code>-append "..."</code>: supplies this string as the kernel command line</li>
+<li><code>-serial stdio</code>: connects the serial port to the terminal that launched <span class="caps">QEMU</span>, so you can log via the serial console</li>
+<li><code>-net nic,model=lan9118</code>: creates a network interface</li>
 <li><code>-net tap,ifname=tap0</code>: connects the network interface to the virtual network interface <code>tap0</code></li>
 </ul>
-<p>For configuring the network interface the command <code>tunctl</code> is&nbsp;used:</p>
+<p>For configuring the network interface the command <code>tunctl</code> is used:</p>
 <p><code>sudo tunctl -u $(whoami) -t tap0</code></p>
-<p>This creates a network interface named <code>tap0</code> which is connected to the network controller in the emulated <span class="caps">QEMU</span>&nbsp;machine.</p>
-<p>The <code>tunctl</code> command is available from the <em>User Mode Linux (<span class="caps">UML</span>)</em> project&nbsp;(uml-utilites).</p>
+<p>This creates a network interface named <code>tap0</code> which is connected to the network controller in the emulated <span class="caps">QEMU</span> machine.</p>
+<p>The <code>tunctl</code> command is available from the <em>User Mode Linux (<span class="caps">UML</span>)</em> project (uml-utilites).</p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
