@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2019-05-22T13:15:27-00:00</lastmod>
+<lastmod>2019-06-08T20:22:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2019-05-22T13:15:27-00:00</lastmod>
+<lastmod>2019-06-08T20:22:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2019-05-22T13:15:27-00:00</lastmod>
+<lastmod>2019-06-08T20:22:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2019-05-22T13:15:27-00:00</lastmod>
+<lastmod>2019-06-08T20:22:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -390,7 +390,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html</loc>
-<lastmod>2019-03-12T14:54:10+01:00</lastmod>
+<lastmod>2019-06-08T20:20:44+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -740,7 +740,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
-<lastmod>2019-05-15T20:13:44+01:00</lastmod>
+<lastmod>2019-06-08T20:20:44+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -922,7 +922,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/lisp.html</loc>
-<lastmod>2019-03-12T14:54:10+01:00</lastmod>
+<lastmod>2019-06-08T20:20:44+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -999,7 +999,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2019-05-22T13:10:09+01:00</lastmod>
+<lastmod>2019-06-08T20:20:44+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
