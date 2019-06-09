@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-07-24T12:42:11+02:00" />
-<meta property="og:article:modified_time" content="2018-06-20T21:22:19+02:00" />
+<meta property="og:article:modified_time" content="2019-06-09T19:03:58+02:00" />
 <meta name="twitter:title" content="Scheme (Lisp) ">
 <meta name="twitter:description" content="This page collects notes about Scheme (an Lisp in general). Sources Most information is taken from: Structure and Interpretation of Computer Programs See also my notes on Structure and Interpretation of Computer Programs My Github repository with examples Evaluation Rules If self-evaluating: return value If name: return value of associated …">
 
@@ -94,6 +94,7 @@
 <li><a class="reference internal" href="#expressions" id="id7">Expressions</a></li>
 <li><a class="reference internal" href="#sequences-as-conventional-interfaces" id="id8">Sequences as Conventional Interfaces</a></li>
 <li><a class="reference internal" href="#quotation" id="id9">Quotation</a></li>
+<li><a class="reference internal" href="#backquote" id="id10">Backquote</a></li>
 </ul>
 </div>
         </nav>
@@ -234,6 +235,11 @@ and <a class="reference external" href="http://stackoverflow.com/questions/17254
 <p><em><span class="dquo">“</span>Allowing quotation in a language wreaks havoc with the ability to reason about the language in simple terms, because it destroys the notion that equals can be substituted for equals. For example, three is one plus two, but the word “three” is not the phrase “one plus two”. Quotation is powerful because it gives us a way to build expressions that manipulate other expressions”</em></p>
 <p><a class="reference external" href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-16.html#%_sec_2.3.1"><span class="caps">SICP</span> section 2.3.1 Quotation</a></p>
 </div>
+<div class="section" id="backquote">
+<h2><a class="toc-backref" href="#id10">Backquote</a></h2>
+<p>Preceding a list with a backquote symbol (`) is much like quoting it, except that anything in the list that is flagged with a comma is evaluated.</p>
+<p><a class="reference external" href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-35.html#%_sec_5.5.2"><span class="caps">SICP</span> section 5.5.2 Compiling Expressions</a></p>
+</div>
 
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
@@ -258,7 +264,7 @@ and <a class="reference external" href="http://stackoverflow.com/questions/17254
             <time itemprop="dateCreated" datetime="2016-07-24T12:42:11+02:00">Jul 24, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-06-20T21:22:19+02:00">Jun 20, 2018</time>
+<time datetime="2019-06-09T19:03:58+02:00">Jun 9, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

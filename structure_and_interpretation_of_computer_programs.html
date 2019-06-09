@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-11-10T21:53:38+01:00" />
-<meta property="og:article:modified_time" content="2019-06-08T20:20:44+02:00" />
+<meta property="og:article:modified_time" content="2019-06-09T19:03:58+02:00" />
 <meta name="twitter:title" content="Structure and Interpretation of Computer Programs ">
 <meta name="twitter:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) 1 Building Abstractions with Procedures 1.1 The Elements of Programming “[The] language provides for combining simple ideas to form …">
 
@@ -180,6 +180,16 @@
 </ul>
 </li>
 <li><a href="#544-running-the-evaluator">5.4.4 Running the Evaluator</a></li>
+<li><a href="#551-structure-of-the-compiler">5.5.1 Structure of the Compiler</a><ul>
+<li><a href="#targets-and-linkages">Targets and linkages</a></li>
+<li><a href="#instruction-sequences-and-stack-usage">Instruction sequences and stack usage</a></li>
+</ul>
+</li>
+<li><a href="#556-lexical-addressing">5.5.6 Lexical Addressing</a></li>
+<li><a href="#557-interfacing-compiled-code-to-the-evaluator">5.5.7 Interfacing Compiled Code to the Evaluator</a><ul>
+<li><a href="#interpretation-and-compilation">Interpretation and compilation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -528,6 +538,53 @@ program (called the <strong>object program</strong>) written in the machine’s 
 modern program-development environments pursue a mixed strategy. Lisp
 interpreters are generally organized so that interpreted procedures and
 compiled procedures can call each other.”</em></p>
+<h3 id="551-structure-of-the-compiler">5.5.1 Structure of the Compiler</h3>
+<h4 id="targets-and-linkages">Targets and linkages</h4>
+<p><em><span class="dquo">“</span><code>Compile</code> and the code generators that it calls take two arguments 
+in addition to the expression to compile. There is a <strong>target</strong>,
+which specifies the register in which the compiled code is to return 
+the value of the expression. There is also a <strong>linkage descriptor</strong>, 
+which describes how the code resulting from the compilation of the
+expression should proceed when it has finished its execution. The
+linkage descriptor can require that the code do one of the following
+three things:</em></p>
+<ul>
+<li><em>continue at the next instruction in sequence (this is specified by the linkage descriptor <code>next</code>),</em></li>
+<li><em>return from the procedure being compiled (this is spec- ified by the linkage descriptor <code>return</code>), or</em></li>
+<li><em>jump to a named entry point (this is specified by using the designated label as the linkage descriptor).”</em></li>
+</ul>
+<h4 id="instruction-sequences-and-stack-usage">Instruction sequences and stack usage</h4>
+<p><em><span class="dquo">“</span>An instruction sequence will contain three pieces of information:</em></p>
+<ul>
+<li><em>the set of registers that must be initialized before the instructions in the sequence are executed (these registers are said to be <strong>needed</strong> by the sequence),</em></li>
+<li><em>the set of registers whose values are modified by the instructions in the sequence, and</em>*</li>
+<li><em>the actual instructions (also called <strong>statements</strong>) in the sequence.”</em></li>
+</ul>
+<h3 id="556-lexical-addressing">5.5.6 Lexical Addressing</h3>
+<p><em><span class="dquo">“</span>One of the most common optimizations performed by compilers is the optimization of variable lookup.”</em></p>
+<p><em><span class="dquo">“</span>Because our language is lexically scoped, the runtime environment
+for any expression will have a structure that parallels the lexical
+structure of the program in which the expression appears.”</em></p>
+<p><em><span class="dquo">“</span>This is not true if we allow internal definitions, unless we scan them out.”</em></p>
+<p><em><span class="dquo">“</span>We can exploit this fact by inventing a new kind of
+variable-lookup operation, <code>lexical-address-lookup</code>, that takes as
+arguments an environment and a <strong>lexical address</strong> that consists of
+two numbers: a <strong>frame number</strong>, which specifies how many frames to
+pass over, and a <strong>displacement number</strong>, which specifies how many
+variables to pass over in that frame.”</em></p>
+<p><em><span class="dquo">“</span>In order to generate such code, the compiler must be able to 
+determine the lexical address of a variable it is about to compile a 
+reference to.”</em></p>
+<h3 id="557-interfacing-compiled-code-to-the-evaluator">5.5.7 Interfacing Compiled Code to the Evaluator</h3>
+<h4 id="interpretation-and-compilation">Interpretation and compilation</h4>
+<p><em><span class="dquo">“</span>An interpreter raises the machine to the level of the user
+program; a compiler lowers the user program to the level of the 
+machine language. We can regard the Scheme language (or any
+programming language) as a coherent family of abstractions erected
+on the machine language.”</em></p>
+<p><em><span class="dquo">“</span>We incur significant overhead if we insist that errors encountered 
+in execution of a user program be detected and signaled, rather than 
+being allowed to kill the system or produce wrong answers.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -612,7 +669,7 @@ compiled procedures can call each other.”</em></p>
             <time itemprop="dateCreated" datetime="2016-11-10T21:53:38+01:00">Nov 10, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-06-08T20:20:44+02:00">Jun 8, 2019</time>
+<time datetime="2019-06-09T19:03:58+02:00">Jun 9, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
