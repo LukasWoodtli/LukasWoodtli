@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2019-04-19T07:52:35+02:00" />
-<meta property="og:article:modified_time" content="2019-05-14T19:38:14+02:00" />
+<meta property="og:article:modified_time" content="2019-06-15T20:20:01+02:00" />
 <meta name="twitter:title" content="Robot Operating System (ROS) ">
 <meta name="twitter:description" content="Currently I’m using Melodic Morenia. rosbash There is tab-completion for almost everything Load ROS Environment For Bash: source /opt/ros/melodic/setup.bash or Zsh: source /opt/ros/melodic/setup.zsh Commands Command Function rosls &lt;package_name&gt; List package content roscd &lt;package_name&gt; Go to package directory rospack Command Function …">
 
@@ -90,9 +90,14 @@
 <li><a href="#rospack">rospack</a></li>
 <li><a href="#the-master-roscore">The Master (roscore)</a></li>
 <li><a href="#nodes">Nodes</a><ul>
-<li><a href="#start-a-node-with">Start a node with</a></li>
+<li><a href="#start-a-node-rosrun">Start a node (rosrun)</a></li>
+<li><a href="#handle-multiple-nodes-roslaunch">Handle multiple nodes (roslaunch)</a></li>
 <li><a href="#commands-for-handling-nodes">Commands for handling Nodes</a></li>
 <li><a href="#topics-and-messages">Topics and Messages</a></li>
+<li><a href="#parameters-rosparam">Parameters (rosparam)</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#topics-messages-and-services">Topics, Messages and Services</a></li>
+<li><a href="#bag-files">Bag files</a></li>
 </ul>
 </li>
 <li><a href="#workspaces-and-packages">Workspaces and Packages</a><ul>
@@ -127,7 +132,7 @@
 <div class="highlight"><pre><span></span><span class="nb">source</span> /opt/ros/melodic/setup.zsh
 </pre></div>
 <h2 id="commands">Commands</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -146,7 +151,7 @@
 </tbody>
 </table>
 <h1 id="rospack"><code>rospack</code></h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -173,15 +178,41 @@ They are placed in a separate standardized directory hierarchy.</p>
 <li><code>roscore</code> starts the master. There are no command line arguments.</li>
 </ul>
 <h1 id="nodes">Nodes</h1>
-<h2 id="start-a-node-with">Start a node with</h2>
+<h2 id="start-a-node-rosrun">Start a node (<code>rosrun</code>)</h2>
 <div class="highlight"><pre><span></span>rosrun &lt;package-name&gt; &lt;executable-name&gt;
 </pre></div>
 <ul>
 <li><code>package-name</code>: the name of the node’s package</li>
 <li><code>executable-name</code>: the executable name in that package</li>
 </ul>
+<h2 id="handle-multiple-nodes-roslaunch">Handle multiple nodes (<code>roslaunch</code>)</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>roslaunch &lt;package-name&gt; &lt;launch-file-name&gt;</code></td>
+<td>Launch nodes from launch file in package</td>
+</tr>
+<tr>
+<td><code>roslaunch &lt;launch-file-path&gt;</code></td>
+<td>Launch nodes from launch file given with full path</td>
+</tr>
+</tbody>
+</table>
+<p>Notes about how to writ launch files can be found at <a href="http://wiki.ros.org/roslaunch/XML">roslaunch/<span class="caps">XML</span></a> and
+<a href="http://wiki.ros.org/ROS/Tutorials/Roslaunch%20tips%20for%20larger%20projects">Roslaunch tips for large projects</a></p>
+<p>Flags:</p>
+<ul>
+<li><code>-v</code>: Print verbose output</li>
+<li><code>--screen</code>: Display output for all nodes in launch file</li>
+</ul>
 <h2 id="commands-for-handling-nodes">Commands for handling Nodes</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -191,7 +222,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 <tbody>
 <tr>
 <td><code>rosnode list</code></td>
-<td>Print the runnung nodes</td>
+<td>Print the running nodes</td>
 </tr>
 <tr>
 <td><code>rosnode info &lt;node-name&gt;</code></td>
@@ -208,7 +239,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 </tbody>
 </table>
 <h2 id="topics-and-messages">Topics and Messages</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -246,6 +277,140 @@ They are placed in a separate standardized directory hierarchy.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="parameters-rosparam">Parameters (<code>rosparam</code>)</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rosparam list</code></td>
+<td>Print a list of all parameters</td>
+</tr>
+<tr>
+<td><code>rosparam get &lt;parameter-name&gt;</code></td>
+<td>Ask for the value of a parameter</td>
+</tr>
+<tr>
+<td><code>rosparam get &lt;namespace&gt;</code></td>
+<td>Ask for all values of all parameters in a namespace</td>
+</tr>
+<tr>
+<td><code>rosparam set &lt;parameter-name&gt; &lt;value&gt;</code></td>
+<td>Set the value of a parameter</td>
+</tr>
+<tr>
+<td><code>rosparam set &lt;namespace&gt; &lt;values&gt;</code></td>
+<td>Set the values of parameters in a namespace using <span class="caps">YAML</span></td>
+</tr>
+<tr>
+<td><code>rosparam dump &lt;filename&gt; &lt;namespace&gt;</code></td>
+<td>Save all parameters from a namespace in a <span class="caps">YAML</span> file</td>
+</tr>
+<tr>
+<td><code>rosparam load &lt;filename&gt; &lt;namespace&gt;</code></td>
+<td>Load all parameters from a <span class="caps">YAML</span> file into a namespace</td>
+</tr>
+</tbody>
+</table>
+<h2 id="services">Services</h2>
+<p>A <em>client</em> node sends a <strong>request</strong> to a <em>server</em> node and waits for a <strong>response</strong>.</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rosservice list</code></td>
+<td>Get a list of currently active services</td>
+</tr>
+<tr>
+<td><code>rosservice node &lt;service-name&gt;</code></td>
+<td>Print the node that offers a given service</td>
+</tr>
+<tr>
+<td><code>rosservice info &lt;service-name&gt;</code></td>
+<td>Finding the data type of a service</td>
+</tr>
+<tr>
+<td><code>rossrv show &lt;service-data-type-name&gt;</code></td>
+<td>Show the data fields of the request and the response</td>
+</tr>
+<tr>
+<td><code>rosservice call &lt;service-name&gt; &lt;request&gt;</code></td>
+<td>Get a response from a service</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>rosservice</code>: interacting with services that are currently offered by a node</li>
+<li><code>rossrv</code>: information about service data types</li>
+</ul>
+<p>Information about writing services and clients in C++ can be found here
+<a href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient(c++)">Writing a Simple Service and Client (C++)</a>.</p>
+<h2 id="topics-messages-and-services">Topics, Messages and Services</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th></th>
+<th>Topics</th>
+<th>Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>active entities</td>
+<td><code>rostopic</code></td>
+<td><code>rosservice</code></td>
+</tr>
+<tr>
+<td>data types</td>
+<td><code>rosmsg</code></td>
+<td><code>rossrv</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="bag-files">Bag files</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rosbag record -O &lt;filename&gt; &lt;topic-names&gt;</code></td>
+<td>Record all messages of the given topics (stop with <code>Ctrl-C</code>)</td>
+</tr>
+<tr>
+<td><code>rosrun rosbag record -O &lt;filename&gt; &lt;topic-names&gt;</code></td>
+<td>Alternative to be used in launch files</td>
+</tr>
+<tr>
+<td><code>rosbag play &lt;filename&gt;</code></td>
+<td>Replay bag file</td>
+</tr>
+<tr>
+<td><code>rosrun rosbag play &lt;filename&gt;</code></td>
+<td>Alternative to be used in launch files</td>
+</tr>
+<tr>
+<td><code>rosbag info &lt;filename&gt;</code></td>
+<td>Inspect bag file</td>
+</tr>
+</tbody>
+</table>
+<p>Flags:</p>
+<ul>
+<li><code>-j</code>: Compress bag files</li>
+</ul>
 <h1 id="workspaces-and-packages">Workspaces and Packages</h1>
 <p>All packages belonging to one project should be placed in one workspace.</p>
 <h2 id="creating-a-workspaces">Creating a Workspaces</h2>
@@ -274,6 +439,7 @@ rosrun &lt;package-name&gt; &lt;executable-name&gt;
 <h1 id="references">References</h1>
 <ul>
 <li><a href="https://cse.sc.edu/~jokane/agitr/">A Gentle Introduction to <span class="caps">ROS</span></a></li>
+<li><a href="http://wiki.ros.org/"><span class="caps">ROS</span> Wiki</a></li>
 </ul>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
@@ -297,7 +463,7 @@ rosrun &lt;package-name&gt; &lt;executable-name&gt;
             <time itemprop="dateCreated" datetime="2019-04-19T07:52:35+02:00">Apr 19, 2019</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-05-14T19:38:14+02:00">May 14, 2019</time>
+<time datetime="2019-06-15T20:20:01+02:00">Jun 15, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
