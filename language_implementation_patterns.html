@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
+<meta property="og:article:modified_time" content="2019-08-11T19:14:04+02:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -113,6 +113,17 @@
 </li>
 <li><a href="#pattern-6-memoizing-parser">Pattern 6 Memoizing Parser</a></li>
 <li><a href="#pattern-7-predicated-parser">Pattern 7 Predicated Parser</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#analyzing-languages">Analyzing Languages</a><ul>
+<li><a href="#chapter-4-building-intermediate-form-trees">Chapter 4 Building Intermediate Form Trees</a><ul>
+<li><a href="#why-we-build-trees">Why We Build Trees</a></li>
+<li><a href="#building-abstract-syntax-trees">Building Abstract Syntax Trees</a></li>
+<li><a href="#representing-pseudo-operations-in-asts">Representing Pseudo-operations in ASTs</a></li>
+<li><a href="#implementing-asts-in-java">Implementing ASTs in Java</a></li>
+<li><a href="#enforcing-tree-structure-with-the-type-system">Enforcing Tree Structure with the Type System</a></li>
 </ul>
 </li>
 </ul>
@@ -291,6 +302,79 @@ cannot distinguish between alternatives without using run-time information. The 
 table information to guide the parse.”</em></p>
 <p><em><span class="dquo">“</span>Predicates are also useful when a parser must recognize multiple versions of an input language. For example, the <span class="caps">GCC</span> C
 compiler adds a number of extensions beyond C. Java 5.0 introduced the enum keyword to support enumerated types.”</em></p>
+<h1 id="analyzing-languages">Analyzing Languages</h1>
+<h2 id="chapter-4-building-intermediate-form-trees">Chapter 4 Building Intermediate Form Trees</h2>
+<p><em><span class="dquo">“</span>Only the simplest language applications get away with reading 
+input and directly generating output. Such applications are called
+<strong>syntax-directed</strong> applications”</em></p>
+<p><em><span class="dquo">“</span>The key characteristic of syntax-directed applications is that 
+they translate input phrase by phrase using a single pass over
+the input.”</em></p>
+<p><em><span class="dquo">“</span>Most language applications, however, need to build an
+<strong>intermediate representation</strong> (<span class="caps">IR</span>) or intermediate form.”</em></p>
+<p><em><span class="dquo">“</span>The goal of an application’s reader component is to fill an <span class="caps">IR</span> 
+data structure with elements of interest from the input stream.”</em></p>
+<p><em><span class="dquo">“</span>to get a computer to understand a nontrivial sentence, we have to 
+break it down into a series of operations and operands.”</em></p>
+<p><em><span class="dquo">“</span>Once we identify the operators and operands among the input 
+tokens, we need to build an <span class="caps">IR</span> data structure. For most language 
+applications, that means building a tree data structure. In 
+particular, we’ll build an <strong>abstract syntax tree</strong> (<span class="caps">AST</span>).”</em></p>
+<p><em><span class="dquo">“</span>ASTs are the <strong>lingua franca</strong> spoken by the various stages in a 
+language application. Each stage performs a computation, rewrites 
+the tree, or creates another data structure before passing the tree 
+along to the next stage.”</em></p>
+<h3 id="why-we-build-trees">Why We Build Trees</h3>
+<p><em><span class="dquo">“</span>Many languages have subphrases and nested structures.”</em></p>
+<p><em><span class="dquo">“</span>trees are the perfect data structure to represent ordered and
+nested structures. There are two general kinds of trees we’re going
+to look at: <strong>parse trees</strong> and <strong>abstract syntax trees</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Parse trees record the sequence of rules a parser applies as well 
+as the tokens it matches. Interior parse tree nodes represent rule 
+applications, and leaf nodes represent token matches.”</em></p>
+<p><em><span class="dquo">“</span>a parser execution trace isn’t really the best <span class="caps">IR</span>. Certainly we
+need to pinpoint the various substructures, but we don’t need to 
+name them explicitly.”</em></p>
+<h3 id="building-abstract-syntax-trees">Building Abstract Syntax Trees</h3>
+<p><em><span class="dquo">“</span>An <span class="caps">IR</span> tree should be the following:</em></p>
+<ul>
+<li><em><strong>Dense</strong>: No unnecessary nodes</em></li>
+<li><em><strong>Convenient</strong>: Easy to walk</em></li>
+<li><em><strong>Meaningful</strong>: Emphasize operators, operands, and the relationship between them rather than artifacts from the grammar”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>it should be easy and fast to identify patterns in the tree. 
+Language applications that use intermediate trees usually make 
+multiple passes over the trees in order to analyze or build other 
+data structures. The structure of intermediate trees should be 
+brain-dead simple.”</em></p>
+<p><em><span class="dquo">“</span>the tree structure should be insensitive to changes in the grammar”</em></p>
+<p><em><span class="dquo">“</span>Computers only care about operators and operands.”</em></p>
+<p><em><span class="dquo">“</span>By condensing the input to its essential elements, we decouple it 
+from the original syntax. So, for example, assignment syntax boils 
+down to an assignment operator and two operands. Decoupling does two 
+things. First, it gets us closer to the operator-operand model of 
+the <span class="caps">CPU</span>. Second, we can have different languages share a common 
+intermediate form.”</em></p>
+<p><em><span class="dquo">“</span>The key idea behind <span class="caps">AST</span> structure is that tokens representing 
+operators or operations become subtree roots. All other tokens 
+become operands (children of operator nodes).”</em></p>
+<h3 id="representing-pseudo-operations-in-asts">Representing Pseudo-operations in ASTs</h3>
+<p><em><span class="dquo">“</span>Not all programming language constructs map directly to
+executable code.”</em></p>
+<p><em><span class="dquo">“</span>In some cases, there is no reasonable input token to use as a
+subtree root. We must invent an <strong>imaginary token</strong>, a token for 
+which there is no corresponding input token. For example, variable
+declarations in languages derived from C usually need an imaginary token.”</em></p>
+<h3 id="implementing-asts-in-java">Implementing ASTs in Java</h3>
+<p><em><span class="dquo">“</span>technically, we need only one data type: a generic tree node with
+a list of children. What we really care about is the tree structure
+(relationships between nodes), not necessarily the node
+implementation type(s) themselves.”</em></p>
+<p><em><span class="dquo">“</span>Trees built from a single data type are called
+<strong>homogeneous trees</strong>.”</em></p>
+<h3 id="enforcing-tree-structure-with-the-type-system">Enforcing Tree Structure with the Type System</h3>
+<p><em><span class="dquo">“</span>To avoid creating improperly structured ASTs, we can co-opt the implementation language’s static type system to enforce structure.”</em></p>
+<p><em><span class="dquo">“</span>The best way to create ASTs and to verify their structure is with a formal mechanism.”</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -314,7 +398,7 @@ compiler adds a number of extensions beyond C. Java 5.0 introduced the enum keyw
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2019-08-11T19:14:04+02:00">Aug 11, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
