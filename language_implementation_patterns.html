@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2019-08-11T19:14:04+02:00" />
+<meta property="og:article:modified_time" content="2019-08-12T20:10:32+02:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -124,6 +124,7 @@
 <li><a href="#representing-pseudo-operations-in-asts">Representing Pseudo-operations in ASTs</a></li>
 <li><a href="#implementing-asts-in-java">Implementing ASTs in Java</a></li>
 <li><a href="#enforcing-tree-structure-with-the-type-system">Enforcing Tree Structure with the Type System</a></li>
+<li><a href="#constructing-asts-with-antlr-grammars">Constructing ASTs with <span class="caps">ANTLR</span> Grammars</a></li>
 </ul>
 </li>
 </ul>
@@ -320,10 +321,19 @@ break it down into a series of operations and operands.”</em></p>
 tokens, we need to build an <span class="caps">IR</span> data structure. For most language 
 applications, that means building a tree data structure. In 
 particular, we’ll build an <strong>abstract syntax tree</strong> (<span class="caps">AST</span>).”</em></p>
+<p><em><span class="dquo">“</span>Abstract syntax tree (<span class="caps">AST</span>) […] hold the key tokens from the input
+stream and record grammatical relationships discovered during the parse.”</em></p>
 <p><em><span class="dquo">“</span>ASTs are the <strong>lingua franca</strong> spoken by the various stages in a 
 language application. Each stage performs a computation, rewrites 
 the tree, or creates another data structure before passing the tree 
 along to the next stage.”</em></p>
+<p><em><span class="dquo">“</span>The four most common <span class="caps">IR</span> tree patterns:”</em></p>
+<ul>
+<li><em><span class="dquo">“</span><strong>Parse trees</strong> record how a parser recognizes an input sentence. The interior nodes are rule names, and the leaves are tokens. Although parse trees are less suitable than ASTs for most language applications, parsers can create them automatically.”</em></li>
+<li><em><span class="dquo">“</span><strong>Homogeneous <span class="caps">AST</span></strong> […]: If all the nodes have the same type, we say that they are homogeneous. With a single node type, there can be no specialty fields to reference child subtrees. Nodes track children with lists of child pointers.”</em></li>
+<li><em><span class="dquo">“</span><strong>Normalized Heterogeneous <span class="caps">AST</span></strong> […]: Trees with a multitude of node types are called heterogeneous trees. Normalized het erogeneous trees use a normalized list of children like homogeneous trees.”</em></li>
+<li><em><span class="dquo">“</span><strong>Irregular Heterogeneous <span class="caps">AST</span></strong> […]: When we refer to an <span class="caps">AST</span> as heterogeneous, we also assume that the nodes have irregular children. Instead of a normalized child list, the nodes have named fields, one per child.”</em></li>
+</ul>
 <h3 id="why-we-build-trees">Why We Build Trees</h3>
 <p><em><span class="dquo">“</span>Many languages have subphrases and nested structures.”</em></p>
 <p><em><span class="dquo">“</span>trees are the perfect data structure to represent ordered and
@@ -373,8 +383,30 @@ implementation type(s) themselves.”</em></p>
 <p><em><span class="dquo">“</span>Trees built from a single data type are called
 <strong>homogeneous trees</strong>.”</em></p>
 <h3 id="enforcing-tree-structure-with-the-type-system">Enforcing Tree Structure with the Type System</h3>
-<p><em><span class="dquo">“</span>To avoid creating improperly structured ASTs, we can co-opt the implementation language’s static type system to enforce structure.”</em></p>
+<p><em><span class="dquo">“</span>To avoid creating improperly structured ASTs, we can co-opt the implementation
+language’s static type system to enforce structure.”</em></p>
 <p><em><span class="dquo">“</span>The best way to create ASTs and to verify their structure is with a formal mechanism.”</em></p>
+<h3 id="constructing-asts-with-antlr-grammars">Constructing ASTs with <span class="caps">ANTLR</span> Grammars</h3>
+<p><em>” The key is that we are declaring what the <span class="caps">AST</span> should look like, not how to build it.
+It is analogous to using a grammar to specify syntax rather than building a parser.”</em></p>
+<p><em><span class="dquo">“</span>We looked at two different ways to structure intermediate representations (parse trees and ASTs)
+and three different ways to implement ASTs.”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>Pattern 8, Parse Tree […]:</em></li>
+<li><em>Pros: Parser generators can automatically build these for us.</em></li>
+<li><em>Cons: Parse trees are full of noise (unnecessary nodes). They are sensitive to changes in the grammar unrelated to syntax. If a parser generator generates heterogeneous node types, there can be literally hundreds of class definitions.</em>”</li>
+<li><em><span class="dquo">“</span>Pattern 9, Homogeneous <span class="caps">AST</span> […]:</em></li>
+<li><em>Pros: Homogeneous trees are very simple.</em></li>
+<li><em>Cons: It’s cumbersome to annotate <span class="caps">AST</span> nodes because the single node type has the union of all needed fields. There is no way to add methods specific to a particular kind of node.”</em></li>
+<li><em><span class="dquo">“</span>Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […]:</em></li>
+<li><em>Pros: It’s easy to add operator or operand-specific data and methods.</em></li>
+<li><em>Cons: Large grammars like Java’s need about 200 class definitions to be fully heterogeneous. That’s a lot of files to read and write.”</em></li>
+<li><em><span class="dquo">“</span>Pattern 11, Irregular Heterogeneous <span class="caps">AST</span> […].</em></li>
+<li><em>Pros: It’s easy to add operator- or operand-specific data and methods. Sometimes code operating on nodes is more readable because the children (operands) have names rather than positions like <code>children[0]</code>. Building tree-walking methods for a small set of heterogeneous nodes is quick and easy.</em></li>
+<li><em>Cons: As with Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […], there are lots of <span class="caps">AST</span> classes to read and write. Having irregular children makes building external visitors difficult. Most of the time we have to build tree walkers by hand using Pattern 12, Embedded Heterogeneous Tree Walker […]”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>If you’re in doubt about which is best in your situation, choosing Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […]
+is a safe bet.”</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -398,7 +430,7 @@ implementation type(s) themselves.”</em></p>
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-08-11T19:14:04+02:00">Aug 11, 2019</time>
+<time datetime="2019-08-12T20:10:32+02:00">Aug 12, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
