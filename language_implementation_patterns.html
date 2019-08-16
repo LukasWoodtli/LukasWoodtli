@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2019-08-12T20:10:32+02:00" />
+<meta property="og:article:modified_time" content="2019-08-16T20:23:39+02:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -392,18 +392,26 @@ It is analogous to using a grammar to specify syntax rather than building a par
 <p><em><span class="dquo">“</span>We looked at two different ways to structure intermediate representations (parse trees and ASTs)
 and three different ways to implement ASTs.”</em></p>
 <ul>
-<li><em><span class="dquo">“</span>Pattern 8, Parse Tree […]:</em></li>
+<li><em><span class="dquo">“</span>Pattern 8, Parse Tree […]:</em><ul>
 <li><em>Pros: Parser generators can automatically build these for us.</em></li>
 <li><em>Cons: Parse trees are full of noise (unnecessary nodes). They are sensitive to changes in the grammar unrelated to syntax. If a parser generator generates heterogeneous node types, there can be literally hundreds of class definitions.</em>”</li>
-<li><em><span class="dquo">“</span>Pattern 9, Homogeneous <span class="caps">AST</span> […]:</em></li>
+</ul>
+</li>
+<li><em><span class="dquo">“</span>Pattern 9, Homogeneous <span class="caps">AST</span> […]:</em><ul>
 <li><em>Pros: Homogeneous trees are very simple.</em></li>
 <li><em>Cons: It’s cumbersome to annotate <span class="caps">AST</span> nodes because the single node type has the union of all needed fields. There is no way to add methods specific to a particular kind of node.”</em></li>
-<li><em><span class="dquo">“</span>Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […]:</em></li>
+</ul>
+</li>
+<li><em><span class="dquo">“</span>Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […]:</em><ul>
 <li><em>Pros: It’s easy to add operator or operand-specific data and methods.</em></li>
 <li><em>Cons: Large grammars like Java’s need about 200 class definitions to be fully heterogeneous. That’s a lot of files to read and write.”</em></li>
-<li><em><span class="dquo">“</span>Pattern 11, Irregular Heterogeneous <span class="caps">AST</span> […].</em></li>
+</ul>
+</li>
+<li><em><span class="dquo">“</span>Pattern 11, Irregular Heterogeneous <span class="caps">AST</span> […].</em><ul>
 <li><em>Pros: It’s easy to add operator- or operand-specific data and methods. Sometimes code operating on nodes is more readable because the children (operands) have names rather than positions like <code>children[0]</code>. Building tree-walking methods for a small set of heterogeneous nodes is quick and easy.</em></li>
 <li><em>Cons: As with Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […], there are lots of <span class="caps">AST</span> classes to read and write. Having irregular children makes building external visitors difficult. Most of the time we have to build tree walkers by hand using Pattern 12, Embedded Heterogeneous Tree Walker […]”</em></li>
+</ul>
+</li>
 </ul>
 <p><em><span class="dquo">“</span>If you’re in doubt about which is best in your situation, choosing Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […]
 is a safe bet.”</em></p>
@@ -430,7 +438,7 @@ is a safe bet.”</em></p>
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-08-12T20:10:32+02:00">Aug 12, 2019</time>
+<time datetime="2019-08-16T20:23:39+02:00">Aug 16, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
