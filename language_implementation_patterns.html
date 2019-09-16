@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2019-08-16T20:23:39+02:00" />
+<meta property="og:article:modified_time" content="2019-09-16T15:38:25+02:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -125,6 +125,26 @@
 <li><a href="#implementing-asts-in-java">Implementing ASTs in Java</a></li>
 <li><a href="#enforcing-tree-structure-with-the-type-system">Enforcing Tree Structure with the Type System</a></li>
 <li><a href="#constructing-asts-with-antlr-grammars">Constructing ASTs with <span class="caps">ANTLR</span> Grammars</a></li>
+<li><a href="#pattern-8-parse-tree">Pattern 8: Parse Tree</a><ul>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#discussion">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-9-homogeneous-ast">Pattern 9: Homogeneous <span class="caps">AST</span></a><ul>
+<li><a href="#purpose_1">Purpose</a></li>
+<li><a href="#discussion_1">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-10-normalized-heterogeneous-ast">Pattern 10: Normalized Heterogeneous <span class="caps">AST</span></a><ul>
+<li><a href="#purpose_2">Purpose</a></li>
+<li><a href="#discussion_2">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-11-irregular-heterogeneous-ast">Pattern 11: Irregular Heterogeneous <span class="caps">AST</span></a><ul>
+<li><a href="#purpose_3">Purpose</a></li>
+<li><a href="#discussion_3">Discussion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -415,6 +435,57 @@ and three different ways to implement ASTs.”</em></p>
 </ul>
 <p><em><span class="dquo">“</span>If you’re in doubt about which is best in your situation, choosing Pattern 10, Normalized Heterogeneous <span class="caps">AST</span> […]
 is a safe bet.”</em></p>
+<h3 id="pattern-8-parse-tree">Pattern 8: Parse Tree</h3>
+<h4 id="purpose">Purpose</h4>
+<p><em><span class="dquo">“</span>A parse tree describes how a parser recognized an input sentence.
+A parse tree is sometimes called a syntax tree (as opposed to an abstract
+syntax tree). Despite not being that useful for building interpreters and
+translators [they] are heavily used
+by development environments and text rewriting systems.”</em></p>
+<h4 id="discussion">Discussion</h4>
+<p><em><span class="dquo">“</span>Parse trees record the sequence of rules a parser applies as well as the tokens
+it matches. Interior parse tree nodes represent rule applications, and leaf
+nodes represent token matches.”</em></p>
+<p><em><span class="dquo">“</span>Parse trees are really easy to build by hand and are so regular that tools like
+<span class="caps">ANTLR</span> can automate the process for us.”</em></p>
+<p><em><span class="dquo">“</span>Parse
+trees are full of noise because of all the interior rule nodes. They are also very
+sensitive to changes in the grammar.”</em></p>
+<p><em><span class="dquo">“</span>An <span class="caps">AST</span> captures just the essential information from the input: all of the input
+tokens and the appropriate structure. The interior nodes are operators or
+operations rather than rule names.”</em></p>
+<p><em><span class="dquo">“</span>Parse trees mirror the function call graphs of a recursive-descent parser”</em></p>
+<h3 id="pattern-9-homogeneous-ast">Pattern 9: Homogeneous <span class="caps">AST</span></h3>
+<h4 id="purpose_1">Purpose</h4>
+<p><em><span class="dquo">“</span>A homogeneous tree implements an abstract syntax tree (<span class="caps">AST</span>) using a single
+node data type and a normalized child list representation.”</em></p>
+<h4 id="discussion_1">Discussion</h4>
+<p><em><span class="dquo">“</span>The key idea behind an <span class="caps">AST</span> is the operator-operand tree structure, not the
+node data type.”</em></p>
+<p><em><span class="dquo">“</span>We don’t need to use the type system of our implementation language to distinguish
+between nodes.”</em></p>
+<p><em><span class="dquo">“</span>In fact, homogeneous ASTs are the only
+convenient choice for non-object-oriented languages like C.”</em></p>
+<p><em><span class="dquo">“</span>Homogeneous ASTs necessarily use a normalized child representation:
+<code>List&lt;AST&gt;</code>. This makes it particularly easy to build external visitors.”</em></p>
+<h3 id="pattern-10-normalized-heterogeneous-ast">Pattern 10: Normalized Heterogeneous <span class="caps">AST</span></h3>
+<h4 id="purpose_2">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern implements an abstract syntax tree (<span class="caps">AST</span>) using more than a single
+node data type but with a normalized child list representation.”</em></p>
+<h4 id="discussion_2">Discussion</h4>
+<p><em><span class="dquo">“</span>This pattern makes the most sense when we need to store node-specific data”</em></p>
+<p><em><span class="dquo">“</span>The normalized child list makes it much easier to build external visitors.”</em></p>
+<h3 id="pattern-11-irregular-heterogeneous-ast">Pattern 11: Irregular Heterogeneous <span class="caps">AST</span></h3>
+<h4 id="purpose_3">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern implements an abstract syntax tree (<span class="caps">AST</span>) using more than a single
+node data type and with an irregular child list representation.”</em></p>
+<h4 id="discussion_3">Discussion</h4>
+<p><em><span class="dquo">“</span>Instead of a uniform list of children, each node data type has specific
+(named) child fields. In this sense, the child pointers are irregular.
+In some cases, named fields lead to more readable code.”</em></p>
+<p><em><span class="dquo">“</span>It’s very natural to name the fields of a class, in this case naming the children of
+a node. The big downside to using nodes with irregular children is that it’s
+much less convenient to build tree walkers”</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -438,7 +509,7 @@ is a safe bet.”</em></p>
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-08-16T20:23:39+02:00">Aug 16, 2019</time>
+<time datetime="2019-09-16T15:38:25+02:00">Sep 16, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

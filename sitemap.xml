@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2019-09-06T18:49:27-00:00</lastmod>
+<lastmod>2019-09-16T15:40:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2019-09-06T18:49:27-00:00</lastmod>
+<lastmod>2019-09-16T15:40:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2019-09-06T18:49:27-00:00</lastmod>
+<lastmod>2019-09-16T15:40:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2019-09-06T18:49:27-00:00</lastmod>
+<lastmod>2019-09-16T15:40:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -292,7 +292,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/language_implementation_patterns.html</loc>
-<lastmod>2019-08-16T20:23:39+02:00</lastmod>
+<lastmod>2019-09-16T15:38:25+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -768,7 +768,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
-<lastmod>2019-08-16T20:23:39+01:00</lastmod>
+<lastmod>2019-09-16T15:38:25+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -887,21 +887,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/computer_science.html</loc>
-<lastmod>2019-08-16T20:23:39+01:00</lastmod>
+<lastmod>2019-09-16T15:38:25+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/parsing.html</loc>
-<lastmod>2019-08-16T20:23:39+01:00</lastmod>
+<lastmod>2019-09-16T15:38:25+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/design_patterns.html</loc>
-<lastmod>2019-08-16T20:23:39+01:00</lastmod>
+<lastmod>2019-09-16T15:38:25+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1034,7 +1034,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2019-09-06T18:45:46+01:00</lastmod>
+<lastmod>2019-09-16T15:38:25+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
