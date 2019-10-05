@@ -89,7 +89,7 @@
 </ul>
 <p><span class="math">\(dof\ (of\ joint) = dof\ (of\ rigid\ body) - number\ of\ constraints\ (of\ joint)\)</span></p>
 <h2 id="typical-joints">Typical Joints</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Joint type</th>
@@ -142,7 +142,7 @@
 <h1 id="degrees-of-freedom-dof">Degrees of Freedom (dof)</h1>
 <p>Degrees of freedom: smallest number of <em>real-valued</em> coordinates needed to represent its configuration.
 It’s the dimension of the C-space or minimum number of real-valued numbers needed to represent the configuration.</p>
-<p><span class="math">\($dof = (sum\ of\ freedoms\ of\ the\ bodies) - (number\ of\ independent\ constraints)\)</span>$</p>
+<div class="math">$$dof = (sum\ of\ freedoms\ of\ the\ bodies) - (number\ of\ independent\ constraints)$$</div>
 <p>Degree of freedom depends on:</p>
 <ul>
 <li>Number of links</li>
@@ -174,11 +174,11 @@ It’s the dimension of the C-space or minimum number of real-valued numbers nee
 <li><span class="math">\(c_i\)</span>: Number of constraints of joint <span class="math">\(i\)</span></li>
 <li>where <span class="math">\(\forall i;f_i + c_i = m\)</span></li>
 </ul>
-<p><span class="math">\($\begin{align*}
+<div class="math">$$\begin{align*}
 dof &amp;= \underbrace{m(N-1)}_{rigid\ body \ freedoms} - \underbrace{\sum_{i=1}^Jc_i}_{joint\ constraints}\\ 
  &amp;= m(N-1)-\sum_{i=1}^J(m-f_i)\\ 
  &amp;= m(N-1-J)+\sum_{i=1}^Jf_i
-\end{align*}\)</span>$</p>
+\end{align*}$$</div>
 <p>The formula holds only if all constraints for the joints are independent.</p>
 <h1 id="literature">Literature</h1>
 <p>Notes taken from:</p>

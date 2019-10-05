@@ -182,7 +182,7 @@
 </li>
 <li>works with more than 2 inputs</li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>X</th>
@@ -333,7 +333,7 @@
 <li>Register Machines can be graphically represented like FSMs or as a simple list of instructions (programming language)</li>
 </ul>
 <p>Example of list of instructions for a Register Machine:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -428,7 +428,7 @@
 <h1 id="fractran">Fractran</h1>
 <p>See also <a href="https://en.wikipedia.org/wiki/FRACTRAN">Wikipedia:Fractran</a></p>
 <p>Example <span class="caps">PRIMEGAME</span>:</p>
-<p><span class="math">\(${\frac  {17}{91}},{\frac  {78}{85}},{\frac  {19}{51}},{\frac  {23}{38}},{\frac  {29}{33}},{\frac  {77}{29}},{\frac  {95}{23}},{\frac  {77}{19}},{\frac  {1}{17}},{\frac  {11}{13}},{\frac  {13}{11}},{\frac  {15}{2}},{\frac  {1}{7}},{\frac  {55}{1}}\)</span>$</p>
+<div class="math">$${\frac  {17}{91}},{\frac  {78}{85}},{\frac  {19}{51}},{\frac  {23}{38}},{\frac  {29}{33}},{\frac  {77}{29}},{\frac  {95}{23}},{\frac  {77}{19}},{\frac  {1}{17}},{\frac  {11}{13}},{\frac  {13}{11}},{\frac  {15}{2}},{\frac  {1}{7}},{\frac  {55}{1}}$$</div>
 <p>State/Memory: an Integer</p>
 <p>Computation: multiply by first fraction that yields an integer</p>
 <p>Start with <span class="math">\(2\)</span>: calculate primes.</p>
@@ -452,7 +452,7 @@
 </ul>
 </li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Kind of Tile</th>
@@ -540,9 +540,9 @@
 </ul>
 <h2 id="syntax">Syntax</h2>
 <p>Traditional Syntax:</p>
-<p><span class="math">\($f(x) = \frac{e^x - sin(x)}{x+3}\)</span>$</p>
+<div class="math">$$f(x) = \frac{e^x - sin(x)}{x+3}$$</div>
 <p>Lambda Syntax:</p>
-<p><span class="math">\($\lambda x.  \frac{e^x - sin(x)}{x+3}\)</span>$</p>
+<div class="math">$$\lambda x.  \frac{e^x - sin(x)}{x+3}$$</div>
 <ul>
 <li>
 <p>Functions in lambda calculus don’t have names</p>
@@ -557,7 +557,7 @@
 <li>Functions return other functions (Currying)</li>
 </ul>
 <p>For example:</p>
-<p><span class="math">\($((\lambda xy. 2x + y) 2 ) 3 = (\lambda y. 4 + y) 3 = 4 + 3 = 7\)</span>$</p>
+<div class="math">$$((\lambda xy. 2x + y) 2 ) 3 = (\lambda y. 4 + y) 3 = 4 + 3 = 7$$</div>
 <ul>
 <li>Can get rid of<ul>
 <li>function names</li>
@@ -580,14 +580,14 @@
 <li>Arbitrary encoding of numbers suggested by church</li>
 </ul>
 <p>Each number is a function that takes 2 arguments: <span class="math">\(f\)</span> and <span class="math">\(x\)</span>:</p>
-<p><span class="math">\($\begin{align*}
+<div class="math">$$\begin{align*}
 0 :&amp;= \lambda f.\lambda x. x\\
 1 :&amp;= \lambda f.\lambda x. f x\\
 2 :&amp;= \lambda f.\lambda x. f (f x)\\
 3 :&amp;= \lambda f.\lambda x. f (f (f x))\\
 \cdots \\
 n :&amp;= \lambda f.\lambda x. f^n x
-\end{align*}\)</span>$</p>
+\end{align*}$$</div>
 <blockquote>
 <p>The number <span class="math">\(n\)</span> is a function that takes a function <span class="math">\(f\)</span> as argument and applies it <span class="math">\(n\)</span>-times to the second argument <span class="math">\(x\)</span></p>
 </blockquote>
@@ -617,15 +617,16 @@ n :&amp;= \lambda f.\lambda x. f^n x
 <p><img alt="Evaluation Example" class="img-fluid" src="/images/lambda_calculus/function_evaluation_example.png"/></p>
 <h3 id="examples">Examples</h3>
 <h4 id="increment">Increment</h4>
-<p><span class="math">\($\lambda k f x. f ( k f x)\)</span>$</p>
+<div class="math">$$\lambda k f x. f ( k f x)$$</div>
 <p>Example:</p>
 <p>increment <span class="math">\(2\)</span></p>
-<p><span class="math">\($
+<div class="math">$$
 \begin{align*}
 \underbrace{(\lambda k f x. f ( k f x))}_{inc}\underbrace{(\lambda f x. f ( f x))}_{2} &amp;= \\
 (\lambda f x. f ( (\lambda f x. f ( f x)) f x)) &amp;= \\
 (\lambda f x. f ( f ( f x)))
-\end{align*} $\)</span></p>
+\end{align*}
+$$</div>
 <p><img alt="Increment" class="img-fluid" src="/images/lambda_calculus/increment.png"/></p>
 <h4 id="addition">Addition</h4>
 <p><img alt="Addition" class="img-fluid" src="/images/lambda_calculus/addition.png"/></p>
@@ -657,18 +658,18 @@ n :&amp;= \lambda f.\lambda x. f^n x
 </li>
 </ul>
 <p>This structure rebuilds itself infinitely:</p>
-<p><span class="math">\($\Omega = (\lambda w. w w) (\lambda w. w w)\)</span>$</p>
+<div class="math">$$\Omega = (\lambda w. w w) (\lambda w. w w)$$</div>
 <h3 id="y-combinator">Y-Combinator</h3>
 <p>See <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed_point_combinators_in_lambda_calculus">Wikipedia</a></p>
 <p>and <a href="https://medium.com/@ayanonagon/the-y-combinator-no-not-that-one-7268d8d9c46#.c11j5arpk">The Y Combinator (no, not that one)</a>.</p>
-<p><span class="math">\($Y = \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x \;x))\)</span>$</p>
+<div class="math">$$Y = \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x \;x))$$</div>
 <p>Beta recursion gives:</p>
-<p><span class="math">\($\begin{align*}
+<div class="math">$$\begin{align*}
 Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
  &amp;= (\lambda x. g (x\; x)) (\lambda x. g (x\; x)) \\
  &amp;= g ((\lambda x. g (x\; x)) (\lambda x. g (x\; x)))  \\
  &amp;= g (Y\; g)
-\end{align*}\)</span>$</p>
+\end{align*}$$</div>
 <ul>
 <li>Only way to do a loop if you don’t know in advance how many iterations the loop needs to be done</li>
 <li>Functions can’t see their own structure<ul>
@@ -746,14 +747,15 @@ Y g &amp;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
 <li><span class="math">\(a^x\)</span>: symbol a is repeated <span class="math">\(x\)</span> times</li>
 <li>the given rules show if <span class="math">\(x\)</span> is odd or even</li>
 </ul>
-<p>Example even:
-<span class="math">\($\begin{align*}
+<p>Example even:
+</p>
+<div class="math">$$\begin{align*}
 C_1 C_1 C_3 C_3 C_3 C_3 \rightarrow  \\
 C_3 C_3 C_3 C_3 C_2 O \rightarrow \\
 C_3 C_3 C_2 O \rightarrow \\
 C_2 O \rightarrow \\
 E
-\end{align*}\)</span>$</p>
+\end{align*}$$</div>
 <p>Example odd:
 </p>
 <div class="math">\begin{align*}
@@ -772,9 +774,9 @@ C_4 &amp;\rightarrow C_4 C_5 \\
 C_5 &amp;\rightarrow C_6
 \end{align*}</div>
 <p>Starting with:</p>
-<p><span class="math">\($(C_3)^{2n}C_1C_1 \rightarrow (C_6)^n\)</span>$</p>
+<div class="math">$$(C_3)^{2n}C_1C_1 \rightarrow (C_6)^n$$</div>
 <p>For <span class="math">\(n=2\)</span>:</p>
-<p><span class="math">\($\begin{align*}
+<div class="math">$$\begin{align*}
 C_3 C_3 C_3 C_3 C_1 C_1 \rightarrow \\
 C_3 C_3 C_1 C_1 C_3 \rightarrow \\
 C_1 C_1 C_3 C_3 \rightarrow \\
@@ -785,7 +787,7 @@ C_2 C_4 C_5 C_4 C_5 C_3 \rightarrow \\
 C_5 C_4 C_5 C_3 \rightarrow \\
 C_5 C_3 C_6 \rightarrow \\
 C_6 C_6
-\end{align*}\)</span>$</p>
+\end{align*}$$</div>
 <h3 id="simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</h3>
 <p>Some of the notes here are taken from ‘Understanding Computation’ by Tom Stuart.</p>
 <ol>
@@ -909,7 +911,7 @@ C_6 C_6
 </ol>
 </li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Function</th>
@@ -995,13 +997,13 @@ C_6 C_6
 <ul>
 <li>Inspired by chemical reaction equations</li>
 </ul>
-<p><span class="math">\($\begin{matrix}
+<div class="math">$$\begin{matrix}
 A &amp; \rightarrow  &amp; B \\ 
 C &amp; \rightarrow &amp; D \\ 
 B + C &amp; \rightarrow &amp; A \\ 
 A + D &amp; \rightarrow &amp; A + 2E\\ 
 B + E &amp; \rightarrow &amp; B + D
-\end{matrix}\)</span>$</p>
+\end{matrix}$$</div>
 <ul>
 <li>Nondeterministic: any reaction can happen at any time</li>
 <li>Primitive Recursive Functions can always compute this in bounded time, even if answer is <span class="math">\(\infty\)</span>.</li>
@@ -1026,7 +1028,7 @@ B + E &amp; \rightarrow &amp; B + D
 <li>no coordinate ca go negative</li>
 <li>N-dimensional is posible</li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>A</th>

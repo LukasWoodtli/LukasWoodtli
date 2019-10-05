@@ -723,7 +723,7 @@
 <p>Find the <code>soname</code>:</p>
 <p><code>readelf -a &lt;path_to_so&gt; | grep SONAME</code></p>
 <p>Libraries and symbolic links in a library directory (example <code>libjpeg</code>):</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>File</th>
@@ -997,7 +997,7 @@ The problem occurs because the location of physical memory might be different fo
 </pre></div>
 <p><em><span class="dquo">“</span>If the mount succeeds, it will try to execute <code>/sbin/init</code>, followed by <code>/etc/init</code>, <code>/bin/init</code>, and then <code>/bin/sh</code>, stopping at the first one that works.”</em></p>
 <h3 id="kernel-messages">Kernel messages</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Level</th>
@@ -1116,7 +1116,7 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>The difference between <code>/bin</code> and <code>/sbin</code> is simply that the latter need not be included in the search path for non-root users.”</em></p>
 <p><em><span class="dquo">“</span>The significance of <code>/usr</code> is that it maybe in a separate partition from the root filesystem, so it cannot contain anything that is needed to boot the system up.”</em></p>
 <h3 id="posix-file-access-permissions"><span class="caps">POSIX</span> file access permissions</h3>
-<p><span class="math">\($\begin{matrix}
+<div class="math">$$\begin{matrix}
 \left.\begin{matrix}
 400 &amp; r &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; -\\ 
 200 &amp; - &amp; w &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; -\\ 
@@ -1132,7 +1132,7 @@ The problem occurs because the location of physical memory might be different fo
 002 &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; w &amp; -\\ 
 001 &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; - &amp; x
 \end{matrix}\right\} \text{World permissions}
-\end{matrix}\)</span>$</p>
+\end{matrix}$$</div>
 <p><em><span class="dquo">“</span>There is a further group of three bits that have special meanings:</em></p>
 <ul>
 <li><em><span class="caps">SUID</span> (4): If the file is executable, it changes the effective <span class="caps">UID</span> of the process to that of the owner of the file when the program is run.</em></li>

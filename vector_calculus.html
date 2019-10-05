@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Vector Calculus "/>
 <meta property="og:url" content="./vector_calculus.html" />
-<meta property="og:description" content="Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl. Nabla Operator (\(\nabla\)) \($\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)\)$ For a 3-dimensional cartesian coordinate system: \($\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial …" />
+<meta property="og:description" content="Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl. Nabla Operator (\(\nabla\)) $$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$ For a 3-dimensional cartesian coordinate system: $$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-09-09T15:01:06+02:00" />
 <meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Vector Calculus ">
-<meta name="twitter:description" content="Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl. Nabla Operator (\(\nabla\)) \($\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)\)$ For a 3-dimensional cartesian coordinate system: \($\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial …">
+<meta name="twitter:description" content="Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl. Nabla Operator (\(\nabla\)) $$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$ For a 3-dimensional cartesian coordinate system: $$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial …">
 
         <title>Vector Calculus  · Lukas Woodtli
 </title>
@@ -95,9 +95,9 @@
             <p>Some notes about Vector Calculus. Mainly Divergence, Gradient and Curl.</p>
 
 <h1 id="nabla-operator-nabla">Nabla Operator (<span class="math">\(\nabla\)</span>)</h1>
-<p><span class="math">\($\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)\)</span>$</p>
+<div class="math">$$\nabla = \left (\frac\partial{\partial x_1},\ldots, \frac\partial{\partial x_n}\right)$$</div>
 <p>For a 3-dimensional cartesian coordinate system:</p>
-<p><span class="math">\($\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}\)</span>$</p>
+<div class="math">$$\nabla = \left(\frac\partial {\partial x}, \frac\partial {\partial y}, \frac\partial {\partial z}\right) = \vec e_x \frac\partial {\partial x} + \vec e_y \frac\partial {\partial y} + \vec e_z \frac\partial {\partial z}$$</div>
 <p>Sometimes <span class="math">\(\vec\nabla\)</span> is written instead of <span class="math">\(\nabla\)</span> to show that it’s basically a vector.</p>
 <p>The Nabla Operator can be seen as “Vector of partial derivative <em>operators</em>“. The dimension is same as the input dimension.</p>
 <p>Operator: takes as input a function an outputs an other function.</p>
@@ -107,7 +107,7 @@
 <p>Output: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a> </p>
 <p>The direction of the gradient at one position shows the direction of the biggest change (steepest ascent) in the scalar field. The vectors are pointing “uphills”.
 The length (absolute value) of the gradient at that point is a measurement of the change (slope, steepness).</p>
-<p><span class="math">\($\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n\)</span>$</p>
+<div class="math">$$\nabla f = \frac{\partial f}{\partial x_1}\mathbf{e}_1 + \cdots + \frac{\partial f}{\partial x_n }\mathbf{e}_n$$</div>
 <p><span class="math">\(e_i\)</span>: The orthogonal unit vectors pointing in the coordinate directions</p>
 <p>The Gradient is always perpendicular to the Contour lines.</p>
 <h1 id="divergence-operatornamediv">Divergence (<span class="math">\(\operatorname{div}\)</span>)</h1>
@@ -116,7 +116,7 @@ scalar field with signed components (positive values for sources, negative value
 <p>Input: A <a href="https://en.wikipedia.org/wiki/Vector_field">Vector field</a></p>
 <p>Output: A <a href="https://en.wikipedia.org/wiki/Scalar_field">Scalar field</a></p>
 <p>The divergence is the <em>scalar product</em> between the Nabla operator <span class="math">\(\nabla=(\tfrac{\partial}{\partial x_1},\ldots,\tfrac{\partial}{\partial x_n})\)</span> and the vector <span class="math">\(\vec F = (F_1, \ldots,F_n)\)</span>.</p>
-<p><span class="math">\($\operatorname{div}\,\vec F = \nabla\cdot\vec F =\frac{\partial F_1}{\partial x_1}+\frac{\partial F_2}{\partial x_2}+\cdots +\frac{\partial F_n}{\partial x_n} = \sum_{i=1}^n\frac{\partial F_i}{\partial x_i}\)</span>$</p>
+<div class="math">$$\operatorname{div}\,\vec F = \nabla\cdot\vec F =\frac{\partial F_1}{\partial x_1}+\frac{\partial F_2}{\partial x_2}+\cdots +\frac{\partial F_n}{\partial x_n} = \sum_{i=1}^n\frac{\partial F_i}{\partial x_i}$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

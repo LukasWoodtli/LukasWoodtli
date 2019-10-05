@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Angular Velocity "/>
 <meta property="og:url" content="./angular_velocity.html" />
-<meta property="og:description" content="Rotation of a body in space can be represented with a unit rotation vector (axis) and an angle of rotation around this axis. The angular velocity \(w\) can be defined as: \($w = \hat{w} \dot{\theta}\)$ Where: \(\hat{w}\): Rotation axis (unit vector), coordinate frame free \(\dot{\theta}\): Rate of …" />
+<meta property="og:description" content="Rotation of a body in space can be represented with a unit rotation vector (axis) and an angle of rotation around this axis. The angular velocity \(w\) can be defined as: $$w = \hat{w} \dot{\theta}$$ Where: \(\hat{w}\): Rotation axis (unit vector), coordinate frame free \(\dot{\theta}\): Rate of …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2019-09-05T20:10:41+02:00" />
 <meta property="og:article:modified_time" content="2019-09-06T18:45:46+02:00" />
 <meta name="twitter:title" content="Angular Velocity ">
-<meta name="twitter:description" content="Rotation of a body in space can be represented with a unit rotation vector (axis) and an angle of rotation around this axis. The angular velocity \(w\) can be defined as: \($w = \hat{w} \dot{\theta}\)$ Where: \(\hat{w}\): Rotation axis (unit vector), coordinate frame free \(\dot{\theta}\): Rate of …">
+<meta name="twitter:description" content="Rotation of a body in space can be represented with a unit rotation vector (axis) and an angle of rotation around this axis. The angular velocity \(w\) can be defined as: $$w = \hat{w} \dot{\theta}$$ Where: \(\hat{w}\): Rotation axis (unit vector), coordinate frame free \(\dot{\theta}\): Rate of …">
 
         <title>Angular Velocity  · Lukas Woodtli
 </title>
@@ -83,7 +83,7 @@
             <p>Rotation of a body in space can be represented with a unit rotation vector
 (axis) and an angle of rotation around this axis.</p>
 <p>The angular velocity <span class="math">\(w\)</span> can be defined as:</p>
-<p><span class="math">\($w = \hat{w} \dot{\theta}\)</span>$</p>
+<div class="math">$$w = \hat{w} \dot{\theta}$$</div>
 <p>Where:</p>
 <ul>
 <li><span class="math">\(\hat{w}\)</span>: Rotation axis (unit vector), coordinate frame free</li>
@@ -98,19 +98,19 @@ frame <span class="math">\(\{b\}\)</span>  with respect to the fixed frame <span
 <p>The columns <span class="math">\(r_i(t)\)</span> describe the the unit axes <span class="math">\(\hat{x}\)</span>, <span class="math">\(\hat{y}\)</span> and  <span class="math">\(\hat{z}\)</span> respectively in fixed frame coordinates.</p>
 <p>Let <span class="math">\(\omega_s \in \mathbb{R}^3\)</span> be the angular velocity <span class="math">\(w\)</span> expressed in
 fixed frame <span class="math">\(\{s\}\)</span> coordinates.</p>
-<p><span class="math">\($\dot{r}_i = \omega_s \times r_i \qquad \forall i \in \{1,\ldots ,3\}\)</span>$</p>
+<div class="math">$$\dot{r}_i = \omega_s \times r_i \qquad \forall i \in \{1,\ldots ,3\}$$</div>
 <p>These equations can be combined:</p>
-<p><span class="math">\($\dot{R}_{sb} = \begin{bmatrix}
+<div class="math">$$\dot{R}_{sb} = \begin{bmatrix}
 \omega_s \times r_1 &amp; \omega_s \times r_2 &amp;  \omega_s \times r_3
-\end{bmatrix} = \omega_s \times R_{sb}\)</span>$</p>
+\end{bmatrix} = \omega_s \times R_{sb}$$</div>
 <p>this can be simplified to:</p>
-<p><span class="math">\($\dot{R}_{sb} = [\omega_s]R_{sb}\)</span>$</p>
+<div class="math">$$\dot{R}_{sb} = [\omega_s]R_{sb}$$</div>
 <p>where:</p>
 <p><span class="math">\([\omega_s]\)</span> is a <span class="math">\(3 \times 3\)</span> <a href="./skew-symmetric_matrix.html">skew-symmetric matrix</a> representation of <span class="math">\(\omega_s \in \mathbb{R}^3\)</span>.</p>
 <h1 id="general-relations">General Relations</h1>
-<p><span class="math">\($[\omega_s] = \dot{R}_{sb}R_{sb}^{-1} = \dot{R}_{sb}R_{sb}^T\)</span>$</p>
+<div class="math">$$[\omega_s] = \dot{R}_{sb}R_{sb}^{-1} = \dot{R}_{sb}R_{sb}^T$$</div>
 <p>and</p>
-<p><span class="math">\($[\omega_b] = R_{sb}^{-1}\dot{R}_{sb}= R_{sb}^T\dot{R}_{sb}\)</span>$</p>
+<div class="math">$$[\omega_b] = R_{sb}^{-1}\dot{R}_{sb}= R_{sb}^T\dot{R}_{sb}$$</div>
 <p>Where</p>
 <ul>
 <li><span class="math">\([\omega_s] \in so(3)\)</span>: fixed frame representation of the angular velocity <span class="math">\(w\)</span></li>
@@ -120,8 +120,8 @@ fixed frame <span class="math">\(\{s\}\)</span> coordinates.</p>
 <p>An angular velocity expressed in an arbitrary frame <span class="math">\(\{d\}\)</span>
 can be represented in another frame <span class="math">\(\{c\}\)</span> using the 
 subscript cancellation rule:</p>
-<p><span class="math">\($\omega_b = R_{bs}\omega_s = R^{-1}_{sb}\omega_s = R^T_{sb}\omega_s\)</span>$</p>
-<p><span class="math">\($\omega_s = R_{sb}\omega_b\)</span>$</p>
+<div class="math">$$\omega_b = R_{bs}\omega_s = R^{-1}_{sb}\omega_s = R^T_{sb}\omega_s$$</div>
+<div class="math">$$\omega_s = R_{sb}\omega_b$$</div>
 <h1 id="literature">Literature</h1>
 <p>Notes taken from:</p>
 <p><a href="http://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics: Mechanics, Planning, and Control</a> by Kevin M. Lynch and Frank C. Park, Cambridge University Press, 2017</p>

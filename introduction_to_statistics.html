@@ -138,13 +138,14 @@
 <p><span class="math">\(P(A\mid B)\)</span>: Probability of Event <span class="math">\(A\)</span> when <span class="math">\(B\)</span> already occured.</p>
 <h1 id="bayes-rule">Bayes’ Rule</h1>
 <p>See also <a href="http://en.wikipedia.org/wiki/Bayes%27_theorem" title="Bayes' theorem">Wikipedia</a></p>
-<p><span class="math">\($P(A\mid B) \; = \; \frac {P(B\mid A) \cdot P(A)} {P(B)}\)</span>$</p>
+<div class="math">$$P(A\mid B) \; = \; \frac {P(B\mid A) \cdot P(A)} {P(B)}$$</div>
 <blockquote>
 <p>Prior Probability  <span class="amp">&amp;</span> Test Evidence -&gt; Posterior Probability</p>
 </blockquote>
 <p>Prior: <span class="math">\(P(A)\)</span></p>
-<p>Posterior: <span class="math">\($P(A \mid B) = P(A) \cdot P(B \mid A)\\
-    P(\lnot A\mid B) = P(\lnot A) \cdot P(B \mid \lnot A)\)</span>$</p>
+<p>Posterior: </p>
+<div class="math">$$P(A \mid B) = P(A) \cdot P(B \mid A)\\
+    P(\lnot A\mid B) = P(\lnot A) \cdot P(B \mid \lnot A)$$</div>
 <ul>
 <li><span class="math">\(P(A)\)</span>: the prior, is the initial degree of belief in <span class="math">\(A\)</span>.</li>
 <li><span class="math">\(P(A \mid B)\)</span>: the posterior, is the degree of belief having accounted for <span class="math">\(B\)</span>.</li>
@@ -190,15 +191,15 @@ Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <p>Data → P</p>
 <p>P → P(Data)</p>
 <h2 id="maximum-likelihood-estimator-mle">Maximum Likelihood Estimator (<span class="caps">MLE</span>):</h2>
-<p><span class="math">\($\frac{1}{N} \cdot \sum_{i}^{} X_i\)</span>$</p>
+<div class="math">$$\frac{1}{N} \cdot \sum_{i}^{} X_i$$</div>
 <p>The sum is always between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>.</p>
 <h2 id="laplace-estimator">Laplace Estimator:</h2>
-<p><span class="math">\($\frac{1}{N + k} \cdot \left(1 + \sum_{i}^{} X_i \right)\)</span>$</p>
+<div class="math">$$\frac{1}{N + k} \cdot \left(1 + \sum_{i}^{} X_i \right)$$</div>
 <p><span class="math">\(k\)</span>: Number of Outcomes</p>
 <p><span class="math">\(N\)</span>: Number of Experiments</p>
 <h1 id="averages">Averages</h1>
 <h2 id="mean">Mean</h2>
-<p><span class="math">\($\mu = \frac{1}{n} \sum_{i=1}^n{x_i}\)</span>$</p>
+<div class="math">$$\mu = \frac{1}{n} \sum_{i=1}^n{x_i}$$</div>
 <p>Sum up all elements and divide by the number of elements.</p>
 <h2 id="median">Median</h2>
 <p>Sort all elements and take the one in the middle.</p>
@@ -208,15 +209,16 @@ Specificity: <span class="math">\(P(Neg \mid \lnot D)\)</span></p>
 <p>The variance is a measure how disperse a data set is.</p>
 <p>Subtract the <em>mean</em> from every item. Then sum up the <em>squares</em> of the subtractions
 and devide the result by the number of data items.</p>
-<p><span class="math">\($Var(X) = \sigma^2_X = \frac{1}{n} \sum_{i}(x_i - \mu)^2\)</span>$</p>
+<div class="math">$$Var(X) = \sigma^2_X = \frac{1}{n} \sum_{i}(x_i - \mu)^2$$</div>
 <p>Alternative Formula:</p>
-<p><span class="math">\($\sigma^2_X = \frac{\sum X_i^2}{N} - \frac{\left( \sum X_i  \right)^2}{N^2}\)</span>$</p>
+<div class="math">$$\sigma^2_X = \frac{\sum X_i^2}{N} - \frac{\left( \sum X_i  \right)^2}{N^2}$$</div>
 <h1 id="standard-deviation">Standard Deviation</h1>
-<p>The standard deviation is giving a sense how far away the items in a data set are from the mean.
-<span class="math">\($\sigma_X = \sqrt{Var(X)}\)</span>$</p>
+<p>The standard deviation is giving a sense how far away the items in a data set are from the mean.
+</p>
+<div class="math">$$\sigma_X = \sqrt{Var(X)}$$</div>
 <h1 id="overwiev-of-mean-variance-and-standard-deviation">Overwiev of Mean, Variance and Standard Deviation</h1>
 <p>This notes are taken from <a href="https://www.khanacademy.org/math/probability/descriptive-statistics/variance_std_deviation/v/statistics-standard-deviation">Khan Academy</a></p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Concept</th>
@@ -251,18 +253,18 @@ and devide the result by the number of data items.</p>
 <h1 id="binomial-coefficients">Binomial Coefficients</h1>
 <p>Choose <span class="math">\(k\)</span> elements from <span class="math">\(n\)</span> possible elements (without putting
 back elements and without caring about the order of the chosen elements):</p>
-<p><span class="math">\($\binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}\)</span>$</p>
+<div class="math">$$\binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$$</div>
 <h1 id="binomial-distribution">Binomial Distribution</h1>
 <p>i.e. Flip a loaded coin:</p>
 <p><span class="math">\(p = P(heads)\)</span>: Probability to get a head from one coin flip.</p>
 <p>Flip coin <span class="math">\(n\)</span> times.</p>
 <p><span class="math">\(P(\#heads = k)\)</span>: Expectation to get <span class="math">\(k\)</span> heads from all the flips.</p>
-<p><span class="math">\($P(\#heads = k) = \frac{n!}{k! \cdot (n - k)!} \cdot p^k \cdot (1-p)^{n-k} = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}\)</span>$</p>
+<div class="math">$$P(\#heads = k) = \frac{n!}{k! \cdot (n - k)!} \cdot p^k \cdot (1-p)^{n-k} = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}$$</div>
 <h1 id="the-normal-distribution">The Normal Distribution</h1>
 <p><span class="math">\(\mu\)</span>: Mean</p>
 <p><span class="math">\(\sigma^2\)</span>: Variance</p>
 <p><span class="math">\(\sigma\)</span>: Standard Deviation</p>
-<p><span class="math">\($f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\cdot e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right)}\)</span>$</p>
+<div class="math">$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\cdot e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right)}$$</div>
 <h2 id="normaliser">Normaliser</h2>
 <p>The expression <span class="math">\(\frac{1}{\sqrt{2\pi\sigma^2}}\)</span> is needed to normalise the area underneath curve given by the rest of
 the formula (<span class="math">\(e^{\left(-\frac{1}{2}\cdot\frac{\left(x-\mu\right)^2}{\sigma^2}\right)}\)</span>). Otherwise it would not add up to <span class="math">\(1\)</span>.</p>
