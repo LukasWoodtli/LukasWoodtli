@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Language Implementation Patterns "/>
 <meta property="og:url" content="./language_implementation_patterns.html" />
-<meta property="og:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …" />
+<meta property="og:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be found here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2019-09-16T15:38:25+02:00" />
+<meta property="og:article:modified_time" content="2019-10-31T21:12:33+01:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
-<meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be foudn here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
+<meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be found here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
         <title>Language Implementation Patterns  · Lukas Woodtli
 </title>
@@ -147,6 +147,35 @@
 </li>
 </ul>
 </li>
+<li><a href="#walking-and-rewriting-trees">Walking and Rewriting Trees</a><ul>
+<li><a href="#walking-trees-and-visitation-order">Walking Trees and Visitation Order</a></li>
+<li><a href="#pattern-12-embedded-heterogeneous-tree-walker">Pattern 12: Embedded Heterogeneous Tree Walker</a><ul>
+<li><a href="#purpose_4">Purpose</a></li>
+<li><a href="#discussion_4">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-13-external-tree-visitor">Pattern 13: External Tree Visitor</a><ul>
+<li><a href="#purpose_5">Purpose</a></li>
+<li><a href="#discussion_5">Discussion</a></li>
+<li><a href="#implementation">Implementation</a><ul>
+<li><a href="#visitor-switching-on-node-type">Visitor Switching on Node Type</a></li>
+<li><a href="#switching-on-the-token-type-to-build-independent-visitors">Switching on the Token Type to Build Independent Visitors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#pattern-14-tree-grammar">Pattern 14: Tree Grammar</a><ul>
+<li><a href="#purpose_6">Purpose</a></li>
+<li><a href="#discussion_6">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-15-tree-pattern-matcher">Pattern 15: Tree Pattern Matcher</a><ul>
+<li><a href="#purpose_7">Purpose</a></li>
+<li><a href="#discussion_7">Discussion</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -158,7 +187,7 @@
             
             <p>This page collects notes and citations from the book:</p>
 <p><a href="https://pragprog.com/book/tpdsl/language-implementation-patterns">Language Implementation Patterns by Terence Parr</a></p>
-<p>Some of my examples can be foudn <a href="LukasWoodtli/LanguageImplementationPatterns">here</a></p>
+<p>Some of my examples can be found <a href="LukasWoodtli/LanguageImplementationPatterns">here</a></p>
 
 <h1 id="getting-started-with-parsing">Getting Started with Parsing</h1>
 <h2 id="basic-parsing-patterns">Basic Parsing Patterns</h2>
@@ -486,6 +515,119 @@ In some cases, named fields lead to more readable code.”</em></p>
 <p><em><span class="dquo">“</span>It’s very natural to name the fields of a class, in this case naming the children of
 a node. The big downside to using nodes with irregular children is that it’s
 much less convenient to build tree walkers”</em></p>
+<h2 id="walking-and-rewriting-trees">Walking and Rewriting Trees</h2>
+<p><em><span class="dquo">“</span>Tree walking is one of the key processes going on in a large language application.”</em></p>
+<p><em><span class="dquo">“</span>In real applications, though, tree walking gets surprisingly complicat- ed. There are a number of different variations, sometimes even within the same application.”</em></p>
+<p><em><span class="dquo">“</span>The variation we choose depends on whether we have the source code for our tree nodes, whether the trees have normalized children, whether the trees are homogeneous or heterogeneous, whether we need to rewrite trees while walking, and even in which order we need to walk the nodes.”</em></p>
+<h3 id="walking-trees-and-visitation-order">Walking Trees and Visitation Order</h3>
+<ul>
+<li><em><span class="dquo">“</span>Preorder traversal or top-down traversal: <span class="math">\(+ 1 2\)</span>. Visit a (parent) node before visiting its children.</em></li>
+<li><em>Inorder traversal: <span class="math">\(1 + 2\)</span>. Visit a node in between visiting children.</em></li>
+<li><em>Postorder traversal or bottom-up traversal: <span class="math">\(1 2 +\)</span>. Visit a node after visiting its children.”</em></li>
+</ul>
+<h3 id="pattern-12-embedded-heterogeneous-tree-walker">Pattern 12: Embedded Heterogeneous Tree Walker</h3>
+<h4 id="purpose_4">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern walks heterogeneous ASTs using a set of recursive methods defined within the node class definitions.”</em></p>
+<h4 id="discussion_4">Discussion</h4>
+<p><em><span class="dquo">“</span>This is the easiest tree-walking pattern to understand, but, ultimately, this approach doesn’t scale well. Because it distributes tree-walking code across all node definitions, it works best when there are only a few node definitions.”</em></p>
+<h3 id="pattern-13-external-tree-visitor">Pattern 13: External Tree Visitor</h3>
+<h4 id="purpose_5">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern encapsulates all tree-walking code associated with a particular task into a single visitor class.
+Visitors combine tree walking and action execution code outside the <span class="caps">AST</span> node definitions. Consequently, we can change the functionality of the tree walker without having to change the <span class="caps">AST</span> class definitions and can even switch visitors on the fly. An external visitor can walk either heterogeneous or homogeneous <span class="caps">AST</span> nodes.”</em></p>
+<h4 id="discussion_5">Discussion</h4>
+<p><em><span class="dquo">“</span>The visitor pattern is the workhorse of choice for tree walking in most language applications. Ultimately you might get tired of manually building visitors, though”</em></p>
+<h4 id="implementation">Implementation</h4>
+<p><em><span class="dquo">“</span>There are two ways to implement this pattern. The first is more traditional and relies on the node types themselves. The second relies on the node’s token type instead.”</em></p>
+<h5 id="visitor-switching-on-node-type">Visitor Switching on Node Type</h5>
+<p><em><span class="dquo">“</span>The traditional implementation of the visitor pattern originally specified in
+‘Design Patterns: Elements of Reusable Object-Oriented Software’
+relies on a ‘double-dispatch’ method within each <span class="caps">AST</span> node. The double-dispatch method redirects <code>visit()</code>
+ calls on a node to an appropriate method in a visitor servicing that node type. The visitor is like a set of callback methods.”</em></p>
+<h5 id="switching-on-the-token-type-to-build-independent-visitors">Switching on the Token Type to Build Independent Visitors</h5>
+<p><em><span class="dquo">“</span>For language applications, we build trees from tokens. Since we can distinguish between tokens using the token type, we can also 
+distinguish between <span class="caps">AST</span> nodes using the token type. By switching on the token type rather than the <span class="caps">AST</span> node type, we can avoid
+the <code>visit()</code> method in each <span class="caps">AST</span> node. In its place, we use just one dispatch method inside the visitor.”</em></p>
+<h3 id="pattern-14-tree-grammar">Pattern 14: Tree Grammar</h3>
+<h4 id="purpose_6">Purpose</h4>
+<p><em><span class="dquo">“</span>Tree grammars are a terse and formal way of building an external visitor.”</em></p>
+<h4 id="discussion_6">Discussion</h4>
+<p><em><span class="dquo">“</span>Tree grammars look just like conventional parser grammars except that we can match subtree patterns as well.
+As with parser grammars, we can embed actions to extract information or reorganize the input (a tree, in this case).”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">ANTLR</span> generates tree walkers from tree grammars that literally act like parsers.”</em></p>
+<p><em><span class="dquo">“</span>Tree grammars do not care about the implementation language classes used to represent <span class="caps">AST</span> nodes (they work with both homogeneous and heterogeneous <span class="caps">AST</span> nodes).”</em></p>
+<h3 id="pattern-15-tree-pattern-matcher">Pattern 15: Tree Pattern Matcher</h3>
+<h4 id="purpose_7">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern walks trees, triggering actions or tree rewrites as it encounters tree patterns of interest.
+The process of matching and rewriting trees is formally called term rewriting.”</em></p>
+<h4 id="discussion_7">Discussion</h4>
+<p><em><span class="dquo">“</span>Using a tree pattern matcher differs from using a tree grammar in two important ways:</em></p>
+<ul>
+<li><em>We have to specify patterns only for the subtrees we care about.</em></li>
+<li><em>We don’t need to direct the tree walk.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>A tree pattern matcher is analogous to text rewriting tools such as <code>awk</code>, <code>sed</code>, and <code>perl</code>.”</em></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -509,7 +651,7 @@ much less convenient to build tree walkers”</em></p>
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-09-16T15:38:25+02:00">Sep 16, 2019</time>
+<time datetime="2019-10-31T21:12:33+01:00">Oct 31, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
