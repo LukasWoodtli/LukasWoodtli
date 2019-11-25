@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2019-11-25T16:25:27+01:00" />
+<meta property="og:article:modified_time" content="2019-11-25T16:36:56+01:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be found here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -183,6 +183,22 @@
 <li><a href="#rule-based-translation">Rule-Based Translation</a></li>
 <li><a href="#model-driven-translation">Model-Driven Translation</a></li>
 <li><a href="#decoupling-input-model-traversal-from-output-order">Decoupling Input Model Traversal from Output Order</a></li>
+<li><a href="#organizing-translated-phrases-into-a-nested-model">Organizing Translated Phrases into a Nested Model</a></li>
+<li><a href="#pattern-29-syntax-directed-translator">Pattern 29: Syntax-Directed Translator</a><ul>
+<li><a href="#purpose_8">Purpose</a></li>
+<li><a href="#discussion_8">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-30-rule-based-translator">Pattern 30: Rule-Based Translator</a><ul>
+<li><a href="#purpose_9">Purpose</a></li>
+<li><a href="#discussion_9">Discussion</a></li>
+</ul>
+</li>
+<li><a href="#pattern-31-target-specific-generator-classes">Pattern 31: Target-Specific Generator Classes</a><ul>
+<li><a href="#purpose_10">Purpose</a></li>
+<li><a href="#discussion_10">Discussion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -628,6 +644,39 @@ are much more convenient. Unfortunately, print statements lock the
 order of the output elements to the input model traversal order.
 Besides, computing output strings in a general-purpose programming
 language ain’t exactly pretty.”</em></p>
+<h3 id="organizing-translated-phrases-into-a-nested-model">Organizing Translated Phrases into a Nested Model</h3>
+<p><em><span class="dquo">“</span>In general, translators need to track a few locations
+in the output model. These locations are typically things such as
+the current file object, the current class object, or the current method object.”</em></p>
+<h3 id="pattern-29-syntax-directed-translator">Pattern 29: Syntax-Directed Translator</h3>
+<h4 id="purpose_8">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern generates text using a grammar, or equivalent hand-built parser,
+embedded with actions.”</em></p>
+<h4 id="discussion_8">Discussion</h4>
+<p><em><span class="dquo">“</span>Syntax-directed translators are little more than grammars salted with actions
+(code snippets). They don’t build internal models and then walk them to
+generate output.
+Putting actions directly in a grammar sometimes makes the grammar difficult
+to read. It also locks the grammar into a single bit of translator functionality.”</em></p>
+<h3 id="pattern-30-rule-based-translator">Pattern 30: Rule-Based Translator</h3>
+<h4 id="purpose_9">Purpose</h4>
+<p><em><span class="dquo">“</span>A rule-based translator expresses a translation with a set of ‘x becomes y’
+rules, written in the <span class="caps">DSL</span> of a pattern-matching engine.”</em></p>
+<h4 id="discussion_9">Discussion</h4>
+<p><em><span class="dquo">“</span>To use a rule-based system, we have to feed it two things: a grammar that
+describes input sentences and a set of translation rules.”</em></p>
+<p><em><span class="dquo">“</span>Although it looks like we’re doing text-to-text transformations,
+the underlying engine is actually doing tree rewrites.
+For complicated translators, we need to build a lot of ancillary data structures
+beyond trees such as symbol tables and control-flow graphs.”</em></p>
+<h3 id="pattern-31-target-specific-generator-classes">Pattern 31: Target-Specific Generator Classes</h3>
+<h4 id="purpose_10">Purpose</h4>
+<p><em><span class="dquo">“</span>This pattern describes a class library whose sole purpose is to represent and
+generate output constructs in a particular language.”</em></p>
+<h4 id="discussion_10">Discussion</h4>
+<p><em><span class="dquo">“</span>Rather than use print statements to generate programs or data, generator
+classes let us insulate application code from the exact syntax of an output
+language. […] we’re defining a special class for each output element.”</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -713,7 +762,7 @@ language ain’t exactly pretty.”</em></p>
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-11-25T16:25:27+01:00">Nov 25, 2019</time>
+<time datetime="2019-11-25T16:36:56+01:00">Nov 25, 2019</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
