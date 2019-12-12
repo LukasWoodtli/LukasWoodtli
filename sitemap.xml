@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2019-11-25T16:39:02-00:00</lastmod>
+<lastmod>2019-12-12T08:30:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2019-11-25T16:39:02-00:00</lastmod>
+<lastmod>2019-12-12T08:30:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2019-11-25T16:39:02-00:00</lastmod>
+<lastmod>2019-12-12T08:30:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2019-11-25T16:39:02-00:00</lastmod>
+<lastmod>2019-12-12T08:30:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -96,7 +96,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/exponential_coordinates_of_rotations_(rodrigues'_formula).html</loc>
-<lastmod>2019-10-26T20:11:22+02:00</lastmod>
+<lastmod>2019-12-12T07:58:42+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -361,7 +361,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://lukaswoodtli.github.io/git:_the_.git_directory.html</loc>
+<loc>http://lukaswoodtli.github.io/git:_the__git_directory.html</loc>
 <lastmod>2018-06-06T15:24:09+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -754,7 +754,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/mathematics.html</loc>
-<lastmod>2019-10-26T20:11:22+01:00</lastmod>
+<lastmod>2019-12-12T07:58:42+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -782,7 +782,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/robotics.html</loc>
-<lastmod>2019-10-26T20:11:22+01:00</lastmod>
+<lastmod>2019-12-12T07:58:42+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1041,7 +1041,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2019-11-25T16:36:56+01:00</lastmod>
+<lastmod>2019-12-12T07:58:42+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
