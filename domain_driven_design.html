@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-01-05T14:57:29+01:00" />
-<meta property="og:article:modified_time" content="2020-01-05T14:57:29+01:00" />
+<meta property="og:article:modified_time" content="2020-01-22T16:04:51+01:00" />
 <meta name="twitter:title" content="Domain Driven Design ">
 <meta name="twitter:description" content="Introduction Domain Driven Design (DDD) is a set of methodologies, tools and patterns that help to develop complex software systems. The design techniques are divided into two major groups: strategical and tactical. Strategical These ideas include the cooperation of a lot of different people participating in a project. This are …">
 
@@ -121,11 +121,15 @@
 <li><a href="#anti-corruption-layer">Anti-Corruption Layer</a></li>
 <li><a href="#core-domain-and-subdomain">Core Domain and Subdomain</a><ul>
 <li><a href="#core-domain">Core Domain</a></li>
+<li><a href="#subdomains">Subdomains</a><ul>
+<li><a href="#generic-subdomains">Generic Subdomains</a></li>
+<li><a href="#supporting-subdomains">Supporting Subdomains</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#subdomains">Subdomains</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -135,7 +139,7 @@
             
             
 <h1 id="introduction">Introduction</h1>
-<p>Domain Driven Design (<span class="caps">DDD</span>) is a set of methodologies, tools and patterns that help to develop complex software systems. </p>
+<p>Domain Driven Design (<span class="caps">DDD</span>) is a set of methodologies, tools and patterns that help to develop complex software systems.</p>
 <p>The design techniques are divided into two major groups: strategical and tactical.</p>
 <h2 id="strategical">Strategical</h2>
 <p>These ideas include the cooperation of a lot of different people participating in a project. This are mainly the business analysts (domain experts) and the developers.</p>
@@ -168,7 +172,7 @@ This is a simple naming scheme that should be only used as a rule of thumb.</p>
 <p>The transformation of the model into code is an difficult process. The developers that write this code should know the model very well and are responsible for its integrity. A change in the code needs to be immediately reflected in the model.</p>
 <p>The classes and methods of the software are a direct mapping of the model and ubiquitous Language to code. If this mapping is made obvious it makes the code very readable.</p>
 <p>Anybody that works on the code needs to know how to express the model in code. It is necessary that all developers are involved into the discussions about the model with the domain experts.</p>
-<p>If the design of the system or of central components don’t reflect the model, the correctness of the software is in danger. </p>
+<p>If the design of the system or of central components don’t reflect the model, the correctness of the software is in danger.</p>
 <h1 id="building-blocks-and-patterns">Building Blocks and Patterns</h1>
 <p>The original patterns of <span class="caps">DDD</span> are based on object oriented programming. But they can also be applied (in modified form) to other languages.</p>
 <h2 id="architecture">Architecture</h2>
@@ -176,7 +180,7 @@ This is a simple naming scheme that should be only used as a rule of thumb.</p>
 <h3 id="layers">Layers</h3>
 <p>This is a list of traditional layers in an n-tier application:</p>
 <ul>
-<li><span class="caps">UI</span>: Represent information to the user and allow interaction. </li>
+<li><span class="caps">UI</span>: Represent information to the user and allow interaction.</li>
 <li>Application Layer: Coordination of application logic. It contains no business logic.</li>
 <li>Domain Layer: Business logic and objects.</li>
 <li>Infrastructure Layer: Persistency, Networking, I/O</li>
@@ -197,9 +201,9 @@ They are stateless and provide simply functionality (a concept) for the domain.
 <p>Business processes should be implemented as services.</p>
 <p>Services can not only be used in the domain layer but also in the application or infrastructure layer. Domain and application services usually act on domain entities and value objects. It needs to be reassured that the layers are kept isolated from each other.</p>
 <h4 id="modules">Modules</h4>
-<p>Large and complex models are split into modules. </p>
+<p>Large and complex models are split into modules.</p>
 <p>Modules should have low coupling between each other and high cohesion inside them. Together with well defined interfaces this allows for good testing.</p>
-<p>Module names become part of the ubiquitous language. </p>
+<p>Module names become part of the ubiquitous language.</p>
 <h4 id="aggregates">Aggregates</h4>
 <p>Aggregates are used to define ownership and boundaries of domain objects. They help to simplify relationships between objects by restricting them to be only inside the aggregate.</p>
 <p>An aggregate is also the root regarding persistence. It has to handle transactions and contract (invariant) checking.</p>
@@ -238,7 +242,7 @@ Internally they can use factories for creating an object tree and ensure that th
 <h2 id="shared-kernel">Shared Kernel</h2>
 <p>If there is a part of the system that is present in two (or more) contexts is it called a Shared Kernel. This is a sign of uncoordinated teams working on closely related parts of the system.</p>
 <p>It’s also possible to actively to decide that two teams share a part of the system and maintain this part collectively. This reduces the effort of duplication and has the benefit of a partly common Ubiquitous Language.</p>
-<p>The scope of the Shared Kernel has to be clearly defined. And any changes to it needs coordination between the teams that share it. </p>
+<p>The scope of the Shared Kernel has to be clearly defined. And any changes to it needs coordination between the teams that share it.</p>
 <h2 id="customer-supplier">Customer-Supplier</h2>
 <p>If one subsystem depends strongly on another one they are in a Customer-Supplier relationship.</p>
 <p>The teams developing these subsystems need to meet regularly. The „customer“ has to specify its requirements. The „supplier“ team has to implement them.</p>
@@ -252,9 +256,13 @@ Internally they can use factories for creating an object tree and ensure that th
 <h3 id="core-domain">Core Domain</h3>
 <p>This contains the main functionality of the application. It is the unique selling point. The best developers should be assigned to work on that part of the domain.
 The core should stay as small as possible. It contains a lot of business logic.</p>
-<h1 id="subdomains">Subdomains</h1>
-<p>The other parts of the model is implemented in subdomains. They should be generic and do not contain any specialities. Ideally they could be reused for other applications.</p>
+<h3 id="subdomains">Subdomains</h3>
+<p>The other parts of the model is implemented in subdomains.</p>
 <p>They could be developed by an other company or could even be an generic third party tool that is integrated into the system.</p>
+<h4 id="generic-subdomains">Generic Subdomains</h4>
+<p>They should be generic and do not contain any specialties. Ideally they could be reused for other applications.</p>
+<h4 id="supporting-subdomains">Supporting Subdomains</h4>
+<p>They are part of the specific domain of the application. But they don’t contain core functionality.</p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -277,7 +285,7 @@ The core should stay as small as possible. It contains a lot of business logic.
             <time itemprop="dateCreated" datetime="2020-01-05T14:57:29+01:00">Jan 5, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-01-05T14:57:29+01:00">Jan 5, 2020</time>
+<time datetime="2020-01-22T16:04:51+01:00">Jan 22, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
