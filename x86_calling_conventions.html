@@ -256,8 +256,8 @@ See also <a href="https://en.m.wikipedia.org/wiki/X86_calling_conventions">Wikip
 <h2 id="clean-up">Clean-Up</h2>
 <p>The caller is responsible for clearing the argument from the stack.
 This is usually donne by adjusting the <code>RSP</code>, instead of <code>POP</code> instructions.</p>
-<div class="highlight"><pre><span></span><span class="nf">add</span> <span class="nb">rsp</span><span class="p">,</span> <span class="nv">numberOfArguments</span> <span class="o">*</span> <span class="mi">8</span> <span class="c1">; number of arguments placed on stack</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">add</span> <span class="nb">rsp</span><span class="p">,</span> <span class="nv">numberOfArguments</span> <span class="o">*</span> <span class="mi">8</span> <span class="c1">; number of arguments placed on stack</span>
+</code></pre></div>
 <h2 id="stack-frame">Stack Frame</h2>
 <p>The stack frame is the data on the stack that belong to one function call.
 It’s also called activation record or call frame.</p>
@@ -273,11 +273,11 @@ It’s also called activation record or call frame.</p>
 <p>The System V <span class="caps">AMD64</span> <span class="caps">ABI</span> doesn’t require to use the base pointer</p>
 </blockquote>
 <p>To save and adjust <code>rbp</code>:</p>
-<div class="highlight"><pre><span></span><span class="c1">; prologue</span>
+<div class="highlight"><pre><span></span><code><span class="c1">; prologue</span>
 <span class="nf">push</span> <span class="nb">rbp</span>
    <span class="c1">; save the 'old' `rbp` on the stack</span>
 <span class="nf">mov</span> <span class="nb">rbp</span><span class="p">,</span> <span class="nb">rsp</span>   <span class="c1">; adjust `rbp` to point to the just saved 'old' `rbp`</span>
-</pre></div>
+</code></pre></div>
 <h2 id="the-red-zone">The Red Zone</h2>
 <ul>
 <li>The 128 bytes after the last stack frame are reserved for compiler optimization</li>

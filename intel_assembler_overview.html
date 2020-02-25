@@ -137,13 +137,13 @@ It can be placed anywhere. Everything to the end of the line is ignored.</p>
 </tbody>
 </table>
 <h1 id="constants">Constants</h1>
-<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="nf">name</span><span class="o">&gt;</span>  <span class="nv">equ</span>   <span class="o">&lt;</span><span class="nv">value</span><span class="o">&gt;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;</span><span class="nf">name</span><span class="o">&gt;</span>  <span class="nv">equ</span>   <span class="o">&lt;</span><span class="nv">value</span><span class="o">&gt;</span>
+</code></pre></div>
 <p>Constants are substituted with their value during the assembly process.
 They are not assigned a memory location</p>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="no">SIZE</span><span class="kd">  equ</span>   <span class="mi">127</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="no">SIZE</span><span class="kd">  equ</span>   <span class="mi">127</span>
+</code></pre></div>
 <h1 id="initialized-variables-data">Initialized Variables (data)</h1>
 <ul>
 <li>Declared in <code>section .data</code></li>
@@ -160,10 +160,10 @@ They are not assigned a memory location</p>
 <li>Arrays are Initialized with comma separated values</li>
 </ul>
 <p>Format:</p>
-<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="nf">varName</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">dataType</span><span class="o">&gt;</span>   <span class="o">&lt;</span><span class="nv">initialValue</span><span class="o">&gt;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;</span><span class="nf">varName</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">dataType</span><span class="o">&gt;</span>   <span class="o">&lt;</span><span class="nv">initialValue</span><span class="o">&gt;</span>
+</code></pre></div>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><span class="nf">bVal</span> <span class="nv">db</span> <span class="mi">2</span>            <span class="c1">; byte</span>
+<div class="highlight"><pre><span></span><code><span class="nf">bVal</span> <span class="nv">db</span> <span class="mi">2</span>            <span class="c1">; byte</span>
 <span class="nf">cVal</span> <span class="nv">db</span> <span class="s">"H"</span>          <span class="c1">; char</span>
 <span class="nf">str</span> <span class="nv">db</span> <span class="s">"Hello World"</span> <span class="c1">; string</span>
 <span class="nf">wVal</span> <span class="nv">dw</span> <span class="mi">5000</span>         <span class="c1">; 16-bit word</span>
@@ -171,7 +171,7 @@ They are not assigned a memory location</p>
 <span class="nf">arr</span> <span class="nv">dd</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span> <span class="c1">; 3 element array</span>
 <span class="nf">flt1</span> <span class="nv">dd</span> <span class="mf">3.14159</span>      <span class="c1">; 32-bit float</span>
 <span class="nf">qVar</span> <span class="nv">dq</span> <span class="mi">1000000000</span>   <span class="c1">; 64-bit (quad word)</span>
-</pre></div>
+</code></pre></div>
 <h1 id="uninitialized-variables-bss">Uninitialized Variables (<span class="caps">BSS</span>)</h1>
 <ul>
 <li>Declared in <code>section .bss</code></li>
@@ -186,23 +186,23 @@ They are not assigned a memory location</p>
 </li>
 </ul>
 <p>Format:</p>
-<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="nf">varName</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">resType</span><span class="o">&gt;</span>   <span class="o">&lt;</span><span class="nv">count</span><span class="o">&gt;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;</span><span class="nf">varName</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="nv">resType</span><span class="o">&gt;</span>   <span class="o">&lt;</span><span class="nv">count</span><span class="o">&gt;</span>
+</code></pre></div>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><span class="nf">bArr</span> <span class="nv">resb</span> <span class="mi">5</span>   <span class="c1">; 5 element byte array</span>
+<div class="highlight"><pre><span></span><code><span class="nf">bArr</span> <span class="nv">resb</span> <span class="mi">5</span>   <span class="c1">; 5 element byte array</span>
 <span class="nf">wArr</span> <span class="nv">resw</span> <span class="mi">20</span>  <span class="c1">; 20 element word array</span>
 <span class="nf">dArr</span> <span class="nv">resd</span> <span class="mi">30</span>  <span class="c1">; 30 element double array</span>
 <span class="nf">qArr</span> <span class="nv">resq</span> <span class="mi">25</span>  <span class="c1">; 25 element quad array</span>
-</pre></div>
+</code></pre></div>
 <h1 id="code-text">Code (text)</h1>
 <ul>
 <li>Placed in `section .text</li>
 <li>initial program entry point needs to be defined</li>
 </ul>
 <p>For the standard linker (Linux) the entry point is defined:</p>
-<div class="highlight"><pre><span></span><span class="k">global </span><span class="nv">_start</span>
+<div class="highlight"><pre><span></span><code><span class="k">global </span><span class="nv">_start</span>
 <span class="nl">_start:</span>
-</pre></div>
+</code></pre></div>
 <h1 id="assembler-directives">Assembler Directives</h1>
 <p>Assembler directives are instrutions for the assembler that are not directly translated
 to <span class="caps">CPU</span> instrutions.</p>
@@ -215,9 +215,9 @@ to <span class="caps">CPU</span> instrutions.</p>
 <li>May be definied only once</li>
 </ul>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><span class="nl">loopBegin:</span>
+<div class="highlight"><pre><span></span><code><span class="nl">loopBegin:</span>
 <span class="nl">end:</span>
-</pre></div>
+</code></pre></div>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />

@@ -769,14 +769,14 @@ Default for most registers is <span class="caps">DS</span>. But for <span class=
 <li><em>displacement</em>: 8-bit or 32-bit constant</li>
 </ul>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><span class="nf">mov</span> <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">var</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="nf">mov</span> <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">var</span><span class="p">]</span>
 <span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nb">rbx</span><span class="o">+</span><span class="nb">rsi</span><span class="p">]</span>
 <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span> <span class="kt">word</span> <span class="p">[</span><span class="nv">lst</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
 <span class="nf">mov</span> <span class="nb">bx</span><span class="p">,</span> <span class="kt">word</span> <span class="p">[</span><span class="nv">lst</span><span class="o">+</span><span class="nb">rdx</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
 <span class="nf">mov</span> <span class="nb">rcx</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">lst</span><span class="o">+</span><span class="p">(</span><span class="nb">rsi</span><span class="o">*</span><span class="mi">8</span><span class="p">)]</span>
 <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="kt">byte</span> <span class="p">[</span><span class="nv">buffer</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="nb">rcx</span><span class="p">]</span>
 <span class="nf">mov</span> <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nb">rbx</span><span class="o">+</span><span class="p">(</span><span class="nb">rsi</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 <p>Because addresses are always of 64-bit size (<code>qword</code>), a 64-bit 
 register is needed for memory addressing. Even when accessing 
 smaller sized values.</p>
@@ -786,24 +786,24 @@ smaller sized values.</p>
 <p>Even if the operand size is not mandatory it’s good programming 
 practice to incule it.</p>
 <h4 id="examples">Examples</h4>
-<div class="highlight"><pre><span></span><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
+<div class="highlight"><pre><span></span><code><span class="nf">MOV</span> <span class="nb">DX</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">AL</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">CX</span><span class="p">,</span> <span class="p">[</span><span class="nb">CS</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">SI</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="nb">ES</span><span class="p">,</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="c1">;</span>
 <span class="nf">MOV</span> <span class="kt">WORD</span> <span class="p">[</span><span class="nb">ES</span><span class="p">:</span><span class="nb">BX</span><span class="o">+</span><span class="nb">DI</span><span class="o">+</span><span class="mi">8</span><span class="p">],</span> <span class="nb">AX</span><span class="c1">;</span>
-</pre></div>
+</code></pre></div>
 <h2 id="addressing-memory">Addressing Memory</h2>
 <p>For addressing the memory the immediate, direct and indirect method can be used.</p>
 <p>A variable name without brackets is used to get the address of the variable.
 With brackets the value stored in the variable is taken.</p>
-<div class="highlight"><pre><span></span><span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">var1</span><span class="p">]</span> <span class="c1">; value of var1 in rax </span>
+<div class="highlight"><pre><span></span><code><span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">var1</span><span class="p">]</span> <span class="c1">; value of var1 in rax </span>
 <span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="nv">var1</span>         <span class="c1">; address of var1 in rax</span>
-</pre></div>
+</code></pre></div>
 <h1 id="data-transfer-commands">Data Transfer Commands</h1>
 <h2 id="move-command-mov">Move Command (<code>MOV</code>)</h2>
 <p>Moves (copies) a value from a source to a destination.</p>
-<div class="highlight"><pre><span></span><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">MOV</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+</code></pre></div>
 <ul>
 <li><code>dest</code> can be a memory variable or a register (but not <span class="caps">CS</span> or <span class="caps">IP</span>) and not an immediate.</li>
 <li><code>src</code> can be a memory variable, a register or a constant.</li>
@@ -814,7 +814,7 @@ With brackets the value stored in the variable is taken.</p>
 <p>For <em>double-word</em> destination and source operands the upper part of the <em>quad-word</em> destination register is set to 0!</p>
 </blockquote>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="nf">qFirstVal</span>  <span class="nv">dq</span>  <span class="mh">0xffffffffffffffff</span> <span class="c1">; inital 64-bit value</span>
+<div class="highlight"><pre><span></span><code><span class="nf">qFirstVal</span>  <span class="nv">dq</span>  <span class="mh">0xffffffffffffffff</span> <span class="c1">; inital 64-bit value</span>
 <span class="nf">dVar32</span>     <span class="nv">dd</span>  <span class="mh">0xabcdefab</span>         <span class="c1">; 32-bit value</span>
 <span class="nf">wVar16</span>     <span class="nv">dw</span>  <span class="mh">0xbdbd</span>             <span class="c1">; 16-bit value</span>
 
@@ -827,11 +827,11 @@ With brackets the value stored in the variable is taken.</p>
 <span class="nf">mov</span>     <span class="nb">rax</span><span class="p">,</span> <span class="kt">qword</span> <span class="p">[</span><span class="nv">qFirstVal</span><span class="p">]</span>    <span class="c1">; initialize rax</span>
 <span class="nf">mov</span>     <span class="nb">eax</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">dVar32</span><span class="p">]</span>       <span class="c1">; write lowest 32 bit</span>
 <span class="c1">; now rax has value 0x00000000abcdefab: the upper part of the register is cleared!</span>
-</pre></div>
+</code></pre></div>
 <h2 id="exchange-command-xchg">Exchange Command (<code>XCHG</code>)</h2>
 <p>Exchanges the values of the two operands (memory/registers).</p>
-<div class="highlight"><pre><span></span><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">XCHG</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+</code></pre></div>
 <ul>
 <li>Addressing memory/register is same as with <code>MOV</code>.</li>
 <li>Segment Register and Immediate addressing is not possible.</li>
@@ -840,20 +840,20 @@ With brackets the value stored in the variable is taken.</p>
 <p>For reading and writing data to/from ports</p>
 <p>Input/Output can only be done with accumulator register (<span class="caps">AX</span>/<span class="caps">AL</span>).</p>
 <p>Port address needs to be written to <span class="caps">DX</span> before calling the <span class="caps">IN</span>-/<span class="caps">OUT</span>-Command. As special case a 8-bit port address can be given directly.</p>
-<div class="highlight"><pre><span></span><span class="nf">IN</span> <span class="nb">AL</span><span class="p">,</span> <span class="nb">DX</span><span class="c1">;</span>
+<div class="highlight"><pre><span></span><code><span class="nf">IN</span> <span class="nb">AL</span><span class="p">,</span> <span class="nb">DX</span><span class="c1">;</span>
 <span class="nf">OUT</span> <span class="nb">DX</span><span class="p">,</span> <span class="nb">AX</span><span class="c1">;</span>
 <span class="nf">IN</span> <span class="nb">AX</span><span class="p">,</span> <span class="mh">42h</span><span class="c1">;</span>
 <span class="nf">OUT</span> <span class="mh">16h</span><span class="p">,</span> <span class="nb">AL</span><span class="c1">;</span>
-</pre></div>
+</code></pre></div>
 <p>It’s not possible communicate directly between memory and ports. For this a <span class="caps">DMA</span> (Direct Memory Access) Hardware would be needed.</p>
 <h2 id="load-effective-address-lea">Load Effective Address (<code>LEA</code>)</h2>
 <p>Loads an address:</p>
-<div class="highlight"><pre><span></span><span class="nf">lea</span>   <span class="o">&lt;</span><span class="nv">reg64</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">mem</span><span class="o">&gt;</span> <span class="c1">; address of &lt;mem&gt; in reg64</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">lea</span>   <span class="o">&lt;</span><span class="nv">reg64</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">mem</span><span class="o">&gt;</span> <span class="c1">; address of &lt;mem&gt; in reg64</span>
+</code></pre></div>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><span class="nf">lea</span>   <span class="nb">rcx</span><span class="p">,</span> <span class="kt">byte</span> <span class="p">[</span><span class="nv">bvar</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="nf">lea</span>   <span class="nb">rcx</span><span class="p">,</span> <span class="kt">byte</span> <span class="p">[</span><span class="nv">bvar</span><span class="p">]</span>
 <span class="nf">lea</span>   <span class="nb">rsi</span><span class="p">,</span> <span class="kt">dword</span> <span class="p">[</span><span class="nv">dVar</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 <h1 id="conversion-instructions">Conversion Instructions</h1>
 <h2 id="narrowing-conversions">Narrowing Conversions</h2>
 <ul>
@@ -893,9 +893,9 @@ With brackets the value stored in the variable is taken.</p>
 </li>
 </ul>
 <p>Instructions <code>movsx</code> and <code>movsxd</code>:</p>
-<div class="highlight"><pre><span></span><span class="nf">movsx</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nf">movsx</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span>
 <span class="nf">movsxd</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 <p>Special instructions:</p>
 <table class="table-striped table">
 <thead>
@@ -1067,9 +1067,9 @@ an immediate.</p>
 <p>The result is always twice as big as the operands. It’s either the accumulator (<em><span class="caps">AX</span></em>)
 or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<span class="caps">AX</span></em>).</p>
 <p><img alt="The x86 MUL/IMUL commands" class="img-fluid" src="/images/intel_mul.svg"/></p>
-<div class="highlight"><pre><span></span><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
+<div class="highlight"><pre><span></span><code><span class="nf">MUL</span> <span class="mh">0x0</span> <span class="c1">; Use AL as implicit operand. Result is saved in AX.</span>
 <span class="nf">IMUL</span> <span class="nb">BX</span> <span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span>
-</pre></div>
+</code></pre></div>
 <p>Sizes (<code>mul</code>):</p>
 <table class="table-striped table">
 <thead>
@@ -1098,11 +1098,11 @@ or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<
 </tbody>
 </table>
 <p><code>imul</code> allows more operands:</p>
-<div class="highlight"><pre><span></span><span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">source</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">source</span><span class="o">&gt;</span>
 
 <span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">/</span><span class="nv">imm</span><span class="o">&gt;</span>
 <span class="nf">imul</span> <span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nv">imm</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 <p>For single operand (same as <code>mul</code>):</p>
 <table class="table-striped table">
 <thead>
@@ -1163,9 +1163,9 @@ Setting the dividend correctly requires often to set two registers
 (<em>D</em> register for the upper part, <em>A</em> register for the lower part).</p>
 <p>For <code>idiv</code> singed conversion of the operand might be necessary.</p>
 <p>The operand can be a register or a memory location but not immediate.</p>
-<div class="highlight"><pre><span></span><span class="nf">DIV</span> <span class="nb">BX</span> <span class="c1">; Use DX/AX  as implicit operand. Result is saved in AX. Remainder is saved in DX.</span>
+<div class="highlight"><pre><span></span><code><span class="nf">DIV</span> <span class="nb">BX</span> <span class="c1">; Use DX/AX  as implicit operand. Result is saved in AX. Remainder is saved in DX.</span>
 <span class="nf">IDIV</span> <span class="mh">0x34</span> <span class="c1">; Use AX as implicit operand. Result is saved in AL. Remainder is saved in AH.</span>
-</pre></div>
+</code></pre></div>
 <p>Unsigned and signed division (<code>div</code>, <code>idiv</code>):</p>
 <table class="table-striped table">
 <thead>
@@ -1222,9 +1222,9 @@ for floating point instructions.</p>
 <p>They are 128 bits (on later processors 256 bits) long.</p>
 <h2 id="data-transfer-commands-movss-movsd">Data Transfer Commands (<code>movss</code>, <code>movsd</code>)</h2>
 <p>Copies a value to or from a <code>XMM</code> register.</p>
-<div class="highlight"><pre><span></span><span class="nf">movss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<div class="highlight"><pre><span></span><code><span class="nf">movss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
 <span class="nf">movsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Only one operand can be memory</li>
 <li>Operands can not be an immediate</li>
@@ -1262,41 +1262,41 @@ for floating point instructions.</p>
 </table>
 <h2 id="arithmetic-instructions">Arithmetic Instructions</h2>
 <h3 id="addition-addss-addsd">Addition (<code>addss</code>, <code>addsd</code>)</h3>
-<div class="highlight"><pre><span></span><span class="nf">addss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<div class="highlight"><pre><span></span><code><span class="nf">addss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
 <span class="nf">addsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Destination operands must be an <code>XMM</code> register</li>
 <li>Source operand can’t be an immediate</li>
 </ul>
 <h3 id="substraction-subss-subsd">Substraction (<code>subss</code>, <code>subsd</code>)</h3>
-<div class="highlight"><pre><span></span><span class="nf">subss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<div class="highlight"><pre><span></span><code><span class="nf">subss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
 <span class="nf">subsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Destination operands must be an <code>XMM</code> register</li>
 <li>Source operand can’t be an immediate</li>
 </ul>
 <h3 id="multiplication-mulss-mulsd">Multiplication (<code>mulss</code>, <code>mulsd</code>)</h3>
-<div class="highlight"><pre><span></span><span class="nf">mulss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<div class="highlight"><pre><span></span><code><span class="nf">mulss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
 <span class="nf">mulsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Destination operands must be an <code>XMM</code> register</li>
 <li>Source operand can’t be an immediate</li>
 </ul>
 <h3 id="division-divss-divsd">Division (<code>divss</code>, <code>divsd</code>)</h3>
-<div class="highlight"><pre><span></span><span class="nf">divss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<div class="highlight"><pre><span></span><code><span class="nf">divss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
 <span class="nf">divsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Destination operands must be an <code>XMM</code> register</li>
 <li>Source operand can’t be an immediate</li>
 </ul>
 <h3 id="square-root-sqrtss-sqrtsd">Square Root (<code>sqrtss</code>, <code>sqrtsd</code>)</h3>
-<div class="highlight"><pre><span></span><span class="nf">sqrtss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
+<div class="highlight"><pre><span></span><code><span class="nf">sqrtss</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
 <span class="nf">sqrtsd</span> <span class="nv">dest</span><span class="p">,</span> <span class="nv">src</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Destination operands must be an <code>XMM</code> register</li>
 <li>Source operand can’t be an immediate</li>
@@ -1304,9 +1304,9 @@ for floating point instructions.</p>
 <h3 id="control-instructions">Control Instructions</h3>
 <p>There are ordered and unordered floating point compare instructions.
 Here only the unordered floating point instructions shown.</p>
-<div class="highlight"><pre><span></span><span class="nf">ucomiss</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
+<div class="highlight"><pre><span></span><code><span class="nf">ucomiss</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
 <span class="nf">ucomisd</span> <span class="nv">op1</span><span class="p">,</span> <span class="nv">op2</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Operands are not changed</li>
 <li><code>op1</code> must be an <code>XMM</code> register</li>
@@ -1338,9 +1338,9 @@ Here only the unordered floating point instructions shown.</p>
 <h2 id="rotate-rol-ror">Rotate (<code>ROL</code>, <code>ROR</code>)</h2>
 <p>Rotate left (<code>ROL</code>) or right (<code>ROR</code>).</p>
 <p>Rotates the first operand (memory or register) by the constant <strong>1</strong> (immediate) or by the value given in <em><span class="caps">CL</span></em>.</p>
-<div class="highlight"><pre><span></span><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
+<div class="highlight"><pre><span></span><code><span class="nf">ROL</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mi">1</span><span class="c1">; Rotate by one.</span>
 <span class="nf">ROR</span> <span class="nb">AX</span><span class="p">,</span> <span class="nb">CL</span><span class="c1">; Rotate by value in CL.</span>
-</pre></div>
+</code></pre></div>
 <h3 id="affected-flags_11">Affected Flags</h3>
 <ul>
 <li>Overflow:<ul>
@@ -1799,11 +1799,11 @@ the end of all the pop operations.</p>
 <h3 id="pushf-and-popf"><code>PUSHF</code> and <code>POPF</code></h3>
 <p><code>PUSHF</code> and <code>POPF</code> push and pop the flag register to/from the stack.</p>
 <h3 id="examples_1">Examples</h3>
-<div class="highlight"><pre><span></span><span class="nf">PUSH</span> <span class="nv">result</span>   <span class="c1">; variable result</span>
+<div class="highlight"><pre><span></span><code><span class="nf">PUSH</span> <span class="nv">result</span>   <span class="c1">; variable result</span>
 <span class="nf">PUSH</span> <span class="p">[</span><span class="nb">BX</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span>   <span class="c1">; memory word at address [BX+7]</span>
 <span class="nf">PUSH</span> <span class="nv">tab</span><span class="p">[</span><span class="nb">SI</span><span class="p">]</span>  <span class="c1">; memory word at address tab[SI]</span>
 <span class="nf">POP</span> <span class="nb">AX</span>        <span class="c1">; value from stack to AX</span>
-</pre></div>
+</code></pre></div>
 <h2 id="call-and-ret"><code>CALL</code> and <code>RET</code></h2>
 <p><code>CALL</code> stores the return address (address of the instruction after <code>CALL</code>) on the stack, increments <em><span class="caps">SP</span></em> (by 2)
 and calls the function.</p>
@@ -1811,15 +1811,15 @@ and calls the function.</p>
 <h2 id="defining-a-function">Defining a Function</h2>
 <p>Functions need to be placed in the code segment.</p>
 <p>In <a href="http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/"><span class="caps">NASM</span></a> a function is defined as follows:</p>
-<div class="highlight"><pre><span></span><span class="nl">my_func:</span>
+<div class="highlight"><pre><span></span><code><span class="nl">my_func:</span>
 
 <span class="c1">; code of the function...</span>
 
 <span class="nf">ret</span>
-</pre></div>
+</code></pre></div>
 <p>For calling the function:</p>
-<div class="highlight"><pre><span></span><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">call</span> <span class="nv">far</span> <span class="nv">my_func</span>
+</code></pre></div>
 <p>The pseudo commands <code>PROC and</code><span class="caps">ENDP</span>` (as in <span class="caps">MASM</span>/<span class="caps">TASM</span>) are not supported by <span class="caps">NASM</span>.</p>
 <p>Function definitions can not be nested. </p>
 <h3 id="function-prologue">Function Prologue</h3>

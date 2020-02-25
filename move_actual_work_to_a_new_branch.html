@@ -85,14 +85,14 @@
 and realise later that what you’ve been doing might have been a bad
 idea, and you would rather it were on a topic branch. If the commit
 graph looks like this:</p>
-<div class="highlight"><pre><span></span><span class="err">   last version from another repository</span>
+<div class="highlight"><pre><span></span><code><span class="err">   last version from another repository</span>
 <span class="err">      |</span>
 <span class="err">      v</span>
 <span class="err">  M---N-----O----P---Q ("master")</span>
-</pre></div>
+</code></pre></div>
 <p>Then you separate out your work with the following set of commands
 (where the diagrams show how the state has changed after them):</p>
-<div class="highlight"><pre><span></span>$ git branch dubious-experiment
+<div class="highlight"><pre><span></span><code>$ git branch dubious-experiment
 
   M---N-----O----P---Q <span class="o">(</span><span class="s2">"master"</span> and <span class="s2">"dubious-experiment"</span><span class="o">)</span>
 
@@ -113,7 +113,7 @@ $ git pull <span class="c1"># Or something that updates "master" from</span>
   M--N----R---S <span class="o">(</span><span class="s2">"master"</span><span class="o">)</span>
       <span class="se">\</span>
        O---P---Q <span class="o">(</span><span class="s2">"dubious-experiment"</span><span class="o">)</span>
-</pre></div>
+</code></pre></div>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />

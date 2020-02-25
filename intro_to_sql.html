@@ -151,14 +151,14 @@ The combination is based on a common field between them.</p>
 </li>
 </ul>
 <p>Example: Which animals eat fisch?</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
   <span class="n">animals</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
   <span class="n">animals</span><span class="p">.</span><span class="n">species</span><span class="p">,</span>
   <span class="n">diet</span><span class="p">.</span><span class="n">food</span>
 <span class="k">FROM</span> <span class="n">animals</span> <span class="k">JOIN</span> <span class="n">diet</span>
 <span class="k">ON</span> <span class="n">animal</span><span class="p">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">diet</span><span class="p">.</span><span class="n">species</span>
 <span class="k">WHERE</span> <span class="n">food</span> <span class="o">=</span> <span class="s1">'fish'</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h1 id="unique-keys">Unique Keys</h1>
 <ul>
 <li>Primary keys used to identify an entry (row) in a table</li>

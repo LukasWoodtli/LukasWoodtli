@@ -86,17 +86,17 @@
 <p><a href="https://en.m.wikipedia.org/wiki/Closure_(computer_programming)">Wikipedia:Closure</a></p>
 <h1 id="the-closure-property">The Closure Property</h1>
 <p>From <a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2"><span class="caps">SICP</span>: 2.2 Hierarchical Data and the Closure Property</a>:</p>
-<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as <strong>the closure property</strong> of <code>cons</code>. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
+<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as </em><em>the closure property</em><em> of <code>cons</code>. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
 <p><em><span class="dquo">“</span>The use of the word ‘closure’ here comes from abstract algebra, where a set of elements is said to be closed under an operation if applying the operation to elements in the set produces an element that is again an element of the set. The Lisp community also (unfortunately) uses the word “closure” to describe a totally unrelated concept: A closure is an implementation technique for representing procedures with free variables.”</em></p>
 <h2 id="cons-cells">Cons Cells</h2>
 <p>Related to the closure property is the ability to create compound data (e.g pairs) only with functions:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">p</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">p</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">p</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">)))</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://en.m.wikipedia.org/wiki/Cons#Functional_Implementation">Wikipedia:Cons</a></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -

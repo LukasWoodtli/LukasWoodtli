@@ -510,73 +510,73 @@ find the right documents.</p>
 </ul>
 <h5 id="control-structures">Control Structures</h5>
 <h6 id="if"><code>IF</code></h6>
-<div class="highlight"><pre><span></span><span class="kr">IF</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="kr">THEN</span>
+<div class="highlight"><pre><span></span><code><span class="kr">IF</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="kr">THEN</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h6 id="while"><code>WHILE</code></h6>
-<div class="highlight"><pre><span></span><span class="kr">WHILE</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">n</span> <span class="kr">DO</span>
+<div class="highlight"><pre><span></span><code><span class="kr">WHILE</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">n</span> <span class="kr">DO</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h6 id="repeat"><code>REPEAT</code></h6>
-<div class="highlight"><pre><span></span><span class="kr">REPEAT</span>
+<div class="highlight"><pre><span></span><code><span class="kr">REPEAT</span>
     <span class="cm">(* statement sequence *)</span>
 <span class="kr">UNTIL</span> <span class="n">x</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h6 id="for"><code>FOR</code></h6>
-<div class="highlight"><pre><span></span><span class="kr">FOR</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="kr">TO</span> <span class="mi">100</span> <span class="kr">DO</span>
+<div class="highlight"><pre><span></span><code><span class="kr">FOR</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="kr">TO</span> <span class="mi">100</span> <span class="kr">DO</span>
     <span class="cm">(* statement seq *)</span>
 <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h5 id="built-in-functions">Built-in Functions</h5>
 <p>Increment and decrement</p>
-<div class="highlight"><pre><span></span><span class="nb">INC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nb">INC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="nb">DEC</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="nb">INC</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
 <span class="nb">DEC</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Sets</p>
-<div class="highlight"><pre><span></span><span class="nb">INCL</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">element</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nb">INCL</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">element</span><span class="p">);</span>
 <span class="nb">EXCL</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">element</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Assert and Halt</p>
-<div class="highlight"><pre><span></span><span class="n">ASSERT</span><span class="p">(</span><span class="n">b</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">ASSERT</span><span class="p">(</span><span class="n">b</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">);</span>
 <span class="nb">HALT</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Allocation</p>
-<div class="highlight"><pre><span></span><span class="kr">NEW</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">...);</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">NEW</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">...);</span>
+</code></pre></div>
 <p>Shifts</p>
-<div class="highlight"><pre><span></span><span class="n">ASH</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">ASH</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
 <span class="n">LSH</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
 <span class="n">ROT</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Conversion</p>
-<div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">SHORT</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="n">LONG</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="nb">ORD</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
 <span class="nb">CHR</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 <span class="n">ENTIER</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Arrays</p>
-<div class="highlight"><pre><span></span><span class="n">LEN</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">LEN</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="n">LEN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
 <span class="n">DIM</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Misc</p>
-<div class="highlight"><pre><span></span><span class="nb">ABS</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nb">ABS</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="nb">MAX</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
 <span class="nb">MIN</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
 <span class="nb">ODD</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 <span class="nb">CAP</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Addresses and Sizes</p>
-<div class="highlight"><pre><span></span><span class="bp">ADDRESS</span> <span class="kr">OF</span> <span class="n">x</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="bp">ADDRESS</span> <span class="kr">OF</span> <span class="n">x</span><span class="p">;</span>
 <span class="n">ADDRESSOF</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="nb">SIZE</span> <span class="kr">OF</span> <span class="n">t</span><span class="p">;</span>
 <span class="n">SIZEOF</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <h4 id="modules">Modules</h4>
 <ul>
 <li><code>PROCEDURE Write* ...</code>: Exported (<code>*</code>)</li>
@@ -601,30 +601,30 @@ find the right documents.</p>
 </ul>
 <h4 id="pseudo-module-system">Pseudo Module <code>SYSTEM</code></h4>
 <p>Direct Memory Access Functions</p>
-<div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">PUT</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">PUT</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">GET</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">PUT8</span><span class="p">|</span><span class="mi">16</span><span class="p">|</span><span class="mi">32</span><span class="p">|</span><span class="mi">64</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="n">x</span> <span class="o">:=</span> <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">GET8</span><span class="p">|</span><span class="mi">16</span><span class="p">|</span><span class="mi">32</span><span class="p">|</span><span class="mi">64</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">MOVE</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Data Type</p>
-<div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="bp">BYTE</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="bp">SYSTEM</span><span class="p">.</span><span class="bp">BYTE</span>
+</code></pre></div>
 <p>Type Cast</p>
-<div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">:=</span> <span class="bp">SYSTEM</span><span class="p">.</span><span class="nb">VAL</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">b</span> <span class="o">:=</span> <span class="bp">SYSTEM</span><span class="p">.</span><span class="nb">VAL</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+</code></pre></div>
 <p>Example of Low-Level access</p>
-<div class="highlight"><pre><span></span><span class="kr">IMPORT</span> <span class="bp">SYSTEM</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kr">IMPORT</span> <span class="bp">SYSTEM</span><span class="p">;</span>
 
 <span class="kr">PROCEDURE</span> <span class="n">LetThereBeLight</span><span class="p">;</span>
 <span class="kr">CONST</span> <span class="n">GPSET0</span> <span class="o">=</span> <span class="mh">03F20001CH</span><span class="p">;</span>
 <span class="kr">BEGIN</span>
     <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">PUT</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">,</span> <span class="p">{</span><span class="mi">21</span><span class="p">});</span>
 <span class="kr">END</span> <span class="n">LetThereBeLight</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h5 id="system-arm-specific"><code>SYSTEM</code>: <span class="caps">ARM</span> Specific</h5>
 <p>Register Access</p>
-<div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">SP</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">SP</span><span class="p">();</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">FP</span><span class="p">();</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">LNK</span><span class="p">();</span>
 
@@ -637,41 +637,41 @@ find the right documents.</p>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">LDCPR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">STCPR</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">FLUSH</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <p>Floating Point</p>
-<div class="highlight"><pre><span></span><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">NULL</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="bp">SYSTEM</span><span class="p">.</span><span class="n">NULL</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="bp">SYSTEM</span><span class="p">.</span><span class="n">MULD</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 <h5 id="interrupt-procedures">Interrupt Procedures</h5>
-<div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="n">Handler</span> <span class="p">{</span><span class="n">INTERRUPT</span><span class="p">,</span> <span class="n">PCOFFSET</span><span class="o">=</span><span class="n">k</span><span class="p">};</span>
+<div class="highlight"><pre><span></span><code><span class="kr">PROCEDURE</span> <span class="n">Handler</span> <span class="p">{</span><span class="n">INTERRUPT</span><span class="p">,</span> <span class="n">PCOFFSET</span><span class="o">=</span><span class="n">k</span><span class="p">};</span>
 <span class="kr">BEGIN</span> <span class="cm">(* k is the offset to the next instruction</span>
 <span class="cm">         cf. table of exceptions *)</span>
 <span class="kr">END</span> <span class="n">Handler</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h5 id="special-flags-and-features">Special Flags and Features</h5>
 <p>Procedure without activation frame</p>
-<div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">NOTAG</span><span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">NOTAG</span><span class="p">}</span>
+</code></pre></div>
 <p>Procedure that is linked to the beginning of a kernel</p>
-<div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">INITIAL</span><span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">PROCEDURE</span> <span class="p">{</span><span class="n">INITIAL</span><span class="p">}</span>
+</code></pre></div>
 <p>Inline assembler block</p>
-<div class="highlight"><pre><span></span><span class="bp">CODE</span> <span class="p">...</span> <span class="kr">END</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="bp">CODE</span> <span class="p">...</span> <span class="kr">END</span>
+</code></pre></div>
 <p>Alignment of a symbol (i. e variable)</p>
-<div class="highlight"><pre><span></span><span class="n">symbol</span> <span class="p">{</span><span class="n">ALIGNED</span><span class="p">(</span><span class="mi">32</span><span class="p">)}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">symbol</span> <span class="p">{</span><span class="n">ALIGNED</span><span class="p">(</span><span class="mi">32</span><span class="p">)}</span>
+</code></pre></div>
 <p>Pinning of a symbol</p>
-<div class="highlight"><pre><span></span><span class="n">symbol</span> <span class="p">{</span><span class="n">FIXED</span><span class="p">(</span><span class="mh">0x8000</span><span class="p">))</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">symbol</span> <span class="p">{</span><span class="n">FIXED</span><span class="p">(</span><span class="mh">0x8000</span><span class="p">))</span>
+</code></pre></div>
 <p>Unsafe pointer that is assignment compatible with type <code>ADDRESS</code></p>
-<div class="highlight"><pre><span></span><span class="kr">POINTER</span> <span class="p">{</span><span class="bp">UNSAFE</span><span class="p">}</span> <span class="kr">TO</span> <span class="p">...</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">POINTER</span> <span class="p">{</span><span class="bp">UNSAFE</span><span class="p">}</span> <span class="kr">TO</span> <span class="p">...</span>
+</code></pre></div>
 <p>Symbol that is invisible to a Garbage Collector</p>
-<div class="highlight"><pre><span></span><span class="n">symbol</span> <span class="p">{</span><span class="n">UNTRACED</span><span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">symbol</span> <span class="p">{</span><span class="n">UNTRACED</span><span class="p">}</span>
+</code></pre></div>
 <h5 id="type-declarations">Type Declarations</h5>
-<div class="highlight"><pre><span></span><span class="kr">TYPE</span>
+<div class="highlight"><pre><span></span><code><span class="kr">TYPE</span>
 
 <span class="n">Device</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">DeviceDesc</span><span class="p">;</span>  <span class="cm">(* Pointer to record (reference type)*)</span>
 <span class="n">DeviceDesc</span><span class="o">*</span> <span class="o">=</span> <span class="kr">RECORD</span>              <span class="cm">(* Record: Value type *)</span>
@@ -689,9 +689,9 @@ find the right documents.</p>
 <span class="n">DeviceName</span><span class="o">*</span> <span class="kr">ARRAY</span> <span class="n">DeviceNameLength</span> <span class="kr">OF</span> <span class="nb">CHAR</span><span class="p">;</span> <span class="cm">(* Array Type *)</span>
 
 <span class="n">Data</span><span class="o">*</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="kr">ARRAY</span> <span class="kr">OF</span> <span class="nb">CHAR</span><span class="p">;</span> <span class="cm">(* Dynamic array type *)</span>
-</pre></div>
+</code></pre></div>
 <h5 id="inheritance">Inheritance</h5>
-<div class="highlight"><pre><span></span><span class="n">Task</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">TaskDesc</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">Task</span><span class="o">*</span> <span class="o">=</span> <span class="kr">POINTER</span> <span class="kr">TO</span> <span class="n">TaskDesc</span><span class="p">;</span>
 <span class="n">TaskDesc</span><span class="o">*</span> <span class="o">=</span> <span class="kr">RECORD</span>
     <span class="n">task</span> <span class="n">task</span> <span class="n">task</span>
     <span class="n">task</span> <span class="n">task</span>
@@ -704,16 +704,16 @@ find the right documents.</p>
     <span class="n">priority</span><span class="p">:</span> <span class="nb">LONGINT</span><span class="p">;</span> <span class="cm">(* The priority determines the execution order *)</span>
     <span class="n">interval</span><span class="p">:</span> <span class="nb">LONGINT</span><span class="p">;</span> <span class="cm">(* The task is executed every "interval" msecs *)</span>
 <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <p>Type Test</p>
-<div class="highlight"><pre><span></span><span class="kr">IF</span> <span class="n">task</span> <span class="n">IS</span> <span class="n">PeriodicTask</span> <span class="kr">THEN</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">IF</span> <span class="n">task</span> <span class="n">IS</span> <span class="n">PeriodicTask</span> <span class="kr">THEN</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
+</code></pre></div>
 <p>Type Guard (cast)</p>
-<div class="highlight"><pre><span></span><span class="kr">IF</span> <span class="n">task</span><span class="p">(</span><span class="n">PeriodicTask</span><span class="p">).</span><span class="n">priority</span> <span class="o">=</span> <span class="mi">1</span> <span class="kr">THEN</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">IF</span> <span class="n">task</span><span class="p">(</span><span class="n">PeriodicTask</span><span class="p">).</span><span class="n">priority</span> <span class="o">=</span> <span class="mi">1</span> <span class="kr">THEN</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
+</code></pre></div>
 <p>Type Test and Guard</p>
-<div class="highlight"><pre><span></span><span class="kr">WITH</span> <span class="n">task</span><span class="p">:</span> <span class="n">PeriodicTask</span> <span class="kr">DO</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">WITH</span> <span class="n">task</span><span class="p">:</span> <span class="n">PeriodicTask</span> <span class="kr">DO</span> <span class="p">...</span> <span class="kr">END</span><span class="p">;</span>
+</code></pre></div>
 <h5 id="run-time-support-for-inheritance">Run-time Support for Inheritance</h5>
 <ul>
 <li><span class="caps">RTTI</span> is supported</li>
@@ -739,8 +739,8 @@ find the right documents.</p>
 </ul>
 <h4 id="object-file-format">Object File Format</h4>
 <p>Compiler flags:</p>
-<div class="highlight"><pre><span></span><span class="err">Compiler.Compile -b=ARM --objectFile=Minos</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">Compiler.Compile -b=ARM --objectFile=Minos</span>
+</code></pre></div>
 <ul>
 <li>The object file is very compact</li>
 <li>Key: Fingerprint</li>
@@ -759,8 +759,8 @@ find the right documents.</p>
 <li>Predefined loading address and entry point (0x8000 for <span class="caps">RPI2</span>)</li>
 </ul>
 <p>Boot-Linking command in host system</p>
-<div class="highlight"><pre><span></span><span class="err">MinosLinker.Link minimalinit.img 108000H kernel.img OFSRamVolumes SerialLog Minos  ~</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">MinosLinker.Link minimalinit.img 108000H kernel.img OFSRamVolumes SerialLog Minos  ~</span>
+</code></pre></div>
 <p>Image header: <code>minimalinit.img</code>
 Start address: <code>108000H</code>
 Image file name: <code>kernel.img</code>
@@ -1161,7 +1161,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 </li>
 </ul>
 <p>Active Oberon:</p>
-<div class="highlight"><pre><span></span><span class="n">Semaphore</span> <span class="o">=</span> <span class="n">OBJECT</span>
+<div class="highlight"><pre><span></span><code><span class="n">Semaphore</span> <span class="o">=</span> <span class="n">OBJECT</span>
     <span class="n">number</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">:</span> <span class="nb">LONGINT</span><span class="p">;</span>
 
     <span class="kr">PROCEDURE</span> <span class="n">enter</span><span class="p">;</span>
@@ -1176,9 +1176,9 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
     <span class="kr">END</span> <span class="n">exit</span><span class="p">;</span>
 
 <span class="kr">END</span> <span class="n">Semaphore</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <p>Equivalent Java code:</p>
-<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Semaphore</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Semaphore</span><span class="p">{</span>
     <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">enter</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// while needed!</span>
@@ -1194,7 +1194,7 @@ Object file names (compiled): <code>OFSRamVolumes SerialLog Minos  ~</code></p>
 <span class="cm">                          evaluate different conditions */</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 <h3 id="monitors-in-active-oberon">Monitors in Active Oberon</h3>
 <ul>
 <li>No <em>notify()</em> (or <em>notifyAll()</em>): Every <code>EXCLUSIVE</code> procedure triggers reevaluation of <code>AWAIT</code> when it returns</li>
@@ -1268,14 +1268,14 @@ Caches can’t be exploited (direct access to memory)!</p>
 <p>Atomic operation implemented in processor.</p>
 <p>Compares memory location with an value. If it’s same a new (given) value is written at the
 memory address. Returns the previous value at memory position in any case.</p>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">CAS</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">old</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">CAS</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">old</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new</span><span class="p">)</span>
+</code></pre></div>
 <ul>
 <li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>
 <li>Return previous value at <code>a</code> in any case</li>
 </ul>
 <h4 id="implementation-of-a-spinal-using-cas">Implementation of a spinal using <span class="caps">CAS</span></h4>
-<div class="highlight"><pre><span></span><span class="cm">(* Initialisation *)</span>
+<div class="highlight"><pre><span></span><code><span class="cm">(* Initialisation *)</span>
 <span class="n">Init</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
@@ -1289,7 +1289,7 @@ memory address. Returns the previous value at memory position in any case.</p>
 <span class="cm">(* Release Lock *)</span>
 <span class="n">Release</span> <span class="p">(</span><span class="n">var</span> <span class="n">lock</span><span class="p">:</span> <span class="n">word</span><span class="p">)</span>
     <span class="bp">CAS</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">(* atomicy not needed but visibility/ordering *)</span>
-</pre></div>
+</code></pre></div>
 <!-- End of Notes Week 6 -->
 <!-- Beginning of Notes Week 7 -->
 <h3 id="boot-procedure-a2">Boot Procedure (A2)</h3>
@@ -1612,8 +1612,8 @@ memory address. Returns the previous value at memory position in any case.</p>
 <li><code>CAS</code> is an operation in the programming language</li>
 </ul>
 <p>Declaration:</p>
-<div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="bp">CAS</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">BaseType</span><span class="p">):</span> <span class="n">BaseType</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">PROCEDURE</span> <span class="bp">CAS</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">BaseType</span><span class="p">):</span> <span class="n">BaseType</span>
+</code></pre></div>
 <ul>
 <li>Performance of <code>CAS</code><ul>
 <li>On the <span class="caps">HW</span> level <code>CAS</code> triggers a memory barrier</li>
@@ -1666,12 +1666,12 @@ that the overall state has not been changed.</p>
 <li>Each process has a quantum</li>
 </ul>
 <p>At regular intervals, the compiler inserts code to decrease the quantum and calls the scheduler if necessary</p>
-<div class="highlight"><pre><span></span>   <span class="nf">sub</span>    <span class="p">[</span><span class="nb">rcx</span> <span class="o">+</span> <span class="mi">88</span><span class="p">],</span> <span class="mi">10</span>   <span class="c1">; decrement quantum by 10</span>
+<div class="highlight"><pre><span></span><code>   <span class="nf">sub</span>    <span class="p">[</span><span class="nb">rcx</span> <span class="o">+</span> <span class="mi">88</span><span class="p">],</span> <span class="mi">10</span>   <span class="c1">; decrement quantum by 10</span>
    <span class="nf">jge</span>    <span class="nv">skip</span>             <span class="c1">; check if it is negative (jump if greater)</span>
    <span class="nf">call</span>   <span class="nv">Switch</span>           <span class="c1">; perform task switch</span>
 <span class="nl">skip:</span>
    <span class="c1">; ...</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Uncooperative block (<code>UNCOOPERATIVE</code>): Guarantee that no scheduling happens<ul>
 <li>Not like a <em>lock</em> different processors can execute the code in parallel</li>
@@ -1707,24 +1707,24 @@ that the overall state has not been changed.</p>
 <li>if not possible to en-/dequeue: help other threads (processors)</li>
 </ul>
 <h5 id="scheduling-activities">Scheduling (Activities)</h5>
-<div class="highlight"><pre><span></span><span class="kr">TYPE</span> <span class="n">Activity</span><span class="o">*</span> <span class="o">=</span> <span class="n">OBJECT</span> <span class="p">{</span><span class="n">DISPOSABLE</span><span class="p">}</span> <span class="p">(</span><span class="n">Queues</span><span class="p">.</span><span class="n">Item</span><span class="p">)</span> <span class="cm">(* Queues.Item accessed via activity register *)</span>
+<div class="highlight"><pre><span></span><code><span class="kr">TYPE</span> <span class="n">Activity</span><span class="o">*</span> <span class="o">=</span> <span class="n">OBJECT</span> <span class="p">{</span><span class="n">DISPOSABLE</span><span class="p">}</span> <span class="p">(</span><span class="n">Queues</span><span class="p">.</span><span class="n">Item</span><span class="p">)</span> <span class="cm">(* Queues.Item accessed via activity register *)</span>
 <span class="kr">VAR</span>
     <span class="cm">(* access to current processor *)</span>
     <span class="cm">(* stack management *)</span>
     <span class="cm">(* quantum and scheduling *)</span>
     <span class="cm">(* active object *)</span>
 <span class="kr">END</span> <span class="n">Activity</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h5 id="task-switch-finalizer">Task Switch Finalizer</h5>
 <p>Finest granular protection makes <strong>races</strong> possible that did not occur previously:</p>
 <p>Need to pass information to the new thread.</p>
-<div class="highlight"><pre><span></span><span class="n">current</span> <span class="o">:=</span> <span class="n">GetCurrentTask</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">current</span> <span class="o">:=</span> <span class="n">GetCurrentTask</span><span class="p">()</span>
 <span class="n">next</span> <span class="o">:=</span> <span class="n">Dequeue</span><span class="p">(</span><span class="n">readyqueue</span><span class="p">)</span>
 <span class="n">Enqueue</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">readyqueue</span><span class="p">)</span>
 <span class="cm">(* Here an other thread can dequeue and run (on the stack of)</span>
 <span class="cm">   the currently executing thread! *)</span>
 <span class="n">SwitchTo</span><span class="p">(</span><span class="n">next</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>When switching to new thread<ul>
 <li>Enqueue runs on new thread</li>
@@ -1733,10 +1733,10 @@ that the overall state has not been changed.</p>
 </li>
 </ul>
 <p>Solution with finalizer:</p>
-<div class="highlight"><pre><span></span><span class="n">SwitchTo</span> <span class="p">(</span><span class="n">nextActivity</span><span class="p">,</span> <span class="n">Enqueue</span><span class="p">,</span>  <span class="cm">(* Enqueue runs on new thread *)</span>
+<div class="highlight"><pre><span></span><code><span class="n">SwitchTo</span> <span class="p">(</span><span class="n">nextActivity</span><span class="p">,</span> <span class="n">Enqueue</span><span class="p">,</span>  <span class="cm">(* Enqueue runs on new thread *)</span>
           <span class="bp">ADDRESS</span> <span class="kr">OF</span> <span class="n">readyQueue</span><span class="p">[</span><span class="n">currentActivity</span><span class="p">.</span><span class="n">priority</span><span class="p">]);</span>
 <span class="n">FinalizeSwitch</span><span class="p">;</span> <span class="cm">(* Calls finalizer of previous thread *)</span>
-</pre></div>
+</code></pre></div>
 <h4 id="stack-management_1">Stack Management</h4>
 <ul>
 <li>Stacks organized as Heap Blocks</li>
@@ -1754,10 +1754,10 @@ that the overall state has not been changed.</p>
 <li>Second level <span class="caps">IRQ</span> handling with activities</li>
 </ul>
 <p>Wait for interrupt:</p>
-<div class="highlight"><pre><span></span><span class="n">Interrupts</span><span class="p">.</span><span class="n">Await</span><span class="p">(</span><span class="n">interrupt</span><span class="p">);</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">Interrupts</span><span class="p">.</span><span class="n">Await</span><span class="p">(</span><span class="n">interrupt</span><span class="p">);</span>
+</code></pre></div>
 <p>First level <span class="caps">IRQ</span> code affecting scheduler queues runs on a virtual processor</p>
-<div class="highlight"><pre><span></span><span class="kr">PROCEDURE</span> <span class="n">Handle</span> <span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">SIZE</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kr">PROCEDURE</span> <span class="n">Handle</span> <span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">SIZE</span><span class="p">);</span>
 <span class="kr">BEGIN</span> <span class="p">{</span><span class="n">UNCOOPERATIVE</span><span class="p">,</span> <span class="n">UNCHECKED</span><span class="p">}</span>
     <span class="kr">IF</span> <span class="n">previousHandlers</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">#</span> <span class="nb">NIL</span> <span class="kr">THEN</span>
         <span class="n">previousHandlers</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">(</span><span class="n">index</span><span class="p">)</span>
@@ -1766,7 +1766,7 @@ that the overall state has not been changed.</p>
                            <span class="bp">ADDRESS</span> <span class="kr">OF</span> <span class="n">awaitingQueues</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
                            <span class="n">processors</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
 <span class="kr">END</span> <span class="n">Handle</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Very powerful to write <span class="caps">IRQ</span> handlers in to levels</li>
 <li>Possible with cooperative multitasking</li>
@@ -2134,7 +2134,7 @@ that the overall state has not been changed.</p>
 </li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="kr">TYPE</span>
+<div class="highlight"><pre><span></span><code><span class="kr">TYPE</span>
     <span class="n">Adder</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">(</span><span class="n">in1</span><span class="p">,</span> <span class="n">in2</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span><span class="p">;</span> <span class="n">result</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">);</span> <span class="cm">(* communication ports *)</span>
     <span class="kr">VAR</span> <span class="n">summand1</span><span class="p">,</span> <span class="n">summand2</span><span class="p">:</span> <span class="n">integer</span><span class="p">;</span>
     <span class="kr">BEGIN</span>
@@ -2142,9 +2142,9 @@ that the overall state has not been changed.</p>
         <span class="n">in2</span> <span class="p">?</span> <span class="n">summand2</span><span class="p">;</span>
         <span class="n">result</span> <span class="p">!</span> <span class="n">summand1</span> <span class="o">+</span> <span class="n">summand2</span><span class="p">;</span> <span class="cm">(* non-blocking send *)</span>
     <span class="kr">END</span> <span class="n">Adder</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <p>Cell Constructors to parameterize cells during allocation time:</p>
-<div class="highlight"><pre><span></span><span class="kr">TYPE</span>
+<div class="highlight"><pre><span></span><code><span class="kr">TYPE</span>
     <span class="n">Filter</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">(</span><span class="n">in</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span><span class="p">;</span> <span class="n">result</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">);</span>
     <span class="kr">VAR</span> <span class="p">...;</span> <span class="n">filterLength</span><span class="p">:</span> <span class="n">integer</span><span class="p">;</span>
     <span class="kr">PROCEDURE</span> <span class="o">&amp;</span> <span class="n">Init</span><span class="p">(</span><span class="n">filterLength</span><span class="p">:</span> <span class="n">integer</span><span class="p">)</span>  <span class="cm">(* constructor *)</span>
@@ -2157,9 +2157,9 @@ that the overall state has not been changed.</p>
 <span class="kr">VAR</span> <span class="n">filter</span><span class="p">:</span> <span class="n">Filter</span><span class="p">;</span>
 <span class="kr">BEGIN</span>
     <span class="p">....</span> <span class="n">new</span><span class="p">(</span><span class="n">filter</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span> <span class="cm">(* initialization parameter filterlength = 32 *)</span>
-</pre></div>
+</code></pre></div>
 <p>Cells can be parametrized with capabilities or non-default values:</p>
-<div class="highlight"><pre><span></span><span class="kr">TYPE</span>
+<div class="highlight"><pre><span></span><code><span class="kr">TYPE</span>
   <span class="cm">(* Cell is a VectorTRM with 2k of Data Memory and has access to DDR2 memory *)</span>
   <span class="n">Filter</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">{</span><span class="n">Vector</span><span class="p">,</span> <span class="n">DataMemory</span><span class="p">(</span><span class="mi">2048</span><span class="p">),</span> <span class="n">DDR2</span><span class="p">}</span> <span class="p">(</span><span class="n">in</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span> <span class="p">(</span><span class="mi">64</span><span class="p">);</span> <span class="n">result</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">);</span>
                                          <span class="cm">(* in port is implemented with width of 64 bits *)</span>
@@ -2167,7 +2167,7 @@ that the overall state has not been changed.</p>
   <span class="kr">BEGIN</span>
       <span class="cm">(* ... filter action ... *)</span>
   <span class="kr">END</span> <span class="n">Filter</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Hierarchic Composition: Cell Nets<ul>
 <li>Allocation of cells: <code>new</code> statement</li>
@@ -2178,7 +2178,7 @@ that the overall state has not been changed.</p>
 </li>
 </ul>
 <p>Terminal Cellnet Example</p>
-<div class="highlight"><pre><span></span><span class="n">cellnet</span> <span class="n">Example</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">cellnet</span> <span class="n">Example</span><span class="p">;</span>
 <span class="n">import</span> <span class="n">RS232</span><span class="p">;</span>
 <span class="kr">TYPE</span>
     <span class="n">UserInterface</span> <span class="o">=</span> <span class="n">cell</span> <span class="p">{</span><span class="n">RS232</span><span class="p">}(</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">:</span> <span class="n">port</span> <span class="n">out</span><span class="p">;</span> <span class="n">in</span><span class="p">:</span> <span class="n">port</span> <span class="n">in</span><span class="p">)</span>
@@ -2196,7 +2196,7 @@ that the overall state has not been changed.</p>
         <span class="n">connect</span><span class="p">(</span><span class="n">interface</span><span class="p">.</span><span class="n">out2</span><span class="p">,</span> <span class="n">adder</span><span class="p">.</span><span class="n">in2</span><span class="p">);</span>
         <span class="n">connect</span><span class="p">(</span><span class="n">adder</span><span class="p">.</span><span class="n">result</span><span class="p">,</span> <span class="n">interface</span><span class="p">.</span><span class="n">in</span><span class="p">);</span>
 <span class="kr">END</span> <span class="n">Example</span><span class="p">.</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>Communication between cells (<span class="caps">CSP</span>)<ul>
 <li>Receiving is blocking (<code>?</code>)</li>
@@ -2239,13 +2239,13 @@ that the overall state has not been changed.</p>
     c := a + b;  (<em> machine cycles </em>)</p>
 <h3 id="hardware-description-language">Hardware Description Language</h3>
 <p>Continuous execution (combinational logic):</p>
-<div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
 <span class="k">assign</span> <span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="c1">// no</span>
 <span class="k">assign</span> <span class="n">a</span><span class="o">=</span><span class="mh">1</span><span class="p">;</span>   <span class="c1">// memory</span>
 <span class="k">assign</span> <span class="n">b</span><span class="o">=</span><span class="mh">2</span><span class="p">;</span>   <span class="c1">// associated</span>
-</pre></div>
+</code></pre></div>
 <p>Synchronous execution (register transfer):</p>
-<div class="highlight"><pre><span></span><span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
 
 <span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
 <span class="k">begin</span>
@@ -2253,7 +2253,7 @@ that the overall state has not been changed.</p>
     <span class="n">b</span> <span class="o">&lt;=</span> <span class="mh">2</span><span class="p">;</span>    <span class="c1">// rising edge</span>
     <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// of the clock</span>
 <span class="k">end</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h2 id="singlecycle-datapath-trm">Single/Cycle Datapath (<span class="caps">TRM</span>)</h2>
 <h3 id="instruction-fetch">Instruction Fetch</h3>
 <ul>
@@ -2272,7 +2272,7 @@ that the overall state has not been changed.</p>
 </ul>
 <h3 id="register-read">Register Read</h3>
 <p>Read source operands from register file</p>
-<div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">rd</span><span class="p">,</span> <span class="n">rs</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">wire</span> <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">rd</span><span class="p">,</span> <span class="n">rs</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="n">regWr</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">rdOut</span><span class="p">,</span> <span class="n">rsOut</span><span class="p">;</span>
 <span class="n">source</span> <span class="n">register</span>
@@ -2283,14 +2283,14 @@ that the overall state has not been changed.</p>
 <span class="k">assign</span> <span class="n">irs</span> <span class="o">=</span> <span class="n">IR</span><span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>      <span class="c1">// source register</span>
 <span class="k">assign</span> <span class="n">ird</span> <span class="o">=</span> <span class="n">IR</span><span class="p">[</span><span class="mh">13</span><span class="o">:</span><span class="mh">11</span><span class="p">];</span>
 <span class="k">assign</span> <span class="n">dst</span> <span class="o">=</span> <span class="p">(</span><span class="n">BL</span><span class="p">)</span><span class="o">?</span> <span class="mh">7</span><span class="o">:</span> <span class="n">ird</span><span class="p">;</span> <span class="c1">// destination register</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>For <code>BL</code> the destination register is always the link register (7)</li>
 <li>Otherwise the registers are read from the instuction register (<em><span class="caps">IR</span></em>)</li>
 </ul>
 <h3 id="alu"><span class="caps">ALU</span></h3>
 <p>Compute the result via <span class="caps">ALU</span></p>
-<div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">AA</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">imm</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">AA</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">imm</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="mh">32</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">aluRes</span><span class="p">;</span>
 
 <span class="k">assign</span> <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">])</span><span class="o">?</span> <span class="nl">AA:</span> <span class="p">{</span><span class="mh">22</span><span class="err">’</span><span class="n">b0</span><span class="p">,</span> <span class="n">imm</span><span class="p">};</span> <span class="c1">// bit 10: immediate or register</span>
@@ -2305,9 +2305,9 @@ that the overall state has not been changed.</p>
 <span class="p">(</span><span class="n">OR</span><span class="p">)</span><span class="o">?</span> <span class="n">B</span> <span class="o">|</span> <span class="n">A</span> <span class="o">:</span>
 <span class="p">(</span><span class="n">XOR</span><span class="p">)</span><span class="o">?</span> <span class="n">B</span> <span class="o">^</span> <span class="n">A</span> <span class="o">:</span>
 <span class="o">~</span><span class="n">A</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h3 id="control-path">Control Path</h3>
-<div class="highlight"><pre><span></span><span class="n">Control</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><span class="n">Control</span> <span class="n">Path</span>
 <span class="k">assign</span> <span class="n">vector</span> <span class="o">=</span> <span class="n">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">IR</span><span class="p">[</span><span class="mh">8</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">IR</span><span class="p">[</span><span class="mh">7</span><span class="p">];</span>
 <span class="k">assign</span> <span class="n">op</span> <span class="o">=</span> <span class="n">IR</span><span class="p">[</span><span class="mh">17</span><span class="o">:</span><span class="mh">14</span><span class="p">];</span>
 
@@ -2325,7 +2325,7 @@ that the overall state has not been changed.</p>
 <span class="k">assign</span> <span class="n">Bc</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">14</span><span class="p">);</span>
 <span class="k">assign</span> <span class="n">BL</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">15</span><span class="p">);</span>
 <span class="k">assign</span> <span class="n">LDH</span> <span class="o">=</span> <span class="n">MOV</span> <span class="o">&amp;</span> <span class="n">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">IR</span><span class="p">[</span><span class="mh">3</span><span class="p">];</span> <span class="k">assign</span> <span class="n">BLR</span> <span class="o">=</span> <span class="p">(</span><span class="n">op</span> <span class="o">==</span> <span class="mh">11</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">];</span>
-</pre></div>
+</code></pre></div>
 <table class="table-striped table">
 <thead>
 <tr>
@@ -2369,7 +2369,7 @@ that the overall state has not been changed.</p>
 </tbody>
 </table>
 <h3 id="write-result-back-to-rd">Write Result Back to <code>Rd</code></h3>
-<div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">regmux</span><span class="p">;</span> <span class="kt">wire</span> <span class="n">regwr</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">regmux</span><span class="p">;</span> <span class="kt">wire</span> <span class="n">regwr</span><span class="p">;</span>
 
 <span class="c1">// ...</span>
 
@@ -2384,7 +2384,7 @@ that the overall state has not been changed.</p>
 <span class="p">(</span><span class="n">ROR</span><span class="p">)</span> <span class="o">?</span> <span class="nl">s3:</span>
 <span class="p">(</span><span class="n">LDH</span><span class="p">)</span> <span class="o">?</span> <span class="nl">H:</span>
 <span class="n">aluRes</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h3 id="trm-stalling"><span class="caps">TRM</span> Stalling</h3>
 <ul>
 <li>Stop fetching next instruction, <em>pcmux</em> keeps the current value</li>
@@ -2394,7 +2394,7 @@ that the overall state has not been changed.</p>
 <li><em>regwr</em> signal is affected</li>
 </ul>
 <h3 id="load-ld">Load (<code>LD</code>)</h3>
-<div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmout</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmout</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="nl">DAW:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmadr</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="p">[</span><span class="mh">6</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">offset</span><span class="p">;</span>
 <span class="kt">reg</span> <span class="n">IoenbReg</span><span class="p">;</span>
@@ -2412,9 +2412,9 @@ that the overall state has not been changed.</p>
 
 <span class="k">always</span> <span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
     <span class="n">IoenbReg</span> <span class="o">&lt;=</span> <span class="n">ioenb</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h3 id="store-st">Store (<code>ST</code>)</h3>
-<div class="highlight"><pre><span></span><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmin</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dmin</span><span class="p">;</span>
 <span class="kt">wire</span> <span class="n">dmwr</span><span class="p">;</span>
 <span class="c1">// register file</span>
 <span class="c1">// ...</span>
@@ -2428,9 +2428,9 @@ that the overall state has not been changed.</p>
 
 <span class="k">assign</span> <span class="n">dmwe</span> <span class="o">=</span> <span class="n">ST</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">IR</span><span class="p">[</span><span class="mh">10</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">ioenb</span><span class="p">;</span>
 <span class="k">assign</span> <span class="n">dmin</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h3 id="set-flag-registers">Set Flag Registers</h3>
-<div class="highlight"><pre><span></span><span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">,</span> <span class="k">negedge</span> <span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="c1">// flags handling</span>
+<div class="highlight"><pre><span></span><code><span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">,</span> <span class="k">negedge</span> <span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="c1">// flags handling</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">rst</span><span class="p">)</span> <span class="k">begin</span> <span class="n">N</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">Z</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">C</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">V</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="k">end</span>
 <span class="k">else</span> <span class="k">begin</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">regwr</span><span class="p">)</span> <span class="k">begin</span>
@@ -2444,7 +2444,7 @@ that the overall state has not been changed.</p>
     <span class="k">end</span>
 <span class="k">end</span>
 <span class="k">end</span>
-</pre></div>
+</code></pre></div>
 <h3 id="branch-instructions">Branch instructions</h3>
 <ul>
 <li><em><span class="caps">PC</span></em> &lt;= <em><span class="caps">PC</span></em> + 1 + off</li>
@@ -2454,14 +2454,14 @@ that the overall state has not been changed.</p>
 <li><em><span class="caps">PC</span></em> &lt;= 0 (reset)</li>
 </ul>
 <p>Code:</p>
-<div class="highlight"><pre><span></span><span class="c1">// pcmux logic</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// pcmux logic</span>
 <span class="k">assign</span> <span class="n">pcmux</span> <span class="o">=</span>
     <span class="p">(</span><span class="o">~</span><span class="n">rst</span><span class="p">)</span> <span class="o">?</span> <span class="mh">0</span> <span class="o">:</span>
     <span class="p">(</span><span class="n">stall0</span><span class="p">)</span> <span class="o">?</span> <span class="nl">PC:</span>
     <span class="p">(</span><span class="n">BL</span><span class="p">)</span><span class="o">?</span> <span class="p">{{</span><span class="mh">10</span><span class="p">{</span><span class="n">IR</span><span class="p">[</span><span class="n">BLS</span><span class="o">-</span><span class="mh">1</span><span class="p">]}},</span><span class="n">IR</span><span class="p">[</span><span class="n">BLS</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span> <span class="mh">0</span><span class="p">]}</span><span class="o">+</span> <span class="n">nxpc</span> <span class="o">:</span>
     <span class="p">(</span><span class="n">Bc</span> <span class="o">&amp;</span> <span class="n">cond</span><span class="p">)</span> <span class="o">?</span> <span class="p">{{{</span><span class="n">PAW</span><span class="o">-</span><span class="mh">10</span><span class="p">}{</span><span class="n">IR</span><span class="p">[</span><span class="mh">9</span><span class="p">]}},</span> <span class="n">IR</span><span class="p">[</span><span class="mh">9</span><span class="o">:</span><span class="mh">0</span><span class="p">]}</span> <span class="o">+</span> <span class="n">nxpc</span> <span class="o">:</span> <span class="p">(</span><span class="n">BLR</span> <span class="o">|</span> <span class="n">BR</span> <span class="p">)</span> <span class="o">?</span> <span class="n">A</span><span class="p">[</span><span class="n">PAW</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">:</span>
     <span class="n">nxpc</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 <h3 id="separate-compilation-trm">Separate Compilation (<span class="caps">TRM</span>)</h3>
 <ul>
 <li>Development environment with separate compilation<ul>

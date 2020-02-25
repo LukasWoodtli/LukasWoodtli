@@ -224,39 +224,39 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <li><em>Evaluate the subexpressions of the combination.</em></li>
 <li><em>Apply the procedure that is the value of the leftmost subexpression (the operator) to the arguments that are the values of the other subexpressions (the operands).</em>”</li>
 </ul>
-<p><em><span class="dquo">“</span>[…] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is <strong>recursive</strong> in nature”</em></p>
+<p><em><span class="dquo">“</span>[…] first perform the evaluation process on each element of the combination. Thus, the evaluation rule is </em><em>recursive</em><em> in nature”</em></p>
 <h3 id="115-the-substitution-model-for-procedure-application">1.1.5 The Substitution Model for Procedure Application</h3>
 <h4 id="applicative-order-versus-normal-order">Applicative order versus normal order</h4>
 <p><em><span class="dquo">“</span>[The] interpreter first evaluates the operator and operands and then applies the resulting procedure to the resulting arguments.”</em></p>
 <p><em><span class="dquo">“</span>[An] alternative evaluation model would not evaluate the operands until their values were needed. Instead it would first substitute operand expressions for parameters until it obtained an expression involving only primitive operators, and would then perform the evaluation.”</em></p>
-<p><em><span class="dquo">“</span>This alternative ‘fully expand and then reduce’ evaluation method is known as <strong>normal-order evaluation</strong>, in contrast to the ‘evaluate the arguments and then apply’ method that the interpreter actually uses, which is called <strong>applicative-order evaluation</strong>.”</em></p>
+<p><em><span class="dquo">“</span>This alternative ‘fully expand and then reduce’ evaluation method is known as </em><em>normal-order evaluation</em><em>, in contrast to the ‘evaluate the arguments and then apply’ method that the interpreter actually uses, which is called </em><em>applicative-order evaluation</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>Normal-order and applicative-order evaluation produce the same value.”</em></p>
 <p><em><span class="dquo">“</span>Lisp uses applicative-order evaluation.”</em></p>
 <p><em><span class="dquo">“</span>Lisp obeys the convention that every expression has a value.”</em></p>
 <h3 id="121-linear-recursion-and-iteration">1.2.1 Linear Recursion and Iteration</h3>
 <p><em><span class="dquo">“</span>In the iterative case, the program variables provide a complete description of the state of the process at any point.”</em></p>
-<p><em><span class="dquo">“</span>In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive <strong>process</strong> with the notion of a recursive <strong>procedure</strong> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written.”</em></p>
+<p><em><span class="dquo">“</span>In contrasting iteration and recursion, we must be careful not to confuse the notion of a recursive </em><em>process</em><em> with the notion of a recursive </em><em>procedure</em><em> . When we describe a procedure as recursive, we are referring to the syntactic fact that the procedure definition refers (either directly or indirectly) to the procedure itself. But when we describe a process as following a pattern that is, say, linearly recursive, we are speaking about how the process evolves, not about the syntax of how a procedure is written.”</em></p>
 <p><em><span class="dquo">“</span>One reason that the distinction between process and procedure may be confusing is that most implementations of common languages (including Ada, Pascal, and C) are designed in such a way that the interpretation of any recursive procedure consumes an amount of memory that grows with the number of procedure calls, even when the process described is, in principle, iterative. As a consequence, these languages can describe iterative processes only by resorting to special-purpose ‘looping constructs’ such as <code>do</code>, <code>repeat</code>, <code>until</code>, <code>for</code>, and <code>while</code>.”</em></p>
-<p><em><span class="dquo">“</span>any iterative process can be realized ‘in hardware’ as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a <strong>stack</strong>.”</em></p>
+<p><em><span class="dquo">“</span>any iterative process can be realized ‘in hardware’ as a machine that has a fixed set of registers and no auxiliary memory. In contrast, realizing a recursive process requires a machine that uses an auxiliary data structure known as a </em><em>stack</em><em>.”</em></p>
 <h2 id="13-formulating-abstractions-with-higher-order-procedures">1.3 Formulating Abstractions with Higher-Order Procedures</h2>
 <h3 id="132-constructing-procedures-using-lambda">1.3.2 Constructing Procedures Using <code>lambda</code></h3>
 <h4 id="using-let-to-create-local-variables">Using <code>let</code> to create local variables</h4>
 <p><em><span class="dquo">“</span>we could use a lambda expression to specify an anonymous procedure for binding our local variables</em></p>
 <p><em>The general form of a <code>let</code> expression is</em></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">let</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nf">let</span>
    <span class="p">((</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="nv">&lt;exp</span> <span class="mi">1</span><span class="nv">&gt;</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">2</span><span class="nv">&gt;</span> <span class="nv">&lt;exp</span> <span class="mi">2</span><span class="nv">&gt;</span><span class="p">)</span>
     <span class="o">...</span>
     <span class="p">(</span><span class="nf">&lt;var</span> <span class="nv">n&gt;</span> <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">))</span>
   <span class="nv">&lt;body&gt;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <p><em>the <code>let</code> expression is interpreted as an alternate syntax for</em></p>
-<div class="highlight"><pre><span></span><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="o">...</span> <span class="nv">&lt;var</span> <span class="nv">n&gt;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var</span> <span class="mi">1</span><span class="nv">&gt;</span> <span class="o">...</span> <span class="nv">&lt;var</span> <span class="nv">n&gt;</span><span class="p">)</span>
   <span class="nv">&lt;body&gt;</span><span class="p">)</span>
     <span class="nv">&lt;exp</span> <span class="mi">1</span><span class="nv">&gt;</span>
     <span class="o">...</span>
     <span class="nv">&lt;exp</span> <span class="nv">n&gt;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <p><em>No new mechanism is required in the interpreter in order to provide local variables. A <code>let</code> expression is simply syntactic sugar for the underlying lambda application.”</em></p>
 <p><em><span class="dquo">“</span><code>Let</code> allows one to bind variables as locally as possible to where they are to be used.”</em></p>
 <h4 id="abstractions-and-first-class-procedures">Abstractions and first-class procedures</h4>
@@ -272,7 +272,7 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <h3 id="213-what-is-meant-by-data">2.1.3 What Is Meant by Data?</h3>
 <p><em><span class="dquo">“</span>In general, we can think of data as defined by some collection of selectors and constructors, together with specified conditions that these procedures must fulfill in order to be a valid representation.”</em></p>
 <p><em><span class="dquo">“</span>we could implement <code>cons</code>, <code>car</code>, and <code>cdr</code> without using any data structures at all but only using procedures. Here are the definitions:</em></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
           <span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
@@ -281,9 +281,9 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 <h2 id="22-hierarchical-data-and-the-closure-property">2.2 Hierarchical Data and the Closure Property</h2>
-<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as the <strong>closure property</strong> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
+<p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as the </em><em>closure property</em><em> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
 <h3 id="223-sequences-as-conventional-interfaces">2.2.3 Sequences as Conventional Interfaces</h3>
 <h4 id="sequence-operations">Sequence Operations</h4>
 <p><em><span class="dquo">“</span>The key to organizing programs so as to more clearly reflect the signal-flow structure is to concentrate on the ‘signals’ that flow from one stage in the process to the next. If we represent these signals as lists, then we can use list operations to implement the processing at each of the stages.”</em></p>
@@ -294,8 +294,8 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
 <h2 id="31-assignment-and-local-state">3.1 Assignment and Local State</h2>
 <h3 id="311-local-state-variables">3.1.1 Local State Variables</h3>
 <p><em><span class="dquo">“</span>The <code>set!</code> special form, whose syntax is:”</em></p>
-<div class="highlight"><pre><span></span><span class="k">set! </span><span class="nv">&lt;name&gt;</span> <span class="nv">&lt;new-value&gt;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">set! </span><span class="nv">&lt;name&gt;</span> <span class="nv">&lt;new-value&gt;</span>
+</code></pre></div>
 <p><em><span class="dquo">“</span>Here <code>&lt;name&gt;</code> is a symbol and <code>&lt;new-value&gt;</code> is any expression.
 <code>Set!</code> changes <code>&lt;name&gt;</code> so that its value is the result obtained by
 evaluating <code>&lt;new-value&gt;</code>.”</em></p>
@@ -360,7 +360,7 @@ binds a collection of primitives to form a language. Specifically:</em></p>
 and directs its evaluation. <code>Eval</code> is structured as a case analysis of the syntactic type
 of the expression to be evaluated.”</em></p>
 <p><em><span class="dquo">“</span>Each type of expression has a predicate that tests for it and an abstract means for
-selecting its parts. This <strong>abstract syntax</strong> makes it easy to see how we can change the
+selecting its parts. This </em><em>abstract syntax</em><em> makes it easy to see how we can change the
 syntax of the language by using the same evaluator.”</em></p>
 <h4 id="primitive-expressions">Primitive expressions</h4>
 <ul>
@@ -381,9 +381,9 @@ of the primitive procedures that can appear in the expressions we will be evalu
 <p><em><span class="dquo">“</span>The global environment also includes bindings for the symbols <code>true</code> and <code>false</code>.”</em></p>
 <h3 id="415-data-as-programs">4.1.5 Data as Programs</h3>
 <p><em><span class="dquo">“</span>Turing presented a simple computational model - now known
-as a <strong>Turing machine</strong> - and argued that any “effective process”
+as a </em><em>Turing machine</em><em> - and argued that any “effective process”
 can be formulated as a program for such a machine. (This argument
-is known as the <strong>Church-Turing thesis</strong>.) Turing then implemented
+is known as the </em><em>Church-Turing thesis</em><em>.) Turing then implemented
 a universal machine, i.e., a Turing machine that behaves
 as an evaluator for Turing-machine programs.”</em></p>
 <p><em><span class="dquo">“</span>An evaluator, which is
@@ -392,21 +392,21 @@ that are more complex than the evaluator itself. The existence
 of a universal evaluator machine is a deep and wonderful
 property of computation.”</em></p>
 <h3 id="421-normal-order-and-applicative-order">4.2.1 Normal Order and Applicative Order</h3>
-<p><em><span class="dquo">“</span>We noted that Scheme is an <strong>applicativeorder</strong>
+<p><em><span class="dquo">“</span>We noted that Scheme is an </em><em>applicativeorder</em><em>
 language, namely, that all the arguments to Scheme
 procedures are evaluated when the procedure is applied.
-In contrast, <strong>normal-orde</strong>r languages delay evaluation of
+In contrast, </em><em>normal-orde</em><em>r languages delay evaluation of
 procedure arguments until the actual argument values are
 needed. Delaying evaluation of procedure arguments until
 the last possible moment (e.g., until they are required by a
-primitive operation) is called <strong>lazy evaluation</strong>”</em></p>
+primitive operation) is called </em><em>lazy evaluation</em><em>”</em></p>
 <h3 id="422-an-interpreter-with-lazy-evaluation">4.2.2 An Interpreter with Lazy Evaluation</h3>
 <p><em><span class="dquo">“</span>The basic idea is that, when applying a procedure, the interpreter
 must determine which arguments are to be evaluated
 and which are to be delayed. The delayed arguments
 are not evaluated; instead, they are transformed into objects
-called <strong>thunks</strong>.”</em></p>
-<p><em><span class="dquo">“</span>The word <strong>thunk</strong> was invented by an informal working group that
+called </em><em>thunks</em><em>.”</em></p>
+<p><em><span class="dquo">“</span>The word </em><em>thunk</em><em> was invented by an informal working group that
 was discussing the implementation of call-by-name in Algol 60.
 They observed that most of the analysis of (“thinking about”) the
 expression could be done at compile time; thus, at run time, the
@@ -427,13 +427,13 @@ causes time to split into branches, where the
 computation continues on each branch with one of the
 possible values of the expression. We say that <code>amb</code> represents
 a nondeterministic choice point.”</em></p>
-<p><em><span class="dquo">“</span>It is better to <strong>systematically search</strong> all possible execution paths.
+<p><em><span class="dquo">“</span>It is better to </em><em>systematically search</em><em> all possible execution paths.
 The amb evaluator […] implements a systematic search as follows:
 When the evaluator encounters an application of `amb, it
 initially selects the first alternative. This selection may itself
 lead to a further choice. The evaluator will always initially
 choose the first alternative at each choice point. If
-a choice results in a failure, then the evaluator <strong>automagically</strong>
+a choice results in a failure, then the evaluator </em><em>automagically</em><em>
 backtracks to the most recent choice point and tries
 the next alternative.”</em></p>
 <h3 id="433-implementing-the-amb-evaluator">4.3.3 Implementing the Amb Evaluator</h3>
@@ -449,11 +449,11 @@ Scheme is complicated by this extra case.”</em></p>
 take one argument: the environment of execution.
 In contrast, the execution procedures in the <code>amb</code> evaluator
 take three arguments: the environment, and two procedures
-called <strong>continuation procedures</strong>. The evaluation of
+called </em><em>continuation procedures</em><em>. The evaluation of
 an expression will finish by calling one of these two continuations:
-If the evaluation results in a value, the <strong>success
-continuation</strong> is called with that value; if the evaluation results
-in the discovery of a dead end, the <strong>failure continuation</strong>
+If the evaluation results in a value, the </em><em>success
+continuation</em><em> is called with that value; if the evaluation results
+in the discovery of a dead end, the </em><em>failure continuation</em><em>
 is called.”</em></p>
 <p><em><span class="dquo">“</span>The failure continuation
 in hand at that point will cause the most recent choice
@@ -479,12 +479,12 @@ computation is dealing with relations rather than with
 single-valued functions. Logic programming extends this
 idea by combining a relational vision of programming
 with a powerful kind of symbolic pattern matching called
-<strong>unification</strong>.”</em></p>
+</em><em>unification</em><em>.”</em></p>
 <h1 id="5-computing-with-register-machines">5 Computing with Register Machines</h1>
 <h2 id="51-designing-register-machines">5.1 Designing Register Machines</h2>
-<p><em><span class="dquo">“</span>To design a register machine, we must design its <strong>data paths</strong> (registers and operations) and the <strong>controller</strong> that sequences these operations.”</em></p>
+<p><em><span class="dquo">“</span>To design a register machine, we must design its </em><em>data paths</em><em> (registers and operations) and the </em><em>controller</em><em> that sequences these operations.”</em></p>
 <h3 id="514-using-a-stack-to-implement-recursion">5.1.4 Using a Stack to Implement Recursion</h3>
-<p><em><span class="dquo">“</span>Since there is no a priori limit on the depth of nested re- cursive calls, we may need to save an arbitrary number of register values. These values must be restored in the re- verse of the order in which they were saved, since in a nest of recursions the last subproblem to be entered is the first to be finished. This dictates the use of a <strong>stack</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Since there is no a priori limit on the depth of nested re- cursive calls, we may need to save an arbitrary number of register values. These values must be restored in the re- verse of the order in which they were saved, since in a nest of recursions the last subproblem to be entered is the first to be finished. This dictates the use of a </em><em>stack</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>Although in principle the factorial computation requires an infinite machine, the machine in […] is actually finite except for the stack, which is potentially unbounded.”</em></p>
 <p><em><span class="dquo">“</span>When a recursive sub- problem is encountered, we save on the stack the registers whose current values will be required after the subproblem is solved, solve the recursive subproblem, then restore the saved registers and continue execution on the main problem.”</em></p>
 <p><em><span class="dquo">“</span>[The] registers that need to be saved depends on the particular machine, since not all recursive computations need the original values of registers that are modified during solution of the subproblem.”</em></p>
@@ -492,14 +492,14 @@ with a powerful kind of symbolic pattern matching called
 <p><em><span class="dquo">“</span>The assembler transforms the sequence of controller expressions for a machine into a corresponding list of machine instructions, each with its execution procedure.”</em></p>
 <h2 id="53-storage-allocation-and-garbage-collection">5.3 Storage Allocation and Garbage Collection</h2>
 <h3 id="531-memory-as-vectors">5.3.1 Memory as Vectors</h3>
-<p><em><span class="dquo">“</span>Memory addresses can be incremented to support sequential access to some set of the cubbyholes. More generally, many important data operations require that memory addresses be treated as data, which can be stored in memory locations and manipulated in machine registers. The representation of list structure is one application of such <strong>address arithmetic</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Memory addresses can be incremented to support sequential access to some set of the cubbyholes. More generally, many important data operations require that memory addresses be treated as data, which can be stored in memory locations and manipulated in machine registers. The representation of list structure is one application of such </em><em>address arithmetic</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>In order to describe memory operations, we use two primitive Scheme procedures for manipulating vectors:”</em></p>
 <ul>
 <li><code>(vector-ref &lt;vector&gt; &lt;n&gt;)</code> returns the <span class="math">\(n^{th}\)</span> element of the vector.</li>
 <li><code>(vector-set! &lt;vector&gt; &lt;n&gt; &lt;value&gt;)</code> sets the <span class="math">\(n^{th}\)</span> element of the vector to the designated value.</li>
 </ul>
 <h4 id="representing-lisp-data">Representing Lisp data</h4>
-<p><em><span class="dquo">“</span>Let us imagine that computer memory is divided into two vectors: <code>the-cars</code> and <code>the-cdrs</code>. We will represent list structure as follows: A pointer to a pair is an index into the two vectors. The <code>car</code> of the pair is the entry in <code>the-cars</code> with the designated index, and the <code>cdr</code> of the pair is the entry in <code>the-cdrs</code> with the designated index. We also need a representation for objects other than pairs (such as numbers and symbols) and a way to distinguish one kind of data from another. […] using <strong>typed pointers</strong>, that is, to extending the notion of “pointer” to include information on data type.”</em></p>
+<p><em><span class="dquo">“</span>Let us imagine that computer memory is divided into two vectors: <code>the-cars</code> and <code>the-cdrs</code>. We will represent list structure as follows: A pointer to a pair is an index into the two vectors. The <code>car</code> of the pair is the entry in <code>the-cars</code> with the designated index, and the <code>cdr</code> of the pair is the entry in <code>the-cdrs</code> with the designated index. We also need a representation for objects other than pairs (such as numbers and symbols) and a way to distinguish one kind of data from another. […] using </em><em>typed pointers</em><em>, that is, to extending the notion of “pointer” to include information on data type.”</em></p>
 <h3 id="532-maintaining-the-illusion-of-infinite-memory">5.3.2 Maintaining the Illusion of Infinite Memory</h3>
 <p><em><span class="dquo">“</span>Garbage collection is based on the observation that, at any moment in a Lisp interpretation, the only objects that can affect the future of the computation are those that can be reached by some succession of <code>car</code> and <code>cdr</code> operations starting from the pointers that are currently in the machine registers.”</em></p>
 <p><em><span class="dquo">“</span>We assume here that the stack is represented as a list […], so that items on the stack are accessible via the pointer in the stack register.”</em></p>
@@ -523,17 +523,17 @@ evaluation. To understand the behavior of the explicit-control evaluator, we can
 simulate it and monitor its performance.”</em></p>
 <p><em><span class="dquo">“</span>There are two common strategies for bridging the gap between higher-level languages and register-machine languages.”</em></p>
 <p><em><span class="dquo">“</span>An interpreter written in the native language of a machine configures the
-machine to execute programs written in a language (called the <strong>source language</strong>)
+machine to execute programs written in a language (called the </em><em>source language</em><em>)
 that may differ from the native language of the machine performing the
 evaluation. The primitive procedures of the source language are implemented as a
 library of subroutines written in the native language of the given machine. A
-program to be interpreted (called the <strong>source program</strong>) is represented as a data
+program to be interpreted (called the </em><em>source program</em><em>) is represented as a data
 structure. The interpreter traverses this data structure, analyzing the source
 program. As it does so, it simulates the intended behavior of the source program
 by calling appropriate primitive subroutines from the library.”</em></p>
-<p><em><span class="dquo">“</span>[…] the alternative strategy of <strong>compilation</strong>. A compiler for a given
+<p><em><span class="dquo">“</span>[…] the alternative strategy of </em><em>compilation</em><em>. A compiler for a given
 source language and machine translates a source program into an equivalent
-program (called the <strong>object program</strong>) written in the machine’s native language.”</em></p>
+program (called the </em><em>object program</em><em>) written in the machine’s native language.”</em></p>
 <p><em><span class="dquo">“</span>In view of the complementary advantages of compi-lation and interpretation,
 modern program-development environments pursue a mixed strategy. Lisp
 interpreters are generally organized so that interpreted procedures and
@@ -541,9 +541,9 @@ compiled procedures can call each other.”</em></p>
 <h3 id="551-structure-of-the-compiler">5.5.1 Structure of the Compiler</h3>
 <h4 id="targets-and-linkages">Targets and linkages</h4>
 <p><em><span class="dquo">“</span><code>Compile</code> and the code generators that it calls take two arguments 
-in addition to the expression to compile. There is a <strong>target</strong>,
+in addition to the expression to compile. There is a </em><em>target</em><em>,
 which specifies the register in which the compiled code is to return 
-the value of the expression. There is also a <strong>linkage descriptor</strong>, 
+the value of the expression. There is also a </em><em>linkage descriptor</em><em>, 
 which describes how the code resulting from the compilation of the
 expression should proceed when it has finished its execution. The
 linkage descriptor can require that the code do one of the following
@@ -556,9 +556,9 @@ three things:</em></p>
 <h4 id="instruction-sequences-and-stack-usage">Instruction sequences and stack usage</h4>
 <p><em><span class="dquo">“</span>An instruction sequence will contain three pieces of information:</em></p>
 <ul>
-<li><em>the set of registers that must be initialized before the instructions in the sequence are executed (these registers are said to be <strong>needed</strong> by the sequence),</em></li>
+<li><em>the set of registers that must be initialized before the instructions in the sequence are executed (these registers are said to be </em><em>needed</em><em> by the sequence),</em></li>
 <li><em>the set of registers whose values are modified by the instructions in the sequence, and</em>*</li>
-<li><em>the actual instructions (also called <strong>statements</strong>) in the sequence.”</em></li>
+<li><em>the actual instructions (also called </em><em>statements</em><em>) in the sequence.”</em></li>
 </ul>
 <h3 id="556-lexical-addressing">5.5.6 Lexical Addressing</h3>
 <p><em><span class="dquo">“</span>One of the most common optimizations performed by compilers is the optimization of variable lookup.”</em></p>
@@ -568,9 +568,9 @@ structure of the program in which the expression appears.”</em></p>
 <p><em><span class="dquo">“</span>This is not true if we allow internal definitions, unless we scan them out.”</em></p>
 <p><em><span class="dquo">“</span>We can exploit this fact by inventing a new kind of
 variable-lookup operation, <code>lexical-address-lookup</code>, that takes as
-arguments an environment and a <strong>lexical address</strong> that consists of
-two numbers: a <strong>frame number</strong>, which specifies how many frames to
-pass over, and a <strong>displacement number</strong>, which specifies how many
+arguments an environment and a </em><em>lexical address</em><em> that consists of
+two numbers: a </em><em>frame number</em><em>, which specifies how many frames to
+pass over, and a </em><em>displacement number</em><em>, which specifies how many
 variables to pass over in that frame.”</em></p>
 <p><em><span class="dquo">“</span>In order to generate such code, the compiler must be able to 
 determine the lexical address of a variable it is about to compile a 

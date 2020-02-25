@@ -576,7 +576,7 @@
 <li><em><span class="dquo">“</span>Root filesystem: This contains the libraries and programs”</em></li>
 </ul>
 <h2 id="hardware-for-embedded-linux">Hardware for embedded Linux</h2>
-<p><em><span class="dquo">“</span>[In] source code for Linux 4.1, there are 30 architectures, each represented by a sub-directory in the <code>arch/</code> directory. They are all 32- or 64-bit architectures, most with a <strong>memory management unit (<span class="caps">MMU</span>)</strong>, but some without.”</em></p>
+<p><em><span class="dquo">“</span>[In] source code for Linux 4.1, there are 30 architectures, each represented by a sub-directory in the <code>arch/</code> directory. They are all 32- or 64-bit architectures, most with a </em><em>memory management unit (<span class="caps">MMU</span>)</em><em>, but some without.”</em></p>
 <p><em><span class="dquo">“</span>There is another group that doesn’t have an <span class="caps">MMU</span> that runs a subset of Linux known as micro controller Linux or uClinux.”</em></p>
 <p><em><span class="dquo">“</span>[Linux needs] a reasonable amount of <span class="caps">RAM</span>. 16 MiB is a good minimum”</em></p>
 <p><em><span class="dquo">“</span>[We need] non-volatile storage, usually flash memory. 8 MiB is enough for a simple device”</em></p>
@@ -610,18 +610,18 @@
 <li><em>Application Binary Interface (<span class="caps">ABI</span>): The calling convention used for passing parameters between function calls”</em></li>
 </ul>
 <h4 id="arm-oabi-eabi-and-eabihf"><span class="caps">ARM</span> <span class="caps">OABI</span>, <span class="caps">EABI</span> and <span class="caps">EABIHF</span></h4>
-<p><em><span class="dquo">“</span>With many architectures, the <span class="caps">ABI</span> is constant across the family of processors. One notable exception is <span class="caps">ARM</span>. The <span class="caps">ARM</span> architecture transitioned to the </em>Extended Application Binary Interface<em> (<strong><span class="caps">EABI</span></strong>) in the late 2000’s, resulting in the previous <span class="caps">ABI</span> being named the </em>Old Application Binary Interface<em> (<strong><span class="caps">OABI</span></strong>). While the <span class="caps">OABI</span> is now obsolete, you continue to see references to <span class="caps">EABI</span>. Since then, the </em><span class="caps">EABI</span> has split into two<em>, based on the way that floating point parameters are passed. The </em>original <span class="caps">EABI</span> uses general purpose (integer)<em> registers</em> while the <em>newer <strong><span class="caps">EABIHF</span></strong> uses floating point registers. The <span class="caps">EABIHF</span> is significantly faster at floating point operations since it removes the need for copying between integer and floating point registers, but it is not compatible with CPUs that do not have a floating point unit. The choice, then, is between two incompatible ABIs: </em>you cannot mix and match the two<em> and so you have to decide at this stage.”</em></p>
+<p><em><span class="dquo">“</span>With many architectures, the <span class="caps">ABI</span> is constant across the family of processors. One notable exception is <span class="caps">ARM</span>. The <span class="caps">ARM</span> architecture transitioned to the </em>Extended Application Binary Interface<em> (</em><em><span class="caps">EABI</span></em><em>) in the late 2000’s, resulting in the previous <span class="caps">ABI</span> being named the </em>Old Application Binary Interface<em> (</em><em><span class="caps">OABI</span></em><em>). While the <span class="caps">OABI</span> is now obsolete, you continue to see references to <span class="caps">EABI</span>. Since then, the </em><span class="caps">EABI</span> has split into two<em>, based on the way that floating point parameters are passed. The </em>original <span class="caps">EABI</span> uses general purpose (integer)<em> registers</em> while the <em>newer </em><em><span class="caps">EABIHF</span></em><em> uses floating point registers. The <span class="caps">EABIHF</span> is significantly faster at floating point operations since it removes the need for copying between integer and floating point registers, but it is not compatible with CPUs that do not have a floating point unit. The choice, then, is between two incompatible ABIs: </em>you cannot mix and match the two<em> and so you have to decide at this stage.”</em></p>
 <h4 id="gnu-prefix-tuple"><span class="caps">GNU</span> prefix tuple</h4>
 <p><em><span class="dquo">“</span><span class="caps">GNU</span> uses a prefix to the tools to identify the various combinations that can be generated, consisting of a tuple of three or four components separated by dashes:</em></p>
 <ul>
-<li><em><span class="caps">CPU</span>: The <span class="caps">CPU</span> architecture, such as arm, mips, or x86_64. If the <span class="caps">CPU</span> has both endian modes, they may be differentiated by adding <strong>el for little-endian</strong>, or <strong>eb for big-endian</strong>. Good examples are little-endian <span class="caps">MIPS</span>, mipsel and big-endian <span class="caps">ARM</span>, armeb.</em></li>
+<li><em><span class="caps">CPU</span>: The <span class="caps">CPU</span> architecture, such as arm, mips, or x86_64. If the <span class="caps">CPU</span> has both endian modes, they may be differentiated by adding </em><em>el for little-endian</em><em>, or </em><em>eb for big-endian</em><em>. Good examples are little-endian <span class="caps">MIPS</span>, mipsel and big-endian <span class="caps">ARM</span>, armeb.</em></li>
 <li><em>Vendor: This identifies the provider of the toolchain. Examples include buildroot, poky, or just unknown. Sometimes it is left out altogether.</em></li>
 <li><em>Kernel: For our purposes, it is always ‘linux’.</em></li>
 <li><em>Operating system: A name for the user space component, which might be <code>gnu</code> or <code>uclibcgnu</code>. The <span class="caps">ABI</span> may be appended here as well so, for <span class="caps">ARM</span> toolchains, you may see <code>gnueabi</code>, <code>gnueabihf</code>, <code>uclibcgnueabi</code>, or <code>uclibcgnueabihf</code>.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>You can find the tuple used when building the toolchain by using the <code>-dumpmachine</code> option of <code>gcc</code><span class="dquo">“</span></em></p>
 <h3 id="choosing-the-c-library">Choosing the C library</h3>
-<p><em><span class="dquo">“</span>The programming interface to the Unix operating system is defined in the C language, which is now defined by the <strong><span class="caps">POSIX</span></strong> standards. The C library is the implementation of that interface”</em></p>
+<p><em><span class="dquo">“</span>The programming interface to the Unix operating system is defined in the C language, which is now defined by the </em><em><span class="caps">POSIX</span></em><em> standards. The C library is the implementation of that interface”</em></p>
 <p><em><span class="dquo">“</span>There are several C libraries:</em></p>
 <ul>
 <li><em>glibc: is the standard <span class="caps">GNU</span> C library. It is big and, until recently, not very configurable, but it is the most complete implementation</em></li>
@@ -778,7 +778,7 @@
 <p><em><span class="dquo">“</span>Autotools understands three different types of machine that may be involved when compiling a package:</em></p>
 <ul>
 <li><em><code>Build</code>: This is the computer that is to build the package, which defaults to the current machine.</em></li>
-<li><em><code>Host</code>: This is the computer the program will run on: for a native compile this is left blank and it defaults to be the same computer as build. For a <strong>cross compile</strong> you set it to be the <strong>tuple of your toolchain</strong>.</em></li>
+<li><em><code>Host</code>: This is the computer the program will run on: for a native compile this is left blank and it defaults to be the same computer as build. For a </em><em>cross compile</em><em> you set it to be the </em><em>tuple of your toolchain</em><em>.</em></li>
 <li><em><code>Target</code>: This is the computer the program will generate code for: you would set this when building a cross compiler, for example.</em>”</li>
 </ul>
 <h2 id="package-configuration">Package configuration</h2>
@@ -812,7 +812,7 @@ It is programmed into the chip when it is manufactured, hence <span class="caps"
 <p><em><span class="dquo">“</span>In SoCs where the <span class="caps">SRAM</span> is not large enough to load a full bootloader like U-Boot, there has to be an intermediate loader called the secondary program loader, or <span class="caps">SPL</span>”</em></p>
 <p><em><span class="dquo">“</span>At the end of this phase, the next stage bootloader is present in on-chip memory and the <span class="caps">ROM</span> code jumps to the beginning of that code.”</em></p>
 <h3 id="phase-2-spl">Phase 2: <span class="caps">SPL</span></h3>
-<p><em><span class="dquo">“</span><span class="caps">SPL</span> must set up the memory controller and other essential parts of the system preparatory to loading the <strong>third stage program loader (<span class="caps">TPL</span>)</strong> into main memory, the <span class="caps">DRAM</span>”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">SPL</span> must set up the memory controller and other essential parts of the system preparatory to loading the </em><em>third stage program loader (<span class="caps">TPL</span>)</em><em> into main memory, the <span class="caps">DRAM</span>”</em></p>
 <p><em><span class="dquo">“</span>The <span class="caps">SPL</span> may be open source […] but it is quite common for it to contain proprietary code”</em></p>
 <h3 id="phase-3-tpl">Phase 3: <span class="caps">TPL</span></h3>
 <p><em><span class="dquo">“</span>At last, we are running a full bootloader like U-Boot or Barebox.”</em></p>
@@ -823,8 +823,8 @@ It is programmed into the chip when it is manufactured, hence <span class="caps"
 <h3 id="phase-1">Phase 1:</h3>
 <p><em><span class="dquo">“</span>The processor loads the <span class="caps">UEFI</span> boot manager firmware from flash memory. In some designs, it is loaded directly from <span class="caps">NOR</span> flash memory, in others there is <span class="caps">ROM</span> code on-chip which loads the boot manager from <span class="caps">SPI</span> flash memory. The boot manager is roughly equivalent to the <span class="caps">SPL</span>, but may allow user interaction through a text-based or graphical interface.”</em></p>
 <h3 id="phase-2">Phase 2:</h3>
-<p><em><span class="dquo">“</span>The boot manager loads the boot firmware from the <strong><span class="caps">EFI</span> System Partition (<span class="caps">ESP</span>)</strong> or a hard disk or <span class="caps">SSD</span>, or from a network server via <span class="caps">PXE</span> boot.”</em></p>
-<p><em><span class="dquo">“</span>[…] the <span class="caps">EXP</span> is identified by a well-known <span class="caps">GUID</span> value of <strong><span class="caps">C12A7328</span>-<span class="caps">F81F</span>-11D2-<span class="caps">BA4B</span>-<span class="caps">00A0C93EC93B</span></strong>.”</em></p>
+<p><em><span class="dquo">“</span>The boot manager loads the boot firmware from the </em><em><span class="caps">EFI</span> System Partition (<span class="caps">ESP</span>)</em><em> or a hard disk or <span class="caps">SSD</span>, or from a network server via <span class="caps">PXE</span> boot.”</em></p>
+<p><em><span class="dquo">“</span>[…] the <span class="caps">EXP</span> is identified by a well-known <span class="caps">GUID</span> value of </em><em><span class="caps">C12A7328</span>-<span class="caps">F81F</span>-11D2-<span class="caps">BA4B</span>-<span class="caps">00A0C93EC93B</span></em><em>.”</em></p>
 <p>Partition: <span class="caps">FAT32</span></p>
 <p>Third stage bootloader file: <code>&lt;efi_system_partition&gt;/boot/boot&lt;machine_type_short_name&gt;.efi</code></p>
 <h3 id="phase-3">Phase 3:</h3>
@@ -866,9 +866,9 @@ It is programmed into the chip when it is manufactured, hence <span class="caps"
 <h2 id="u-boot">U-Boot</h2>
 <h3 id="building-u-boot">Building U-Boot</h3>
 <p><em><span class="dquo">“</span>[…] the way U-Boot is configured has undergone a lot of changes since the 2014.10 release. Double-check that the instructions you are following are appropriate.”</em></p>
-<div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- am335x_boneblack_defconfig
+<div class="highlight"><pre><span></span><code><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- am335x_boneblack_defconfig
 make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf-
-</pre></div>
+</code></pre></div>
 <p><em><span class="dquo">“</span>The results of the compilation are:</em></p>
 <ul>
 <li><em><code>u-boot</code>: This is U-Boot in <span class="caps">ELF</span> object format, suitable for use with a debugger</em></li>
@@ -885,14 +885,14 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 <p><em><span class="dquo">“</span>two partitions: the first is 64 MiB, formatted as <span class="caps">FAT32</span> [(bootable)], and will contain the bootloader, and the second is 1 GiB, formatted as ext4”</em></p>
 <p>List block devices with: <a href="http://man7.org/linux/man-pages/man8/lsblk.8.html">lsblk</a></p>
 <p><em><span class="dquo">“</span>copy U-Boot and the <span class="caps">SPL</span> to [first partition of <span class="caps">SD</span> card]:”</em></p>
-<div class="highlight"><pre><span></span>cp MLO u-boot.img /media/<span class="nv">$USER</span>/boot
-</pre></div>
+<div class="highlight"><pre><span></span><code>cp MLO u-boot.img /media/<span class="nv">$USER</span>/boot
+</code></pre></div>
 <h3 id="boot-image-format">Boot image format</h3>
 <p><em><span class="dquo">“</span>Prepare files [(like the Linux kernel)] for U-Boot using the <code>mkimage</code> command.”</em></p>
 <p>Example:</p>
-<div class="highlight"><pre><span></span>mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>mkimage -A arm -O linux -T kernel -C gzip -a 0x80008000 <span class="se">\</span>
 -e 0x80008000 -n <span class="s1">'Linux'</span> -d zImage uImage
-</pre></div>
+</code></pre></div>
 <h1 id="chapter-4-configuring-and-building-the-kernel">Chapter 4. Configuring and Building the Kernel</h1>
 <h2 id="what-does-the-kernel-do">What does the kernel do?</h2>
 <p><em><span class="dquo">“</span>The system call interface uses an architecture-specific method, such as a trap or a software interrupt, to switch the <span class="caps">CPU</span> from low privilege user mode to high privilege kernel mode, which allows access to all memory addresses and <span class="caps">CPU</span> registers.”</em></p>
@@ -900,14 +900,14 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 <h2 id="choosing-a-kernel">Choosing a kernel</h2>
 <h3 id="stable-and-long-term-support-releases">Stable and long term support releases</h3>
 <p><em><span class="dquo">“</span>[…] stable releases and long term releases. After the release of a mainline kernel (maintained by Linus Torvalds) it is moved to the stable tree (maintained by Greg Kroah-Hartman).”</em></p>
-<p><em><span class="dquo">“</span>some kernels are labeled <strong>long term</strong> and maintained for two or more years. There is at least one long term kernel release each year.”</em></p>
+<p><em><span class="dquo">“</span>some kernels are labeled </em><em>long term</em><em> and maintained for two or more years. There is at least one long term kernel release each year.”</em></p>
 <p><a href="www.kernel.org">https://www.kernel.org/</a></p>
 <p><a href="kernelnewbies.org">http://kernelnewbies.org/LinuxVersions</a></p>
 <h3 id="vendor-support">Vendor support</h3>
 <p><em><span class="dquo">“</span>You may find support for your board or SoC from independent open source projects, Linaro or the Yocto Project, for example, or from companies providing third party support for embedded Linux, but in many cases you will be obliged to look to the vendor of your SoC or board for a working kernel.”</em></p>
 <h3 id="licensing">Licensing</h3>
 <p><em><span class="dquo">“</span>The Linux source code is licensed under <span class="caps">GPL</span> v2”</em></p>
-<p><em><span class="dquo">“</span>it is now accepted practice that the <span class="caps">GPL</span> does not <strong>necessarily</strong> apply to kernel modules. This is codified by the kernel <code>MODULE_LICENSE</code> macro, which may take the value <code>Proprietary</code> to indicate that it is not released under the <span class="caps">GPL</span>.”</em></p>
+<p><em><span class="dquo">“</span>it is now accepted practice that the <span class="caps">GPL</span> does not </em><em>necessarily</em><em> apply to kernel modules. This is codified by the kernel <code>MODULE_LICENSE</code> macro, which may take the value <code>Proprietary</code> to indicate that it is not released under the <span class="caps">GPL</span>.”</em></p>
 <p>*”[…] an oft-quoted e-mail thread titled “Linux <span class="caps">GPL</span> and binary module exception clause?” which is archived at <a href="http://yarchive.net">http://yarchive.net/comp/linux/gpl_modules.html</a></p>
 <h2 id="building-the-kernel">Building the kernel</h2>
 <h3 id="getting-the-source">Getting the source</h3>
@@ -931,8 +931,8 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 <p><em><span class="dquo">“</span>There are a set of known working configuration files in <code>arch/$ARCH/configs</code>, each containing suitable configuration values for a single SoC or a group of SoCs.”</em></p>
 <p><em><span class="dquo">“</span>[There is a] target named <code>oldconfig</code>. This takes an existing <code>.config</code> file and asks you to supply configuration values for any options that don’t have them. You would use it when moving a configuration to a newer kernel version; copy <code>.config</code> from the old kernel to the new source directory and run the <code>make ARCH=arm oldconfig</code> command to bring it up to date. It can also be used to validate a <code>.config</code> file that you have edited manually”</em></p>
 <h3 id="using-localversion-to-identify-your-kernel">Using <span class="caps">LOCALVERSION</span> to identify your kernel</h3>
-<div class="highlight"><pre><span></span>make <span class="nv">ARCH</span><span class="o">=</span>arm kernelversion
-</pre></div>
+<div class="highlight"><pre><span></span><code>make <span class="nv">ARCH</span><span class="o">=</span>arm kernelversion
+</code></pre></div>
 <p><em><span class="dquo">“</span>If you change the configuration from the default, it is advisable to append your own version information, which you can configure by setting <code>CONFIG_LOCALVERSION</code><span class="dquo">“</span></em></p>
 <h3 id="kernel-modules">Kernel modules</h3>
 <p><em><span class="dquo">“</span>[A] few cases where kernel modules are a good idea in embedded systems:</em></p>
@@ -953,8 +953,8 @@ make <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-
 The problem occurs because the location of physical memory might be different for each platform, and so the relocation address for the kernel (usually <code>0x8000</code> bytes from the start of physical <span class="caps">RAM</span>) might also be different.”</em></p>
 <p><em><span class="dquo">“</span>The <code>uImage</code> format is not compatible with multi-platform images.”</em></p>
 <p><em><span class="dquo">“</span>You can still create a uImage binary from a multi-platform build, so long as you give the <code>LOADADDR</code> of the particular SoC you are hoping to boot this kernel on. You can find the load address by looking in <code>mach -[your SoC]/Makefile.boot</code> and noting the value of <code>zreladdr-y</code>:”</em></p>
-<div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">LOADADDR</span><span class="o">=</span>0x80008000 uImage
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">LOADADDR</span><span class="o">=</span>0x80008000 uImage
+</code></pre></div>
 <h3 id="build-artifacts">Build artifacts</h3>
 <p><em><span class="dquo">“</span>If you have compiled your kernel with debug enabled (<code>CONFIG_DEBUG_INFO=y</code>), it will contain debug symbols which can be used with debuggers like <code>kgdb</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span><code>System.map</code> contains the symbol table in a human readable form.”</em></p>
@@ -966,18 +966,18 @@ The problem occurs because the location of physical memory might be different fo
 </ul>
 <h3 id="compiling-device-trees">Compiling device trees</h3>
 <p><em><span class="dquo">“</span>The <code>dtbs</code> target builds device trees according to the rules in <code>arch/$ARCH/boot/dts/Makefile</code><span class="dquo">“</span></em> , using the device tree source files in that directory.”*</p>
-<div class="highlight"><pre><span></span>make <span class="nv">ARCH</span><span class="o">=</span>arm dtbs
-</pre></div>
+<div class="highlight"><pre><span></span><code>make <span class="nv">ARCH</span><span class="o">=</span>arm dtbs
+</code></pre></div>
 <p><em><span class="dquo">“</span>The compiled <code>.dtb</code> files are generated in the same directory as the sources.”</em></p>
 <h3 id="compiling-modules">Compiling modules</h3>
 <p><em><span class="dquo">“</span>Build [modules] separately using the <code>modules</code> target:”</em></p>
-<div class="highlight"><pre><span></span>make -j <span class="m">4</span> <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- modules
-</pre></div>
+<div class="highlight"><pre><span></span><code>make -j <span class="m">4</span> <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- modules
+</code></pre></div>
 <p><em><span class="dquo">“</span>The compiled modules have a <code>.ko</code> suffix and are generated in the same directory as the source code”</em></p>
 <p><em><span class="dquo">“</span>Use the <code>modules_install</code> <code>make</code> target to install them in the right place.”</em></p>
 <p><em><span class="dquo">“</span>To install them into the staging area of your root filesystem […], provide the path using <code>INSTALL_MOD_PATH</code>:”</em></p>
-<div class="highlight"><pre><span></span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">INSTALL_MOD_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/rootfs modules_install
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-cortex_a8-linux-gnueabihf- <span class="nv">INSTALL_MOD_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/rootfs modules_install
+</code></pre></div>
 <h3 id="cleaning-kernel-sources">Cleaning kernel sources</h3>
 <p>Make targets:</p>
 <ul>
@@ -990,11 +990,11 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>In order to transition from kernel initialization to user space, the kernel has to mount a root filesystem and execute a program in that root filesystem. This can be achieved via a ramdisk or by mounting a real filesystem on a block device.”</em></p>
 <p><em><span class="dquo">“</span>The code for all of this is in <code>init/main.c</code>, starting with the function <code>rest_init()</code>, which creates the first thread with <span class="caps">PID</span> 1 and runs the code in <code>kernel_init()</code>.”</em></p>
 <p><em><span class="dquo">“</span>If there is a ramdisk, it will try to execute the program <code>/init</code> […]. If fails to find and run <code>/init</code>, it tries to mount a filesystem by calling the function <code>prepare_namespace()</code> in <code>init/do_mounts.c</code>. This requires a <code>root=</code> command line to give the name of the block device to use for mounting, usually in the form:”</em></p>
-<div class="highlight"><pre><span></span><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;&lt;partition number&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;&lt;partition number&gt;
+</code></pre></div>
 <p><em><span class="dquo">“</span>Or, for <span class="caps">SD</span> cards and eMMC:”</em></p>
-<div class="highlight"><pre><span></span><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;p&lt;partition number&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">root</span><span class="o">=</span>/dev/&lt;disk name&gt;p&lt;partition number&gt;
+</code></pre></div>
 <p><em><span class="dquo">“</span>If the mount succeeds, it will try to execute <code>/sbin/init</code>, followed by <code>/etc/init</code>, <code>/bin/init</code>, and then <code>/bin/sh</code>, stopping at the first one that works.”</em></p>
 <h3 id="kernel-messages">Kernel messages</h3>
 <table class="table-striped table">
@@ -1150,8 +1150,8 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>[The] main difference is the license, which is <span class="caps">BSD</span> rather than <span class="caps">GPL</span> v2.”</em></p>
 <h3 id="libraries-for-the-root-filesystem">Libraries for the root filesystem</h3>
 <h4 id="reducing-the-size-by-stripping">Reducing the size by stripping</h4>
-<div class="highlight"><pre><span></span>arm-cortex_a8-linux-gnueabihf-strip rootfs/lib/libc-2.22.so
-</pre></div>
+<div class="highlight"><pre><span></span><code>arm-cortex_a8-linux-gnueabihf-strip rootfs/lib/libc-2.22.so
+</code></pre></div>
 <blockquote>
 <p>Be careful about stripping kernel modules. Some symbols are required by the module loader to relocate the module code, and so the module will fail to load if they are stripped out. Use this command to remove debug symbols while keeping those used for relocation: strip <code>--strip-unneeded &lt;module name&gt;</code>.</p>
 </blockquote>
@@ -1159,8 +1159,8 @@ The problem occurs because the location of physical memory might be different fo
 <p><em><span class="dquo">“</span>[…] Unix philosophy that everything is a file (except network interfaces, which are sockets).”</em></p>
 <p><em><span class="dquo">“</span>Block devices are mass storage devices, such as <span class="caps">SD</span> cards or hard drives. A character device is pretty much anything else, once again with the exception of network interfaces.”</em></p>
 <p><em><span class="dquo">“</span>Device nodes are created using the program named <code>mknod</code> (short for make node):</em>”</p>
-<div class="highlight"><pre><span></span>mknod &lt;name&gt; &lt;type&gt; &lt;major&gt; &lt;minor&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code>mknod &lt;name&gt; &lt;type&gt; &lt;major&gt; &lt;minor&gt;
+</code></pre></div>
 <p><em><span class="dquo">“</span>The parameters to <code>mknod</code> are as follows:</em></p>
 <ul>
 <li><em><code>name</code> is the name of the device node that you want to create.</em></li>
@@ -1169,17 +1169,17 @@ The problem occurs because the location of physical memory might be different fo
 </ul>
 <p><em><span class="dquo">“</span>In a really minimal root filesystem, you need just two nodes to boot with BusyBox: <code>console</code> and <code>null</code>.”</em></p>
 <p><em><span class="dquo">“</span>The <code>console</code> only needs to be accessible to <code>root</code>, the owner of the device node, so the access permissions are <code>600</code>. The <code>null</code> device should be readable and writable by everyone, so the mode is <code>666</code>. You can use the <code>-m</code> option for <code>mknod</code> to set the mode when creating the node. You need to be <code>root</code> to create device nodes, as shown here:”</em></p>
-<div class="highlight"><pre><span></span>sudo mknod -m <span class="m">666</span> dev/null c <span class="m">1</span> <span class="m">3</span>
+<div class="highlight"><pre><span></span><code>sudo mknod -m <span class="m">666</span> dev/null c <span class="m">1</span> <span class="m">3</span>
 sudo mknod -m <span class="m">600</span> dev/console c <span class="m">5</span> <span class="m">1</span>
-</pre></div>
+</code></pre></div>
 <p><em><span class="dquo">“</span>You can delete device nodes using the standard <code>rm</code> command: there is no <code>rmnod</code> command because, once created, they are just files.”</em></p>
 <h3 id="the-proc-and-sysfs-filesystems">The proc and sysfs filesystems</h3>
 <p><em><span class="dquo">“</span><code>proc</code> and <code>sysfs</code> are two pseudo filesystems”</em></p>
 <p><em><span class="dquo">“</span>when you read one of the files [in <code>proc</code> or <code>sysfs</code>], the contents you see do not come from disk storage; it has been formatted on-the-fly by a function in the kernel. Some files are also writable, meaning that a kernel function is called with the new data you have written and, if it is of the correct format and you have sufficient permissions, it will modify the value stored in the kernel’s memory. In other words, <code>proc</code> and <code>sysfs</code> provide another way to interact with device drivers and other kernel code.”</em></p>
 <p><em><span class="dquo">“</span>The <code>proc</code> and <code>sysfs</code> filesystems should be mounted on the directories called <code>/proc</code> and <code>/sys</code>:</em>”</p>
-<div class="highlight"><pre><span></span>mount -t proc proc /proc
+<div class="highlight"><pre><span></span><code>mount -t proc proc /proc
 mount -t sysfs sysfs /sys
-</pre></div>
+</code></pre></div>
 <p><em><span class="dquo">“</span>[The] purpose [of <code>proc</code>] was to expose information about processes to user space”</em></p>
 <p><em><span class="dquo">“</span>there is a directory for each process named <code>/proc/&lt;PID&gt;</code>, which contains information about its state.”</em></p>
 <p><em><span class="dquo">“</span>there are files that give information about other parts of the kernel, for example, <code>/proc/cpuinfo</code> tells you about the <span class="caps">CPU</span>, <code>/proc/interrupts</code> has information about interrupts”</em></p>
@@ -1189,8 +1189,8 @@ mount -t sysfs sysfs /sys
 <h4 id="mounting-filesystems">Mounting filesystems</h4>
 <p><em><span class="dquo">“</span>The <code>mount</code> command allows us to attach one filesystem to a directory within another, forming a hierarchy of filesystems.”</em></p>
 <p><em><span class="dquo">“</span>The format of the mount command is as follows:”</em></p>
-<div class="highlight"><pre><span></span>mount <span class="o">[</span>-t vfstype<span class="o">]</span> <span class="o">[</span>-o options<span class="o">]</span> device directory
-</pre></div>
+<div class="highlight"><pre><span></span><code>mount <span class="o">[</span>-t vfstype<span class="o">]</span> <span class="o">[</span>-o options<span class="o">]</span> device directory
+</code></pre></div>
 <p><a href="http://man7.org/linux/man-pages/man8/mount.8.html">man 8 mount</a></p>
 <p><em><span class="dquo">“</span>Looking at the example of mounting the <code>proc</code> filesystem, there is something odd: there is no device node, such as <code>/dev/proc</code>, since it is a pseudo filesystem and not a real one. But the <code>mount</code> command requires a device parameter. Consequently, we have to give a string where <code>device</code> should go, but it does not matter much what that string is.”</em></p>
 <h3 id="kernel-modules_1">Kernel modules</h3>
@@ -1209,23 +1209,23 @@ mount -t sysfs sysfs /sys
 <p><em><span class="dquo">“</span>there are three different ways to create a boot ramdisk: as a standalone <code>cpio</code> archive, as a <code>cpio</code> archive embedded in the kernel image, and as a device table which the kernel build system processes as part of the build.”</em></p>
 <h3 id="booting-with-qemu">Booting with <span class="caps">QEMU</span></h3>
 <p><em><span class="dquo">“</span><span class="caps">QEMU</span> has the option called <code>-initrd</code> to load <code>initramfs</code> into memory.”</em></p>
-<div class="highlight"><pre><span></span><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none <span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none <span class="se">\</span>
 qemu-system-arm -m 256M -nographic -M versatilepb <span class="se">\</span>
 -kernel zImage -append <span class="s2">"console=ttyAMA0 rdinit=/bin/sh"</span> <span class="se">\</span>
 -dtb versatile-pb.dtb -initrd initramfs.cpio.gz
-</pre></div>
+</code></pre></div>
 <h3 id="building-an-initramfs-into-the-kernel-image">Building an initramfs into the kernel image</h3>
 <p><em><span class="dquo">“</span>Linux can be configured to incorporate <code>initramfs</code> into the kernel image. To do this […] set <code>CONFIG_INITRAMFS_SOURCE</code> to the full path of the <code>cpio</code> archive. […] Note that it has to be the uncompressed <code>cpio</code> file ending in <code>.cpio</code>, not the gzipped version. […] Booting is the same as before, except that there is no ramdisk file.”</em></p>
 <p>For <span class="caps">QEMU</span>:</p>
-<div class="highlight"><pre><span></span><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none qemu-system-arm -m 256M <span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="nv">QEMU_AUDIO_DRV</span><span class="o">=</span>none qemu-system-arm -m 256M <span class="se">\</span>
 -nographic -M versatilepb -kernel zImage <span class="se">\</span>
 -append <span class="s2">"console=ttyAMA0 rdinit=/bin/sh"</span> <span class="se">\</span>
 -dtb versatile-pb.dtb
-</pre></div>
+</code></pre></div>
 <p>For BeagleBone Black (U-Boot):</p>
-<div class="highlight"><pre><span></span>fatload mmc <span class="m">0</span>:1 0x80200000 zImage
+<div class="highlight"><pre><span></span><code>fatload mmc <span class="m">0</span>:1 0x80200000 zImage
 fatload mmc <span class="m">0</span>:1 0x80f00000 am335x-boneblack.dtb setenv bootargs <span class="nv">console</span><span class="o">=</span>ttyO0,115200 <span class="nv">rdinit</span><span class="o">=</span>/bin/sh bootz 0x80200000 – 0x80f00000
-</pre></div>
+</code></pre></div>
 <h3 id="building-an-initramfs-using-a-device-table">Building an initramfs using a device table</h3>
 <p><em><span class="dquo">“</span>A device table is a text file that lists the files, directories, device nodes, and links that go into an archive or filesystem image. The overwhelming advantage is that it allows you to create entries in the archive file that are owned by the <code>root</code> user, or any other <span class="caps">UID</span>, without having root privileges yourself.”</em></p>
 <p><em><span class="dquo">“</span>It is only when it is expanded by Linux at boot time that real files and directories get created, using the attributes you have specified.”</em></p>
@@ -1283,7 +1283,7 @@ kernels, and root filesystems […] it can generate an entire
 Linux distribution for you with binary packages that can be
 installed at runtime. The Yocto Project is primarily a group of
 recipes, […] written using a combination of Python and shell
-script, together with a task scheduler called <strong>BitBake</strong>”</em></p>
+script, together with a task scheduler called </em><em>BitBake</em><em>”</em></p>
 <h3 id="background">Background</h3>
 <p><em><span class="dquo">“</span>The Yocto Project collects together several components, the most
 important of which are the following:</em></p>
@@ -1296,8 +1296,8 @@ important of which are the following:</em></p>
 </ul>
 <h3 id="configuring">Configuring</h3>
 <p><em><span class="dquo">“</span>You must source [a] script each time you want to work on [a] project.”</em></p>
-<div class="highlight"><pre><span></span><span class="nb">source</span> oe-init-build-env &lt;build-dir&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> oe-init-build-env &lt;build-dir&gt;
+</code></pre></div>
 <p><em><span class="dquo">“</span>This will put you into the directory: <code>&lt;build-dir&gt;</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span>Initially, the build directory contains only one subdirectory 
 named <code>conf/</code>, which contains the configuration files for this project:</em></p>
@@ -1328,11 +1328,11 @@ named <code>conf/</code>, which contains the configuration files for this proje
 <p><em><span class="dquo">“</span>There is a wrapper script named <code>runqemu</code> to run this version of
 <span class="caps">QEMU</span>. To run the <span class="caps">QEMU</span> emulation, make sure that you have sourced
 <code>oe-init-build-env</code>, and then just type this:”</em></p>
-<div class="highlight"><pre><span></span>runqemu qemuarm
+<div class="highlight"><pre><span></span><code>runqemu qemuarm
 
 <span class="c1"># or</span>
 runqemu qemuarm nographic
-</pre></div>
+</code></pre></div>
 <p>For help run: <code>runqemu help</code></p>
 <h3 id="layers">Layers</h3>
 <p><em><span class="dquo">“</span>The core layers of the Yocto Project are as follows:</em></p>
@@ -1367,7 +1367,7 @@ and <code>do_install</code>.”</em></p>
 <h3 id="writing-an-image-recipe">Writing an image recipe</h3>
 <p><em><span class="dquo">“</span>If you want to create an image that is to be shared with other 
 developers or to be loaded onto a production system, then you 
-should put the changes into an <strong>image recipe</strong>.”</em></p>
+should put the changes into an </em><em>image recipe</em><em>.”</em></p>
 <h3 id="creating-an-sdk">Creating an <span class="caps">SDK</span></h3>
 <p><em><span class="dquo">“</span>It is very useful to be able to create a standalone toolchain 
 that other developers can install, avoiding the need for everyone
@@ -1457,7 +1457,7 @@ SoC, which you can find in the U-Boot source code in the directory
 <p><em><span class="dquo">“</span>U-Boot has drivers for several <span class="caps">MMC</span> controllers in <code>drivers/mmc</code>.”</em></p>
 <p><em><span class="dquo">“</span>U-boot can also read files from the <span class="caps">FAT32</span> and ext4 filesystems on <span class="caps">MMC</span> storage.”</em></p>
 <h2 id="accessing-flash-memory-from-linux">Accessing flash memory from Linux</h2>
-<p><em><span class="dquo">“</span><span class="caps">NOR</span> and <span class="caps">NAND</span> flash memory is handled by the <strong>Memory Technology Device</strong> subsystem, or <strong><span class="caps">MTD</span></strong>.”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">NOR</span> and <span class="caps">NAND</span> flash memory is handled by the </em><em>Memory Technology Device</em><em> subsystem, or </em><em><span class="caps">MTD</span></em><em>.”</em></p>
 <p><em><span class="dquo">“</span>In the case of <span class="caps">NAND</span> flash, there are also functions to handle the <span class="caps">OOB</span> area and to identify bad blocks.”</em></p>
 <p><em><span class="dquo">“</span><span class="caps">MMC</span>/<span class="caps">SD</span> cards and eMMC use the <code>mmcblk</code> driver; CompactFlash and hard drives use the <span class="caps">SCSI</span> disk driver, <code>sd</code>.
 <span class="caps">USB</span> flash drives use the <code>usb_storage</code> driver together with the <code>sd</code> driver.”</em></p>
@@ -1472,12 +1472,12 @@ as part of the board support package.”</em></p>
 <p><em><span class="dquo">“</span>There are drivers […] in the directory <code>drivers/mtd/nand</code>.”</em></p>
 <h4 id="mtd-partitions"><span class="caps">MTD</span> partitions</h4>
 <p><em><span class="dquo">“</span>You can see a summary of the configuration at runtime by reading <code>/proc/mtd</code>:”</em></p>
-<div class="highlight"><pre><span></span>cat /proc/mtd
-</pre></div>
+<div class="highlight"><pre><span></span><code>cat /proc/mtd
+</code></pre></div>
 <p><em><span class="dquo">“</span>There is more detailed information for each partition in <code>/sys/class/mtd</code>,
 [that] is nicely summarized using <code>mtdinfo</code>:”</em></p>
-<div class="highlight"><pre><span></span>mtdinfo /dev/mtd0
-</pre></div>
+<div class="highlight"><pre><span></span><code>mtdinfo /dev/mtd0
+</code></pre></div>
 <h4 id="mtd-device-drivers"><span class="caps">MTD</span> device drivers</h4>
 <p><em><span class="dquo">“</span>The upper level of the <span class="caps">MTD</span> subsystem is a pair of device drivers:</em></p>
 <ul>
@@ -1510,7 +1510,7 @@ You enable it with <code>CONFIG_MTD_OOPS</code> and add <code>console=ttyMTDN</c
 <p><em><span class="dquo">“</span>There are several challenges when making efficient use of flash memory for mass storage:
 the mismatch between the size of an erase block and a disk sector, the limited number of erase
 cycles per erase block, and the need for bad block handling on <span class="caps">NAND</span> chips. These differences
-are resolved by a <strong>Flash translation layer</strong>, or <strong><span class="caps">FTL</span></strong>.”</em></p>
+are resolved by a </em><em>Flash translation layer</em><em>, or </em><em><span class="caps">FTL</span></em><em>.”</em></p>
 <h2 id="filesystems-for-nor-and-nand-flash-memory">Filesystems for <span class="caps">NOR</span> and <span class="caps">NAND</span> flash memory</h2>
 <ul>
 <li><strong><span class="caps">JFFS2</span> (Journaling Flash File System 2)</strong>:<ul>
@@ -1552,8 +1552,8 @@ consists entirely of free blocks. [see book for examples]”</em></p>
 <h3 id="ubi-and-ubifs"><span class="caps">UBI</span> and <span class="caps">UBIFS</span></h3>
 <p>Unsorted Block Image (<span class="caps">UBI</span>) driver and and corresponding filesystem (<span class="caps">UBIFS</span>).</p>
 <h4 id="ubi"><span class="caps">UBI</span></h4>
-<p><em><span class="dquo">“</span><span class="caps">UBI</span> provides an idealized, reliable view of a flash chip by mapping <strong>physical erase blocks</strong> (<strong><span class="caps">PEB</span></strong>)
-to <strong>logical erase blocks</strong> (<strong><span class="caps">LEB</span></strong>). Bad blocks are not mapped to LEBs and so are never used. If a block
+<p><em><span class="dquo">“</span><span class="caps">UBI</span> provides an idealized, reliable view of a flash chip by mapping </em><em>physical erase blocks</em><em> (</em><em><span class="caps">PEB</span></em><em>)
+to </em><em>logical erase blocks</em><em> (</em><em><span class="caps">LEB</span></em><em>). Bad blocks are not mapped to LEBs and so are never used. If a block
 cannot be erased, it is marked as bad and dropped from the mapping.”</em></p>
 <p><em><span class="dquo">“</span><span class="caps">UBI</span> accesses the flash memory through the <span class="caps">MTD</span> layer.”</em></p>
 <p><em><span class="dquo">“</span><code>ubiformat</code> needs to know the minimum unit of I/O, which for most <span class="caps">NAND</span> flash chips is the page size,
@@ -1562,8 +1562,8 @@ Consult the chip data sheet for details and, if in doubt, use the page size.”
 <p><em><span class="dquo">“</span>The first time you attach to an <span class="caps">MTD</span> partition after a <code>ubiformat</code>, there will be no volumes.
 You can create volumes using <code>ubimkvol</code>.”</em></p>
 <p>There is a tool <code>ubinfo</code>:</p>
-<div class="highlight"><pre><span></span>ubinfo -a /dev/ubi0
-</pre></div>
+<div class="highlight"><pre><span></span><code>ubinfo -a /dev/ubi0
+</code></pre></div>
 <h4 id="ubifs"><span class="caps">UBIFS</span></h4>
 <p><em><span class="dquo">“</span><span class="caps">UBIFS</span> uses a <span class="caps">UBI</span> volume to create a robust filesystem. It adds sub-allocation and garbage collection to create a complete
 flash translation layer.”</em></p>
@@ -1576,7 +1576,7 @@ flash translation layer.”</em></p>
 Manufacturers do not publish these numbers as a rule, but it is possible to deduce them by observing the
 behavior of the chip or card [using flashbench, see book for more details].”</em></p>
 <h3 id="ext4">Ext4</h3>
-<p><em><span class="dquo">“</span><strong>ext4</strong> is very stable and well tested and has a journal that makes recovery from an unscheduled shutdown fast
+<p><em><span class="dquo">“</span></em><em>ext4</em><em> is very stable and well tested and has a journal that makes recovery from an unscheduled shutdown fast
 and mostly painless. It is a good choice for managed flash devices”</em></p>
 <h2 id="read-only-compressed-filesystems">Read-only compressed filesystems</h2>
 <h3 id="squashfs">squashfs</h3>
@@ -1588,8 +1588,8 @@ flash as long as you use <span class="caps">UBI</span> to create an emulated, re
 <p><em><span class="dquo">“</span>You can create a temporary <span class="caps">RAM</span>-based filesystem by simply mounting <code>tmpfs</code>:”</em></p>
 <p><em><span class="dquo">“</span>As with <code>procfs</code> and <code>sysfs</code>, there is no device node associated with <code>tmpfs</code>, so you have to supply a place-keeper string.”</em></p>
 <p><em><span class="dquo">“</span>It would be a disaster if <code>tmpfs</code> grew to be that large, so it is a very good idea to cap it with a <code>-o size</code> parameter.”</em></p>
-<div class="highlight"><pre><span></span>mount -t tmpfs -o <span class="nv">size</span><span class="o">=</span>1m tmp_files /tmp
-</pre></div>
+<div class="highlight"><pre><span></span><code>mount -t tmpfs -o <span class="nv">size</span><span class="o">=</span>1m tmp_files /tmp
+</code></pre></div>
 <p><em><span class="dquo">“</span>In addition to <code>/tmp</code>, some subdirectories of <code>/var</code> contain volatile data”</em></p>
 <p><em><span class="dquo">“</span>In the Yocto Project, <code>/run</code> and <code>/var/volatile</code> are <code>tmpfs</code> mounts.”</em></p>
 <h2 id="making-the-root-filesystem-read-only">Making the root filesystem read-only</h2>
@@ -1632,28 +1632,28 @@ to <code>conf/local.conf</code> or to your image recipe.”</em></p>
 <p><em><span class="dquo">“</span>U-Boot implements such a mechanism, which is described in the U-Boot source code in <code>doc/uImage.FIT/verified-boot.txt</code>.”</em></p>
 <h2 id="types-of-update-mechanism">Types of update mechanism</h2>
 <h3 id="symmetric-image-update">Symmetric image update</h3>
-<p><em><span class="dquo">“</span>There are several open source projects that implement symmetric image update. One is the <strong>Mender</strong> client operating in standalone mode […]. Another is <strong>SWUpdate</strong> […]. A third example is <strong><span class="caps">RAUC</span></strong>, the <strong>Robust Auto-Update Controller</strong>”</em></p>
+<p><em><span class="dquo">“</span>There are several open source projects that implement symmetric image update. One is the </em><em>Mender</em><em> client operating in standalone mode […]. Another is </em><em>SWUpdate</em><em> […]. A third example is </em><em><span class="caps">RAUC</span></em><em>, the </em><em>Robust Auto-Update Controller</em><em>”</em></p>
 <p><em><span class="dquo">“</span>There are some drawbacks with this scheme. One is that by updating an entire filesystem image, the size of the update package is large.”</em></p>
 <p><em><span class="dquo">“</span>A second drawback is the need to keep storage space for a redundant copy of the root filesystem and other components.”</em></p>
 <h3 id="asymmetric-image-update">Asymmetric image update</h3>
 <p><em><span class="dquo">“</span>You can reduce storage requirements by keeping a minimal recovery operating system purely for updating the main one”</em></p>
 <p><em><span class="dquo">“</span>Once the Recovery <span class="caps">OS</span> is running, it can stream updates to the main operating system image.”</em></p>
 <p><em><span class="dquo">“</span>The Recovery <span class="caps">OS</span> is usually a lot smaller than the main operating system, maybe only a few megabytes.”</em></p>
-<p><em><span class="dquo">“</span>For open source implementations of asymmetric image update, you could consider <strong>SWUpdate</strong> or <strong><span class="caps">RAUC</span></strong>”</em></p>
+<p><em><span class="dquo">“</span>For open source implementations of asymmetric image update, you could consider </em><em>SWUpdate</em><em> or </em><em><span class="caps">RAUC</span></em><em>”</em></p>
 <h3 id="atomic-file-updates">Atomic file updates</h3>
 <p><em><span class="dquo">“</span>Another approach is to have redundant copies of a root filesystem present in multiple directories of a single filesystem and then use the <code>chroot(8)</code> command to choose one of them at boot time.”</em></p>
 <p><em><span class="dquo">“</span>The OSTree project, now renamed libOSTree, is the most popular implementation of this idea”</em></p>
-<p><em><span class="dquo">“</span>It is one of the update methods available in <strong>Automotive Grade Linux (<span class="caps">AGL</span>)</strong>, and it is available in the Yocto Project through the meta-update layer, which is supported by <strong>Advanced Telematic Systems (<span class="caps">ATS</span>)</strong>.”</em></p>
+<p><em><span class="dquo">“</span>It is one of the update methods available in </em><em>Automotive Grade Linux (<span class="caps">AGL</span>)</em><em>, and it is available in the Yocto Project through the meta-update layer, which is supported by </em><em>Advanced Telematic Systems (<span class="caps">ATS</span>)</em><em>.”</em></p>
 <h2 id="ota-updates"><span class="caps">OTA</span> updates</h2>
 <p><em><span class="dquo">“</span>Two examples of open source projects […] for <span class="caps">OTA</span> update:</em></p>
 <ul>
 <li><em>Mender in managed mode</em></li>
-<li><em>The hawkBit in conjunction with an updater client such as <strong>SWUpdate</strong> or <strong><span class="caps">RAUC</span></strong>”</em></li>
+<li><em>The hawkBit in conjunction with an updater client such as </em><em>SWUpdate</em><em> or </em><em><span class="caps">RAUC</span></em><em>”</em></li>
 </ul>
 <h2 id="summary_2">Summary</h2>
-<p><em><span class="dquo">“</span>The approach used most often, and also the one with most real-world testing, is the symmetric image (<strong>A/B</strong>) update, or its cousin the asymmetric (recovery) image update. Here, you have the choice of SWUpdate, <span class="caps">RAUC</span>, and Mender.”</em></p>
+<p><em><span class="dquo">“</span>The approach used most often, and also the one with most real-world testing, is the symmetric image (</em><em>A/B</em><em>) update, or its cousin the asymmetric (recovery) image update. Here, you have the choice of SWUpdate, <span class="caps">RAUC</span>, and Mender.”</em></p>
 <h1 id="chapter-9-interfacing-with-device-drivers">Chapter 9. Interfacing with Device Drivers</h1>
-<p><em><span class="dquo">“</span>In many cases, you will find that there are device drivers provided for you, and you can achieve everything you want without writing any kernel code. For example, you can manipulate <span class="caps">GPIO</span> pins and LEDs using files in <strong>sysfs</strong>, and there are libraries to access serial buses, including <strong><span class="caps">SPI</span> (Serial Peripheral Interface)</strong> and <strong><span class="caps">I2C</span> (Inter-Integrated Circuit)</strong>.”</em></p>
+<p><em><span class="dquo">“</span>In many cases, you will find that there are device drivers provided for you, and you can achieve everything you want without writing any kernel code. For example, you can manipulate <span class="caps">GPIO</span> pins and LEDs using files in </em><em>sysfs</em><em>, and there are libraries to access serial buses, including </em><em><span class="caps">SPI</span> (Serial Peripheral Interface)</em><em> and </em><em><span class="caps">I2C</span> (Inter-Integrated Circuit)</em><em>.”</em></p>
 <h2 id="the-role-of-device-drivers">The role of device drivers</h2>
 <p><em><span class="dquo">“</span>One driver may control multiple devices of the same kind.”</em></p>
 <p><em><span class="dquo">“</span>Kernel device driver code runs at a high privilege level, as does the rest of the kernel. It has full access to the processor address space and hardware registers. It can handle interrupts and <span class="caps">DMA</span> transfers.”</em></p>
@@ -1666,7 +1666,7 @@ to <code>conf/local.conf</code> or to your image recipe.”</em></p>
 </ul>
 <p><em><span class="dquo">“</span>There is also a fourth type that presents itself as a group of files in one of the pseudo file systems. For example, you might access the <span class="caps">GPIO</span> driver through a group of files in <code>/sys/class/gpio</code><span class="dquo">“</span></em></p>
 <h2 id="character-devices">Character devices</h2>
-<p><em><span class="dquo">“</span>Character devices are identified in user space by a special file called a <strong>device node</strong>. This file name is mapped to a device driver using the major and minor numbers associated with it. Broadly speaking, the <strong>major number</strong> maps the device node to a particular device driver, and the <strong>minor number</strong> tells the driver which interface is being accessed.”</em></p>
+<p><em><span class="dquo">“</span>Character devices are identified in user space by a special file called a </em><em>device node</em><em>. This file name is mapped to a device driver using the major and minor numbers associated with it. Broadly speaking, the </em><em>major number</em><em> maps the device node to a particular device driver, and the </em><em>minor number</em><em> tells the driver which interface is being accessed.”</em></p>
 <p><em><span class="dquo">“</span>The list of standard major and minor numbers can be found in the kernel documentation in <code>Documentation/devices.txt</code>. The list does not get updated very often.”</em></p>
 <p><em><span class="dquo">“</span>When you open a character device node, the kernel checks to see whether the major and minor numbers fall into a range registered by a character device driver. If so, it passes the call to the driver, otherwise the open call fails. The device driver can extract the minor number to find out which hardware interface to use.”</em></p>
 <p><em><span class="dquo">“</span>[One could use] the stream I/O functions, <code>fopen(3)</code>, <code>fread(3)</code>, and <code>fclose(3)</code> instead [of <code>open(2)</code>, <code>read(2)</code>, and <code>close(2)</code>], but the buffering implicit in these functions often causes unexpected behavior.”</em></p>
@@ -1681,12 +1681,12 @@ to <code>conf/local.conf</code> or to your image recipe.”</em></p>
 <p><em><span class="dquo">“</span>It is possible to access network devices directly from user space by creating a socket and using the ioctl commands listed in <code>include/linux/sockios.h</code><span class="dquo">“</span></em></p>
 <h2 id="finding-out-about-drivers-at-runtime">Finding out about drivers at runtime</h2>
 <p><em><span class="dquo">“</span>You can find out a lot by reading the files in <code>/proc</code> and <code>/sys</code>.”</em></p>
-<div class="highlight"><pre><span></span>cat /proc/devices
-</pre></div>
+<div class="highlight"><pre><span></span><code>cat /proc/devices
+</code></pre></div>
 <p><em><span class="dquo">“</span>For each driver, you can see the major number and the base name.”</em></p>
 <p><em><span class="dquo">“</span>network devices do not appear in this list, because they do not have device nodes.”</em></p>
-<div class="highlight"><pre><span></span>ip link show
-</pre></div>
+<div class="highlight"><pre><span></span><code>ip link show
+</code></pre></div>
 <h3 id="getting-information-from-sysfs">Getting information from <code>sysfs</code></h3>
 <p><em><span class="dquo">“</span><code>sysfs</code> [is a] representation of kernel objects, attributes, and relationships. A kernel object is a directory, an attribute is a file, and a relationship is a symbolic link from one object to another”</em></p>
 <p><em><span class="dquo">“</span>You can see the kernel’s view of the system laid out before you by looking in <code>/sys</code>.”</em></p>
@@ -1712,7 +1712,7 @@ to <code>conf/local.conf</code> or to your image recipe.”</em></p>
 <p><em><span class="dquo">“</span>There are generic device drivers for many common types of device that allow you to interact with hardware directly from user space without having to write a line of kernel code. User space code is certainly easier to write and debug. It is also not covered by the <span class="caps">GPL</span>.”</em></p>
 <p><em><span class="dquo">“</span>These drivers fall into two broad categories: those that you control through files in <code>sysfs</code>, including <span class="caps">GPIO</span> and LEDs, and serial buses that expose a generic interface through a device node, such as <span class="math">\(I^2C\)</span>.”</em></p>
 <h3 id="gpio"><span class="caps">GPIO</span></h3>
-<p><em><span class="dquo">“</span>Each [pin] can be in one of two states: either high or low. In most cases you can configure the <span class="caps">GPIO</span> pin to be either an input or an output. You can even use a group of <span class="caps">GPIO</span> pins to create higher level interfaces such as <span class="math">\(I^2C\)</span> or <span class="caps">SPI</span> by manipulating each bit in software, a technique that is called <strong>bit banging</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Each [pin] can be in one of two states: either high or low. In most cases you can configure the <span class="caps">GPIO</span> pin to be either an input or an output. You can even use a group of <span class="caps">GPIO</span> pins to create higher level interfaces such as <span class="math">\(I^2C\)</span> or <span class="caps">SPI</span> by manipulating each bit in software, a technique that is called </em><em>bit banging</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>Generally speaking, it is hard to achieve timer accuracy better than a millisecond unless you configure a real-time kernel.”</em></p>
 <p><em><span class="dquo">“</span>More common use cases for <span class="caps">GPIO</span> are for reading push buttons and digital sensors and controlling LEDs, motors, and relays.”</em></p>
 <p><em><span class="dquo">“</span>All this diversity is handled by a kernel subsystem known as <code>gpiolib</code>, which is not actually a library but the infrastructure <span class="caps">GPIO</span> drivers use to expose I/O in a consistent way. There are details about the implementation of gpiolib in the kernel source in <code>Documentation/gpio</code> and the code for the drivers themselves is in <code>drivers/gpio</code>.”</em></p>
@@ -1733,20 +1733,20 @@ to <code>conf/local.conf</code> or to your image recipe.”</em></p>
 <p><em><span class="dquo">“</span>You will have to configure your kernel with the option, <code>CONFIG_LEDS_CLASS</code>, and with the <span class="caps">LED</span> trigger actions that are appropriate to you. There is more information on <code>Documentation/leds/</code>, and the drivers are in <code>drivers/leds/</code>.”</em></p>
 <p><em><span class="dquo">“</span>LEDs are controlled through an interface in <code>sysfs</code> in the directory <code>/sys/class/leds</code>.”</em></p>
 <h3 id="i2c"><span class="math">\(I^2C\)</span></h3>
-<p><em><span class="dquo">“</span>There is a related standard known as <strong>system management bus</strong> (<strong>SMBus</strong>) that is found on PCs, which is used to access temperature and voltage sensors. SMBus is a subset of <span class="caps">I2C</span>.”</em></p>
+<p><em><span class="dquo">“</span>There is a related standard known as </em><em>system management bus</em><em> (</em><em>SMBus</em><em>) that is found on PCs, which is used to access temperature and voltage sensors. SMBus is a subset of <span class="caps">I2C</span>.”</em></p>
 <p><em><span class="dquo">“</span><span class="math">\(I^2C\)</span> is a master-slave protocol with the master being one or more host controllers on the SoC. Slaves have a 7-bit address assigned by the manufacturer (read the data sheet).”</em></p>
 <p><em><span class="dquo">“</span>The master may initiate a read or write transactions with one of the slaves. Frequently, the first byte is used to specify a register on the slave, and the remaining bytes are the data read from or written to that register.”</em></p>
 <p><em><span class="dquo">“</span>There is one device node for each host controller”</em></p>
-<div class="highlight"><pre><span></span>ls -l /dev/i2c*
-</pre></div>
+<div class="highlight"><pre><span></span><code>ls -l /dev/i2c*
+</code></pre></div>
 <p><em><span class="dquo">“</span>The device interface provides a series of <code>ioctl</code> commands that query the host controller and send the <code>read</code> and <code>write</code> commands to <span class="math">\(I^2C\)</span> slaves. There is a package named i2c-tools.”</em></p>
 <p><em><span class="dquo">“</span>The <code>i2c-tools</code> package is available in Buildroot and the Yocto Project as well as most mainstream distributions.”</em></p>
 <h3 id="serial-peripheral-interface-spi">Serial Peripheral Interface (<span class="caps">SPI</span>)</h3>
 <p><em><span class="dquo">“</span>The <span class="caps">SPI</span> bus is similar to <span class="caps">I2C</span>, but is a lot faster, up to tens of MHz.”</em></p>
 <p><em><span class="dquo">“</span>There is a generic <span class="caps">SPI</span> device driver, which you can enable through the kernel configuration <code>CONFIG_SPI_SPIDEV</code>.”</em></p>
 <p><em><span class="dquo">“</span>The device nodes are named <code>spidev[bus].[chip select]</code><span class="dquo">“</span></em></p>
-<div class="highlight"><pre><span></span>ls -l /dev/spi*
-</pre></div>
+<div class="highlight"><pre><span></span><code>ls -l /dev/spi*
+</code></pre></div>
 <p><em><span class="dquo">“</span>[There is] example code in <code>Documentation/spi</code>.”</em></p>
 <h2 id="writing-a-kernel-device-driver">Writing a kernel device driver</h2>
 <p><em><span class="dquo">“</span>Character drivers are the most flexible and should cover 90% of all your needs.”</em></p>
@@ -1763,10 +1763,10 @@ to <code>conf/local.conf</code> or to your image recipe.”</em></p>
 <p><em><span class="dquo">“</span>Kernel modules are not binary compatible between kernel releases and configurations: the module will only load on the kernel it was compiled with.”</em></p>
 <h3 id="loading-kernel-modules">Loading kernel modules</h3>
 <p><em><span class="dquo">“</span>You can load, unload, and list modules using the simple <code>insmod</code>, <code>lsmod</code>, and <code>rmmod</code> commands”</em></p>
-<p><em><span class="dquo">“</span>If the module is placed in a subdirectory in <code>/lib/modules/&lt;kernel release&gt;</code>, you can create a <strong>modules dependency database</strong> using the command, <code>depmod -a</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>If the module is placed in a subdirectory in <code>/lib/modules/&lt;kernel release&gt;</code>, you can create a </em><em>modules dependency database</em><em> using the command, <code>depmod -a</code><span class="dquo">“</span></em></p>
 <h2 id="discovering-the-hardware-configuration">Discovering the hardware configuration</h2>
 <p><em><span class="dquo">“</span>Devices on a discoverable bus such as <span class="caps">PCI</span> or <span class="caps">USB</span> have a query mode, which returns resource requirements and a unique identifier.”</em></p>
-<p><em><span class="dquo">“</span>Most of the hardware blocks on an embedded board do not have such identifiers. You have to provide the information yourself in the form of a <strong>device tree</strong> or as C structures known as <strong>platform data</strong>.”</em></p>
+<p><em><span class="dquo">“</span>Most of the hardware blocks on an embedded board do not have such identifiers. You have to provide the information yourself in the form of a </em><em>device tree</em><em> or as C structures known as </em><em>platform data</em><em>.”</em></p>
 <h3 id="linking-hardware-with-device-drivers">Linking hardware with device drivers</h3>
 <p><em><span class="dquo">“</span>For most drivers, specific bindings are documented in <code>Documentation/devicetree/bindings</code>.”</em></p>
 <h2 id="summary_3">Summary</h2>
@@ -1792,7 +1792,7 @@ login shell.</em></li>
 <p>Check the book for details about the format of <code>/etc/inittab</code> for BusyBox.</p>
 <h2 id="system-v-init">System V init</h2>
 <p><em><span class="dquo">“</span>Compared to the BusyBox <code>init</code>, System V <code>init</code> has two advantages. Firstly, the boot scripts are written in a well-known,
-modular format, making it easy to add new packages at build time or runtime. Secondly, it has the concept of <strong>runlevels</strong>, which allow a
+modular format, making it easy to add new packages at build time or runtime. Secondly, it has the concept of </em><em>runlevels</em><em>, which allow a
 collection of programs to be started or stopped in one go when switching from one runlevel to another.”</em></p>
 <p><em><span class="dquo">“</span>There are 8 runlevels numbered from 0 to 6, plus S:</em></p>
 <ul>
@@ -1866,8 +1866,8 @@ and <code>Conflicts</code>:</em></p>
 <li><code>Wants</code>: This is a weaker form of <code>Requires</code>; the units listed are started but the current unit is not stopped if any of them fail*</li>
 <li><code>Conflicts</code>: This is a negative dependency; the units listed are stopped when this one is started and, conversely, if one of them is started, this one is stopped”*</li>
 </ul>
-<p><em><span class="dquo">“</span>These three keywords define <strong>outgoing dependencies</strong>. They are used mostly to create dependencies between targets. There is another sort of dependency called an
-<strong>incoming dependency</strong>, which is used to create a link between a service and a target. In other words, outgoing dependencies are used to create the list of targets
+<p><em><span class="dquo">“</span>These three keywords define </em><em>outgoing dependencies</em><em>. They are used mostly to create dependencies between targets. There is another sort of dependency called an
+</em><em>incoming dependency</em><em>, which is used to create a link between a service and a target. In other words, outgoing dependencies are used to create the list of targets
 that need to be started as the system goes from one state to another, and incoming dependencies are used to determine the services that should be started or stopped
 in any particular state. Incoming dependencies are created by the <code>WantedBy</code> keyword.”</em></p>
 <p><em><span class="dquo">“</span>Processing the dependencies produces a list of units that should be started or stopped. The keywords <code>Before</code> and `After determine the order in which they
@@ -1886,11 +1886,11 @@ are started. The order of stopping is just the reverse of the start order:</em>
 <p><em><span class="dquo">“</span>[…] how <code>systemd</code> implements the bootstrap. <code>systemd</code> is run by the kernel as a result of <code>/sbin/init</code> being symbolically linked to <code>/lib/systemd/systemd</code>.
 It runs the default target, <code>default.target</code>, which is always a link to a desired target.”</em></p>
 <p><em><span class="dquo">“</span>You can also list all the services and their current state using:”</em></p>
-<div class="highlight"><pre><span></span>systemctl list-units --type service
-</pre></div>
+<div class="highlight"><pre><span></span><code>systemctl list-units --type service
+</code></pre></div>
 <p><em><span class="dquo">“</span>And the same for targets using:”</em></p>
-<div class="highlight"><pre><span></span>systemctl list-units --type target
-</pre></div>
+<div class="highlight"><pre><span></span><code>systemctl list-units --type target
+</code></pre></div>
 <h3 id="adding-a-watchdog">Adding a watchdog</h3>
 <p><em><span class="dquo">“</span>On most embedded SoCs,
 there is a hardware watchdog, which can be accessed via the <code>/dev/watchdog</code> device node.”</em></p>
@@ -1915,25 +1915,25 @@ ammeter to measure the current and a voltmeter to measure the voltage, and
 then multiply the two together in order to get the wattage.”</em></p>
 <p><em><span class="dquo">“</span>[There are] monitoring systems that are built into Linux. You will find
 that plenty of information is reported to you via <code>sysfs</code>.
-There is also a very useful program called <strong>PowerTOP</strong>, which gathers
+There is also a very useful program called </em><em>PowerTOP</em><em>, which gathers
 information together from various sources and presents it in a single place.”</em></p>
-<div class="highlight"><pre><span></span>cat /sys/power/state
-</pre></div>
+<div class="highlight"><pre><span></span><code>cat /sys/power/state
+</code></pre></div>
 <h2 id="scaling-the-clock-frequency">Scaling the clock frequency</h2>
 <p><em><span class="dquo">“</span>Reducing the frequency may actually increase the power budget because it
 takes longer for the <span class="caps">CPU</span> to enter an idle state. So, in these conditions, 
 it is best to use the highest frequency possible so that the <span class="caps">CPU</span> can go
-back to idle quickly. This is called the <strong>race to idle</strong>.”</em></p>
-<p><em><span class="dquo">“</span>There is another motivation to reduce frequency: <strong>thermal management</strong>.
+back to idle quickly. This is called the </em><em>race to idle</em><em>.”</em></p>
+<p><em><span class="dquo">“</span>There is another motivation to reduce frequency: </em><em>thermal management</em><em>.
 It may become necessary to operate at a lower frequency just to keep the
 temperature of the package within bounds.”</em></p>
 <p><em><span class="dquo">“</span>Therefore, if we want to save power, we have to be able to change the
 voltage that the <span class="caps">CPU</span> core operates at. But for any given voltage, there
 is a maximum frequency beyond which the switching of the gates become unreliable.”</em></p>
 <p><em><span class="dquo">“</span>Many SoCs implement such a feature: it is called
-<strong>Dynamic Voltage and Frequency Scaling</strong>, or <strong><span class="caps">DVFS</span></strong>. Manufacturers
+</em><em>Dynamic Voltage and Frequency Scaling</em><em>, or </em><em><span class="caps">DVFS</span></em><em>. Manufacturers
 calculate optimum combinations of core frequency and voltage. Each
-combination is called <strong>Operating Performance Point</strong>, or <strong><span class="caps">OPP</span></strong>.
+combination is called </em><em>Operating Performance Point</em><em>, or </em><em><span class="caps">OPP</span></em><em>.
 The <span class="caps">ACPI</span> specification refers to them as P-states, with <code>P0</code> being
 the <span class="caps">OPP</span> with the highest frequency. Although an <span class="caps">OPP</span> is a combination
 of a frequency and a voltage, they are most often referred to by the
@@ -1948,7 +1948,7 @@ directory, with <code>N</code> being the <span class="caps">CPU</span> number.�
 <p><em><span class="dquo">“</span>Most CPUs have multiple idle states that use varying amounts of power.
 Usually, there is a trade-off between the power usage and the latency, or
 the length of time, it takes to exit the state. In the <span class="caps">ACPI</span> specification,
-they are called <strong>C-states</strong>.”</em></p>
+they are called </em><em>C-states</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>The key to selecting the right idle state is to have a good idea of how 
 long the <span class="caps">CPU</span> is going to be quiescent.”</em></p>
 <p><em><span class="dquo">“</span>[Monitor] the current <span class="caps">CPU</span> load: if it is high now, it is likely to
@@ -1963,7 +1963,7 @@ code in the <code>Documentation/cpuidle</code> directory.”</em></p>
 <p><em><span class="dquo">“</span>CPUIdle exposes information about each of the idle states in the
 <code>/sys/devices/system/cpu/cpu0/cpuidle</code> directory, in which there is a
 subdirectory for each of the sleep states, named <code>state0</code> to <code>stateN</code>.
-<code>state0</code> is the <strong>lightest</strong> sleep and <code>stateN</code> the deepest. Note that
+<code>state0</code> is the </em><em>lightest</em><em> sleep and <code>stateN</code> the deepest. Note that
 the numbering does not match that of the C-states and that
 CPUIdle does not have a state equivalent to <code>C0</code> (running)”</em></p>
 <h3 id="tickless-operation">Tickless operation</h3>
@@ -1980,8 +1980,8 @@ and schedules the next interruption at the time of the next event”</em></p>
 <p><em><span class="dquo">“</span>In any power-sensitive application, the kernel should be configured
 with this option enabled.”</em></p>
 <h2 id="powering-down-peripherals">Powering down peripherals</h2>
-<p><em><span class="dquo">“</span>This is managed by the <strong>runtime power management</strong> system, or
-<strong>runtime pm</strong> for short. It works with drivers that support runtime pm,
+<p><em><span class="dquo">“</span>This is managed by the </em><em>runtime power management</em><em> system, or
+</em><em>runtime pm</em><em> for short. It works with drivers that support runtime pm,
 shutting down those that are not in use and waking them again when they
 are next needed. It is dynamic and should be transparent to user space.”</em></p>
 <p><em><span class="dquo">“</span>The runtime power management is exposed via a <code>sysfs</code> interface. Each
@@ -1991,36 +1991,36 @@ device has a subdirectory named <code>power</code>, in which you will find
 <p><em><span class="dquo">“</span>For more information on runtime pm, look in the kernel source code at
 <code>Documentation/power/runtime_pm.txt</code>.”</em></p>
 <h2 id="putting-the-system-to-sleep">Putting the system to sleep</h2>
-<p><em><span class="dquo">“</span>In the Linux kernel, this is known as <strong>system sleep</strong>. It is usually user-initiated”</em></p>
+<p><em><span class="dquo">“</span>In the Linux kernel, this is known as </em><em>system sleep</em><em>. It is usually user-initiated”</em></p>
 <p><em><span class="dquo">“</span>There are usually two options: suspend or hibernate. The first,
-also known as <strong>suspend to <span class="caps">RAM</span></strong>, shuts everything down except the
+also known as </em><em>suspend to <span class="caps">RAM</span></em><em>, shuts everything down except the
 system memory, so the machine is still consuming a little power.”</em></p>
-<p><em><span class="dquo">“</span>If I select the <strong>hibernate</strong> option, the contents of memory are saved
+<p><em><span class="dquo">“</span>If I select the </em><em>hibernate</em><em> option, the contents of memory are saved
 to the hard drive. The system consumes no power at all, and so it can stay
 in this state indefinitely, but on wake-up, it takes some time to restore
 the memory from disk. Hibernate is very seldom used in embedded systems”</em></p>
 <p><em><span class="dquo">“</span>For more information, look at the kernel source code in the <code>Documentation/power</code> directory.”</em></p>
 <h3 id="power-states">Power states</h3>
-<p><em><span class="dquo">“</span>In the <span class="caps">ACPI</span> specification, the sleep states are called <strong>S-states</strong>. Linux supports four sleep states.”</em></p>
+<p><em><span class="dquo">“</span>In the <span class="caps">ACPI</span> specification, the sleep states are called </em><em>S-states</em><em>. Linux supports four sleep states.”</em></p>
 <p>See the book for more details.</p>
 <p><em><span class="dquo">“</span>Not all systems have support for all states. You can find out which are available by reading the <code>/sys/power/state</code> file”</em></p>
 <p><em><span class="dquo">“</span>To enter one of the system sleep states, you just have to write the 
 desired state to <code>/sys/power/state</code>.”</em></p>
-<div class="highlight"><pre><span></span><span class="nb">echo</span> mem &gt; /sys/power/state
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> mem &gt; /sys/power/state
+</code></pre></div>
 <h3 id="wakeup-events">Wakeup events</h3>
 <p><em><span class="dquo">“</span>Before you suspend a device, you must have a method of waking it again.”</em></p>
 <p><em><span class="dquo">“</span>Some parts of the system have to remain powered on even during the
-deepest sleep. This usually involves the <strong>Power Management <span class="caps">IC</span></strong> 
-(<strong><span class="caps">PMIC</span></strong>), the <strong>real-time clock</strong> (<strong><span class="caps">RTC</span></strong>), and may additionally 
+deepest sleep. This usually involves the </em><em>Power Management <span class="caps">IC</span></em><em> 
+(</em><em><span class="caps">PMIC</span></em><em>), the </em><em>real-time clock</em><em> (</em><em><span class="caps">RTC</span></em><em>), and may additionally 
 include interfaces such as <span class="caps">GPIO</span>, <span class="caps">UART</span>, and Ethernet.”</em></p>
 <p><em><span class="dquo">“</span>Wakeup events are controlled through <code>sysfs</code>. Each device in
 <code>/sys/device</code> has a subdirectory power containing a <code>wakeup</code> file”</em></p>
 <p>See the book for more information.</p>
 <p><em><span class="dquo">“</span>To get a list of devices that can generate wakeups, we can search for
 all devices where wakeup contains either <code>enabled</code> or <code>disabled</code>:”</em></p>
-<div class="highlight"><pre><span></span>find /sys/devices -name wakeup <span class="p">|</span> xargs grep “abled”
-</pre></div>
+<div class="highlight"><pre><span></span><code>find /sys/devices -name wakeup <span class="p">|</span> xargs grep “abled”
+</code></pre></div>
 <h3 id="timed-wakeups-from-the-real-time-clock">Timed wakeups from the real-time clock</h3>
 <p><em><span class="dquo">“</span>Most systems have an <span class="caps">RTC</span> that can generate alarm interruptions up to
 24 hours in the future. If so, the directory <code>/sys/class/rtc/rtc0</code> will
@@ -2090,7 +2090,7 @@ spaces, but introduces the problem of synchronizing accesses to
 it. Synchronization between processes is commonly achieved using semaphores.”</em></p>
 <h2 id="threads">Threads</h2>
 <h3 id="creating-a-new-thread">Creating a new thread</h3>
-<p><em><span class="dquo">“</span>[When running <code>ps</code>] <span class="caps">LWP</span> stands for <strong>Light Weight Process</strong>,
+<p><em><span class="dquo">“</span>[When running <code>ps</code>] <span class="caps">LWP</span> stands for </em><em>Light Weight Process</em><em>,
 which, in this context, is another name for a thread.”</em></p>
 <h3 id="terminating-a-thread">Terminating a thread</h3>
 <p><em><span class="dquo">“</span>Note that if a multithreaded program calls <code>fork</code>, only the thread 
@@ -2102,7 +2102,7 @@ switch in the compile and link stages.”</em></p>
 <h3 id="changing-conditions">Changing conditions</h3>
 <p><em><span class="dquo">“</span>Cooperating threads need a method of alerting one another that
 something has changed and needs attention. That thing is called a
-condition and the alert is sent through a <strong>condition variable</strong>.”</em></p>
+condition and the alert is sent through a </em><em>condition variable</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>A condition is just something that you can test to give a <code>true</code>
 or <code>false</code> result.”</em></p>
 <p><em><span class="dquo">“</span>The only complexity [of condition variables] is that the
@@ -2133,8 +2133,8 @@ that the scheduler can use to choose between them “</em></p>
 scheduling are scheduled first and the time remaining is divided
 between the time-shared threads.”</em></p>
 <h3 id="time-shared-policies">Time-shared policies</h3>
-<p><em><span class="dquo">“</span>The scheduler used has been <strong>Completely Fair Scheduler</strong>
-(<strong><span class="caps">CFS</span></strong>). It does not use timeslices in the normal sense of the
+<p><em><span class="dquo">“</span>The scheduler used has been </em><em>Completely Fair Scheduler</em><em>
+(</em><em><span class="caps">CFS</span></em><em>). It does not use timeslices in the normal sense of the
 word. Instead, it calculates a running tally of the length of time
 a thread would be entitled to run if it had its fair share of <span class="caps">CPU</span>
 time, and it balances that with the actual amount of time it has
@@ -2173,11 +2173,11 @@ scheduler’s built-in assumptions.</em>”</p>
 <p><em><span class="dquo">“</span>[Another] option is to use a watchdog, either hardware or software, to monitor the execution of key threads.”</em></p>
 <h3 id="choosing-a-real-time-priority">Choosing a real-time priority</h3>
 <p><em><span class="dquo">“</span>The most widely used procedure for choosing priorities is known 
-as <strong>Rate Monotonic Analysis</strong> (<strong><span class="caps">RMA</span></strong>).”</em></p>
+as </em><em>Rate Monotonic Analysis</em><em> (</em><em><span class="caps">RMA</span></em><em>).”</em></p>
 <p><em><span class="dquo">“</span>The goal is to balance the load so that all threads can complete their execution phase before the next period.”</em></p>
 <h1 id="chapter-13-managing-memory">Chapter 13. Managing Memory</h1>
 <h2 id="virtual-memory-basics">Virtual memory basics</h2>
-<p><em><span class="dquo">“</span>Linux divides this virtual address space into an area for applications, called <strong>user space</strong>, and an area for the kernel, called <strong>kernel space</strong>. The split between the two is set by a kernel configuration parameter named <code>PAGE_OFFSET</code>.”</em></p>
+<p><em><span class="dquo">“</span>Linux divides this virtual address space into an area for applications, called </em><em>user space</em><em>, and an area for the kernel, called </em><em>kernel space</em><em>. The split between the two is set by a kernel configuration parameter named <code>PAGE_OFFSET</code>.”</em></p>
 <p><em><span class="dquo">“</span>The user address space is allocated per process so that each process runs in a sandbox, separated from the others. The kernel address space is the same for all processes: there is only one kernel.”</em></p>
 <p><em><span class="dquo">“</span>Each page of virtual memory may be:</em></p>
 <ul>
@@ -2194,8 +2194,8 @@ as <strong>Rate Monotonic Analysis</strong> (<strong><span class="caps">RMA</spa
 <p><em><span class="dquo">“</span>Kernel memory […] is not demand-paged, which means that for every allocation using <code>kmalloc()</code> or a similar function, there is real physical memory. Kernel memory is never discarded or paged out.”</em></p>
 <h3 id="how-much-memory-does-the-kernel-use">How much memory does the kernel use?</h3>
 <p><em><span class="dquo">“</span>You can see the memory taken up by the kernel code and data in the kernel log […] or you can use the <code>size</code> command, as follows:”</em></p>
-<div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-size vmlinux
-</pre></div>
+<div class="highlight"><pre><span></span><code>arm-poky-linux-gnueabi-size vmlinux
+</code></pre></div>
 <p><em><span class="dquo">“</span>There is an ongoing effort to allow small kernels to be built: […] <a href="https://tiny.wiki.kernel.org">Linux Kernel Tinification</a>.”</em></p>
 <p><em><span class="dquo">“</span>You can get more information about memory usage by reading <code>/proc/meminfo</code>.”</em></p>
 <p><em><span class="dquo">“</span>There is a description of each of [the] fields on the manual page <code>proc(5)</code>. “</em></p>
@@ -2203,9 +2203,9 @@ as <strong>Rate Monotonic Analysis</strong> (<strong><span class="caps">RMA</spa
 <h2 id="user-space-memory-layout">User space memory layout</h2>
 <p><em><span class="dquo">“</span>Linux employs a lazy allocation strategy for user space, only mapping physical pages of memory when the program accesses it.”</em></p>
 <p><em><span class="dquo">“</span>For example, allocating a buffer […] using <code>malloc(3)</code> returns a pointer to a block of memory addresses but no actual physical memory. A flag is set in the page 
-table entries such that any read or write access is trapped by the kernel. This is known as a <strong>page fault</strong>. Only at this point does the kernel attempt to find a page 
+table entries such that any read or write access is trapped by the kernel. This is known as a </em><em>page fault</em><em>. Only at this point does the kernel attempt to find a page 
 of physical memory and add it to the page table mapping for the process.”</em></p>
-<p><em><span class="dquo">“</span>There are two kinds of page faults: <strong>minor</strong> and <strong>major</strong>. With a minor fault, the kernel just has to find a page of physical memory and map it to the process 
+<p><em><span class="dquo">“</span>There are two kinds of page faults: </em><em>minor</em><em> and </em><em>major</em><em>. With a minor fault, the kernel just has to find a page of physical memory and map it to the process 
 address space […]. A major page fault occurs when the virtual memory is mapped to a file, for example, using <code>mmap(2)</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span>Major faults are much more expensive in time and system resources.”</em></p>
 <h2 id="the-process-memory-map">The process memory map</h2>
@@ -2218,7 +2218,7 @@ address space […]. A major page fault occurs when the virtual memory is mapped
 <p><em><span class="dquo">“</span>Allocations that exceed the limit are rejected by <code>SIGSEGV</code>.”</em></p>
 <h2 id="swapping">Swapping</h2>
 <p><em><span class="dquo">“</span>On a system that has too little real memory for the workload it is carrying and so swapping becomes the main activity. This is sometimes known as
-<strong>disk thrashing</strong>.”</em></p>
+</em><em>disk thrashing</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>Swap is seldom used on embedded devices because it does not work well with flash storage, where constant writing would wear it out quickly. However, you may want to 
 consider swapping to compressed <span class="caps">RAM</span> (zram).”</em> ​</p>
 <h2 id="mapping-memory-with-mmap">Mapping memory with mmap</h2>
@@ -2241,13 +2241,13 @@ shrunk when the need arises.”</em></p>
 <li><em>Rss [resident memory size]: Called <span class="caps">RSS</span> in <code>ps</code> and <span class="caps">RES</span> in <code>top</code>, this is the sum of memory that is mapped to physical pages of memory. This gets closer to the actual memory budget of the process, but there is a problem: if you add the Rss of all the processes, you will get an overestimate of the memory in use because some pages will be shared.”</em></li>
 </ul>
 <h3 id="using-smem">Using smem</h3>
-<p><em><span class="dquo">“</span>[There are 2 more metrics]: <strong>unique set size</strong>, or <strong>Uss</strong>, and <strong>proportional set size</strong>, or <strong>Pss</strong>”</em></p>
+<p><em><span class="dquo">“</span>[There are 2 more metrics]: </em><em>unique set size</em><em>, or </em><em>Uss</em><em>, and </em><em>proportional set size</em><em>, or </em><em>Pss</em><em>”</em></p>
 <p>Check the book for more information.</p>
 <p><em><span class="dquo">“</span>Information about Pss is available in <code>/proc/&lt;PID&gt;/smaps</code><span class="dquo">“</span></em></p>
-<p><em><span class="dquo">“</span>There is a tool named <strong>smem</strong> that collates information from the smaps files and presents it in various ways”</em></p>
+<p><em><span class="dquo">“</span>There is a tool named </em><em>smem</em><em> that collates information from the smaps files and presents it in various ways”</em></p>
 <h2 id="identifying-memory-leaks">Identifying memory leaks</h2>
 <h3 id="mtrace">mtrace</h3>
-<p><em><span class="dquo">“</span><strong>mtrace</strong> is a component of glibc that traces calls to malloc , free , and related functions.”</em></p>
+<p><em><span class="dquo">“</span></em><em>mtrace</em><em> is a component of glibc that traces calls to malloc , free , and related functions.”</em></p>
 <h2 id="running-out-of-memory">Running out of memory</h2>
 <p><em><span class="dquo">“</span>There is a tuning parameter for kernel allocations in <code>/proc/sys/vm/overcommit_memory</code><span class="dquo">“</span></em></p>
 <p><em><span class="dquo">“</span>There is another important variable in <code>/proc/meminfo:Committed_AS</code>. This is the total
@@ -2275,38 +2275,38 @@ and then terminates those with the highest score until there is enough free mem
 <h2 id="starting-to-debug">Starting to debug</h2>
 <h3 id="connecting-gdb-and-gdbserver">Connecting <span class="caps">GDB</span> and gdbserver</h3>
 <p><em>” In the case of a network connection, you launch <code>gdbserver</code> with the <span class="caps">TCP</span> port number to listen on and, optionally, an <span class="caps">IP</span> address to accept connections from. In most cases, you don’t care which <span class="caps">IP</span> address is going to connect, so you can just provide the port number. In this example, <code>gdbserver</code> waits for a connection on port 10000 from any host:”</em></p>
-<div class="highlight"><pre><span></span>gdbserver :10000 ./hello-world
-</pre></div>
+<div class="highlight"><pre><span></span><code>gdbserver :10000 ./hello-world
+</code></pre></div>
 <p><em><span class="dquo">“</span>Next, start the copy of <span class="caps">GDB</span> from your toolchain, pointing it at an unstripped copy of the program so that <span class="caps">GDB</span> can load the symbol table:”</em></p>
-<div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-gdb hello-world
-</pre></div>
+<div class="highlight"><pre><span></span><code>arm-poky-linux-gnueabi-gdb hello-world
+</code></pre></div>
 <p><em><span class="dquo">“</span>In <span class="caps">GDB</span>, use the command <code>target remote</code> to make the connection to <code>gdbserver</code>, giving it the <span class="caps">IP</span> address or hostname of the target and the port it is waiting on:”</em></p>
-<div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span> target remote <span class="m">192</span>.168.1.101:10000
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> target remote <span class="m">192</span>.168.1.101:10000
+</code></pre></div>
 <p><em><span class="dquo">“</span>The procedure is similar for a serial connection. On the target, you tell gdbserver which serial port to use:”</em></p>
-<div class="highlight"><pre><span></span>gdbserver /dev/ttyO0 ./hello-world
-</pre></div>
+<div class="highlight"><pre><span></span><code>gdbserver /dev/ttyO0 ./hello-world
+</code></pre></div>
 <p><em><span class="dquo">“</span>You may need to configure the port baud rate beforehand using <code>stty(1)</code> or a similar program”</em></p>
 <p><em><span class="dquo">“</span>The port must not be being used for anything else. For example, you can’t use a port that is being used as the system console. “</em></p>
 <p><em><span class="dquo">“</span>On the host, you make the connection to gdbserver using <code>target remote</code> plus the serial device at the host end of the cable. In most cases, you will want to set the baud rate of the host serial port first, using the <span class="caps">GDB</span> command <code>set serial baud</code>:”</em></p>
-<div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> serial baud <span class="m">115200</span>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> serial baud <span class="m">115200</span>
 <span class="o">(</span>gdb<span class="o">)</span> target remote /dev/ttyUSB0
-</pre></div>
+</code></pre></div>
 <h3 id="setting-the-sysroot">Setting the sysroot</h3>
 <p><em><span class="caps">GDB</span> needs to know where to find debug information and source code for the program and shared libraries you are debugging. When debugging natively, the paths are well known and built in to <span class="caps">GDB</span>, but when using a cross toolchain, <span class="caps">GDB</span> has no way to guess where the root of the target filesystem is. You have to give it this information.”</em></p>
-<div class="highlight"><pre><span></span> <span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> sysroot /opt/poky/2.2.1/sysroots/cortexa8hf-neon-poky-linux-gnueabi
-</pre></div>
+<div class="highlight"><pre><span></span><code> <span class="o">(</span>gdb<span class="o">)</span> <span class="nb">set</span> sysroot /opt/poky/2.2.1/sysroots/cortexa8hf-neon-poky-linux-gnueabi
+</code></pre></div>
 <p><em><span class="dquo">“</span><span class="caps">GDB</span> also needs to find the source code for the files you are debugging. <span class="caps">GDB</span> has a search path for source files, which you can see using the command <code>show directories</code>.”</em></p>
 <p><em><span class="dquo">“</span><code>$cwd</code> is the current working directory of the <span class="caps">GDB</span> instance running on the host; <code>$cdir</code> is the directory where the source was compiled. The latter is encoded into the object files with the tag <code>DW_AT_comp_dir</code>. You can see these tags using <code>objdump --dwarf</code>.”</em></p>
 <p><em><span class="dquo">“</span>You may have additional shared libraries that are stored outside the <code>sysroot</code>. In that case, you can use <code>set solib-search-path</code>, which can contain a colon-separated list of directories to search for shared libraries.”</em></p>
 <p><em><span class="dquo">“</span>[Another] way of telling <span class="caps">GDB</span> where to look for source code, for both libraries and programs, is using the <code>directory</code> command. […] Paths added in this way take precedence because they are searched before those from <code>sysroot</code> or <code>solib-search-path</code>.”</em></p>
 <h2 id="just-in-time-debugging">Just-in-time debugging</h2>
 <p><em><span class="dquo">“</span>In the case of remote debugging, you need to find the <span class="caps">PID</span> of the process to be debugged and pass it to <code>gdbserver</code> with the <code>--attach</code> option.”</em></p>
-<div class="highlight"><pre><span></span>gdbserver --attach :10000 <span class="m">109</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>gdbserver --attach :10000 <span class="m">109</span>
+</code></pre></div>
 <p><em><span class="dquo">“</span>When you are done, you can detach, allowing the program to continue running without the debugger:”</em></p>
-<div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span> detach
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> detach
+</code></pre></div>
 <h2 id="debugging-forks-and-threads">Debugging forks and threads</h2>
 <p><em><span class="dquo">“</span>Does the debug session follow the parent process or the child? This behavior is controlled by <code>follow-fork-mode</code>, which may be <code>parent</code> or <code>child</code>, with <code>parent</code> being the default. Unfortunately, current versions of <code>gdbserver</code> do not support this option, so it only works for native debugging.”</em></p>
 <p><em><span class="dquo">“</span>There is a way to modify the way in which <span class="caps">GDB</span> handles stopped threads, through a parameter called <code>scheduler-locking</code>. Normally it is <code>off</code>, but if you set it to <code>on</code>, only the thread that was stopped at the breakpoint is resumed and the others remain stopped, giving you a chance to see what the thread alone does without interference. This continues to be the case until you turn <code>scheduler-locking off</code>. Gdbserver supports this feature.”</em></p>
@@ -2316,15 +2316,15 @@ and then terminates those with the highest score until there is enough free mem
 <p><em><span class="dquo">“</span>You can also use a pattern that begins with an absolute directory name so that all core files are gathered together in one place.”</em></p>
 <h3 id="using-gdb-to-look-at-core-files">Using <span class="caps">GDB</span> to look at core files</h3>
 <p><em><span class="dquo">“</span>Here is a sample <span class="caps">GDB</span> session looking at a core file:”</em></p>
-<div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-gdb sort-debug /tmp/corefiles/core.sort-debug.1431425613
-</pre></div>
+<div class="highlight"><pre><span></span><code>arm-poky-linux-gnueabi-gdb sort-debug /tmp/corefiles/core.sort-debug.1431425613
+</code></pre></div>
 <p>[Then use following commands]</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span> list
+<div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> list
 ...
 ...
 <span class="o">(</span>gdb<span class="o">)</span> bt
 ...
-</pre></div>
+</code></pre></div>
 <h2 id="debugging-kernel-code">Debugging kernel code</h2>
 <h3 id="debugging-kernel-code-with-kgdb">Debugging kernel code with kgdb</h3>
 <p><em><span class="dquo">“</span>The kernel is a complex system, with real-time behaviors. Don’t expect debugging to be as easy as it is for applications. Stepping through code that changes the memory mapping or switches context is likely to produce odd results.”</em></p>
@@ -2338,17 +2338,17 @@ and then terminates those with the highest score until there is enough free mem
 <h3 id="looking-at-an-oops">Looking at an Oops</h3>
 <p><em><span class="dquo">“</span>When the kernel performs an invalid memory access or executes an illegal instruction, a kernel Oops message is written to the kernel log.”</em></p>
 <p><em><span class="dquo">“</span>[One] can use the <span class="caps">GDB</span> command disassemble with the <code>/s</code> modifier so that it shows source and assembler code together.”</em></p>
-<div class="highlight"><pre><span></span>arm-poky-linux-gnueabi-gdb mbx.ko
+<div class="highlight"><pre><span></span><code>arm-poky-linux-gnueabi-gdb mbx.ko
 
 :::bash
 <span class="o">(</span>gdb<span class="o">)</span> disassemble /s mbx_write
-</pre></div>
+</code></pre></div>
 <blockquote>
 <p>The offsets are displayed in decimal, not hex!</p>
 </blockquote>
 <h1 id="chapter-15-profiling-and-tracing">Chapter 15. Profiling and Tracing</h1>
 <h2 id="poor-mans-profiler">Poor man’s profiler</h2>
-<p><em><span class="dquo">“</span>You can profile an application just by using <span class="caps">GDB</span> to stop it at arbitrary intervals to see what it is doing. This is the <strong>poor man’s profiler</strong>. It is easy to set up and is one way of gathering profile data.”</em></p>
+<p><em><span class="dquo">“</span>You can profile an application just by using <span class="caps">GDB</span> to stop it at arbitrary intervals to see what it is doing. This is the </em><em>poor man’s profiler</em><em>. It is easy to set up and is one way of gathering profile data.”</em></p>
 <p><a href="http://poormansprofiler.org">http://poormansprofiler.org</a></p>
 <h2 id="introducing-perf">Introducing perf</h2>
 <h3 id="configuring-the-kernel-for-perf">Configuring the kernel for perf</h3>
@@ -2386,8 +2386,8 @@ virtual files in the <code>debugfs</code> filesystem.”</em></p>
 - <em>A kernel tracer implemented as a group of kernel modules</em>
 - <em>A user space tracer implemented as a library”</em></p>
 <p><em><span class="dquo">“</span>In addition to those, you will need a trace viewer such as 
-<a href="http://www.efficios.com/babeltrace">Babeltrace</a> or the <strong>Eclipse
-Trace Compass plugin</strong>.”</em></p>
+<a href="http://www.efficios.com/babeltrace">Babeltrace</a> or the </em><em>Eclipse
+Trace Compass plugin</em><em>.”</em></p>
 <h3 id="using-lttng-for-kernel-tracing">Using LTTng for kernel tracing</h3>
 <p><em><span class="dquo">“</span>LTTng can use the set of <code>ftrace</code> events […] as potential 
 trace points. Initially, they are disabled.”</em></p>
@@ -2406,7 +2406,7 @@ made from user space to the kernel.”</em></p>
 <h1 id="chapter-16-real-time-programming">Chapter 16. Real-Time Programming</h1>
 <h2 id="what-is-real-time">What is real time?</h2>
 <p><em><span class="dquo">“</span>A task is a real-time task if it has to complete before a
-certain point in time, known as the <strong>deadline</strong>.”</em></p>
+certain point in time, known as the </em><em>deadline</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>The other important thing to consider is the consequence of missing the deadline.”</em></p>
 <ul>
 <li><em><strong>Soft real-time</strong>: The deadline is desirable but is sometimes
@@ -2453,7 +2453,7 @@ default for servers and some desktop kernels, where throughput is
 more important than responsiveness.”</em></p>
 <p><em><span class="dquo">“</span>[<code>CONFIG_PREEMPT</code>] is often described as a soft real-time option, and most embedded kernels are configured in this way.”</em></p>
 <h2 id="the-real-time-linux-kernel-preempt_rt">The real-time Linux kernel (PREEMPT_RT)</h2>
-<p><em><span class="dquo">“</span>The central plan is to reduce the amount of time the kernel spends running in an <strong>atomic context</strong>, which is where it is not safe to call the scheduler and switch to a different thread. Typical atomic contexts are when the kernel is in the following states:</em></p>
+<p><em><span class="dquo">“</span>The central plan is to reduce the amount of time the kernel spends running in an </em><em>atomic context</em><em>, which is where it is not safe to call the scheduler and switch to a different thread. Typical atomic contexts are when the kernel is in the following states:</em></p>
 <ul>
 <li><em>Running an interrupt or trap handler.</em></li>
 <li><em>Holding a spinlock or in an <span class="caps">RCU</span> critical section. Spin lock and <span class="caps">RCU</span> are kernel-locking primitives</em></li>
@@ -2505,7 +2505,7 @@ requirements, which is typical for real-time applications. The
 default timer in Linux is a clock that runs at a configurable
 rate, typically 100 Hz for embedded systems and 250 Hz for servers
 and desktops. The interval between two timer ticks is known as a
-<strong>jiffy</strong> and [is for example] 10 milliseconds on an embedded
+</em><em>jiffy</em><em> and [is for example] 10 milliseconds on an embedded
 SoC and four milliseconds on a server.”</em></p>
 <h2 id="avoiding-page-faults">Avoiding page faults</h2>
 <p><em><span class="dquo">“</span>A page fault occurs when an application reads or writes to

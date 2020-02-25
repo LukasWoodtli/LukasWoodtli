@@ -127,11 +127,11 @@
 </blockquote>
 <h2 id="load-ros-environment">Load <span class="caps">ROS</span> Environment</h2>
 <p>For Bash:</p>
-<div class="highlight"><pre><span></span><span class="nb">source</span> /opt/ros/melodic/setup.bash
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> /opt/ros/melodic/setup.bash
+</code></pre></div>
 <p>or Zsh:</p>
-<div class="highlight"><pre><span></span><span class="nb">source</span> /opt/ros/melodic/setup.zsh
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> /opt/ros/melodic/setup.zsh
+</code></pre></div>
 <h2 id="commands">Commands</h2>
 <table class="table-striped table">
 <thead>
@@ -180,8 +180,8 @@ They are placed in a separate standardized directory hierarchy.</p>
 </ul>
 <h1 id="nodes">Nodes</h1>
 <h2 id="start-a-node-rosrun">Start a node (<code>rosrun</code>)</h2>
-<div class="highlight"><pre><span></span>rosrun &lt;package-name&gt; &lt;executable-name&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code>rosrun &lt;package-name&gt; &lt;executable-name&gt;
+</code></pre></div>
 <ul>
 <li><code>package-name</code>: the name of the node’s package</li>
 <li><code>executable-name</code>: the executable name in that package</li>
@@ -415,34 +415,34 @@ They are placed in a separate standardized directory hierarchy.</p>
 <h1 id="workspaces-and-packages">Workspaces and Packages</h1>
 <p>All packages belonging to one project should be placed in one workspace.</p>
 <h2 id="creating-a-workspaces">Creating a Workspaces</h2>
-<div class="highlight"><pre><span></span>mkdir -p &lt;workspace-name&gt;/src    <span class="c1"># don't forget the `src` subdirectory</span>
+<div class="highlight"><pre><span></span><code>mkdir -p &lt;workspace-name&gt;/src    <span class="c1"># don't forget the `src` subdirectory</span>
 <span class="nb">cd</span>  &lt;workspace-name&gt;/
 catkin_make
-</pre></div>
+</code></pre></div>
 <h2 id="creating-a-package">Creating a Package</h2>
-<div class="highlight"><pre><span></span><span class="nb">cd</span>  &lt;workspace-name&gt;/src
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/src
 catkin_create_pkg &lt;package-name&gt; <span class="o">[</span>list of dependencies<span class="o">]</span>
-</pre></div>
+</code></pre></div>
 <h2 id="building-a-workspace">Building a Workspace</h2>
-<div class="highlight"><pre><span></span><span class="nb">cd</span>  &lt;workspace-name&gt;/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/
 catkin_make
-</pre></div>
+</code></pre></div>
 <h2 id="running-a-node-from-workspace">Running a Node from Workspace</h2>
 <p>A master is required to run before running any nodes.</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span>  &lt;workspace-name&gt;/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/
 <span class="nb">source</span> devel/setup.zsh
 rosrun &lt;package-name&gt; &lt;executable-name&gt;
-</pre></div>
+</code></pre></div>
 <h1 id="urdf-and-xacro"><span class="caps">URDF</span> and Xacro</h1>
 <p>To generate an <span class="caps">URFD</span> file from a xacro file:</p>
-<div class="highlight"><pre><span></span>xacro input.xacro &gt; output.urdf
-</pre></div>
+<div class="highlight"><pre><span></span><code>xacro input.xacro &gt; output.urdf
+</code></pre></div>
 <p>Checking <span class="caps">URDF</span> files:</p>
-<div class="highlight"><pre><span></span>check_urdf file.urdf
-</pre></div>
+<div class="highlight"><pre><span></span><code>check_urdf file.urdf
+</code></pre></div>
 <p>Create graph for <span class="caps">URDF</span>:</p>
-<div class="highlight"><pre><span></span>urdf_to_graphiz file.urdf  <span class="c1"># note the missing 'v' in graphiz</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>urdf_to_graphiz file.urdf  <span class="c1"># note the missing 'v' in graphiz</span>
+</code></pre></div>
 <h1 id="checking-for-problems">Checking for Problems</h1>
 <ul>
 <li><code>roswtf</code>: Perform sanity checks for the running <span class="caps">ROS</span> system</li>

@@ -85,13 +85,13 @@ They are merely a representation of consecutive data in memory.</p>
 <p>They don’t contain any meta data (like size). But since they are
 stored in memory in such a simple manner processors can handle
 them very efficiently.</p>
-<div class="highlight"><pre><span></span><span class="c1">//     rows  columns</span>
+<div class="highlight"><pre><span></span><code><span class="c1">//     rows  columns</span>
 <span class="c1">//        |  |   </span>
 <span class="c1">//        v  v   </span>
 <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span>
                  <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span>
                  <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}};</span>
-</pre></div>
+</code></pre></div>
 <p>The values of the array <code>data</code> are stored row for row in memory:</p>
 <blockquote>
 <p>0,1,2,3,4,5</p>

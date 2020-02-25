@@ -103,10 +103,10 @@
 <li><code>(cons a lst)</code> makes a list like the original one (<code>lst</code>), but with an additional item (<code>a</code>) at the beginning</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">cons </span><span class="mi">10</span> <span class="nv">a</span><span class="p">)</span>
 <span class="nv">&gt;&gt;</span> <span class="p">(</span><span class="mi">10</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li><code>(list-ref lst i)</code>: retrieves element at index <code>i</code> (index is zero-based)</li>
 <li><code>(length lst)</code>: returns the length of a list</li>
@@ -114,9 +114,9 @@
 <li><code>(map fun lst)</code>: applies the function <code>fun</code> to each element of <code>lst</code> and returns a new list with the results</li>
 </ul>
 <p>The <code>map</code> function can be applied on multiple lists:</p>
-<p><em><span class="dquo">“</span>This more general <code>map</code> takes a procedure of <strong>n</strong> arguments, together with <strong>n</strong> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
+<p><em><span class="dquo">“</span>This more general <code>map</code> takes a procedure of </em><em>n</em><em> arguments, together with </em><em>n</em><em> lists, and applies the procedure to all the first elements of the lists, all the second elements of the lists, and so on, returning a list of the results.</em></p>
 <p><em>For example:</em>”</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map </span><span class="nv">+</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">map </span><span class="nv">+</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">700</span> <span class="mi">800</span> <span class="mi">900</span><span class="p">))</span>
@@ -126,7 +126,7 @@
     <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">list </span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
 <span class="nv">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">9</span> <span class="mi">12</span> <span class="mi">15</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1"><span class="caps">SICP</span>:2.2.1  Representing Sequences:Mapping over lists</a></p>
 <ul>
 <li><code>(for-each fun lst)</code>: applies a function <code>fun</code> to each element in the list <code>lst</code> but doesn’t create a new list. The return value of the function is ignored.</li>
@@ -151,43 +151,43 @@
 </li>
 </ul>
 <p>If <code>reduce</code> is not available (e.g in Racket) it can be defined in terms of <code>foldl</code>:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reduce</span> <span class="nv">f</span> <span class="nv">xs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reduce</span> <span class="nv">f</span> <span class="nv">xs</span><span class="p">)</span>
     <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">xs</span><span class="p">))</span> <span class="p">(</span><span class="nf">foldl</span> <span class="nv">f</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">xs</span><span class="p">)</span> <span class="p">(</span><span class="nf">rest</span> <span class="nv">xs</span><span class="p">))))</span>
-</pre></div>
+</code></pre></div>
 <p><a href="http://stackoverflow.com/a/25211454/1272072">Stack Overflow</a></p>
 <ul>
 <li><code>(memq  v lst)</code>: find element <code>v</code> in list <code>lst</code> and return the rest of the list starting at the found element. If element is not found <code>#f</code> is returned. Similar functions: <code>member</code>, <code>memv</code>, <code>memf</code></li>
 </ul>
 <h1 id="local-binding">Local Binding</h1>
 <p><code>let</code> is syntactic sugar for a procedure call:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">&lt;var&gt;</span> <span class="nv">&lt;exp&gt;</span><span class="p">))</span> <span class="nv">&lt;body&gt;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">&lt;var&gt;</span> <span class="nv">&lt;exp&gt;</span><span class="p">))</span> <span class="nv">&lt;body&gt;</span><span class="p">)</span>
+</code></pre></div>
 <p>is interpreted as an alternate syntax for</p>
-<div class="highlight"><pre><span></span><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var&gt;</span><span class="p">)</span> <span class="nv">&lt;body&gt;</span><span class="p">)</span> <span class="nv">&lt;exp&gt;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">&lt;var&gt;</span><span class="p">)</span> <span class="nv">&lt;body&gt;</span><span class="p">)</span> <span class="nv">&lt;exp&gt;</span><span class="p">)</span>
+</code></pre></div>
 <h1 id="delayed-evaluation">Delayed Evaluation</h1>
 <p><code>delay</code> is a special form that returns a <em>delayed object</em>. It is a 
 <em>promise</em> to evaluate the given expression at some future time.</p>
 <p><code>force</code> takes a <em>delayed object</em> and performs the evaluation. It forces
 the <code>delay</code> to fulfill its promise.</p>
 <p>Delay can be a special form such that:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">delay </span><span class="nv">&lt;exp&gt;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">delay </span><span class="nv">&lt;exp&gt;</span><span class="p">)</span>
+</code></pre></div>
 <p>is syntactic sugar for</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="nv">&lt;exp&gt;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="nv">&lt;exp&gt;</span><span class="p">)</span>
+</code></pre></div>
 <p>Force simply calls the procedure (of no arguments) pro-
 duced by delay, so we can implement force as a proce- dure:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">force </span><span class="nv">delayed-object</span><span class="p">)</span> <span class="p">(</span><span class="nf">delayed-object</span><span class="p">))</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">force </span><span class="nv">delayed-object</span><span class="p">)</span> <span class="p">(</span><span class="nf">delayed-object</span><span class="p">))</span>
+</code></pre></div>
 <h1 id="dotted-tail-notation">Dotted-tail Notation</h1>
 <ul>
 <li>Used for functions with arbitrary number of arguments</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">x</span> <span class="nv">a</span> <span class="nv">b</span> <span class="o">.</span> <span class="nv">c</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">x</span> <span class="nv">a</span> <span class="nv">b</span> <span class="o">.</span> <span class="nv">c</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">x</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; in the body of x: a=1, b=2, c='(3 4 5)</span>
-</pre></div>
+</code></pre></div>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
