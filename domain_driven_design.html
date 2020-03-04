@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-01-05T14:57:29+01:00" />
-<meta property="og:article:modified_time" content="2020-01-22T16:04:51+01:00" />
+<meta property="og:article:modified_time" content="2020-03-04T15:04:52+01:00" />
 <meta name="twitter:title" content="Domain Driven Design">
 <meta name="twitter:description" content="Introduction Domain Driven Design (DDD) is a set of methodologies, tools and patterns that help to develop complex software systems. The design techniques are divided into two major groups: strategical and tactical. Strategical These ideas include the cooperation of a lot of different people participating in a project. This are …">
 
@@ -102,6 +102,7 @@
 <li><a href="#services">Services</a></li>
 <li><a href="#modules">Modules</a></li>
 <li><a href="#aggregates">Aggregates</a></li>
+<li><a href="#domain-events">Domain Events</a></li>
 <li><a href="#factories">Factories</a></li>
 <li><a href="#repositories">Repositories</a></li>
 </ul>
@@ -152,7 +153,7 @@
 <p>Usually the model is not fully defined from the beginning. It is refined and improved while developing the software.</p>
 <h2 id="cooperation-of-business-experts-and-developers">Cooperation of Business Experts and Developers</h2>
 <p>To define a useful and solid model it is necessary that the software engineers (developers, architects, testers) that build the software collaborate with the business experts (analysts, users…) and figure out the essential concepts and the functionality that the software will implement.</p>
-<p>This is an iterative process where the model is constantly refined, extended and cleaned up.</p>
+<p>This is an iterative process where the model is constantly refined, extended and cleaned up. Also the Ubiquitous Language is evolved and refined in this process.</p>
 <p>The communication is bidirectional and defining the model is a combined effort. The resulting model needs to be understood by all participants. If a business expert doesn’t understand a part of the model then there is probably something wrong with it.</p>
 <p>The discussions are a time consuming process. But it’s important to have a good model and a common language.</p>
 <h2 id="ubiquitous-language">Ubiquitous Language</h2>
@@ -209,6 +210,8 @@ They are stateless and provide simply functionality (a concept) for the domain.
 <p>An aggregate is also the root regarding persistence. It has to handle transactions and contract (invariant) checking.</p>
 <p>Each aggregate has one root which is the entry point for objects outside of the aggregate and it is the base entity for persistence.</p>
 <p>Only the root should be obtainable through queries from the database.</p>
+<h4 id="domain-events">Domain Events</h4>
+<p>These objects model the events that the users of the system (and the domain experts) are interested in. Usually they are implemented as value objects. </p>
 <h4 id="factories">Factories</h4>
 <p>Construction of complex business objects (like aggregates and entities) should be done by factories (factory method, abstract factory, …). Usually it is not feasible to build a complete object tree in a constructor of a single class.</p>
 <p>The creation process should be atomic and raise an exception if the construction is not possible.</p>
@@ -238,6 +241,7 @@ Internally they can use factories for creating an object tree and ensure that th
 <p>The contexts and their relationships should be documented with a context map. This is usually done with a diagram.</p>
 <p>Everybody working on the system needs to know and understand the context map.</p>
 <p>The Context Map can also show problems with badly defined Bounded Contexts. For example if two (or more) contexts share a part of the system.</p>
+<p>When getting started with <span class="caps">DDD</span> it’s a good starting point to draw a context map of the system.</p>
 <h1 id="common-patterns">Common Patterns</h1>
 <h2 id="shared-kernel">Shared Kernel</h2>
 <p>If there is a part of the system that is present in two (or more) contexts is it called a Shared Kernel. This is a sign of uncoordinated teams working on closely related parts of the system.</p>
@@ -285,7 +289,7 @@ The core should stay as small as possible. It contains a lot of business logic.
             <time itemprop="dateCreated" datetime="2020-01-05T14:57:29+01:00">Jan 5, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-01-22T16:04:51+01:00">Jan 22, 2020</time>
+<time datetime="2020-03-04T15:04:52+01:00">Mar 4, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
