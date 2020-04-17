@@ -11,17 +11,17 @@
 
 <meta name="keywords" content="C, C++, Programming, " />
 
-<meta property="og:title" content="Harmful C Functions and their replacements"/>
+<meta property="og:title" content="Harmful C Functions and their replacements "/>
 <meta property="og:url" content="./harmful_c_functions_and_their_replacements.html" />
 <meta property="og:description" content="Pre- and postfixes for printf and scanf There are quite a lot of functions in the printf and scanff amily. It might not be very clear when to use which of them. Here is an explanation of the functions in the Standard C Library. Prefixes Most prefixed define where the …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-04-18T19:03:20+02:00" />
 <meta property="og:article:modified_time" content="2018-06-20T12:09:33+02:00" />
-<meta name="twitter:title" content="Harmful C Functions and their replacements">
+<meta name="twitter:title" content="Harmful C Functions and their replacements ">
 <meta name="twitter:description" content="Pre- and postfixes for printf and scanf There are quite a lot of functions in the printf and scanff amily. It might not be very clear when to use which of them. Here is an explanation of the functions in the Standard C Library. Prefixes Most prefixed define where the …">
 
-        <title>Harmful C Functions and their replacements · Lukas Woodtli
+        <title>Harmful C Functions and their replacements  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./harmful_c_functions_and_their_replacements.html"> Harmful C Functions and their&nbsp;replacements </a></h1>
+    <h1><a href="./harmful_c_functions_and_their_replacements.html"> Harmful C Functions and their&nbsp;replacements  </a></h1>
     </header>
 </div>
 
@@ -120,7 +120,7 @@
 <h2 id="overview">Overview</h2>
 <h3 id="output">Output</h3>
 <p>So we get following <code>printf</code>-like functions:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Output</th>
@@ -158,7 +158,7 @@ suffer from string vulnerability.</p>
 <p>And force null-termination manually <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
 <h3 id="input">Input</h3>
 <p>And we get following <code>scanf</code>-like functions:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Input</th>
@@ -188,7 +188,7 @@ suffer from string vulnerability.</p>
 <p>And force null-termination manually <sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
 <h1 id="openbsd">OpenBSD</h1>
 <p>The OpenBSD kernel library defines some additional functions that are safer than their counterparts in the standard library.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -211,7 +211,7 @@ suffer from string vulnerability.</p>
 </table>
 <h1 id="replacements">Replacements</h1>
 <p>These C functions suffer buffer overflow problems:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Original</th>
