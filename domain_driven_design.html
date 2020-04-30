@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-01-05T14:57:29+01:00" />
-<meta property="og:article:modified_time" content="2020-03-04T15:04:52+01:00" />
+<meta property="og:article:modified_time" content="2020-04-30T14:29:04+02:00" />
 <meta name="twitter:title" content="Domain Driven Design ">
 <meta name="twitter:description" content="Introduction Domain Driven Design (DDD) is a set of methodologies, tools and patterns that help to develop complex software systems. The design techniques are divided into two major groups: strategical and tactical. Strategical These ideas include the cooperation of a lot of different people participating in a project. This are …">
 
@@ -101,7 +101,10 @@
 <li><a href="#value-objects">Value Objects</a></li>
 <li><a href="#services">Services</a></li>
 <li><a href="#modules">Modules</a></li>
-<li><a href="#aggregates">Aggregates</a></li>
+<li><a href="#aggregates">Aggregates</a><ul>
+<li><a href="#rules-for-modeling-aggregates">Rules for Modeling Aggregates</a></li>
+</ul>
+</li>
 <li><a href="#domain-events">Domain Events</a></li>
 <li><a href="#factories">Factories</a></li>
 <li><a href="#repositories">Repositories</a></li>
@@ -210,6 +213,20 @@ They are stateless and provide simply functionality (a concept) for the domain.
 <p>An aggregate is also the root regarding persistence. It has to handle transactions and contract (invariant) checking.</p>
 <p>Each aggregate has one root which is the entry point for objects outside of the aggregate and it is the base entity for persistence.</p>
 <p>Only the root should be obtainable through queries from the database.</p>
+<h5 id="rules-for-modeling-aggregates">Rules for Modeling Aggregates</h5>
+<ol>
+<li>Design small aggregates</li>
+<li>Protect business invariants inside of aggregates</li>
+<li>Reference other aggregates only by identity</li>
+<li>Make a dependecy graph of the aggregates</li>
+<li>Define acceptable time frame for updates to dependent aggregates (together with domain experts)<ul>
+<li>immediate</li>
+<li>eventually (<code>n</code> seconds)</li>
+</ul>
+</li>
+<li>Put all components that need immediate update in the same aggregate</li>
+<li>The other aggregates will be updated eventually</li>
+</ol>
 <h4 id="domain-events">Domain Events</h4>
 <p>These objects model the events that the users of the system (and the domain experts) are interested in. Usually they are implemented as value objects. </p>
 <h4 id="factories">Factories</h4>
@@ -231,7 +248,7 @@ Internally they can use factories for creating an object tree and ensure that th
 <h1 id="bounded-context">Bounded Context</h1>
 <p>A Bounded Context is a part of the domain. It is built with one model using its Ubiquitous Language. Each Bounded context has its own model.</p>
 <p>Ideally each Bounded Context is developed and maintained by one team.</p>
-<p>The boundaries of the Context (and its model) need to be explicit. The model has to be contained completely in the Bounded Context.</p>
+<p>The boundaries of the Context (and its model) need to be explicit. The model has to be contained completely in the Bounded Context. It’s also important to define whant isn’t part  of a bounded context.</p>
 <p>A Bounded Context contains usually multiple modules.</p>
 <p>It‘s important to keep the borders of the bonded contexts consistent. There needs to be a means of communication between them.</p>
 <p>All the Bounded Contexts need to be continuously be integrated in the system.</p>
@@ -289,7 +306,7 @@ The core should stay as small as possible. It contains a lot of business logic.
             <time itemprop="dateCreated" datetime="2020-01-05T14:57:29+01:00">Jan 5, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-03-04T15:04:52+01:00">Mar 4, 2020</time>
+<time datetime="2020-04-30T14:29:04+02:00">Apr 30, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
