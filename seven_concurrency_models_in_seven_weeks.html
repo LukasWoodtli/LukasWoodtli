@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-05-14T19:36:44+02:00" />
-<meta property="og:article:modified_time" content="2020-05-14T19:42:41+02:00" />
+<meta property="og:article:modified_time" content="2020-05-14T19:48:39+02:00" />
 <meta name="twitter:title" content="Seven Concurrency Models in Seven Weeks ">
 <meta name="twitter:description" content="This page collects notes taken from Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher Some of my examples are here Chapter 1 Introduction Concurrent or Parallel? Related but Different “A concurrent program has multiple logical threads of control. These threads may or may not run in …">
 
@@ -92,10 +92,7 @@
 </ul>
 </li>
 <li><a href="#chapter-2-threads-and-locks">Chapter 2 Threads and Locks</a><ul>
-<li><a href="#the-simplest-thing-that-could-possibly-work">The Simplest Thing That Could Possibly Work</a><ul>
-<li><a href="#they-also-provide-almost-no-help-to-the-poor-programmer-making-programs-very-difficult-to-get-right-in-the-first-place-and-even-more-difficult-to-maintain">they also provide almost no help to the poor programmer, making programs very difficult to get right in the first place and even more difficult to maintain.</a></li>
-</ul>
-</li>
+<li><a href="#the-simplest-thing-that-could-possibly-work">The Simplest Thing That Could Possibly Work</a></li>
 <li><a href="#day-1-mutual-exclusion-and-memory-models">Day 1: Mutual Exclusion and Memory Models</a><ul>
 <li><a href="#creating-a-thread">Creating a Thread</a></li>
 <li><a href="#mysterious-memory">Mysterious Memory</a></li>
@@ -167,7 +164,6 @@
 <h1 id="chapter-2-threads-and-locks">Chapter 2 Threads and Locks</h1>
 <h2 id="the-simplest-thing-that-could-possibly-work">The Simplest Thing That Could Possibly Work</h2>
 <p><em><span class="dquo">“</span>[Threads] also provide almost no help to the poor programmer, making programs very difficult to get right in the first place and even more difficult to maintain.”</em></p>
-<h3 id="they-also-provide-almost-no-help-to-the-poor-programmer-making-programs-very-difficult-to-get-right-in-the-first-place-and-even-more-difficult-to-maintain">they also provide almost no help to the poor programmer, making programs very difficult to get right in the first place and even more difficult to maintain.</h3>
 <h2 id="day-1-mutual-exclusion-and-memory-models">Day 1: Mutual Exclusion and Memory Models</h2>
 <p><em><span class="dquo">“</span>[There is something very] basic you need to worry about when dealing with shared memory - the Memory Model.”</em></p>
 <h3 id="creating-a-thread">Creating a Thread</h3>
@@ -338,7 +334,7 @@ Happily, there is a simple rule that guarantees you will never deadlock - always
             <time itemprop="dateCreated" datetime="2020-05-14T19:36:44+02:00">May 14, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-05-14T19:42:41+02:00">May 14, 2020</time>
+<time datetime="2020-05-14T19:48:39+02:00">May 14, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
