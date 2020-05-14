@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Lukas Woodtli" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Computer Science, Design Patterns, Lisp, OOP, OS, Programming, " />
+
+<meta property="og:title" content="Seven Concurrency Models in Seven Weeks "/>
+<meta property="og:url" content="./seven_concurrency_models_in_seven_weeks.html" />
+<meta property="og:description" content="This page collects notes taken from Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher Some of my examples are here Chapter 1 Introduction Concurrent or Parallel? Related but Different “A concurrent program has multiple logical threads of control. These threads may or may not run in …" />
+<meta property="og:site_name" content="Lukas Woodtli" />
+<meta property="og:article:author" content="Lukas Woodtli" />
+<meta property="og:article:published_time" content="2020-05-14T19:36:44+02:00" />
+<meta property="og:article:modified_time" content="2020-05-14T19:42:41+02:00" />
+<meta name="twitter:title" content="Seven Concurrency Models in Seven Weeks ">
+<meta name="twitter:description" content="This page collects notes taken from Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher Some of my examples are here Chapter 1 Introduction Concurrent or Parallel? Related but Different “A concurrent program has multiple logical threads of control. These threads may or may not run in …">
+
+        <title>Seven Concurrency Models in Seven Weeks  · Lukas Woodtli
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/admonition.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="./"><span class=site-name>Lukas Woodtli</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href=".">Home</a></li>
+                            <li><a href="./pages/resume.html">Resume</a></li>
+                            <li><a href="./pages/skills.html">Skills</a></li>
+                            <li><a href="./pages/books.html">Books</a></li>
+                            <li><a href="./pages/courses.html">Courses</a></li>
+                            <li><a href="./pages/projects.html">Projects</a></li>
+                            <li><a href="./pages/blog.html">Blog</a></li>
+                            <li><a href="./pages/contact.html">Contact</a></li>
+                            <!-- <li ><a href="./categories">Categories</a></li> -->
+                            <!-- <li ><a href="./tags">Tags</a></li> -->
+                            <!-- <li ><a href="./archives">Archives</a></li> -->
+
+                            <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="./seven_concurrency_models_in_seven_weeks.html"> Seven Concurrency Models in Seven&nbsp;Weeks  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#chapter-1-introduction">Chapter 1 Introduction</a><ul>
+<li><a href="#concurrent-or-parallel">Concurrent or Parallel?</a><ul>
+<li><a href="#related-but-different">Related but Different</a></li>
+<li><a href="#beyond-sequencial-programming">Beyond Sequencial Programming</a></li>
+<li><a href="#data-parallelism">Data Parallelism</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-2-threads-and-locks">Chapter 2 Threads and Locks</a><ul>
+<li><a href="#the-simplest-thing-that-could-possibly-work">The Simplest Thing That Could Possibly Work</a><ul>
+<li><a href="#they-also-provide-almost-no-help-to-the-poor-programmer-making-programs-very-difficult-to-get-right-in-the-first-place-and-even-more-difficult-to-maintain">they also provide almost no help to the poor programmer, making programs very difficult to get right in the first place and even more difficult to maintain.</a></li>
+</ul>
+</li>
+<li><a href="#day-1-mutual-exclusion-and-memory-models">Day 1: Mutual Exclusion and Memory Models</a><ul>
+<li><a href="#creating-a-thread">Creating a Thread</a></li>
+<li><a href="#mysterious-memory">Mysterious Memory</a></li>
+<li><a href="#memory-visibility">Memory Visibility</a></li>
+<li><a href="#multiple-locks">Multiple Locks</a></li>
+<li><a href="#the-perils-of-alien-methods">The Perils of Alien Methods</a></li>
+<li><a href="#day-1-wrap-up">Day 1 Wrap Up</a></li>
+</ul>
+</li>
+<li><a href="#day-2-beyond-intrinsic-locks">Day 2: Beyond Intrinsic Locks</a><ul>
+<li><a href="#hand-over-hand-locking">Hand-over-Hand Locking</a></li>
+<li><a href="#condition-variables">Condition Variables</a></li>
+<li><a href="#atomic-variables">Atomic Variables</a><ul>
+<li><a href="#what-about-volatile">What About Volatile?</a></li>
+</ul>
+</li>
+<li><a href="#day-2-wrap-up">Day 2 Wrap-Up</a></li>
+</ul>
+</li>
+<li><a href="#day-3-on-the-shoulders-of-giants">Day 3: On the Shoulders of Giants</a><ul>
+<li><a href="#how-large-should-my-thread-pool-be">How Large Should My Thread Pool Be?</a></li>
+<li><a href="#why-a-blocking-queue">Why a Blocking Queue?</a></li>
+<li><a href="#day-3-wrap-up">Day 3 Wrap-Up</a><ul>
+<li><a href="#what-we-learned-in-day-3">What We Learned in Day 3</a></li>
+</ul>
+</li>
+<li><a href="#wrap-up">Wrap-Up</a><ul>
+<li><a href="#weaknesses">Weaknesses</a></li>
+<li><a href="#the-elephant-in-the-room">The Elephant in the Room</a></li>
+<li><a href="#maintenance">Maintenance</a></li>
+<li><a href="#other-languages">Other Languages</a></li>
+</ul>
+</li>
+<li><a href="#additional-notes">Additional Notes</a><ul>
+<li><a href="#race-condition">Race Condition</a></li>
+<li><a href="#memory-visibility_1">Memory Visibility</a></li>
+<li><a href="#deadlocks-livelocks">Deadlocks <span class="amp">&amp;</span> Livelocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <p>This page collects notes taken from
+<a href="https://pragprog.com/book/pb7con/seven-concurrency-models-in-seven-weeks">Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher</a></p>
+<p>Some of my examples are <a href="https://github.com/LukasWoodtli/SevenConcurrencyModelsInSevenWeeks">here</a></p>
+
+<h1 id="chapter-1-introduction">Chapter 1 Introduction</h1>
+<h2 id="concurrent-or-parallel">Concurrent or Parallel?</h2>
+<h3 id="related-but-different">Related but Different</h3>
+<p><em><span class="dquo">“</span>A concurrent program has multiple logical threads of control. These threads may or may not run in parallel.”</em></p>
+<p><em><span class="dquo">“</span>A parallel program potentially runs more quickly than a sequential program by executing different parts of the computation simultaneously (in parallel). It may or may not have more than one logical thread of control.”</em></p>
+<p><em><span class="dquo">“</span>[…] concurrency is an aspect of the problem domain — your program needs to handle multiple simultaneous (or near-simultaneous) events.”</em></p>
+<p><em><span class="dquo">“</span>Parallelism […] is an aspect of the solution domain — you want to make your program faster by processing different portions of the problem in parallel.”</em></p>
+<p><em><span class="dquo">“</span>Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.”</em></p>
+<h3 id="beyond-sequencial-programming">Beyond Sequencial Programming</h3>
+<p><em><span class="dquo">“</span>[…] traditional threads and locks don’t provide any direct support for parallelism.”</em></p>
+<p><em><span class="dquo">“</span>[…] concurrent programs are often nondetermistic - they will give different results depending on the precise timing of events.”</em></p>
+<p><em><span class="dquo">“</span>Parallelism […] doesn’t necessarily imply nondetermism”</em></p>
+<h3 id="data-parallelism">Data Parallelism</h3>
+<p><em><span class="dquo">“</span>Data-parallel (sometimes called <span class="caps">SIMD</span> […]) architectures are capable of performing the same operations on a large quantity of data in parallel.”</em></p>
+<h1 id="chapter-2-threads-and-locks">Chapter 2 Threads and Locks</h1>
+<h2 id="the-simplest-thing-that-could-possibly-work">The Simplest Thing That Could Possibly Work</h2>
+<p><em><span class="dquo">“</span>[Threads] also provide almost no help to the poor programmer, making programs very difficult to get right in the first place and even more difficult to maintain.”</em></p>
+<h3 id="they-also-provide-almost-no-help-to-the-poor-programmer-making-programs-very-difficult-to-get-right-in-the-first-place-and-even-more-difficult-to-maintain">they also provide almost no help to the poor programmer, making programs very difficult to get right in the first place and even more difficult to maintain.</h3>
+<h2 id="day-1-mutual-exclusion-and-memory-models">Day 1: Mutual Exclusion and Memory Models</h2>
+<p><em><span class="dquo">“</span>[There is something very] basic you need to worry about when dealing with shared memory - the Memory Model.”</em></p>
+<h3 id="creating-a-thread">Creating a Thread</h3>
+<p><em><span class="dquo">“</span>Threads communicate with each other via shared memory.”</em></p>
+<h3 id="mysterious-memory">Mysterious Memory</h3>
+<ul>
+<li><em><span class="dquo">“</span>The compiler is allowed to statically optimize your code by reordering things.”</em></li>
+<li><em><span class="dquo">“</span>The <span class="caps">JVM</span> is allowed to dynamically optimize your code by reordering things.”</em></li>
+<li><em><span class="dquo">“</span>The hardware you’re running on is allowed to optimize performance by reordering things.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>Sometimes effects don’t become visible to other threads at all.”</em></p>
+<h3 id="memory-visibility">Memory Visibility</h3>
+<p><em><span class="dquo">“</span>The Java memory model defines when changes to memory made by one thread become visible to another thread.”“</em></p>
+<p><em><span class="dquo">“</span>An important point that’s easily missed is that both threads need to use synchronization. It’s not enough for just the thread making changes to do so.”</em></p>
+<h3 id="multiple-locks">Multiple Locks</h3>
+<p><em><span class="dquo">“</span>Deadlock is a danger whenever a thread tries to hold more than one lock. Happily, there is a simple rule that guarantees you will never deadlock - always acquire locks in a fixed, global order.”</em></p>
+<h3 id="the-perils-of-alien-methods">The Perils of Alien Methods</h3>
+<p><em><span class="dquo">“</span>avoid calling alien methods while holding a lock”</em></p>
+<h3 id="day-1-wrap-up">Day 1 Wrap Up</h3>
+<p><em><span class="dquo">“</span>[…] three primary perils of threads and locks - race conditions, deadlock and memory visibility […]
+rules that help us avoiding them:”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>Synchronize all access to shared variables.”</em></li>
+<li><em>Both the writing and the reading threads need to use synchronization.”</em></li>
+<li><em>Acquire multiple locks in a fixed, global order.”</em></li>
+<li><em>Don’t call alien methods while holding a lock.”</em></li>
+<li><em>Hold locks for the shortest possible amount of time.”</em></li>
+</ul>
+<h2 id="day-2-beyond-intrinsic-locks">Day 2: Beyond Intrinsic Locks</h2>
+<p><em><span class="dquo">“</span>Intrinsic locks are convenient but limited.”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>There is no way to interrupt a thread that’s blocked as a result of trying to acquire an intrinsic lock.”</em></li>
+<li><em><span class="dquo">“</span>There is no way to time out while trying to acquire an intrinsic lock.”</em></li>
+<li><em><span class="dquo">“</span>There’s exactly one way to acquire an intrinsic lock: a synchronized block.”</em></li>
+</ul>
+<p>Synchronized block:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">synchronized</span> <span class="err">​</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="p">{</span>    
+  <span class="c1">// use shared resources</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em><span class="dquo">“</span>This means that lock acquisition and release have to take place in the same method and have to be strictly nested.”</em></p>
+<p><em><span class="dquo">“</span>Note that declaring a method as <code>synchronized</code> is just syntactic sugar for surrounding the method’s body with the following:”</em></p>
+<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="kd">synchronized</span> <span class="err">​</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span><span class="err">​</span> 
+    <span class="c1">// method body</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em><span class="dquo">“</span>ReentrantLock allows us to transcend these restrictions by providing explicit lock and unlock methods instead of using synchronized .”</em></p>
+<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="n">Lock</span> <span class="err">​</span><span class="n">lock</span> <span class="o">=</span> <span class="err">​</span><span class="k">new</span> <span class="n">ReentrantLock</span> <span class="err">​</span><span class="p">();</span>
+<span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<span class="k">try</span> <span class="err">​</span><span class="p">{</span>
+    <span class="c1">// use shared resources​ </span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="hand-over-hand-locking">Hand-over-Hand Locking</h3>
+<p><em><span class="dquo">“</span>Hand-over-hand locking is an alternative in which we lock only a small portion of the list, allowing other threads unfettered access as long as they’re not looking at the particular nodes we’ve got locked.”</em></p>
+<h3 id="condition-variables">Condition Variables</h3>
+<p><em><span class="dquo">“</span>Concurrent programming often involves waiting for something to happen. […] This type of situation is what condition variables are designed to address.”</em></p>
+<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span> <span class="err">​</span><span class="p">();</span>
+<span class="n">Condition</span> <span class="n">condition</span> <span class="o">=</span> <span class="n">lock</span><span class="p">.</span><span class="na">newCondition</span><span class="p">();</span>
+
+<span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">condition</span> <span class="n">is</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="n">condition</span><span class="p">.</span><span class="na">await</span><span class="p">();</span>
+    <span class="c1">// use shared resources</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em><span class="dquo">“</span>A condition variable is associated with a lock, and a thread must hold that lock before being able to wait on the condition. Once it holds the lock, it checks to see if the condition that it’s interested in is already true. If it is, then it continues with whatever it wants to do and unlocks the lock. If, however, the condition is not true, it calls <code>await</code>, which </em><em>atomically</em><em> unlocks the lock and blocks on the condition variable.”</em></p>
+<p><em><span class="dquo">“</span>An operation is atomic if, from the point of view of another thread, it appears to be a single operation that has either happened or not - it never appears to be halfway through.”</em></p>
+<p><em><span class="dquo">“</span>When another thread calls <code>signal</code> or <code>signalAll</code> [on the condition variable] to indicate that the condition might now be true, <code>await</code> unblocks and automatically reacquires the lock. An important point is that when <code>await</code> returns, it only indicates that the condition might be true. This is why <code>await</code> is called within a loop - we need to go back, recheck whether the condition is true, and potentially block on <code>await</code> again if necessary.”</em></p>
+<h3 id="atomic-variables">Atomic Variables</h3>
+<p><em><span class="dquo">“</span>Using an atomic variable instead of locks has a number of benefits. First, it’s not possible to forget to acquire the lock when necessary.”</em></p>
+<p><em><span class="dquo">“</span>Second, because no locks are involved, it’s impossible for an operation on an atomic variable to deadlock.”</em></p>
+<p><em><span class="dquo">“</span>atomic variables are the foundation of non-blocking, lock-free algorithms, which achieve synchronization without locks or blocking.”</em></p>
+<blockquote>
+<p><em>If you think that programming with locks is tricky, then just wait until you try writing lock-free code.</em></p>
+</blockquote>
+<h4 id="what-about-volatile">What About Volatile?</h4>
+<p><em><span class="dquo">“</span>Java allows us to mark a variable as <code>volatile</code>. Doing so guarantees that reads and writes to that variable will not be reordered.”</em></p>
+<p><em><span class="dquo">“</span>valid use cases for <code>volatile</code> variables are rare. If you find yourself considering <code>volatile</code>, you should probably use one of the <code>java.util.concurrent.atomic</code> classes instead.”</em></p>
+<p>In C++ <code>volatile</code> has a different meaning. It indicates that the read of a variable is not allowed to be optimized out. This is important for reading memory mapped I/O or memory mapped registers and similar use cases.</p>
+<h3 id="day-2-wrap-up">Day 2 Wrap-Up</h3>
+<p><em><span class="dquo">“</span>[With <code>ReentrantLock</code> and <code>java.util.concurrent.atomic</code>] threads can do the following:</em></p>
+<ul>
+<li><em><span class="dquo">“</span>Be interrupted while trying to acquire a lock”</em></li>
+<li><em><span class="dquo">“</span>Time out while acquiring a lock”</em></li>
+<li><em><span class="dquo">“</span>Acquire and release locks in any order [Danger! Dead locks!]”</em></li>
+<li><em><span class="dquo">“</span>Use condition variables to wait for arbitrary conditions to become true”</em></li>
+<li><em><span class="dquo">“</span>Avoid locks entirely by using atomic variables”</em></li>
+</ul>
+<h2 id="day-3-on-the-shoulders-of-giants">Day 3: On the Shoulders of Giants</h2>
+<h4 id="how-large-should-my-thread-pool-be">How Large Should My Thread Pool Be?</h4>
+<p><em><span class="dquo">“</span>The optimum number of threads will vary according to the hardware […], whether your threads are <span class="caps">IO</span> or <span class="caps">CPU</span> bound, what else the machine is doing at the same time, and a host of other factors. […] a good rule of thumb is that for computation-intensive tasks, [to have] approximately the same number of threads as available cores. Larger numbers are appropriate for <span class="caps">IO</span>-intensive tasks. Beyond this rule of thumb, your best bet is to create a realistic load test and break out the stopwatch.”</em></p>
+<h4 id="why-a-blocking-queue">Why a Blocking Queue?</h4>
+<p><em><span class="dquo">“</span>As well as blocking queues, <code>java.util.concurrent</code> provides <code>ConcurrentLinkedQueue</code>, an unbounded, wait-free, and nonblocking queue. That sounds like a very desirable set of attributes [for the producer-consumer pattern]. The issue is that […] if the producer runs faster than the consumer, the queue will get larger and larger.”</em></p>
+<p><em><span class="dquo">“</span>The beauty of the producer-consumer pattern is that it allows us not only to produce and consume values in parallel, but also to have multiple producers and/or multiple consumers.”</em></p>
+<p><em><span class="dquo">“</span>Unfortunately, synchronized collections don’t provide atomic read-modify-write methods, so this isn’t going to help us. If we want to use a <code>HashMap</code>, we’re going to have to synchronize access to it ourselves.”</em></p>
+<p><em><span class="dquo">“</span>Happily, we’re not beaten yet. <code>ConcurrentHashMap</code> in <code>java.util.concurrent</code> looks like exactly what we need. Not only does it provide atomic read-modify-write methods, but it’s been designed to support high levels of concurrent access (via a technique called lock striping).”</em></p>
+<p><em><span class="dquo">“</span>Instead of put, we’re now using a combination of <code>putIfAbsent</code> and <code>replace</code>.”</em></p>
+<p><em><span class="dquo">“</span>Here’s the documentation for <code>putIfAbsent</code>: If the specified key is not already associated with a value, associate it with the given value. This is equivalent to”</em></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+<span class="k">else</span>
+    <span class="k">return</span> <span class="err">​</span> <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</code></pre></div>
+<p><em><span class="dquo">“</span>except that the action is performed atomically.”</em></p>
+<p><em><span class="dquo">“</span>And for <code>replace</code>: Replaces the entry for a key only if currently mapped to a given value. This is equivalent to”</em></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">).</span><span class="na">equals</span><span class="p">(</span><span class="n">oldValue</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">newValue</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</code></pre></div>
+<p><em><span class="dquo">“</span>except that the action is performed atomically.”</em></p>
+<h3 id="day-3-wrap-up">Day 3 Wrap-Up</h3>
+<h4 id="what-we-learned-in-day-3">What We Learned in Day 3</h4>
+<p><em><span class="dquo">“</span>the facilities provided by <code>java.util.concurrent</code> [make] programs safer and more efficient by doing the following:”</em></p>
+<ul>
+<li><em><span class="dquo">“</span>Using thread pools instead of creating threads directly”</em></li>
+<li><em><span class="dquo">“</span>Creating simpler and more efficient listener-management code with <code>CopyOnWriteArrayList</code><span class="dquo">“</span></em></li>
+<li><em><span class="dquo">“</span>Allowing producers and consumers to communicate efficiently with <code>ArrayBlockingQueue</code><span class="dquo">“</span></em></li>
+<li><em><span class="dquo">“</span>Supporting highly concurrent access to a map with <code>ConcurrentHashMap</code><span class="dquo">“</span></em></li>
+</ul>
+<h3 id="wrap-up">Wrap-Up</h3>
+<h4 id="weaknesses">Weaknesses</h4>
+<p><em><span class="dquo">“</span>Threads and locks provide no direct support for parallelism […] they can be used to parallelize a sequential algorithm, but this has to be constructed out of concurrent primitives, which introduces the specter of nondeterminism.”</em></p>
+<p><em><span class="dquo">“</span>threads and locks support only shared-memory architectures. If you need to support distributed memory (and, by extension, either geographical distribution or resilience), you will need to look elsewhere.”</em></p>
+<h4 id="the-elephant-in-the-room">The Elephant in the Room</h4>
+<p><em><span class="dquo">“</span>[…] what makes multithreaded programming difficult is not that writing it is hard, but that </em><em>testing it is hard</em><em>. It’s not the pitfalls that you can fall into; it’s the fact that you don’t necessarily know whether you’ve fallen into one of them.”</em></p>
+<h4 id="maintenance">Maintenance</h4>
+<p><em><span class="dquo">“</span>It’s one thing to make sure that everything’s synchronized correctly, locks are acquired in the right order, and no foreign functions are called with locks held. It’s quite another to guarantee that it will remain that way after twelve months of maintenance by ten different programmers.”</em></p>
+<p><em><span class="dquo">“</span>if you can’t reliably test for threading problems, you can’t reliably refactor multithreaded code.”</em></p>
+<p><em><span class="dquo">“</span>think very carefully about our multithreaded code. And then when we’ve done that, think about it very carefully some more.”</em></p>
+<h4 id="other-languages">Other Languages</h4>
+<p><em><span class="dquo">“</span>the general principles we covered in this chapter are broadly applicable. The rules about using synchronization to access shared variables; acquiring locks in a fixed, global order; and avoiding alien method calls while holding a lock are applicable to any language with threads and locks.”</em></p>
+<p><em><span class="dquo">“</span>a memory model was added to the C11 and C++ 11 standards.”</em></p>
+<h3 id="additional-notes">Additional Notes</h3>
+<h4 id="race-condition">Race Condition</h4>
+<p>A race condition is the behavior of a software system where the output is dependent on the sequence or timing of other uncontrollable events. It becomes a bug when events do not happen in the order the programmer intended.</p>
+<h4 id="memory-visibility_1">Memory Visibility</h4>
+<p>The memory model defines when changes to memory made by one thread become visible to another thread.</p>
+<h4 id="deadlocks-livelocks">Deadlocks <span class="amp">&amp;</span> Livelocks</h4>
+<p>Deadlock is a danger whenever a thread tries to hold more than one lock. 
+Happily, there is a simple rule that guarantees you will never deadlock - always acquire locks in a fixed, global order.</p>
+            <!--             <div>
+            <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
+                </span><br />
+</div>
+ -->
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./domain_driven_design.html" title="Previous: Domain Driven Design">Domain Driven Design</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-05-14T19:36:44+02:00">May 14, 2020</time>
+
+<h4>Last Updated</h4>
+<time datetime="2020-05-14T19:42:41+02:00">May 14, 2020</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#programming-ref">Programming</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags#computer_science-ref">Computer Science
+                    <span>25</span>
+</a></li>
+                <li><a href="./tags#design_patterns-ref">Design Patterns
+                    <span>2</span>
+</a></li>
+                <li><a href="./tags#lisp-ref">Lisp
+                    <span>5</span>
+</a></li>
+                <li><a href="./tags#oop-ref">OOP
+                    <span>5</span>
+</a></li>
+                <li><a href="./tags#os-ref">OS
+                    <span>14</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://www.linkedin.com/in/lukaswoodtli" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+    <a href="https://github.com/LukasWoodtli" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/lukaswoodtli" title="My stack-overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.xing.com/profile/Lukas_Woodtli" title="My XING Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-xing sidebar-social-links"></i></a>
+    <a href="/pages/contact.html" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
