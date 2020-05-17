@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2020-05-14T19:50:13-00:00</lastmod>
+<lastmod>2020-05-17T20:21:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2020-05-14T19:50:13-00:00</lastmod>
+<lastmod>2020-05-17T20:21:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2020-05-14T19:50:13-00:00</lastmod>
+<lastmod>2020-05-17T20:21:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2020-05-14T19:50:13-00:00</lastmod>
+<lastmod>2020-05-17T20:21:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/search.html</loc>
-<lastmod>2020-05-14T19:50:13-00:00</lastmod>
+<lastmod>2020-05-17T20:21:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/404.html</loc>
-<lastmod>2020-05-14T19:50:13-00:00</lastmod>
+<lastmod>2020-05-17T20:21:47-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -151,7 +151,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://lukaswoodtli.github.io/notes_on_std::chrono.html</loc>
+<loc>http://lukaswoodtli.github.io/notes_on_std__chrono.html</loc>
 <lastmod>2019-07-01T12:18:43+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -389,7 +389,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://lukaswoodtli.github.io/git:_the__git_directory.html</loc>
+<loc>http://lukaswoodtli.github.io/git__the__git_directory.html</loc>
 <lastmod>2018-06-06T15:24:09+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -459,7 +459,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://lukaswoodtli.github.io/scheme:_frequently_used_functions.html</loc>
+<loc>http://lukaswoodtli.github.io/scheme__frequently_used_functions.html</loc>
 <lastmod>2019-02-27T09:38:47+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -592,7 +592,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://lukaswoodtli.github.io/git:_commit_a_older_version_to_head.html</loc>
+<loc>http://lukaswoodtli.github.io/git__commit_a_older_version_to_head.html</loc>
 <lastmod>2018-06-06T15:24:09+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

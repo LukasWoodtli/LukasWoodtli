@@ -11,17 +11,17 @@
 
 <meta name="keywords" content="Git, Version Control, Programming, " />
 
-<meta property="og:title" content="Git: Commit a older version to HEAD "/>
-<meta property="og:url" content="./git:_commit_a_older_version_to_head.html" />
-<meta property="og:description" content="If a HEAD has to be reset to a older version this is a possible workflow. The solution is from stackoverflow First checkout the version that should be the new HEAD. git checkout &lt;SHA-1 id of commit&gt; Now we create a temp branch and check it out. git checkout -b …" />
+<meta property="og:title" content="Git: The .git Directory "/>
+<meta property="og:url" content="./git__the__git_directory.html" />
+<meta property="og:description" content="Some notes about the contents of the .git directory that resides in the root of a git repository. config file: contains project-specific configurations info/exclude file: ignore patterns in addition to .gitignore files but not tracked hooks directory: client- or server-side hook scripts HEAD file: points to the currently checked …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2015-11-18T21:19:05+01:00" />
+<meta property="og:article:published_time" content="2017-06-30T15:15:03+02:00" />
 <meta property="og:article:modified_time" content="2018-06-06T15:24:09+02:00" />
-<meta name="twitter:title" content="Git: Commit a older version to HEAD ">
-<meta name="twitter:description" content="If a HEAD has to be reset to a older version this is a possible workflow. The solution is from stackoverflow First checkout the version that should be the new HEAD. git checkout &lt;SHA-1 id of commit&gt; Now we create a temp branch and check it out. git checkout -b …">
+<meta name="twitter:title" content="Git: The .git Directory ">
+<meta name="twitter:description" content="Some notes about the contents of the .git directory that resides in the root of a git repository. config file: contains project-specific configurations info/exclude file: ignore patterns in addition to .gitignore files but not tracked hooks directory: client- or server-side hook scripts HEAD file: points to the currently checked …">
 
-        <title>Git: Commit a older version to HEAD  · Lukas Woodtli
+        <title>Git: The .git Directory  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./git:_commit_a_older_version_to_head.html"> Git: Commit a older version to <span class="caps">HEAD</span>  </a></h1>
+    <h1><a href="./git__the__git_directory.html"> Git: The .git&nbsp;Directory  </a></h1>
     </header>
 </div>
 
@@ -80,25 +80,19 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>If a <code>HEAD</code> has to be reset to a older version this is a possible workflow.</p>
-<p>The solution is from <a href="http://stackoverflow.com/a/5772882">stackoverflow</a></p>
-<p>First checkout the version that should be the new <code>HEAD</code>.</p>
-<div class="highlight"><pre><span></span><code>git checkout &lt;SHA-1 id of commit&gt;
-</code></pre></div>
-<p>Now we create a <code>temp</code> branch and check it out.</p>
-<div class="highlight"><pre><span></span><code>git checkout -b temp
-</code></pre></div>
-<p>This is equivalent to <code>git branch temp</code> followed by <code>git checkout temp</code>.</p>
-<p>Now we want <code>master</code> (or an other branch) to point to it.</p>
-<div class="highlight"><pre><span></span><code>git checkout -B master temp
-</code></pre></div>
-<p>This is equivalent to <code>git branch -f master temp</code>followed by <code>git checkout master</code>.</p>
-<p>Now we can delete the <code>temp</code> branch:</p>
-<div class="highlight"><pre><span></span><code>git branch -d temp
-</code></pre></div>
-<p>Now we can push to a remote (<code>-f</code> might be needed):</p>
-<div class="highlight"><pre><span></span><code>git push -f origin master
-</code></pre></div>
+            <p>Some notes about the contents of the <code>.git</code> directory that resides in the root of a git repository.</p>
+<ul>
+<li><code>config</code> file: contains project-specific configurations</li>
+<li><code>info/exclude</code> file: ignore patterns in addition to <code>.gitignore</code> files but not tracked</li>
+<li><code>hooks</code> directory: client- or server-side hook scripts</li>
+<li><code>HEAD</code> file: points to the currently checked out branch</li>
+<li><code>objects</code> directory: stores the content of the git database</li>
+<li><code>refs</code> directory: stores pointers to commit objects (branches)</li>
+<li><code>index</code> file: staging area information</li>
+<li><code>description</code> file: only used by the GitWeb program</li>
+</ul>
+<p>For submodules the directory is in the <code>.git</code> directory of the main repository (“supermodule”).</p>
+<p>The <code>.git</code> directory of a repository can be shown with <code>git rev-parse --git-dir</code></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -110,8 +104,8 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./hardware-software_codesign.html" title="Previous: Hardware-Software Codesign">Hardware-Software Codesign</a></li>
-                <li class="next-article"><a href="./l2-norm.html" title="Next: L2-Norm">L2-Norm</a> »</li>
+                <li class="previous-article">« <a href="./cpp_on_embedded_systems.html" title="Previous: C++ on Embedded Systems">C++ on Embedded Systems</a></li>
+                <li class="next-article"><a href="./investment_management_(coursera_specialization).html" title="Next: Investment Management (Coursera Specialization)">Investment Management (Coursera Specialization)</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -119,7 +113,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2015-11-18T21:19:05+01:00">Nov 18, 2015</time>
+            <time itemprop="dateCreated" datetime="2017-06-30T15:15:03+02:00">Jun 30, 2017</time>
 
 <h4>Last Updated</h4>
 <time datetime="2018-06-06T15:24:09+02:00">Jun 6, 2018</time>
