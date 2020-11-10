@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-05-14T19:36:44+02:00" />
-<meta property="og:article:modified_time" content="2020-05-14T19:48:39+02:00" />
+<meta property="og:article:modified_time" content="2020-11-10T10:26:18+01:00" />
 <meta name="twitter:title" content="Seven Concurrency Models in Seven Weeks ">
 <meta name="twitter:description" content="This page collects notes taken from Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher Some of my examples are here Chapter 1 Introduction Concurrent or Parallel? Related but Different “A concurrent program has multiple logical threads of control. These threads may or may not run in …">
 
@@ -132,6 +132,28 @@
 <li><a href="#deadlocks-livelocks">Deadlocks <span class="amp">&amp;</span> Livelocks</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-3-functional-programming">Chapter 3 Functional Programming</a><ul>
+<li><a href="#if-it-hurts-stop-doing-it">If It Hurts, Stop Doing It</a></li>
+<li><a href="#day-1-programming-without-mutable-state">Day 1: Programming Without Mutable State</a><ul>
+<li><a href="#its-good-to-be-lazy">It’s Good to Be Lazy</a></li>
+</ul>
+</li>
+<li><a href="#day-2-functional-parallelism">Day 2: Functional Parallelism</a><ul>
+<li><a href="#reducers">Reducers</a></li>
+</ul>
+</li>
+<li><a href="#day-3-functional-concurrency">Day 3: Functional Concurrency</a><ul>
+<li><a href="#same-structure-different-evaluation-order">Same Structure, Different Evaluation Order</a></li>
+<li><a href="#futures">Futures</a></li>
+<li><a href="#promises">Promises</a></li>
+</ul>
+</li>
+<li><a href="#wrap-up_1">Wrap-Up</a><ul>
+<li><a href="#weaknesses_1">Weaknesses</a></li>
 </ul>
 </li>
 </ul>
@@ -312,6 +334,37 @@ rules that help us avoiding them:”</em></p>
 <h4 id="deadlocks-livelocks">Deadlocks <span class="amp">&amp;</span> Livelocks</h4>
 <p>Deadlock is a danger whenever a thread tries to hold more than one lock. 
 Happily, there is a simple rule that guarantees you will never deadlock - always acquire locks in a fixed, global order.</p>
+<h1 id="chapter-3-functional-programming">Chapter 3 Functional Programming</h1>
+<p><em><span class="dquo">“</span>In contrast to an imperative program, which consists of a series of statements that change global state when executed, a </em><em>functional program</em><em> models computation as the evaluation of expressions. Those expressions are built from pure mathematical functions that are both first-class (can be manipulated like any other value) and side effect-free. It’s particularly useful when dealing with concurrency because the lack of side effects makes reasoning about thread safety much easier.”</em></p>
+<h2 id="if-it-hurts-stop-doing-it">If It Hurts, Stop Doing It</h2>
+<p><em><span class="dquo">“</span>Functional programs have no mutable state, so they cannot suffer from any of the problems associated with shared mutable state.”</em></p>
+<h2 id="day-1-programming-without-mutable-state">Day 1: Programming Without Mutable State</h2>
+<h3 id="its-good-to-be-lazy">It’s Good to Be Lazy</h3>
+<p><em><span class="dquo">“</span>Sequences in Clojure are lazy - elements of a lazy sequence are generated only when they’re needed.”</em></p>
+<p><em>Realizing</em> a (lazy) sequence means to fully evaluate it.</p>
+<p><em><span class="dquo">“</span>One final aspect of lazy sequences is that not only do we not need to generate the elements at the end of a sequence until we need them (which might be never), but we can discard the elements at the front if we’ve finished with them (if we don’t “hold on to our head”).”</em></p>
+<h2 id="day-2-functional-parallelism">Day 2: Functional Parallelism</h2>
+<h3 id="reducers">Reducers</h3>
+<p><em><span class="dquo">“</span>A reducer is a recipe that describes how to reduce a collection. The normal version of <code>map</code> takes a function and a (possibly lazy) sequence and returns another (possibly lazy) sequence”</em></p>
+<p><em><span class="dquo">“</span>A reducible isn’t a directly usable value - it’s just something that can subsequently be passed to <code>reduce</code> [or <code>into</code>, which uses <code>reduce</code> internally]”</em></p>
+<p><em><span class="dquo">“</span>A reducer […], returns a recipe for creating a result - a recipe that isn’t executed until it’s passed to either <code>reduce</code> or <code>fold</code>. This has two primary benefits:</em></p>
+<ul>
+<li><em>It’s more efficient than a chain of functions returning lazy sequences, because no intermediate sequences need to be created.</em></li>
+<li><em>It allows fold to parallelize the entire chain of operations on the underlying collection.”</em></li>
+</ul>
+<h2 id="day-3-functional-concurrency">Day 3: Functional Concurrency</h2>
+<h3 id="same-structure-different-evaluation-order">Same Structure, Different Evaluation Order</h3>
+<p><em><span class="dquo">“</span>Functional languages have a much more declarative feel [than <span class="caps">OOP</span> or procedual languages (imperative)].”</em></p>
+<h3 id="futures">Futures</h3>
+<p><em><span class="dquo">“</span>A future takes a body of code and executes it in another thread. Its return value is a future object.”</em></p>
+<p><em><span class="dquo">“</span>We can retrieve the value of a future by dereferencing it with either <code>deref</code> or the shorthand <code>@</code><span class="dquo">“</span></em></p>
+<p><em><span class="dquo">“</span>Dereferencing a future will block until the value is available (or realized).”</em></p>
+<h3 id="promises">Promises</h3>
+<p><em><span class="dquo">“</span>A promise is very similar to a future in that it’s a value that’s realized asynhronously and accessed with <code>deref</code> or <code>@</code>, which will block until it’s realized. The difference is that creating a promise does not cause any code to run - instead its value is set with deliver.”</em></p>
+<p>A promse can be used to pass a result from one thread to another one.</p>
+<h2 id="wrap-up_1">Wrap-Up</h2>
+<h3 id="weaknesses_1">Weaknesses</h3>
+<p><em><span class="dquo">“</span>Many people expect that functional code will be less efficient than its impertive equivalent. Although there are performance implications for some types of problem, the penalty is likely to be less than you fear. And any small performance hit is likely to be more than worth it for the payoff of increased robustness and scalability.”</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -334,7 +387,7 @@ Happily, there is a simple rule that guarantees you will never deadlock - always
             <time itemprop="dateCreated" datetime="2020-05-14T19:36:44+02:00">May 14, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-05-14T19:48:39+02:00">May 14, 2020</time>
+<time datetime="2020-11-10T10:26:18+01:00">Nov 10, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
