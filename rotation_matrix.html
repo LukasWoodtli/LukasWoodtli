@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-10-09T20:26:37+02:00" />
-<meta property="og:article:modified_time" content="2019-09-05T20:10:41+02:00" />
+<meta property="og:article:modified_time" content="2020-11-15T20:25:35+01:00" />
 <meta name="twitter:title" content="Rotation Matrix ">
 <meta name="twitter:description" content="This page is work in progress Rotation The configuration of a point is fully described by a position, bodies additionally require a rotation to define their pose. A rotation \(R\) in 3D is specified by a rotation angle \(\theta\) and a unit vector u (the rotation axis). Frames Space frame …">
 
@@ -175,6 +175,7 @@ So <span class="math">\(6\)</span> constraints are required:</p>
 <li>All <span class="math">\(3\)</span> column vectors are <em>unit vectors</em></li>
 <li>Dot product of any <span class="math">\(2\)</span> column vectors is zero (they are all mutually orthogonal to each other)</li>
 </ul>
+<p>These 6 constraints can also be written as:</p>
 <div class="math">$$R^TR = I$$</div>
 <p>Where:</p>
 <ul>
@@ -187,6 +188,7 @@ So <span class="math">\(6\)</span> constraints are required:</p>
 \end{bmatrix}$$</div>
 <p>Furthermore for right-handed frames the following must hold:</p>
 <div class="math">$$\det R = 1$$</div>
+<p>This means that all rotation matrices are elements of the Special Orthogonal Group <span class="math">\(SO(n)\)</span>.</p>
 <h2 id="special-orthogonal-group-so2-and-so3">Special Orthogonal Group <em><span class="caps">SO</span>(2)</em> and  <em><span class="caps">SO</span>(3)</em></h2>
 <p>The Special Orthogonal Group <span class="math">\(SO(2)\)</span> and <span class="math">\(SO(3)\)</span> is the set of all possible <span class="math">\(2 \times 2\)</span> or <span class="math">\(3 \times 3\)</span>
 real matrices <span class="math">\(R\)</span> that satisfy:</p>
@@ -401,7 +403,7 @@ has to be interpreted as being in the frame in which <span class="math">\(v\)</s
             <time itemprop="dateCreated" datetime="2018-10-09T20:26:37+02:00">Oct 9, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-09-05T20:10:41+02:00">Sep 5, 2019</time>
+<time datetime="2020-11-15T20:25:35+01:00">Nov 15, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
