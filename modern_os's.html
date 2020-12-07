@@ -16,8 +16,8 @@
 <meta property="og:description" content="This page collects some notes about different Operating System approaches. Most of the information gathered here is from the course Advanced Operating Systems. Some information is from Operating System. And other Wikipedia pages. The book Modern Operating Systems by Andrew S. Tanenbaum is also a very good resource I’m …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2015-04-02T00:27:44+02:00" />
-<meta property="og:article:modified_time" content="2018-05-30T23:05:28+02:00" />
+<meta property="og:article:published_time" content="2015-04-01T22:27:44+02:00" />
+<meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
 <meta name="twitter:title" content="Modern OS’s ">
 <meta name="twitter:description" content="This page collects some notes about different Operating System approaches. Most of the information gathered here is from the course Advanced Operating Systems. Some information is from Operating System. And other Wikipedia pages. The book Modern Operating Systems by Andrew S. Tanenbaum is also a very good resource I’m …">
 
@@ -499,10 +499,10 @@ There are 4 pointer to the buffer.</p>
 <h3 id="caching-spinlock-spin-on-read">Caching Spinlock (Spin on read)</h3>
 <p>Waiting processors spin on cached copy of <code>L</code>. So there is no communication to memory. The cached copy
 of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
-<div class="highlight"><pre><span></span><code><span class="err">LOCK(L):</span>
-<span class="err">    WHILE(L == locked); // Spinning on cached var. Reading L is atomic.</span>
-<span class="err">        IF(T+S(L) == locked) // Read L from memory (not cache).</span>
-<span class="err">            go back; // If it fails start spinning on cached L again.</span>
+<div class="highlight"><pre><span></span><code><span class="n">LOCK</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">WHILE</span><span class="p">(</span><span class="n">L</span> <span class="o">==</span> <span class="n">locked</span><span class="p">);</span> <span class="o">//</span> <span class="n">Spinning</span> <span class="n">on</span> <span class="n">cached</span> <span class="k">var</span><span class="o">.</span> <span class="n">Reading</span> <span class="n">L</span> <span class="k">is</span> <span class="n">atomic</span><span class="o">.</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="n">S</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">==</span> <span class="n">locked</span><span class="p">)</span> <span class="o">//</span> <span class="n">Read</span> <span class="n">L</span> <span class="n">from</span> <span class="n">memory</span> <span class="p">(</span><span class="ow">not</span> <span class="n">cache</span><span class="p">)</span><span class="o">.</span>
+            <span class="n">go</span> <span class="n">back</span><span class="p">;</span> <span class="o">//</span> <span class="n">If</span> <span class="n">it</span> <span class="n">fails</span> <span class="n">start</span> <span class="n">spinning</span> <span class="n">on</span> <span class="n">cached</span> <span class="n">L</span> <span class="n">again</span><span class="o">.</span>
 </code></pre></div>
 <ul>
 <li>Less traffic on bus.</li>
@@ -1008,10 +1008,10 @@ array is equal to the number of processors.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2015-04-02T00:27:44+02:00">Apr 2, 2015</time>
+            <time itemprop="dateCreated" datetime="2015-04-01T22:27:44+02:00">Apr 1, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T23:05:28+02:00">Mai 30, 2018</time>
+<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
@@ -1021,7 +1021,7 @@ array is equal to the number of processors.</p>
                     <span>25</span>
 </a></li>
                 <li><a href="./tags#os-ref">OS
-                    <span>14</span>
+                    <span>13</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
