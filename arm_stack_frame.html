@@ -16,8 +16,8 @@
 <meta property="og:description" content="This page contains notes about the usual stack frame layout (calling convention) on ARM processors. Most information is taken from ARM procedure calling conventions and recursion . The conventions are defined by ARM and are called PCSAA. Link Register Contains the return address of an function call Caller Code that calles …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2015-09-20T20:12:15+02:00" />
-<meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
+<meta property="og:article:published_time" content="2015-09-20T22:12:15+02:00" />
+<meta property="og:article:modified_time" content="2018-05-30T23:05:28+02:00" />
 <meta name="twitter:title" content="ARM Stack Frame ">
 <meta name="twitter:description" content="This page contains notes about the usual stack frame layout (calling convention) on ARM processors. Most information is taken from ARM procedure calling conventions and recursion . The conventions are defined by ARM and are called PCSAA. Link Register Contains the return address of an function call Caller Code that calles …">
 
@@ -83,7 +83,7 @@
             <p>This page contains notes about the usual stack frame layout (calling convention) on <span class="caps">ARM</span> processors.</p>
 <p>Most information is taken from <a href="http://de.slideshare.net/StephanCadene/arm-procedure-calling-conventions-and-recursion"><span class="caps">ARM</span> procedure calling conventions and recursion </a>.</p>
 <p>The conventions are defined by <span class="caps">ARM</span> and are called <a href="http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042e/IHI0042E_aapcs.pdf"><span class="caps">PCSAA</span></a>.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -133,23 +133,23 @@
 </li>
 </ul>
 <p><code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</p>
-<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
 </code></pre></div>
 <p>is equvalent to:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">LDR</span> <span class="nb">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
-<span class="nf">LDR</span> <span class="nb">R1</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">4</span><span class="p">]</span>
-<span class="nf">LDR</span> <span class="nb">R2</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">8</span><span class="p">]</span>
-<span class="nf">LDR</span> <span class="nb">R3</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">12</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="nf">LDR</span> <span class="nv">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
+<span class="nf">LDR</span> <span class="nv">R1</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">4</span><span class="p">]</span>
+<span class="nf">LDR</span> <span class="nv">R2</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">8</span><span class="p">]</span>
+<span class="nf">LDR</span> <span class="nv">R3</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">12</span><span class="p">]</span>
 </code></pre></div>
 <p>To alter (update) <code>SP</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R0</span><span class="o">-</span><span class="nv">R3</span><span class="err">}</span>
 </code></pre></div>
 <p><code>LR</code> needs to be saved on stack for <em>non</em>-leaf functions</p>
 <div class="highlight"><pre><span></span><code><span class="err">:::</span> <span class="nf">nasm</span>
 <span class="nl">_func:</span>
-  <span class="nf">STMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span> <span class="nv">LR</span><span class="err">}</span>
+  <span class="nf">STMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R4</span><span class="o">-</span><span class="nv">R6</span><span class="p">,</span> <span class="nv">LR</span><span class="err">}</span>
   <span class="c1">; ... code of func</span>
-  <span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span> <span class="nv">PC</span><span class="err">}</span> <span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span>
+  <span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nv">R4</span><span class="o">-</span><span class="nv">R6</span><span class="p">,</span> <span class="nv">PC</span><span class="err">}</span> <span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span>
 </code></pre></div>
 <ul>
 <li>The order of registers in <code>STMFD</code> and <code>LDMFD</code> is always the same: lower regisers at lower addresses</li>
@@ -182,10 +182,10 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2015-09-20T20:12:15+02:00">Sep 20, 2015</time>
+            <time itemprop="dateCreated" datetime="2015-09-20T22:12:15+02:00">Sep 20, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2018-05-30T23:05:28+02:00">Mai 30, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
@@ -198,7 +198,7 @@
                     <span>25</span>
 </a></li>
                 <li><a href="./tags#embedded_systems-ref">Embedded Systems
-                    <span>7</span>
+                    <span>8</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

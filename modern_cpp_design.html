@@ -16,8 +16,8 @@
 <meta property="og:description" content="Part I. Techniques Policy-Based Class Design The Benefit of Templates “Templates are a good candidate for coping with combinatorial behaviors because they generate code at compile time based on the types (and/or constant values) provided by the user. Class templates are customizable in ways not supported by regular classes …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2017-01-03T13:03:19+01:00" />
-<meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
+<meta property="og:article:published_time" content="2017-01-03T14:03:19+01:00" />
+<meta property="og:article:modified_time" content="2018-05-30T23:05:28+02:00" />
 <meta name="twitter:title" content="Modern C++ Design ">
 <meta name="twitter:description" content="Part I. Techniques Policy-Based Class Design The Benefit of Templates “Templates are a good candidate for coping with combinatorial behaviors because they generate code at compile time based on the types (and/or constant values) provided by the user. Class templates are customizable in ways not supported by regular classes …">
 
@@ -95,7 +95,7 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p>Member functions can be only fully specialized:</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> 
 <span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span> 
-    <span class="kt">void</span> <span class="nf">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">..</span> <span class="n">generic</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">..</span> <span class="n">generic</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="c1">// ok: specialization allowed</span>
@@ -105,7 +105,7 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p>Partial specialization is not allowed:</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span>
 <span class="k">class</span> <span class="nc">Gadget</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="nf">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">..</span> <span class="n">generic</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span> 
+    <span class="kt">void</span> <span class="n">Fun</span><span class="p">()</span> <span class="p">{</span> <span class="p">..</span> <span class="n">generic</span> <span class="n">implementation</span> <span class="p">...</span> <span class="p">}</span> 
 <span class="p">};</span>
 
 <span class="c1">// error: member functions can't be specialized partially</span>
@@ -130,7 +130,7 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p><em><span class="dquo">“</span>The <code>Created</code> symbol does not contribute to the definition of <code>WidgetManager</code>. You cannot use <code>Created</code> inside <code>WidgetManager</code> - it is a formal argument for <code>CreationPolicy</code> (not <code>WidgetManager</code>) and can be simply omitted.”</em></p>
 <p><em><span class="dquo">“</span>First, you can change policies </em><em>from the outside</em><em> as easily as changing a template argument […]. Second, you can provide your own policies that are specific to your concrete application.”</em></p>
 <p><em><span class="dquo">“</span>[The author might] provide a default template argument for the policy that’s most commonly used:”</em></p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CreationPolicy</span> <span class="o">=</span> <span class="n">OpNewCreator</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">WidgetManager</span> <span class="p">...</span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CreationPolicy</span> <span class="o">=</span> <span class="n">OpNewCreator</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">WidgetManager</span> <span class="p">...</span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>Policies are quite different from mere virtual functions. […] policies come with […] static binding.”</em></p>
 <p><em><span class="dquo">“</span>policies’ features also make them </em><em>unsuitable</em><em> for </em><em>dynamic binding</em><em> and </em><em>binary interfaces</em><em>, so in essence policies and classic interfaces do not compete.”</em></p>
@@ -227,8 +227,8 @@ Class templates are customizable in ways not supported by regular classes.”</
 <p><em><span class="dquo">“</span>C++ does not instantiate member functions for templates until they are </em><em>actually used</em><em>.”</em></p>
 <p><em><span class="dquo">“</span>Good C++ libraries sport this interesting feature: Whenever something ambiguous may appear, they allow the user to disambiguate it by writing some explicit code. At the other end of the spectrum are libraries that misuse silent C++ features (especially conversions and pointer ownership). They allow the user to type less, but at the cost of making dubious assumptions and decisions on the user’s behalf.”</em></p>
 <h3 id="handling-functors">Handling Functors</h3>
-<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">R</span><span class="p">,</span> <span class="k">class</span> <span class="nc">TList</span><span class="o">&gt;</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Fun</span><span class="o">&gt;</span> 
+<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">R</span><span class="p">,</span> <span class="k">class</span> <span class="nc">TList</span><span class="o">&gt;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Fun</span><span class="o">&gt;</span> 
 <span class="n">Functor</span><span class="o">&lt;</span><span class="n">R</span><span class="p">,</span> <span class="n">TList</span><span class="o">&gt;::</span><span class="n">Functor</span><span class="p">(</span><span class="k">const</span> <span class="n">Fun</span><span class="o">&amp;</span> <span class="n">fun</span><span class="p">)</span> 
   <span class="o">:</span> <span class="n">spImpl_</span><span class="p">(</span><span class="k">new</span> <span class="n">FunctorHandler</span><span class="o">&lt;</span><span class="n">Functor</span><span class="p">,</span> <span class="n">Fun</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fun</span><span class="p">))</span>
 <span class="p">{</span> <span class="p">}</span>
@@ -361,10 +361,10 @@ Class templates are customizable in ways not supported by regular classes.”</
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2017-01-03T13:03:19+01:00">Jan 3, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-01-03T14:03:19+01:00">Jan 3, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2018-05-30T23:05:28+02:00">Mai 30, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

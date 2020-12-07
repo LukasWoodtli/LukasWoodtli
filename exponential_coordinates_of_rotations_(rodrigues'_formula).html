@@ -16,8 +16,8 @@
 <meta property="og:description" content="Axis-Angle Representation of Rotation An alternative representation to rotation matrices is the axis-angle representation in the form: $$\hat{\omega}\theta \in \mathbb{R}^3$$ Where: \(\hat{\omega} \in \mathbb{R}^3\): Rotation axis (unit vector: \(\left\|\hat{\omega}\right\| = 1\)) \(\theta \in \mathbb{R}\): Rotation angle Exponential Coordinates of Rotation …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2019-10-08T20:09:09+02:00" />
-<meta property="og:article:modified_time" content="2020-12-07T14:17:25+01:00" />
+<meta property="og:article:published_time" content="2019-10-08T22:09:09+02:00" />
+<meta property="og:article:modified_time" content="2020-12-07T20:52:06+01:00" />
 <meta name="twitter:title" content="Exponential Coordinates of Rotations (Rodrigues’ formula) ">
 <meta name="twitter:description" content="Axis-Angle Representation of Rotation An alternative representation to rotation matrices is the axis-angle representation in the form: $$\hat{\omega}\theta \in \mathbb{R}^3$$ Where: \(\hat{\omega} \in \mathbb{R}^3\): Rotation axis (unit vector: \(\left\|\hat{\omega}\right\| = 1\)) \(\theta \in \mathbb{R}\): Rotation angle Exponential Coordinates of Rotation …">
 
@@ -98,7 +98,7 @@
 <li><span class="math">\(Rot(\hat{\omega}, \theta) \in SO(3)\)</span>: Matrix exponential of <span class="math">\(\hat{\omega}\theta\)</span></li>
 <li><span class="math">\(\hat{\omega} \in \mathbb{R}^3\)</span>: Rotation axis (unit vector)</li>
 <li><span class="math">\(\theta\in \mathbb{R}\)</span>: Rotation angle</li>
-<li><span class="math">\([\hat{\omega}]\theta = [\hat{\omega}\theta] \in \mathbb{R}^3\)</span>: Skew-symmetric matrix form of axis-angle representation</li>
+<li><span class="math">\([\hat{\omega}]\theta = [\hat{\omega}\theta] \in so(3)\)</span>: Skew-symmetric matrix form of axis-angle representation</li>
 </ul>
 <p>The matrix exponential is used to construct a rotation matrix from a rotation axis <span class="math">\(\hat{\omega}\)</span> and an angle of rotaion <span class="math">\(\theta\)</span>. The resulting rotation matrix represents the final orientation. The initial orientation is the identity matrix <span class="math">\(I\)</span>.</p>
 <p>Exponentiation integrates the angular velocity <span class="math">\(\hat{\omega}\)</span> for time <span class="math">\(\theta\)</span> seconds going from the identity matrix <span class="math">\(I\)</span> to the final rotation matrix <span class="math">\(R\)</span>.</p>
@@ -109,10 +109,10 @@
 <h3 id="rotation-of-a-vector">Rotation of a Vector</h3>
 <p><span class="math">\(e^{[\hat{\omega}]\theta}p\)</span> has the effect of rotating <span class="math">\(p \in \mathbb{R}^3\)</span> about the <em>fixed frame</em> axis <span class="math">\(\hat{\omega}\)</span> by angle <span class="math">\(\theta\)</span>.</p>
 <h2 id="rotation-of-a-frame">Rotation of a Frame</h2>
-<p><span class="math">\(R' = e^{[\hat{\omega}] \theta} R = Rot(\hat{\omega}, \theta)R\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>fixed frame</em>.</p>
+<p><span class="math">\(R' = e^{[\hat{\omega}] \theta} R = Rot(\hat{\omega}, \theta) R\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>fixed frame</em>.</p>
 <p><span class="math">\(R'' = Re^{[\hat{\omega}] \theta} = R Rot(\hat{\omega}, \theta)\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>body frame</em>.</p>
 <h2 id="logarithm">Logarithm</h2>
-<p>The inverse of th matrix exponential (matrix logarithm) takes a rotation matrix <span class="math">\(R\)</span> and returns the skew-symmetric representation of the exponential coordinates that achieve it starting from the identity orientation <span class="math">\(I\)</span>.</p>
+<p>The inverse of the matrix exponential (matrix logarithm) takes a rotation matrix <span class="math">\(R\)</span> and returns the skew-symmetric representation of the exponential coordinates that achieve it starting from the identity orientation <span class="math">\(I\)</span>.</p>
 <p>It returns the angular velocity and the integration time that achieves the rotation matrix <span class="math">\(R\)</span>.</p>
 <p>The matrix logarithm is an algorithm that inverts Rodrigues’ formula:</p>
 <ol>
@@ -135,7 +135,7 @@
 <p>If <span class="math">\(\hat{\omega}\)</span> is a solution so is <span class="math">\(-\hat{\omega}\)</span> as well</p>
 </blockquote>
 <p>Every <span class="math">\(R \in SO(3)\)</span> satisfies one of the three cases of the algorithm.
-That means that for every <span class="math">\(R\)</span> there exists a matrix logarithm <span class="math">\([\hat{\omega}]\theta\)</span> and thus also a set of exponential coordinates <span class="math">\(\hat{\omega}\theta\)</span>.</p>
+That means that for every <span class="math">\(R\)</span> there exists a matrix logarithm <span class="math">\([\hat{\omega}]\theta\)</span> and thus also a set of exponential coordinates <span class="math">\(\hat{\omega}\theta\)</span> such that <span class="math">\(R = e^{[\hat{\omega}]\theta}\)</span>.</p>
 <p>Log: <span class="math">\(R \in SO(3) \rightarrow [\hat{\omega}]\theta \in so(3)\)</span></p>
 <blockquote>
 <p>Matrix log is like differentiation</p>
@@ -222,10 +222,10 @@ That means that for every <span class="math">\(R\)</span> there exists a matrix 
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-10-08T20:09:09+02:00">Oct 8, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-10-08T22:09:09+02:00">Okt 8, 2019</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-12-07T14:17:25+01:00">Dec 7, 2020</time>
+<time datetime="2020-12-07T20:52:06+01:00">Dez 7, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>
