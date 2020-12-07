@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Exponential Coordinates of Rotations (Rodrigues’ formula) "/>
 <meta property="og:url" content="./exponential_coordinates_of_rotations_(rodrigues'_formula).html" />
-<meta property="og:description" content="Rodrigues’ formula Given a vector \(\hat{\omega}\theta \in \mathbb{R}^3\) such tha \(\theta\) is a scalar and \(\hat{\omega}\) is a unit vector in \(\mathbb{R}^3\), the matrix exponential of \([\hat{\omega}]\theta = [\hat{\omega}\theta] \in so(3)\) is: $$Rot(\hat{\omega}, \theta) = e^{[\hat{\omega …" />
+<meta property="og:description" content="Axis-Angle Representation of Rotation An alternative representation to rotation matrices is the axis-angle representation in the form: $$\hat{\omega}\theta \in \mathbb{R}^3$$ Where: \(\hat{\omega} \in \mathbb{R}^3\): Rotation axis (unit vector: \(\left\|\hat{\omega}\right\| = 1\)) \(\theta \in \mathbb{R}\): Rotation angle Exponential Coordinates of Rotation …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2019-10-08T20:09:09+02:00" />
-<meta property="og:article:modified_time" content="2019-12-12T07:58:42+01:00" />
+<meta property="og:article:modified_time" content="2020-12-07T14:17:25+01:00" />
 <meta name="twitter:title" content="Exponential Coordinates of Rotations (Rodrigues’ formula) ">
-<meta name="twitter:description" content="Rodrigues’ formula Given a vector \(\hat{\omega}\theta \in \mathbb{R}^3\) such tha \(\theta\) is a scalar and \(\hat{\omega}\) is a unit vector in \(\mathbb{R}^3\), the matrix exponential of \([\hat{\omega}]\theta = [\hat{\omega}\theta] \in so(3)\) is: $$Rot(\hat{\omega}, \theta) = e^{[\hat{\omega …">
+<meta name="twitter:description" content="Axis-Angle Representation of Rotation An alternative representation to rotation matrices is the axis-angle representation in the form: $$\hat{\omega}\theta \in \mathbb{R}^3$$ Where: \(\hat{\omega} \in \mathbb{R}^3\): Rotation axis (unit vector: \(\left\|\hat{\omega}\right\| = 1\)) \(\theta \in \mathbb{R}\): Rotation angle Exponential Coordinates of Rotation …">
 
         <title>Exponential Coordinates of Rotations (Rodrigues’ formula)  · Lukas Woodtli
 </title>
@@ -80,34 +80,66 @@
         <div class="span8 offset2 article-content">
 
             
-            <h1 id="rodrigues-formula">Rodrigues’ formula</h1>
-<p>Given a vector <span class="math">\(\hat{\omega}\theta \in \mathbb{R}^3\)</span> such tha <span class="math">\(\theta\)</span> is a scalar and <span class="math">\(\hat{\omega}\)</span> is a unit vector in <span class="math">\(\mathbb{R}^3\)</span>, the matrix exponential of <span class="math">\([\hat{\omega}]\theta = [\hat{\omega}\theta] \in so(3)\)</span> is:</p>
-<div class="math">$$Rot(\hat{\omega}, \theta) = e^{[\hat{\omega}]\theta} \exp(\hat{\omega}, \theta)=I+\sin(\theta)[\hat{\omega}]+(1-\cos(\theta))[\hat{\omega}]^{2}$$</div>
+            <h1 id="axis-angle-representation-of-rotation">Axis-Angle Representation of Rotation</h1>
+<p>An alternative representation to rotation matrices is the <strong>axis-angle</strong> representation in the form:</p>
+<div class="math">$$\hat{\omega}\theta \in \mathbb{R}^3$$</div>
+<p>Where:</p>
+<ul>
+<li><span class="math">\(\hat{\omega} \in \mathbb{R}^3\)</span>: Rotation axis (unit vector: <span class="math">\(\left\|\hat{\omega}\right\| = 1\)</span>)</li>
+<li><span class="math">\(\theta \in \mathbb{R}\)</span>: Rotation angle</li>
+</ul>
+<h1 id="exponential-coordinates-of-rotation">Exponential Coordinates of Rotation</h1>
+<p>If a frame (initially coincident with the identity matrix <span class="math">\(I\)</span>) rotates about <span class="math">\(\hat{\omega}\)</span> for <span class="math">\(\theta\)</span> units of time (i.e. <span class="math">\(\hat{\omega}\)</span> is integrated over that time interval) the final position would be expressed by the rotation matrix <span class="math">\(R\)</span>.</p>
+<h2 id="matrix-exponential-rodrigues-formula">Matrix Exponential (Rodrigues’ formula)</h2>
+<p>From the <strong>axis-angle</strong> <span class="math">\([\hat{\omega}]\theta =[\hat{\omega}\theta] \in so(3)\)</span> representation the matrix exponential (rotation matrix) can be calculated:</p>
+<div class="math">$$Rot(\hat{\omega}, \theta) = e^{[\hat{\omega}]\theta} =I+\sin(\theta)[\hat{\omega}]+(1-\cos(\theta))[\hat{\omega}]^{2}$$</div>
 <p>With:</p>
 <ul>
-<li><span class="math">\(Rot(\hat{\omega}, \theta) \in SO(3)\)</span></li>
-<li><span class="math">\(\hat{\omega}\)</span> rotation axis</li>
-<li><span class="math">\(\theta\)</span> rotation angle</li>
+<li><span class="math">\(Rot(\hat{\omega}, \theta) \in SO(3)\)</span>: Matrix exponential of <span class="math">\(\hat{\omega}\theta\)</span></li>
+<li><span class="math">\(\hat{\omega} \in \mathbb{R}^3\)</span>: Rotation axis (unit vector)</li>
+<li><span class="math">\(\theta\in \mathbb{R}\)</span>: Rotation angle</li>
+<li><span class="math">\([\hat{\omega}]\theta = [\hat{\omega}\theta] \in \mathbb{R}^3\)</span>: Skew-symmetric matrix form of axis-angle representation</li>
 </ul>
-<h2 id="rotation-of-a-vector">Rotation of a Vector</h2>
-<p><span class="math">\(e^{[\hat{\omega}]\theta}p\)</span> has the effect of rotating <span class="math">\(p \in \mathbb{R}^3\)</span> about the <em>fixed frame</em> axis <span class="math">\(\hat{\omega}\)</span> by angle <span class="math">\(\theta\)</span>.</p>
-<h2 id="rotation-of-a-frame">Rotation of a Frame</h2>
-<p><span class="math">\(e^{[\hat{\omega}] \theta} R = Rot(\hat{\omega}, \theta)R\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>fixed frame</em>.</p>
-<p><span class="math">\(Re^{[\hat{\omega}] \theta} = R Rot(\hat{\omega}, \theta)\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>body frame</em>.</p>
-<h2 id="exponentiation">Exponentiation</h2>
+<p>The matrix exponential is used to construct a rotation matrix from a rotation axis <span class="math">\(\hat{\omega}\)</span> and an angle of rotaion <span class="math">\(\theta\)</span>. The resulting rotation matrix represents the final orientation. The initial orientation is the identity matrix <span class="math">\(I\)</span>.</p>
 <p>Exponentiation integrates the angular velocity <span class="math">\(\hat{\omega}\)</span> for time <span class="math">\(\theta\)</span> seconds going from the identity matrix <span class="math">\(I\)</span> to the final rotation matrix <span class="math">\(R\)</span>.</p>
 <p>Exp: <span class="math">\([\hat{\omega}]\theta \in so(3) \rightarrow R \in SO(3)\)</span></p>
 <blockquote>
 <p>Matrix exponential is like integration</p>
 </blockquote>
+<h3 id="rotation-of-a-vector">Rotation of a Vector</h3>
+<p><span class="math">\(e^{[\hat{\omega}]\theta}p\)</span> has the effect of rotating <span class="math">\(p \in \mathbb{R}^3\)</span> about the <em>fixed frame</em> axis <span class="math">\(\hat{\omega}\)</span> by angle <span class="math">\(\theta\)</span>.</p>
+<h2 id="rotation-of-a-frame">Rotation of a Frame</h2>
+<p><span class="math">\(R' = e^{[\hat{\omega}] \theta} R = Rot(\hat{\omega}, \theta)R\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>fixed frame</em>.</p>
+<p><span class="math">\(R'' = Re^{[\hat{\omega}] \theta} = R Rot(\hat{\omega}, \theta)\)</span> is the orientation achieved by rotating <span class="math">\(R\)</span> by <span class="math">\(\theta\)</span> about the axis <span class="math">\(\hat{\omega}\)</span> in the <em>body frame</em>.</p>
 <h2 id="logarithm">Logarithm</h2>
 <p>The inverse of th matrix exponential (matrix logarithm) takes a rotation matrix <span class="math">\(R\)</span> and returns the skew-symmetric representation of the exponential coordinates that achieve it starting from the identity orientation <span class="math">\(I\)</span>.</p>
+<p>It returns the angular velocity and the integration time that achieves the rotation matrix <span class="math">\(R\)</span>.</p>
+<p>The matrix logarithm is an algorithm that inverts Rodrigues’ formula:</p>
+<ol>
+<li>if <span class="math">\(R = I\)</span> then <span class="math">\(\theta = 0\)</span> and <span class="math">\(\hat{\omega}\)</span> is undefined</li>
+<li>else if <span class="math">\(tr R = -1\)</span> then <span class="math">\(\theta = \pi\)</span> and <span class="math">\(\hat{\omega}\)</span> is one of the following (choose a feasible solution):<ul>
+<li>
+<div class="math">$$\hat{\omega} = \frac{1}{\sqrt{2(1 + r_{33})}}\begin{bmatrix} r_{13}\\r_{23}\\ 1 + r_{33}\end{bmatrix}$$</div>
+</li>
+<li>
+<div class="math">$$\hat{\omega} = \frac{1}{\sqrt{2(1 + r_{22})}}\begin{bmatrix} r_{12}\\1+r_{22}\\ r_{32}\end{bmatrix}$$</div>
+</li>
+<li>
+<div class="math">$$\hat{\omega} = \frac{1}{\sqrt{2(1 + r_{11})}}\begin{bmatrix} 1+ r_{11}\\r_{21}\\ r_{31}\end{bmatrix}$$</div>
+</li>
+</ul>
+</li>
+<li>otherwise <span class="math">\(\theta = cos^{-1}(\frac{1}{2}(tr R - 1)) \in [0, \pi)\)</span> and <span class="math">\([\hat{\omega}] = \frac{1}{2 sin \theta}(R - R^T)\)</span></li>
+</ol>
+<blockquote>
+<p>If <span class="math">\(\hat{\omega}\)</span> is a solution so is <span class="math">\(-\hat{\omega}\)</span> as well</p>
+</blockquote>
+<p>Every <span class="math">\(R \in SO(3)\)</span> satisfies one of the three cases of the algorithm.
+That means that for every <span class="math">\(R\)</span> there exists a matrix logarithm <span class="math">\([\hat{\omega}]\theta\)</span> and thus also a set of exponential coordinates <span class="math">\(\hat{\omega}\theta\)</span>.</p>
 <p>Log: <span class="math">\(R \in SO(3) \rightarrow [\hat{\omega}]\theta \in so(3)\)</span></p>
 <blockquote>
 <p>Matrix log is like differentiation</p>
 </blockquote>
-<p>It returns the angular velocity and the integration time that achieves the rotation matrix <span class="math">\(R\)</span>.</p>
-<p>The matrix logarithm is an algorithm that inverts Rodrigues’ formula.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -193,7 +225,7 @@
             <time itemprop="dateCreated" datetime="2019-10-08T20:09:09+02:00">Oct 8, 2019</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-12-12T07:58:42+01:00">Dec 12, 2019</time>
+<time datetime="2020-12-07T14:17:25+01:00">Dec 7, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>

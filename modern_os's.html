@@ -202,7 +202,7 @@
 <p>The book <em>Modern Operating Systems</em> by Andrew S. Tanenbaum is also a very good resource I’m using for learning about Operating Systems.</p>
 
 <h1 id="overview-of-kernels">Overview of Kernels</h1>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Kernel</th>
@@ -499,10 +499,10 @@ There are 4 pointer to the buffer.</p>
 <h3 id="caching-spinlock-spin-on-read">Caching Spinlock (Spin on read)</h3>
 <p>Waiting processors spin on cached copy of <code>L</code>. So there is no communication to memory. The cached copy
 of <code>L</code> is updated by the cache coherence mechanism of the system.</p>
-<div class="highlight"><pre><span></span><code><span class="err">LOCK(L):</span>
-<span class="err">    WHILE(L == locked); // Spinning on cached var. Reading L is atomic.</span>
-<span class="err">        IF(T+S(L) == locked) // Read L from memory (not cache).</span>
-<span class="err">            go back; // If it fails start spinning on cached L again.</span>
+<div class="highlight"><pre><span></span><code><span class="n">LOCK</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">WHILE</span><span class="p">(</span><span class="n">L</span> <span class="o">==</span> <span class="n">locked</span><span class="p">);</span> <span class="o">//</span> <span class="n">Spinning</span> <span class="n">on</span> <span class="n">cached</span> <span class="k">var</span><span class="o">.</span> <span class="n">Reading</span> <span class="n">L</span> <span class="k">is</span> <span class="n">atomic</span><span class="o">.</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="n">S</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">==</span> <span class="n">locked</span><span class="p">)</span> <span class="o">//</span> <span class="n">Read</span> <span class="n">L</span> <span class="n">from</span> <span class="n">memory</span> <span class="p">(</span><span class="ow">not</span> <span class="n">cache</span><span class="p">)</span><span class="o">.</span>
+            <span class="n">go</span> <span class="n">back</span><span class="p">;</span> <span class="o">//</span> <span class="n">If</span> <span class="n">it</span> <span class="n">fails</span> <span class="n">start</span> <span class="n">spinning</span> <span class="n">on</span> <span class="n">cached</span> <span class="n">L</span> <span class="n">again</span><span class="o">.</span>
 </code></pre></div>
 <ul>
 <li>Less traffic on bus.</li>
