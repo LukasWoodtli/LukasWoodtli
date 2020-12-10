@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2019-10-08T20:09:09+02:00" />
-<meta property="og:article:modified_time" content="2020-12-07T19:52:06+01:00" />
+<meta property="og:article:modified_time" content="2020-12-10T20:02:02+01:00" />
 <meta name="twitter:title" content="Exponential Coordinates of Rotations (Rodrigues’ formula) ">
 <meta name="twitter:description" content="Axis-Angle Representation of Rotation An alternative representation to rotation matrices is the axis-angle representation in the form: $$\hat{\omega}\theta \in \mathbb{R}^3$$ Where: \(\hat{\omega} \in \mathbb{R}^3\): Rotation axis (unit vector: \(\left\|\hat{\omega}\right\| = 1\)) \(\theta \in \mathbb{R}\): Rotation angle Exponential Coordinates of Rotation …">
 
@@ -127,13 +127,11 @@
 <li>
 <div class="math">$$\hat{\omega} = \frac{1}{\sqrt{2(1 + r_{11})}}\begin{bmatrix} 1+ r_{11}\\r_{21}\\ r_{31}\end{bmatrix}$$</div>
 </li>
+<li>Note: f <span class="math">\(\hat{\omega}\)</span> is a solution so is <span class="math">\(-\hat{\omega}\)</span> as well</li>
 </ul>
 </li>
 <li>otherwise <span class="math">\(\theta = cos^{-1}(\frac{1}{2}(tr R - 1)) \in [0, \pi)\)</span> and <span class="math">\([\hat{\omega}] = \frac{1}{2 sin \theta}(R - R^T)\)</span></li>
 </ol>
-<blockquote>
-<p>If <span class="math">\(\hat{\omega}\)</span> is a solution so is <span class="math">\(-\hat{\omega}\)</span> as well</p>
-</blockquote>
 <p>Every <span class="math">\(R \in SO(3)\)</span> satisfies one of the three cases of the algorithm.
 That means that for every <span class="math">\(R\)</span> there exists a matrix logarithm <span class="math">\([\hat{\omega}]\theta\)</span> and thus also a set of exponential coordinates <span class="math">\(\hat{\omega}\theta\)</span> such that <span class="math">\(R = e^{[\hat{\omega}]\theta}\)</span>.</p>
 <p>Log: <span class="math">\(R \in SO(3) \rightarrow [\hat{\omega}]\theta \in so(3)\)</span></p>
@@ -225,7 +223,7 @@ That means that for every <span class="math">\(R\)</span> there exists a matrix 
             <time itemprop="dateCreated" datetime="2019-10-08T20:09:09+02:00">Oct 8, 2019</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-12-07T19:52:06+01:00">Dec 7, 2020</time>
+<time datetime="2020-12-10T20:02:02+01:00">Dec 10, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>
