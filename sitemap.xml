@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2020-12-10T21:51:49-00:00</lastmod>
+<lastmod>2020-12-12T21:46:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2020-12-10T21:51:49-00:00</lastmod>
+<lastmod>2020-12-12T21:46:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2020-12-10T21:51:49-00:00</lastmod>
+<lastmod>2020-12-12T21:46:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2020-12-10T21:51:49-00:00</lastmod>
+<lastmod>2020-12-12T21:46:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/search.html</loc>
-<lastmod>2020-12-10T21:51:49-00:00</lastmod>
+<lastmod>2020-12-12T21:46:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/404.html</loc>
-<lastmod>2020-12-10T21:51:49-00:00</lastmod>
+<lastmod>2020-12-12T21:46:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -208,7 +208,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/rotation_matrix.html</loc>
-<lastmod>2020-11-19T10:57:19+01:00</lastmod>
+<lastmod>2020-12-12T21:18:14+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -782,7 +782,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/mechanics.html</loc>
-<lastmod>2020-11-19T10:57:19+01:00</lastmod>
+<lastmod>2020-12-12T21:18:14+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -866,7 +866,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/robotics.html</loc>
-<lastmod>2020-12-10T20:02:02+01:00</lastmod>
+<lastmod>2020-12-12T21:18:14+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1055,7 +1055,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2020-12-10T20:02:27+01:00</lastmod>
+<lastmod>2020-12-12T21:18:14+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
