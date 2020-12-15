@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-12-15T13:57:06+01:00" />
-<meta property="og:article:modified_time" content="2020-12-15T13:57:06+01:00" />
+<meta property="og:article:modified_time" content="2020-12-15T20:39:33+01:00" />
 <meta name="twitter:title" content="Homogeneous Transformation Matrices ">
 <meta name="twitter:description" content="Planar rigid-body motions A planar rigid body motion is defined as: $$T = \begin{bmatrix} R &amp; p \\ 0 &amp; 1 \\ \end{bmatrix} = \begin{bmatrix} r_{11}&amp; r_{12} &amp; p_1 \\ r_{21}&amp; r_{22} &amp; p_2 \\ 0 &amp; 0 &amp; 1 \\ \end{bmatrix} = \begin{bmatrix} \cos \theta &amp; -\sin \theta &amp; p_1\\ \sin \theta &amp; \cos \theta &amp; p_2 \\ 0 …">
 
@@ -178,29 +178,29 @@ $$</div>
 <div class="math">$$T_{ab} T_{bc} = T_{a\not{b}} T_{\not{b}c} = T_{ac} $$</div>
 <div class="math">$$T_{ab} v_b = T_{a\not{b}} v_{\not{b}} = v_a $$</div>
 <h2 id="displace-a-frame-or-vector">Displace a Frame or Vector</h2>
-<p>A displacement of a frame or a vector can be seen as a translation along a vector <span class="math">\(p\)</span> (<span class="math">\(Trans(p)\)</span>) and a rotation around the axis <span class="math">\(\hat{\omega}\)</span> with angle <span class="math">\(\theta\)</span> (<span class="math">\(Rot(\hat{\omega}, \theta)\)</span>).</p>
+<p>A displacement (rotation and translaation) of a frame or a vector can be seen as a translation along a vector <span class="math">\(p\)</span> (<span class="math">\(Trans(p)\)</span>) and a rotation around the axis <span class="math">\(\hat{\omega}\)</span> with angle <span class="math">\(\theta\)</span> (<span class="math">\(Rot(\hat{\omega}, \theta)\)</span>).</p>
 <div class="math">$$T = Trans(p)Rot(\hat{\omega}, \theta)$$</div>
 <p>With:</p>
-<p><span class="math">\(Trans(p) =
-<div class="math">\begin{bmatrix}
+<div class="math">$$Trans(p) =
+\begin{bmatrix}
  1 &amp; 0 &amp; 0 &amp; p_x \\
  0 &amp; 1 &amp; 0 &amp; p_y \\
  0 &amp; 0 &amp; 1 &amp; p_z \\
  0 &amp; 0 &amp; 0 &amp; 1 
-\end{bmatrix}</div>\)</span></p>
-<p><span class="math">\(Rot(\hat{\omega}, \theta) =
-<div class="math">\begin{bmatrix}
+\end{bmatrix}$$</div>
+<div class="math">$$Rot(\hat{\omega}, \theta) =
+\begin{bmatrix}
   &amp;  &amp;  &amp; 0 \\
   &amp; e^{[\hat{\omega}]\theta} &amp;  &amp; 0 \\
   &amp;  &amp;  &amp; 0 \\
  0 &amp; 0 &amp; 0 &amp; 1 
-\end{bmatrix}</div>\)</span></p>
+\end{bmatrix}$$</div>
 <h3 id="space-frame-transformation">Space-Frame Transformation</h3>
 <p>When a frame <span class="math">\(T_{sb}\)</span> is <em>premultiplied</em> by a transformation matrix <span class="math">\(T\)</span> the vectors <span class="math">\(p\)</span> and <span class="math">\(\hat{\omega}\)</span> are interpreted in the coordinate system of the <span class="math">\(\{s\}\)</span> frame (first subscript of <span class="math">\(T_{sb}\)</span>):</p>
 <div class="math">$$T_{sb'} = TT_{sb} = Trans(p)Rot(\hat{\omega}, \theta)T_{sb}$$</div>
 <p>The order of the operations is:</p>
 <ol>
-<li>rotation</li>
+<li>rotation (this will cause the origin of <span class="math">\(\{b\}\)</span> to move if it is not coincident with the origin of <span class="math">\(\{s\}\)</span>)</li>
 <li>translation</li>
 </ol>
 <h3 id="body-frame-transformation">Body-Frame Transformation</h3>
@@ -209,7 +209,7 @@ $$</div>
 <p>The order of the operations is:</p>
 <ol>
 <li>translation</li>
-<li>rotation</li>
+<li>rotation (this does not move the origin of the frame)</li>
 </ol>
 <h1 id="literature">Literature</h1>
 <p>Notes taken from:</p>
@@ -298,7 +298,7 @@ $$</div>
             <time itemprop="dateCreated" datetime="2020-12-15T13:57:06+01:00">Dec 15, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-12-15T13:57:06+01:00">Dec 15, 2020</time>
+<time datetime="2020-12-15T20:39:33+01:00">Dec 15, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>
