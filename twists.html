@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2021-01-01T18:49:10+01:00" />
-<meta property="og:article:modified_time" content="2021-01-01T18:49:10+01:00" />
+<meta property="og:article:modified_time" content="2021-01-02T17:08:20+01:00" />
 <meta name="twitter:title" content="Twists ">
 <meta name="twitter:description" content="Linear and Angular (Spacial) Velocities Given a transformation matrix that represents the configuration \(\{b\}\) as seen from \(\{s\}\) $$T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix}$$ the spacial velocity can be calculated analogous to the angular velocity. $$T^{-1}\dot{T} = \begin …">
 
@@ -176,22 +176,27 @@ R &amp; 0 \\
 <p>The fixed-frame representation of a twist <span class="math">\(V_s\)</span> does <em>not</em> depend on the choice of the body frame <span class="math">\(\{b\}\)</span>.</p>
 <p>And the body-frame representation <span class="math">\(V_b\)</span> of the same twist does not depend on the choice of the fixed frame <span class="math">\(\{s\}\)</span>.</p>
 <h3 id="properties-of-the-adjoint-map">Properties of the Adjoint Map</h3>
-<h4 id="composition">Composition</h4>
-<p>Given:</p>
 <ul>
+<li>Composition:<ul>
+<li><span class="math">\(Ad_{T_1}(Ad_{T_2}(V)) = Ad_{T_1T_2}(V)\)</span></li>
+<li>or: <span class="math">\([Ad_{T_1}][Ad_{T_2}]V = [Ad_{T_1T_2}]V\)</span></li>
+<li>with:</li>
 <li><span class="math">\(T_1, T_2 \in SE(3)\)</span></li>
 <li><span class="math">\(V = (\omega, v)\)</span></li>
 </ul>
-<p>Then:</p>
-<p><span class="math">\(Ad_{T_1}(Ad_{T_2}(V)) = Ad_{T_1T_2}(V)\)</span></p>
-<p>or</p>
-<p><span class="math">\([Ad_{T_1}][Ad_{T_2}]V = [Ad_{T_1T_2}]V\)</span></p>
-<h4 id="inverse">Inverse</h4>
-<p>For any <span class="math">\(T \in SE(3)\)</span>:</p>
-<div class="math">$$[Ad_T]^{-1} = [Ad_{T^{-1}}]$$</div>
-<p>$</p>
+</li>
+<li>Inverse:<ul>
+<li><span class="math">\([Ad_T]^{-1} = [Ad_{T^{-1}}]\)</span> for any <span class="math">\(T \in SE(3)\)</span>:</li>
+</ul>
+</li>
+</ul>
 <h1 id="screw-interpretation-of-a-twist">Screw interpretation of a Twist</h1>
 <p>A twist <span class="math">\(V\)</span> can be viewed as a screw axis <span class="math">\(S\)</span> and a velocity <span class="math">\(\dot{\theta}\)</span> (just like an angular velocity <span class="math">\(\omega\)</span> can be combined as <span class="math">\(\hat{\omega}\dot{\theta}\)</span>).</p>
+<div class="math">$$V =
+\begin{bmatrix}
+  \omega \\ v  
+\end{bmatrix} =
+S\dot{\theta}$$</div>
 <p>The screw axis <span class="math">\(S\)</span> is defined using a normalized version of any twist <span class="math">\(V = (\omega, v)\)</span> corresponting to motion along the screw:</p>
 <ol>
 <li>if <span class="math">\(\omega \neq 0\)</span>:<ul>
@@ -207,17 +212,34 @@ R &amp; 0 \\
 </ol>
 <h2 id="normalized-screw-axis">Normalized Screw Axis</h2>
 <p>A <em>unit</em> screw axis is a noramlized twist defined as:</p>
-<div class="math">$$S = \begin{bmatrix}\omega \\ v\end{bmatrix} \in \mathbb{R}^6$$</div>
+<p>$$S =
+</p>
+<div class="math">\begin{bmatrix}
+S_{\omega} \\ S_v
+\end{bmatrix}</div>
+<p> =
+</p>
+<div class="math">\begin{bmatrix}
+\textit{angular velocity when: } \dot{\theta} = 1 \\
+\textit{linear velocity of origin when: } \dot{\theta} = 1 \\
+\end{bmatrix}</div>
+<p>\in \mathbb{R}^6$$</p>
 <p>Where:</p>
 <ul>
-<li>either <span class="math">\(\left\| \omega \right\| = 1\)</span></li>
+<li>either pitch <span class="math">\(h\)</span> is finite<ul>
+<li><span class="math">\(\left\| S_{\omega} \right\| = 1\)</span> (equivalent: <span class="math">\(\left\| \omega \right\| = 1\)</span>)</li>
+<li><span class="math">\(\dot{\theta}\)</span>: rotational speed</li>
 <li>then: <span class="math">\(v = -\omega \times q + h\omega\)</span><ul>
 <li><span class="math">\(q\)</span>: a point on the screw axis</li>
 <li><span class="math">\(h\)</span>: pitch of the screw (<span class="math">\(h=0\)</span> for pure rotation)</li>
 </ul>
 </li>
-<li>or <span class="math">\(\omega = 0\)</span> and <span class="math">\(\left\| v \right\| = 1\)</span><ul>
-<li><span class="math">\(h \to \infty\)</span>: pitch of the screw (<span class="math">\(h=0\)</span> for pure rotation)</li>
+</ul>
+</li>
+<li>or pitch <span class="math">\(h\)</span> is infinite (<span class="math">\(h \to \infty\)</span>)<ul>
+<li><span class="math">\(S_{\omega} = 0\)</span> (equivalent: <span class="math">\(\omega = 0\)</span>)</li>
+<li><span class="math">\(\left\| S_{v} \right\| = 1\)</span> (equivalent: <span class="math">\(\left\| v \right\| = 1\)</span>)</li>
+<li><span class="math">\(\dot{\theta}\)</span>: linear speed</li>
 <li>pure translation along the axis defined by <span class="math">\(v\)</span></li>
 </ul>
 </li>
@@ -329,7 +351,7 @@ R &amp; 0 \\
             <time itemprop="dateCreated" datetime="2021-01-01T18:49:10+01:00">Jan 1, 2021</time>
 
 <h4>Last Updated</h4>
-<time datetime="2021-01-01T18:49:10+01:00">Jan 1, 2021</time>
+<time datetime="2021-01-02T17:08:20+01:00">Jan 2, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
