@@ -11,17 +11,17 @@
 
 <meta name="keywords" content="Robotics, Mathematics, " />
 
-<meta property="og:title" content="Angular Velocity "/>
-<meta property="og:url" content="./angular_velocity.html" />
-<meta property="og:description" content="Rotation of a body in space can be represented with a unit rotation vector (axis) and an angle of rotation around this axis. The angular velocity \(w\) can be defined as: $$w = \hat{w} \dot{\theta}$$ Where: \(\hat{w}\): Rotation axis (unit vector), coordinate frame free \(\dot{\theta}\): Rate of …" />
+<meta property="og:title" content="Exponential Coordinate Representation of Rigid-Body Motions "/>
+<meta property="og:url" content="./exponential_coordinate_representation_of_rigid-body_motions.html" />
+<meta property="og:description" content="Every displacement of a rigid body can be expressed as a displacement along a fixed screw axis \(S\) (Chasles-Mozzi theorem). Exponential coordinates of a homogeneous transformation \(T\): $$S\theta \in \mathbb{R}^6$$ With: \(S\): Screw axis \(\theta\): distance to travel along screw axis to take a frame form \(I …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2019-09-05T20:10:41+02:00" />
-<meta property="og:article:modified_time" content="2020-11-26T20:02:25+01:00" />
-<meta name="twitter:title" content="Angular Velocity ">
-<meta name="twitter:description" content="Rotation of a body in space can be represented with a unit rotation vector (axis) and an angle of rotation around this axis. The angular velocity \(w\) can be defined as: $$w = \hat{w} \dot{\theta}$$ Where: \(\hat{w}\): Rotation axis (unit vector), coordinate frame free \(\dot{\theta}\): Rate of …">
+<meta property="og:article:published_time" content="2021-01-02T21:09:46+01:00" />
+<meta property="og:article:modified_time" content="2021-01-02T21:09:46+01:00" />
+<meta name="twitter:title" content="Exponential Coordinate Representation of Rigid-Body Motions ">
+<meta name="twitter:description" content="Every displacement of a rigid body can be expressed as a displacement along a fixed screw axis \(S\) (Chasles-Mozzi theorem). Exponential coordinates of a homogeneous transformation \(T\): $$S\theta \in \mathbb{R}^6$$ With: \(S\): Screw axis \(\theta\): distance to travel along screw axis to take a frame form \(I …">
 
-        <title>Angular Velocity  · Lukas Woodtli
+        <title>Exponential Coordinate Representation of Rigid-Body Motions  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./angular_velocity.html"> Angular&nbsp;Velocity  </a></h1>
+    <h1><a href="./exponential_coordinate_representation_of_rigid-body_motions.html"> Exponential Coordinate Representation of Rigid-Body&nbsp;Motions  </a></h1>
     </header>
 </div>
 
@@ -80,60 +80,67 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>Rotation of a body in space can be represented with a unit rotation vector
-(axis) and an angle of rotation around this axis.</p>
-<p>The angular velocity <span class="math">\(w\)</span> can be defined as:</p>
-<div class="math">$$w = \hat{w} \dot{\theta}$$</div>
-<p>Where:</p>
+            <p>Every displacement of a rigid body can be expressed as a displacement along a fixed screw axis <span class="math">\(S\)</span> (<em>Chasles-Mozzi theorem</em>).</p>
+<p>Exponential coordinates of a homogeneous transformation <span class="math">\(T\)</span>:</p>
+<div class="math">$$S\theta \in \mathbb{R}^6$$</div>
+<p>With:</p>
 <ul>
-<li><span class="math">\(\hat{w}\)</span>: Rotation axis (unit vector), coordinate frame free</li>
-<li><span class="math">\(\dot{\theta}\)</span>: Rate of rotation</li>
+<li><span class="math">\(S\)</span>: Screw axis</li>
+<li><span class="math">\(\theta\)</span>: distance to travel along screw axis to take a frame form <span class="math">\(I\)</span> to <span class="math">\(T\)</span></li>
 </ul>
-<h1 id="matrix-representation-in-a-coordinate-frame">Matrix Representation in a Coordinate Frame</h1>
-<p>To represent the angular velocity <span class="math">\(w\)</span> in coordinates a reference
-frame needs to be chosen. For example the stationary frame <span class="math">\(\{s\}\)</span>.</p>
-<h2 id="angular-velocity">Angular Velocity</h2>
-<p><span class="math">\(\omega_s \in \mathbb{R}^3\)</span> is the angular velocity <span class="math">\(w\)</span> expressed in
-fixed frame <span class="math">\(\{s\}\)</span> coordinates.</p>
-<div class="math">$$\dot{r}_x = \omega_s \times r_{\hat{x}}$$</div>
-<div class="math">$$\dot{r}_y = \omega_s \times r_{\hat{y}}$$</div>
-<div class="math">$$\dot{r}_z = \omega_s \times r_{\hat{z}}$$</div>
-<p>Where:</p>
+<h1 id="matrix-exponential-of-rigid-body-motions">Matrix Exponential of Rigid-Body Motions</h1>
+<p>With <span class="math">\(S = (\omega, v)\)</span> as screw axis:</p>
 <ul>
-<li><span class="math">\(r_i\)</span>: unit axes <span class="math">\(\hat{x}\)</span>, <span class="math">\(\hat{y}\)</span> and <span class="math">\(\hat{z}\)</span> in fixed frame coordinates (the columns of the rotation matrix representing the fixed frame)</li>
-<li><span class="math">\(\dot{r_i}\)</span>: rate of change (angular velocity) of axis <span class="math">\(i\)</span> around the rotation axis</li>
+<li>if <span class="math">\(\left\| \omega \right\| = 1\)</span> then for any distance <span class="math">\(\theta \in \mathbb{R}\)</span> moved along <span class="math">\(S\)</span>:</li>
 </ul>
-<p>These equations can be combined:</p>
-<div class="math">$$\dot{R}_{sb} = \begin{bmatrix}
-\omega_s \times r_1 &amp; \omega_s \times r_2 &amp;  \omega_s \times r_3
-\end{bmatrix} = \omega_s \times R_{sb}$$</div>
-<p>Where:</p>
+<div class="math">$$e^{[S]\theta} =
+\begin{bmatrix}
+e^{[\omega]\theta} &amp;
+I\theta + (1 - \cos \theta) [\omega] + (\theta - \sin \theta) [\omega]^2 v \\
+0 &amp; 1
+\end{bmatrix}$$</div>
 <ul>
-<li><span class="math">\(R_{sb}\)</span>: the rotation matrix that describes the orientation of frame <span class="math">\(\{b\}\)</span> with respect to the fixed frame <span class="math">\(\{s\}\)</span></li>
-<li><span class="math">\(\dot{R}_{sb}\)</span>: its rate of change</li>
+<li>if <span class="math">\(\omega = 0\)</span> and <span class="math">\(\left\| v \right\| = 1\)</span> then:</li>
 </ul>
-<p>This can be simplified to:</p>
-<div class="math">$$\dot{R}_{sb} = [\omega_s]R_{sb}$$</div>
-<p>where:</p>
-<p><span class="math">\([\omega_s]\)</span> is a <span class="math">\(3 \times 3\)</span> <a href="./skew-symmetric_matrix.html">skew-symmetric matrix</a> representation of  the angular velocity <span class="math">\(\omega_s \in \mathbb{R}^3\)</span> represented in the coordinate frame <span class="math">\(\{s\}\)</span>.</p>
-<h2 id="general-relations">General Relations</h2>
-<div class="math">$$[\omega_s] = \dot{R}_{sb}R_{sb}^{-1} = \dot{R}_{sb}R_{sb}^T$$</div>
-<p>and</p>
-<div class="math">$$[\omega_b] = R_{sb}^{-1}\dot{R}_{sb}= R_{sb}^T\dot{R}_{sb}$$</div>
-<p>Where</p>
+<div class="math">$$e^{[S]\theta} =
+\begin{bmatrix}
+    I &amp; v\theta \\
+    0 &amp; 1
+\end{bmatrix}$$</div>
+<p>Exp: <span class="math">\([S]\theta \in se(3) \rightarrow T \in SE(3)\)</span></p>
+<blockquote>
+<p>Matrix exponential is like integration</p>
+</blockquote>
+<h1 id="matrix-logarithm-of-rigid-body-motions">Matrix Logarithm of Rigid-Body Motions</h1>
+<p>Given: <span class="math">\(T = (R, p) \in SE(3)\)</span></p>
+<p>Find:</p>
 <ul>
-<li><span class="math">\([\omega_s] \in so(3)\)</span>: fixed frame <span class="math">\(\{s\}\)</span> representation of the angular velocity <span class="math">\(w\)</span> in skew-symmetric matrix representation</li>
-<li><span class="math">\([\omega_b] \in so(3)\)</span>: body frame <span class="math">\(\{b\}\)</span>  representation of the angular velocity <span class="math">\(w\)</span> in skew-symmetric matrix representation </li>
+<li><span class="math">\(\theta \in [0, \pi]\)</span></li>
+<li><span class="math">\(S = (\omega, v) \in \mathbb{R}^6\)</span></li>
+<li>at least one of <span class="math">\(\left\| \omega \right\|\)</span> or <span class="math">\(\left\| v \right\|\)</span> is unity</li>
 </ul>
-<h1 id="conversion-between-frames">Conversion between Frames</h1>
-<p>An angular velocity <span class="math">\(\omega\)</span> expressed in an arbitrary frame <span class="math">\(\{d\}\)</span>
-can be represented in another frame <span class="math">\(\{c\}\)</span> using the 
-subscript cancellation rule:</p>
-<div class="math">$$\omega_c = R_{cd}\omega_d$$</div>
-<div class="math">$$\omega_d = R_{dc}\omega_c = R^{-1}_{cd}\omega_c = R^T_{cd}\omega_c$$</div>
-<h1 id="literature">Literature</h1>
-<p>Notes taken from:</p>
-<p><a href="http://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics: Mechanics, Planning, and Control</a> by Kevin M. Lynch and Frank C. Park, Cambridge University Press, 2017</p>
+<p>Such that:</p>
+<div class="math">$$e^{[S]\theta} = T$$</div>
+<ul>
+<li><span class="math">\(S\theta \in \mathbb{R}^6\)</span>: vector comprising exponential coordinates of <span class="math">\(T\)</span></li>
+<li><span class="math">\([S]\theta \in se(3)\)</span>: matrix representing logarithm of <span class="math">\(T\)</span></li>
+</ul>
+<p>Algorithm:</p>
+<ol>
+<li>if <span class="math">\(R=I\)</span> then <span class="math">\(\omega=0\)</span>, <span class="math">\(v = p / \left\| p \right\|\)</span> and <span class="math">\(\theta = \left\| p \right\|\)</span></li>
+<li>otherwise:<ul>
+<li>calculate <span class="math">\(\omega = \hat{\omega}\)</span> and <span class="math">\(\theta\)</span> for <span class="math">\(R\)</span> (see <a href="{filename}/content/rodrigues_formula.md">matrix log on <span class="caps">SO</span>(3)</a>)</li>
+<li>then: <span class="math">\(v\)</span> is calculated as <div class="math">$$v = G^{-1}(\theta)p$$</div>
+</li>
+<li>with: <div class="math">$$G^{-1}(\theta) = \frac{1}{\theta}I - \frac{1}{2}[\omega] + \left( \frac{1}{\theta} - \frac{1}{2} \cot \frac{\theta}{2} \right) [\omega]^2$$</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>Log: <span class="math">\(T \in SE(3) \rightarrow [S]\theta \in se(3)\)</span></p>
+<blockquote>
+<p>Matrix log is like differentiation</p>
+</blockquote>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -207,8 +214,7 @@ subscript cancellation rule:</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./skew-symmetric_matrix.html" title="Previous: Skew-symmetric matrix">Skew-symmetric matrix</a></li>
-                <li class="next-article"><a href="./exponential_coordinates_of_rotations_(rodrigues'_formula).html" title="Next: Exponential Coordinates of Rotations (Rodrigues’ formula)">Exponential Coordinates of Rotations (Rodrigues’ formula)</a> »</li>
+                <li class="previous-article">« <a href="./twists.html" title="Previous: Twists">Twists</a></li>
             </ul>
             </nav>
             </aside>
@@ -216,10 +222,10 @@ subscript cancellation rule:</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-09-05T20:10:41+02:00">Sep 5, 2019</time>
+            <time itemprop="dateCreated" datetime="2021-01-02T21:09:46+01:00">Jan 2, 2021</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-11-26T20:02:25+01:00">Nov 26, 2020</time>
+<time datetime="2021-01-02T21:09:46+01:00">Jan 2, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>
