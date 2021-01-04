@@ -9,19 +9,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Robotics, Mathematics, " />
+<meta name="keywords" content="Robotics, Mechanics, " />
 
-<meta property="og:title" content="Skew-symmetric matrix "/>
-<meta property="og:url" content="./skew-symmetric_matrix.html" />
-<meta property="og:description" content="A skew-symmetric matrix has the property: $$A^{T}=-A$$ or expressed differently: $$a_{{ij}}=-a_{{ji}}\qquad \forall i,j\in \{1,\ldots ,n\}$$ It can be formed from a vector \(v = \left ( a_1 a_2 a_3 \right )\) as $${\displaystyle [a]={\begin{pmatrix}0&amp;-a_{3}&amp;a_{2}\\a_{3}&amp;0 …" />
+<meta property="og:title" content="Wrenches "/>
+<meta property="og:url" content="./wrenches.html" />
+<meta property="og:description" content="A linear force \(f\) acting on a rigid body at point \(p\) creates a torque (moment) \(m\) that can be represented in a reference frame \(\{a\}\) as: $$m_a = r_a \times f_a$$ With: \(m_a \in \mathbb{R}^3\): Torque or moment \(r_a \in \mathbb{R}^3\): Point of action (of rigid …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2019-08-30T19:48:00+02:00" />
-<meta property="og:article:modified_time" content="2020-11-26T20:34:37+01:00" />
-<meta name="twitter:title" content="Skew-symmetric matrix ">
-<meta name="twitter:description" content="A skew-symmetric matrix has the property: $$A^{T}=-A$$ or expressed differently: $$a_{{ij}}=-a_{{ji}}\qquad \forall i,j\in \{1,\ldots ,n\}$$ It can be formed from a vector \(v = \left ( a_1 a_2 a_3 \right )\) as $${\displaystyle [a]={\begin{pmatrix}0&amp;-a_{3}&amp;a_{2}\\a_{3}&amp;0 …">
+<meta property="og:article:published_time" content="2021-01-04T19:53:55+01:00" />
+<meta property="og:article:modified_time" content="2021-01-04T19:53:55+01:00" />
+<meta name="twitter:title" content="Wrenches ">
+<meta name="twitter:description" content="A linear force \(f\) acting on a rigid body at point \(p\) creates a torque (moment) \(m\) that can be represented in a reference frame \(\{a\}\) as: $$m_a = r_a \times f_a$$ With: \(m_a \in \mathbb{R}^3\): Torque or moment \(r_a \in \mathbb{R}^3\): Point of action (of rigid …">
 
-        <title>Skew-symmetric matrix  · Lukas Woodtli
+        <title>Wrenches  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./skew-symmetric_matrix.html"> Skew-symmetric&nbsp;matrix  </a></h1>
+    <h1><a href="./wrenches.html"> Wrenches  </a></h1>
     </header>
 </div>
 
@@ -80,37 +80,59 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>A skew-symmetric matrix has the property:</p>
-<div class="math">$$A^{T}=-A$$</div>
-<p>or expressed differently:</p>
-<div class="math">$$a_{{ij}}=-a_{{ji}}\qquad \forall i,j\in \{1,\ldots ,n\}$$</div>
-<p>It can be formed from a vector <span class="math">\(v = \left ( a_1 a_2 a_3 \right )\)</span> as</p>
-<div class="math">$${\displaystyle [a]={\begin{pmatrix}0&amp;-a_{3}&amp;a_{2}\\a_{3}&amp;0&amp;-a_{1}\\-a_{2}&amp;a_{1}&amp;0\end{pmatrix}}}$$</div>
-<p>For real valued skew-symmetric matrices <span class="math">\(A\in \mathbb {R}^{n\times n}\)</span> the
-diagonal values are <span class="math">\(0\)</span> and the eigenvalues are pure imaginary or <span class="math">\(0\)</span>.</p>
-<h1 id="so3"><span class="math">\(so(3)\)</span></h1>
-<p><span class="math">\(so(3)\)</span> is the set of all <span class="math">\(3\times 3\)</span> skew-symmetric matrices.</p>
-<h1 id="angular-velocity">Angular Velocity</h1>
-<p><span class="math">\([\omega]\)</span> is the matrix representation of an angular velocity <span class="math">\(\omega \in {\mathbb  {R}}^{3}\)</span> and is an element of <span class="math">\(so(3)\)</span>.</p>
-<h1 id="cross-product">Cross product</h1>
-<p>For the special case <span class="math">\(n = 3\)</span> the skew-symmetric matrices can be used to express a
-vector cross product as a matrix multiplication.</p>
-<p>The cross product of two vectors <span class="math">\(a\in {\mathbb  {R}}^{3}\)</span> and
-<span class="math">\(b\in {\mathbb  {R}}^{3}\)</span>  can be expressed as:</p>
-<div class="math">$$a\times b=[a] \cdot b$$</div>
-<p>This allows to differentiate formula with a cross product:</p>
-<div class="math">$${\frac  {\partial }{\partial b}}(a\times b)={\frac  {\partial }{\partial b}}([a] b)=[a]$$</div>
-<h1 id="relation-to-rotation-matrices">Relation to Rotation Matrices</h1>
-<div class="math">$$[\omega_s] = \dot{R}_{sb}R^{-1}_{sb}$$</div>
-<div class="math">$$[\omega_b] = R^{-1}_{sb}\dot{R}_{sb}$$</div>
-<p>Where <span class="math">\([\omega_c] \in so(3)\)</span> and <span class="math">\([\omega_b] \in so(3)\)</span> are the angular velocities represented in the the reference frame <span class="math">\(\{s\}\)</span> and the body frame <span class="math">\(\{b\}\)</span>, respectively, as skew-symmetric matrices.</p>
-<p>Note:</p>
-<p><span class="math">\(R\)</span> and <span class="math">\(\dot{R}\)</span> individually depend on both <span class="math">\(\{s\}\)</span> and <span class="math">\(\{b\}\)</span>.</p>
-<p>But:</p>
+            <p>A linear force <span class="math">\(f\)</span> acting on a rigid body at point <span class="math">\(p\)</span> creates a <em>torque</em> (<em>moment</em>) <span class="math">\(m\)</span> that can be represented in a reference frame <span class="math">\(\{a\}\)</span> as:</p>
+<div class="math">$$m_a = r_a \times f_a$$</div>
+<p>With:</p>
 <ul>
-<li><span class="math">\(\dot{R}R^{-1}\)</span> is independent of <span class="math">\(\{b\}\)</span></li>
-<li><span class="math">\(R^{-1}\dot{R}\)</span> is independent of <span class="math">\(\{s\}\)</span></li>
+<li><span class="math">\(m_a \in \mathbb{R}^3\)</span>: Torque or moment</li>
+<li><span class="math">\(r_a \in \mathbb{R}^3\)</span>: Point of action (of rigid body)</li>
+<li><span class="math">\(f_a \in \mathbb{R}^3\)</span>: Force acting on the rigid body</li>
 </ul>
+<h1 id="wrench">Wrench</h1>
+<p>The <em>moment</em> and the <em>force</em> can be combined in a 6-dimensional vector (like with twists) called <em>wrench</em> (or <em>spacial force</em>).</p>
+<div class="math">$$F_a =
+\begin{bmatrix}
+m_a \\
+f_a
+\end{bmatrix}
+\in \mathbb{R}^6$$</div>
+<ul>
+<li><span class="math">\(F_a \in \mathbb{R}^6\)</span>: Wrench (spacial force)</li>
+<li><span class="math">\(m_a \in \mathbb{R}^3\)</span>: Torque or moment on rigid body</li>
+<li><span class="math">\(f_a \in \mathbb{R}^3\)</span>: Force acting on rigid body</li>
+</ul>
+<blockquote>
+<p>A wrench that has a zero linear component is a <em>pure moment</em></p>
+</blockquote>
+<h2 id="sum-of-wrenches">Sum of Wrenches</h2>
+<p>If multiple wreches act on a rigid body, the total wrench is the sum of all wrench vectors. The wrenches need to be represented in the same frame.</p>
+<div class="math">$$F_a = F_{a1} + F_{a2} + \cdots + F_{aN} =
+\begin{bmatrix}
+m_{a1} \\
+f_{a1}
+\end{bmatrix} +
+\begin{bmatrix}
+m_{a2} \\
+f_{a2}
+\end{bmatrix} +
+\cdots +
+\begin{bmatrix}
+m_{aN} \\
+f_{aN}
+\end{bmatrix}
+$$</div>
+<h2 id="conversion-between-frame-representations">Conversion between Frame Representations</h2>
+<ul>
+<li><span class="math">\(F_s\)</span>: spacial wrech</li>
+<li><span class="math">\(F_b\)</span>: body wrech</li>
+</ul>
+<h3 id="from-body-frame-to-space-frame">From Body Frame to Space Frame</h3>
+<div class="math">$$F_s = Ad_{T_{bs}}^T(F_b)= [Ad_{T_{bs}}]^TF_b$$</div>
+<h3 id="from-space-frame-to-body-frame">From Space Frame to Body Frame</h3>
+<div class="math">$$F_b = Ad_{T_{sb}}^T(F_s)= [Ad_{T_{sb}}]^TF_b$$</div>
+<h1 id="literature">Literature</h1>
+<p>Notes taken from:</p>
+<p><a href="http://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics: Mechanics, Planning, and Control</a> by Kevin M. Lynch and Frank C. Park, Cambridge University Press, 2017</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -184,8 +206,7 @@ vector cross product as a matrix multiplication.</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./timezones_on_unix.html" title="Previous: Timezones on Unix">Timezones on Unix</a></li>
-                <li class="next-article"><a href="./angular_velocity.html" title="Next: Angular Velocity">Angular Velocity</a> »</li>
+                <li class="previous-article">« <a href="./exponential_coordinate_representation_of_rigid-body_motions.html" title="Previous: Exponential Coordinate Representation of Rigid-Body Motions">Exponential Coordinate Representation of Rigid-Body Motions</a></li>
             </ul>
             </nav>
             </aside>
@@ -193,13 +214,13 @@ vector cross product as a matrix multiplication.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-08-30T19:48:00+02:00">Aug 30, 2019</time>
+            <time itemprop="dateCreated" datetime="2021-01-04T19:53:55+01:00">Jan 4, 2021</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-11-26T20:34:37+01:00">Nov 26, 2020</time>
+<time datetime="2021-01-04T19:53:55+01:00">Jan 4, 2021</time>
 
             <h4>Category</h4>
-            <a class="category-link" href="./categories.html#mathematics-ref">Mathematics</a>
+            <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="./tags#robotics-ref">Robotics
