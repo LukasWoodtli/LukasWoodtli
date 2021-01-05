@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2021-01-05T16:25:30+01:00" />
-<meta property="og:article:modified_time" content="2021-01-05T16:25:30+01:00" />
+<meta property="og:article:modified_time" content="2021-01-05T20:45:30+01:00" />
 <meta name="twitter:title" content="Comparison of Rotations and Rigid-Body Motions ">
 <meta name="twitter:description" content="Analogies Rotations Rigid-Body Motions Rotation Matrix \(R\) Homogeneous Tranformation Matrix \(T\) Rotation Axis \(\hat\omega\) Screw Axis \(S\) Angular Velocity \(\omega = \hat\omega \dot\theta\) Twist \(V = S\dot\theta\) Exponential Coordinates \(\hat\omega \theta \in \mathbb{R}^3\) Exponential Coordinates \(S\theta \in \mathbb{R}^6\) Rotation Matrix and …">
 
@@ -174,7 +174,8 @@
 </tr>
 <tr>
 <td><span class="math">\(R^TR = 1\)</span> and <span class="math">\(\det R =1\)</span></td>
-<td><span class="math">\(T = <div class="math">\begin{bmatrix}R &amp; p \\ 0 &amp; 1 \end{bmatrix}</div>\)</span> where <span class="math">\(R \in SO(3)\)</span>, <span class="math">\(p \in \mathbb{R}^3\)</span></td>
+<td>
+<div class="math">$$T = \begin{bmatrix}R &amp; p \\ 0 &amp; 1 \end{bmatrix}$$</div> where <span class="math">\(R \in SO(3)\)</span>, <span class="math">\(p \in \mathbb{R}^3\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -189,7 +190,9 @@
 <tbody>
 <tr>
 <td><span class="math">\(R^{-1} = R^T\)</span></td>
-<td><span class="math">\(T^{-1}<div class="math">\begin{bmatrix}R^T &amp; -R^Tp \\ 0 &amp; 1 \end{bmatrix}</div>\)</span></td>
+<td>
+<div class="math">$$T^{-1}\begin{bmatrix}R^T &amp; -R^Tp \\ 0 &amp; 1 \end{bmatrix}$$</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -226,7 +229,9 @@
 <tbody>
 <tr>
 <td><span class="math">\(R = Rot(\hat\omega, \theta)\)</span></td>
-<td><span class="math">\(T=<div class="math">\begin{bmatrix} Rot(\hat\omega, \theta) &amp; p \\ 0 &amp; 1 \end{bmatrix}</div>\)</span></td>
+<td>
+<div class="math">$$T=\begin{bmatrix} Rot(\hat\omega, \theta) &amp; p \\ 0 &amp; 1 \end{bmatrix}$$</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -296,7 +301,9 @@
 <tbody>
 <tr>
 <td><span class="math">\(\hat{\omega} \in \mathbb{R}^3\)</span></td>
-<td><span class="math">\(S = (S_\omega, S_v) = <div class="math">\begin{bmatrix} \omega \\ v\end{bmatrix}</div> \in \mathbb{R}^6\)</span></td>
+<td>
+<div class="math">$$S = (S_\omega, S_v) = \begin{bmatrix} \omega \\ v\end{bmatrix} \in \mathbb{R}^6$$</div>
+</td>
 </tr>
 <tr>
 <td><span class="math">\(\| \hat{\omega} \| = 1\)</span></td>
@@ -344,11 +351,16 @@ $$</div>
 <tbody>
 <tr>
 <td>for <span class="math">\(\omega \in \mathbb{R}^3\)</span></td>
-<td>for <span class="math">\(V = <div class="math">\begin{bmatrix} \omega \\ v\end{bmatrix}</div> \in \mathbb{R}^6\)</span></td>
+<td>for <div class="math">$$V = \begin{bmatrix} \omega \\ v\end{bmatrix} \in \mathbb{R}^6$$</div>
+</td>
 </tr>
 <tr>
-<td><span class="math">\([\omega] = <div class="math">\begin{bmatrix} 0 &amp; -\omega_3 &amp; \omega_2 \\ \omega_3 &amp; 0 &amp; -\omega_1 \\ -\omega_2 &amp; \omega_1 &amp; 0\end{bmatrix}</div> \in so(3)\)</span></td>
-<td><span class="math">\([V] = <div class="math">\begin{bmatrix} [\omega] &amp; v \\ 0 &amp; 0 \end{bmatrix}</div> \in se(3)\)</span></td>
+<td>
+<div class="math">$$[\omega] = \begin{bmatrix} 0 &amp; -\omega_3 &amp; \omega_2 \\ \omega_3 &amp; 0 &amp; -\omega_1 \\ -\omega_2 &amp; \omega_1 &amp; 0\end{bmatrix} \in so(3)$$</div>
+</td>
+<td>
+<div class="math">$$[V] = \begin{bmatrix} [\omega] &amp; v \\ 0 &amp; 0 \end{bmatrix} \in se(3)$$</div>
+</td>
 </tr>
 <tr>
 <td><span class="math">\(\dot{R}R^{-1} = [\omega_s]\)</span></td>
@@ -369,7 +381,9 @@ $$</div>
 <li><span class="math">\(R[\omega]R^T = [R\omega]\)</span></li>
 </ul>
 <h2 id="adjoint-representation-of-a-homogeneous-translation-matrix">Adjoint Representation of a Homogeneous Translation Matrix</h2>
-<p>With a Homogeneous Translation Matrix <span class="math">\(T = <div class="math">\begin{bmatrix}R &amp; p \\ 0 &amp; 1 \end{bmatrix}</div>\)</span> where <span class="math">\(R \in SO(3)\)</span>, <span class="math">\(p \in \mathbb{R}^3\)</span> the <em>adjoint representation</em> is:</p>
+<p>With a Homogeneous Translation Matrix </p>
+<div class="math">$$T = \begin{bmatrix}R &amp; p \\ 0 &amp; 1 \end{bmatrix}$$</div>
+<p> where <span class="math">\(R \in SO(3)\)</span>, <span class="math">\(p \in \mathbb{R}^3\)</span> the <em>adjoint representation</em> is:</p>
 <div class="math">$$[Ad_T] =
 \begin{bmatrix}
 R &amp; 0 \\ 
@@ -449,13 +463,13 @@ $$</div>
 <tbody>
 <tr>
 <td>exponential</td>
-<td><span class="math">\(so(3) \rarr SO(3)\)</span></td>
-<td><span class="math">\(se(3) \rarr SE(3)\)</span></td>
+<td><span class="math">\(so(3) \rightarrow SO(3)\)</span></td>
+<td><span class="math">\(se(3) \rightarrow SE(3)\)</span></td>
 </tr>
 <tr>
 <td>logarithm</td>
-<td><span class="math">\(SO(3) \rarr so(3)\)</span></td>
-<td><span class="math">\(SE(3) \rarr se(3)\)</span></td>
+<td><span class="math">\(SO(3) \rightarrow so(3)\)</span></td>
+<td><span class="math">\(SE(3) \rightarrow se(3)\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -469,12 +483,14 @@ $$</div>
 </thead>
 <tbody>
 <tr>
-<td><span class="math">\([\hat\omega]\theta \in so(3) \rarr R \in SO(3)\)</span></td>
-<td><span class="math">\([S]\theta \in se(3) \rarr T \in SE(3)\)</span></td>
+<td><span class="math">\([\hat\omega]\theta \in so(3) \rightarrow R \in SO(3)\)</span></td>
+<td><span class="math">\([S]\theta \in se(3) \rightarrow T \in SE(3)\)</span></td>
 </tr>
 <tr>
 <td><span class="math">\(R = Rot(\hat\omega, \theta) = e^{[\hat{\omega}]\theta} = I + \sin\theta[\hat\omega]+(1 - \cos\theta)[\hat\omega]^2\)</span></td>
-<td><span class="math">\(T = e^{[S]\theta} = <div class="math">\begin{bmatrix} e^{[\omega]\theta} &amp; (I\theta + (1 - \cos \theta) [\omega] + (\theta - \sin \theta) [\omega]^2) v \\ 0 &amp; 1 \end{bmatrix}</div>\)</span></td>
+<td>
+<div class="math">$$T = e^{[S]\theta} = \begin{bmatrix} e^{[\omega]\theta} &amp; (I\theta + (1 - \cos \theta) [\omega] + (\theta - \sin \theta) [\omega]^2) v \\ 0 &amp; 1 \end{bmatrix}$$</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -488,8 +504,8 @@ $$</div>
 </thead>
 <tbody>
 <tr>
-<td><span class="math">\(R \in SO(3) \rarr [\hat\omega]\theta \in so(3)\)</span></td>
-<td><span class="math">\(T \in SE(3) \rarr [S]\theta \in se(3)\)</span></td>
+<td><span class="math">\(R \in SO(3) \rightarrow [\hat\omega]\theta \in so(3)\)</span></td>
+<td><span class="math">\(T \in SE(3) \rightarrow [S]\theta \in se(3)\)</span></td>
 </tr>
 <tr>
 <td>see <a href="./exponential_coordinates_of_rotations_(rodrigues'_formula).html">here</a> for algorithm</td>
@@ -589,7 +605,7 @@ $$</div>
             <time itemprop="dateCreated" datetime="2021-01-05T16:25:30+01:00">Jan 5, 2021</time>
 
 <h4>Last Updated</h4>
-<time datetime="2021-01-05T16:25:30+01:00">Jan 5, 2021</time>
+<time datetime="2021-01-05T20:45:30+01:00">Jan 5, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
