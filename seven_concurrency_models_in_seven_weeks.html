@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-05-14T19:36:44+02:00" />
-<meta property="og:article:modified_time" content="2020-11-16T15:42:10+01:00" />
+<meta property="og:article:modified_time" content="2021-01-26T12:42:05+01:00" />
 <meta name="twitter:title" content="Seven Concurrency Models in Seven Weeks ">
 <meta name="twitter:description" content="This page collects notes taken from Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher Some of my examples are here Chapter 1 Introduction Concurrent or Parallel? Related but Different “A concurrent program has multiple logical threads of control. These threads may or may not run in …">
 
@@ -200,6 +200,35 @@
 <li><a href="#atom">Atom</a></li>
 <li><a href="#agent">Agent</a></li>
 <li><a href="#refs">Refs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-5-actors">Chapter 5 Actors</a><ul>
+<li><a href="#more-object-oriented-than-objects">More Object-Oriented than Objects</a></li>
+<li><a href="#day-1-messages-and-mailboxes">Day 1: Messages and Mailboxes</a><ul>
+<li><a href="#mailboxes-are-queues">Mailboxes are Queues</a></li>
+</ul>
+</li>
+<li><a href="#day-2-error-handling-and-resilience">Day 2: Error Handling and Resilience</a><ul>
+<li><a href="#supervising-a-process">Supervising a Process</a></li>
+<li><a href="#the-error-kernel-pattern">The Error-Kernel Pattern</a></li>
+<li><a href="#let-it-crash">Let It Crash!</a></li>
+</ul>
+</li>
+<li><a href="#day-3-distribution">Day 3: Distribution</a><ul>
+<li><a href="#what-is-a-restart-strategy">What Is a Restart Strategy?</a></li>
+<li><a href="#day-3-wrap-up_1">Day 3 Wrap-Up</a></li>
+</ul>
+</li>
+<li><a href="#wrap-up_3">Wrap-Up</a><ul>
+<li><a href="#strengths">Strengths</a><ul>
+<li><a href="#messaging-and-encapsulation">Messaging and Encapsulation</a></li>
+<li><a href="#fault-tolerance">Fault Tolerance</a></li>
+<li><a href="#distributed-programming">Distributed Programming</a></li>
+</ul>
+</li>
+<li><a href="#weaknesses_2">Weaknesses</a></li>
 </ul>
 </li>
 </ul>
@@ -502,6 +531,52 @@ That means that they’re very fast and don’t block. […] But it also means t
 <li>Set value: <code>(ref-set &lt;ref&gt; &lt;val&gt;)</code></li>
 <li>Protect ref from modification by other transaction: <code>(ensure &lt;ref&gt;)</code></li>
 </ul>
+<h1 id="chapter-5-actors">Chapter 5 Actors</h1>
+<p><em><span class="dquo">“</span>The actor model […] targets both shared- and distributed-memory architectures, facilitates geographical distribution, and provides especially strong support for fault tolerance and resilience.”</em> </p>
+<h2 id="more-object-oriented-than-objects">More Object-Oriented than Objects</h2>
+<p><em><span class="dquo">“</span>Actor programming […] retains mutable state but avoids sharing it.”</em></p>
+<h2 id="day-1-messages-and-mailboxes">Day 1: Messages and Mailboxes</h2>
+<h3 id="mailboxes-are-queues">Mailboxes are Queues</h3>
+<p><em><span class="dquo">“</span>Messages are sent </em><em>asynchronously</em><em>. Instead of being sent directly to an actor, they are placed in a mailbox”</em></p>
+<p><em><span class="dquo">“</span>Actors are </em><em>decoupled</em><em> - actors run at their own speed and don’t block when sending messages.”</em></p>
+<p><em><span class="dquo">“</span>An actor runs concurrently with other actors but handles messages sequentially, in the order they were added to the mailbox”</em></p>
+<p><em><span class="dquo">“</span>We only have to worry about concurrency when sending messages. “</em></p>
+<h2 id="day-2-error-handling-and-resilience">Day 2: Error Handling and Resilience</h2>
+<h3 id="supervising-a-process">Supervising a Process</h3>
+<p><em><span class="dquo">“</span>A supervisor, a system process that monitors one or more worker processes and takes appropriate action if they fail.”</em></p>
+<h3 id="the-error-kernel-pattern">The Error-Kernel Pattern</h3>
+<p><em><span class="dquo">“</span>A software system’s error kernel is the part that must be correct if the system is to function correctly. Well-written programs make this error kernel as small and as simple as possible”</em></p>
+<p><em><span class="dquo">“</span>This leads to a hierarchy of error kernels in which risky operations are pushed down toward the lower-level actors”</em></p>
+<h3 id="let-it-crash">Let It Crash!</h3>
+<p><em><span class="dquo">“</span>Actor programs tend to avoid defensive programming and subscribe to the “let it crash” philosophy”</em></p>
+<p><em><span class="dquo">“</span>This has multiple benefits, including these:</em></p>
+<ul>
+<li><em>Our code is simpler and easier to understand, with a clear separation between ‘happy path’ and fault-tolerant code.</em></li>
+<li><em>Actors are separate from one another and don’t share state, so there’s little danger that a failure in one actor will adversely affect another. In particular, a failed actor’s supervisor cannot crash because the actor it’s supervising crashes.</em></li>
+<li><em>As well as fixing the error, a supervisor can log it so that instead of sweeping problems under the carpet, we become aware of them and can take remedial action.”</em></li>
+</ul>
+<h2 id="day-3-distribution">Day 3: Distribution</h2>
+<p><em><span class="dquo">“</span>Sending a message to an actor on another machine is just as easy as sending it to one running locally.”</em></p>
+<h3 id="what-is-a-restart-strategy">What Is a Restart Strategy?</h3>
+<p><em><span class="dquo">“</span>If a single worker fails, a supervisor using the one-for-all strategy will stop and restart all its workers (even those that didn’t fail). A supervisor using a one-for-one strategy, by contrast, will only restart the failed worker.”</em></p>
+<h3 id="day-3-wrap-up_1">Day 3 Wrap-Up</h3>
+<p><em><span class="dquo">“</span>Elixir allows us to create clusters of nodes. An actor on one node can send messages to an actor running on another in exactly the same way as it can to one running locally. As well as allowing us to create systems that leverage multiple distributed computers, it allows us to recover from the failure of one of those computers. “</em></p>
+<h2 id="wrap-up_3">Wrap-Up</h2>
+<p><em><span class="dquo">“</span>We can think of actors as the logical extension of object-oriented programming to the concurrent world. Indeed, you can think of actors as more object-oriented than objects, with stricter message passing and encapsulation.”</em></p>
+<h3 id="strengths">Strengths</h3>
+<h4 id="messaging-and-encapsulation">Messaging and Encapsulation</h4>
+<p><em><span class="dquo">“</span>Actors do not share state”</em></p>
+<p><em><span class="dquo">“</span>We need only worry about concurrency when considering message flows between actors.”</em></p>
+<p><em><span class="dquo">“</span>An actor can be tested in isolation and, as long as our tests accurately represent the types of messages that might be delivered and in what order, we can have high confidence that it behaves as it should. And if we do find ourselves faced with a concurrency-related bug, we know where to look - the message flows between actors.”</em></p>
+<h4 id="fault-tolerance">Fault Tolerance</h4>
+<p><em><span class="dquo">“</span>Fault tolerance is built into actor programs from the outset. This enables not only more resilient programs but also simpler and clearer code (through the “let it crash” philosophy).”</em></p>
+<h4 id="distributed-programming">Distributed Programming</h4>
+<p><em><span class="dquo">“</span>It allows an actor program to scale to solve problems of almost any size.”</em></p>
+<p><em><span class="dquo">“</span>It allows us to address problems [with] geographical distribution”</em></p>
+<p><em><span class="dquo">“</span>Distribution is a key enabler for resilient and fault-tolerant systems. “</em></p>
+<h3 id="weaknesses_2">Weaknesses</h3>
+<p><em><span class="dquo">“</span>Actors are still susceptible to problems like deadlock plus a few failure modes unique to actors (such as overflowing an actor’s mailbox).”</em></p>
+<p><em><span class="dquo">“</span>Actors provide no direct support for parallelism. Parallel solutions need to be built from concurrent building blocks, raising the specter of nondeterminism. “</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -525,7 +600,7 @@ That means that they’re very fast and don’t block. […] But it also means t
             <time itemprop="dateCreated" datetime="2020-05-14T19:36:44+02:00">May 14, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-11-16T15:42:10+01:00">Nov 16, 2020</time>
+<time datetime="2021-01-26T12:42:05+01:00">Jan 26, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
