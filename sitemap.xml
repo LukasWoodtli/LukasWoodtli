@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2021-02-16T12:54:29-00:00</lastmod>
+<lastmod>2021-02-16T15:29:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2021-02-16T12:54:29-00:00</lastmod>
+<lastmod>2021-02-16T15:29:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2021-02-16T12:54:29-00:00</lastmod>
+<lastmod>2021-02-16T15:29:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2021-02-16T12:54:29-00:00</lastmod>
+<lastmod>2021-02-16T15:29:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/search.html</loc>
-<lastmod>2021-02-16T12:54:29-00:00</lastmod>
+<lastmod>2021-02-16T15:29:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/404.html</loc>
-<lastmod>2021-02-16T12:54:29-00:00</lastmod>
+<lastmod>2021-02-16T15:29:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -104,6 +104,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://lukaswoodtli.github.io/pages/skills.html</loc>
 <lastmod>2020-08-18T09:25:56+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://lukaswoodtli.github.io/lernen.html</loc>
+<lastmod>2021-02-16T15:27:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -817,7 +824,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/misc.html</loc>
-<lastmod>2019-01-31T13:35:57+01:00</lastmod>
+<lastmod>2021-02-16T15:27:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -825,6 +832,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
 <lastmod>2021-02-01T15:35:53+01:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://lukaswoodtli.github.io/tag/german.html</loc>
+<lastmod>2021-02-16T15:27:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -977,13 +991,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://lukaswoodtli.github.io/tag/german.html</loc>
-<lastmod>2019-01-31T13:35:57+01:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://lukaswoodtli.github.io/tag/parsing.html</loc>
 <lastmod>2020-12-10T20:02:27+01:00</lastmod>
 <changefreq>daily</changefreq>
@@ -1076,7 +1083,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2021-02-01T15:35:53+01:00</lastmod>
+<lastmod>2021-02-16T15:27:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
