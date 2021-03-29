@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2020-05-14T19:36:44+02:00" />
-<meta property="og:article:modified_time" content="2021-01-26T12:42:05+01:00" />
+<meta property="og:article:modified_time" content="2021-03-29T12:29:51+02:00" />
 <meta name="twitter:title" content="Seven Concurrency Models in Seven Weeks ">
 <meta name="twitter:description" content="This page collects notes taken from Seven Concurrency Models in Seven Weeks When Threads Unravel by Paul Butcher Some of my examples are here Chapter 1 Introduction Concurrent or Parallel? Related but Different “A concurrent program has multiple logical threads of control. These threads may or may not run in …">
 
@@ -229,6 +229,81 @@
 </ul>
 </li>
 <li><a href="#weaknesses_2">Weaknesses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#cahpter-6-communicating-sequential-processes">Cahpter 6: Communicating Sequential Processes</a><ul>
+<li><a href="#communication-is-everything">Communication Is Everything</a></li>
+<li><a href="#day-1-channels-and-go-blocks">Day 1: Channels and Go Blocks</a><ul>
+<li><a href="#channels">Channels</a></li>
+<li><a href="#buffering">Buffering</a></li>
+<li><a href="#closing-channels">Closing Channels</a></li>
+<li><a href="#what-no-automatically-growing-buffer">What - No Automatically Growing Buffer?</a></li>
+<li><a href="#go-blocks">Go Blocks</a><ul>
+<li><a href="#the-problem-with-blocking">The Problem with Blocking</a></li>
+<li><a href="#inversion-of-control">Inversion of Control</a></li>
+<li><a href="#what-happens-if-i-block-in-a-go-block">What Happens If I Block in a Go Block?</a></li>
+<li><a href="#go-blocks-are-cheap">Go Blocks Are Cheap</a></li>
+</ul>
+</li>
+<li><a href="#day-1-wrap-up_2">Day 1 Wrap-Up</a><ul>
+<li><a href="#what-we-learned-in-day-1">What We Learned in Day 1</a></li>
+</ul>
+</li>
+<li><a href="#wrap-up_4">Wrap-Up</a><ul>
+<li><a href="#strength">Strength</a></li>
+<li><a href="#weaknesses_3">Weaknesses</a></li>
+<li><a href="#final-thoughts_1">Final Thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-7-data-parallelism">Chapter 7: Data Parallelism</a><ul>
+<li><a href="#day-1-gpgpu-programming">Day 1: <span class="caps">GPGPU</span> Programming</a><ul>
+<li><a href="#graphics-processing-and-data-parallelism">Graphics Processing and Data Parallelism</a><ul>
+<li><a href="#a-confused-picture">A Confused Picture</a></li>
+<li><a href="#work-items">Work-Items</a></li>
+<li><a href="#kernels">Kernels</a></li>
+</ul>
+</li>
+<li><a href="#day-1-wrap-up_3">Day 1: Wrap-Up</a><ul>
+<li><a href="#what-we-learned-in-day-1_1">What We Learned in Day 1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#day-2-multiple-dimensions-and-work-groups">Day 2: Multiple Dimensions and Work-Groups</a><ul>
+<li><a href="#platform-model">Platform Model</a></li>
+<li><a href="#memory-model">Memory Model</a></li>
+<li><a href="#wrap-up_5">Wrap-Up</a><ul>
+<li><a href="#strength_1">Strength</a></li>
+<li><a href="#weaknesses_4">Weaknesses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-8-the-lambda-architecture">Chapter 8 The Lambda Architecture</a><ul>
+<li><a href="#day-1-mapreduce">Day 1: MapReduce</a><ul>
+<li><a href="#what-we-learned-in-day-1_2">What We Learned in Day 1</a></li>
+</ul>
+</li>
+<li><a href="#day-2-the-batch-layer">Day 2: The Batch Layer</a><ul>
+<li><a href="#data-is-better-raw">Data Is Better Raw</a></li>
+<li><a href="#can-we-generate-batch-views-incrementally">Can We Generate Batch Views Incrementally?</a></li>
+<li><a href="#almost-nirvana">Almost Nirvana</a></li>
+<li><a href="#day-2-wrap-up_2">Day 2 Wrap-Up</a><ul>
+<li><a href="#what-we-learned-in-day-2">What We Learned in Day 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#day-3-the-speed-layer">Day 3: The Speed Layer</a><ul>
+<li><a href="#designing-the-speed-layer">Designing the Speed Layer</a></li>
 </ul>
 </li>
 </ul>
@@ -577,6 +652,123 @@ That means that they’re very fast and don’t block. […] But it also means t
 <h3 id="weaknesses_2">Weaknesses</h3>
 <p><em><span class="dquo">“</span>Actors are still susceptible to problems like deadlock plus a few failure modes unique to actors (such as overflowing an actor’s mailbox).”</em></p>
 <p><em><span class="dquo">“</span>Actors provide no direct support for parallelism. Parallel solutions need to be built from concurrent building blocks, raising the specter of nondeterminism. “</em></p>
+<h1 id="cahpter-6-communicating-sequential-processes">Cahpter 6: Communicating Sequential Processes</h1>
+<h2 id="communication-is-everything">Communication Is Everything</h2>
+<p><em><span class="dquo">“</span><span class="caps">CSP</span> focuses on the channels over which they are sent. Channels are first class […] can be independently created, written to, read from, and passed between processes.”</em></p>
+<h2 id="day-1-channels-and-go-blocks">Day 1: Channels and Go Blocks</h2>
+<h3 id="channels">Channels</h3>
+<p><em><span class="dquo">“</span>A channel is a thread-safe queue - any task with a reference to a channel can add messages to one end, and any task with a reference to it can remove messages from the other.”</em></p>
+<h3 id="buffering">Buffering</h3>
+<p><em><span class="dquo">“</span>By default, channels are synchronous (or unbuffered) - writing to a channel blocks until something reads from it”</em></p>
+<h3 id="closing-channels">Closing Channels</h3>
+<p><em><span class="dquo">“</span>[Channels] can be closed with <code>close!</code>. Reading from an empty closed channel returns <code>nil</code>, and writing to a closed channel silently discards the message. […] writing <code>nil</code> to a channel is an error.”</em></p>
+<h3 id="what-no-automatically-growing-buffer">What - No Automatically Growing Buffer?</h3>
+<p><em><span class="dquo">“</span>[There ]three types of buffer provided by <code>core.async</code> as standard - blocking, dropping, and sliding. It would be quite possible to create one that simply grows as it needs to accommodate more messages. So why isn’t this provided as standard?”</em></p>
+<p><em><span class="dquo">“</span>The reason is the age - old lesson that, whenever you have an “inexhaustible” resource, sooner or later you will exhaust it.”</em></p>
+<p><em><span class="dquo">“</span>Better to think about how you want to handle a full buffer today and nip the problem in the bud.”</em></p>
+<h3 id="go-blocks">Go Blocks</h3>
+<h4 id="the-problem-with-blocking">The Problem with Blocking</h4>
+<p><em><span class="dquo">“</span>State and concurrency really don’t mix.”</em></p>
+<p><em><span class="dquo">“</span>Go blocks provide an alternative that gives us the best of both worlds—the efficiency of event-driven code without having to compromise its structure or readability. They achieve this by transparently rewriting sequential code into event-driven code under the hood.”</em></p>
+<h4 id="inversion-of-control">Inversion of Control</h4>
+<p><em>” Code within a <code>go</code> block is transformed into a state machine. Instead of blocking when it reads from or writes to a channel, the state machine </em>parks<em>, relinquishing control of the thread it’s executing on. When it’s next able to run, it performs a state transition and continues execution, potentially on another thread. “</em></p>
+<p><em><span class="dquo">“</span>This represents an inversion of control, allowing the <code>core.async</code> runtime to efficiently multiplex many <code>go</code> blocks over a limited thread pool.”</em></p>
+<h4 id="what-happens-if-i-block-in-a-go-block">What Happens If I Block in a Go Block?</h4>
+<p><em><span class="dquo">“</span>If you call a blocking function, such as <code>&lt;!!</code>, in a go block, you will simply block the thread it happens to be running on.”</em></p>
+<h4 id="go-blocks-are-cheap">Go Blocks Are Cheap</h4>
+<p><em><span class="dquo">“</span>Because (unlike threads) go blocks are cheap, we can create many of them without running out of resources.”</em></p>
+<h3 id="day-1-wrap-up_2">Day 1 Wrap-Up</h3>
+<h4 id="what-we-learned-in-day-1">What We Learned in Day 1</h4>
+<p><em><span class="dquo">“</span>The twin pillars of <code>core.async</code> are channels and go blocks:</em></p>
+<ul>
+<li><em>By default, channels are synchronous (unbuffered)—writing to a channel blocks until something reads from it.</em></li>
+<li><em>Alternatively, channels can be buffered. [Full buffers can] block, discard the oldest value (sliding buffer), or discard the most recently written value (dropping buffer).</em></li>
+<li><em>Go blocks utilize inversion of control to rewrite sequential code as a state machine.”</em></li>
+</ul>
+<h3 id="wrap-up_4">Wrap-Up</h3>
+<h4 id="strength">Strength</h4>
+<p><em><span class="dquo">“</span>In an actor program, the medium of communication is tightly coupled to the unit of execution - each actor has precisely one mailbox. In a <span class="caps">CSP</span> program, by contrast, channels are first class and can be independently created, written to, read from, and passed between tasks.”</em></p>
+<h4 id="weaknesses_3">Weaknesses</h4>
+<p><em><span class="dquo">“</span>[Compared to actors two topics are missing:] distribution and fault tolerance. Although there’s nothing whatsoever to stop <span class="caps">CSP</span>-based languages from supporting both, historically neither has had the same level of focus and support as either has had within actor-based languages”</em></p>
+<p><em><span class="dquo">“</span><span class="caps">CSP</span> programs are susceptible to deadlock and have no direct support for parallelism. Parallel solutions need to be built from concurrent building blocks, raising the specter of nondeterminism.”</em></p>
+<h4 id="final-thoughts_1">Final Thoughts</h4>
+<p><em><span class="dquo">“</span>The actor community has concentrated on fault tolerance and distribution, and the <span class="caps">CSP</span> community on efficiency and expressiveness.”</em></p>
+<h1 id="chapter-7-data-parallelism">Chapter 7: Data Parallelism</h1>
+<h2 id="day-1-gpgpu-programming">Day 1: <span class="caps">GPGPU</span> Programming</h2>
+<h3 id="graphics-processing-and-data-parallelism">Graphics Processing and Data Parallelism</h3>
+<p><em><span class="dquo">“</span>Data parallelism can be implemented in many different ways. We’ll look briefly at a couple of them: pipelining and multiple ALUs.”</em></p>
+<h4 id="a-confused-picture">A Confused Picture</h4>
+<p><em><span class="dquo">“</span>To achieve their performance, real-world GPUs combine pipelining and multiple ALUs with a wide range of other techniques.”</em></p>
+<p><em><span class="dquo">“</span>OpenCL targets multiple architectures by defining a C-like language that allows us to express a parallel algorithm abstractly. Each different <span class="caps">GPU</span> manufacturer then provides its own compilers and drivers that allow that program to be compiled and run on its hardware.”</em></p>
+<h4 id="work-items">Work-Items</h4>
+<p><em><span class="dquo">“</span>Typically, if each task performs too little work, your code performs badly because thread creation and communication overheads dominate.”</em></p>
+<p><em><span class="dquo">“</span>OpenCL work-items, by contrast, are typically very small.”</em></p>
+<p><em><span class="dquo">“</span>Your task as a programmer is to divide your problem into the smallest work-items you can. The OpenCL compiler and runtime then worry about how best to schedule those work-items on the available hardware so that that hardware is utilized as efficiently as possible.”</em></p>
+<h4 id="kernels">Kernels</h4>
+<p><em><span class="dquo">“</span>We specify how each work-item should be processed by writing an OpenCL kernel.”</em></p>
+<p><em><span class="dquo">“</span>To create a complete program, we need to embed our kernel in a host program that performs the following steps:</em></p>
+<ul>
+<li><em>Create a context within which the kernel will run together with a command queue.</em></li>
+<li><em>Compile the kernel.</em></li>
+<li><em>Create buffers for input and output data.</em></li>
+<li><em>Enqueue a command that executes the kernel once for each work-item.</em></li>
+<li><em>Retrieve the results.”</em></li>
+</ul>
+<h3 id="day-1-wrap-up_3">Day 1: Wrap-Up</h3>
+<h4 id="what-we-learned-in-day-1_1">What We Learned in Day 1</h4>
+<p><em><span class="dquo">“</span>OpenCL parallelizes a task by dividing it up into work-items.”</em></p>
+<p><em><span class="dquo">“</span>We specify how each work-item should be processed by writing a kernel. “</em></p>
+<p><em><span class="dquo">“</span>To execute a kernel, a host program [is needed].”</em></p>
+<h2 id="day-2-multiple-dimensions-and-work-groups">Day 2: Multiple Dimensions and Work-Groups</h2>
+<h3 id="platform-model">Platform Model</h3>
+<p><em><span class="dquo">“</span>An OpenCL platform consists of a host that’s connected to one or more devices. Each device has one or more compute units, each of which provides a number of processing elements”</em></p>
+<p><em><span class="dquo">“</span>Work.items execute on processing elements. A collection of work-items executing on a single compute unit is a work-group. The work-items in a work-group share local memory”</em></p>
+<h3 id="memory-model">Memory Model</h3>
+<p><em><span class="dquo">“</span>A work-item executing a kernel has access to four different memory regions:</em></p>
+<ul>
+<li>Global memory</li>
+<li>Constant memory (global)</li>
+<li>Local memory: local to work-groop used for communication between work-items</li>
+<li>Private memory: private to a work-item</li>
+</ul>
+<h3 id="wrap-up_5">Wrap-Up</h3>
+<h4 id="strength_1">Strength</h4>
+<p><em><span class="dquo">“</span>Data parallelism is ideal whenever you’re faced with a problem where large amounts of numerical data needs to be processed.”</em></p>
+<h4 id="weaknesses_4">Weaknesses</h4>
+<p><em><span class="dquo">“</span>Optimizing an OpenCL kernel can be tricky, and effective optimization often depends on understanding underlying architectural details”</em></p>
+<p><em><span class="dquo">“</span>For some problems, the need to copy data from the host to the device can dominate execution time, negating or reducing the benefit to be gained from parallelizing the computation.”</em></p>
+<h1 id="chapter-8-the-lambda-architecture">Chapter 8 The Lambda Architecture</h1>
+<h2 id="day-1-mapreduce">Day 1: MapReduce</h2>
+<h3 id="what-we-learned-in-day-1_2">What We Learned in Day 1</h3>
+<p>*”Hadoop is a MapReduce system that does the following:”</p>
+<ul>
+<li><em>It splits input between a number of mappers, each of which generates key/value pairs.</em></li>
+<li><em>These are then sent to reducers, which generate the final output (typically also a set of key/value pairs).</em></li>
+<li><em>Keys are partitioned between reducers such that all pairs with the same key are handled by the same reducer.”</em></li>
+</ul>
+<h2 id="day-2-the-batch-layer">Day 2: The Batch Layer</h2>
+<h3 id="data-is-better-raw">Data Is Better Raw</h3>
+<p><em><span class="dquo">“</span>Immutability and parallelism are a marriage made in heaven.”</em></p>
+<h3 id="can-we-generate-batch-views-incrementally">Can We Generate Batch Views Incrementally?</h3>
+<p><em><span class="dquo">“</span>Much of the power of the Lambda Architecture derives from the fact that we can always rebuild from scratch if we need to.”</em></p>
+<h3 id="almost-nirvana">Almost Nirvana</h3>
+<p><em><span class="dquo">“</span>Because it only ever operates on immutable raw data, the batch layer can easily exploit parallelism. Raw data can be distributed across a cluster of machines, enabling batch views to be recomputed in an acceptable period of time even when dealing with terabytes of input.”</em></p>
+<p><em><span class="dquo">“</span>The immutability of raw data also means that the system is intrinsically hardened against both technical failure and human error. Not only is it much easier to back up raw data, but if there’s a bug, the worst that can happen is that batch views are temporarily incorrect-we can always correct them by fixing the bug and recomputing them.”</em></p>
+<h3 id="day-2-wrap-up_2">Day 2 Wrap-Up</h3>
+<h4 id="what-we-learned-in-day-2">What We Learned in Day 2</h4>
+<p><em><span class="dquo">“</span>Information can be divided into raw data and derived information. Raw data is eternally true and therefore immutable. The batch layer of the Lambda Architecture leverages this to allow us to create systems that are</em></p>
+<ul>
+<li><em>highly parallel, enabling terabytes of data to be processed;</em></li>
+<li><em>simple, making them both easier to create and less error prone;</em></li>
+<li><em>tolerant of both technical failure and human error; and</em></li>
+<li><em>capable of supporting both day-to-day operations and historical reporting and analysis.”</em></li>
+</ul>
+<p><em><span class="dquo">“</span>The primary drawback of the batch layer is latency, which the Lambda Architecture addresses by running the speed layer alongside.”</em></p>
+<h2 id="day-3-the-speed-layer">Day 3: The Speed Layer</h2>
+<p><em><span class="dquo">“</span>The batch layer of the Lambda Architecture solves all the problems we identified with traditional data systems, but it does so at the expense of latency.”</em></p>
+<p><em><span class="dquo">“</span>As new data arrives, we both append it to the raw data that the batch layer works on and send it to the speed layer. The speed layer generates real-time views, which are combined with batch views to create fully up-to-date answers to queries.”</em></p>
+<h3 id="designing-the-speed-layer">Designing the Speed Layer</h3>
+<p><em><span class="dquo">“</span>The speed layer only needs to handle that portion of our data that hasn’t already been handled by the batch layer.”</em></p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -600,7 +792,7 @@ That means that they’re very fast and don’t block. […] But it also means t
             <time itemprop="dateCreated" datetime="2020-05-14T19:36:44+02:00">May 14, 2020</time>
 
 <h4>Last Updated</h4>
-<time datetime="2021-01-26T12:42:05+01:00">Jan 26, 2021</time>
+<time datetime="2021-03-29T12:29:51+02:00">Mar 29, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
