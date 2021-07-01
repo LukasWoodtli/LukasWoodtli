@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2019-04-19T07:52:35+02:00" />
-<meta property="og:article:modified_time" content="2019-09-19T20:10:55+02:00" />
+<meta property="og:article:modified_time" content="2021-07-01T19:50:44+02:00" />
 <meta name="twitter:title" content="Robot Operating System (ROS) ">
 <meta name="twitter:description" content="Currently I’m using Melodic Morenia. rosbash There is tab-completion for almost everything Load ROS Environment For Bash: source /opt/ros/melodic/setup.bash or Zsh: source /opt/ros/melodic/setup.zsh Commands Command Function rosls &lt;package_name&gt; List package content roscd &lt;package_name&gt; Go to package directory rospack Command Function …">
 
@@ -91,7 +91,10 @@
 <li><a href="#the-master-roscore">The Master (roscore)</a></li>
 <li><a href="#nodes">Nodes</a><ul>
 <li><a href="#start-a-node-rosrun">Start a node (rosrun)</a></li>
-<li><a href="#handle-multiple-nodes-roslaunch">Handle multiple nodes (roslaunch)</a></li>
+<li><a href="#handle-multiple-nodes-roslaunch">Handle multiple nodes (roslaunch)</a><ul>
+<li><a href="#launch-file-structure-xml-tags-and-arguments">Launch File Structure (<span class="caps">XML</span> Tags and Arguments)</a></li>
+</ul>
+</li>
 <li><a href="#commands-for-handling-nodes">Commands for handling Nodes</a></li>
 <li><a href="#topics-and-messages">Topics and Messages</a></li>
 <li><a href="#parameters-rosparam">Parameters (rosparam)</a></li>
@@ -104,7 +107,14 @@
 <li><a href="#creating-a-workspaces">Creating a Workspaces</a></li>
 <li><a href="#creating-a-package">Creating a Package</a></li>
 <li><a href="#building-a-workspace">Building a Workspace</a></li>
+<li><a href="#configuring-build-in-a-workspace">Configuring build in a Workspace</a></li>
 <li><a href="#running-a-node-from-workspace">Running a Node from Workspace</a></li>
+<li><a href="#cleaning-the-workspace">Cleaning the Workspace</a></li>
+</ul>
+</li>
+<li><a href="#client-libraries">Client Libraries</a><ul>
+<li><a href="#node-handles">Node Handles</a></li>
+<li><a href="#time-library">Time Library</a></li>
 </ul>
 </li>
 <li><a href="#urdf-and-xacro"><span class="caps">URDF</span> and Xacro</a></li>
@@ -133,7 +143,7 @@
 <div class="highlight"><pre><span></span><code><span class="nb">source</span> /opt/ros/melodic/setup.zsh
 </code></pre></div>
 <h2 id="commands">Commands</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -152,7 +162,7 @@
 </tbody>
 </table>
 <h1 id="rospack"><code>rospack</code></h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -187,7 +197,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 <li><code>executable-name</code>: the executable name in that package</li>
 </ul>
 <h2 id="handle-multiple-nodes-roslaunch">Handle multiple nodes (<code>roslaunch</code>)</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -205,6 +215,26 @@ They are placed in a separate standardized directory hierarchy.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="launch-file-structure-xml-tags-and-arguments">Launch File Structure (<span class="caps">XML</span> Tags and Arguments)</h3>
+<ul>
+<li><code>&lt;launch&gt;</code>: Root element of launch file</li>
+<li><code>&lt;node name="listener" pkg="roscpp_tutorials" type="listener" output="screen" /&gt;</code>: A <span class="caps">ROS</span> node to be launched<ul>
+<li><code>name</code>: Name of the node (free to choose)</li>
+<li><code>pkg</code>: The <span class="caps">ROS</span> package name containing the node executable</li>
+<li><code>type</code>: Type of the node in the package</li>
+<li><code>output</code>: Where to output log messages (<code>screen</code> or <code>log</code>)</li>
+</ul>
+</li>
+<li><code>&lt;arg name="arg_name" default="default_value"/&gt;</code>: Define arguments (variables)<ul>
+<li><code>$(arg arg_name)</code>: Reference arguments</li>
+<li><code>roslaunch launch_file.launch arg_name:=value</code>: Provide arguments when running a launchfile</li>
+</ul>
+</li>
+<li><code>&lt;include file="package_name"/&gt;</code>: Include other launchfile<ul>
+<li><code>$(find package_name)</code>: Find other package in workspace</li>
+</ul>
+</li>
+</ul>
 <p>Notes about how to writ launch files can be found at <a href="http://wiki.ros.org/roslaunch/XML">roslaunch/<span class="caps">XML</span></a> and
 <a href="http://wiki.ros.org/ROS/Tutorials/Roslaunch%20tips%20for%20larger%20projects">Roslaunch tips for large projects</a></p>
 <p>Flags:</p>
@@ -213,7 +243,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 <li><code>--screen</code>: Display output for all nodes in launch file</li>
 </ul>
 <h2 id="commands-for-handling-nodes">Commands for handling Nodes</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -240,7 +270,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 </tbody>
 </table>
 <h2 id="topics-and-messages">Topics and Messages</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -279,7 +309,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 </tbody>
 </table>
 <h2 id="parameters-rosparam">Parameters (<code>rosparam</code>)</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -319,7 +349,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 </table>
 <h2 id="services">Services</h2>
 <p>A <em>client</em> node sends a <strong>request</strong> to a <em>server</em> node and waits for a <strong>response</strong>.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -356,7 +386,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 <p>Information about writing services and clients in C++ can be found here
 <a href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient(c++)">Writing a Simple Service and Client (C++)</a>.</p>
 <h2 id="topics-messages-and-services">Topics, Messages and Services</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -378,7 +408,7 @@ They are placed in a separate standardized directory hierarchy.</p>
 </tbody>
 </table>
 <h2 id="bag-files">Bag files</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -417,7 +447,8 @@ They are placed in a separate standardized directory hierarchy.</p>
 <h2 id="creating-a-workspaces">Creating a Workspaces</h2>
 <div class="highlight"><pre><span></span><code>mkdir -p &lt;workspace-name&gt;/src    <span class="c1"># don't forget the `src` subdirectory</span>
 <span class="nb">cd</span>  &lt;workspace-name&gt;/
-catkin_make
+catkin build  <span class="c1"># don't use catkin_make</span>
+<span class="nb">source</span> devel/setup.zsh
 </code></pre></div>
 <h2 id="creating-a-package">Creating a Package</h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/src
@@ -425,7 +456,13 @@ catkin_create_pkg &lt;package-name&gt; <span class="o">[</span>list of dependenc
 </code></pre></div>
 <h2 id="building-a-workspace">Building a Workspace</h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/
-catkin_make
+catkin build  <span class="c1"># don't use catkin_make</span>
+<span class="nb">source</span> devel/setup.zsh
+</code></pre></div>
+<h2 id="configuring-build-in-a-workspace">Configuring build in a Workspace</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/
+catkin config
+<span class="nb">source</span> devel/setup.zsh
 </code></pre></div>
 <h2 id="running-a-node-from-workspace">Running a Node from Workspace</h2>
 <p>A master is required to run before running any nodes.</p>
@@ -433,6 +470,62 @@ catkin_make
 <span class="nb">source</span> devel/setup.zsh
 rosrun &lt;package-name&gt; &lt;executable-name&gt;
 </code></pre></div>
+<h2 id="cleaning-the-workspace">Cleaning the Workspace</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  &lt;workspace-name&gt;/
+catkin clean
+</code></pre></div>
+<h1 id="client-libraries">Client Libraries</h1>
+<h2 id="node-handles">Node Handles</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Node Handle</th>
+<th>C++ Code</th>
+<th>Namespace for Topics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default (public)</td>
+<td><code>nh_ = ros::NodeHandle();</code></td>
+<td><code>/namespace/topic</code></td>
+</tr>
+<tr>
+<td>Private</td>
+<td><code>nh_private_ = ros::NodeHandle("~");</code></td>
+<td><code>/namespace/node/topic</code></td>
+</tr>
+<tr>
+<td>Namespaced</td>
+<td><code>nh_eth_ = ros::NodeHandle("eth");</code></td>
+<td><code>/namespace/eth/topic</code></td>
+</tr>
+</tbody>
+</table>
+<p>It’s also possible to use global node handlers. But it is not recomended.</p>
+<h2 id="time-library">Time Library</h2>
+<p>It’s recomended to always use the <span class="caps">ROS</span> Time APIs (and not the standard library).</p>
+<p>This allows to handle simulated time properly.</p>
+<ul>
+<li>
+<p><code>ros::Time</code>:</p>
+<p>:::cpp
+ros::Time begin = ros::Time::now();
+double secs = begin.toSec();</p>
+</li>
+<li>
+<p><code>ros::Duration</code>:</p>
+<p>:::cpp
+duration(0.5); // 0.5s
+ros::Duration passed = ros::Time()::now() - begin;</p>
+</li>
+<li>
+<p><code>ros::Rate</code>:</p>
+<p>:::cpp
+ros::Rate rate(10); // 10Hz</p>
+</li>
+</ul>
+<p>If wall time is required, use <code>ros::WallTime</code>, <code>ros::WallDuration</code> and <code>ros::WallRate</code></p>
 <h1 id="urdf-and-xacro"><span class="caps">URDF</span> and Xacro</h1>
 <p>To generate an <span class="caps">URFD</span> file from a xacro file:</p>
 <div class="highlight"><pre><span></span><code>xacro input.xacro &gt; output.urdf
@@ -475,7 +568,7 @@ rosrun &lt;package-name&gt; &lt;executable-name&gt;
             <time itemprop="dateCreated" datetime="2019-04-19T07:52:35+02:00">Apr 19, 2019</time>
 
 <h4>Last Updated</h4>
-<time datetime="2019-09-19T20:10:55+02:00">Sep 19, 2019</time>
+<time datetime="2021-07-01T19:50:44+02:00">Jul 1, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>
