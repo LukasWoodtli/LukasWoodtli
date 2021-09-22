@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2020-12-10T20:02:27+01:00" />
+<meta property="og:article:modified_time" content="2021-09-22T15:44:09+02:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be found here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -174,6 +174,30 @@
 <li><a href="#discussion_7">Discussion</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#chapter-6-tracking-and-identifying-program-symbols">Chapter 6 Tracking and Identifying Program Symbols</a><ul>
+<li><a href="#collecting-information-about-program-entities">Collecting Information About Program Entities</a></li>
+<li><a href="#grouping-symbols-into-scopes">Grouping Symbols into Scopes</a></li>
+<li><a href="#resolving-symbols">Resolving Symbols</a></li>
+</ul>
+</li>
+<li><a href="#chapter-7-managing-symbol-tables-for-data-aggregates">Chapter 7 Managing Symbol Tables for Data Aggregates</a><ul>
+<li><a href="#building-scope-trees-for-structs">Building Scope Trees for Structs</a></li>
+<li><a href="#building-scope-trees-for-classes">Building Scope Trees for Classes</a></li>
+</ul>
+</li>
+<li><a href="#chapter-8-enforcing-static-typing-rules">Chapter 8 Enforcing Static Typing Rules</a></li>
+</ul>
+</li>
+<li><a href="#building-interpreters">Building Interpreters</a><ul>
+<li><a href="#chapter-9-building-high-level-interpreters">Chapter 9 Building High-Level Interpreters</a><ul>
+<li><a href="#designing-high-level-interpreter-memory-systems">Designing High-Level Interpreter Memory Systems</a></li>
+<li><a href="#processing-instructions">Processing Instructions</a></li>
+</ul>
+</li>
+<li><a href="#chapter-10-building-bytecode-interpreters">Chapter 10 Building Bytecode Interpreters</a><ul>
+<li><a href="#bytecode-machine-architecture">Bytecode Machine Architecture</a></li>
 </ul>
 </li>
 </ul>
@@ -591,6 +615,65 @@ The process of matching and rewriting trees is formally called term rewriting.�
 <li><em>We don’t need to direct the tree walk.”</em></li>
 </ul>
 <p><em><span class="dquo">“</span>A tree pattern matcher is analogous to text rewriting tools such as <code>awk</code>, <code>sed</code>, and <code>perl</code>.”</em></p>
+<h2 id="chapter-6-tracking-and-identifying-program-symbols">Chapter 6 Tracking and Identifying Program Symbols</h2>
+<h3 id="collecting-information-about-program-entities">Collecting Information About Program Entities</h3>
+<p><em><span class="dquo">“</span>what we need to know for each symbol”</em></p>
+<ul>
+<li><em>Name</em></li>
+<li><em>Category</em>: class, method, variable, label…</li>
+<li><em>Type</em></li>
+</ul>
+<h3 id="grouping-symbols-into-scopes">Grouping Symbols into Scopes</h3>
+<ul>
+<li><em>Static vs. dynamic scoping</em></li>
+<li><em>Nesting</em></li>
+<li><em>Contents</em>: declarations, statements or both</li>
+<li><em>Visibility</em></li>
+</ul>
+<h3 id="resolving-symbols">Resolving Symbols</h3>
+<p><em><span class="dquo">“</span>to resolve a symbol reference, we look for it in its semantic context, starting with the current scope. If <code>resolve()</code> doesn’t find the symbol in the current scope, it asks the enclosing scope if it can find the symbol. <code>resolve()</code> recursively walks toward the root of the scope tree until it finds the symbol or runs out of scopes.”</em></p>
+<h2 id="chapter-7-managing-symbol-tables-for-data-aggregates">Chapter 7 Managing Symbol Tables for Data Aggregates</h2>
+<h3 id="building-scope-trees-for-structs">Building Scope Trees for Structs</h3>
+<p><em><span class="dquo">“</span>We also have to resolve symbols within struct scopes from the outside. In other words, a language application might have to figure out which field <code>«expr».x</code> refers to.”</em></p>
+<p><em><span class="dquo">“</span>The general (recursive) rule for resolving <code>«expr».x</code> is to determine the type of <code>«expr»</code> and then look up <code>x</code> in that scope.”</em></p>
+<p><em><span class="dquo">“</span>we need two different resolve methods: one for looking up isolated symbols like <code>d</code> and another for resolving member access expressions like <code>d.i</code>.”</em></p>
+<h3 id="building-scope-trees-for-classes">Building Scope Trees for Classes</h3>
+<p><em><span class="dquo">“</span>Per the usual object-oriented language conventions, […] we want to look up the inheritance chain before looking in the global scope.”</em></p>
+<p><em><span class="dquo">“</span>To handle […] forward references […]. We can make two passes over the input, one to define symbols and another to resolve them”</em></p>
+<h2 id="chapter-8-enforcing-static-typing-rules">Chapter 8 Enforcing Static Typing Rules</h2>
+<p><em><span class="dquo">“</span>Sometimes, though, we write code that make no sense even if the syntax is correct. Such programs violate a language’s semantic rules.”</em></p>
+<p><em><span class="dquo">“</span>Languages typically have lots and lots of semantic rules. Some rules are run-time constraints (dynamic semantics), and some are compile-time constraints (static semantics).”</em></p>
+<p><em><span class="dquo">“</span>Some languages enforce the same rule statically and then again dynamically to guard against hostile programs. For example, Java does type checking at compile-time as well as at run-time.”</em></p>
+<h1 id="building-interpreters">Building Interpreters</h1>
+<h2 id="chapter-9-building-high-level-interpreters">Chapter 9 Building High-Level Interpreters</h2>
+<p><em><span class="dquo">“</span>High-level interpreters directly execute source code instructions or the <span class="caps">AST</span> equivalent. (Low-level interpreters execute instructions called bytecodes that are close to <span class="caps">CPU</span> machine instructions.)”</em></p>
+<p><em><span class="dquo">“</span>An interpreter simulates an idealized computer in software. Such “computers” have a processor, code memory, data memory, and (usually) a stack. The processor pulls instructions from the code memory, decodes them, and exe- cutes them. An instruction can read or write to the data memory or onto the stack. Function calls save return addresses so they can return to the instruction following the function call.”</em></p>
+<p><em><span class="dquo">“</span>There are three things to consider when building an interpreter: how to store data, how and when to track symbols, and how to execute instructions.”</em></p>
+<h3 id="designing-high-level-interpreter-memory-systems">Designing High-Level Interpreter Memory Systems</h3>
+<p><em><span class="dquo">“</span>High-level interpreters store values according to variable names, not memory addresses (like low-level interpreters and CPUs do). That means we’ve got to represent memory with a dictionary mapping names to values. There are three kinds of memory spaces to worry about for most programming languages: global memory, function spaces (for parameters and locals), and data aggregate instances (structs or objects).”</em></p>
+<h3 id="processing-instructions">Processing Instructions</h3>
+<p><em><span class="dquo">“</span>fetch-decode-execute cycle: First, we load an instruction from code memory. Then, we decode the instruction to find the operation and operands. Finally, we execute the operation. Rinse and repeat.”</em></p>
+<h2 id="chapter-10-building-bytecode-interpreters">Chapter 10 Building Bytecode Interpreters</h2>
+<h3 id="bytecode-machine-architecture">Bytecode Machine Architecture</h3>
+<p><em><span class="dquo">“</span>A bytecode interpreter simulates a computer with the following components:”</em></p>
+<ul>
+<li><em>Code memory</em>: the assembled bytecode (instructions and operands)</li>
+<li><em>ip register</em>: pointing at the next instruction to be executed</li>
+<li><em>Global memory</em>: space for variables</li>
+<li><em><span class="caps">CPU</span></em>: executes instructions</li>
+<li><em>Constant pool</em>: holds the constants (known at assembly time)</li>
+<li><em>Function call stack</em>: for parameters, local variables and return values</li>
+<li><em>fp register</em>: points to the top of the function call stack</li>
+</ul>
+<p>In addition a Stack-Based interpreter has:</p>
+<ul>
+<li><em>Operand stack</em>: for temporary values (instead of registers)</li>
+<li><em>sp register</em>: points to the top of the operand stack</li>
+</ul>
+<p>A Register-Based interpreter has (instead of a operand stack):</p>
+<ul>
+<li><em>infinite register set per function call</em>: parameters, local variables and return values</li>
+</ul>
 <h1 id="translating-and-generating-languages">Translating and Generating Languages</h1>
 <h2 id="translating-computer-languages">Translating Computer Languages</h2>
 <p><em><span class="dquo">“</span>Translation involves fully understanding each input phrase, picking
@@ -762,7 +845,7 @@ language. […] we’re defining a special class for each output element.”</e
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2020-12-10T20:02:27+01:00">Dec 10, 2020</time>
+<time datetime="2021-09-22T15:44:09+02:00">Sep 22, 2021</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
