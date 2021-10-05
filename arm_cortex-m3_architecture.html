@@ -795,14 +795,14 @@ in a region called bit-banding alias.</p>
 But it’s usually not nessecary to do the address translation in this direction.</p>
 <p>Here is a small example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Set pI to point to the first 32-bit value in the memory bit-banding region</span>
-<span class="k">volatile</span> <span class="kt">uint32_t</span> <span class="o">*</span> <span class="n">pI</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="p">)(</span><span class="mh">0x20000000</span><span class="p">);</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="mh">0x20000000</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// Set the value where pI is pointing to 0</span>
-<span class="o">*</span><span class="n">pI</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">*</span><span class="n">pI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Get the bit-banding alias address of bit 2 of the first byte in the bit-banding region</span>
-<span class="k">volatile</span> <span class="kt">uint32_t</span> <span class="o">*</span> <span class="n">pIAlias</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="p">)</span><span class="n">BIT_BANDING_MEMORY_TO_ALIAS</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pIAlias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">BIT_BANDING_MEMORY_TO_ALIAS</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// Seet this bit to one</span>
-<span class="o">*</span><span class="n">pIAlias</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="o">*</span><span class="n">pIAlias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// *pI == 4. The bit two ot *pI is now set</span>
 </code></pre></div>

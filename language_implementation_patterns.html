@@ -348,8 +348,8 @@
 <h2 id="enhanced-parsing-patterns">Enhanced Parsing Patterns</h2>
 <h3 id="parsing-with-arbitrary-lookahead">Parsing with Arbitrary Lookahead</h3>
 <p><em><span class="dquo">“</span>[Some] language constructs […] only differ on the right side. For example, C++ function definitions and declarations are identical until the parser sees <code>;</code> or <code>{</code> :”</em></p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{...}</span> <span class="c1">// a function definition</span>
-<span class="kt">void</span> <span class="nf">bar</span><span class="p">();</span> <span class="c1">// a function declaration</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="c1">// a function definition</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">();</span><span class="w"> </span><span class="c1">// a function declaration</span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>function headers can be arbitrarily long, the distinguishing token does not appear at a fixed lookahead position from the left side of the statement.”</em></p>
 <p><em><span class="dquo">“</span>The parser can speculatively parse as far ahead as it needs.”</em></p>

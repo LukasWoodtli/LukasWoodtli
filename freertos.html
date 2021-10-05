@@ -218,7 +218,7 @@ most (if not all) stack overflows.</p>
 <li>Implement a hook function: <code>vApplicationStackOverflowHook()</code></li>
 </ul>
 <p>The hook function has the prototype:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">vApplicationStackOverflowHook</span><span class="p">(</span><span class="n">xTaskHandle</span> <span class="o">*</span><span class="n">pxTask</span><span class="p">,</span> <span class="kt">signed</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pcTaskName</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">vApplicationStackOverflowHook</span><span class="p">(</span><span class="n">xTaskHandle</span><span class="w"> </span><span class="o">*</span><span class="n">pxTask</span><span class="p">,</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcTaskName</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Real recovery ofter a stack overflow is not possible.
 Since since the <em><span class="caps">TCB</span></em> may be corrupted the data privided to the

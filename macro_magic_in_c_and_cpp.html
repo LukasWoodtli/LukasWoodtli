@@ -88,13 +88,13 @@
 <span class="cp">#define IMPORTANT_CONST 23</span>
 </code></pre></div>
 <p>If you’d use the stingize operator <code>#</code> directly in a macro you won’t get the intended string:</p>
-<div class="highlight"><pre><span></span><code><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">_stringize</span><span class="p">(</span><span class="n">IMPORTANT_CONST</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <blockquote>
 <p><span class="dquo">“</span>IMPORTANT_CONST”</p>
 </blockquote>
 <p>Thats why there is an other macro calling the first one:</p>
-<div class="highlight"><pre><span></span><code><span class="err"> stringize (IMPORTANT_CONST)</span>
+<div class="highlight"><pre><span></span><code> stringize (IMPORTANT_CONST)
 </code></pre></div>
 <blockquote>
 <p>stringize(4)  </p>
@@ -105,7 +105,7 @@
 <p>With the <code>##</code> operator in a preprocessor macro it’s possible to combine two tokens.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#define CREATE_ID(name) ID_##name</span>
 
-<span class="n">CREATE_ID</span><span class="p">(</span><span class="n">IMPORTANT_THING</span><span class="p">)</span>
+<span class="n">CREATE_ID</span><span class="p">(</span><span class="n">IMPORTANT_THING</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <blockquote>
 <p>ID_IMPORTANT_THING</p>

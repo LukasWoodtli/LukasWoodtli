@@ -513,10 +513,10 @@ It’s mainly used to compare languages to each other about the possible casting
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="n">SuperReturnType</span> <span class="n">Super</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SubParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// |         ^ contra-</span>
+<div class="highlight"><pre><span></span><code><span class="n">SuperReturnType</span><span class="w"> </span><span class="nf">Super::foo</span><span class="p">(</span><span class="n">SubParamType</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// |         ^ contra-</span>
 <span class="c1">//  ..                        ^             // |         | variant</span>
 <span class="c1">//   v                        ..            // | co-     |</span>
-<span class="n">SubReturnType</span>   <span class="n">Sub</span><span class="o">::</span><span class="n">foo</span><span class="p">(</span><span class="n">SuperParamType</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// v variant |</span>
+<span class="n">SubReturnType</span><span class="w">   </span><span class="nf">Sub::foo</span><span class="p">(</span><span class="n">SuperParamType</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// v variant |</span>
 </code></pre></div>
 <p><em>Super</em> is more <strong>general</strong> than <em>Sub</em>.</p>
 <p><em>Sub</em> is more <strong>specific</strong> than <em>Super</em>.</p>
@@ -2068,7 +2068,7 @@ it gets swalowed and rethrown as an unchecked exception.</p>
                     <span>7</span>
 </a></li>
                 <li><a href="./tags#oop-ref">OOP
-                    <span>6</span>
+                    <span>7</span>
 </a></li>
                 <li><a href="./tags#python-ref">Python
                     <span>4</span>

@@ -739,7 +739,7 @@ find the right documents.</p>
 </ul>
 <h4 id="object-file-format">Object File Format</h4>
 <p>Compiler flags:</p>
-<div class="highlight"><pre><span></span><code><span class="err">Compiler.Compile -b=ARM --objectFile=Minos</span>
+<div class="highlight"><pre><span></span><code>Compiler.Compile -b=ARM --objectFile=Minos
 </code></pre></div>
 <ul>
 <li>The object file is very compact</li>
@@ -759,7 +759,7 @@ find the right documents.</p>
 <li>Predefined loading address and entry point (0x8000 for <span class="caps">RPI2</span>)</li>
 </ul>
 <p>Boot-Linking command in host system</p>
-<div class="highlight"><pre><span></span><code><span class="err">MinosLinker.Link minimalinit.img 108000H kernel.img OFSRamVolumes SerialLog Minos  ~</span>
+<div class="highlight"><pre><span></span><code>MinosLinker.Link minimalinit.img 108000H kernel.img OFSRamVolumes SerialLog Minos  ~
 </code></pre></div>
 <p>Image header: <code>minimalinit.img</code>
 Start address: <code>108000H</code>
@@ -1268,7 +1268,7 @@ Caches can’t be exploited (direct access to memory)!</p>
 <p>Atomic operation implemented in processor.</p>
 <p>Compares memory location with an value. If it’s same a new (given) value is written at the
 memory address. Returns the previous value at memory position in any case.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">CAS</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">old</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">CAS</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">new</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>If value <code>old</code> is at memory location of <code>a</code>: safe <code>new</code> at <code>a</code></li>

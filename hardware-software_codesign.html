@@ -562,9 +562,9 @@
 </blockquote>
 <h2 id="specification-examples">Specification Examples</h2>
 <h3 id="data-flow-graph-dfg">Data-Flow Graph (<span class="caps">DFG</span>)</h3>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="mi">3</span><span class="n">a</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="p">;</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="mi">3</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>no loops</li>
@@ -572,18 +572,18 @@
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Data_flow_diagram">Data Flow Graph on Wikipedia</a></p>
 <h3 id="control-flow-graph-cfg">Control-Flow Graph (<span class="caps">CFG</span>)</h3>
-<div class="highlight"><pre><span></span><code><span class="n">what_is_this</span> <span class="p">{</span>
-    <span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="n">done</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
-    <span class="n">repeat</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
-        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span>
-            <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">;</span>
-        <span class="k">else</span> <span class="n">done</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">until</span> <span class="n">done</span><span class="p">;</span>
-    <span class="n">write</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">what_is_this</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">read</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">repeat</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">until</span><span class="w"> </span><span class="n">done</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>State machine</li>
@@ -1772,11 +1772,11 @@ A \equiv \; &amp; if \; B \\
 <p>A basic block is a sequence of instruction where the control flow enters at the beginning
 and exits at the end, without stopping in-between or branching (except at the end).</p>
 <p>The branch instruction at the end of a basic block belongs to that block!</p>
-<div class="highlight"><pre><span></span><code><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
-<span class="nl">t2</span> <span class="p">:</span><span class="o">=</span> <span class="n">e</span> <span class="o">*</span> <span class="n">t1</span>
-<span class="nl">t3</span> <span class="p">:</span><span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">t1</span>
-<span class="nl">t4</span> <span class="p">:</span><span class="o">=</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t3</span>
-<span class="k">if</span> <span class="n">t4</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">goto</span> <span class="n">L</span>
+<div class="highlight"><pre><span></span><code><span class="nl">t1</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="w"></span>
+<span class="nl">t2</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t1</span><span class="w"></span>
+<span class="nl">t3</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t1</span><span class="w"></span>
+<span class="nl">t4</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t3</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="n">t4</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">L</span><span class="w"></span>
 </code></pre></div>
 <p>Determine basic blocks of a program</p>
 <ol>
@@ -1914,15 +1914,15 @@ occurring in the program (addresses, register contents, local and global variab
 </ul>
 <h4 id="cache-analysis">Cache Analysis</h4>
 <p>Statically precompute cache contents:</p>
-<div class="highlight"><pre><span></span><code><span class="err">- Must Analysis</span>
-<span class="err">    - For each program point (and calling context) find out which blocks *are in the cache*</span>
-<span class="err">    - Determines safe information about cache hits</span>
-<span class="err">    - Predicted cache hit *reduces* **WCET**</span>
-<span class="err">- May Analysis</span>
-<span class="err">    - For each program point (and calling context) find out which blocks *may be in the cache*</span>
-<span class="err">    - *Complement* says what is **not** in the cache</span>
-<span class="err">    - Determines safe information about cache misses</span>
-<span class="err">    - Each predicted cache miss *increases* **BCET**</span>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="nv">Must</span> <span class="nv">Analysis</span>
+    <span class="o">-</span> <span class="k">For</span> <span class="nv">each</span> <span class="nv">program</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">calling</span> <span class="nv">context</span><span class="ss">)</span> <span class="nv">find</span> <span class="nv">out</span> <span class="nv">which</span> <span class="nv">blocks</span> <span class="o">*</span><span class="nv">are</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span><span class="o">*</span>
+    <span class="o">-</span> <span class="nv">Determines</span> <span class="nv">safe</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">cache</span> <span class="nv">hits</span>
+    <span class="o">-</span> <span class="nv">Predicted</span> <span class="nv">cache</span> <span class="nv">hit</span> <span class="o">*</span><span class="nv">reduces</span><span class="o">*</span> <span class="o">**</span><span class="nv">WCET</span><span class="o">**</span>
+<span class="o">-</span> <span class="nv">May</span> <span class="nv">Analysis</span>
+    <span class="o">-</span> <span class="k">For</span> <span class="nv">each</span> <span class="nv">program</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">calling</span> <span class="nv">context</span><span class="ss">)</span> <span class="nv">find</span> <span class="nv">out</span> <span class="nv">which</span> <span class="nv">blocks</span> <span class="o">*</span><span class="nv">may</span> <span class="nv">be</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span><span class="o">*</span>
+    <span class="o">-</span> <span class="o">*</span><span class="nv">Complement</span><span class="o">*</span> <span class="nv">says</span> <span class="nv">what</span> <span class="nv">is</span> <span class="o">**</span><span class="nv">not</span><span class="o">**</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span>
+    <span class="o">-</span> <span class="nv">Determines</span> <span class="nv">safe</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">cache</span> <span class="nv">misses</span>
+    <span class="o">-</span> <span class="nv">Each</span> <span class="nv">predicted</span> <span class="nv">cache</span> <span class="nv">miss</span> <span class="o">*</span><span class="nv">increases</span><span class="o">*</span> <span class="o">**</span><span class="nv">BCET</span><span class="o">**</span>
 </code></pre></div>
 <h5 id="must-cache">Must Cache</h5>
 <ul>

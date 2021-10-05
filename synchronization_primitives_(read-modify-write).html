@@ -87,42 +87,42 @@
 </blockquote>
 <h2 id="load-linkstore-conditional">Load-Link/Store-Conditional</h2>
 <p>This works:</p>
-<div class="highlight"><pre><span></span><code><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// ...</span>
 
-<span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// ok!</span>
+<span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// ok!</span>
 </code></pre></div>
 <p>But this fails:</p>
-<div class="highlight"><pre><span></span><code><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">load_link</span><span class="p">(</span><span class="n">R</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// ...</span>
 
-<span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// possibly other thread (ok!)</span>
+<span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// possibly other thread (ok!)</span>
 
 <span class="c1">// ...</span>
 
-<span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span> <span class="c1">// fails!</span>
+<span class="n">store_conditional</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// fails!</span>
 </code></pre></div>
 <h2 id="test-and-set">Test and Set</h2>
 <p>Pseudo code:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// atomic</span>
-<span class="n">test_and_set</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">)</span><span class="o">:</span> <span class="c1">// V in {0,1}</span>
-    <span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span> <span class="n">V</span>
-    <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">temp</span>
+<span class="n">test_and_set</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span><span class="w"> </span><span class="n">mem_address</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="c1">// V in {0,1}</span>
+<span class="w">    </span><span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="w"></span>
+<span class="w">    </span><span class="nl">V</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">temp</span><span class="w"></span>
 </code></pre></div>
 <p>Reset:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// normal write</span>
-<span class="n">reset</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">)</span><span class="o">:</span>
-    <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
+<span class="n">reset</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span><span class="w"> </span><span class="n">mem_address</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="nl">V</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 </code></pre></div>
 <h2 id="generic-rwm">Generic <span class="caps">RWM</span></h2>
 <p>Pseudo code:</p>
-<div class="highlight"><pre><span></span><code><span class="n">rwm</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span> <span class="n">mem_address</span><span class="p">,</span> <span class="nl">f</span><span class="p">:</span> <span class="n">function</span><span class="p">)</span> <span class="k">return</span> <span class="n">value</span>
-    <span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span> <span class="n">V</span>
-    <span class="nl">V</span> <span class="p">:</span><span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">tmp</span>
+<div class="highlight"><pre><span></span><code><span class="n">rwm</span><span class="p">(</span><span class="nl">V</span><span class="p">:</span><span class="w"> </span><span class="n">mem_address</span><span class="p">,</span><span class="w"> </span><span class="nl">f</span><span class="p">:</span><span class="w"> </span><span class="n">function</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="nl">tmp</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="w"></span>
+<span class="w">    </span><span class="nl">V</span> <span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tmp</span><span class="w"></span>
 </code></pre></div>
 <h1 id="mutex-shared-memory">Mutex (Shared Memory)</h1>
 <ul>

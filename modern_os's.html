@@ -487,8 +487,8 @@ There are 4 pointer to the buffer.</p>
 <h2 id="spinlock">Spinlock</h2>
 <h3 id="naive-spinlock-spin-on-ts">Naive Spinlock (Spin on T+S)</h3>
 <p>A thread or processor waiting for a lock loops (spins) without doing any useful work.</p>
-<div class="highlight"><pre><span></span><code><span class="err">LOCK(L):</span>
-<span class="err">    WHILE(T+S(L) == locked);</span>
+<div class="highlight"><pre><span></span><code><span class="nv">LOCK</span><span class="ss">(</span><span class="nv">L</span><span class="ss">)</span>:
+    <span class="k">WHILE</span><span class="ss">(</span><span class="nv">T</span><span class="o">+</span><span class="nv">S</span><span class="ss">(</span><span class="nv">L</span><span class="ss">)</span> <span class="o">==</span> <span class="nv">locked</span><span class="ss">)</span><span class="c1">;</span>
 </code></pre></div>
 <p>Problems with this naive spinlock implementation:</p>
 <ul>
@@ -520,11 +520,11 @@ of <code>L</code> is updated by the cache coherence mechanism of the system.</p
 </code></pre></div>
 <p>The delay time is dependent on the processor.</p>
 <h4 id="delay-with-exponential-backoff">Delay with exponential backoff</h4>
-<div class="highlight"><pre><span></span><code><span class="err">WHILE(T+S(L) == locked) // not using chaching at all</span>
-<span class="err">{</span>
-<span class="err">    delay(d); // d is small at first</span>
-<span class="err">    d = d * 2;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">WHILE</span><span class="ss">(</span><span class="nv">T</span><span class="o">+</span><span class="nv">S</span><span class="ss">(</span><span class="nv">L</span><span class="ss">)</span> <span class="o">==</span> <span class="nv">locked</span><span class="ss">)</span> <span class="o">//</span> <span class="nv">not</span> <span class="nv">using</span> <span class="nv">chaching</span> <span class="nv">at</span> <span class="nv">all</span>
+{
+    <span class="nv">delay</span><span class="ss">(</span><span class="nv">d</span><span class="ss">)</span><span class="c1">; // d is small at first</span>
+    <span class="nv">d</span> <span class="o">=</span> <span class="nv">d</span> <span class="o">*</span> <span class="mi">2</span><span class="c1">;</span>
+}
 </code></pre></div>
 <p>Every time when the lock is checked and not free the processor waits a longer time before trying again.
 T+S can be used because we wait before trying to quire the lock again. This reduces the contention.
@@ -551,13 +551,13 @@ array is equal to the number of processors.</p>
 <p><img alt="The flag array structure" class="img-fluid" src="/images/array_based_queuing_lock.png"/></p>
 <p>Only one slot can be marked as <strong>hl</strong>.</p>
 <p>The slots are not statically associated with a particular processor.</p>
-<div class="highlight"><pre><span></span><code><span class="k">LOCK</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-   <span class="n">myPlace</span> <span class="o">=</span> <span class="n">fetch_and_inc</span><span class="p">(</span><span class="n">queuelast</span><span class="p">);</span>
-   <span class="n">WHILE</span><span class="p">(</span><span class="n">flags</span><span class="p">[</span><span class="n">myPlace</span> <span class="k">mod</span> <span class="n">N</span><span class="p">]</span> <span class="o">==</span> <span class="n">mw</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nv">LOCK</span><span class="ss">(</span><span class="nv">L</span><span class="ss">)</span>:
+   <span class="nv">myPlace</span> <span class="o">=</span> <span class="nv">fetch_and_inc</span><span class="ss">(</span><span class="nv">queuelast</span><span class="ss">)</span><span class="c1">;</span>
+   <span class="k">WHILE</span><span class="ss">(</span><span class="nv">flags</span>[<span class="nv">myPlace</span> <span class="nv">mod</span> <span class="nv">N</span>] <span class="o">==</span> <span class="nv">mw</span><span class="ss">)</span><span class="c1">;</span>
 
-<span class="n">UNLOCK</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="n">flags</span><span class="p">[</span><span class="k">current</span> <span class="k">mod</span> <span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">mw</span><span class="p">;</span> <span class="o">//</span> <span class="n">release</span> <span class="k">lock</span> <span class="k">for</span> <span class="n">feature</span> <span class="n">use</span>
-    <span class="n">flags</span><span class="p">[(</span><span class="k">current</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">mod</span> <span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">hl</span><span class="p">;</span> <span class="o">//</span> <span class="k">next</span> <span class="n">processor</span> <span class="k">in</span> <span class="n">queue</span> <span class="n">gets</span> <span class="k">lock</span>
+<span class="nv">UNLOCK</span><span class="ss">(</span><span class="nv">L</span><span class="ss">)</span>:
+    <span class="nv">flags</span>[<span class="nv">current</span> <span class="nv">mod</span> <span class="nv">N</span>] <span class="o">=</span> <span class="nv">mw</span><span class="c1">; // release lock for feature use</span>
+    <span class="nv">flags</span>[<span class="ss">(</span><span class="nv">current</span><span class="o">+</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">mod</span> <span class="nv">N</span>] <span class="o">=</span> <span class="nv">hl</span><span class="c1">; // next processor in queue gets lock</span>
 </code></pre></div>
 <ul>
 <li>Only one atomic operation needed per critical section</li>
