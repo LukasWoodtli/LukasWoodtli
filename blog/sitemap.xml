@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/</loc>
-<lastmod>2021-10-26T08:24:32-00:00</lastmod>
+<lastmod>2021-10-27T06:41:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/tags.html</loc>
-<lastmod>2021-10-26T08:24:32-00:00</lastmod>
+<lastmod>2021-10-27T06:41:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/categories.html</loc>
-<lastmod>2021-10-26T08:24:32-00:00</lastmod>
+<lastmod>2021-10-27T06:41:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/archives.html</loc>
-<lastmod>2021-10-26T08:24:32-00:00</lastmod>
+<lastmod>2021-10-27T06:41:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/search.html</loc>
-<lastmod>2021-10-26T08:24:32-00:00</lastmod>
+<lastmod>2021-10-27T06:41:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/404.html</loc>
-<lastmod>2021-10-26T08:24:32-00:00</lastmod>
+<lastmod>2021-10-27T06:41:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -104,6 +104,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://lukaswoodtli.github.io/blog/pages/skills.html</loc>
 <lastmod>2020-08-18T09:25:56+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://lukaswoodtli.github.io/blog/a_brief_history_of_test_driven_development.html</loc>
+<lastmod>2021-10-27T06:18:45+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -852,7 +859,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/category/programming.html</loc>
-<lastmod>2021-10-13T15:59:43+01:00</lastmod>
+<lastmod>2021-10-27T06:18:45+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1104,7 +1111,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/blog/author/lukas_woodtli.html</loc>
-<lastmod>2021-10-13T15:59:43+01:00</lastmod>
+<lastmod>2021-10-27T06:18:45+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
