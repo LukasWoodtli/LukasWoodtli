@@ -143,9 +143,9 @@ on an executable that was built with the <code>-fsanitize=address</code> flag</p
 <p>To suppress detection of concrete leaks foud by LSan a suppression file can be provided</p>
 <p><code>LSAN_OPTIONS="suppressions=$(realpath lsan_suppressions.txt)"</code></p>
 <p>Example of <code>lsan_suppressions.txt</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">leak</span><span class="o">:</span><span class="n">FooBar</span>
-<span class="n">leak</span><span class="o">:</span><span class="n">libmylibrary</span><span class="o">.</span><span class="na">so</span>
-<span class="n">leak</span><span class="o">:</span><span class="n">myexecutable</span>
+<div class="highlight"><pre><span></span><code><span class="n">leak</span><span class="o">:</span><span class="n">FooBar</span><span class="w"></span>
+<span class="n">leak</span><span class="o">:</span><span class="n">libmylibrary</span><span class="o">.</span><span class="na">so</span><span class="w"></span>
+<span class="n">leak</span><span class="o">:</span><span class="n">myexecutable</span><span class="w"></span>
 </code></pre></div>
 <p>There is also a similar suppression mechanism for ASan.</p>
 <h3 id="virtual-memory-max-map-count">Virtual Memory Max Map Count</h3>

@@ -84,7 +84,7 @@
 <h1 id="aggregations">Aggregations</h1>
 <p>Aggregation functions work on the values of a column.</p>
 <p>They return a single value.</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Function</th>
@@ -151,13 +151,13 @@ The combination is based on a common field between them.</p>
 </li>
 </ul>
 <p>Example: Which animals eat fisch?</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
-  <span class="n">animals</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
-  <span class="n">animals</span><span class="p">.</span><span class="n">species</span><span class="p">,</span>
-  <span class="n">diet</span><span class="p">.</span><span class="n">food</span>
-<span class="k">FROM</span> <span class="n">animals</span> <span class="k">JOIN</span> <span class="n">diet</span>
-<span class="k">ON</span> <span class="n">animal</span><span class="p">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">diet</span><span class="p">.</span><span class="n">species</span>
-<span class="k">WHERE</span> <span class="n">food</span> <span class="o">=</span> <span class="s1">'fish'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"></span>
+<span class="w">  </span><span class="n">animals</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">animals</span><span class="p">.</span><span class="n">species</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">diet</span><span class="p">.</span><span class="n">food</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">animals</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">diet</span><span class="w"></span>
+<span class="k">ON</span><span class="w"> </span><span class="n">animal</span><span class="p">.</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diet</span><span class="p">.</span><span class="n">species</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">food</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'fish'</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <h1 id="unique-keys">Unique Keys</h1>
 <ul>

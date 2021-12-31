@@ -83,7 +83,7 @@
             <p>This page contains notes about the usual stack frame layout (calling convention) on <span class="caps">ARM</span> processors.</p>
 <p>Most information is taken from <a href="http://de.slideshare.net/StephanCadene/arm-procedure-calling-conventions-and-recursion"><span class="caps">ARM</span> procedure calling conventions and recursion </a>.</p>
 <p>The conventions are defined by <span class="caps">ARM</span> and are called <a href="http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042e/IHI0042E_aapcs.pdf"><span class="caps">PCSAA</span></a>.</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th></th>
@@ -133,23 +133,23 @@
 </li>
 </ul>
 <p><code>PUSH</code>/<code>POP</code>: <code>STMFD</code>/<code>LDMFD</code> (Store multiple Full-Descent, Load multiple Full-Descent)</p>
-<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="p">,</span> <span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span><span class="w"></span>
 </code></pre></div>
 <p>is equvalent to:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">LDR</span> <span class="nb">R0</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">]</span>
-<span class="nf">LDR</span> <span class="nb">R1</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">4</span><span class="p">]</span>
-<span class="nf">LDR</span> <span class="nb">R2</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">8</span><span class="p">]</span>
-<span class="nf">LDR</span> <span class="nb">R3</span><span class="p">,</span> <span class="p">[</span><span class="nb">SP</span><span class="p">,</span> <span class="err">#</span><span class="mi">12</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="nf">LDR</span><span class="w"> </span><span class="nb">R0</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">SP</span><span class="p">]</span><span class="w"></span>
+<span class="nf">LDR</span><span class="w"> </span><span class="nb">R1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="c1">#4]</span><span class="w"></span>
+<span class="nf">LDR</span><span class="w"> </span><span class="nb">R2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="c1">#8]</span><span class="w"></span>
+<span class="nf">LDR</span><span class="w"> </span><span class="nb">R3</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="c1">#12]</span><span class="w"></span>
 </code></pre></div>
 <p>To alter (update) <code>SP</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span><span class="w"> </span><span class="nb">SP</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span><span class="w"></span>
 </code></pre></div>
 <p><code>LR</code> needs to be saved on stack for <em>non</em>-leaf functions</p>
-<div class="highlight"><pre><span></span><code><span class="err">:::</span> <span class="nf">nasm</span>
-<span class="nl">_func:</span>
-  <span class="nf">STMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span> <span class="nv">LR</span><span class="err">}</span>
-  <span class="c1">; ... code of func</span>
-  <span class="nf">LDMFD</span> <span class="nb">SP</span><span class="err">!</span><span class="p">,</span> <span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span> <span class="nv">PC</span><span class="err">}</span> <span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span>
+<div class="highlight"><pre><span></span><code><span class="err">:::</span><span class="w"> </span><span class="nf">nasm</span><span class="w"></span>
+<span class="nl">_func:</span><span class="w"></span>
+<span class="w">  </span><span class="nf">STMFD</span><span class="w"> </span><span class="nb">SP</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span><span class="w"> </span><span class="nv">LR</span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="c1">; ... code of func</span><span class="w"></span>
+<span class="w">  </span><span class="nf">LDMFD</span><span class="w"> </span><span class="nb">SP</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span><span class="w"> </span><span class="nv">PC</span><span class="err">}</span><span class="w"> </span><span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>The order of registers in <code>STMFD</code> and <code>LDMFD</code> is always the same: lower regisers at lower addresses</li>
