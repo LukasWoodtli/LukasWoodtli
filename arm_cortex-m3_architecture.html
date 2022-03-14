@@ -249,7 +249,7 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.cortexm.m3/index.html">documentation by <span class="caps">ARM</span></a>.</p>
 
 <h1 id="general">General</h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -272,7 +272,7 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 </tbody>
 </table>
 <h1 id="efm32tg-overview"><span class="caps">EFM32TG</span> Overview</h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Feature</th>
@@ -344,7 +344,7 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 </table>
 <h1 id="registers">Registers</h1>
 <p>All registers are 32-bit wide.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -426,7 +426,7 @@ must be 1 (indicating thumb mode).</p>
 <h2 id="program-status-registers">Program Status Registers</h2>
 <p>The special-purpose program status registers (<em>xPSR</em>) provide arithmetic and logic flags (zero and carry flag),
 execution status and current executing <span class="caps">IRQ</span> number.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th align="right">Bit</th>
@@ -526,7 +526,7 @@ execution status and current executing <span class="caps">IRQ</span> number.</p
 </ul>
 <h3 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h3>
 <p>The commands <code>MSR</code> and <code>MRS</code> can use the mnemonics <span class="caps">APSR</span>, <span class="caps">IPSR</span>, and <span class="caps">EPSR</span> directly or combined mnemonics for the Program Status Registers.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Mnemonic</th>
@@ -582,7 +582,7 @@ execution status and current executing <span class="caps">IRQ</span> number.</p
 <p>To switch from privileged level to user level the <em>Control bit[0]</em> can be written directly.</p>
 <p>The switch from user level to privilege level heeds to be performed within an exception handler.</p>
 <h2 id="reset-values-and-required-access-privileges">Reset Values and Required Access Privileges</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Name</th>
@@ -678,7 +678,7 @@ execution status and current executing <span class="caps">IRQ</span> number.</p
 <li>Privileged Level</li>
 </ul>
 <p>In Handler Mode only the Privileged Level is available.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -712,7 +712,7 @@ occurs the look-up of the routine is fast and the handling of the interrupt is n
 <h1 id="memory-layout">Memory Layout</h1>
 <p>The Cortex-M3 has a defined memory map. So most built in peripherals are accessible by their
 memory address. Thus it’s easy to access it in C/C++ code.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Address Range</th>
@@ -762,7 +762,7 @@ in a region called bit-banding alias.</p>
 <li>The bit-banding alias regions are 32 <span class="caps">MB</span> big (but it addresses in total only the 1 <span class="caps">MB</span> of the bit-banding region).</li>
 </ul>
 <p>There are two bit-band region. One for memory and the other for peripherals.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -830,7 +830,7 @@ But it’s usually not nessecary to do the address translation in this directio
 </ul>
 <p>Signed data is represented using two’s complement format.</p>
 <h1 id="exceptions">Exceptions</h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Exception number</th>
@@ -979,7 +979,7 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 </blockquote>
 <h1 id="the-vector-table">The Vector Table</h1>
 <p>The Vector Table contains the reset value of <em>SP_main</em> and the addresses of each exception handler function.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Offset in Table (32-bit words)</th>
@@ -1037,7 +1037,7 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 <p>For example <code>ADDS R0, R0, R1;</code> updates the flags.</p>
 <h3 id="conditional-suffixes">Conditional Suffixes</h3>
 <p>This suffixes can be used for branching instructions but also for conditional execution commands.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Suffix</th>
@@ -1537,10 +1537,10 @@ The debug architecture defines the use (if any).</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="./tags#assembler-ref">Assembler
-                    <span>7</span>
+                    <span>8</span>
 </a></li>
                 <li><a href="./tags#computer_science-ref">Computer Science
-                    <span>24</span>
+                    <span>25</span>
 </a></li>
                 <li><a href="./tags#embedded_systems-ref">Embedded Systems
                     <span>7</span>
