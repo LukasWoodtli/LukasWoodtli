@@ -315,7 +315,7 @@
 <p>I keep some examples on <a href="https://github.com/LukasWoodtli/LinuxAssemblyProgramming">GitHub</a>.</p>
 
 <h1 id="general">General</h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -338,7 +338,7 @@
 </tbody>
 </table>
 <h1 id="operation-modes">Operation Modes</h1>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Mode</th>
@@ -446,7 +446,7 @@ signed addresses relative to any reference point.</p>
 code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresses can be used.</p>
 <h1 id="registers">Registers</h1>
 <h2 id="general-purpose-registers">General-Purpose Registers</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>64-bit</th>
@@ -536,7 +536,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 <em>bx’s</em> high byte can be accessed as <em>bh</em> and low byte as <em>bl</em>.</p>
 <h2 id="segment-registers">Segment Registers</h2>
 <p>These registers are used in real mode and protected mode for memory segmentation.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -563,7 +563,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 </tbody>
 </table>
 <h2 id="special-registers">Special Registers</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -585,7 +585,7 @@ code below <span class="math">\(2^{31}\)</span> so that absolute 32-bit addresse
 </tbody>
 </table>
 <h2 id="values-after-reset">Values after Reset</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -622,7 +622,7 @@ single Instruction Multiple Data (<span class="caps">SIMD</span>) and <span clas
 <p>There are 16 <span class="caps">XMM</span> registers with a size of 128 bits.
 They are called xmm0-xmm15.</p>
 <h2 id="flags-register">Flags Register</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Bit</th>
@@ -897,7 +897,7 @@ With brackets the value stored in the variable is taken.</p>
 <span class="nf">movsxd</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>Special instructions:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Instruction</th>
@@ -1071,7 +1071,7 @@ or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<
 <span class="nf">IMUL</span><span class="w"> </span><span class="nb">BX</span><span class="w"> </span><span class="c1">; Use AX as implicit operand. Result is saved in DX/AX.</span><span class="w"></span>
 </code></pre></div>
 <p>Sizes (<code>mul</code>):</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Size</th>
@@ -1104,7 +1104,7 @@ or the <strong>extended accumulator</strong> (<em><span class="caps">DX</span>/<
 <span class="nf">imul</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">dest</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">src</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">imm</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>For single operand (same as <code>mul</code>):</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Size</th>
@@ -1167,7 +1167,7 @@ Setting the dividend correctly requires often to set two registers
 <span class="nf">IDIV</span><span class="w"> </span><span class="mh">0x34</span><span class="w"> </span><span class="c1">; Use AX as implicit operand. Result is saved in AL. Remainder is saved in AH.</span><span class="w"></span>
 </code></pre></div>
 <p>Unsigned and signed division (<code>div</code>, <code>idiv</code>):</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Size</th>
@@ -1230,7 +1230,7 @@ for floating point instructions.</p>
 <li>Operands can not be an immediate</li>
 </ul>
 <h2 id="conversion-instructions_1">Conversion Instructions</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Conversions</th>
@@ -1374,7 +1374,7 @@ power of two (2, 5, 8, …).</p>
 shift operators</em> need to be used.</p>
 <p>For a multiplication or a division of a <em>signed</em> number the 
 <em>arithmetic shift operators</em> need to be used.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Direction</th>
@@ -1499,7 +1499,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 <h3 id="arithmetic-jumps">Arithmetic Jumps</h3>
 <p>The jump is performed if the size relation between two given operands is as expected.</p>
 <p>The relation is expressed differently for signed and unsigned operands:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Relation</th>
@@ -1526,7 +1526,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 </tbody>
 </table>
 <h4 id="arithmetic-unsigned-jumps">Arithmetic <em>“unsigned”</em> Jumps</h4>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Relation</th>
@@ -1599,7 +1599,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 </tbody>
 </table>
 <h4 id="arithmetic-signed-jumps">Arithmetic <em>“signed”</em> Jumps</h4>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Relation</th>
@@ -1672,7 +1672,7 @@ Alternatively the commands <code>CMP</code> and <code>TEST</code> can be used.<
 </tbody>
 </table>
 <h3 id="flag-oriented-jumps">Flag oriented Jumps</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -1844,7 +1844,7 @@ This code is called function epilogue.</p>
 For some commands the accumulator (<em><span class="caps">AL</span></em>/<em><span class="caps">AX</span></em>) is used as operator.
 <em><span class="caps">SI</span></em> is <em><span class="caps">DS</span></em>-relative by default. But the segment can be overridden.
 <em><span class="caps">DI</span></em> is <em><span class="caps">ES</span></em>-relative by default. The segment can <strong>not</strong> be overridden.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Command</th>
@@ -1966,8 +1966,8 @@ For some commands the accumulator (<em><span class="caps">AL</span></em>/<em><sp
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./endianness.html" title="Previous: Endianness">Endianness</a></li>
-                <li class="next-article"><a href="./arm_cortex-m3_architecture.html" title="Next: ARM Cortex-M3 Architecture">ARM Cortex-M3 Architecture</a> »</li>
+                <li class="previous-article">« <a href="./introduction_to_statistics.html" title="Previous: Introduction to Statistics">Introduction to Statistics</a></li>
+                <li class="next-article"><a href="./undo_committed_changes_with_svn.html" title="Next: Undo Committed Changes with SVN">Undo Committed Changes with SVN</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -1985,10 +1985,10 @@ For some commands the accumulator (<em><span class="caps">AL</span></em>/<em><sp
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="./tags#assembler-ref">Assembler
-                    <span>8</span>
+                    <span>3</span>
 </a></li>
                 <li><a href="./tags#computer_science-ref">Computer Science
-                    <span>25</span>
+                    <span>10</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

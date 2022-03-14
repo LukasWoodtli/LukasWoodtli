@@ -85,14 +85,14 @@
 <script type="text/javascript" src="./theme/tipuesearch/tipuesearch_set.js"></script>
 <script type="text/javascript" src="./theme/tipuesearch/tipuesearch.min.js"></script>
 
-<script src="./tipuesearch_content.js"></script>
 
 <script>
 $(document).ready(function() {
      $('#tipue_search_input').tipuesearch({
-             'mode' : 'json',
+             'mode': 'live',
          'show': 10,
          'newWindow': false,
+             'liveDescription': '.article-content'
      });
 });
 </script>
