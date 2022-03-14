@@ -9,19 +9,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Assembler, Computer Science, OS, Linux, Programming, " />
+<meta name="keywords" content="Computer Science, OS, Linux, Programming, " />
 
-<meta property="og:title" content="Linux System Calls "/>
-<meta property="og:url" content="./linux_system_calls.html" />
-<meta property="og:description" content="A system call is the basic interface between applications and the kernel. Linux has more than 300 system calls. The syscalls are implemented by the syscall function. Intel x86-64 System calls use the default calling convention (System V AMD64 ABI). Stack based arguments are not used. This limits the number …" />
+<meta property="og:title" content="Files and File descriptors on Linux "/>
+<meta property="og:url" content="./files_and_file_descriptors_on_linux.html" />
+<meta property="og:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
-<meta property="og:article:published_time" content="2017-11-06T20:45:38+01:00" />
-<meta property="og:article:modified_time" content="2018-05-30T21:05:28+02:00" />
-<meta name="twitter:title" content="Linux System Calls ">
-<meta name="twitter:description" content="A system call is the basic interface between applications and the kernel. Linux has more than 300 system calls. The syscalls are implemented by the syscall function. Intel x86-64 System calls use the default calling convention (System V AMD64 ABI). Stack based arguments are not used. This limits the number …">
+<meta property="og:article:published_time" content="2016-06-03T15:56:39+02:00" />
+<meta property="og:article:modified_time" content="2018-09-14T20:40:30+02:00" />
+<meta name="twitter:title" content="Files and File descriptors on Linux ">
+<meta name="twitter:description" content="Some information on this page is taken from here (German). Process Control Block (PCB) Contains the information about a process. C struct task_struct Pointer to code section (text) Pointer to data section State: running, ready, blocked, terminated Instruction pointer (IP): next instruction to execute Saved registers Memory information: pages Scheduler …">
 
-        <title>Linux System Calls  · Lukas Woodtli
+        <title>Files and File descriptors on Linux  · Lukas Woodtli
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="./linux_system_calls.html"> Linux System&nbsp;Calls  </a></h1>
+    <h1><a href="./files_and_file_descriptors_on_linux.html"> Files and File descriptors on&nbsp;Linux  </a></h1>
     </header>
 </div>
 
@@ -80,62 +80,93 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>A system call is the basic interface between applications and the kernel.</p>
-<p>Linux has more than 300 <a href="http://man7.org/linux/man-pages/man2/syscalls.2.html">system calls</a>.</p>
-<p>The syscalls are implemented by the <a href="http://man7.org/linux/man-pages/man2/syscall.2.html"><code>syscall</code> function</a>.</p>
-<h1 id="intel-x86-64">Intel x86-64</h1>
-<p>System calls use the default <a href="./x86_calling_conventions.html">calling convention</a> (System V <span class="caps">AMD64</span> <span class="caps">ABI</span>).</p>
-<p>Stack based arguments are not used. This limits the number
-of arguments to 6.</p>
-<p>Each system call has an unique call code. The call code are provided
-in the <code>rax</code> register.</p>
-<p>Call codes and arguments can be found <a href="https://filippo.io/linux-syscall-table/">here</a>.</p>
-<h2 id="registers">Registers</h2>
-<p>The registers are only used when needed.</p>
-<p>The call code is necessary.</p>
-<table class="table table-striped">
+            <p>Some information on this page is taken from <a href="http://openbook.rheinwerk-verlag.de/linux_unix_programmierung/Kap02-001.htm">here</a> (German).</p>
+<h1 id="process-control-block-pcb">Process Control Block (<span class="caps">PCB</span>)</h1>
+<p>Contains the information about a process.</p>
+<ul>
+<li>C struct <code>task_struct</code></li>
+<li>Pointer to code section (text)</li>
+<li>Pointer to data section</li>
+<li>State: running, ready, blocked, terminated</li>
+<li>Instruction pointer (<span class="caps">IP</span>): next instruction to execute</li>
+<li>Saved registers</li>
+<li>Memory information: pages</li>
+<li>Scheduler information<ul>
+<li>Priority</li>
+<li>Pointer to scheduler queue</li>
+</ul>
+</li>
+<li>Table with open file descriptors hold by this process</li>
+</ul>
+<h1 id="file-table">File Table</h1>
+<ul>
+<li>1 entry for each open file</li>
+<li>different processes can point to the same entry</li>
+<li>Entry:<ul>
+<li>number of i-nodes</li>
+<li>position pointer</li>
+<li>mode (read, write, append…)</li>
+<li>pointer to v-node table</li>
+</ul>
+</li>
+</ul>
+<h1 id="v-node-table">v-node Table</h1>
+<ul>
+<li>i-node information<ul>
+<li>copied to v-node table when file is opened</li>
+<li>owner</li>
+<li>rights</li>
+<li>user/group ids</li>
+<li>number of links</li>
+</ul>
+</li>
+<li>file information</li>
+<li>file size</li>
+<li>functions (file system dependent)</li>
+</ul>
+<h1 id="file-descriptors">File Descriptors</h1>
+<p>File descriptors are unique <span class="caps">ID</span>’s (ints) that identify an open file.</p>
+<p>3 descriptors are reserved by the system in <code>&lt;unistd.h&gt;</code>:</p>
+<table class="table-striped table">
 <thead>
 <tr>
-<th>Register</th>
-<th>Usage</th>
+<th>Constant</th>
+<th>Number</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>rax</code></td>
-<td>Call code, return value after call</td>
+<td>STDIN_FILENO</td>
+<td>0</td>
+<td>Standard input</td>
 </tr>
 <tr>
-<td><code>rdi</code></td>
-<td>1st argument</td>
+<td>STDOUT_FILENO</td>
+<td>1</td>
+<td>Standard output</td>
 </tr>
 <tr>
-<td><code>rsi</code></td>
-<td>2nd argument</td>
-</tr>
-<tr>
-<td><code>rdx</code></td>
-<td>3rd argument</td>
-</tr>
-<tr>
-<td><code>rcx</code></td>
-<td>4th argument</td>
-</tr>
-<tr>
-<td><code>r8</code></td>
-<td>5th argument</td>
-</tr>
-<tr>
-<td><code>r9</code></td>
-<td>6th argument</td>
+<td>STDERR_FILENO</td>
+<td>2</td>
+<td>Standard error</td>
 </tr>
 </tbody>
 </table>
-<h2 id="syscall-instruction"><code>SYSCALL</code> Instruction</h2>
-<p>After the call code and the arguments are placed in the registers
-the <code>syscall</code> instruction is executed. Then the current process
-will pause and control is passed to the kernel. When the system call
-returns the process will be resumed.</p>
+<p>The number can differ but the given ones are common.</p>
+<p>Functions that return a file descriptor (e.g. <code>open(...)</code>or <code>creat(...)</code>) return <code>-1</code> if en error occurred.</p>
+<h1 id="file-types">File Types</h1>
+<p>There are 6 different file types in Linux:</p>
+<ul>
+<li>Regular files</li>
+<li>Directories</li>
+<li>Device files</li>
+<li>Sockets</li>
+<li>Pipes (named Pipes and FIFOs)</li>
+<li>Links (Soft- and Hardlinks)</li>
+</ul>
+<h1 id="special-device-files">Special Device Files</h1>
+<p>See <a href="./unix_device_files.html">here</a> for a description for device files.</p>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -147,8 +178,8 @@ returns the process will be resumed.</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./x86_calling_conventions.html" title="Previous: x86 Calling Conventions">x86 Calling Conventions</a></li>
-                <li class="next-article"><a href="./linking_and_loading.html" title="Next: Linking and Loading">Linking and Loading</a> »</li>
+                <li class="previous-article">« <a href="./object_databases.html" title="Previous: Object Databases">Object Databases</a></li>
+                <li class="next-article"><a href="./requirements_engineering.html" title="Next: Requirements Engineering">Requirements Engineering</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -156,26 +187,23 @@ returns the process will be resumed.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2017-11-06T20:45:38+01:00">Nov 6, 2017</time>
+            <time itemprop="dateCreated" datetime="2016-06-03T15:56:39+02:00">Jun 3, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2018-05-30T21:05:28+02:00">May 30, 2018</time>
+<time datetime="2018-09-14T20:40:30+02:00">Sep 14, 2018</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags#assembler-ref">Assembler
-                    <span>3</span>
-</a></li>
                 <li><a href="./tags#computer_science-ref">Computer Science
-                    <span>10</span>
+                    <span>24</span>
 </a></li>
                 <li><a href="./tags#linux-ref">Linux
-                    <span>5</span>
+                    <span>12</span>
 </a></li>
                 <li><a href="./tags#os-ref">OS
-                    <span>7</span>
+                    <span>12</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
