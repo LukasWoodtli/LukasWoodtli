@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-07-28T19:23:58+02:00" />
-<meta property="og:article:modified_time" content="2022-04-04T12:29:27+02:00" />
+<meta property="og:article:modified_time" content="2022-04-10T17:21:45+02:00" />
 <meta name="twitter:title" content="Concepts of Object Oriented Programming ">
 <meta name="twitter:description" content="Core Requirements to OOP Languages Highly dynamic execution model Cooperating program parts with well defined interfaces Classification (hierarchy) and specialisation (reuse) Quality/Correctness The Object Model A software system is a set of cooperating objects Objects have state (fields) and processing ability (methods) Objects exchange messages (methods) Objects have: State …">
 
@@ -574,14 +574,18 @@ This is expressed as interface specifications (contracts)</p>
 <li><em>History</em> inheritance: same as for <em>invariants</em></li>
 <li><em>Precondition</em> inheritance: Disjunctions (<span class="caps">OR</span>) of own contract and contracts of all supertypes</li>
 </ul>
-<div class="math">$$PreEff_{S.m} = Pre_{S.m} || Pre_{T.m} || Pre_{T’.m} || ...$$</div>
+<div class="math">$$
+PreEff_{S.m} = Pre_{S.m} || Pre_{T.m} || Pre_{T'.m} || ...
+$$</div>
 <ul>
 <li><em>Postcondition</em> inheritance: Satisfy <em>each</em> postcondition for which the corresponding precondition holds<ul>
 <li>Precondition needs to be evaluated with <em>old</em> state</li>
 </ul>
 </li>
 </ul>
-<div class="math">$$PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) \&amp;\&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) \&amp;\&amp; ...$$</div>
+<div class="math">$$
+PostEff_{S.m} = (old(Pre_{S.m}) =&gt; Post_{S.m}) \&amp;\&amp; (old(Pre_{T.m}) =&gt; Post_{T.m}) \&amp;\&amp; ...
+$$</div>
 <h3 id="types-as-contracts">Types as Contracts</h3>
 <p>Types can be seen as a kind of contracts.</p>
 <p>Overriding Methods must:</p>
@@ -794,8 +798,8 @@ of <em>both</em> arguments.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Wrapper</span> <span class="p">{</span>
     <span class="n">Cell</span><span class="o">&lt;?&gt;</span> <span class="n">data</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c1">// client code:</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// client code:</span>
 <span class="n">Wrapper</span> <span class="n">w</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Wrapper</span><span class="p">();</span>
 <span class="n">w</span><span class="p">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cell</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// w.data has type Cell&lt;String&gt;</span>
 <span class="n">w</span><span class="p">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Call</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// now w.data has type Cell&lt;Object&gt;!</span>
@@ -1364,13 +1368,19 @@ provided only the information needed.</p>
 <div class="highlight"><pre><span></span><code><span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">f</span><span class="p">;</span>
 </code></pre></div>
 <p>Is correctly typed if:</p>
-<div class="math">$$\tau(v) :&gt; \tau(e) \blacktriangleright \tau(f)$$</div>
+<div class="math">$$
+\tau(v) :&gt; \tau(e) \blacktriangleright \tau(f)
+$$</div>
 <p>Field <strong>Write</strong> or Method <strong>Result</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="na">f</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
 </code></pre></div>
-<div class="math">$$\tau(e) \blacktriangleright \tau(f) :&gt; \tau(v)$$</div>
+<div class="math">$$
+\tau(e) \blacktriangleright \tau(f) :&gt; \tau(v)
+$$</div>
 <p>And</p>
-<div class="math">$$\tau(e) \blacktriangleright \tau(f)$$</div>
+<div class="math">$$
+\tau(e) \blacktriangleright \tau(f)
+$$</div>
 <p>is <strong>not lost</strong>.</p>
 <h4 id="aliasing_1">Aliasing</h4>
 <ul>
@@ -2055,7 +2065,7 @@ it gets swalowed and rethrown as an unchecked exception.</p>
             <time itemprop="dateCreated" datetime="2015-07-28T19:23:58+02:00">Jul 28, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-04-04T12:29:27+02:00">Apr 4, 2022</time>
+<time datetime="2022-04-10T17:21:45+02:00">Apr 10, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

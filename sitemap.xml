@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2022-04-09T15:49:46-00:00</lastmod>
+<lastmod>2022-04-11T19:03:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2022-04-09T15:49:46-00:00</lastmod>
+<lastmod>2022-04-11T19:03:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2022-04-09T15:49:46-00:00</lastmod>
+<lastmod>2022-04-11T19:03:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2022-04-09T15:49:46-00:00</lastmod>
+<lastmod>2022-04-11T19:03:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/search.html</loc>
-<lastmod>2022-04-09T15:49:46-00:00</lastmod>
+<lastmod>2022-04-11T19:03:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/404.html</loc>
-<lastmod>2022-04-09T15:49:46-00:00</lastmod>
+<lastmod>2022-04-11T19:03:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -145,7 +145,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/spring.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -159,7 +159,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/gewohnheiten.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-08T19:10:46+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -180,7 +180,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/scheme_(lisp).html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:01:50+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -194,49 +194,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/comparison_of_rotations_and_rigid-body_motions.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:04:10+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/wrenches.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:50:35+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/exponential_coordinate_representation_of_rigid-body_motions.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/twists.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:50:35+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/homogeneous_transformation_matrices.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:36:49+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/seven_concurrency_models_in_seven_weeks.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T20:01:50+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/domain_driven_design.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-08T19:10:46+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -250,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/angular_velocity.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:04:10+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -278,7 +278,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/robot_operating_system_(ros).html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -292,7 +292,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/eigenvectors_and_eigenvalues.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -313,21 +313,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/pose_and_position.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:36:49+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/practical_cpp_metaprogramming.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:39:06+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/rotation_matrix.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:36:49+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -355,7 +355,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/configuration_space_and_degrees_of_freedoms.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:04:10+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -369,7 +369,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/midnight_commander.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:39:06+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -411,7 +411,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/sanitizers.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -439,21 +439,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/language_implementation_patterns.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T19:25:41+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/make_as_multi-paradigm_language.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:25:41+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/linking_and_loading.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:27:48+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -467,14 +467,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/x86_calling_conventions.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:27:29+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/intel_assembler_overview.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:27:29+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -488,7 +488,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/freertos.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:21:45+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -558,28 +558,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/modern_cpp_design.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T19:39:06+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/structure_and_interpretation_of_computer_programs.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T20:01:50+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/scheme.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:01:50+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/closure.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-09T07:44:14+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -593,7 +593,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/regular_expressions.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -607,7 +607,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/understanding_computation.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T20:19:46+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -635,21 +635,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/object_databases.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T19:39:06+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/synchronization_primitives_(read-modify-write).html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/models_of_computation.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:27:48+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -684,21 +684,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/git_detached_head.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:21:45+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/hardware-software_codesign.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:21:45+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/system_construction.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-11T19:00:54+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -712,7 +712,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/arm_stack_frame.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T20:39:25+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -733,7 +733,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/undo_committed_changes_with_svn.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -761,28 +761,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/concepts_of_object_oriented_programming.html</loc>
-<lastmod>2022-04-04T12:29:27+02:00</lastmod>
+<lastmod>2022-04-10T17:21:45+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/arrays_in_c_and_cpp.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-09T07:42:57+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/arm_cortex-m3_architecture.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T20:39:25+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/intel_architecture.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:27:29+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -810,7 +810,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/move_actual_work_to_a_new_branch.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -824,7 +824,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/macro_magic_in_c_and_cpp.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:25:41+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -845,14 +845,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/enums_in_c_and_cpp.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-09T07:45:25+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/intro_to_sql.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -873,154 +873,154 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/mathematics.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-08T19:36:49+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/mechanics.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/misc.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
-<lastmod>2022-04-04T12:34:07+01:00</lastmod>
+<lastmod>2022-04-11T19:00:54+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/sql.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/oop.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/cpp.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/python.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T17:21:45+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/german.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/lisp.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T20:01:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/computer_science.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T20:19:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/robotics.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/design_patterns.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T20:01:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/os.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T20:01:50+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/agile.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/scrum.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/xp.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/software_development_methodology.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-08T19:10:46+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/unix.html</loc>
-<lastmod>2022-04-04T12:34:07+01:00</lastmod>
+<lastmod>2022-04-10T19:39:06+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/linux.html</loc>
-<lastmod>2022-04-04T12:34:07+01:00</lastmod>
+<lastmod>2022-04-10T19:39:06+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/cheat_sheet.html</loc>
-<lastmod>2022-04-04T12:34:07+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/tools.html</loc>
-<lastmod>2022-04-04T12:34:07+01:00</lastmod>
+<lastmod>2022-04-10T19:39:06+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1041,63 +1041,63 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/embedded_systems.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:27:29+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/c.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/dynamic_analysis.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:48:35+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/parsing.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-10T19:25:41+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/build_tools.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T19:25:41+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/assembler.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-11T19:00:54+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/git.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:21:45+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/version_control.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/freertos.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T17:21:45+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1111,7 +1111,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/eth.html</loc>
-<lastmod>2022-04-04T12:29:27+01:00</lastmod>
+<lastmod>2022-04-11T19:00:54+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1125,7 +1125,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/svn.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-04-10T20:08:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1146,7 +1146,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2022-04-04T12:34:07+01:00</lastmod>
+<lastmod>2022-04-11T19:00:54+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

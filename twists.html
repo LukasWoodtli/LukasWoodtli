@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Twists "/>
 <meta property="og:url" content="./twists.html" />
-<meta property="og:description" content="Linear and Angular (Spacial) Velocities Given a transformation matrix that represents the configuration \(\{b\}\) as seen from \(\{s\}\) $$T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix}$$ the spacial velocity can be calculated analogous to the angular velocity. $$T^{-1}\dot{T} = \begin …" />
+<meta property="og:description" content="Linear and Angular (Spacial) Velocities Given a transformation matrix that represents the configuration \(\{b\}\) as seen from \(\{s\}\) $$ T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix} $$ the spacial velocity can be calculated analogous to the angular velocity. $$ T^{-1}\dot{T} = \begin …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2021-01-01T18:49:10+01:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-08T19:50:35+02:00" />
 <meta name="twitter:title" content="Twists ">
-<meta name="twitter:description" content="Linear and Angular (Spacial) Velocities Given a transformation matrix that represents the configuration \(\{b\}\) as seen from \(\{s\}\) $$T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix}$$ the spacial velocity can be calculated analogous to the angular velocity. $$T^{-1}\dot{T} = \begin …">
+<meta name="twitter:description" content="Linear and Angular (Spacial) Velocities Given a transformation matrix that represents the configuration \(\{b\}\) as seen from \(\{s\}\) $$ T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix} $$ the spacial velocity can be calculated analogous to the angular velocity. $$ T^{-1}\dot{T} = \begin …">
 
         <title>Twists  · Lukas Woodtli
 </title>
@@ -82,9 +82,12 @@
             
             <h1 id="linear-and-angular-spacial-velocities">Linear and Angular (Spacial) Velocities</h1>
 <p>Given a transformation matrix that represents the configuration <span class="math">\(\{b\}\)</span> as seen from <span class="math">\(\{s\}\)</span></p>
-<div class="math">$$T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix}$$</div>
+<div class="math">$$
+T = T(t) = T_{sb}(t) = \begin{bmatrix} R(t) &amp; p(t) \\ 0 &amp; 1 \end{bmatrix}
+$$</div>
 <p>the <em>spacial velocity</em> can be calculated analogous to the angular velocity.</p>
-<div class="math">$$T^{-1}\dot{T} =
+<div class="math">$$
+T^{-1}\dot{T} =
 \begin{bmatrix}
 R^T &amp; -R^Tp \\
 0 &amp; 1
@@ -100,7 +103,8 @@ R^T\dot{R} &amp; R^T\dot{p} \\
 \begin{bmatrix}
 [\omega_b] &amp; v_b \\
 0 &amp; 0
-\end{bmatrix}$$</div>
+\end{bmatrix}
+$$</div>
 <p>with</p>
 <ul>
 <li><span class="math">\(R^T\dot{R} = [\omega_b]\)</span>: skew-symmetric representation of angular velocity (expressed in <span class="math">\(\{b\}\)</span> coordinates)</li>
@@ -111,12 +115,14 @@ R^T\dot{R} &amp; R^T\dot{p} \\
 <h1 id="matrix-representation-of-a-twist-spatial-velocity">Matrix Representation of a Twist (Spatial Velocity)</h1>
 <h2 id="body-twist">Body Twist</h2>
 <p>The <em>spacial velocity</em> in the body frame, or <em>body twist</em> is (in matrix representation):</p>
-<div class="math">$$[V_b] = T_{sb}^{-1}\dot{T}_{sb} = 
+<div class="math">$$
+[V_b] = T_{sb}^{-1}\dot{T}_{sb} = 
 \begin{bmatrix}
 [\omega_b] &amp; v_b \\
 0 &amp; 0
 \end{bmatrix}
-\in se(3)$$</div>
+\in se(3)
+$$</div>
 <p>where:</p>
 <ul>
 <li><span class="math">\([\omega_b] \in so(3)\)</span>: Angular velocity (skew-symmetric matrix representation) expressed in <span class="math">\(\{b\}\)</span></li>
@@ -127,12 +133,14 @@ R^T\dot{R} &amp; R^T\dot{p} \\
 <p><span class="math">\(se(3)\)</span> consists of all possible <span class="math">\(\dot{T}\)</span> (when <span class="math">\(T= I\)</span>).</p>
 <h2 id="spacial-twist">Spacial Twist</h2>
 <p>The <em>spacial twist</em> (spacial velocity in the space frame) is analogous to the body twist </p>
-<div class="math">$$[V_s] = \dot{T}_{sb}T^{-1}_{sb} = 
+<div class="math">$$
+[V_s] = \dot{T}_{sb}T^{-1}_{sb} = 
 \begin{bmatrix}
 [\omega_s] &amp; v_s \\
 0 &amp; 0
 \end{bmatrix}
-\in se(3)$$</div>
+\in se(3)
+$$</div>
 <p>Where:</p>
 <ul>
 <li><span class="math">\([\omega_s] \in so(3)\)</span>: Angular velocity (skew-symmetric matrix representation) expressed in <span class="math">\(\{s\}\)</span></li>
@@ -140,7 +148,8 @@ R^T\dot{R} &amp; R^T\dot{p} \\
 </ul>
 <h2 id="conversion-between-body-frame-and-space-frame-adjoint-map">Conversion between Body-Frame and Space-Frame (adjoint map)</h2>
 <h3 id="from-body-frame-b-to-space-frame-s">From body frame <span class="math">\(\{b\}\)</span> to space frame <span class="math">\(\{s\}\)</span>:</h3>
-<div class="math">$$V_s =
+<div class="math">$$
+V_s =
 \begin{bmatrix}
 \omega_s \\
 v_s
@@ -153,9 +162,11 @@ R &amp; 0 \\
 \omega_b \\
 v_b
 \end{bmatrix} =
-[Ad_{T_{sb}}]V_b$$</div>
+[Ad_{T_{sb}}]V_b
+$$</div>
 <h3 id="from-space-frame-s-to-body-frame-b">From space frame <span class="math">\(\{s\}\)</span> to body frame <span class="math">\(\{b\}\)</span>:</h3>
-<div class="math">$$V_b =
+<div class="math">$$
+V_b =
 \begin{bmatrix}
 \omega_b \\
 v_b
@@ -168,12 +179,15 @@ R^T &amp; 0 \\
 \omega_s \\
 v_s
 \end{bmatrix} =
-[Ad_{T_{bs}}]V_s$$</div>
+[Ad_{T_{bs}}]V_s
+$$</div>
 <p>Where <span class="math">\([Ad_T] \in \mathbb{R}^{6 \times 6}\)</span> is the <em>adjoint representation</em> (adjoint map) of <span class="math">\(T = (R,p) \in SE(3)\)</span>.</p>
-<div class="math">$$[Ad_T] = \begin{bmatrix}
+<div class="math">$$
+[Ad_T] = \begin{bmatrix}
 R &amp; 0 \\
 [p]R &amp; R
-\end{bmatrix} \in \mathbb{R}^{6 \times 6}$$</div>
+\end{bmatrix} \in \mathbb{R}^{6 \times 6}
+$$</div>
 <p>The fixed-frame representation of a twist <span class="math">\(V_s\)</span> does <em>not</em> depend on the choice of the body frame <span class="math">\(\{b\}\)</span>.</p>
 <p>And the body-frame representation <span class="math">\(V_b\)</span> of the same twist does not depend on the choice of the fixed frame <span class="math">\(\{s\}\)</span>.</p>
 <h3 id="properties-of-the-adjoint-map">Properties of the Adjoint Map</h3>
@@ -193,11 +207,13 @@ R &amp; 0 \\
 </ul>
 <h1 id="screw-interpretation-of-a-twist">Screw interpretation of a Twist</h1>
 <p>A twist <span class="math">\(V\)</span> can be viewed as a screw axis <span class="math">\(S\)</span> and a velocity <span class="math">\(\dot{\theta}\)</span> (just like an angular velocity <span class="math">\(\omega\)</span> can be combined as <span class="math">\(\hat{\omega}\dot{\theta}\)</span>).</p>
-<div class="math">$$V =
+<div class="math">$$
+V =
 \begin{bmatrix}
   \omega \\ v  
 \end{bmatrix} =
-S\dot{\theta}$$</div>
+S\dot{\theta}
+$$</div>
 <p>The screw axis <span class="math">\(S\)</span> is defined using a normalized version of any twist <span class="math">\(V = (\omega, v)\)</span> corresponting to motion along the screw:</p>
 <ol>
 <li>if <span class="math">\(\omega \neq 0\)</span>:<ul>
@@ -213,14 +229,16 @@ S\dot{\theta}$$</div>
 </ol>
 <h2 id="normalized-screw-axis">Normalized Screw Axis</h2>
 <p>A <em>unit</em> screw axis is a noramlized twist defined as:</p>
-<div class="math">$$S =
+<div class="math">$$
+S =
 \begin{bmatrix}
 S_{\omega} \\ S_v
 \end{bmatrix} =
 \begin{bmatrix}
 \textit{angular velocity when: } \dot{\theta} = 1 \\
 \textit{linear velocity of origin when: } \dot{\theta} = 1 \end{bmatrix}
-\in \mathbb{R}^6$$</div>
+\in \mathbb{R}^6
+$$</div>
 <p>Where:</p>
 <ul>
 <li>either pitch <span class="math">\(h\)</span> is finite<ul>
@@ -242,19 +260,23 @@ S_{\omega} \\ S_v
 </li>
 </ul>
 <p>A screw axis <span class="math">\(S\)</span> is just a normalized twist. It can be represented as a <span class="math">\(4 \times 4\)</span> matrix <span class="math">\([S]\)</span> of <span class="math">\(S = (\omega, v)\)</span>:</p>
-<div class="math">$$[S] =
+<div class="math">$$
+[S] =
 \begin{bmatrix}
 [\omega] &amp; v \\
 0 &amp; 0
 \end{bmatrix}
-\in se(3)$$</div>
+\in se(3)
+$$</div>
 <p>with:</p>
 <ul>
 <li><span class="math">\([\omega] \in so(3)\)</span>: the screw-symmetric representation of <span class="math">\(\omega\)</span></li>
 </ul>
 <h3 id="conversion-of-screw-axes">Conversion of Screw Axes</h3>
 <p>A screw axis represented in any frame <span class="math">\(\{a\}\)</span> can be represented in another frame <span class="math">\(\{b\}\)</span> (with a modified version of the subscript cancellation rule):</p>
-<div class="math">$$S_a = [Ad_{T_{a\not{b}}}]S_{\not{b}}$$</div>
+<div class="math">$$
+S_a = [Ad_{T_{a\not{b}}}]S_{\not{b}}
+$$</div>
 <p>With:</p>
 <ul>
 <li><span class="math">\(S_a\)</span>: Screw axis represented in <span class="math">\(\{a\}\)</span> coordinates</li>
@@ -349,7 +371,7 @@ S_{\omega} \\ S_v
             <time itemprop="dateCreated" datetime="2021-01-01T18:49:10+01:00">Jan 1, 2021</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-08T19:50:35+02:00">Apr 8, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>

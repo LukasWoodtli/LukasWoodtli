@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2021-01-05T16:25:30+01:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-08T19:04:10+02:00" />
 <meta name="twitter:title" content="Comparison of Rotations and Rigid-Body Motions ">
 <meta name="twitter:description" content="Analogies Rotations Rigid-Body Motions Rotation Matrix \(R\) Homogeneous Tranformation Matrix \(T\) Rotation Axis \(\hat\omega\) Screw Axis \(S\) Angular Velocity \(\omega = \hat\omega \dot\theta\) Twist \(V = S\dot\theta\) Exponential Coordinates \(\hat\omega \theta \in \mathbb{R}^3\) Exponential Coordinates \(S\theta \in \mathbb{R}^6\) Rotation Matrix and …">
 
@@ -351,16 +351,11 @@ $$</div>
 <tbody>
 <tr>
 <td>for <span class="math">\(\omega \in \mathbb{R}^3\)</span></td>
-<td>for <div class="math">$$V = \begin{bmatrix} \omega \\ v\end{bmatrix} \in \mathbb{R}^6$$</div>
-</td>
+<td>for <span class="math">\(V = <div class="math">\begin{bmatrix} \omega \\ v\end{bmatrix}</div> \in \mathbb{R}^6\)</span></td>
 </tr>
 <tr>
-<td>
-<div class="math">$$[\omega] = \begin{bmatrix} 0 &amp; -\omega_3 &amp; \omega_2 \\ \omega_3 &amp; 0 &amp; -\omega_1 \\ -\omega_2 &amp; \omega_1 &amp; 0\end{bmatrix} \in so(3)$$</div>
-</td>
-<td>
-<div class="math">$$[V] = \begin{bmatrix} [\omega] &amp; v \\ 0 &amp; 0 \end{bmatrix} \in se(3)$$</div>
-</td>
+<td><span class="math">\([\omega] = <div class="math">\begin{bmatrix} 0 &amp; -\omega_3 &amp; \omega_2 \\ \omega_3 &amp; 0 &amp; -\omega_1 \\ -\omega_2 &amp; \omega_1 &amp; 0\end{bmatrix}</div> \in so(3)\)</span></td>
+<td><span class="math">\([V] = <div class="math">\begin{bmatrix} [\omega] &amp; v \\ 0 &amp; 0 \end{bmatrix}</div> \in se(3)\)</span></td>
 </tr>
 <tr>
 <td><span class="math">\(\dot{R}R^{-1} = [\omega_s]\)</span></td>
@@ -606,7 +601,7 @@ $$</div>
             <time itemprop="dateCreated" datetime="2021-01-05T16:25:30+01:00">Jan 5, 2021</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-08T19:04:10+02:00">Apr 8, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>

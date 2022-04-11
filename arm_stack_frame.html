@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-09-20T20:12:15+02:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-08T20:39:25+02:00" />
 <meta name="twitter:title" content="ARM Stack Frame ">
 <meta name="twitter:description" content="This page contains notes about the usual stack frame layout (calling convention) on ARM processors. Most information is taken from ARM procedure calling conventions and recursion . The conventions are defined by ARM and are called PCSAA. Link Register Contains the return address of an function call Caller Code that calles …">
 
@@ -145,8 +145,7 @@
 <div class="highlight"><pre><span></span><code><span class="nf">LDMFD</span><span class="w"> </span><span class="nb">SP</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="err">}</span><span class="w"></span>
 </code></pre></div>
 <p><code>LR</code> needs to be saved on stack for <em>non</em>-leaf functions</p>
-<div class="highlight"><pre><span></span><code><span class="err">:::</span><span class="w"> </span><span class="nf">nasm</span><span class="w"></span>
-<span class="nl">_func:</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nl">_func:</span><span class="w"></span>
 <span class="w">  </span><span class="nf">STMFD</span><span class="w"> </span><span class="nb">SP</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span><span class="w"> </span><span class="nv">LR</span><span class="err">}</span><span class="w"></span>
 <span class="w">  </span><span class="c1">; ... code of func</span><span class="w"></span>
 <span class="w">  </span><span class="nf">LDMFD</span><span class="w"> </span><span class="nb">SP</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nb">R4</span><span class="o">-</span><span class="nb">R6</span><span class="p">,</span><span class="w"> </span><span class="nv">PC</span><span class="err">}</span><span class="w"> </span><span class="c1">; Pushing stacked LR directly to PC =&gt; return to caller</span><span class="w"></span>
@@ -185,7 +184,7 @@
             <time itemprop="dateCreated" datetime="2015-09-20T20:12:15+02:00">Sep 20, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-08T20:39:25+02:00">Apr 8, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-11-15T18:32:51+01:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-10T17:21:45+02:00" />
 <meta name="twitter:title" content="Hardware-Software Codesign ">
 <meta name="twitter:description" content="0. Overview Specification and Models of Computation State-Charts Kahn Process Networks Design Space Exploration Mapping Partitioning Multi-Criteria Optimization Performance Estimation Simulation-based Methods Worst-Case Execution Time Analysis Performance Analysis of Distributed Systems Thermal-aware Design 1. Introduction System Design Specifications and Models Design Estimation Embedded Systems Information processing system embedded in a …">
 
@@ -635,7 +635,9 @@
 <h3 id="estimation_1">Estimation</h3>
 <p>Estimation is required to find <em>C</em>, <em>L</em>, <em>P</em> values, for each design point</p>
 <p>i.e</p>
-<div class="math">$$f(C,L,P)= k_1 \cdot h_C(C,C_{max})+ k_2 \cdot h_L(L,L_{max})+ k_3 \cdot h_P(P,P_{max})$$</div>
+<div class="math">$$
+f(C,L,P)= k_1 \cdot h_C(C,C_{max})+ k_2 \cdot h_L(L,L_{max})+ k_3 \cdot h_P(P,P_{max})
+$$</div>
 <ul>
 <li><span class="math">\(h_C\)</span>, <span class="math">\(h_L\)</span>, <span class="math">\(h_P\)</span>: denote how strong <span class="math">\(C\)</span>, <span class="math">\(L\)</span>, <span class="math">\(P\)</span> violate design constraints <span class="math">\(C_{max}\)</span>, <span class="math">\(L_{max}\)</span>, <span class="math">\(P_{max}\)</span></li>
 <li><span class="math">\(k_1\)</span>, <span class="math">\(k_2\)</span>, <span class="math">\(k_3\)</span>: weighting and normalization</li>
@@ -690,9 +692,13 @@
 <li>Constraints</li>
 </ul>
 <p>Objective:</p>
-<div class="math">$$C = \sum_{x_i\in X}a_ix_i\; with\; a_i \in \mathbb{R}, x_i \in \mathbb{N}$$</div>
+<div class="math">$$
+C = \sum_{x_i\in X}a_ix_i\; with\; a_i \in \mathbb{R}, x_i \in \mathbb{N}
+$$</div>
 <p>Constraints:</p>
-<div class="math">$$\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}$$</div>
+<div class="math">$$
+\forall j \in J: \sum_{x_i \in X}b_{i,j}x_i \geq c_j \; with \; b_{i,j}, c_j \in \mathbb{R}
+$$</div>
 <p>Integer programming problem:</p>
 <ul>
 <li>Minimize objective function subject to constraints</li>
@@ -760,48 +766,65 @@
 </tbody>
 </table>
 <p>Cost <span class="math">\(c_{i,k}\)</span>:</p>
-<div class="math">$$\left.\begin{matrix}
-c_{0,0} = 5\\
-c_{0,1} = 10\\
+<div class="math">$$
+\left.\begin{matrix}
+c_{0,0} = 5 \\
+c_{0,1} = 10 \\
 \cdots
 \end{matrix}\right\}
 \begin{matrix}
-0 \leq i \leq 3\\
+0 \leq i \leq 3 \\
 0 \leq k \leq 1
-\end{matrix}$$</div>
+\end{matrix}
+$$</div>
 <p>Binary variables <span class="math">\(x_{i,k}\)</span>:</p>
-<div class="math">$$\left.\begin{matrix}
-x_{0,0} + x_{0,1} = 1\\
-x_{1,0} + x_{1,1} = 1\\
+<div class="math">$$
+\left.\begin{matrix}
+x_{0,0} + x_{0,1} = 1 \\
+x_{1,0} + x_{1,1} = 1 \\
 \cdots
 \end{matrix}\right\}
-\sum_{k=0}^1 x_{k,i} = 1\; \forall\; 0 \leq i \leq 3$$</div>
+\sum_{k=0}^1 x_{k,i} = 1\; \forall\; 0 \leq i \leq 3
+$$</div>
 <h4 id="approaches">Approaches</h4>
 <ol>
 <li>Approach:</li>
 </ol>
-<div class="math">$$min\left \{ \sum_{i=0}^3 \sum_{k=0}^1 c_{i,k} x_{i,k} \right \}$$</div>
+<div class="math">$$
+min\left \{ \sum_{i=0}^3 \sum_{k=0}^1 c_{i,k} x_{i,k} \right \}
+$$</div>
 <p>2. Approach:</p>
-<div class="math">$$min\left \{ \left | \sum_{i=0}^3  c_{i,0} x_{i,0} - \sum_{i=0}^3 c_{i,1} x_{i,1} \right |\right \}$$</div>
+<div class="math">$$
+min\left \{ \left | \sum_{i=0}^3  c_{i,0} x_{i,0} - \sum_{i=0}^3 c_{i,1} x_{i,1} \right |\right \}
+$$</div>
 <p>This is not a linear problem!</p>
 <h4 id="solutions">Solutions</h4>
 <p>1. Solution:</p>
 <p>Solving 2 linear problems: split approach 2 into 2 linear problems:</p>
-<div class="math">$$min \left \{ \left | \underbrace{\sum_{i=0}^3  c_{i,0} x_{i,0}}_{l_1} - \underbrace{\sum_{i=0}^3 c_{i,1} x_{i,1}}_{l_2} \right | \right \}$$</div>
+<div class="math">$$
+min \left \{ \left | \underbrace{\sum_{i=0}^3  c_{i,0} x_{i,0}}_{l_1} - \underbrace{\sum_{i=0}^3 c_{i,1} x_{i,1}}_{l_2} \right | \right \}
+$$</div>
 <p>Becomes:</p>
-<div class="math">$$\begin{matrix}
+<div class="math">$$
+\begin{matrix}
 l_0 \geq l_1: min\left \{ l_0 - l_1 \right \} \\
 l_1 \geq l_0: min\left \{ l_1 - l_0 \right \}
-\end{matrix}$$</div>
+\end{matrix}
+$$</div>
 <p>2. Solution:</p>
 <p>Empirical approach: Run code and measure execution time and try to minimize it.</p>
 <p>Move tasks to different processors.</p>
-<div class="math">$$\begin{matrix}
+<div class="math">$$
+\begin{matrix}
 l_0 = \sum_{(i)}  c_{i,0} x_{i,0}\\
 l_1 = \sum_{(i)}  c_{i,1} x_{i,1}
-\end{matrix}$$</div>
-<div class="math">$$min \{ B \}$$</div>
-<div class="math">$$\begin{matrix}
+\end{matrix}
+$$</div>
+<div class="math">$$
+min \{ B \}
+$$</div>
+<div class="math">$$
+\begin{matrix}
 B \geq l_0 \\
 B \geq l_1
 \end{matrix}
@@ -937,12 +960,16 @@ $$</div>
 <ul>
 <li>We intend to minimize a <em>vector-valued</em> <strong><em>objective function</em></strong></li>
 </ul>
-<div class="math">$$f= (f_1; f_2; ... ; f_n): X \rightarrow R^n$$</div>
+<div class="math">$$
+f= (f_1; f_2; ... ; f_n): X \rightarrow R^n
+$$</div>
 <ul>
 <li><span class="math">\(X\)</span> denotes the <strong>decision space</strong>. i.e the feasible set of alternatives for the optimization problem</li>
 <li>The image of the decision space <span class="math">\(X\)</span> using the objective function <span class="math">\(f\)</span> is denoted as the <strong>objective space</strong> <span class="math">\(Z \subset R^n\)</span> with</li>
 </ul>
-<div class="math">$$Z = \{f(x) |x \in X  \}$$</div>
+<div class="math">$$
+Z = \{f(x) |x \in X  \}
+$$</div>
 <ul>
 <li>A single alternative <span class="math">\(x \in X\)</span> is (sometimes) named <em>solution</em> and the corresponding object value <span class="math">\(z = f(x) \in Z\)</span> is named <em>objective vector</em></li>
 </ul>
@@ -955,7 +982,9 @@ $$</div>
 <p>Definition:</p>
 <p>A solution <span class="math">\(a \in X\)</span> weakly <em>Pareto-dominates</em> a solution <span class="math">\(b \in X\)</span>, denoted as <span class="math">\(a \preceq  b\)</span>, if it is at least as good in
 all objectives, i.e:</p>
-<div class="math">$$f_i(a) \leq f_i(b)\; \forall 1 \leq i \leq n$$</div>
+<div class="math">$$
+f_i(a) \leq f_i(b)\; \forall 1 \leq i \leq n
+$$</div>
 <ul>
 <li>Dominance is transitive</li>
 <li>A solution is named <em>Pareto-optimal</em>, if it’s not Pareto-dominated by any other solution in <span class="math">\(X\)</span></li>
@@ -987,7 +1016,7 @@ all objectives, i.e:</p>
 <li>Solutions of the set from 4. are selected based on their merit to construct the new <em>parent</em> set (<em>environmental selection</em>).</li>
 <li>continue at 2.</li>
 </ol>
-<p><img alt="Evolutionary Algorithm" class="img-fluid" src="/images/hscd_evolutionary_algorithm.svg" style="float:right"/></p>
+<p><img alt="Evolutionary Algorithm" class="img-fluid" src="/images/hscd_evolutionary_algorithm.svg"/></p>
 <ul>
 <li>Cross-over operator: Take best parts of two solutions</li>
 <li>Mutation operator: same as in simulated annealing (make small variations)</li>
@@ -1006,9 +1035,13 @@ all objectives, i.e:</p>
 </ul>
 <p>Given a set of solutions <span class="math">\(A \subseteq X\)</span> and a set of <em>reference points</em> <span class="math">\(R \subset \mathbb{R}^n\)</span>. Then the
 <em>hypervolume indicator</em> <span class="math">\(I_H(A,R)\)</span> of <span class="math">\(A\)</span> with respect to <span class="math">\(R\)</span> is defined as</p>
-<div class="math">$$I_H(A,R) = \int_{z \in H(A,R)} dz$$</div>
+<div class="math">$$
+I_H(A,R) = \int_{z \in H(A,R)} dz
+$$</div>
 <p>where <span class="math">\(H(A,R)\)</span> id the dominated space of <span class="math">\(A\)</span> regarding <span class="math">\(R\)</span>:</p>
-<div class="math">$$H(A,R) = \{ z \in \mathbb{R}^n | \exists a \in A : \exists r \in R : (f(a) \leq z \leq r) \}$$</div>
+<div class="math">$$
+H(A,R) = \{ z \in \mathbb{R}^n | \exists a \in A : \exists r \in R : (f(a) \leq z \leq r) \}
+$$</div>
 <p><span class="math">\(z\)</span>: Objective</p>
 <ul>
 <li>The hypervolume indicator leads to <em>diversity</em> and <em>optimality</em></li>
@@ -1567,7 +1600,9 @@ for other components.</p>
 <li>Describe system properties by <em>parameters</em> (e.g data rate)</li>
 <li>Combine relations</li>
 </ul>
-<div class="math">$$comm\_delay= \left \lceil \frac{\# words}{burst\_size}  \right \rceil \cdot comm\_time$$</div>
+<div class="math">$$
+comm\_delay= \left \lceil \frac{\# words}{burst\_size}  \right \rceil \cdot comm\_time
+$$</div>
 <ul>
 <li>Fast and simple estimation</li>
 <li>But generally inaccurate modeling (e.g resource sharing not modeled)</li>
@@ -1722,29 +1757,41 @@ for other components.</p>
 <h3 id="calculating-upper-bounds">Calculating Upper Bounds</h3>
 <p><span class="math">\(ub(s)\)</span>: Upper bound for statement <span class="math">\(s\)</span></p>
 <h4 id="sequence-of-statements">Sequence of Statements</h4>
-<div class="math">$$A \equiv A1;A2$$</div>
+<div class="math">$$
+A \equiv A1;A2
+$$</div>
 <p>Constituents of <span class="math">\(A\)</span>: <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
 <p>Upper bound for <span class="math">\(A\)</span> is the sum of the upper bounds for <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></p>
-<div class="math">$$ub(A) = ub(A1) + ub(A2)$$</div>
+<div class="math">$$
+ub(A) = ub(A1) + ub(A2)
+$$</div>
 <h4 id="conditional-statement">Conditional Statement</h4>
-<div class="math">$$\begin{align*}
-A \equiv \; &amp; if \; B \\
+<div class="math">$$
+\begin{align*}
+ A \equiv \; &amp; if \; B \\
  &amp; then \; A1 \\
  &amp; else \; A2
-\end{align*}$$</div>
+\end{align*}
+$$</div>
 <p>Constituents of <span class="math">\(A\)</span>:</p>
 <ol>
 <li>Condition <span class="math">\(B\)</span></li>
 <li>Statements <span class="math">\(A1\)</span> and <span class="math">\(A2\)</span></li>
 </ol>
-<div class="math">$$ub(A) = ub(b) + \mathbf{max}(ub(A1), ub(A2))$$</div>
+<div class="math">$$
+ub(A) = ub(b) + \mathbf{max}(ub(A1), ub(A2))
+$$</div>
 <h4 id="loops">Loops</h4>
-<div class="math">$$\begin{align*}
+<div class="math">$$
+\begin{align*}
  A \equiv for\; &amp; i \leftarrow 1\; to\; 100\; do \\
  &amp; A1
-\end{align*}$$</div>
+\end{align*}
+$$</div>
 <p>Precondition: Number of loops needs to be known (e.g 100)</p>
-<div class="math">$$ub(A) = ub(i \leftarrow) + 100 \times (ub(i \leq 100) + ub(A1))+ ub(i\leq100)$$</div>
+<div class="math">$$
+ub(A) = ub(i \leftarrow) + 100 \times (ub(i \leq 100) + ub(A1))+ ub(i\leq100)
+$$</div>
 <h3 id="modern-hardware-features">Modern Hardware Features</h3>
 <ul>
 <li>Modern processors increase performance by using<ul>
@@ -1795,7 +1842,9 @@ and exits at the end, without stopping in-between or branching (except at the e
 <h4 id="calculation-of-the-wcet">Calculation of the <strong><span class="caps">WCET</span></strong></h4>
 <p>A program consists of <span class="math">\(N\)</span> basic blocks, where each basic block <span class="math">\(B_i\)</span> has a worst-case execution time <span class="math">\(c_i\)</span> and is
  executed for exactly <span class="math">\(x_i\)</span> times:</p>
-<div class="math">$$WCET = \sum_{i=1}^N c_i \cdot x_i$$</div>
+<div class="math">$$
+WCET = \sum_{i=1}^N c_i \cdot x_i
+$$</div>
 <ul>
 <li>The <span class="math">\(c_i\)</span> values are determined using the static analysis</li>
 <li>Determine <span class="math">\(x_i\)</span><ul>
@@ -1807,7 +1856,8 @@ and exits at the end, without stopping in-between or branching (except at the e
 <p><img alt="WCET Calculation" class="img-fluid" src="/images/hscd_wcet_calculation.png"/></p>
 <p>This image is taken from the lecture slides provided by Lothar Thiele.</p>
 <p>Flow Equations (sum of incoming edges equals sum of outgoing edges)</p>
-<div class="math">$$\begin{align*}
+<div class="math">$$
+\begin{align*}
 d1 = d2 = x_1 \\
 d2 + d8 = d3 + d9 = x_2 \\
 d3 = d4 + d5 = x_3 \\
@@ -1815,7 +1865,8 @@ d4 = d6 = x_4 \\
 d5 = d7 = x_5 \\
 d6 + d7 = d8 = x_6 \\
 d9 = d10 = x_7
-\end{align*}$$</div>
+\end{align*}
+$$</div>
 <p>Additional Constraints</p>
 <ul>
 <li>Execute the program only once: <span class="math">\(d1 = 1\)</span></li>
@@ -1825,7 +1876,9 @@ d9 = d10 = x_7
 <p>The more information the better the result</p>
 <h5 id="integer-linear-program-for-wcet-calculation">Integer Linear Program for <strong><span class="caps">WCET</span></strong> Calculation</h5>
 <p><span class="caps">ILP</span> with structural and additional constraints</p>
-<div class="math">$$WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{\text{structural constraints}} \;\land \;\text{additional constraints} \right \}$$</div>
+<div class="math">$$
+WCET = max\left \{ \sum_{i=1}^N c_i \cdot x_i | \underbrace{d_1=1}_{\text{program is executed once}} \land \underbrace{\sum_{j\in in(B_i)} d_j = \sum_{k\in out(B_i)}d_k=x_i, i=1\ldots N}_{\text{structural constraints}} \;\land \;\text{additional constraints} \right \}
+$$</div>
 <h3 id="abstract-interpretation-ai">Abstract Interpretation (<span class="caps">AI</span>)</h3>
 <ul>
 <li>Semantics-based method for static program analysis</li>
@@ -1914,16 +1967,21 @@ occurring in the program (addresses, register contents, local and global variab
 </ul>
 <h4 id="cache-analysis">Cache Analysis</h4>
 <p>Statically precompute cache contents:</p>
-<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="nv">Must</span> <span class="nv">Analysis</span>
-    <span class="o">-</span> <span class="k">For</span> <span class="nv">each</span> <span class="nv">program</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">calling</span> <span class="nv">context</span><span class="ss">)</span> <span class="nv">find</span> <span class="nv">out</span> <span class="nv">which</span> <span class="nv">blocks</span> <span class="o">*</span><span class="nv">are</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span><span class="o">*</span>
-    <span class="o">-</span> <span class="nv">Determines</span> <span class="nv">safe</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">cache</span> <span class="nv">hits</span>
-    <span class="o">-</span> <span class="nv">Predicted</span> <span class="nv">cache</span> <span class="nv">hit</span> <span class="o">*</span><span class="nv">reduces</span><span class="o">*</span> <span class="o">**</span><span class="nv">WCET</span><span class="o">**</span>
-<span class="o">-</span> <span class="nv">May</span> <span class="nv">Analysis</span>
-    <span class="o">-</span> <span class="k">For</span> <span class="nv">each</span> <span class="nv">program</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">calling</span> <span class="nv">context</span><span class="ss">)</span> <span class="nv">find</span> <span class="nv">out</span> <span class="nv">which</span> <span class="nv">blocks</span> <span class="o">*</span><span class="nv">may</span> <span class="nv">be</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span><span class="o">*</span>
-    <span class="o">-</span> <span class="o">*</span><span class="nv">Complement</span><span class="o">*</span> <span class="nv">says</span> <span class="nv">what</span> <span class="nv">is</span> <span class="o">**</span><span class="nv">not</span><span class="o">**</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cache</span>
-    <span class="o">-</span> <span class="nv">Determines</span> <span class="nv">safe</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">cache</span> <span class="nv">misses</span>
-    <span class="o">-</span> <span class="nv">Each</span> <span class="nv">predicted</span> <span class="nv">cache</span> <span class="nv">miss</span> <span class="o">*</span><span class="nv">increases</span><span class="o">*</span> <span class="o">**</span><span class="nv">BCET</span><span class="o">**</span>
-</code></pre></div>
+<ul>
+<li>Must Analysis<ul>
+<li>For each program point (and calling context) find out which blocks <em>are in the cache</em></li>
+<li>Determines safe information about cache hits</li>
+<li>Predicted cache hit <em>reduces</em> <strong><span class="caps">WCET</span></strong></li>
+</ul>
+</li>
+<li>May Analysis<ul>
+<li>For each program point (and calling context) find out which blocks <em>may be in the cache</em></li>
+<li><em>Complement</em> says what is <strong>not</strong> in the cache</li>
+<li>Determines safe information about cache misses</li>
+<li>Each predicted cache miss <em>increases</em> <strong><span class="caps">BCET</span></strong></li>
+</ul>
+</li>
+</ul>
 <h5 id="must-cache">Must Cache</h5>
 <ul>
 <li>Only variables that are in all caches</li>
@@ -2154,7 +2212,9 @@ occurring in the program (addresses, register contents, local and global variab
 </li>
 </ul>
 <p><img alt="Plus-times calculus" class="img-fluid" src="/images/hscd_plus_times.svg"/></p>
-<div class="math">$$h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds$$</div>
+<div class="math">$$
+h(t) = \underbrace{(f*g)}_{\text{convolution}}\underbrace{(t)}_{\text{time-domain}}= \int_0^t f(t-s)\cdot g(s) \;ds
+$$</div>
 <ul>
 <li>
 <p>Min-plus system theory</p>
@@ -2172,7 +2232,9 @@ occurring in the program (addresses, register contents, local and global variab
 </li>
 </ul>
 <p><img alt="Min-plus calculus" class="img-fluid" src="/images/hscd_min_plus.svg"/></p>
-<div class="math">$$R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}$$</div>
+<div class="math">$$
+R'(t)\geq \underbrace{(R\otimes g)}_{\text{convolution}}(t)= \underset{0\leq \lambda\leq t}{inf}\{R(t-\lambda)+g(\lambda) \}
+$$</div>
 <!-- End of Notes Week 12 -->
 <!-- Beginning of Notes Week 13 -->
 <h3 id="from-streams-to-cumulative-functions">From Streams to Cumulative Functions</h3>
@@ -2321,7 +2383,7 @@ occurring in the program (addresses, register contents, local and global variab
             <time itemprop="dateCreated" datetime="2015-11-15T18:32:51+01:00">Nov 15, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-10T17:21:45+02:00">Apr 10, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

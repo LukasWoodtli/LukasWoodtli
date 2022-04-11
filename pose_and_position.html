@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="Pose and Position "/>
 <meta property="og:url" content="./pose_and_position.html" />
-<meta property="og:description" content="This page is work in progress Position Position of point \(B\) relative to point \(A\): $$\mathbf{r}_{AB}$$ In 3D space positions are represented by vectors \(\mathbf{r} \in \mathbb{R}^3\) It is necessary to define a reference frame \(A\) and to express the vector in this frame …" />
+<meta property="og:description" content="This page is work in progress Position Position of point \(B\) relative to point \(A\): $$ \mathbf{r}_{AB} $$ In 3D space positions are represented by vectors \(\mathbf{r} \in \mathbb{R}^3\) It is necessary to define a reference frame \(A\) and to express the vector in this frame …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-11-10T10:39:04+01:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-08T19:36:49+02:00" />
 <meta name="twitter:title" content="Pose and Position ">
-<meta name="twitter:description" content="This page is work in progress Position Position of point \(B\) relative to point \(A\): $$\mathbf{r}_{AB}$$ In 3D space positions are represented by vectors \(\mathbf{r} \in \mathbb{R}^3\) It is necessary to define a reference frame \(A\) and to express the vector in this frame …">
+<meta name="twitter:description" content="This page is work in progress Position Position of point \(B\) relative to point \(A\): $$ \mathbf{r}_{AB} $$ In 3D space positions are represented by vectors \(\mathbf{r} \in \mathbb{R}^3\) It is necessary to define a reference frame \(A\) and to express the vector in this frame …">
 
         <title>Pose and Position  · Lukas Woodtli
 </title>
@@ -104,10 +104,14 @@
 
 <h1 id="position">Position</h1>
 <p>Position of point <span class="math">\(B\)</span> relative to point <span class="math">\(A\)</span>:</p>
-<div class="math">$$\mathbf{r}_{AB}$$</div>
+<div class="math">$$
+\mathbf{r}_{AB}
+$$</div>
 <p>In 3D space positions are represented by vectors <span class="math">\(\mathbf{r} \in \mathbb{R}^3\)</span></p>
 <p>It is necessary to define a reference frame <span class="math">\(A\)</span> and to express the vector in this frame:</p>
-<div class="math">$$\mathcal{A}^\mathbf{r}AB$$</div>
+<div class="math">$$
+\mathcal{A}^\mathbf{r}AB
+$$</div>
 <p>With:</p>
 <ul>
 <li><span class="math">\(\mathcal{A}\)</span>: Frame <span class="math">\(\mathcal{A}\)</span> is used to express position vector <span class="math">\(\mathbf{r}_{AB}\)</span></li>
@@ -115,54 +119,68 @@
 </ul>
 <p>The unit vectors <span class="math">\(\left ( \mathbf{e}^\mathcal{A}_x, \mathbf{e}^\mathcal{A}_y, \mathbf{e}^\mathcal{A}_z \right )\)</span> of frame <span class="math">\(\mathcal{A}\)</span> form an ortho-normal basis of <span class="math">\(\mathbb{R}^3\)</span>.</p>
 <p>An alternative notation:</p>
-<div class="math">$${}^A \mathbf{p}_B$$</div>
+<div class="math">$$
+{}^A \mathbf{p}_B
+$$</div>
 <p>Meaning: Vector <span class="math">\(\mathbf{p}\)</span> to <span class="math">\(B\)</span> with respect to coordinate frame <span class="math">\({A}\)</span>.
 (The bound vector <span class="math">\(\mathbf{p}\)</span> pointing from the origin of <span class="math">\({A}\)</span> to the point <span class="math">\(B\)</span>,
 Where everything is in the coordnate frame <span class="math">\({A}\)</span>).</p>
 <h1 id="representation-of-positions">Representation of Positions</h1>
 <h2 id="cartesian-coordinates">Cartesian Coordinates</h2>
-<div class="math">$$\mathbf{\chi}_{Pc} = \begin{pmatrix}
+<div class="math">$$
+\mathbf{\chi}_{Pc} = \begin{pmatrix}
 x \\
 y \\
 z
-\end{pmatrix}$$</div>
+\end{pmatrix}
+$$</div>
 <p>Where <span class="math">\(\mathbf{\chi}_P\)</span> are the stacked parameters of the position representation.</p>
 <p>The position vector is given by</p>
-<div class="math">$$\mathcal{A}^\mathbf{r} = x\mathbf{e}^\mathcal{A}_x + y\mathbf{e}^\mathcal{A}_y + z\mathbf{e}^\mathcal{A}_z =
+<div class="math">$$
+\mathcal{A}^\mathbf{r} = x\mathbf{e}^\mathcal{A}_x + y\mathbf{e}^\mathcal{A}_y + z\mathbf{e}^\mathcal{A}_z =
 \begin{pmatrix}
 x \\
 y \\
 z
-\end{pmatrix}$$</div>
+\end{pmatrix}
+$$</div>
 <p>Where:</p>
 <ul>
 <li><span class="math">\(\mathbf{e}^\mathcal{A}_i\)</span>: Unit vector of dimension <span class="math">\(i\)</span> in frame <span class="math">\(\mathcal{A}\)</span></li>
 </ul>
 <h2 id="cylindrical-coordinates">Cylindrical coordinates</h2>
-<div class="math">$$\mathbf{\chi}_{Pz} = \begin{pmatrix}
+<div class="math">$$
+\mathbf{\chi}_{Pz} = \begin{pmatrix}
 \rho  \\
 \theta \\
 z
-\end{pmatrix}$$</div>
+\end{pmatrix}
+$$</div>
 <p>A position vector is given by</p>
-<div class="math">$$\mathcal{A}^\mathbf{r} =
+<div class="math">$$
+\mathcal{A}^\mathbf{r} =
  \begin{pmatrix}
 \rho \cos \theta \\
 \rho \sin \theta  \\
 z
-\end{pmatrix}$$</div>
+\end{pmatrix}
+$$</div>
 <h2 id="spherical-coordinates">Spherical coordinates</h2>
-<div class="math">$$\mathbf{\chi}_{Pz} = \begin{pmatrix}
+<div class="math">$$
+\mathbf{\chi}_{Pz} = \begin{pmatrix}
 r \\
 \theta \\
 \phi
-\end{pmatrix}$$</div>
+\end{pmatrix}
+$$</div>
 <p>A position vector is given by</p>
-<div class="math">$$\mathcal{A}^\mathbf{r} = \begin{pmatrix}
+<div class="math">$$
+\mathcal{A}^\mathbf{r} = \begin{pmatrix}
 r \cos \theta \sin \phi \\
 r \sin \theta \sin \phi \\
 r \cos \phi 
-\end{pmatrix}$$</div>
+\end{pmatrix}
+$$</div>
 <p>Where:</p>
 <ul>
 <li><span class="math">\(\theta\)</span>: azimuthal angle</li>
@@ -173,7 +191,9 @@ r \cos \phi
 <p>A pose <span class="math">\(\xi\)</span> in 2D has 3 parameters <span class="math">\((x, y, \theta)\)</span>. It can be considered as the motion (translation
 and rotation) of a coordinate frame.</p>
 <p>The pose of a coordinate frame can be described with respect to another coordinate frame:</p>
-<div class="math">$${}^A\xi_B$$</div>
+<div class="math">$$
+{}^A\xi_B
+$$</div>
 <p>Meaning: Pose <span class="math">\(\xi\)</span> of coordinate frame <span class="math">\({B}\)</span> with respect to frame <span class="math">\({A}\)</span>.</p>
 <h1 id="sources">Sources</h1>
 <p>Notes taken from:</p>
@@ -263,7 +283,7 @@ and rotation) of a coordinate frame.</p>
             <time itemprop="dateCreated" datetime="2018-11-10T10:39:04+01:00">Nov 10, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-08T19:36:49+02:00">Apr 8, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>

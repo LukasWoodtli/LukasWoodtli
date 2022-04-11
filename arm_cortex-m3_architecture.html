@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-07-03T11:44:00+02:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-08T20:39:25+02:00" />
 <meta name="twitter:title" content="ARM Cortex-M3 Architecture ">
 <meta name="twitter:description" content="This page collects my notes about the Cortex-M3 architecture. In particular I use the EFM32TG840F32 processor on a STK3300 starter kit by Silicon Labs. Most information on this page is taken from the documentation by ARM. General CPU Design RISC Endianness bi-endian (little as default) Type Load/Store EFM32TG Overview …">
 
@@ -88,33 +88,6 @@
 <li><a href="#general-purpose-registers">General Purpose Registers</a></li>
 <li><a href="#stack-pointers-sp-r13-msp-psp">Stack Pointers (<span class="caps">SP</span>, R13, <span class="caps">MSP</span>, <span class="caps">PSP</span>)</a></li>
 <li><a href="#link-register-r14-lr">Link Register (R14, <span class="caps">LR</span>)</a></li>
-<li><a href="#program-counter-r15-pc">Program Counter (R15, <span class="caps">PC</span>)</a></li>
-<li><a href="#program-status-registers">Program Status Registers</a><ul>
-<li><a href="#application-program-status-register-apsr">Application Program Status Register (<span class="caps">APSR</span>)</a></li>
-<li><a href="#interrupt-program-status-register-ipsr">Interrupt Program Status Register (<span class="caps">IPSR</span>)</a></li>
-<li><a href="#execution-program-status-register-epsr">Execution Program Status Register (<span class="caps">EPSR</span>)</a></li>
-<li><a href="#composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</a></li>
-</ul>
-</li>
-<li><a href="#special-purpose-mask-registers">Special-Purpose Mask Registers</a></li>
-<li><a href="#control-register">Control Register</a><ul>
-<li><a href="#control-bit0-npriv-privilege-level">Control bit[0] (nPRIV, privilege level)</a></li>
-<li><a href="#control-bit1-spsel-stack-selection">Control bit[1] (<span class="caps">SPSEL</span>, stack selection)</a></li>
-<li><a href="#switching-privilege-level">Switching Privilege Level</a></li>
-</ul>
-</li>
-<li><a href="#reset-values-and-required-access-privileges">Reset Values and Required Access Privileges</a></li>
-</ul>
-</li>
-<li><a href="#modes">Modes</a></li>
-<li><a href="#nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (<span class="caps">NVIC</span>)</a><ul>
-<li><a href="#nested">Nested</a></li>
-<li><a href="#vectored">Vectored</a></li>
-<li><a href="#dynamic-priority-setting">Dynamic Priority Setting</a></li>
-</ul>
-</li>
-<li><a href="#memory-layout">Memory Layout</a><ul>
-<li><a href="#bit-banding">Bit-Banding</a></li>
 </ul>
 </li>
 <li><a href="#bus-interfaces">Bus Interfaces</a></li>
@@ -151,85 +124,58 @@
 <li><a href="#data-transfer-commands">Data Transfer Commands</a><ul>
 <li><a href="#move-data-between-registers-mov-mvn">Move Data between Registers (<span class="caps">MOV</span>, <span class="caps">MVN</span>)</a><ul>
 <li><a href="#immediate">Immediate</a></li>
-<li><a href="#register">Register</a></li>
-<li><a href="#move-to-top-half-word-of-register-movt">Move to top half-word of Register (<span class="caps">MOVT</span>)</a></li>
 <li><a href="#move-special-register-to-register-mrs">Move Special Register to Register (<span class="caps">MRS</span>)</a></li>
-<li><a href="#move-register-to-special-register-msr">Move Register to Special Register (<span class="caps">MSR</span>)</a></li>
 </ul>
 </li>
+<li><a href="#move-data-between-register-and-memory">Move Data between Register and Memory</a></li>
 </ul>
 </li>
 <li><a href="#arithmetic-commands">Arithmetic Commands</a><ul>
 <li><a href="#addition-add">Addition (<span class="caps">ADD</span>)</a><ul>
 <li><a href="#immediate_1">Immediate</a></li>
-<li><a href="#register_1">Register</a></li>
 <li><a href="#sp-plus-immediate"><span class="caps">SP</span> plus Immediate</a></li>
-<li><a href="#sp-plus-register"><span class="caps">SP</span> plus Register</a></li>
 </ul>
 </li>
 <li><a href="#addition-with-carry-adc">Addition with Carry (<span class="caps">ADC</span>)</a><ul>
 <li><a href="#immediate_2">Immediate</a></li>
-<li><a href="#register_2">Register</a></li>
 </ul>
 </li>
-<li><a href="#multiply-mul">Multiply (<span class="caps">MUL</span>)</a></li>
+<li><a href="#multiply-mul">Multiply (<span class="caps">MUL</span>)</a><ul>
+<li><a href="#register">Register</a></li>
 </ul>
 </li>
-<li><a href="#logical-commands">Logical Commands</a><ul>
-<li><a href="#and-and">And (<span class="caps">AND</span>)</a><ul>
-<li><a href="#immediate_3">Immediate</a></li>
-<li><a href="#register_3">Register</a></li>
+<li><a href="#bit-field-insert-bfi">Bit Field Insert (<span class="caps">BFI</span>)</a><ul>
+<li><a href="#register_1">Register</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#bit-commands">Bit Commands</a><ul>
-<li><a href="#bit-field-clear-bfc">Bit Field Clear (<span class="caps">BFC</span>)</a></li>
-<li><a href="#bit-field-insert-bfi">Bit Field Insert (<span class="caps">BFI</span>)</a></li>
-<li><a href="#bit-clear-bic">Bit Clear (<span class="caps">BIC</span>)</a><ul>
-<li><a href="#immediate_4">Immediate</a></li>
-<li><a href="#register_4">Register</a></li>
-</ul>
-</li>
-<li><a href="#count-leading-zeros-clz">Count Leading Zeros (<span class="caps">CLZ</span>)</a></li>
 </ul>
 </li>
 <li><a href="#shift-and-rotate-commands">Shift and Rotate Commands</a><ul>
 <li><a href="#arithmetic-shift-right-asr">Arithmetic Shift Right (<span class="caps">ASR</span>)</a><ul>
-<li><a href="#immediate_5">Immediate</a></li>
-<li><a href="#register_5">Register</a></li>
+<li><a href="#immediate_3">Immediate</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#compare-commands">Compare Commands</a><ul>
 <li><a href="#compare-cmp">Compare (<span class="caps">CMP</span>)</a><ul>
-<li><a href="#immediate_6">Immediate</a></li>
-<li><a href="#register_6">Register</a></li>
+<li><a href="#immediate_4">Immediate</a></li>
 </ul>
 </li>
 <li><a href="#compare-negative-cmn">Compare Negative (<span class="caps">CMN</span>)</a><ul>
-<li><a href="#immediate_7">Immediate</a></li>
-<li><a href="#register_7">Register</a></li>
+<li><a href="#immediate_5">Immediate</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#branch-commands">Branch Commands</a><ul>
 <li><a href="#branch-b">Branch (B)</a></li>
-<li><a href="#branch-with-link-bl">Branch with Link (<span class="caps">BL</span>)</a></li>
 <li><a href="#branch-and-exchange-bx">Branch and Exchange (<span class="caps">BX</span>)</a></li>
-<li><a href="#branch-with-link-and-exchange-blx">Branch with Link and Exchange (<span class="caps">BLX</span>)</a></li>
 </ul>
 </li>
 <li><a href="#compare-and-branch-commands">Compare and Branch Commands</a><ul>
 <li><a href="#compare-and-branch-on-non-zero-and-compare-and-branch-on-zero-cbnzcbz">Compare and Branch on Non-Zero and Compare and Branch on Zero (<span class="caps">CBNZ</span>,<span class="caps">CBZ</span>)</a></li>
-</ul>
-</li>
-<li><a href="#other-commands">Other Commands</a><ul>
-<li><a href="#calculate-address-adr">Calculate Address (<span class="caps">ADR</span>)</a></li>
 <li><a href="#break-point-bkpt">Break-point (<span class="caps">BKPT</span>)</a></li>
-<li><a href="#debug-hint-dbg">Debug Hint (<span class="caps">DBG</span>)</a></li>
 <li><a href="#no-operation-nop">No Operation (<span class="caps">NOP</span>)</a></li>
 </ul>
 </li>
@@ -388,408 +334,239 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 <p>The lowest 2 bits of the stack pointers are always 0. So they are always word aligned.</p>
 <p>It’s not necessary to use both stack pointers (SP_main and SP_process). Simple applications use only SP_main.</p>
 <p><span class="caps">PUSH</span> and <span class="caps">POP</span> work with the actual <em><span class="caps">SP</span></em> (R13). The stack is 32-bit aligned.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">PUSH</span><span class="w"> </span><span class="err">{</span><span class="nb">R3</span><span class="err">}</span><span class="w">  </span><span class="c1">; R13 = R13-4, memory[R13] = R3</span><span class="w"></span>
-<span class="nf">POP</span><span class="w"> </span><span class="err">{</span><span class="nb">R3</span><span class="err">}</span><span class="w">   </span><span class="c1">; R3 = memory[R13], R13 = R13+4</span><span class="w"></span>
-</code></pre></div>
-<p>It’s also possible to to push and pop multiple registers in one instruction.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">my_function</span><span class="w"></span>
-<span class="w">    </span><span class="nf">PUSH</span><span class="w"> </span><span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="p">,</span><span class="w"> </span><span class="nb">R3</span><span class="p">,</span><span class="w"> </span><span class="nb">R7</span><span class="err">}</span><span class="w"> </span><span class="c1">; Save registers</span><span class="w"></span>
-<span class="w">    </span><span class="nf">...</span><span class="w"></span>
-<span class="w">    </span><span class="nf">POP</span><span class="w"> </span><span class="err">{</span><span class="nb">R0</span><span class="o">-</span><span class="nb">R3</span><span class="p">,</span><span class="w"> </span><span class="nb">R3</span><span class="p">,</span><span class="w"> </span><span class="nb">R7</span><span class="err">}</span><span class="w">  </span><span class="c1">; Restore registers</span><span class="w"></span>
-<span class="w">    </span><span class="nf">BX</span><span class="w"> </span><span class="nb">R7</span><span class="w">                </span><span class="c1">; Return to caller</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">PUSH</span> {R3}  ; R13 = R13-4, memory[R13] = R3
+<span class="caps">POP</span> {R3}   ; R3 = memory[R13], R13 = R13+4</p>
+<div class="highlight"><pre><span></span><code><span class="n">It</span><span class="p">'</span><span class="n">s</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">possible</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">pop</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">registers</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">instruction</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">``</span><span class="no">`nasm</span><span class="w"></span>
+<span class="n">my_function</span><span class="w"></span>
+<span class="w">    </span><span class="n">PUSH</span><span class="w"> </span><span class="p">{</span><span class="n">R0</span><span class="o">-</span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">R7</span><span class="p">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">Save</span><span class="w"> </span><span class="n">registers</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">POP</span><span class="w"> </span><span class="p">{</span><span class="n">R0</span><span class="o">-</span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">R7</span><span class="p">}</span><span class="w">  </span><span class="p">;</span><span class="w"> </span><span class="n">Restore</span><span class="w"> </span><span class="n">registers</span><span class="w"></span>
+<span class="w">    </span><span class="n">BX</span><span class="w"> </span><span class="n">R7</span><span class="w">                </span><span class="p">;</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">caller</span><span class="w"></span>
 </code></pre></div>
 <p>It’s possible to use <em><span class="caps">SP</span></em> instead of <em>R13</em> for accessing the actual Stack Pointer.
 For accessing a particular Stack Pointer the mnemonic <span class="caps">MSP</span> (for SP_main) or <span class="caps">PSP</span> (for SP_process) exist.</p>
 <h2 id="link-register-r14-lr">Link Register (R14, <span class="caps">LR</span>)</h2>
 <p>The Link Register contains the return address of a subroutine/function.
 On function entry (<span class="caps">BL</span>) the return address is automatically saved on <span class="caps">LR</span>.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">main</span><span class="w"></span>
-<span class="w">   </span><span class="nf">BL</span><span class="w"> </span><span class="nv">my_func</span><span class="c1">; call funct. with branch and link. PC=my_func, LR=next instr in main</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+main
+   <span class="caps">BL</span> my_func ; call funct. with branch and link. <span class="caps">PC</span>=my_func, <span class="caps">LR</span>=next instr in main …</p>
+<p>my_func
+    …
+    <span class="caps">BX</span> <span class="caps">LR</span> ; return to address in <span class="caps">LR</span></p>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">##</span> <span class="nv">Program</span> <span class="nv">Counter</span> <span class="p">(</span><span class="nv">R15</span><span class="p">,</span> <span class="nv">PC</span><span class="p">)</span>
 
-<span class="nf">...</span><span class="w"></span>
+<span class="nv">This</span> <span class="s s-Atom">register</span> <span class="s s-Atom">holds</span> <span class="s s-Atom">the</span> <span class="s s-Atom">current</span> <span class="s s-Atom">program</span> <span class="s s-Atom">position</span><span class="p">.</span>
 
-<span class="nf">my_func</span><span class="w"></span>
-<span class="w">    </span><span class="nf">...</span><span class="w"></span>
-<span class="w">    </span><span class="nf">BX</span><span class="w"> </span><span class="nv">LR</span><span class="w"> </span><span class="c1">; return to address in LR</span><span class="w"></span>
-</code></pre></div>
-<h2 id="program-counter-r15-pc">Program Counter (R15, <span class="caps">PC</span>)</h2>
-<p>This register holds the current program position.</p>
-<p>It can be written to for controlling the program flow (jumps). But then <em><span class="caps">LR</span></em> is not updated.</p>
-<p>Since the Cortex-M3 has a pipelined architecture the <span class="caps">PC</span> can be ahead of the actual executed
-instruction (normally by 4).</p>
-<p>On reset, the processor loads the <span class="caps">PC</span> with the value of the reset vector, which is at address 0x00000004.</p>
-<blockquote>
-<p>The least-significant bit of each address loaded into <em><span class="caps">PC</span></em> (with <code>BX</code>, <code>BLX</code>, <code>LDM</code>, <code>LDR</code>, or <code>POP</code>)
-must be 1 (indicating thumb mode).</p>
-<p>Otherwise an exception will occur on the Cortex-M3.</p>
-</blockquote>
-<h2 id="program-status-registers">Program Status Registers</h2>
-<p>The special-purpose program status registers (<em>xPSR</em>) provide arithmetic and logic flags (zero and carry flag),
-execution status and current executing <span class="caps">IRQ</span> number.</p>
-<table class="table table-striped">
-<thead>
-<tr>
-<th align="right">Bit</th>
-<th align="center"><span class="caps">APSR</span></th>
-<th align="center"><span class="caps">IPSR</span></th>
-<th align="center"><span class="caps">EPSR</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">31</td>
-<td align="center">N</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">30</td>
-<td align="center">Z</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">29</td>
-<td align="center">C</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">28</td>
-<td align="center">V</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">27</td>
-<td align="center">Q</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">25-26</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center"><span class="caps">ICI</span>/<span class="caps">IT</span></td>
-</tr>
-<tr>
-<td align="right">24</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">T</td>
-</tr>
-<tr>
-<td align="right">20-23</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">16-19</td>
-<td align="center"><span class="caps">GE</span>[3:0]</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td align="right">9-15</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center"><span class="caps">ICI</span>/<span class="caps">IT</span></td>
-</tr>
-<tr>
-<td align="right">0-8</td>
-<td align="center">-</td>
-<td align="center">Exception Number</td>
-<td align="center">-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="application-program-status-register-apsr">Application Program Status Register (<span class="caps">APSR</span>)</h3>
-<p>Flags that can be set by application code (unprivileged mode).</p>
-<ul>
-<li><strong>N (bit[31])</strong>: Negative condition flag. Set if result of instruction is negative.</li>
-<li><strong>Z (bit[30])</strong>: Zero condition flag. Set if result of instruction is zero (0).</li>
-<li><strong>C (bit[29])</strong>: Carry (or borrow) condition flag. Set if instruction results in a carry condition (i.e unsigned overflow on addition)</li>
-<li><strong>V (bit[28])</strong>: Overflow condition flag. Set if the instruction results in a an overflow condition (i.e. signed overflow on addition)</li>
-<li><strong>Q (bit[27])</strong>: Set if a <code>SSAT</code> or <code>USAT</code> instruction changes the input value for the signed/unsigned range of the result (saturation).</li>
-<li><strong><span class="caps">GE</span>[3:0] (bits[19:16])</strong>: <span class="caps">DSP</span> extension only. Otherwise reserved.</li>
-</ul>
-<h3 id="interrupt-program-status-register-ipsr">Interrupt Program Status Register (<span class="caps">IPSR</span>)</h3>
-<ul>
-<li>Handler Mode: This register holds the exception number of the exception that is currently processed.</li>
-<li>Thread Mode: If no exception is processed the value is zero (0).</li>
-</ul>
-<h3 id="execution-program-status-register-epsr">Execution Program Status Register (<span class="caps">EPSR</span>)</h3>
-<ul>
-<li><strong>T bit[24]</strong>: Defines the instruction set. The Cortex-M3 supports only Thumb-2. So it must be 0. An fault is caused if this bit is set to 0.</li>
-<li><strong><span class="caps">ICI</span>/<span class="caps">IT</span></strong>: <span class="caps">TBD</span></li>
-</ul>
-<h3 id="composite-views-of-the-xpsr-registers">Composite views of the xPSR registers</h3>
-<p>The commands <code>MSR</code> and <code>MRS</code> can use the mnemonics <span class="caps">APSR</span>, <span class="caps">IPSR</span>, and <span class="caps">EPSR</span> directly or combined mnemonics for the Program Status Registers.</p>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Mnemonic</th>
-<th>Registers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="caps">IAPSR</span></td>
-<td><span class="caps">IPSR</span> and <span class="caps">APSR</span></td>
-</tr>
-<tr>
-<td><span class="caps">EAPSR</span></td>
-<td><span class="caps">EPSR</span> and <span class="caps">APSR</span></td>
-</tr>
-<tr>
-<td><span class="caps">IEPSR</span></td>
-<td><span class="caps">IPSR</span> and <span class="caps">EPSR</span></td>
-</tr>
-<tr>
-<td><span class="caps">PSR</span></td>
-<td>All three xPSR registers</td>
-</tr>
-</tbody>
-</table>
-<h2 id="special-purpose-mask-registers">Special-Purpose Mask Registers</h2>
-<p>This registers are set to 0 at reset.</p>
-<p>They can only be written if in privileged level.</p>
-<ul>
-<li><em><span class="caps">PRIMASK</span></em>: Disable interrupts except nonmaskable interrupt (<span class="caps">NMI</span>) and hard fault.</li>
-<li><em><span class="caps">FAULTMASK</span></em>: Disable interrupts except nonmaskable interrupt (<span class="caps">NMI</span>).</li>
-<li><em><span class="caps">BASEPRI</span></em>: Disable interrupts of given priority level or lower priority level.</li>
-</ul>
-<h2 id="control-register">Control Register</h2>
-<p>Define privileged status and select stack pointer.</p>
-<h3 id="control-bit0-npriv-privilege-level">Control bit[0] (nPRIV, privilege level)</h3>
-<p>This bit has only a meaning in thread mode.</p>
-<ul>
-<li>0: Privileged Level</li>
-<li>1: Unprivileged (user) Level</li>
-</ul>
-<p>In handler mode the processor operates in privileged mode.</p>
-<p>This bit is only writable with privileged level.</p>
-<h3 id="control-bit1-spsel-stack-selection">Control bit[1] (<span class="caps">SPSEL</span>, stack selection)</h3>
-<p>This bit makes only sense in thread mode.</p>
-<ul>
-<li>0: Use SP_process</li>
-<li>1: Use SP_main</li>
-</ul>
-<p>In handler mode this bit must be 0 (SP_main is used).</p>
-<p>This bit is only writable if in thread mode with privileged level.</p>
-<h3 id="switching-privilege-level">Switching Privilege Level</h3>
-<p>To switch from privileged level to user level the <em>Control bit[0]</em> can be written directly.</p>
-<p>The switch from user level to privilege level heeds to be performed within an exception handler.</p>
-<h2 id="reset-values-and-required-access-privileges">Reset Values and Required Access Privileges</h2>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Name</th>
-<th>Read/Write</th>
-<th>Required privilege</th>
-<th>Reset value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>R0-R12</td>
-<td><span class="caps">RW</span></td>
-<td>Both</td>
-<td>Undef</td>
-</tr>
-<tr>
-<td><span class="caps">MSP</span> (R13)</td>
-<td><span class="caps">RW</span></td>
-<td>Privileged</td>
-<td>value from address 0x00000000</td>
-</tr>
-<tr>
-<td><span class="caps">PSP</span> (R13)</td>
-<td><span class="caps">RW</span></td>
-<td>Both</td>
-<td>Undef</td>
-</tr>
-<tr>
-<td><span class="caps">LR</span>  (R14)</td>
-<td><span class="caps">RW</span></td>
-<td>Both</td>
-<td>0xFFFFFFFF</td>
-</tr>
-<tr>
-<td><span class="caps">PC</span>  (R15)</td>
-<td><span class="caps">RW</span></td>
-<td>Both</td>
-<td>value of the reset vector</td>
-</tr>
-<tr>
-<td><span class="caps">ASPR</span></td>
-<td><span class="caps">RW</span></td>
-<td>Both</td>
-<td>0x00000000</td>
-</tr>
-<tr>
-<td><span class="caps">IPSR</span></td>
-<td>R</td>
-<td>Privileged</td>
-<td>0x00000000</td>
-</tr>
-<tr>
-<td><span class="caps">EPSR</span></td>
-<td>R</td>
-<td>Privileged</td>
-<td>0x01000000</td>
-</tr>
-<tr>
-<td><span class="caps">PRIMASK</span></td>
-<td><span class="caps">RW</span></td>
-<td>Privileged</td>
-<td>0x00000000</td>
-</tr>
-<tr>
-<td><span class="caps">FAULTMASK</span></td>
-<td><span class="caps">RW</span></td>
-<td>Privileged</td>
-<td>0x00000000</td>
-</tr>
-<tr>
-<td><span class="caps">BASEPRI</span></td>
-<td><span class="caps">RW</span></td>
-<td>Privileged</td>
-<td>0x00000000</td>
-</tr>
-<tr>
-<td><span class="caps">CONTROL</span></td>
-<td><span class="caps">RW</span></td>
-<td>Privileged</td>
-<td>0x00000000</td>
-</tr>
-</tbody>
-</table>
-<h1 id="modes">Modes</h1>
-<p>The Cortex-M3 has two modes:</p>
-<ul>
-<li>Thread Mode</li>
-<li>Handler Mode</li>
-</ul>
-<p>In Thread Mode the processor can run in two privilege levels:</p>
-<ul>
-<li>User Level</li>
-<li>Privileged Level</li>
-</ul>
-<p>In Handler Mode only the Privileged Level is available.</p>
-<table class="table table-striped">
-<thead>
-<tr>
-<th></th>
-<th>Application Code</th>
-<th>Exception Handler</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Unprivileged (user) Level</td>
-<td>Thread Mode</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Privileged Level</td>
-<td>Thread Mode</td>
-<td>Handler Mode</td>
-</tr>
-</tbody>
-</table>
-<p><img alt="The ARM Cortex-M3 Modes and Levels" class="img-fluid" src="/images/arm_cortex_m3_modes_levels.svg"/></p>
-<h1 id="nested-vectored-interrupt-controller-nvic">Nested Vectored Interrupt Controller (<span class="caps">NVIC</span>)</h1>
-<h2 id="nested">Nested</h2>
-<p>All external and some system interrupts can be assigned to different priority levels. Current
-handled interrupts can only be disrupted by interrupts of higher priority.</p>
-<h2 id="vectored">Vectored</h2>
-<p>The addresses of the interrupt service routines (ISRs) are stored in a vector. If an interrupt
-occurs the look-up of the routine is fast and the handling of the interrupt is not delayed by look-up code.</p>
-<h2 id="dynamic-priority-setting">Dynamic Priority Setting</h2>
-<p>The priority of an interrupt can be changed at run time.</p>
-<h1 id="memory-layout">Memory Layout</h1>
-<p>The Cortex-M3 has a defined memory map. So most built in peripherals are accessible by their
-memory address. Thus it’s easy to access it in C/C++ code.</p>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Address Range</th>
-<th>Use</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x00000000 - 0x1FFFFFFF</td>
-<td><span class="caps">CODE</span></td>
-<td>Program Code. Exception vector table after start up.</td>
-</tr>
-<tr>
-<td>0x20000000 - 0x3FFFFFFF</td>
-<td><span class="caps">SRAM</span></td>
-<td>Used as static <span class="caps">RAM</span>.</td>
-</tr>
-<tr>
-<td>0x40000000 - 0x5FFFFFFF</td>
-<td>Peripherals</td>
-<td>For integrated peripherals.</td>
-</tr>
-<tr>
-<td>0x60000000 - 0x9FFFFFFF</td>
-<td>External <span class="caps">RAM</span></td>
-<td>For external connected <span class="caps">RAM</span>.</td>
-</tr>
-<tr>
-<td>0xA0000000 - 0xDFFFFFFF</td>
-<td>External Peripherals</td>
-<td>For external connected peripherals.</td>
-</tr>
-<tr>
-<td>0xE0000000 - 0xFFFFFFFF</td>
-<td>System</td>
-<td><span class="caps">NVIC</span>, <span class="caps">MPU</span>, Debug…</td>
-</tr>
-</tbody>
-</table>
-<h2 id="bit-banding">Bit-Banding</h2>
-<p>Bit-Banding is a feature that allows to access certain bits individually. The access to the bits are atomically.</p>
-<p>The access to the individual bits are accomplished by mapping each bit from the bit-banding region to an address
-in a region called bit-banding alias.</p>
-<ul>
-<li>Each bit-banding region is 1 <span class="caps">MB</span> big.</li>
-<li>The bit-banding alias regions are 32 <span class="caps">MB</span> big (but it addresses in total only the 1 <span class="caps">MB</span> of the bit-banding region).</li>
-</ul>
-<p>There are two bit-band region. One for memory and the other for peripherals.</p>
-<table class="table table-striped">
-<thead>
-<tr>
-<th></th>
-<th>Bit-Band region</th>
-<th>Bit-Band alias region</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Memory</td>
-<td>0x20000000 - 0x200FFFFF</td>
-<td>0x22000000 - 0x23FFFFF</td>
-</tr>
-<tr>
-<td>Peripherals</td>
-<td>0x40000000 - 0x400FFFFF</td>
-<td>0x42000000 - 0x43FFFFF</td>
-</tr>
-</tbody>
-</table>
-<p>To access one bit through the bit-banding alias the mapping is performed by this code:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#define BIT_BANDING_ALIAS_OFFSET(byteOffsetInBitBandRegion, bitNumber)  ((byteOffsetInBitBandRegion * 32) + (bitNumber * 4))</span>
-<span class="cp">#define BIT_BANDING_MEMORY_ALIAS_BASE    0x22000000</span>
-<span class="cp">#define BIT_BANDING_PERIPERAL_ALIAS_BASE 0x42000000</span>
+<span class="nv">It</span> <span class="s s-Atom">can</span> <span class="s s-Atom">be</span> <span class="s s-Atom">written</span> <span class="s s-Atom">to</span> <span class="s s-Atom">for</span> <span class="s s-Atom">controlling</span> <span class="s s-Atom">the</span> <span class="s s-Atom">program</span> <span class="nf">flow</span> <span class="p">(</span><span class="s s-Atom">jumps</span><span class="p">).</span> <span class="nv">But</span> <span class="s s-Atom">then</span> <span class="o">*</span><span class="nv">LR</span><span class="o">*</span> <span class="o">is</span> <span class="o">not</span> <span class="s s-Atom">updated</span><span class="p">.</span>
 
-<span class="cp">#define BIT_BANDING_MEMORY_TO_ALIAS(byte, bit)  (BIT_BANDING_MEMORY_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
-<span class="cp">#define BIT_BANDING_PERIPHERAL_TO_ALIAS(byte, bit) (BIT_BANDING_PERIPHERAL_ALIAS_BASE + BIT_BANDING_ALIAS_OFFSET(byte, bit))</span>
+<span class="nv">Since</span> <span class="s s-Atom">the</span> <span class="nv">Cortex</span><span class="o">-</span><span class="nv">M3</span> <span class="s s-Atom">has</span> <span class="s s-Atom">a</span> <span class="s s-Atom">pipelined</span> <span class="s s-Atom">architecture</span> <span class="s s-Atom">the</span> <span class="nv">PC</span> <span class="s s-Atom">can</span> <span class="s s-Atom">be</span> <span class="s s-Atom">ahead</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">actual</span> <span class="s s-Atom">executed</span>
+<span class="nf">instruction</span> <span class="p">(</span><span class="s s-Atom">normally</span> <span class="s s-Atom">by</span> <span class="mi">4</span><span class="p">).</span>
+
+<span class="nv">On</span> <span class="s s-Atom">reset</span><span class="p">,</span> <span class="s s-Atom">the</span> <span class="s s-Atom">processor</span> <span class="s s-Atom">loads</span> <span class="s s-Atom">the</span> <span class="nv">PC</span> <span class="s s-Atom">with</span> <span class="s s-Atom">the</span> <span class="s s-Atom">value</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">reset</span> <span class="s s-Atom">vector</span><span class="p">,</span> <span class="s s-Atom">which</span> <span class="o">is</span> <span class="s s-Atom">at</span> <span class="s s-Atom">address</span> <span class="mh">0x00000004</span><span class="p">.</span>
+
+<span class="o">&gt;</span> <span class="nv">The</span> <span class="s s-Atom">least</span><span class="o">-</span><span class="s s-Atom">significant</span> <span class="s s-Atom">bit</span> <span class="s s-Atom">of</span> <span class="s s-Atom">each</span> <span class="s s-Atom">address</span> <span class="s s-Atom">loaded</span> <span class="s s-Atom">into</span> <span class="o">*</span><span class="nv">PC</span><span class="o">*</span> <span class="p">(</span><span class="s s-Atom">with</span> <span class="err">`</span><span class="nv">BX</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="nv">BLX</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="nv">LDM</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="nv">LDR</span><span class="err">`</span><span class="p">,</span> <span class="s s-Atom">or</span> <span class="err">`</span><span class="nv">POP</span><span class="err">`</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="s s-Atom">must</span> <span class="s s-Atom">be</span> <span class="mi">1</span> <span class="p">(</span><span class="s s-Atom">indicating</span> <span class="s s-Atom">thumb</span> <span class="s s-Atom">mode</span><span class="p">).</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="nv">Otherwise</span> <span class="s s-Atom">an</span> <span class="s s-Atom">exception</span> <span class="s s-Atom">will</span> <span class="s s-Atom">occur</span> <span class="s s-Atom">on</span> <span class="s s-Atom">the</span> <span class="nv">Cortex</span><span class="o">-</span><span class="nv">M3</span><span class="p">.</span>
+
+<span class="s s-Atom">##</span> <span class="nv">Program</span> <span class="nv">Status</span> <span class="nv">Registers</span>
+
+<span class="nv">The</span> <span class="s s-Atom">special</span><span class="o">-</span><span class="s s-Atom">purpose</span> <span class="s s-Atom">program</span> <span class="s s-Atom">status</span> <span class="nf">registers</span> <span class="p">(</span><span class="o">*</span><span class="s s-Atom">xPSR*</span><span class="p">)</span> <span class="s s-Atom">provide</span> <span class="s s-Atom">arithmetic</span> <span class="s s-Atom">and</span> <span class="s s-Atom">logic</span> <span class="nf">flags</span> <span class="p">(</span><span class="s s-Atom">zero</span> <span class="s s-Atom">and</span> <span class="s s-Atom">carry</span> <span class="s s-Atom">flag</span><span class="p">),</span>
+<span class="s s-Atom">execution</span> <span class="s s-Atom">status</span> <span class="s s-Atom">and</span> <span class="s s-Atom">current</span> <span class="s s-Atom">executing</span> <span class="nv">IRQ</span> <span class="s s-Atom">number</span><span class="p">.</span>
+
+
+<span class="p">|</span> <span class="nv">Bit</span>   <span class="p">|</span> <span class="nv">APSR</span>    <span class="p">|</span>  <span class="nv">IPSR</span>            <span class="p">|</span> <span class="nv">EPSR</span>   <span class="p">|</span>
+<span class="p">|</span><span class="s s-Atom">------:</span><span class="p">|:-</span><span class="s s-Atom">------:</span><span class="p">|:-</span><span class="s s-Atom">---------------:</span><span class="p">|:-</span><span class="s s-Atom">-----:</span><span class="p">|</span>
+<span class="p">|</span> <span class="mi">31</span>    <span class="p">|</span>  <span class="nv">N</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>  <span class="o">-</span>     <span class="p">|</span>
+<span class="p">|</span> <span class="mi">30</span>    <span class="p">|</span>  <span class="nv">Z</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>  <span class="o">-</span>     <span class="p">|</span>
+<span class="p">|</span> <span class="mi">29</span>    <span class="p">|</span>  <span class="nv">C</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>  <span class="o">-</span>     <span class="p">|</span>
+<span class="p">|</span> <span class="mi">28</span>    <span class="p">|</span>  <span class="nv">V</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>  <span class="o">-</span>     <span class="p">|</span>
+<span class="p">|</span> <span class="mi">27</span>    <span class="p">|</span>  <span class="nv">Q</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>  <span class="o">-</span>     <span class="p">|</span>
+<span class="p">|</span> <span class="mi">25</span><span class="o">-</span><span class="mi">26</span> <span class="p">|</span>  <span class="o">-</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span> <span class="nv">ICI</span><span class="o">/</span><span class="nv">IT</span> <span class="p">|</span>
+<span class="p">|</span> <span class="mi">24</span>    <span class="p">|</span>  <span class="o">-</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>   <span class="nv">T</span>    <span class="p">|</span>
+<span class="p">|</span> <span class="mi">20</span><span class="o">-</span><span class="mi">23</span> <span class="p">|</span>  <span class="o">-</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>   <span class="o">-</span>    <span class="p">|</span>
+<span class="p">|</span> <span class="mi">16</span><span class="o">-</span><span class="mi">19</span> <span class="p">|</span> <span class="nv">GE</span><span class="p">[</span><span class="mi">3</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">]</span> <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span>   <span class="o">-</span>    <span class="p">|</span>
+<span class="p">|</span> <span class="mi">9</span><span class="o">-</span><span class="mi">15</span>  <span class="p">|</span>  <span class="o">-</span>      <span class="p">|</span>   <span class="o">-</span>              <span class="p">|</span> <span class="nv">ICI</span><span class="o">/</span><span class="nv">IT</span> <span class="p">|</span>
+<span class="p">|</span> <span class="mi">0</span><span class="o">-</span><span class="mi">8</span>   <span class="p">|</span>  <span class="o">-</span>      <span class="p">|</span> <span class="nv">Exception</span> <span class="nv">Number</span> <span class="p">|</span>   <span class="o">-</span>    <span class="p">|</span>
+
+
+<span class="s s-Atom">###</span> <span class="nv">Application</span> <span class="nv">Program</span> <span class="nv">Status</span> <span class="nv">Register</span> <span class="p">(</span><span class="nv">APSR</span><span class="p">)</span>
+
+<span class="nv">Flags</span> <span class="s s-Atom">that</span> <span class="s s-Atom">can</span> <span class="s s-Atom">be</span> <span class="s s-Atom">set</span> <span class="s s-Atom">by</span> <span class="s s-Atom">application</span> <span class="nf">code</span> <span class="p">(</span><span class="s s-Atom">unprivileged</span> <span class="s s-Atom">mode</span><span class="p">).</span>
+
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">N</span> <span class="p">(</span><span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">31</span><span class="p">])</span><span class="s s-Atom">**:</span> <span class="nv">Negative</span> <span class="s s-Atom">condition</span> <span class="s s-Atom">flag</span><span class="p">.</span> <span class="nv">Set</span> <span class="s s-Atom">if</span> <span class="s s-Atom">result</span> <span class="s s-Atom">of</span> <span class="s s-Atom">instruction</span> <span class="o">is</span> <span class="s s-Atom">negative</span><span class="p">.</span>
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">Z</span> <span class="p">(</span><span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">30</span><span class="p">])</span><span class="s s-Atom">**:</span> <span class="nv">Zero</span> <span class="s s-Atom">condition</span> <span class="s s-Atom">flag</span><span class="p">.</span> <span class="nv">Set</span> <span class="s s-Atom">if</span> <span class="s s-Atom">result</span> <span class="s s-Atom">of</span> <span class="s s-Atom">instruction</span> <span class="o">is</span> <span class="nf">zero</span> <span class="p">(</span><span class="mi">0</span><span class="p">).</span>
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">C</span> <span class="p">(</span><span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">29</span><span class="p">])</span><span class="s s-Atom">**:</span> <span class="nv">Carry</span> <span class="p">(</span><span class="s s-Atom">or</span> <span class="s s-Atom">borrow</span><span class="p">)</span> <span class="s s-Atom">condition</span> <span class="s s-Atom">flag</span><span class="p">.</span> <span class="nv">Set</span> <span class="s s-Atom">if</span> <span class="s s-Atom">instruction</span> <span class="s s-Atom">results</span> <span class="s s-Atom">in</span> <span class="s s-Atom">a</span> <span class="s s-Atom">carry</span> <span class="nf">condition</span> <span class="p">(</span><span class="s s-Atom">i</span><span class="p">.</span><span class="s s-Atom">e</span> <span class="s s-Atom">unsigned</span> <span class="s s-Atom">overflow</span> <span class="s s-Atom">on</span> <span class="s s-Atom">addition</span><span class="p">)</span>
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">V</span> <span class="p">(</span><span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">28</span><span class="p">])</span><span class="s s-Atom">**:</span> <span class="nv">Overflow</span> <span class="s s-Atom">condition</span> <span class="s s-Atom">flag</span><span class="p">.</span> <span class="nv">Set</span> <span class="s s-Atom">if</span> <span class="s s-Atom">the</span> <span class="s s-Atom">instruction</span> <span class="s s-Atom">results</span> <span class="s s-Atom">in</span> <span class="s s-Atom">a</span> <span class="s s-Atom">an</span> <span class="s s-Atom">overflow</span> <span class="nf">condition</span> <span class="p">(</span><span class="s s-Atom">i</span><span class="p">.</span><span class="s s-Atom">e</span><span class="p">.</span> <span class="s s-Atom">signed</span> <span class="s s-Atom">overflow</span> <span class="s s-Atom">on</span> <span class="s s-Atom">addition</span><span class="p">)</span>
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">Q</span> <span class="p">(</span><span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">27</span><span class="p">])</span><span class="s s-Atom">**:</span> <span class="nv">Set</span> <span class="s s-Atom">if</span> <span class="s s-Atom">a</span> <span class="err">`</span><span class="nv">SSAT</span><span class="err">`</span> <span class="s s-Atom">or</span> <span class="err">`</span><span class="nv">USAT</span><span class="err">`</span> <span class="s s-Atom">instruction</span> <span class="s s-Atom">changes</span> <span class="s s-Atom">the</span> <span class="s s-Atom">input</span> <span class="s s-Atom">value</span> <span class="s s-Atom">for</span> <span class="s s-Atom">the</span> <span class="s s-Atom">signed</span><span class="o">/</span><span class="s s-Atom">unsigned</span> <span class="s s-Atom">range</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="nf">result</span> <span class="p">(</span><span class="s s-Atom">saturation</span><span class="p">).</span>
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">GE</span><span class="p">[</span><span class="mi">3</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="s s-Atom">bits</span><span class="p">[</span><span class="mi">19</span><span class="s s-Atom">:</span><span class="mi">16</span><span class="p">])</span><span class="s s-Atom">**:</span> <span class="nv">DSP</span> <span class="s s-Atom">extension</span> <span class="s s-Atom">only</span><span class="p">.</span> <span class="nv">Otherwise</span> <span class="s s-Atom">reserved</span><span class="p">.</span>
+
+<span class="s s-Atom">###</span> <span class="nv">Interrupt</span> <span class="nv">Program</span> <span class="nv">Status</span> <span class="nv">Register</span> <span class="p">(</span><span class="nv">IPSR</span><span class="p">)</span>
+
+<span class="o">-</span> <span class="nv">Handler</span> <span class="nv">Mode</span><span class="s s-Atom">:</span> <span class="nv">This</span> <span class="s s-Atom">register</span> <span class="s s-Atom">holds</span> <span class="s s-Atom">the</span> <span class="s s-Atom">exception</span> <span class="s s-Atom">number</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">exception</span> <span class="s s-Atom">that</span> <span class="o">is</span> <span class="s s-Atom">currently</span> <span class="s s-Atom">processed</span><span class="p">.</span>
+<span class="o">-</span> <span class="nv">Thread</span> <span class="nv">Mode</span><span class="s s-Atom">:</span> <span class="nv">If</span> <span class="s s-Atom">no</span> <span class="s s-Atom">exception</span> <span class="o">is</span> <span class="s s-Atom">processed</span> <span class="s s-Atom">the</span> <span class="s s-Atom">value</span> <span class="o">is</span> <span class="nf">zero</span> <span class="p">(</span><span class="mi">0</span><span class="p">).</span>
+
+<span class="s s-Atom">###</span> <span class="nv">Execution</span> <span class="nv">Program</span> <span class="nv">Status</span> <span class="nv">Register</span> <span class="p">(</span><span class="nv">EPSR</span><span class="p">)</span>
+
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">T</span> <span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span><span class="s s-Atom">**:</span> <span class="nv">Defines</span> <span class="s s-Atom">the</span> <span class="s s-Atom">instruction</span> <span class="s s-Atom">set</span><span class="p">.</span> <span class="nv">The</span> <span class="nv">Cortex</span><span class="o">-</span><span class="nv">M3</span> <span class="s s-Atom">supports</span> <span class="s s-Atom">only</span> <span class="nv">Thumb</span><span class="o">-</span><span class="mf">2.</span> <span class="nv">So</span> <span class="s s-Atom">it</span> <span class="s s-Atom">must</span> <span class="s s-Atom">be</span> <span class="mf">0.</span> <span class="nv">An</span> <span class="s s-Atom">fault</span> <span class="o">is</span> <span class="s s-Atom">caused</span> <span class="s s-Atom">if</span> <span class="s s-Atom">this</span> <span class="s s-Atom">bit</span> <span class="o">is</span> <span class="s s-Atom">set</span> <span class="s s-Atom">to</span> <span class="mf">0.</span>
+<span class="o">-</span> <span class="s s-Atom">**</span><span class="nv">ICI</span><span class="o">/</span><span class="nv">IT</span><span class="s s-Atom">**:</span> <span class="nv">TBD</span>
+
+<span class="s s-Atom">###</span> <span class="nv">Composite</span> <span class="s s-Atom">views</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">xPSR</span> <span class="s s-Atom">registers</span>
+
+<span class="nv">The</span> <span class="s s-Atom">commands</span> <span class="err">`</span><span class="nv">MSR</span><span class="err">`</span> <span class="s s-Atom">and</span> <span class="err">`</span><span class="nv">MRS</span><span class="err">`</span> <span class="s s-Atom">can</span> <span class="s s-Atom">use</span> <span class="s s-Atom">the</span> <span class="s s-Atom">mnemonics</span> <span class="nv">APSR</span><span class="p">,</span> <span class="nv">IPSR</span><span class="p">,</span> <span class="s s-Atom">and</span> <span class="nv">EPSR</span> <span class="s s-Atom">directly</span> <span class="s s-Atom">or</span> <span class="s s-Atom">combined</span> <span class="s s-Atom">mnemonics</span> <span class="s s-Atom">for</span> <span class="s s-Atom">the</span> <span class="nv">Program</span> <span class="nv">Status</span> <span class="nv">Registers</span><span class="p">.</span>
+
+<span class="p">|</span> <span class="nv">Mnemonic</span><span class="p">|</span> <span class="nv">Registers</span>                  <span class="p">|</span>
+<span class="p">|</span><span class="s s-Atom">---------</span><span class="p">|</span><span class="s s-Atom">----------------------------</span><span class="p">|</span>
+<span class="p">|</span> <span class="nv">IAPSR</span>   <span class="p">|</span> <span class="nv">IPSR</span> <span class="s s-Atom">and</span> <span class="nv">APSR</span>              <span class="p">|</span>
+<span class="p">|</span> <span class="nv">EAPSR</span>   <span class="p">|</span> <span class="nv">EPSR</span> <span class="s s-Atom">and</span> <span class="nv">APSR</span>              <span class="p">|</span>
+<span class="p">|</span> <span class="nv">IEPSR</span>   <span class="p">|</span> <span class="nv">IPSR</span> <span class="s s-Atom">and</span> <span class="nv">EPSR</span>              <span class="p">|</span>
+<span class="p">|</span>  <span class="nv">PSR</span>    <span class="p">|</span> <span class="nv">All</span> <span class="s s-Atom">three</span> <span class="s s-Atom">xPSR</span> <span class="s s-Atom">registers</span>   <span class="p">|</span>
+
+
+<span class="s s-Atom">##</span> <span class="nv">Special</span><span class="o">-</span><span class="nv">Purpose</span> <span class="nv">Mask</span> <span class="nv">Registers</span>
+
+<span class="nv">This</span> <span class="s s-Atom">registers</span> <span class="s s-Atom">are</span> <span class="s s-Atom">set</span> <span class="s s-Atom">to</span> <span class="mi">0</span> <span class="s s-Atom">at</span> <span class="s s-Atom">reset</span><span class="p">.</span>
+
+<span class="nv">They</span> <span class="s s-Atom">can</span> <span class="s s-Atom">only</span> <span class="s s-Atom">be</span> <span class="s s-Atom">written</span> <span class="s s-Atom">if</span> <span class="s s-Atom">in</span> <span class="s s-Atom">privileged</span> <span class="s s-Atom">level</span><span class="p">.</span>
+
+<span class="o">-</span> <span class="o">*</span><span class="nv">PRIMASK</span><span class="s s-Atom">*:</span> <span class="nv">Disable</span> <span class="s s-Atom">interrupts</span> <span class="s s-Atom">except</span> <span class="s s-Atom">nonmaskable</span> <span class="nf">interrupt</span> <span class="p">(</span><span class="nv">NMI</span><span class="p">)</span> <span class="s s-Atom">and</span> <span class="s s-Atom">hard</span> <span class="s s-Atom">fault</span><span class="p">.</span>
+<span class="o">-</span> <span class="o">*</span><span class="nv">FAULTMASK</span><span class="s s-Atom">*:</span> <span class="nv">Disable</span> <span class="s s-Atom">interrupts</span> <span class="s s-Atom">except</span> <span class="s s-Atom">nonmaskable</span> <span class="nf">interrupt</span> <span class="p">(</span><span class="nv">NMI</span><span class="p">).</span>
+<span class="o">-</span> <span class="o">*</span><span class="nv">BASEPRI</span><span class="s s-Atom">*:</span> <span class="nv">Disable</span> <span class="s s-Atom">interrupts</span> <span class="s s-Atom">of</span> <span class="s s-Atom">given</span> <span class="s s-Atom">priority</span> <span class="s s-Atom">level</span> <span class="s s-Atom">or</span> <span class="s s-Atom">lower</span> <span class="s s-Atom">priority</span> <span class="s s-Atom">level</span><span class="p">.</span>
+
+<span class="s s-Atom">##</span> <span class="nv">Control</span> <span class="nv">Register</span>
+
+<span class="nv">Define</span> <span class="s s-Atom">privileged</span> <span class="s s-Atom">status</span> <span class="s s-Atom">and</span> <span class="s s-Atom">select</span> <span class="s s-Atom">stack</span> <span class="s s-Atom">pointer</span><span class="p">.</span>
+
+<span class="s s-Atom">###</span> <span class="nv">Control</span> <span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="s s-Atom">nPRIV</span><span class="p">,</span> <span class="s s-Atom">privilege</span> <span class="s s-Atom">level</span><span class="p">)</span>
+<span class="nv">This</span> <span class="s s-Atom">bit</span> <span class="s s-Atom">has</span> <span class="s s-Atom">only</span> <span class="s s-Atom">a</span> <span class="s s-Atom">meaning</span> <span class="s s-Atom">in</span> <span class="s s-Atom">thread</span> <span class="s s-Atom">mode</span><span class="p">.</span>
+
+<span class="o">-</span> <span class="mi">0</span><span class="s s-Atom">:</span> <span class="nv">Privileged</span> <span class="nv">Level</span>
+<span class="o">-</span> <span class="mi">1</span><span class="s s-Atom">:</span> <span class="nv">Unprivileged</span> <span class="p">(</span><span class="s s-Atom">user</span><span class="p">)</span> <span class="nv">Level</span>
+
+<span class="nv">In</span> <span class="s s-Atom">handler</span> <span class="s s-Atom">mode</span> <span class="s s-Atom">the</span> <span class="s s-Atom">processor</span> <span class="s s-Atom">operates</span> <span class="s s-Atom">in</span> <span class="s s-Atom">privileged</span> <span class="s s-Atom">mode</span><span class="p">.</span>
+
+<span class="nv">This</span> <span class="s s-Atom">bit</span> <span class="o">is</span> <span class="s s-Atom">only</span> <span class="s s-Atom">writable</span> <span class="s s-Atom">with</span> <span class="s s-Atom">privileged</span> <span class="s s-Atom">level</span><span class="p">.</span>
+
+<span class="s s-Atom">###</span> <span class="nv">Control</span> <span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="nv">SPSEL</span><span class="p">,</span> <span class="s s-Atom">stack</span> <span class="s s-Atom">selection</span><span class="p">)</span>
+
+<span class="nv">This</span> <span class="s s-Atom">bit</span> <span class="s s-Atom">makes</span> <span class="s s-Atom">only</span> <span class="s s-Atom">sense</span> <span class="s s-Atom">in</span> <span class="s s-Atom">thread</span> <span class="s s-Atom">mode</span><span class="p">.</span>
+
+<span class="o">-</span> <span class="mi">0</span><span class="s s-Atom">:</span> <span class="nv">Use</span> <span class="nv">SP_process</span>
+<span class="o">-</span> <span class="mi">1</span><span class="s s-Atom">:</span> <span class="nv">Use</span> <span class="nv">SP_main</span>
+
+<span class="nv">In</span> <span class="s s-Atom">handler</span> <span class="s s-Atom">mode</span> <span class="s s-Atom">this</span> <span class="s s-Atom">bit</span> <span class="s s-Atom">must</span> <span class="s s-Atom">be</span> <span class="mi">0</span> <span class="p">(</span><span class="nv">SP_main</span> <span class="o">is</span> <span class="s s-Atom">used</span><span class="p">).</span>
+
+<span class="nv">This</span> <span class="s s-Atom">bit</span> <span class="o">is</span> <span class="s s-Atom">only</span> <span class="s s-Atom">writable</span> <span class="s s-Atom">if</span> <span class="s s-Atom">in</span> <span class="s s-Atom">thread</span> <span class="s s-Atom">mode</span> <span class="s s-Atom">with</span> <span class="s s-Atom">privileged</span> <span class="s s-Atom">level</span><span class="p">.</span>
+
+<span class="s s-Atom">###</span> <span class="nv">Switching</span> <span class="nv">Privilege</span> <span class="nv">Level</span>
+
+<span class="nv">To</span> <span class="s s-Atom">switch</span> <span class="s s-Atom">from</span> <span class="s s-Atom">privileged</span> <span class="s s-Atom">level</span> <span class="s s-Atom">to</span> <span class="s s-Atom">user</span> <span class="s s-Atom">level</span> <span class="s s-Atom">the</span> <span class="o">*</span><span class="nv">Control</span> <span class="s s-Atom">bit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span> <span class="s s-Atom">can</span> <span class="s s-Atom">be</span> <span class="s s-Atom">written</span> <span class="s s-Atom">directly</span><span class="p">.</span>
+
+<span class="nv">The</span> <span class="s s-Atom">switch</span> <span class="s s-Atom">from</span> <span class="s s-Atom">user</span> <span class="s s-Atom">level</span> <span class="s s-Atom">to</span> <span class="s s-Atom">privilege</span> <span class="s s-Atom">level</span> <span class="s s-Atom">heeds</span> <span class="s s-Atom">to</span> <span class="s s-Atom">be</span> <span class="s s-Atom">performed</span> <span class="s s-Atom">within</span> <span class="s s-Atom">an</span> <span class="s s-Atom">exception</span> <span class="s s-Atom">handler</span><span class="p">.</span>
+
+<span class="s s-Atom">##</span> <span class="nv">Reset</span> <span class="nv">Values</span> <span class="s s-Atom">and</span> <span class="nv">Required</span> <span class="nv">Access</span> <span class="nv">Privileges</span>
+
+<span class="p">|</span> <span class="nv">Name</span>      <span class="p">|</span> <span class="nv">Read</span><span class="o">/</span><span class="nv">Write</span> <span class="p">|</span> <span class="nv">Required</span> <span class="s s-Atom">privilege</span> <span class="p">|</span> <span class="nv">Reset</span> <span class="s s-Atom">value</span>                   <span class="p">|</span>
+<span class="p">|</span><span class="s s-Atom">-----------</span><span class="p">|</span><span class="s s-Atom">------------</span><span class="p">|</span><span class="s s-Atom">--------------------</span><span class="p">|</span><span class="s s-Atom">-------------------------------</span><span class="p">|</span>
+<span class="p">|</span> <span class="nv">R0</span><span class="o">-</span><span class="nv">R12</span>    <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Both</span>               <span class="p">|</span> <span class="nv">Undef</span>                         <span class="p">|</span>
+<span class="p">|</span> <span class="nv">MSP</span> <span class="p">(</span><span class="nv">R13</span><span class="p">)</span> <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="s s-Atom">value</span> <span class="s s-Atom">from</span> <span class="s s-Atom">address</span> <span class="mh">0x00000000</span> <span class="p">|</span>
+<span class="p">|</span> <span class="nv">PSP</span> <span class="p">(</span><span class="nv">R13</span><span class="p">)</span> <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Both</span>               <span class="p">|</span> <span class="nv">Undef</span>                         <span class="p">|</span>
+<span class="p">|</span> <span class="nv">LR</span>  <span class="p">(</span><span class="nv">R14</span><span class="p">)</span> <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Both</span>               <span class="p">|</span> <span class="mh">0xFFFFFFFF</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">PC</span>  <span class="p">(</span><span class="nv">R15</span><span class="p">)</span> <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Both</span>               <span class="p">|</span> <span class="s s-Atom">value</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">reset</span> <span class="s s-Atom">vector</span>     <span class="p">|</span>
+<span class="p">|</span> <span class="nv">ASPR</span>      <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Both</span>               <span class="p">|</span> <span class="mh">0x00000000</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">IPSR</span>      <span class="p">|</span> <span class="nv">R</span>          <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="mh">0x00000000</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">EPSR</span>      <span class="p">|</span> <span class="nv">R</span>          <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="mh">0x01000000</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">PRIMASK</span>   <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="mh">0x00000000</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">FAULTMASK</span> <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="mh">0x00000000</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">BASEPRI</span>   <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="mh">0x00000000</span>                    <span class="p">|</span>
+<span class="p">|</span> <span class="nv">CONTROL</span>   <span class="p">|</span> <span class="nv">RW</span>         <span class="p">|</span> <span class="nv">Privileged</span>         <span class="p">|</span> <span class="mh">0x00000000</span>                    <span class="p">|</span>
+
+
+<span class="s s-Atom">#</span> <span class="nv">Modes</span>
+
+<span class="nv">The</span> <span class="nv">Cortex</span><span class="o">-</span><span class="nv">M3</span> <span class="s s-Atom">has</span> <span class="s s-Atom">two</span> <span class="nn">modes</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="nv">Thread</span> <span class="nv">Mode</span>
+<span class="o">-</span> <span class="nv">Handler</span> <span class="nv">Mode</span>
+
+<span class="nv">In</span> <span class="nv">Thread</span> <span class="nv">Mode</span> <span class="s s-Atom">the</span> <span class="s s-Atom">processor</span> <span class="s s-Atom">can</span> <span class="s s-Atom">run</span> <span class="s s-Atom">in</span> <span class="s s-Atom">two</span> <span class="s s-Atom">privilege</span> <span class="nn">levels</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="nv">User</span> <span class="nv">Level</span>
+<span class="o">-</span> <span class="nv">Privileged</span> <span class="nv">Level</span>
+
+<span class="nv">In</span> <span class="nv">Handler</span> <span class="nv">Mode</span> <span class="s s-Atom">only</span> <span class="s s-Atom">the</span> <span class="nv">Privileged</span> <span class="nv">Level</span> <span class="o">is</span> <span class="s s-Atom">available</span><span class="p">.</span>
+
+<span class="p">|</span>                           <span class="p">|</span> <span class="nv">Application</span> <span class="nv">Code</span> <span class="p">|</span> <span class="nv">Exception</span> <span class="nv">Handler</span> <span class="p">|</span>
+<span class="p">|</span><span class="s s-Atom">---------------------------</span><span class="p">|</span><span class="s s-Atom">------------------</span><span class="p">|</span><span class="s s-Atom">-------------------</span><span class="p">|</span>
+<span class="p">|</span> <span class="nv">Unprivileged</span> <span class="p">(</span><span class="s s-Atom">user</span><span class="p">)</span> <span class="nv">Level</span> <span class="p">|</span> <span class="nv">Thread</span> <span class="nv">Mode</span>      <span class="p">|</span>       <span class="o">-</span>           <span class="p">|</span>
+<span class="p">|</span> <span class="nv">Privileged</span> <span class="nv">Level</span>          <span class="p">|</span> <span class="nv">Thread</span> <span class="nv">Mode</span>      <span class="p">|</span> <span class="nv">Handler</span> <span class="nv">Mode</span>      <span class="p">|</span>
+
+<span class="p">![</span><span class="nv">The</span> <span class="nv">ARM</span> <span class="nv">Cortex</span><span class="o">-</span><span class="nv">M3</span> <span class="nv">Modes</span> <span class="s s-Atom">and</span> <span class="nv">Levels</span><span class="p">](</span><span class="o">/</span><span class="s s-Atom">images</span><span class="o">/</span><span class="s s-Atom">arm_cortex_m3_modes_levels</span><span class="p">.</span><span class="s s-Atom">svg</span><span class="p">)</span>
+
+
+<span class="s s-Atom">#</span> <span class="nv">Nested</span> <span class="nv">Vectored</span> <span class="nv">Interrupt</span> <span class="nv">Controller</span> <span class="p">(</span><span class="nv">NVIC</span><span class="p">)</span>
+
+<span class="s s-Atom">##</span> <span class="nv">Nested</span>
+
+<span class="nv">All</span> <span class="s s-Atom">external</span> <span class="s s-Atom">and</span> <span class="s s-Atom">some</span> <span class="s s-Atom">system</span> <span class="s s-Atom">interrupts</span> <span class="s s-Atom">can</span> <span class="s s-Atom">be</span> <span class="s s-Atom">assigned</span> <span class="s s-Atom">to</span> <span class="s s-Atom">different</span> <span class="s s-Atom">priority</span> <span class="s s-Atom">levels</span><span class="p">.</span> <span class="nv">Current</span>
+<span class="s s-Atom">handled</span> <span class="s s-Atom">interrupts</span> <span class="s s-Atom">can</span> <span class="s s-Atom">only</span> <span class="s s-Atom">be</span> <span class="s s-Atom">disrupted</span> <span class="s s-Atom">by</span> <span class="s s-Atom">interrupts</span> <span class="s s-Atom">of</span> <span class="s s-Atom">higher</span> <span class="s s-Atom">priority</span><span class="p">.</span>
+
+<span class="s s-Atom">##</span> <span class="nv">Vectored</span>
+
+<span class="nv">The</span> <span class="s s-Atom">addresses</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">interrupt</span> <span class="s s-Atom">service</span> <span class="nf">routines</span> <span class="p">(</span><span class="nv">ISRs</span><span class="p">)</span> <span class="s s-Atom">are</span> <span class="s s-Atom">stored</span> <span class="s s-Atom">in</span> <span class="s s-Atom">a</span> <span class="s s-Atom">vector</span><span class="p">.</span> <span class="nv">If</span> <span class="s s-Atom">an</span> <span class="s s-Atom">interrupt</span>
+<span class="s s-Atom">occurs</span> <span class="s s-Atom">the</span> <span class="s s-Atom">look</span><span class="o">-</span><span class="s s-Atom">up</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">routine</span> <span class="o">is</span> <span class="s s-Atom">fast</span> <span class="s s-Atom">and</span> <span class="s s-Atom">the</span> <span class="s s-Atom">handling</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">interrupt</span> <span class="o">is</span> <span class="o">not</span> <span class="s s-Atom">delayed</span> <span class="s s-Atom">by</span> <span class="s s-Atom">look</span><span class="o">-</span><span class="s s-Atom">up</span>
+<span class="s s-Atom">code</span><span class="p">.</span>
+
+<span class="s s-Atom">##</span> <span class="nv">Dynamic</span> <span class="nv">Priority</span> <span class="nv">Setting</span>
+
+<span class="nv">The</span> <span class="s s-Atom">priority</span> <span class="s s-Atom">of</span> <span class="s s-Atom">an</span> <span class="s s-Atom">interrupt</span> <span class="s s-Atom">can</span> <span class="s s-Atom">be</span> <span class="s s-Atom">changed</span> <span class="s s-Atom">at</span> <span class="s s-Atom">run</span> <span class="s s-Atom">time</span><span class="p">.</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Memory</span> <span class="nv">Layout</span>
+
+<span class="nv">The</span> <span class="nv">Cortex</span><span class="o">-</span><span class="nv">M3</span> <span class="s s-Atom">has</span> <span class="s s-Atom">a</span> <span class="s s-Atom">defined</span> <span class="s s-Atom">memory</span> <span class="s s-Atom">map</span><span class="p">.</span> <span class="nv">So</span> <span class="s s-Atom">most</span> <span class="s s-Atom">built</span> <span class="s s-Atom">in</span> <span class="s s-Atom">peripherals</span> <span class="s s-Atom">are</span> <span class="s s-Atom">accessible</span> <span class="s s-Atom">by</span> <span class="s s-Atom">their</span>
+<span class="s s-Atom">memory</span> <span class="s s-Atom">address</span><span class="p">.</span> <span class="nv">Thus</span> <span class="s s-Atom">it</span><span class="err">'</span><span class="s s-Atom">s</span> <span class="s s-Atom">easy</span> <span class="s s-Atom">to</span> <span class="s s-Atom">access</span> <span class="s s-Atom">it</span> <span class="s s-Atom">in</span> <span class="nv">C</span><span class="o">/</span><span class="nv">C</span><span class="s s-Atom">++</span> <span class="s s-Atom">code</span><span class="p">.</span>
+
+<span class="p">|</span> <span class="nv">Address</span> <span class="nv">Range</span>           <span class="p">|</span> <span class="nv">Use</span>                  <span class="p">|</span> <span class="nv">Description</span>                                          <span class="p">|</span>
+<span class="p">|</span><span class="s s-Atom">-------------------------</span><span class="p">|</span><span class="s s-Atom">----------------------</span><span class="p">|</span><span class="s s-Atom">------------------------------------------------------</span><span class="p">|</span>
+<span class="p">|</span> <span class="mh">0x00000000</span> <span class="o">-</span> <span class="mh">0x1FFFFFFF</span> <span class="p">|</span> <span class="nv">CODE</span>                 <span class="p">|</span> <span class="nv">Program</span> <span class="nv">Code</span><span class="p">.</span> <span class="nv">Exception</span> <span class="s s-Atom">vector</span> <span class="s s-Atom">table</span> <span class="s s-Atom">after</span> <span class="s s-Atom">start</span> <span class="s s-Atom">up</span><span class="p">.</span> <span class="p">|</span>
+<span class="p">|</span> <span class="mh">0x20000000</span> <span class="o">-</span> <span class="mh">0x3FFFFFFF</span> <span class="p">|</span> <span class="nv">SRAM</span>                 <span class="p">|</span> <span class="nv">Used</span> <span class="s s-Atom">as</span> <span class="s s-Atom">static</span> <span class="nv">RAM</span><span class="p">.</span>                                  <span class="p">|</span>
+<span class="p">|</span> <span class="mh">0x40000000</span> <span class="o">-</span> <span class="mh">0x5FFFFFFF</span> <span class="p">|</span> <span class="nv">Peripherals</span>          <span class="p">|</span> <span class="nv">For</span> <span class="s s-Atom">integrated</span> <span class="s s-Atom">peripherals</span><span class="p">.</span>                          <span class="p">|</span>
+<span class="p">|</span> <span class="mh">0x60000000</span> <span class="o">-</span> <span class="mh">0x9FFFFFFF</span> <span class="p">|</span> <span class="nv">External</span> <span class="nv">RAM</span>         <span class="p">|</span> <span class="nv">For</span> <span class="s s-Atom">external</span> <span class="s s-Atom">connected</span> <span class="nv">RAM</span><span class="p">.</span>                          <span class="p">|</span>
+<span class="p">|</span> <span class="mh">0xA0000000</span> <span class="o">-</span> <span class="mh">0xDFFFFFFF</span> <span class="p">|</span> <span class="nv">External</span> <span class="nv">Peripherals</span> <span class="p">|</span> <span class="nv">For</span> <span class="s s-Atom">external</span> <span class="s s-Atom">connected</span> <span class="s s-Atom">peripherals</span><span class="p">.</span>                  <span class="p">|</span>
+<span class="p">|</span> <span class="mh">0xE0000000</span> <span class="o">-</span> <span class="mh">0xFFFFFFFF</span> <span class="p">|</span> <span class="nv">System</span>               <span class="p">|</span> <span class="nv">NVIC</span><span class="p">,</span> <span class="nv">MPU</span><span class="p">,</span> <span class="nv">Debug</span><span class="p">...</span>                                  <span class="p">|</span>
+
+
+<span class="s s-Atom">##</span> <span class="nv">Bit</span><span class="o">-</span><span class="nv">Banding</span>
+
+<span class="nv">Bit</span><span class="o">-</span><span class="nv">Banding</span> <span class="o">is</span> <span class="s s-Atom">a</span> <span class="s s-Atom">feature</span> <span class="s s-Atom">that</span> <span class="s s-Atom">allows</span> <span class="s s-Atom">to</span> <span class="s s-Atom">access</span> <span class="s s-Atom">certain</span> <span class="s s-Atom">bits</span> <span class="s s-Atom">individually</span><span class="p">.</span> <span class="nv">The</span> <span class="s s-Atom">access</span> <span class="s s-Atom">to</span> <span class="s s-Atom">the</span> <span class="s s-Atom">bits</span> <span class="s s-Atom">are</span> <span class="s s-Atom">atomically</span><span class="p">.</span>
+
+<span class="nv">The</span> <span class="s s-Atom">access</span> <span class="s s-Atom">to</span> <span class="s s-Atom">the</span> <span class="s s-Atom">individual</span> <span class="s s-Atom">bits</span> <span class="s s-Atom">are</span> <span class="s s-Atom">accomplished</span> <span class="s s-Atom">by</span> <span class="s s-Atom">mapping</span> <span class="s s-Atom">each</span> <span class="s s-Atom">bit</span> <span class="s s-Atom">from</span> <span class="s s-Atom">the</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">banding</span> <span class="s s-Atom">region</span> <span class="s s-Atom">to</span> <span class="s s-Atom">an</span> <span class="s s-Atom">address</span>
+<span class="s s-Atom">in</span> <span class="s s-Atom">a</span> <span class="s s-Atom">region</span> <span class="s s-Atom">called</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">banding</span> <span class="s s-Atom">alias</span><span class="p">.</span>
+
+<span class="o">-</span> <span class="nv">Each</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">banding</span> <span class="s s-Atom">region</span> <span class="o">is</span> <span class="mi">1</span> <span class="nv">MB</span> <span class="s s-Atom">big</span><span class="p">.</span>
+<span class="o">-</span> <span class="nv">The</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">banding</span> <span class="s s-Atom">alias</span> <span class="s s-Atom">regions</span> <span class="s s-Atom">are</span> <span class="mi">32</span> <span class="nv">MB</span> <span class="nf">big</span> <span class="p">(</span><span class="s s-Atom">but</span> <span class="s s-Atom">it</span> <span class="s s-Atom">addresses</span> <span class="s s-Atom">in</span> <span class="s s-Atom">total</span> <span class="s s-Atom">only</span> <span class="s s-Atom">the</span> <span class="mi">1</span> <span class="nv">MB</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">banding</span> <span class="s s-Atom">region</span><span class="p">).</span>
+
+<span class="nv">There</span> <span class="s s-Atom">are</span> <span class="s s-Atom">two</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">band</span> <span class="s s-Atom">region</span><span class="p">.</span> <span class="nv">One</span> <span class="s s-Atom">for</span> <span class="s s-Atom">memory</span> <span class="s s-Atom">and</span> <span class="s s-Atom">the</span> <span class="s s-Atom">other</span> <span class="s s-Atom">for</span> <span class="s s-Atom">peripherals</span><span class="p">.</span>
+
+<span class="p">|</span>                     <span class="p">|</span> <span class="nv">Bit</span><span class="o">-</span><span class="nv">Band</span> <span class="s s-Atom">region</span>         <span class="p">|</span> <span class="nv">Bit</span><span class="o">-</span><span class="nv">Band</span> <span class="s s-Atom">alias</span> <span class="s s-Atom">region</span>       <span class="p">|</span>
+<span class="p">|</span><span class="s s-Atom">---------------------</span><span class="p">|</span><span class="s s-Atom">-------------------------</span><span class="p">|</span><span class="s s-Atom">-----------------------------</span><span class="p">|</span>
+<span class="p">|</span> <span class="nv">Memory</span>              <span class="p">|</span> <span class="mh">0x20000000</span> <span class="o">-</span> <span class="mh">0x200FFFFF</span> <span class="p">|</span> <span class="mh">0x22000000</span> <span class="o">-</span> <span class="mh">0x23FFFFF</span>      <span class="p">|</span>
+<span class="p">|</span> <span class="nv">Peripherals</span>         <span class="p">|</span> <span class="mh">0x40000000</span> <span class="o">-</span> <span class="mh">0x400FFFFF</span> <span class="p">|</span> <span class="mh">0x42000000</span> <span class="o">-</span> <span class="mh">0x43FFFFF</span>      <span class="p">|</span>
+
+
+<span class="nv">To</span> <span class="s s-Atom">access</span> <span class="s s-Atom">one</span> <span class="s s-Atom">bit</span> <span class="s s-Atom">through</span> <span class="s s-Atom">the</span> <span class="s s-Atom">bit</span><span class="o">-</span><span class="s s-Atom">banding</span> <span class="s s-Atom">alias</span> <span class="s s-Atom">the</span> <span class="s s-Atom">mapping</span> <span class="o">is</span> <span class="s s-Atom">performed</span> <span class="s s-Atom">by</span> <span class="s s-Atom">this</span> <span class="nn">code</span><span class="p">:</span>
+
+<span class="err">```</span><span class="s s-Atom">c</span>
+<span class="s s-Atom">#define</span> <span class="nv">BIT_BANDING_ALIAS_OFFSET</span><span class="p">(</span><span class="s s-Atom">byteOffsetInBitBandRegion</span><span class="p">,</span> <span class="s s-Atom">bitNumber</span><span class="p">)</span>  <span class="p">((</span><span class="s s-Atom">byteOffsetInBitBandRegion</span> <span class="o">*</span> <span class="mi">32</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="s s-Atom">bitNumber</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))</span>
+<span class="s s-Atom">#define</span> <span class="nv">BIT_BANDING_MEMORY_ALIAS_BASE</span>    <span class="mh">0x22000000</span>
+<span class="s s-Atom">#define</span> <span class="nv">BIT_BANDING_PERIPERAL_ALIAS_BASE</span> <span class="mh">0x42000000</span>
+
+<span class="s s-Atom">#define</span> <span class="nv">BIT_BANDING_MEMORY_TO_ALIAS</span><span class="p">(</span><span class="s s-Atom">byte</span><span class="p">,</span> <span class="s s-Atom">bit</span><span class="p">)</span>  <span class="p">(</span><span class="nv">BIT_BANDING_MEMORY_ALIAS_BASE</span> <span class="o">+</span> <span class="nv">BIT_BANDING_ALIAS_OFFSET</span><span class="p">(</span><span class="s s-Atom">byte</span><span class="p">,</span> <span class="s s-Atom">bit</span><span class="p">))</span>
+<span class="s s-Atom">#define</span> <span class="nv">BIT_BANDING_PERIPHERAL_TO_ALIAS</span><span class="p">(</span><span class="s s-Atom">byte</span><span class="p">,</span> <span class="s s-Atom">bit</span><span class="p">)</span> <span class="p">(</span><span class="nv">BIT_BANDING_PERIPHERAL_ALIAS_BASE</span> <span class="o">+</span> <span class="nv">BIT_BANDING_ALIAS_OFFSET</span><span class="p">(</span><span class="s s-Atom">byte</span><span class="p">,</span> <span class="s s-Atom">bit</span><span class="p">))</span>
 </code></pre></div>
 <p>It’s also possible to calculate the address in the other direction from the alias region to the bit-banding region.
 But it’s usually not nessecary to do the address translation in this direction.</p>
@@ -1142,92 +919,106 @@ is available.</p>
 <p>There are also command for moving shifted data. In this case
 the <code>MOV</code> commands are aliases for the shifting commands.</p>
 <h4 id="immediate">Immediate</h4>
-<div class="highlight"><pre><span></span><code><span class="nf">MOVS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm8&gt;     /* Outside IT block */</span><span class="w"></span>
-<span class="nf">MOV</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm8&gt;   /* Inside IT block */</span><span class="w"></span>
-<span class="nf">MOV</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">MOVW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm16&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register">Register</h4>
-<div class="highlight"><pre><span></span><code><span class="nf">MOV</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">MOVS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">MOV</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">MOVS</span> <rd>,#<imm8>     /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">MOV</span><c> <rd>,#<imm8>   /<em> Inside <span class="caps">IT</span> block </em>/
+<span class="caps">MOV</span>{S}<c>.W <rd>,#<const>
+<span class="caps">MOVW</span><c> <rd>,#<imm16></imm16></rd></c></const></rd></c></imm8></rd></c></imm8></rd></p>
+<div class="highlight"><pre><span></span><code>#### Register
+
+ ```nasm
+MOV&lt;c&gt; &lt;Rd&gt;,&lt;Rm&gt;
+MOVS &lt;Rd&gt;,&lt;Rm&gt;
+MOV{S}&lt;c&gt;.W &lt;Rd&gt;,&lt;Rm&gt;
 </code></pre></div>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><code><span class="nf">MOV</span><span class="w"> </span><span class="nb">R3</span><span class="p">,</span><span class="w"> </span><span class="nb">R2</span><span class="c1">; /* Move the value from R2 to R3 */</span><span class="w"></span>
-<span class="nf">MVN</span><span class="w"> </span><span class="nb">R5</span><span class="p">,</span><span class="w"> </span><span class="nb">R6</span><span class="c1">; /* Move the negated value of R6 to R5 */</span><span class="w"></span>
-</code></pre></div>
-<h4 id="move-to-top-half-word-of-register-movt">Move to top half-word of Register (<code>MOVT</code>)</h4>
-<p>Moves an immediate value to the top half of the given register. The
-bottom half of the register is not written.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">MOVT</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;imm16&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">MOV</span> R3, R2; /<em> Move the value from R2 to R3 </em>/
+<span class="caps">MVN</span> R5, R6; /<em> Move the negated value of R6 to R5 </em>/</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#### Move to top half-word of Register (`MOVT`)</span><span class="w"></span>
+
+<span class="n">Moves</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">immediate</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="n">half</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"></span>
+<span class="n">bottom</span><span class="w"> </span><span class="n">half</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">written</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">MOVT&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, #&lt;imm16&gt;</span>
 </code></pre></div>
 <h4 id="move-special-register-to-register-mrs">Move Special Register to Register (<code>MRS</code>)</h4>
-<div class="highlight"><pre><span></span><code><span class="nf">MRS</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">spec_reg</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">MRS</span><c> <rd>,<spec_reg></spec_reg></rd></c></p>
+<div class="highlight"><pre><span></span><code><span class="n n-Quoted">`MRS`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="n">instruction</span><span class="w"> </span><span class="k">except</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">accessing</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">*</span><span class="n">APSR</span><span class="o">*</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="o">*</span><span class="n">CONTROL</span><span class="o">*</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="c1">#### Move Register to Special Register (`MSR`)</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">MSR&lt;c&gt; &lt;spec_reg&gt;,&lt;Rn&gt;</span>
 </code></pre></div>
 <p><code>MRS</code> is a system level instruction except when accessing the <em><span class="caps">APSR</span></em> or <em><span class="caps">CONTROL</span></em> register.</p>
-<h4 id="move-register-to-special-register-msr">Move Register to Special Register (<code>MSR</code>)</h4>
-<div class="highlight"><pre><span></span><code><span class="nf">MSR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">spec_reg</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="w"></span>
-</code></pre></div>
-<p><code>MRS</code> is a system level instruction except when accessing the <em><span class="caps">APSR</span></em> or <em><span class="caps">CONTROL</span></em> register.</p>
-<!---### Move Data between Register and Memory
-
-The basic commands for moving data to and from memory are store and load.
-They exist with different operand sizes (byte, half word, word and double word).
-
-With some commands a register operand can be updated after the operation with `!`. If it's
-available it is optional.
-
-There are commands for storing or loading multiple registers at once.
---->
+<h3 id="move-data-between-register-and-memory">Move Data between Register and Memory</h3>
+<p>The basic commands for moving data to and from memory are store and load.
+They exist with different operand sizes (byte, half word, word and double word).</p>
+<p>With some commands a register operand can be updated after the operation with <code>!</code>. If it’s
+available it is optional.</p>
+<p>There are commands for storing or loading multiple registers at once.</p>
 <h2 id="arithmetic-commands">Arithmetic Commands</h2>
 <h3 id="addition-add">Addition (<code>ADD</code>)</h3>
 <p>Adds two values.</p>
 <h4 id="immediate_1">Immediate</h4>
-<div class="highlight"><pre><span></span><code><span class="nf">ADDS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm3&gt;         /* Outside IT block */</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm3&gt;       /* Inside IT block */</span><span class="w"></span>
-<span class="nf">ADDS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm8&gt;             /* Outside IT block */</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm8&gt;           /* Inside IT block */</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm12&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_1">Register</h4>
-<p>The second register operand can be shifted.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ADDS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">     </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">   </span><span class="o">/*</span><span class="w"> </span><span class="nv">Inside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">ADDS</span> <rd>,<rn>,#<imm3>         /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">ADD</span><c> <rd>,<rn>,#<imm3>       /<em> Inside <span class="caps">IT</span> block </em>/
+<span class="caps">ADDS</span> <rdn>,#<imm8>             /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">ADD</span><c> <rdn>,#<imm8>           /<em> Inside <span class="caps">IT</span> block </em>/
+<span class="caps">ADD</span>{S}<c>.W <rd>,<rn>,#<const>
+<span class="caps">ADDW</span><c> <rd>,<rn>,#<imm12>
+<span class="caps">ADD</span>{S}<c><q> {<rd>,} <rn>,  #<const>
+<span class="caps">ADDW</span><c><q> {<rd>,} <rn>,  #<const></const></rn></rd></q></c></const></rn></rd></q></c></imm12></rn></rd></c></const></rn></rd></c></imm8></rdn></c></imm8></rdn></imm3></rn></rd></c></imm3></rn></rd></p>
+<div class="highlight"><pre><span></span><code><span class="p">####</span><span class="w"> </span><span class="n">Register</span><span class="w"></span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="n">operand</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">shifted</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">``</span><span class="no">`nasm</span><span class="w"></span>
+<span class="n">ADDS</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">     </span><span class="cm">/* Outside IT block */</span><span class="w"></span>
+<span class="n">ADD</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">   </span><span class="cm">/* Inside IT block */</span><span class="w"></span>
+<span class="n">ADD</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">ADD</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="p">.</span><span class="n">W</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
+<span class="n">ADD</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,}</span><span class="w">  </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h4 id="sp-plus-immediate"><em><span class="caps">SP</span></em> plus Immediate</h4>
 <p>Adds an immediate value to the <em><span class="caps">SP</span></em>, writes the result to the destination register.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="c1">#&lt;imm8&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="c1">#&lt;imm7&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="c1">#&lt;imm12&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">ADDW</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="sp-plus-register"><em><span class="caps">SP</span></em> plus Register</h4>
-<p>Adds an (optionally-shifted) register value to the <em><span class="caps">SP</span></em>,
-writes the result to the destination register.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdm</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nb">SP</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">ADD</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="nb">SP</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">ADD</span><c> <rd>,<span class="caps">SP</span>,#<imm8>
+<span class="caps">ADD</span><c> <span class="caps">SP</span>,<span class="caps">SP</span>,#<imm7>
+<span class="caps">ADD</span>{S}<c>.W <rd>,<span class="caps">SP</span>,#<const>
+<span class="caps">ADDW</span><c> <rd>,<span class="caps">SP</span>,#<imm12>
+<span class="caps">ADD</span>{S}<c><q> {<rd>,} <span class="caps">SP</span>, #<const>
+<span class="caps">ADDW</span><c><q> {<rd>,} <span class="caps">SP</span>, #<const></const></rd></q></c></const></rd></q></c></imm12></rd></c></const></rd></c></imm7></c></imm8></rd></c></p>
+<div class="highlight"><pre><span></span><code><span class="p">####</span><span class="w"> </span><span class="o">*</span><span class="n">SP</span><span class="o">*</span><span class="w"> </span><span class="n">plus</span><span class="w"> </span><span class="n">Register</span><span class="w"></span>
+
+<span class="n">Adds</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="p">(</span><span class="n">optionally</span><span class="o">-</span><span class="n">shifted</span><span class="p">)</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">*</span><span class="n">SP</span><span class="o">*</span><span class="p">,</span><span class="w"></span>
+<span class="n">writes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">``</span><span class="no">`nasm</span><span class="w"></span>
+<span class="n">ADD</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rdm</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">SP</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rdm</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">ADD</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SP</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">ADD</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="p">.</span><span class="n">W</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="n">SP</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
+<span class="n">ADD</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,}</span><span class="w"> </span><span class="n">SP</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="p">{,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="addition-with-carry-adc">Addition with Carry (<code>ADC</code>)</h3>
 <p>Adds values with carry.</p>
 <h4 id="immediate_2">Immediate</h4>
-<div class="highlight"><pre><span></span><code><span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_2">Register</h4>
-<p>The register operand can be shifted.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ADCS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">     </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">ADC</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">   </span><span class="o">/*</span><span class="w"> </span><span class="nv">Inside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">ADC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">ADC</span>{S}<c> <rd>,<rn>,#<const></const></rn></rd></c></p>
+<div class="highlight"><pre><span></span><code><span class="p">####</span><span class="w"> </span><span class="n">Register</span><span class="w"></span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="n">operand</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">shifted</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">``</span><span class="no">`nasm</span><span class="w"></span>
+<span class="n">ADCS</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">     </span><span class="cm">/* Outside IT block */</span><span class="w"></span>
+<span class="n">ADC</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">   </span><span class="cm">/* Inside IT block */</span><span class="w"></span>
+<span class="n">ADC</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="p">.</span><span class="n">W</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
+<span class="n">ADC</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,}</span><span class="w">  </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="multiply-mul">Multiply (<code>MUL</code>)</h3>
 <p>Multiplies two registers. The least significant 32-bits
@@ -1236,30 +1027,39 @@ are copied to the destination register.</p>
 <blockquote>
 <p>Writing flags can reduce performance!</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="nf">MULS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdm</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rdm</span><span class="o">&gt;</span><span class="w">    </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">MUL</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdm</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rdm</span><span class="o">&gt;</span><span class="w">  </span><span class="o">/*</span><span class="w"> </span><span class="nv">Inside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">MUL</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">MUL</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">MULS</span> <rdm>,<rn>,<rdm>    /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">MUL</span><c> <rdm>,<rn>,<rdm>  /<em> Inside <span class="caps">IT</span> block </em>/
+<span class="caps">MUL</span><c> <rd>,<rn>,<rm>
+<span class="caps">MUL</span>{S}<c><q> {<rd>,} <rn>,  <rm></rm></rn></rd></q></c></rm></rn></rd></c></rdm></rn></rdm></c></rdm></rn></rdm></p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Logical Commands</span><span class="w"></span>
+
+<span class="c1">### And (`AND`)</span><span class="w"></span>
+
+<span class="c1">#### Immediate</span><span class="w"></span>
+
+<span class="kt">Bit</span><span class="o">-</span><span class="n">wise</span><span class="w"> </span><span class="o">*</span><span class="k">AND</span><span class="o">*</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">immediate</span><span class="w"> </span><span class="k">value</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">AND{S}&lt;c&gt;  &lt;Rd&gt;,&lt;Rn&gt;,#&lt;const&gt;</span>
+<span class="n n-Quoted">AND{S}&lt;c&gt;&lt;q&gt; {&lt;Rd&gt;,} &lt;Rn&gt;,  #&lt;const&gt;</span>
 </code></pre></div>
-<h2 id="logical-commands">Logical Commands</h2>
-<h3 id="and-and">And (<code>AND</code>)</h3>
-<h4 id="immediate_3">Immediate</h4>
-<p>Bit-wise <em><span class="caps">AND</span></em> of register and immediate value.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_3">Register</h4>
+<h4 id="register">Register</h4>
 <p>Bit-wise <em><span class="caps">AND</span></em> of a register and a second (optionally-shifted) register.
 The flags can be updated based on the result.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ANDS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">                       </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">AND</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">                    </span><span class="o">/*</span><span class="w"> </span><span class="nv">Inside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">AND</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-</code></pre></div>
-<h2 id="bit-commands">Bit Commands</h2>
-<h3 id="bit-field-clear-bfc">Bit Field Clear (<code>BFC</code>)</h3>
-<p>Clear a number of adjacent bits in a register.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">BFC</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;lsb&gt;, #&lt;width&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">ANDS</span><rdn>,<rm>                       /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">AND</span><c> <rdn>,<rm>                    /<em> Inside <span class="caps">IT</span> block </em>/
+<span class="caps">AND</span>{S}<c>.W <rd>,<rn>,<rm>{,<shift>}
+<span class="caps">AND</span>{S}<c><q> {<rd>,} <rn>, <rm> {,<shift>}</shift></rm></rn></rd></q></c></shift></rm></rn></rd></c></rm></rdn></c></rm></rdn></p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Bit Commands</span><span class="w"></span>
+
+<span class="c1">### Bit Field Clear (`BFC`)</span><span class="w"></span>
+
+<span class="n">Clear</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">adjacent</span><span class="w"> </span><span class="n">bits</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">BFC&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, #&lt;lsb&gt;, #&lt;width&gt;</span>
 </code></pre></div>
 <p>Where:</p>
 <p><code>&lt;lsb&gt;</code>: The least significant bit that is cleared (Range: 0-31).</p>
@@ -1267,82 +1067,103 @@ The flags can be updated based on the result.</p>
 <h3 id="bit-field-insert-bfi">Bit Field Insert (<code>BFI</code>)</h3>
 <p>Insert given number of the lowest bits from source register to
 a given position in the destination register.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">BFI</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;lsb&gt;, #&lt;width&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">BFI</span><c><q><rd>, <rn>, #<lsb>, #<width></width></lsb></rn></rd></q></c></p>
+<div class="highlight"><pre><span></span><code><span class="n n-Quoted">`&lt;lsb&gt;`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">least</span><span class="w"> </span><span class="n">significant</span><span class="w"> </span><span class="kt">bit</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">bits</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">copied</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="p">(</span><span class="k">Range</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="o">-</span><span class="mi">31</span><span class="p">).</span><span class="w"></span>
+
+<span class="n n-Quoted">`&lt;width&gt;`</span><span class="o">:</span><span class="w"> </span><span class="k">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">bits</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">copy</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">source</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">### Bit Clear (`BIC`)</span><span class="w"></span>
+
+<span class="c1">#### Immediate</span><span class="w"></span>
+
+<span class="n">Performs</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="kt">bit</span><span class="o">-</span><span class="n">wise</span><span class="w"> </span><span class="o">*</span><span class="k">AND</span><span class="o">*</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">complement</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">immediate</span><span class="w"></span>
+<span class="k">value</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">updated</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">BIC{S}&lt;c&gt;  &lt;Rd&gt;,&lt;Rn&gt;,#&lt;const&gt;</span>
+<span class="n n-Quoted">BIC{S}&lt;c&gt;&lt;q&gt; {&lt;Rd&gt;,} &lt;Rn&gt;,  #&lt;const&gt;</span>
 </code></pre></div>
-<p><code>&lt;lsb&gt;</code>: The least significant bit in destination where bits are copied to (Range: 0-31).</p>
-<p><code>&lt;width&gt;</code>: Number of bits to copy from source.</p>
-<h3 id="bit-clear-bic">Bit Clear (<code>BIC</code>)</h3>
-<h4 id="immediate_4">Immediate</h4>
-<p>Performs a bit-wise <em><span class="caps">AND</span></em> of register and the complement of the immediate value.</p>
-<p>The flags can be updated.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_4">Register</h4>
+<h4 id="register_1">Register</h4>
 <p>Performs a bit-wise <em><span class="caps">AND</span></em> one register and the complement of a second register.
 The second register can be shifted.</p>
 <p>The flags can be updated.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">BICS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">    </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">BIC</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="o">/*</span><span class="w"> </span><span class="nv">Inside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">BIC</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="err">}</span><span class="w">  </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-</code></pre></div>
-<h3 id="count-leading-zeros-clz">Count Leading Zeros (<code>CLZ</code>)</h3>
-<p>Returns the number of leading zero bits of a register.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">CLZ</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">BICS</span><rdn>,<rm>    /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">BIC</span><c> <rdn>,<rm> /<em> Inside <span class="caps">IT</span> block </em>/
+<span class="caps">BIC</span>{S}<c>.W <rd>,<rn>,<rm>{,<shift>}
+<span class="caps">BIC</span>{S}<c><q> {<rd>,}  <rn>, <rm> {,<shift>}</shift></rm></rn></rd></q></c></shift></rm></rn></rd></c></rm></rdn></c></rm></rdn></p>
+<div class="highlight"><pre><span></span><code><span class="c1">### Count Leading Zeros (`CLZ`)</span><span class="w"></span>
+
+<span class="k">Returns</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">leading</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="n">bits</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">CLZ&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;Rm&gt;</span>
 </code></pre></div>
 <h2 id="shift-and-rotate-commands">Shift and Rotate Commands</h2>
 <h3 id="arithmetic-shift-right-asr">Arithmetic Shift Right (<code>ASR</code>)</h3>
-<h4 id="immediate_5">Immediate</h4>
+<h4 id="immediate_3">Immediate</h4>
 <p>Shifts a register right by an immediate value. Shifts in copies
 of it’s <em>sign bit</em>.</p>
 <p>Can update flags.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ASRS</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm5&gt;    /* Outside IT block */</span><span class="w"></span>
-<span class="nf">ASR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm5&gt;  /*Inside IT block */</span><span class="w"></span>
-<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm5&gt;</span><span class="w"></span>
-<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;imm5&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_5">Register</h4>
-<p>Shifts a register by a variable number of bits, shifting in copies
-of it’s sing flag. The number of bits
-to shift is read from the <em>bottom byte</em> of a register.</p>
-<p>Flags can be set.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ASRS</span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">             </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">ASR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="nv">Inside</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">ASR</span><span class="err">{</span><span class="nv">S</span><span class="err">}</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">ASRS</span> <rd>,<rm>,#<imm5>    /<em> Outside <span class="caps">IT</span> block </em>/
+<span class="caps">ASR</span><c> <rd>,<rm>,#<imm5>  /<em>Inside <span class="caps">IT</span> block </em>/
+<span class="caps">ASR</span>{S}<c>.W <rd>,<rm>,#<imm5>
+<span class="caps">ASR</span>{S}<c><q> <rd>, <rm>,  #<imm5></imm5></rm></rd></q></c></imm5></rm></rd></c></imm5></rm></rd></c></imm5></rm></rd></p>
+<div class="highlight"><pre><span></span><code><span class="c1">#### Register</span><span class="w"></span>
+<span class="n">Shifts</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">register</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">bits</span><span class="p">,</span><span class="w"> </span><span class="n">shifting</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">copies</span><span class="w"></span>
+<span class="n">of</span><span class="w"> </span><span class="n">it</span><span class="s1">'s sing flag. The number of bits</span>
+<span class="n">to</span><span class="w"> </span><span class="n">shift</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">*</span><span class="n">bottom</span><span class="w"> </span><span class="n">byte</span><span class="o">*</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">register</span><span class="o">.</span><span class="w"></span>
+
+<span class="n">Flags</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">set</span><span class="o">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">```</span><span class="n">nasm</span><span class="w"></span>
+<span class="n">ASRS</span><span class="o">&lt;</span><span class="n">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">             </span><span class="o">/*</span><span class="w"> </span><span class="n">Outside</span><span class="w"> </span><span class="n">IT</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="n">ASR</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rdn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Inside</span><span class="w"> </span><span class="n">IT</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="n">ASR</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;.</span><span class="n">W</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">ASR</span><span class="p">{</span><span class="n">S</span><span class="p">}</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 <h2 id="compare-commands">Compare Commands</h2>
 <h3 id="compare-cmp">Compare (<code>CMP</code>)</h3>
-<h4 id="immediate_6">Immediate</h4>
+<h4 id="immediate_4">Immediate</h4>
 <p>Compare values by subtracting an immediate value from a register.</p>
 <p>Updates the flags but discards result.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;imm8&gt;</span><span class="w"></span>
-<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_6">Register</h4>
-<p>Compare values by subtracting an (optionally shifted) register
-from an other register.</p>
-<p>Updates the flags but discards result.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">    </span><span class="o">/*</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="nv">both</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nb">R0</span><span class="o">-</span><span class="nb">R7</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">CMP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">CMP</span><c> <rn>,#<imm8>
+<span class="caps">CMP</span><c>.W <rn>,#<const>
+<span class="caps">CMP</span><c><q> <rn>, #<const></const></rn></q></c></const></rn></c></imm8></rn></c></p>
+<div class="highlight"><pre><span></span><code><span class="p">####</span><span class="w"> </span><span class="n">Register</span><span class="w"></span>
+<span class="n">Compare</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">subtracting</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="p">(</span><span class="n">optionally</span><span class="w"> </span><span class="n">shifted</span><span class="p">)</span><span class="w"> </span><span class="n">register</span><span class="w"></span>
+<span class="n">from</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Updates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">discards</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">``</span><span class="no">`nasm</span><span class="w"></span>
+<span class="n">CMP</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w">    </span><span class="cm">/* &lt;Rn&gt; and &lt;Rm&gt; both from R0-R7 */</span><span class="w"></span>
+<span class="n">CMP</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="p">.</span><span class="n">W</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
+<span class="n">CMP</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="compare-negative-cmn">Compare Negative (<code>CMN</code>)</h3>
-<h4 id="immediate_7">Immediate</h4>
+<h4 id="immediate_5">Immediate</h4>
 <p>Compare values by <strong>adding</strong> a register and an immediate value.</p>
 <p>Updates the flags but discards result.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-</code></pre></div>
-<h4 id="register_7">Register</h4>
-<p>Compare values by <strong>adding</strong> to registers. The second register
-can be shifted.</p>
-<p>Updates the flags but discards result.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="err">{</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
-<span class="nf">CMN</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">shift</span><span class="o">&gt;</span><span class="err">}</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">CMN</span><c> <rn>,#<const>
+<span class="caps">CMN</span><c><q> <rn>, #<const></const></rn></q></c></const></rn></c></p>
+<div class="highlight"><pre><span></span><code><span class="p">####</span><span class="w"> </span><span class="n">Register</span><span class="w"></span>
+
+<span class="n">Compare</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">**</span><span class="n">adding</span><span class="o">**</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">registers</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="n">register</span><span class="w"></span>
+<span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">shifted</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Updates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">discards</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="err">``</span><span class="no">`nasm</span><span class="w"></span>
+<span class="n">CMN</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">CMN</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;</span><span class="p">.</span><span class="n">W</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="p">{,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
+<span class="n">CMN</span><span class="o">&lt;</span><span class="n">c</span><span class="o">&gt;&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Rm</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{,</span><span class="o">&lt;</span><span class="n">shift</span><span class="o">&gt;</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="branch-commands">Branch Commands</h2>
 <ul>
@@ -1364,13 +1185,16 @@ can be shifted.</p>
 All other branch instructions can only be conditional inside an <em><span class="caps">IT</span></em> block, and are always unconditional otherwise.</p>
 <h3 id="branch-b">Branch (<code>B</code>)</h3>
 <p>Branch to a target addressed.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">B</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
-</code></pre></div>
-<h3 id="branch-with-link-bl">Branch with Link (<code>BL</code>)</h3>
-<p>Calls a function at <span class="caps">PC</span>-relative address.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">BL</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+B<c> <label>
+B<c>.W <label>
+B<c><q> <label></label></q></c></label></c></label></c></p>
+<div class="highlight"><pre><span></span><code><span class="c1">### Branch with Link (`BL`)</span><span class="w"></span>
+
+<span class="n">Calls</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">PC</span><span class="o">-</span><span class="n">relative</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">BL&lt;c&gt;&lt;q&gt; &lt;label&gt;</span>
 </code></pre></div>
 <p><code>&lt;label&gt;</code>: The label to jump to. The assembler calculates the offset
 of the <code>BL</code> instruction and the label.</p>
@@ -1380,19 +1204,24 @@ of the <code>BL</code> instruction and the label.</p>
 <blockquote>
 <p>Be aware that the Cortex-M3 only supports Thumb! (see <code>BLX</code>)</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">   </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">BX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
-</code></pre></div>
-<p>Exceptions: UsageFault</p>
-<h3 id="branch-with-link-and-exchange-blx">Branch with Link and Exchange (<code>BLX</code>)</h3>
-<p>Calls a function at an address and instruction set (<span class="caps">ARM</span>/Thumb) specified in a register.</p>
-<p>It saves the next instruction (after <code>BLX</code>) in <em><span class="caps">LR</span></em>.</p>
-<blockquote>
-<p>Be aware that the Cortex-M3 only supports Thumb! An attempt to change to <span class="caps">ARM</span> Mode will
-cause an <em>UsageFault</em> exception.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code><span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="nv">Outside</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">BLX</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rm</span><span class="o">&gt;</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">BX</span><c> <rm>   /<em> Outside or last in <span class="caps">IT</span> block </em>/
+<span class="caps">BX</span><c><q> <rm></rm></q></c></rm></c></p>
+<div class="highlight"><pre><span></span><code><span class="n">Exceptions</span><span class="o">:</span><span class="w"> </span><span class="n">UsageFault</span><span class="w"></span>
+
+
+<span class="c1">### Branch with Link and Exchange (`BLX`)</span><span class="w"></span>
+
+<span class="n">Calls</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">instruction</span><span class="w"> </span><span class="kt">set</span><span class="w"> </span><span class="p">(</span><span class="n">ARM</span><span class="o">/</span><span class="n">Thumb</span><span class="p">)</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">It</span><span class="w"> </span><span class="n">saves</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">next</span><span class="w"> </span><span class="n">instruction</span><span class="w"> </span><span class="p">(</span><span class="k">after</span><span class="w"> </span><span class="n n-Quoted">`BLX`</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">*</span><span class="n">LR</span><span class="o">*</span><span class="p">.</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Be</span><span class="w"> </span><span class="n">aware</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Cortex</span><span class="o">-</span><span class="n">M3</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">supports</span><span class="w"> </span><span class="n">Thumb</span><span class="o">!</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">change</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">ARM</span><span class="w"> </span><span class="k">Mode</span><span class="w"> </span><span class="n">will</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">cause</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="o">*</span><span class="n">UsageFault</span><span class="o">*</span><span class="w"> </span><span class="n">exception</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">BLX&lt;c&gt; &lt;Rm&gt;          /* Outside or last in IT block */</span>
+<span class="n n-Quoted">BLX&lt;c&gt;&lt;q&gt; &lt;Rm&gt;</span>
 </code></pre></div>
 <p>Exceptions: UsageFault</p>
 <h2 id="compare-and-branch-commands">Compare and Branch Commands</h2>
@@ -1402,49 +1231,57 @@ The condition flags are not affected.</p>
 <blockquote>
 <p>these instructions are not allowed inside an <em><span class="caps">IT</span></em> block.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="nf">CB</span><span class="err">{</span><span class="nv">N</span><span class="err">}</span><span class="nv">Z</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w">    </span><span class="o">/*</span><span class="w"> </span><span class="nv">Not</span><span class="w"> </span><span class="nv">permitted</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">IT</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">CB</span><span class="err">{</span><span class="nv">N</span><span class="err">}</span><span class="nv">Z</span><span class="o">&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rn</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
-</code></pre></div>
-<p><code>&lt;Rn&gt;</code>: Register must be in range <em>R0</em> - <em>R7</em>.</p>
-<p><code>&lt;label&gt;</code>: The assembler calculates the offset from the <code>CB{N}Z</code> instruction to the label.
-Permitted offsets are even numbers in the range 0 to 126.</p>
-<h2 id="other-commands">Other Commands</h2>
-<h3 id="calculate-address-adr">Calculate Address (<code>ADR</code>)</h3>
-<p>Calculate <em><span class="caps">PC</span></em> relative address.</p>
-<p>Add immediate value to <em><span class="caps">PC</span></em> and store result in register.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"> </span><span class="o">/*</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"> </span><span class="nv">before</span><span class="w"> </span><span class="nv">current</span><span class="w"> </span><span class="nv">instruction</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="nf">SUB</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="nv">PC</span><span class="p">,</span><span class="c1">#0.       /* Special case for zero offset */</span><span class="w"></span>
-<span class="nf">ADR</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">label</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">ADD</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nv">PC</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;const&gt;</span><span class="w"></span>
-<span class="nf">SUB</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">Rd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nv">PC</span><span class="p">,</span><span class="w">  </span><span class="c1">#&lt;const&gt; /* Special case */</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">CB</span>{N}Z <rn>,<label>    /<em> Not permitted in <span class="caps">IT</span> block </em>/
+<span class="caps">CB</span>{N}Z<q> <rn>, <label></label></rn></q></label></rn></p>
+<div class="highlight"><pre><span></span><code><span class="n n-Quoted">`&lt;Rn&gt;`</span><span class="o">:</span><span class="w"> </span><span class="n">Register</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="o">*</span><span class="n">R0</span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">*</span><span class="n">R7</span><span class="o">*</span><span class="p">.</span><span class="w"></span>
+
+<span class="n n-Quoted">`&lt;label&gt;`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">assembler</span><span class="w"> </span><span class="n">calculates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">offset</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`CB{N}Z`</span><span class="w"> </span><span class="n">instruction</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">label</span><span class="p">.</span><span class="w"></span>
+<span class="n">Permitted</span><span class="w"> </span><span class="n">offsets</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">even</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mf">126.</span><span class="w"></span>
+
+
+
+<span class="c1">## Other Commands</span><span class="w"></span>
+
+<span class="c1">### Calculate Address (`ADR`)</span><span class="w"></span>
+
+<span class="n">Calculate</span><span class="w"> </span><span class="o">*</span><span class="n">PC</span><span class="o">*</span><span class="w"> </span><span class="n">relative</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">Add</span><span class="w"> </span><span class="n">immediate</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">*</span><span class="n">PC</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">register</span><span class="p">.</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">ADR&lt;c&gt; &lt;Rd&gt;,&lt;label&gt;</span>
+<span class="n n-Quoted">ADR&lt;c&gt;.W &lt;Rd&gt;,&lt;label&gt; /* &lt;label&gt; before current instruction */</span>
+<span class="n n-Quoted">SUB &lt;Rd&gt;,PC,#0.       /* Special case for zero offset */</span>
+<span class="n n-Quoted">ADR&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, &lt;label&gt;</span>
+<span class="n n-Quoted">ADD&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, PC,  #&lt;const&gt;</span>
+<span class="n n-Quoted">SUB&lt;c&gt;&lt;q&gt; &lt;Rd&gt;, PC,  #&lt;const&gt; /* Special case */</span>
 </code></pre></div>
 <h3 id="break-point-bkpt">Break-point (<code>BKPT</code>)</h3>
 <p>Causes a <em>DebugMonitor</em> exception or a debug halt.</p>
 <p>It is a unconditional instruction and can be executed inside or
 outside an <em><span class="caps">TI</span></em> block.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">BKPT</span><span class="o">&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="c1">#&lt;imm8&gt;</span><span class="w"></span>
-</code></pre></div>
-<p><code>&lt;imm8&gt;</code> is a 8-bit value that is ignored by the hardware
-but can be used to store some information by a debugger.</p>
-<p>Exceptions: <em>DebugMonitor</em></p>
-<h3 id="debug-hint-dbg">Debug Hint (<code>DBG</code>)</h3>
-<p>Provides a hint to debug and trace systems.
-The debug architecture defines the use (if any).</p>
-<div class="highlight"><pre><span></span><code><span class="kd">DB</span><span class="nv">G</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;&lt;</span><span class="nv">q</span><span class="o">&gt;</span><span class="c1">#&lt;option&gt;</span><span class="w"></span>
-<span class="err">//</span><span class="w"> </span><span class="nf">Any</span><span class="w"> </span><span class="nv">decoding</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="s">'option'</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">specified</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">debug</span><span class="w"> </span><span class="nv">system</span><span class="w"></span>
+<p><span class="dquo">“</span>`nasm
+<span class="caps">BKPT</span><q>#<imm8></imm8></q></p>
+<div class="highlight"><pre><span></span><code><span class="n n-Quoted">`&lt;imm8&gt;`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">8</span><span class="o">-</span><span class="kt">bit</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ignored</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">hardware</span><span class="w"></span>
+<span class="n">but</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="k">some</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">debugger</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Exceptions</span><span class="o">:</span><span class="w"> </span><span class="o">*</span><span class="n">DebugMonitor</span><span class="o">*</span><span class="w"></span>
+
+<span class="c1">### Debug Hint (`DBG`)</span><span class="w"></span>
+
+<span class="n">Provides</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">hint</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">trace</span><span class="w"> </span><span class="n">systems</span><span class="p">.</span><span class="w"></span>
+<span class="n">The</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">architecture</span><span class="w"> </span><span class="n">defines</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="k">any</span><span class="p">).</span><span class="w"></span>
+
+<span class="w"> </span><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">nasm</span>
+<span class="n n-Quoted">DBG&lt;c&gt;&lt;q&gt;#&lt;option&gt;</span>
+<span class="n n-Quoted">// Any decoding of 'option' is specified by the debug system</span>
 </code></pre></div>
 <h3 id="no-operation-nop">No Operation (<code>NOP</code>)</h3>
 <p>The <span class="caps">NOP</span> does nothing.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="w"></span>
-<span class="nf">NOP</span><span class="o">&lt;</span><span class="nv">c</span><span class="o">&gt;</span><span class="nv">.W</span><span class="w"></span>
-</code></pre></div>
-<!-- TBD: Instructions have to be described later
-
-- CLREX 
-- CPS
-
--->
+<p><code>nasm
+NOP&lt;c&gt;
+NOP&lt;c&gt;.W</code></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1530,7 +1367,7 @@ The debug architecture defines the use (if any).</p>
             <time itemprop="dateCreated" datetime="2015-07-03T11:44:00+02:00">Jul 3, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-08T20:39:25+02:00">Apr 8, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

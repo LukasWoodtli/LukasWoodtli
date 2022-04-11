@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-11-10T21:53:38+01:00" />
-<meta property="og:article:modified_time" content="2022-04-04T12:29:27+02:00" />
+<meta property="og:article:modified_time" content="2022-04-10T20:01:50+02:00" />
 <meta name="twitter:title" content="Structure and Interpretation of Computer Programs ">
 <meta name="twitter:description" content="Notes to the book Structure and Interpretation of Computer Programs, Second Edition Harold Abelson, Gerald Jay Sussman, Julie Sussman MIT Press My Github repository with examples See also Scheme (Lisp) 1 Building Abstractions with Procedures 1.1 The Elements of Programming “[The] language provides for combining simple ideas to form …">
 
@@ -278,9 +278,9 @@ Harold Abelson, Gerald Jay Sussman, Julie Sussman
           <span class="p">((</span><span class="nb">= </span><span class="nv">m</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
               <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Argument not 0 or 1: CONS"</span> <span class="nv">m</span><span class="p">))))</span>
    <span class="nv">dispatch</span><span class="p">)</span>
-
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)(</span><span class="nf">z</span> <span class="mi">0</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nf">z</span> <span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(define (car z)(z 0))
+(define (cdr z) (z 1))
 </code></pre></div>
 <h2 id="22-hierarchical-data-and-the-closure-property">2.2 Hierarchical Data and the Closure Property</h2>
 <p><em><span class="dquo">“</span>The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. We refer to this ability as the </em><em>closure property</em><em> of cons. In general, an operation for combining data objects satisfies the closure property if the results of combining things with that operation can themselves be combined using the same operation.”</em></p>
@@ -670,7 +670,7 @@ being allowed to kill the system or produce wrong answers.”</em></p>
             <time itemprop="dateCreated" datetime="2016-11-10T21:53:38+01:00">Nov 10, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-04-04T12:29:27+02:00">Apr 4, 2022</time>
+<time datetime="2022-04-10T20:01:50+02:00">Apr 10, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2019-04-19T07:52:35+02:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-04-10T19:48:35+02:00" />
 <meta name="twitter:title" content="Robot Operating System (ROS) ">
 <meta name="twitter:description" content="Currently I’m using Melodic Morenia. rosbash There is tab-completion for almost everything Load ROS Environment For Bash: source /opt/ros/melodic/setup.bash or Zsh: source /opt/ros/melodic/setup.zsh Commands Command Function rosls &lt;package_name&gt; List package content roscd &lt;package_name&gt; Go to package directory rospack Command Function …">
 
@@ -557,24 +557,22 @@ catkin clean --all
 <p>It’s recomended to always use the <span class="caps">ROS</span> Time APIs (and not the standard library).</p>
 <p>This allows to handle simulated time properly.</p>
 <ul>
-<li>
-<p><code>ros::Time</code>:</p>
-<p>:::cpp
-ros::Time begin = ros::Time::now();
-double secs = begin.toSec();</p>
-</li>
-<li>
-<p><code>ros::Duration</code>:</p>
-<p>:::cpp
-duration(0.5); // 0.5s
-ros::Duration passed = ros::Time()::now() - begin;</p>
-</li>
-<li>
-<p><code>ros::Rate</code>:</p>
-<p>:::cpp
-ros::Rate rate(10); // 10Hz</p>
-</li>
+<li><code>ros::Time</code>:</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="w"> </span><span class="n">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">secs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">begin</span><span class="p">.</span><span class="n">toSec</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>ros::Duration</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">duration</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0.5s</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="w"> </span><span class="n">passed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="p">()</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">begin</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>ros::Rate</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">ros</span><span class="o">::</span><span class="n">Rate</span><span class="w"> </span><span class="nf">rate</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10Hz</span>
+</code></pre></div>
 <p>If wall time is required, use <code>ros::WallTime</code>, <code>ros::WallDuration</code> and <code>ros::WallRate</code></p>
 <h1 id="urdf-and-xacro"><span class="caps">URDF</span> and Xacro</h1>
 <p>To generate an <span class="caps">URFD</span> file from a xacro file:</p>
@@ -623,7 +621,7 @@ ros::Rate rate(10); // 10Hz</p>
             <time itemprop="dateCreated" datetime="2019-04-19T07:52:35+02:00">Apr 19, 2019</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-04-10T19:48:35+02:00">Apr 10, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#mechanics-ref">Mechanics</a>

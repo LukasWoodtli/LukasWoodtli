@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2016-04-20T12:30:43+02:00" />
-<meta property="og:article:modified_time" content="2022-04-04T12:29:27+02:00" />
+<meta property="og:article:modified_time" content="2022-04-10T19:39:06+02:00" />
 <meta name="twitter:title" content="Object Databases ">
 <meta name="twitter:description" content="Motivation Information Systems Design Conceptual Design -&gt; Technical Design -&gt; Implementation Orthogonal Persistence Data has to outlive the execution of the program Independence of longelivety of data How much code needs to be written for persistence (effort for programmer) None at all would be nice but not realistic (GUI objects usually don …">
 
@@ -550,7 +550,7 @@
 <li><span class="caps">DD</span></li>
 </ul>
 <p><span class="caps">SQL</span></p>
-<div class="highlight"><pre><span></span><code>CREATE TABLE name ...
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Java</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
@@ -562,7 +562,7 @@
 <li><span class="caps">DM</span></li>
 </ul>
 <p><span class="caps">SQL</span></p>
-<div class="highlight"><pre><span></span><code>UPDATE name ...
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Java</p>
 <div class="highlight"><pre><span></span><code><span class="k">new</span> <span class="n">Person</span><span class="p">()</span>
@@ -572,7 +572,7 @@
 <li>Querying</li>
 </ul>
 <p><span class="caps">SQL</span></p>
-<div class="highlight"><pre><span></span><code>SELECT col_name ...
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">col_name</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Java</p>
 <div class="highlight"><pre><span></span><code><span class="p">...</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">name</span>
@@ -826,9 +826,9 @@
 </ul>
 <h3 id="object-query-language-oql">Object Query Language (<span class="caps">OQL</span>)</h3>
 <p>Based on <span class="caps">ODMG</span> Object Model and <span class="caps">SQL</span>-92</p>
-<div class="highlight"><pre><span></span><code>select  list_of_values
-from    list_of_collections_and_typical_members
-where   condition
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w">  </span><span class="n">list_of_values</span><span class="w"></span>
+<span class="k">from</span><span class="w">    </span><span class="n">list_of_collections_and_typical_members</span><span class="w"></span>
+<span class="k">where</span><span class="w">   </span><span class="n">condition</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li><code>SELECT</code>: Get attributes</li>
@@ -845,36 +845,36 @@ where   condition
 <p><span class="caps">ODMG</span> defines Extents.</p>
 <h4 id="difference-to-sql">Difference to <span class="caps">SQL</span></h4>
 <p>This is illegal as the “dot” operator cannot be applied to a collection of objects:</p>
-<div class="highlight"><pre><span></span><code>select a.authors.title
-from   Authors a
-where  a.name = "Tilmann Zaeschke"
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">authors</span><span class="p">.</span><span class="n">title</span><span class="w"></span>
+<span class="k">from</span><span class="w">   </span><span class="n">Authors</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="k">where</span><span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">"Tilmann Zaeschke"</span><span class="w"></span>
 </code></pre></div>
 <p>Correct solution based on <em>correlated</em> variables:</p>
-<div class="highlight"><pre><span></span><code>select p.title
-from Authors a, a.authors p
-where a.name = "Tilmann Zaeschke"
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">title</span><span class="w"></span>
+<span class="k">from</span><span class="w"> </span><span class="n">Authors</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">authors</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">"Tilmann Zaeschke"</span><span class="w"></span>
 </code></pre></div>
 <h4 id="return-types">Return Types</h4>
 <ul>
 <li>Queries return sets, bags or lists</li>
 </ul>
 <p>As a default, queries return a <em>bag</em></p>
-<div class="highlight"><pre><span></span><code>select first: p.authored_by[1], p.title, p.year
-from   Publications p
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="k">first</span><span class="p">:</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">authored_by</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="k">year</span><span class="w"></span>
+<span class="k">from</span><span class="w">   </span><span class="n">Publications</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
 </code></pre></div>
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Bag</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="p">{</span> <span class="n">Author</span> <span class="n">first</span><span class="p">,</span> <span class="n">string</span> <span class="n">title</span><span class="p">,</span> <span class="n">integer</span> <span class="n">year</span> <span class="p">}</span><span class="o">&gt;</span>
 </code></pre></div>
 <p>Queries with <code>DISTINCT</code> return a <em>set</em></p>
-<div class="highlight"><pre><span></span><code>select distinct a.name
-from   Authors a
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="w"></span>
+<span class="k">from</span><span class="w">   </span><span class="n">Authors</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 </code></pre></div>
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Set</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="p">{</span> <span class="n">string</span> <span class="n">name</span> <span class="p">}</span><span class="o">&gt;</span>
 </code></pre></div>
 <p>Queries with <code>ORDER BY</code> return a <em>list</em></p>
-<div class="highlight"><pre><span></span><code>select p.title
-from Publications s order by p.year desc
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">title</span><span class="w"></span>
+<span class="k">from</span><span class="w"> </span><span class="n">Publications</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="k">desc</span><span class="w"></span>
 </code></pre></div>
 <p>In Java:</p>
 <div class="highlight"><pre><span></span><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="p">{</span> <span class="n">string</span> <span class="n">name</span> <span class="p">}</span><span class="o">&gt;</span>
@@ -1263,12 +1263,12 @@ from Publications s order by p.year desc
 <li>Join Tables to map complex associations</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code>CREATE TABLE AUTHOR(AUTHOR_ID BIGINT NOT NULL PRIMARY KEY, ...)
-CREATE TABLE AUTHORSPUBLICATIONS(
-  AUTHOR_ID BIGINT NOT NULL,
-  PUBLICATION_ID BIGINT NOT NULL,
-  PRIMARY KEY(AUTHOR_ID, PUBLICATION_ID))
-CREATE TABLE PUBLICATION(PUBLICATION_ID BIGINT NOT NULL PRIMARY KEY, ... )
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AUTHOR</span><span class="p">(</span><span class="n">AUTHOR_ID</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AUTHORSPUBLICATIONS</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">AUTHOR_ID</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">PUBLICATION_ID</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">AUTHOR_ID</span><span class="p">,</span><span class="w"> </span><span class="n">PUBLICATION_ID</span><span class="p">))</span><span class="w"></span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">PUBLICATION</span><span class="p">(</span><span class="n">PUBLICATION_ID</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <h2 id="mapping-inheritance">Mapping Inheritance</h2>
 <ul>
@@ -2925,10 +2925,11 @@ The fundamental layer is usually not directly needed by the application develop
 </li>
 </ul>
 <h3 id="creating-persistent-objects">Creating Persistent Objects</h3>
-<p>Use overloaded <code>new</code> operator:
-    :::cpp
-    os_database <em>db = os_database::open(“publications.db”, 0, 1);
-    Author </em>scheel = new(db, os_ts<author>::get()) Author(“Matthias Geel”); db-&gt;close();</author></p>
+<p>Use overloaded <code>new</code> operator:</p>
+<div class="highlight"><pre><span></span><code><span class="n">os_database</span><span class="w"> </span><span class="o">*</span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os_database</span><span class="o">::</span><span class="n">open</span><span class="p">(</span><span class="s">"publications.db"</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">Author</span><span class="w"> </span><span class="o">*</span><span class="n">scheel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">os_ts</span><span class="o">&lt;</span><span class="n">Author</span><span class="o">&gt;::</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="n">Author</span><span class="p">(</span><span class="s">"Matthias Geel"</span><span class="p">);</span><span class="w"></span>
+<span class="n">db</span><span class="o">-&gt;</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
 <p>It’s also possible to instantiate persistent array of objects.</p>
 <h3 id="updating-and-deleting-persistent-objects">Updating and Deleting Persistent Objects</h3>
 <ul>
@@ -3798,10 +3799,10 @@ The fundamental layer is usually not directly needed by the application develop
 </ul>
 </li>
 <li>
-<p>location changes continuously: condition satisfied <em>sometime</em> or <em>always</em> within $[t_b,t_e]</p>
+<p>location changes continuously: condition satisfied <em>sometime</em> or <em>always</em> within <span class="math">\([t_b,t_e]\)</span></p>
 </li>
 <li>
-<p>due to uncerainty: condition satisfied <em>possibly</em> or <em>definitely</em> at point $p \in [t_b,t_e]</p>
+<p>due to uncerainty: condition satisfied <em>possibly</em> or <em>definitely</em> at point <span class="math">\(p \in [t_b,t_e]\)</span></p>
 </li>
 <li>
 <p><em>possibly</em>: trajectory with uncretainity</p>
@@ -4748,7 +4749,7 @@ The fundamental layer is usually not directly needed by the application develop
             <time itemprop="dateCreated" datetime="2016-04-20T12:30:43+02:00">Apr 20, 2016</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-04-04T12:29:27+02:00">Apr 4, 2022</time>
+<time datetime="2022-04-10T19:39:06+02:00">Apr 10, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
