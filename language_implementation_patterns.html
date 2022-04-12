@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-12-26T17:34:32+01:00" />
-<meta property="og:article:modified_time" content="2022-04-10T19:25:41+02:00" />
+<meta property="og:article:modified_time" content="2022-04-12T05:48:05+02:00" />
 <meta name="twitter:title" content="Language Implementation Patterns ">
 <meta name="twitter:description" content="This page collects notes and citations from the book: Language Implementation Patterns by Terence Parr Some of my examples can be found here Getting Started with Parsing Basic Parsing Patterns “The act of recognizing a phrase by computer is called parsing.” “You can think of grammars as functional specifications or …">
 
@@ -277,7 +277,7 @@
 <p><em><span class="dquo">“</span>Even when building lexers and parsers by hand, the best starting point is a grammar.”</em></p>
 <p><em><span class="dquo">“</span></em><em>Left recursion</em><em> results in an infinite method invocation loop.”</em></p>
 <p><em><span class="dquo">“</span>The following rule yields a parser that does not terminate:</em>”</p>
-<div class="highlight"><pre><span></span><code><span class="nl">r</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">;</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>we’d end up with a function that immediately called itself”</em></p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">r</span><span class="p">()</span> <span class="p">{</span> <span class="n">r</span><span class="p">();</span> <span class="n">match</span><span class="p">(</span><span class="n">X</span><span class="p">);</span> <span class="p">}</span>
@@ -336,12 +336,12 @@
 <p><em><span class="dquo">“</span>The strength of a recursive-descent parser depends entirely on the strength of its lookahead decisions.”</em></p>
 <p><em><span class="dquo">“</span>Having more lookahead is like being able to see farther down multiple paths emanating from a fork in a maze. The farther we can see ahead, the easier it is to decide which path to take. More powerful parsing decisions make it easier to build parsers.”</em></p>
 <p><em><span class="dquo">“</span>For example, we want to recognize input such as <code>[a, b=c, [d,e]]</code><span class="dquo">“</span></em></p>
-<div class="highlight"><pre><span></span><code><span class="nl">list</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'['</span><span class="w"> </span><span class="nv">elements</span><span class="w"> </span><span class="s1">']'</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="nl">elements</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">element</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="nv">element</span><span class="o">)*</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="nl">element</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="s1">'='</span><span class="w"> </span><span class="no">NAME</span><span class="w"></span>
-<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="no">NAME</span><span class="w"></span>
-<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="nv">list</span><span class="w"></span>
-<span class="w">        </span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>list : '[' elements ']' ;
+elements : element ( ',' element)* ;
+element : NAME '=' NAME
+        | NAME
+        | list
+        ;
 </code></pre></div>
 <p><em><span class="dquo">“</span><code>element</code> [is] non-<span class="caps">LL</span>(1) since the first two alternatives start with the same <code>NAME</code> token.”</em></p>
 <p><em><span class="dquo">“</span>The lookahead depth </em><em>k</em><em> in <span class="caps">LL</span>(k) is really a maximum not the exact, fixed amount of lookahead each parsing decision uses.”</em></p>
@@ -381,10 +381,10 @@ Unfortunately, some programming languages have context-sensitive phrases. To han
 <p><em><span class="dquo">“</span>Another name for </em><em>memoizing recursive-descent parser</em><em> is </em><em>packrat parser</em><em>”</em></p>
 <p><em><span class="dquo">“</span>Memoization only helps us, though, if we invoke the same rule at the same input position more than once.”</em></p>
 <p><em><span class="dquo">“</span>For example, upon input <code>(3+4);</code>, a backtracking parser derived from the following rule invokes <code>expr</code> twice:”</em></p>
-<div class="highlight"><pre><span></span><code><span class="nl">s</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">expr</span><span class="w"> </span><span class="s1">'!'</span><span class="w"> </span><span class="c">// assume backtracking parser tries this alternative</span><span class="w"></span>
-<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nv">expr</span><span class="w"> </span><span class="s1">';'</span><span class="w"> </span><span class="c">// and then this one</span><span class="w"></span>
-<span class="w">  </span><span class="p">;</span><span class="w"></span>
-<span class="nl">expr</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c">// match input such as "(3+4)"</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">s</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="s1">'!'</span><span class="w"> </span><span class="c1">// assume backtracking parser tries this alternative</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="s1">';'</span><span class="w"> </span><span class="c1">// and then this one</span>
+<span class="w">  </span><span class="o">;</span><span class="w"></span>
+<span class="n">expr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="o">;</span><span class="w"> </span><span class="c1">// match input such as "(3+4)"</span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>Rule <code>s</code> invokes <code>expr</code> to speculatively match the first alternative. <code>expr</code> succeeds, but <code>s</code> finds that the next 
 input symbol is <code>;</code> and not <code>!</code>. Rule <code>s</code> rewinds the input and tries the second alternative. The parser immediately calls
@@ -845,7 +845,7 @@ language. […] we’re defining a special class for each output element.”</e
             <time itemprop="dateCreated" datetime="2017-12-26T17:34:32+01:00">Dec 26, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-04-10T19:25:41+02:00">Apr 10, 2022</time>
+<time datetime="2022-04-12T05:48:05+02:00">Apr 12, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
