@@ -1,0 +1,1415 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta data-react-helmet="true" name="viewport" content="initial-scale=1, width=device-width"/><meta data-rh="true" name="description" content="[TOC] Boolean Circuits AND/OR/NOT gates Gate: function Inputs: arguments to function In-/Outputs: wires Circuits: combination of gates Truth table: all possible…"/><meta data-rh="true" name="googlebot" content="index,follow"/><meta data-rh="true" name="robots" content="index,follow"/><meta name="generator" content="Gatsby 4.12.1"/><style data-href="/styles.b6e5382e858e0f485d06.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}
+
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:42rem;--maxWidth-3xl:48rem;--maxWidth-4xl:56rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:Montserrat,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Merriweather","Georgia",Cambria,"Times New Roman",Times,serif;--font-body:var(--fontFamily-serif);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-medium:500;--fontWeight-semibold:600;--fontWeight-bold:700;--fontWeight-extrabold:800;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-normal:1.5;--lineHeight-relaxed:1.625;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#005b99;--color-text:#2e353f;--color-text-light:#4f5969;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box;line-height:1.8}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:var(--font-body);font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{color:var(--color-heading-black);font-size:var(--fontSize-6);font-weight:var(--fontWeight-black)}h2{font-size:var(--fontSize-5)}h3{font-size:var(--fontSize-4)}h4{font-size:var(--fontSize-3)}h5{font-size:var(--fontSize-2)}h6{font-size:var(--fontSize-1)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-relaxed);margin:var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-8);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-8)/2)}li :last-child{margin-bottom:var(--spacing-0)}li>ul{margin-left:var(--spacing-8);margin-top:calc(var(--spacing-8)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);font-style:italic;margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:outside}table{border-collapse:collapse;border-spacing:.25rem;display:block;margin-bottom:var(--spacing-8);width:100%}table>thead>tr>th,td{word-wrap:break-word;align-items:center;border-bottom:1px solid var(--color-accent);flex:1 1;min-height:48px;overflow:hidden;padding:0 24px}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.document-wrapper{display:block;padding:4% 4% 0;width:95%}.global-wrapper{margin:var(--spacing-0) auto;max-width:var(--maxWidth-wrapper);padding:var(--spacing-10) var(--spacing-5)}.global-wrapper[data-is-root-path=true] .bio{margin-bottom:var(--spacing-20)}.global-header{margin-bottom:var(--spacing-12)}.main-heading{font-size:var(--fontSize-7);margin:0}.post-list-item{margin-bottom:var(--spacing-8);margin-top:var(--spacing-8)}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h2{color:var(--color-primary);font-size:var(--fontSize-4);margin-bottom:var(--spacing-2);margin-top:var(--spacing-0)}.post-list-item header{margin-bottom:var(--spacing-4)}.header-link-home{font-family:var(--font-heading);font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{display:flex;margin-bottom:var(--spacing-16)}.bio p,.bio-avatar{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:var(--font-heading);font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-8)}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:outside}}code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdf6e3}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><style data-emotion="css-global 0"></style><style data-emotion="css-global o6gwfi">html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box;-webkit-text-size-adjust:100%;}*,*::before,*::after{box-sizing:inherit;}strong,b{font-weight:700;}body{margin:0;color:rgba(0, 0, 0, 0.87);font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1rem;line-height:1.5;letter-spacing:0.00938em;background-color:#fff;}@media print{body{background-color:#fff;}}body::backdrop{background-color:#fff;}</style><style data-emotion="css 17xcwyf 1ekb41w 1ev4ah9 15kjgm 1l0625b co2nuf vli43w 132oeye 1ontqvh 1tsvksn zq6grw 1iuj5ih 1uwabd6 yb0lig n085mf 1ns5f5t 1spz1bj hcgus0 g65o49 39bbo6 1yo8bqd 9l3uo3 tuxzvu 1wxaqej 10f1en8 9iedg7 ayb3n0 wk4je1 12hl9jz 39nlm1">.css-17xcwyf{background-color:#fff;color:rgba(0, 0, 0, 0.87);-webkit-transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;box-sizing:border-box;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;position:fixed;z-index:1100;top:0;left:auto;right:0;background-color:#1976d2;color:#fff;z-index:1201;}@media print{.css-17xcwyf{position:absolute;}}.css-1ekb41w{width:100%;margin-left:auto;box-sizing:border-box;margin-right:auto;display:block;padding-left:16px;padding-right:16px;}@media (min-width:600px){.css-1ekb41w{padding-left:24px;padding-right:24px;}}@media (min-width:1536px){.css-1ekb41w{max-width:1536px;}}.css-1ev4ah9{position:relative;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;min-height:56px;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;}@media (min-width:0px) and (orientation: landscape){.css-1ev4ah9{min-height:48px;}}@media (min-width:600px){.css-1ev4ah9{min-height:64px;}}.css-15kjgm{margin:0;color:#1976d2;-webkit-text-decoration:underline;text-decoration:underline;text-decoration-color:rgba(25, 118, 210, 0.4);}.css-15kjgm:hover{text-decoration-color:inherit;}.css-1l0625b{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;box-sizing:border-box;-webkit-tap-highlight-color:transparent;background-color:transparent;outline:0;border:0;margin:0;border-radius:0;padding:0;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle;-moz-appearance:none;-webkit-appearance:none;-webkit-text-decoration:none;text-decoration:none;color:inherit;font-size:1.1rem;text-transform:none;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:500;line-height:1.75;letter-spacing:0.02857em;min-width:64px;padding:6px 8px;border-radius:4px;-webkit-transition:background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;color:#1976d2;color:white;}.css-1l0625b::-moz-focus-inner{border-style:none;}.css-1l0625b.Mui-disabled{pointer-events:none;cursor:default;}@media print{.css-1l0625b{-webkit-print-color-adjust:exact;color-adjust:exact;}}.css-1l0625b:hover{-webkit-text-decoration:none;text-decoration:none;background-color:rgba(25, 118, 210, 0.04);}@media (hover: none){.css-1l0625b:hover{background-color:transparent;}}.css-1l0625b.Mui-disabled{color:rgba(0, 0, 0, 0.26);}.css-co2nuf{min-height:56px;}@media (min-width:0px) and (orientation: landscape){.css-co2nuf{min-height:48px;}}@media (min-width:600px){.css-co2nuf{min-height:64px;}}.css-vli43w{box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;width:100%;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;}.css-132oeye{box-sizing:border-box;margin:0;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}@media (min-width:900px){.css-132oeye{-webkit-flex-basis:16.666667%;-ms-flex-preferred-size:16.666667%;flex-basis:16.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:16.666667%;}}@media (min-width:1200px){.css-132oeye{-webkit-flex-basis:16.666667%;-ms-flex-preferred-size:16.666667%;flex-basis:16.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:16.666667%;}}@media (min-width:1536px){.css-132oeye{-webkit-flex-basis:16.666667%;-ms-flex-preferred-size:16.666667%;flex-basis:16.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:16.666667%;}}.css-1ontqvh{list-style:none;margin:0;padding:0;position:relative;padding-top:8px;padding-bottom:8px;}.css-1tsvksn{-webkit-flex:1 1 auto;-ms-flex:1 1 auto;flex:1 1 auto;min-width:0;margin-top:4px;margin-bottom:4px;}.css-zq6grw{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1.5rem;line-height:1.334;letter-spacing:0em;}.css-1iuj5ih{padding-left:8px;}.css-1uwabd6{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;box-sizing:border-box;-webkit-tap-highlight-color:transparent;background-color:transparent;outline:0;border:0;margin:0;border-radius:0;padding:0;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle;-moz-appearance:none;-webkit-appearance:none;-webkit-text-decoration:none;text-decoration:none;color:inherit;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;-webkit-box-pack:start;-ms-flex-pack:start;-webkit-justify-content:flex-start;justify-content:flex-start;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:relative;-webkit-text-decoration:none;text-decoration:none;min-width:0;box-sizing:border-box;text-align:left;padding-top:8px;padding-bottom:8px;-webkit-transition:background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;padding-left:16px;padding-right:16px;}.css-1uwabd6::-moz-focus-inner{border-style:none;}.css-1uwabd6.Mui-disabled{pointer-events:none;cursor:default;}@media print{.css-1uwabd6{-webkit-print-color-adjust:exact;color-adjust:exact;}}.css-1uwabd6:hover{-webkit-text-decoration:none;text-decoration:none;background-color:rgba(0, 0, 0, 0.04);}@media (hover: none){.css-1uwabd6:hover{background-color:transparent;}}.css-1uwabd6.Mui-selected{background-color:rgba(25, 118, 210, 0.08);}.css-1uwabd6.Mui-selected.Mui-focusVisible{background-color:rgba(25, 118, 210, 0.2);}.css-1uwabd6.Mui-selected:hover{background-color:rgba(25, 118, 210, 0.12);}@media (hover: none){.css-1uwabd6.Mui-selected:hover{background-color:rgba(25, 118, 210, 0.08);}}.css-1uwabd6.Mui-focusVisible{background-color:rgba(0, 0, 0, 0.12);}.css-1uwabd6.Mui-disabled{opacity:0.38;}.css-yb0lig{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1rem;line-height:1.5;letter-spacing:0.00938em;display:block;}.css-n085mf{padding-left:16px;}.css-1ns5f5t{padding-left:24px;}.css-1spz1bj{padding-left:32px;}.css-hcgus0{box-sizing:border-box;margin:0;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}@media (min-width:600px){.css-hcgus0{-webkit-flex-basis:100%;-ms-flex-preferred-size:100%;flex-basis:100%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:100%;}}@media (min-width:900px){.css-hcgus0{-webkit-flex-basis:66.666667%;-ms-flex-preferred-size:66.666667%;flex-basis:66.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:66.666667%;}}@media (min-width:1200px){.css-hcgus0{-webkit-flex-basis:66.666667%;-ms-flex-preferred-size:66.666667%;flex-basis:66.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:66.666667%;}}@media (min-width:1536px){.css-hcgus0{-webkit-flex-basis:66.666667%;-ms-flex-preferred-size:66.666667%;flex-basis:66.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:66.666667%;}}.css-g65o49{box-sizing:border-box;margin:0;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}@media (min-width:900px){.css-g65o49{-webkit-flex-basis:16.666667%;-ms-flex-preferred-size:16.666667%;flex-basis:16.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:16.666667%;}}@media (min-width:1200px){.css-g65o49{-webkit-flex-basis:16.666667%;-ms-flex-preferred-size:16.666667%;flex-basis:16.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:16.666667%;}}@media (min-width:1536px){.css-g65o49{-webkit-flex-basis:16.666667%;-ms-flex-preferred-size:16.666667%;flex-basis:16.666667%;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;max-width:16.666667%;}}.css-39bbo6{margin:0;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;border-width:0;border-style:solid;border-color:rgba(0, 0, 0, 0.12);border-bottom-width:thin;}.css-1yo8bqd{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:start;-ms-flex-pack:start;-webkit-justify-content:flex-start;justify-content:flex-start;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:relative;-webkit-text-decoration:none;text-decoration:none;width:100%;box-sizing:border-box;text-align:left;padding-top:8px;padding-bottom:8px;padding-left:16px;padding-right:16px;}.css-1yo8bqd.Mui-focusVisible{background-color:rgba(0, 0, 0, 0.12);}.css-1yo8bqd.Mui-selected{background-color:rgba(25, 118, 210, 0.08);}.css-1yo8bqd.Mui-selected.Mui-focusVisible{background-color:rgba(25, 118, 210, 0.2);}.css-1yo8bqd.Mui-disabled{opacity:0.38;}.css-9l3uo3{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1rem;line-height:1.5;letter-spacing:0.00938em;}.css-tuxzvu{box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;width:100%;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;margin-top:-8px;width:calc(100% + 8px);margin-left:-8px;}.css-tuxzvu>.MuiGrid-item{padding-top:8px;}.css-tuxzvu>.MuiGrid-item{padding-left:8px;}.css-1wxaqej{box-sizing:border-box;margin:0;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}.css-10f1en8{max-width:100%;font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:0.8125rem;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:32px;color:rgba(0, 0, 0, 0.87);background-color:rgba(0, 0, 0, 0.08);border-radius:16px;white-space:nowrap;-webkit-transition:background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;cursor:default;outline:0;-webkit-text-decoration:none;text-decoration:none;border:0;padding:0;vertical-align:middle;box-sizing:border-box;background-color:transparent;border:1px solid #bdbdbd;}.css-10f1en8.Mui-disabled{opacity:0.38;pointer-events:none;}.css-10f1en8 .MuiChip-avatar{margin-left:5px;margin-right:-6px;width:24px;height:24px;color:#616161;font-size:0.75rem;}.css-10f1en8 .MuiChip-avatarColorPrimary{color:#fff;background-color:#1565c0;}.css-10f1en8 .MuiChip-avatarColorSecondary{color:#fff;background-color:#7b1fa2;}.css-10f1en8 .MuiChip-avatarSmall{margin-left:4px;margin-right:-4px;width:18px;height:18px;font-size:0.625rem;}.css-10f1en8 .MuiChip-icon{color:#616161;margin-left:5px;margin-right:-6px;}.css-10f1en8 .MuiChip-deleteIcon{-webkit-tap-highlight-color:transparent;color:rgba(0, 0, 0, 0.26);font-size:22px;cursor:pointer;margin:0 5px 0 -6px;}.css-10f1en8 .MuiChip-deleteIcon:hover{color:rgba(0, 0, 0, 0.4);}.css-10f1en8.MuiChip-clickable:hover{background-color:rgba(0, 0, 0, 0.04);}.css-10f1en8.Mui-focusVisible{background-color:rgba(0, 0, 0, 0.12);}.css-10f1en8 .MuiChip-avatar{margin-left:4px;}.css-10f1en8 .MuiChip-avatarSmall{margin-left:2px;}.css-10f1en8 .MuiChip-icon{margin-left:4px;}.css-10f1en8 .MuiChip-iconSmall{margin-left:2px;}.css-10f1en8 .MuiChip-deleteIcon{margin-right:5px;}.css-10f1en8 .MuiChip-deleteIconSmall{margin-right:3px;}.css-9iedg7{overflow:hidden;text-overflow:ellipsis;padding-left:12px;padding-right:12px;white-space:nowrap;}.css-ayb3n0{-webkit-flex:1 1 auto;-ms-flex:1 1 auto;flex:1 1 auto;min-width:0;margin-top:4px;margin-bottom:4px;padding-right:8px;}.css-wk4je1{max-width:100%;font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:0.8125rem;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:32px;color:rgba(0, 0, 0, 0.87);background-color:rgba(0, 0, 0, 0.08);border-radius:16px;white-space:nowrap;-webkit-transition:background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;cursor:default;outline:0;-webkit-text-decoration:none;text-decoration:none;border:0;padding:0;vertical-align:middle;box-sizing:border-box;}.css-wk4je1.Mui-disabled{opacity:0.38;pointer-events:none;}.css-wk4je1 .MuiChip-avatar{margin-left:5px;margin-right:-6px;width:24px;height:24px;color:#616161;font-size:0.75rem;}.css-wk4je1 .MuiChip-avatarColorPrimary{color:#fff;background-color:#1565c0;}.css-wk4je1 .MuiChip-avatarColorSecondary{color:#fff;background-color:#7b1fa2;}.css-wk4je1 .MuiChip-avatarSmall{margin-left:4px;margin-right:-4px;width:18px;height:18px;font-size:0.625rem;}.css-wk4je1 .MuiChip-icon{color:#616161;margin-left:5px;margin-right:-6px;}.css-wk4je1 .MuiChip-deleteIcon{-webkit-tap-highlight-color:transparent;color:rgba(0, 0, 0, 0.26);font-size:22px;cursor:pointer;margin:0 5px 0 -6px;}.css-wk4je1 .MuiChip-deleteIcon:hover{color:rgba(0, 0, 0, 0.4);}.css-12hl9jz{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;border-radius:4px;margin-left:auto;margin-right:40px;}.css-12hl9jz .MuiButtonGroup-grouped{min-width:40px;}.css-12hl9jz .MuiButtonGroup-grouped:not(:first-of-type){border-top-left-radius:0;border-bottom-left-radius:0;margin-left:-1px;}.css-12hl9jz .MuiButtonGroup-grouped:not(:last-of-type){border-top-right-radius:0;border-bottom-right-radius:0;border-right-color:transparent;}.css-12hl9jz .MuiButtonGroup-grouped:not(:last-of-type):hover{border-right-color:currentColor;}.css-39nlm1{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;box-sizing:border-box;-webkit-tap-highlight-color:transparent;background-color:transparent;outline:0;border:0;margin:0;border-radius:0;padding:0;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle;-moz-appearance:none;-webkit-appearance:none;-webkit-text-decoration:none;text-decoration:none;color:inherit;text-align:center;-webkit-flex:0 0 auto;-ms-flex:0 0 auto;flex:0 0 auto;font-size:1.5rem;padding:8px;border-radius:50%;overflow:visible;color:rgba(0, 0, 0, 0.54);-webkit-transition:background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;color:#1976d2;}.css-39nlm1::-moz-focus-inner{border-style:none;}.css-39nlm1.Mui-disabled{pointer-events:none;cursor:default;}@media print{.css-39nlm1{-webkit-print-color-adjust:exact;color-adjust:exact;}}.css-39nlm1:hover{background-color:rgba(0, 0, 0, 0.04);}@media (hover: none){.css-39nlm1:hover{background-color:transparent;}}.css-39nlm1:hover{background-color:rgba(25, 118, 210, 0.04);}@media (hover: none){.css-39nlm1:hover{background-color:transparent;}}.css-39nlm1.Mui-disabled{background-color:transparent;color:rgba(0, 0, 0, 0.26);}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><title data-rh="true">Models of Computation</title><title data-react-helmet="true"></title><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc4.woff2"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2"/><style>@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:300;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:url(/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:500;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:300;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc-.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:url(/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxM.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:500;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc-.woff) format("woff")}</style><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="alternate" type="application/rss+xml" title="Gatsby Starter Blog RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=d1d275ef5984c9c4df66911afa1eabc2" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=d1d275ef5984c9c4df66911afa1eabc2"/><link as="script" rel="preload" href="/webpack-runtime-1b3e5728f3c07f383689.js"/><link as="script" rel="preload" href="/framework-137a6963f263188333cb.js"/><link as="script" rel="preload" href="/dc6a8720040df98778fe970bf6c000a41750d3ae-da54993d5e5aa0da12f7.js"/><link as="script" rel="preload" href="/app-1e714a6ebf09e0da48c3.js"/><link as="script" rel="preload" href="/cb1608f2-8b21232f8956c9e9594e.js"/><link as="script" rel="preload" href="/a9a7754c-7e51f9bc3504726fa9e4.js"/><link as="script" rel="preload" href="/commons-b9a963f19e0fdcc43084.js"/><link as="script" rel="preload" href="/022d3153bf09c36cd784dcdb36ffbd187f9c96d7-175be7054cf5d76b4c7b.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-tsx-ddb853013b61ea1d756e.js"/><link as="fetch" rel="preload" href="/page-data/models_of_computation/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="document-wrapper" style="display:flex;flex-direction:column;min-height:100vh"><header><header class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-17xcwyf"><div class="MuiContainer-root MuiContainer-maxWidthXl css-1ekb41w"><div class="MuiToolbar-root MuiToolbar-regular css-1ev4ah9"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Lukas Woodtli</button></a><div></div><div class="MuiBox-root css-0"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/resume"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Resume</button></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/skills"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Skills</button></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/books"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Books</button></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/courses"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Courses</button></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/projects"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Projects</button></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/blog"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Blog</button></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="/contact"><button class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1l0625b" tabindex="0" type="button">Contact</button></a></div></div></div></header><div class="css-co2nuf"></div></header><div class="MuiGrid-root MuiGrid-container css-vli43w"><div class="MuiGrid-root MuiGrid-item MuiGrid-grid-md-2 css-132oeye"><ul class="MuiList-root MuiList-padding css-1ontqvh"><div class="MuiListItemText-root css-1tsvksn"><h5 class="MuiTypography-root MuiTypography-h5 css-zq6grw">Content</h5></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#boolean-circuits"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Boolean Circuits</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#xor"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">XOR</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#finite-state-machines-fsm"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Finite State Machines (FSM)</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#deterministic--non-deterministic-fsm"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Deterministic / Non-Deterministic FSM</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#acceptor-recognizer"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Acceptor (Recognizer)</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#classifier"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Classifier</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#transducer"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Transducer</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#register-machines"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Register Machines</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#fractran"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Fractran</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#tilings"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Tilings</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#tiles-as-turing-machine"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Tiles as Turing Machine</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#cellular-automata"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Cellular Automata</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#the-model"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">The Model</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#variants"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Variants</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#lambda-calculus"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Lambda Calculus</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#syntax"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Syntax</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#main-operations"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Main Operations</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#church-numerals"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Church Numerals</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#lambda-calculus-expressions"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Lambda Calculus Expressions</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#variables"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Variables</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#function-application"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Function Application</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#function-creation"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Function Creation</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#evaluation"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Evaluation</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#examples"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Examples</span></div></a></div><div class="MuiBox-root css-1spz1bj"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#increment"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Increment</span></div></a></div><div class="MuiBox-root css-1spz1bj"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#addition"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Addition</span></div></a></div><div class="MuiBox-root css-1spz1bj"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#multiplication"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Multiplication</span></div></a></div><div class="MuiBox-root css-1spz1bj"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#boolean-logic"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Boolean Logic</span></div></a></div><div class="MuiBox-root css-1spz1bj"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#if-then-else"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">If-Then-Else</span></div></a></div><div class="MuiBox-root css-1spz1bj"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#pair"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Pair</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#conclusion"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Conclusion</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#recursion"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Recursion</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#y-combinator"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Y-Combinator</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#numbers"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Numbers</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#tag-systems"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Tag Systems</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#2-tag-system"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">2-Tag System</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#example-test-for-oddeven-number"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Example: Test for odd/even number</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#example-power-of-two"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Example: Power of Two</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#simulation-of-turing-machines-with-tag-systems"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Simulation of Turing Machines with Tag Systems</span></div></a></div><div class="MuiBox-root css-1ns5f5t"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#cyclic-tag-systems"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Cyclic Tag Systems</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#diophantine-equations"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Diophantine Equations</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#primitive-recursive-functions"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Primitive Recursive Functions</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#some-simple-models"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Some Simple Models</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#chemical-reaction-networks"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Chemical Reaction Networks</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#petri-nets"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Petri Nets</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#vector-addition-systems"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Vector Addition Systems</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#unordered-fractran"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Unordered Fractran</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#broken-register-machine"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Broken Register Machine</span></div></a></div><div class="MuiBox-root css-n085mf"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#general-notes"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">General Notes</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#halting-problem"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Halting Problem</span></div></a></div><div class="MuiBox-root css-1iuj5ih"><a class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-1uwabd6" tabindex="0" href="#universal-machine"><div class="MuiListItemText-root css-1tsvksn"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig">Universal Machine</span></div></a></div></ul></div><div class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-8 css-hcgus0"><article class="blog-post" itemscope=""><div><h1 itemProp="headline">Models of Computation</h1></div><section itemProp="articleBody"><p>[TOC]</p>
+<h1 id="boolean-circuits">Boolean Circuits</h1>
+<ul>
+<li>AND/OR/NOT gates</li>
+<li>Gate: function</li>
+<li>Inputs: arguments to function</li>
+<li>In-/Outputs: wires</li>
+<li>Circuits: combination of gates</li>
+<li>Truth table: all possible combination (look-up table)</li>
+</ul>
+<h2 id="xor">XOR</h2>
+<ul>
+<li>Parity: odd/even
+<ul>
+<li>0: even</li>
+<li>1: odd</li>
+<li>0 is even number, 1 is odd number</li>
+</ul>
+</li>
+<li>works with more than 2 inputs</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>X</th>
+<th>Y</th>
+<th>Z</th>
+<th>XOR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Cost of circuit: number of
+<ul>
+<li>AND gates and</li>
+<li>OR gates</li>
+<li>usually NOT gates are not counted (they are too simple)</li>
+</ul>
+</li>
+</ul>
+<p>Truth table:</p>
+<ul>
+<li>for <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span></span> inputs: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span></span> combinations</li>
+</ul>
+<p>Number of functions:</p>
+<ul>
+<li>for <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span></span> inputs: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><msup><mn>2</mn><mi>n</mi></msup></msup></mrow><annotation encoding="application/x-tex">2^{2^n}</annotation></semantics></math></span></span> functions (circuits)</li>
+</ul>
+<p>General of <strong>XOR</strong>:</p>
+<ul>
+<li>for <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span></span> inputs <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{n-1}+1</annotation></semantics></math></span></span> gates needed</li>
+</ul>
+<!-- Notes Week 1 End -->
+<!-- Notes Week 2 Start -->
+<h1 id="finite-state-machines-fsm">Finite State Machines (FSM)</h1>
+<ul>
+<li>Also called Finite State Automaton (FSA)</li>
+</ul>
+<p>See also <a href="http://www.tutorialspoint.com/automata_theory/automata_theory_introduction.htm">Tutorialspoint</a></p>
+<p>Can be represented as a 5-touple <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Q</mi><mo separator="true">,</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>δ</mi><mo separator="true">,</mo><msub><mi>q</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Q, \Sigma, \delta, q_0, F)</annotation></semantics></math></span></span>:</p>
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span></span>: finite set of states</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span></span>: alphabet (finite set of symbols)</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span></span>: transition function</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">q_0</annotation></semantics></math></span></span>: initial state (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mn>0</mn></msub><mo>∈</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">q_0 \in Q</annotation></semantics></math></span></span>)</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span></span>: set of final states (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>⊆</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">F \subseteq  Q</annotation></semantics></math></span></span>)</li>
+</ul>
+<h2 id="deterministic--non-deterministic-fsm">Deterministic / Non-Deterministic FSM</h2>
+<ul>
+<li>
+<p>Deterministic</p>
+<ul>
+<li>For each arriving event it’s clear what the next state is</li>
+</ul>
+</li>
+<li>
+<p>Non-deterministic</p>
+<ul>
+<li>For some (or all) events the next state can be more than one (it’s not clear to which state the machine will change)</li>
+</ul>
+</li>
+<li>
+<p>Any non-deterministic FSM can be turned into a deterministic FSM</p>
+</li>
+</ul>
+<h2 id="acceptor-recognizer">Acceptor (Recognizer)</h2>
+<ul>
+<li>Calculates a Boolean function</li>
+<li>All states are either <em>accepting</em> or <em>rejecting</em> for a given input</li>
+<li>In graphical notation the <em>accepting</em> states have a double circle</li>
+<li>Non-deterministic Acceptor
+<ul>
+<li>accepts if there is <em>any</em> way to accept</li>
+<li>methodically try all possibilities</li>
+<li>‘Parallel World’ - try all possibilities <em>simultaneously</em> in separate copies of the machine (for complexity theory)</li>
+</ul>
+</li>
+</ul>
+<h2 id="classifier">Classifier</h2>
+<ul>
+<li>Has more than two final states</li>
+<li>gives single output when it terminates</li>
+</ul>
+<h2 id="transducer">Transducer</h2>
+<ul>
+<li>Produces outputs based on current input and on previous state</li>
+<li>2 different types
+<ul>
+<li>Mealy Machine: output depends only on <em>current state</em></li>
+<li>Moore Machine: output depends on <em>current state</em> and <em>current input</em></li>
+<li>They can be transformed into each other</li>
+</ul>
+</li>
+</ul>
+<h1 id="register-machines">Register Machines</h1>
+<ul>
+<li>A register machine has multiple registers that store positive integers</li>
+<li>There are only two possible operations on these registers
+<ol>
+<li>incrementing (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span></span>)</li>
+<li>decrementing (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span></span>)</li>
+</ol>
+<ul>
+<li>Decrementing a register that holds <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span> fails</li>
+</ul>
+</li>
+<li>There are other (slightly different) definitions of register machines that allow different operations (e.g checking for <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span>)</li>
+<li>Register Machines can be graphically represented like FSMs or as a simple list of instructions (programming language)</li>
+</ul>
+<p>Example of list of instructions for a Register Machine:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Action</th>
+<th>Next Instruction</th>
+<th>Alternative Instruction (if actual instruction fails)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>x-</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>y+</td>
+<td>3</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>x-</td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>y-</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>x+</td>
+<td>4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6.</td>
+<td>x-</td>
+<td>7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>7.</td>
+<td>x-</td>
+<td>9</td>
+<td>HALT</td>
+</tr>
+<tr>
+<td>8.</td>
+<td>y-</td>
+<td>9</td>
+<td>3</td>
+</tr>
+<tr>
+<td>9.</td>
+<td>x+</td>
+<td>10</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10.</td>
+<td>x+</td>
+<td>11</td>
+<td>-</td>
+</tr>
+<tr>
+<td>11.</td>
+<td>x+</td>
+<td>8</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Register Machines and Turing Machines can simulate each other in polynomial time</li>
+<li>For each Register Machine with more than 2 registers (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span></span>) there is an equivalent Register Machine with only 2 registers
+<ul>
+<li>The <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span></span> registers need to be encoded</li>
+</ul>
+</li>
+<li>Whenever a loop ends (in a 2 Register Machine)
+<ul>
+<li>one register is <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></li>
+<li>in the other register is some information available</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 2 End -->
+<!-- Notes Week 4 Start -->
+<h1 id="fractran">Fractran</h1>
+<p>See also <a href="https://en.wikipedia.org/wiki/FRACTRAN">Wikipedia:Fractran</a></p>
+<p>Example PRIMEGAME:</p>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>17</mn><mn>91</mn></mfrac><mo separator="true">,</mo><mfrac><mn>78</mn><mn>85</mn></mfrac><mo separator="true">,</mo><mfrac><mn>19</mn><mn>51</mn></mfrac><mo separator="true">,</mo><mfrac><mn>23</mn><mn>38</mn></mfrac><mo separator="true">,</mo><mfrac><mn>29</mn><mn>33</mn></mfrac><mo separator="true">,</mo><mfrac><mn>77</mn><mn>29</mn></mfrac><mo separator="true">,</mo><mfrac><mn>95</mn><mn>23</mn></mfrac><mo separator="true">,</mo><mfrac><mn>77</mn><mn>19</mn></mfrac><mo separator="true">,</mo><mfrac><mn>1</mn><mn>17</mn></mfrac><mo separator="true">,</mo><mfrac><mn>11</mn><mn>13</mn></mfrac><mo separator="true">,</mo><mfrac><mn>13</mn><mn>11</mn></mfrac><mo separator="true">,</mo><mfrac><mn>15</mn><mn>2</mn></mfrac><mo separator="true">,</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo separator="true">,</mo><mfrac><mn>55</mn><mn>1</mn></mfrac></mrow><annotation encoding="application/x-tex">{\frac  {17}{91}},{\frac  {78}{85}},{\frac  {19}{51}},{\frac  {23}{38}},{\frac  {29}{33}},{\frac  {77}{29}},{\frac  {95}{23}},{\frac  {77}{19}},{\frac  {1}{17}},{\frac  {11}{13}},{\frac  {13}{11}},{\frac  {15}{2}},{\frac  {1}{7}},{\frac  {55}{1}}</annotation></semantics></math></span></span></p>
+<p>State/Memory: an Integer</p>
+<p>Computation: multiply by first fraction that yields an integer</p>
+<p>Start with <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span></span>: calculate primes.</p>
+<p>Implementation in racket:</p>
+<script src="https://gist.github.com/LukasWoodtli/c391e391dcc9f9c9e9231a8c6fb954a4.js"></script>
+<p>Fractran is similar to stack machines.</p>
+<h1 id="tilings">Tilings</h1>
+<p>See also <a href="https://en.wikipedia.org/wiki/Wang_tile">Wikipedia:Wang tile</a></p>
+<ul>
+<li>Graphical model of computation</li>
+<li>The edges of each tile have special form/color</li>
+<li>Tiles can be arranged on plain so that edges match</li>
+</ul>
+<h2 id="tiles-as-turing-machine">Tiles as Turing Machine</h2>
+<ul>
+<li>Tiled plain can be seen as Turing Machine over time
+<ul>
+<li>one dimension (horizontal, x) is tape</li>
+<li>other dimension (vertical, y) is time</li>
+<li>so each row shows the tape at a given time</li>
+</ul>
+</li>
+</ul>
+<p>3 kind of tiles needed</p>
+<table>
+<thead>
+<tr>
+<th>Kind of Tile</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TAPE</td>
+<td>One for each symbol in the alphabet</td>
+</tr>
+<tr>
+<td>ACTION</td>
+<td>One tile for each transition of the TM</td>
+</tr>
+<tr>
+<td>PREPARE</td>
+<td>Two for each (symbol, state) pair</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Seed row: initial configuration</li>
+<li>We can tile the floor with the tiles if TM halts</li>
+</ul>
+<!-- Notes Week 4 End -->
+<!-- Notes Week 6 Start -->
+<h1 id="cellular-automata">Cellular Automata</h1>
+<ul>
+<li>Inspired by natural cells</li>
+<li>World is grid of cells</li>
+<li>Cells have state (e.g. dead/alive)</li>
+<li>Next state of a cell is calculated by
+<ul>
+<li>actual state of the cell</li>
+<li>actual state of the neighbor cells</li>
+</ul>
+</li>
+<li>All cells work with same rules</li>
+<li>Time is discrete (round based)</li>
+<li>Often used in physics</li>
+<li>Good model for unreliability</li>
+<li>parallel, local comuptation</li>
+<li>can model a Turing Machine</li>
+</ul>
+<h2 id="the-model">The Model</h2>
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span></span>-dimensional array of cells (infinitely large)</li>
+<li>Finite number of states
+<ul>
+<li>each cell is in some state</li>
+</ul>
+</li>
+<li>At each time step, each cell updates its state based on
+<ul>
+<li>it’s own state</li>
+<li>the states of its neighbors</li>
+</ul>
+</li>
+<li>Variations:
+<ul>
+<li>number of dimensions</li>
+<li>neighborhood size (and geometry)</li>
+<li>asynchronouns</li>
+<li>error-prone (add randomness)</li>
+<li>finite size</li>
+<li>grid type</li>
+</ul>
+</li>
+</ul>
+<h2 id="variants">Variants</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a>
+<ul>
+<li><a href="https://github.com/LukasWoodtli/GameOfLife">My implementation (Qt, C++)</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Toom%27s_rule">Toom’s rule</a>
+<ul>
+<li>asymetrc rule</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 6 End -->
+<!-- Notes Week 7 Start -->
+<h1 id="lambda-calculus">Lambda Calculus</h1>
+<ul>
+<li>Meta-Mathematics</li>
+<li>Turing Machines simulate a person that calculate (State: Mind, Tape: Paper)</li>
+<li>Lambda Calculus: about functions</li>
+</ul>
+<h2 id="syntax">Syntax</h2>
+<p>Traditional Syntax:</p>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mi>x</mi><mo>+</mo><mn>3</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">f(x) = \frac{e^x - sin(x)}{x+3}</annotation></semantics></math></span></span></p>
+<p>Lambda Syntax:</p>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mi>x</mi><mo>+</mo><mn>3</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">\lambda x.  \frac{e^x - sin(x)}{x+3}</annotation></semantics></math></span></span></p>
+<ul>
+<li>
+<p>Functions in lambda calculus don’t have names</p>
+<ul>
+<li>Just put the function completely, where it is used</li>
+<li>Anonymous functions</li>
+</ul>
+</li>
+<li>
+<p>Functions: ‘Plugging in’ arguments</p>
+</li>
+<li>
+<p>Functions return other functions (Currying)</p>
+</li>
+</ul>
+<p>For example:</p>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi>y</mi><mi mathvariant="normal">.</mi><mn>2</mn><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo><mn>2</mn><mo stretchy="false">)</mo><mn>3</mn><mo>=</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><mi mathvariant="normal">.</mi><mn>4</mn><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo><mn>3</mn><mo>=</mo><mn>4</mn><mo>+</mo><mn>3</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">((\lambda xy. 2x + y) 2 ) 3 = (\lambda y. 4 + y) 3 = 4 + 3 = 7</annotation></semantics></math></span></span></p>
+<ul>
+<li>Can get rid of
+<ul>
+<li>function names</li>
+<li>multi-argument functions</li>
+</ul>
+</li>
+</ul>
+<h2 id="main-operations">Main Operations</h2>
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span></span>-reduction: apply a function to an argument using substitution
+<ul>
+<li>Reduction is an optimistic term since the result of the <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span></span>-reduction can be bigger then the expression before</li>
+</ul>
+</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span></span>-conversion: changing a functions ‘argument symbol’ (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>x</mi><mo>≡</mo><mi>λ</mi><mi>y</mi><mi mathvariant="normal">.</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">\lambda x.x \equiv \lambda y.y</annotation></semantics></math></span></span>)</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math></span></span>-conversion: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>v</mi><mi mathvariant="normal">.</mi><mi>f</mi><mi>v</mi><mo>≡</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">\lambda v. f v \equiv f</annotation></semantics></math></span></span> because <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>v</mi><mi mathvariant="normal">.</mi><mi>f</mi><mi>v</mi><mo stretchy="false">)</mo><mi>a</mi><mo>≡</mo><mi>f</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">(\lambda v. f v) a \equiv f a</annotation></semantics></math></span></span></li>
+</ul>
+<h2 id="church-numerals">Church Numerals</h2>
+<ul>
+<li>Numbers can be encoded as functions</li>
+<li>Arbitrary encoding of numbers suggested by church</li>
+</ul>
+<p>Each number is a function that takes 2 arguments: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span></span> and <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span></span>:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>0</mn><mo>:</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>x</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1</mn><mo>:</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mi>x</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>2</mn><mo>:</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>3</mn><mo>:</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mo lspace="0em" rspace="0em">⋯</mo></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>n</mi><mo>:</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><msup><mi>f</mi><mi>n</mi></msup><mi>x</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+0 :&#x26;= \lambda f.\lambda x. x\\
+1 :&#x26;= \lambda f.\lambda x. f x\\
+2 :&#x26;= \lambda f.\lambda x. f (f x)\\
+3 :&#x26;= \lambda f.\lambda x. f (f (f x))\\
+\cdots \\
+n :&#x26;= \lambda f.\lambda x. f^n x
+\end{align*}</annotation></semantics></math></span></div>
+<blockquote>
+<p>The number <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span></span> is a function that takes a function <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span></span> as argument and applies it <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span></span>-times to the second argument <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span></span></p>
+</blockquote>
+<p>Example: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>5</mn><mi>i</mi><mi>n</mi><mi>c</mi><mo stretchy="false">)</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">(5 inc) x</annotation></semantics></math></span></span>: apply function <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>n</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">inc</annotation></semantics></math></span></span> <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span></span>-times to <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span></span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 467px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6f34a32f3ae6fa02c74f0cce0e6d8baa/85ff8/church_numerals.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 47.46835443037975%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABtElEQVQoz2VS207jMBDN/3/LSivEAw+FbcUKVEoF22W5lt5I0iZtLnYcJ7aT9KCZAkLah8jxeOacM2fGK22HaR7iLplB2w5pVWElt1C2gTQWCxlD1AaFcRzbVQp+kXy9S+M+3hyEsfC03eMpW+EpW0K7Dnld4zq+hzCG72f+kAlK26K0DSIt8Jy98f0AaBmw+AQkhceLM/TefqPtgMd0iR+vJ4i1RKwLHC9Ocbt9RuX2qFyHh3SOo3nvP0BSKD8BB8EI09xH0wLj+AGXmwkXE2g/GCJUGbdoGmCye8EguOJ/AqA4fSVb4OAR+i9/iFF0x0nULoEQI/nVD664RW1b2AY4D8c4WZ2jdnu2hXKyukJWaz49kj7cTPCS+2hbYBBc42J9w+BrleHnrIeFjNhPUkFvMxGibsB+L2WMTZkjVAlbxC3PxYbZolLgXzLDUkYojGXWcfyIaR7AteDCcXyPv8mUCSiHTu1atoha95RpEKiEV4MKfLVj76QxvB4X6z+seqsVF76KEP1gxL4SGA/FfhuKqC1PrPjap4PB6iMpUCn8ImUSUhGVObdMq0Yxyi94OIe1eQdy+acCpDoEHwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Church Numerals"
+        title="Church Numerals"
+        src="/static/6f34a32f3ae6fa02c74f0cce0e6d8baa/85ff8/church_numerals.png"
+        srcset="/static/6f34a32f3ae6fa02c74f0cce0e6d8baa/c26ae/church_numerals.png 158w,
+/static/6f34a32f3ae6fa02c74f0cce0e6d8baa/6bdcf/church_numerals.png 315w,
+/static/6f34a32f3ae6fa02c74f0cce0e6d8baa/85ff8/church_numerals.png 467w"
+        sizes="(max-width: 467px) 100vw, 467px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h2 id="lambda-calculus-expressions">Lambda Calculus Expressions</h2>
+<ul>
+<li>Using just <em>substitution step</em> to calculate
+<ul>
+<li>seems complex, but only one operation needed: substitution</li>
+</ul>
+</li>
+</ul>
+<h3 id="variables">Variables</h3>
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span></span>, <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span></span>, <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span></span> …</li>
+<li>representing functions</li>
+</ul>
+<h3 id="function-application">Function Application</h3>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a b)</annotation></semantics></math></span></span>: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span></span> applied to <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span></span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4d51978e28f985fa1d915cc3c1eaef24/f2793/function_application.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 29.11392405063291%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABLElEQVQY0y2QyXbCMAxF8/+f1GX3XbSLMhcICYHiIfEgDwFej0QXOrJlP+nqNb4UbGyHlTliCAYf1wWW5oiF2UNRRJ6f8KVizAWxznJ2hXOBlzxLfcpFoon1DpsK1rZD5xXaSeEaHTRFdM5gNw7STFMWgcsVl+Cwtids7BkmJakZyjApo7lEjSFY9F7hEg1SfYLqXaYy+X46w6aIUO6gOiOUiqVp8TP12E8XgSj/WzBt89a+42fkB42VaTGEEbE+cCOP1inJv9FjawdMOWPMWe4MwMS9N1DkxR6OxrE/qQq6pgBFJJNY9Hnb4uSUkKxtL3VuwhaxVZoI3/qIhT6g9xZftx2aPN/BTXnFPD9ERPVlOtOaFDBmgqKANL+scLnI395rLM0Bh+ksq7NFf+/eyU+89vivAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Function Application"
+        title="Function Application"
+        src="/static/4d51978e28f985fa1d915cc3c1eaef24/f058b/function_application.png"
+        srcset="/static/4d51978e28f985fa1d915cc3c1eaef24/c26ae/function_application.png 158w,
+/static/4d51978e28f985fa1d915cc3c1eaef24/6bdcf/function_application.png 315w,
+/static/4d51978e28f985fa1d915cc3c1eaef24/f058b/function_application.png 630w,
+/static/4d51978e28f985fa1d915cc3c1eaef24/f2793/function_application.png 743w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h3 id="function-creation">Function Creation</h3>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>a</mi><mi mathvariant="normal">.</mi><mi>a</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">\lambda a. aa</annotation></semantics></math></span></span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 546px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2b49c732b9e2c68d28f25bab52eedfba/76aed/function_creation.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.12658227848101%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACNElEQVQoz01T7W6bQBDk/Z+lUitVlapUlaq0qto4iRI7iVPbxHaMgePDcNwd3B04U+3iWv2BgL1ldmZnCBrrUXUWi8MrfqdTbGSKKzFD2bbYNTmm+RJP5Qsyo0C9jfOoOwfjj9BugLQOimrW8XlAL9r1aJxFoisIUyPWJWpr+XkrMyyrHSJVwLge2nko12MtE8SqhPED1wiMsAJ5YmjcgMxofAgvkLcKyg08qPXA5f4aEzFnVgQmdIPP2+94KtfMsrGOWRNWQBKINk0SpsHlfsIf1icpje2xqHZIteSPCfDQdfgR3yLW1ak2YhDWGbD1A8I6wWP5wlLHRsdMSR4NI8ba97zf9+EXbJsMLbP+D5CYVJ3jnW1kjl1TYq9KSNtzk+x6fs+NZknEMFY17vMVInWAOvWNGG40heTmrcT8sMFe5/hTrdH5N3T9kZ3eyASpqZmx7d8QqRKzYom8bViZ9qP7bAq5Q5OFkbjLlizjKn3A4hCxnEhV+BZN8CuZnXcW6xrXYo67bIHXJkfr31gRnQVFq5hhbVtspOAI7FWBzIzTaeCVmOLd6hNn1A3g4YvqFbNixRFbyxgPRYiwjhHc58/Q7ohZscCteGZTHssQ02KJzh95P7XtsK4TjgfVXuqUwZZVxNGh8E+LFW7EHEHZGs4QNd+IZ7wPLzARM47JGBHL7hqWNf4NzUkeXcYded9UY5dJFi2zH4CtTPFx/RU/k1vYHmj92ET30bz+/ExG/LuM9+fzv326jrqrhNklAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Function Creation"
+        title="Function Creation"
+        src="/static/2b49c732b9e2c68d28f25bab52eedfba/76aed/function_creation.png"
+        srcset="/static/2b49c732b9e2c68d28f25bab52eedfba/c26ae/function_creation.png 158w,
+/static/2b49c732b9e2c68d28f25bab52eedfba/6bdcf/function_creation.png 315w,
+/static/2b49c732b9e2c68d28f25bab52eedfba/76aed/function_creation.png 546w"
+        sizes="(max-width: 546px) 100vw, 546px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h3 id="evaluation">Evaluation</h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6937cfd3db5c243d529ddeee43e47418/27b8e/function_evaluation.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 30.37974683544304%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABHklEQVQY05WP204CQRBE+f+vUl9MxMQIYmS5CLgI7IWZnd3ZuS1zjCMx8dFOKt1V6a5KjzKxYy0/OWmB9oG614kLY5hWS+ZiS+8viSvnaazDhkjvB5R1SWuvuMTIaCFybvMxk2qBtJZCd8zqd+72j2ybgrytuMkf2KqSxnqk8WyaI4VWiQvjkPYHyfB7GB9n7NualdzzHdDYwEu1Yi0P6XBSLtmpktYNbJoi7VV9ezW0fw3LvuND1Wg/pHfOxqJsIBM594dnOhewASZlxtt5w/y859AJTIhI49Au0rlLCiPCaLhETBh+0fuQeucdwupfTXufUPQNT8Urh66iNi3j05TXeslLlVH0FSP+WW5wSCeJMWIGw0KuUE4hrEQHzRejH8qgfQ3YWgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Evaluation"
+        title="Evaluation"
+        src="/static/6937cfd3db5c243d529ddeee43e47418/f058b/function_evaluation.png"
+        srcset="/static/6937cfd3db5c243d529ddeee43e47418/c26ae/function_evaluation.png 158w,
+/static/6937cfd3db5c243d529ddeee43e47418/6bdcf/function_evaluation.png 315w,
+/static/6937cfd3db5c243d529ddeee43e47418/f058b/function_evaluation.png 630w,
+/static/6937cfd3db5c243d529ddeee43e47418/27b8e/function_evaluation.png 836w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>Example:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 607px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/275924bedc80cd3d84f88b3acee9010b/ef9e5/function_evaluation_example.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 42.405063291139236%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABX0lEQVQoz0VSy1LDMAzM/38QFy4MA1wKdIApnU7fpW2aZ23HdmwnZRkpbjlo5Gil1UpK0vgA6Tza8IuVTDE/7yGd45h0AYQr56F9D+N7flPsWqcYH75N6JBITujxWcyxVTkqazGtN8hNw4QD3uGkJVItoFx3i59bz15ET6SJDRcsxAFf5QL7pkRlG2jqGhVo3yHVZ4yyCcbFjKcYFP8rI6M8EwISAu93z1xEoxZWMthEozHuNg94y79RtQZPx3fGSQg1JH/SAmuZouuBxIQe02qDzEgGlR/2+VHMMat/EHrgJR2zMtcBhdXYqgylbWLTgKVIMamWKKwYCB8PI6zl6UZICkqrUVoDwlcixU4VfBiyWb1FqmvOz43Coakj8R5JZTVeswmEc8PF4m7IqPjQVLzbo65RWcNxIqKmIl5Zxvw2XJAQO3UnRTQC7VTFK9L1ruRDLMTfyXOeiO+rpyv/AYygZFpmNMQBAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Evaluation Example"
+        title="Evaluation Example"
+        src="/static/275924bedc80cd3d84f88b3acee9010b/ef9e5/function_evaluation_example.png"
+        srcset="/static/275924bedc80cd3d84f88b3acee9010b/c26ae/function_evaluation_example.png 158w,
+/static/275924bedc80cd3d84f88b3acee9010b/6bdcf/function_evaluation_example.png 315w,
+/static/275924bedc80cd3d84f88b3acee9010b/ef9e5/function_evaluation_example.png 607w"
+        sizes="(max-width: 607px) 100vw, 607px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h3 id="examples">Examples</h3>
+<h4 id="increment">Increment</h4>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>λ</mi><mi>k</mi><mi>f</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>k</mi><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\lambda k f x. f ( k f x)</annotation></semantics></math></span></div>
+<p>Example:</p>
+<p>increment <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span></span></p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><munder><munder><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>k</mi><mi>f</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>k</mi><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mo stretchy="true">⏟</mo></munder><mrow><mi>i</mi><mi>n</mi><mi>c</mi></mrow></munder><munder><munder><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>f</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mo stretchy="true">⏟</mo></munder><mn>2</mn></munder></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>f</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>f</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>f</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+\underbrace{(\lambda k f x. f ( k f x))}_{inc}\underbrace{(\lambda f x. f ( f x))}_{2} &#x26;= \\
+(\lambda f x. f ( (\lambda f x. f ( f x)) f x)) &#x26;= \\
+(\lambda f x. f ( f ( f x)))
+\end{align*}</annotation></semantics></math></span></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 459px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a80675584c7da08461d3bfd680a15c77/48711/increment.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 68.9873417721519%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABvUlEQVQ4y31Ta2/aQBD0//81/VD1Q1pVQnlITZs0Cqh5QAg4tkPxk8P23RrDRLtw4RySfBidb883mp3Z8zJdI1ApfBULnlSM5zJHoBKM8hDKNFgYktXFYge3lusaXlwrIfDVHIP0Af1kiLtsivvcR1wp1M0GVdNiSU0HyoGtpbqEt6QVSmpRNWuYFQR6tZE11xpX8T0eiqhLYuhVdUkr2SsiMJdnD7swqGiNcRHhy/g7+slI6nyZiStq5ZtrSV1CNxvUzVpqnkvU9YhE+dfHnzgO/8h3WlcojMFd9oRhHgrZaXSFy/mtWMQZiELlGkz7tdAGR9NT9MJzaYv9/T0b4Mg/w0n0FzfZVHAcXeDi/w0G6ZgVvkmM9imyJ/JjMpZweCLYV1bPSoudGAmOWql/2vKSWtxmU5xEl7v91sPD8SHYTr1uGIeE3yY99IJzZFq/1t/CJfcsUbflbSDhMsUP/0xGh9tS9MFg096qw5Zpq4Ln8joe4nHxjF+zPv6lE4fwHZs+I7SkrJJJJ4sZ5pWS+XRDe1dh543aZ2VIWhwVAYZ5gOt4tA/EuezesWeeu3HfKqtjVbOyENhX8tH/Fi/N5DB0LpabYwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Increment"
+        title="Increment"
+        src="/static/a80675584c7da08461d3bfd680a15c77/48711/increment.png"
+        srcset="/static/a80675584c7da08461d3bfd680a15c77/c26ae/increment.png 158w,
+/static/a80675584c7da08461d3bfd680a15c77/6bdcf/increment.png 315w,
+/static/a80675584c7da08461d3bfd680a15c77/48711/increment.png 459w"
+        sizes="(max-width: 459px) 100vw, 459px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h4 id="addition">Addition</h4>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 517px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/65cb46083ca42bafb7a986d14d8f5e53/fa2f5/addition.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 53.16455696202532%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsElEQVQoz3VSa2/TQBD0//83lVA/gYIQpTSoCiEFmtKmzdtN/Lz43rEH7Z6PBkQtre1d7c7OzVwi3REHS+GhXAthLKRrsRQZBqsrCOtw6KMyFrWx3BNrlMd64zySi801Pqy/YJhOsBQ7btYemBYLvHkcICx0/BXG8eJYaziOTCAQOiJ5qNa4r9aYix0ydWBG1gPD9AbnT+/hjuDhXEvkSmEvGyzEHsJaNNZjVm1xW8yRqQa1MUiU63hDY1veTNQJ8HI7xtnsHYwHS/FYbzHJ7vFpO2IpZtWG/693t3i7vMS37A7j/RRJqQ2KPgiMcuk6DNMf+Lj+CmlbVNrwcUttUSjNLMOcRqEMKqprzadLTkWNImsHXKUTZkkMgxGOB+tex2CW5zzMO5YgET1IKDjWgUAuNiOMdtPgvH1ZxuAnzv+pGTLOI6EiJcFBxwD0Jdd/lSveSto2/XDsiy7HWWF7QEriFhokp0nsn/kc3/MZxvs7bJr873v4H4Z8QgKkV9Nvo3tUGolnWWIhnjFYfcaTSFEbBeleWBGTGHGWcBQBdl2H04hP27VQXsO1nvN/+16L3yjWS1zGbkrkAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Addition"
+        title="Addition"
+        src="/static/65cb46083ca42bafb7a986d14d8f5e53/fa2f5/addition.png"
+        srcset="/static/65cb46083ca42bafb7a986d14d8f5e53/c26ae/addition.png 158w,
+/static/65cb46083ca42bafb7a986d14d8f5e53/6bdcf/addition.png 315w,
+/static/65cb46083ca42bafb7a986d14d8f5e53/fa2f5/addition.png 517w"
+        sizes="(max-width: 517px) 100vw, 517px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h4 id="multiplication">Multiplication</h4>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 331px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/562d2e2847fa1afebfdb629c38033077/62452/multiplication.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 76.58227848101265%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACc0lEQVQ4y3VT227TQBD1h/MFfEARbwiQ+oAiHvpAW6BqBbmhpKFJ09CSOm3j2s7F8d27a8c5aMZ2EqniYbS3mTNnzsxqP8xLfJ82ceM8oHZ/jMv5CC27D917xtXiFnWzh7FnYCVihDJFqFL4UiFSGSKVsgWysCTLoE2DBbrzIQdfPLdRG3/BvWegbnbRsHpo2300rd94CuYMEjKAQpSmiNOMLSjvkjSDFqc5RLZBpDagPZnMgEUS8j5JweeQwQhgDU8qjvGlRKCI7Zr9sjWgETpldUXxKNINsz0YvEfT7jEABSZpjufQgRk6CGSGzmzIUmxyYOLb6M5v8GelQ3OF4oxOIgtQmbHD2+tDPAYLBHKNlRCIVY7+QsfJYwO18SkOBh9w5xo4efyJT3+P8ar1Gp/1U2hhKSyB0j5WaxjhsmzUpCx11wxa53GAZRLCjFZ4CmawIxe6Z8ERIbSgdCKmVJrKgLNpC4d3R2haV3CFKERnwF1HSQoykog0pApklu809IRiDUmrB9/Gm8FH6L7FjamSBuXYVNXsM/erLldOxJACKdPQmeDdqIaW1S8YbQN3gNGeFOTjV3O43xQSX6TAhdHF0eQcvfktVkIyezK3XMmXACiOjO7Jj2Zy2xTqMJVrhA7q5iXOjV8sNGlK2u6XzD8l/c9PoUc6uJw54S9IJRLQ16c6rMhn4f2SjV/6VgmCMoFXaVjooLjUb9MGho4OkeXozG4wWI7Rtq/RmY34rhqbFwxLE8Swykoa0IjQmebsbNpGngP9xT0aZp8Zk4/PmsltI2itNH7RZRpiOlMHSU+6XyYxHBHzXcWQgqO9sSnAFWv4D/+ocgtoBjbnAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Multiplication"
+        title="Multiplication"
+        src="/static/562d2e2847fa1afebfdb629c38033077/62452/multiplication.png"
+        srcset="/static/562d2e2847fa1afebfdb629c38033077/c26ae/multiplication.png 158w,
+/static/562d2e2847fa1afebfdb629c38033077/6bdcf/multiplication.png 315w,
+/static/562d2e2847fa1afebfdb629c38033077/62452/multiplication.png 331w"
+        sizes="(max-width: 331px) 100vw, 331px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h4 id="boolean-logic">Boolean Logic</h4>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4f2f163315671d543109a1816d0bfaf2/01dae/boolean_logic.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75.9493670886076%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACfUlEQVQ4y1VTWW/bMAz2//8/e9xQYBu63lmynrnaJq5jy4dsWZIlOfkG0naxPQgmKIr8Djp6q3MsqxjCKLxUMX6LJZrOo7IOz+UbLg8LCG2gXEDdOZS24y/dV7bjWspx7Dyi3LQ4T2aI2xy32SO2dQIbjtD+iOfqDTPxxM20D2gdnR6uB7Tv+XThxLWWTuipocZCrNF0DnOxQqobLmy6gPcmGxFTI8/IVtUHFvkSr3WGWJVI2pLj1zpFpmtE+6bEz48ZMt3gPFlgK1NG0boT7osNvu5+QdrA1Kgh1dOgXZNjIw9Idc0N1/IAYhtRo2W1g/EBz9U7hGng+hMPuBOPWMsY741A691A2/foj0BuFB6KDbT3sP4EG07owhFRYSySVqIL4EkkASHMdIu9ypkWGdCMlOvOY68KnO2v+KxkDOV6NkWRKdKScwapliiM4QeKH3s2Q1oLwUMGl1t3xGOxxZfXM1wcFrjJHrhW8p1HRGgOWuIqnXNT449MQ7seeyVwnf5hnYgOPaD6pC14I0iOuBWcIxAmBESlob0KuMueeB/psu6G3K4R+PFxi5IojyimPRRaMyNiN+zkIEs00Ai4PMyxrQ+MkKYRXTKIhC+tZUPUqOMQB25gfM85iikfNaNWRHlVxZycHq/kDrfZPWbihZ0nylQ/3TNNP6zUFEeV9Ui1wvf4GqsqYUo0jX63uVji2+4CZ/ub0WEHkmj6NatRiuHXGylrd8RK7rGtY14BMoBokJaxylnDeb5G6/3n30II6fFE8z/KZHlhNGRnP3VRI7XCttjIhDVUznF+Wo8JcesD56aY93DShS4mPShPRTSMhrYjIsqrfxuOQyZz/wLKL3hY1Uwt9AAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Boolean Logic"
+        title="Boolean Logic"
+        src="/static/4f2f163315671d543109a1816d0bfaf2/f058b/boolean_logic.png"
+        srcset="/static/4f2f163315671d543109a1816d0bfaf2/c26ae/boolean_logic.png 158w,
+/static/4f2f163315671d543109a1816d0bfaf2/6bdcf/boolean_logic.png 315w,
+/static/4f2f163315671d543109a1816d0bfaf2/f058b/boolean_logic.png 630w,
+/static/4f2f163315671d543109a1816d0bfaf2/01dae/boolean_logic.png 721w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h4 id="if-then-else">If-Then-Else</h4>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/cf76d71dc0cdc2d1ad36b46cad3c645e/13a9a/if_then_else.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 70.25316455696203%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB1ElEQVQ4y21T227bMAz1/39QHwfsYUAxFFuLDr2kaZrWSZzEN9m6293OQMpS4rYPtCmSIg/Jo6y2Ck/tBrkssRIFrstHXB3u8NofkPcl1t0e980aizbHqivYboZ3SD8kUX5Mekaf0kjURqE2GltVYyV2OOoOhWpx1D0Xe+tLbGSF2mroISToz5KS3rsBWVAoIATZ4R9XLJSAG8G6Gf5C+XdoRjamy50L/9PZB4SkkETjffOKZ7HjNikR2USK8QGRO4k8T3gKHrj6st3irl7joHvsVMs2jrH+U+FYpItnOyEUzqG1Fq112MoGlVHYyprRkf080bzFL1qmz0bW+H18xLOgLR6Rywo/dr9447Tpzs3RqWmOyXY2gqllxxKdRI3SKDTWhuDpAiGmf2PNhGxkG42F7hNLsjRgH2ZI9LlYf+cZhu2O2GuB22qJpzbnYn+qJXdCNCJuXpcP7KNOTwmdn2ZmcFMusGjfEs967xkV+TrnEJkRZy+cZTu3HJ0R9s/9LS6LG7x0+zlxJxbID2SW3PaYYrJ+GjQhoCdI8i2/5MpM4skv0pb9bKvxHBeUxfUL61BqCWEtbzvyb375I5HnBE8vJQbREhqr+Q3HNtSs5WFu++L8HxX/M62sOMnIAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="If Then Else"
+        title="If Then Else"
+        src="/static/cf76d71dc0cdc2d1ad36b46cad3c645e/f058b/if_then_else.png"
+        srcset="/static/cf76d71dc0cdc2d1ad36b46cad3c645e/c26ae/if_then_else.png 158w,
+/static/cf76d71dc0cdc2d1ad36b46cad3c645e/6bdcf/if_then_else.png 315w,
+/static/cf76d71dc0cdc2d1ad36b46cad3c645e/f058b/if_then_else.png 630w,
+/static/cf76d71dc0cdc2d1ad36b46cad3c645e/13a9a/if_then_else.png 637w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h4 id="pair">Pair</h4>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 448px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/3829181c0ef311ac544e12e8d18bdabe/33b38/pair.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 65.82278481012659%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAACCUlEQVQ4y21TWW7bQAzV/Q/QA/QA7WcRtCnQommSookD2/ESSJFtedG+jLYZKcoryLFkB80HMQs5j++RQ+MxsvFt8xtX+wc8pwc8p3t8d65x605wcxijajpkUkHIhteMV23izHLVICxrGGayw607xjS0ENUl3DLFvT/HJLTYKDCVktey6ZBKxdYn0aZOgLl6gWqBjQiwiDfMqG6BqnllAHooWyCpK6yFz/f10dcDMrhSCDRgC68U+Gx9xcX6CnTOpDzK05lJ+pf1D6wyj5M+JVuQMmJeqJYT1E2HqFIwiC6x+rn7CycPmK3gjM0A/sm6wCyy0XXANg9BdbezA7+jMlHdV+KAXZ7BoMtdHmEULPAYWXCLFGXzwqCUnVjc+XN+2NeRktbtK/vp3ky2GPkzOCKGkdQ1JqGJebxiI3AC1HJb3HkzjPwFLp0bRJUG7UtCewKVnKBDTJK9IoMjApZCAKXSYMTEESGW8QbzyGZ/X9ehw+qdpug/1L7p2hB03JNEYq0TdrwOsUdQ8jPD9/5V/4GpfvRNlvGaO03dtTMXQZnzGzFYA69M4YgExn8yBkB9JtAPk4+YRys4IsKv/T3vhWw5hvwjf4lL5xrTcH0C7MfnvC4k7SF44imihv1xpyx/kKz0lFBsTFNWFDDSWoHtjCmdSXJQFTCTPcaBCfoNNADkS97En5KHpcQ/50fdbeRl3nUAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Pair"
+        title="Pair"
+        src="/static/3829181c0ef311ac544e12e8d18bdabe/33b38/pair.png"
+        srcset="/static/3829181c0ef311ac544e12e8d18bdabe/c26ae/pair.png 158w,
+/static/3829181c0ef311ac544e12e8d18bdabe/6bdcf/pair.png 315w,
+/static/3829181c0ef311ac544e12e8d18bdabe/33b38/pair.png 448w"
+        sizes="(max-width: 448px) 100vw, 448px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 550px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8748fd2f4eaf4c3295b5c237d36907fe/dd45a/pair_shifting.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 49.36708860759494%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABlUlEQVQoz31RTXebMBDk//+snnLooU0au7YJxhjDc9AXkpCQwJk+LcF1euiBt4u0M5rZyQrV4qwZqJoO/RggvKd6kBc0VuBNNah0h8Zy1Ebg+/UFtWYo+yudt1bBhEiYLJc1NrzASV8h/EAXnbNwcUZtOI59g60osRMV9rJEYyW+XZ5QqAa5qnGQZ3okzICLN2QmzHDxA6maMNErNtxw6t+x4RWR5arBm2qpbnkF5gaaSWd7WeOVl+QyYbKkKH16DBjiBEv/E5gzpJB7C+kdLoaTi2RTeIshzOicpvuz7khtoS4PhCHChum+i2Q5VRNG9OOIF5aT/Vd+xHVQsGFeBJCIG8IE+OkDWQLpMX6CI/Xqs09WfnY7dIOhYHbyjL2oKZxEuGKVD+SQQvmqMN5JU037OfYt7SYRPipMAazYZe9L/1+F3Dna3xJWxPvQo9IMavRgztLsqnDFfiHU4XFgwlP7jGd2wC9W4Ee3x29xQi5bbMURG17ebZNlUhqR2YcwlpT/9mQlRkpceg8fb/TgOmf/mU/9Hx0r+uUMLGz3AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Shift Pair"
+        title="Shift Pair"
+        src="/static/8748fd2f4eaf4c3295b5c237d36907fe/dd45a/pair_shifting.png"
+        srcset="/static/8748fd2f4eaf4c3295b5c237d36907fe/c26ae/pair_shifting.png 158w,
+/static/8748fd2f4eaf4c3295b5c237d36907fe/6bdcf/pair_shifting.png 315w,
+/static/8748fd2f4eaf4c3295b5c237d36907fe/dd45a/pair_shifting.png 550w"
+        sizes="(max-width: 550px) 100vw, 550px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>No distinction between code and data: everything is code!</li>
+<li>No structure is safe from substitution (safety issue)</li>
+<li>Data has to be run, can’t be examined</li>
+</ul>
+<!-- Notes Week 7 End -->
+<!-- Notes Week 8 Start -->
+<h2 id="recursion">Recursion</h2>
+<ul>
+<li>
+<p>in <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span></span>-calculus a function can’t reference (call) itself since there are no names for functions</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Tail_call">Tail-call</a> recursion: in some cases the same stack frame can be reused for recursive functions</p>
+</li>
+<li>
+<p>How can we build an infinite loop (recursion)?</p>
+</li>
+</ul>
+<p>This structure rebuilds itself infinitely:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Ω</mi><mo>=</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>w</mi><mi mathvariant="normal">.</mi><mi>w</mi><mi>w</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>w</mi><mi mathvariant="normal">.</mi><mi>w</mi><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega = (\lambda w. w w) (\lambda w. w w)</annotation></semantics></math></span></div>
+<h3 id="y-combinator">Y-Combinator</h3>
+<p>See <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Fixed_point_combinators_in_lambda_calculus">Wikipedia</a></p>
+<p>and <a href="https://medium.com/@ayanonagon/the-y-combinator-no-not-that-one-7268d8d9c46#.c11j5arpk">The Y Combinator (no, not that one)</a>.</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y = \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x \;x))</annotation></semantics></math></span></div>
+<p>Beta recursion gives:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>Y</mi><mi>g</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>g</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>Y</mi><mtext>  </mtext><mi>g</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+Y g &#x26;= \lambda f. (\lambda x. f (x\; x))(\lambda x. f (x\; x)) g \\
+ &#x26;= (\lambda x. g (x\; x)) (\lambda x. g (x\; x)) \\
+ &#x26;= g ((\lambda x. g (x\; x)) (\lambda x. g (x\; x)))  \\
+ &#x26;= g (Y\; g)
+\end{align*}</annotation></semantics></math></span></div>
+<ul>
+<li>Only way to do a loop if you don’t know in advance how many iterations the loop needs to be done</li>
+<li>Functions can’t see their own structure
+<ul>
+<li>Needs to be provided as argument so the function can reproduce itself: ‘twin’-functions</li>
+</ul>
+</li>
+</ul>
+<h1 id="numbers">Numbers</h1>
+<ul>
+<li>Numbers are an abstract concept</li>
+<li>It’s only possible to manipulate <em>representations</em> of numbers</li>
+</ul>
+<p>There Are a lot of different representations of numbers.</p>
+<p>Each representation has it’s pros and cons.</p>
+<ul>
+<li>Decimal</li>
+<li>Roman Numerals</li>
+<li>Binary</li>
+<li><a href="https://en.wikipedia.org/wiki/Two&#x27;s_complement">Two’s complement</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Redundant_binary_representation">Binary with digits up to 2 (Redundant binary representation)</a>
+<ul>
+<li>Addition can be faster</li>
+<li>Logical operation are slower</li>
+</ul>
+</li>
+<li>Ternary</li>
+<li>Church Numerals</li>
+<li>Prime Factorization: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><msup><mn>2</mn><mn>2</mn></msup><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>2</mn><mo>⋅</mo><mn>3</mn><mo separator="true">,</mo><mn>7</mn><mo separator="true">,</mo><msup><mn>2</mn><mn>3</mn></msup><mo separator="true">,</mo><msup><mn>3</mn><mn>2</mn></msup><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">1, 2, 3, 2^2, 5, 2\cdot 3, 7, 2^3, 3^2, \ldots</annotation></semantics></math></span></span>
+<ul>
+<li>Multiplication and Factorization is easy</li>
+<li>Increment by one is hard</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">Chinese remainder theorem</a>
+<ul>
+<li>Comparing two numbers is hard</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/P-adic_number">p-adic number</a>
+<ul>
+<li>related to two’s complement</li>
+</ul>
+</li>
+</ul>
+<!-- Notes Week 8 End -->
+<!-- Notes Week 10 Begin -->
+<h1 id="tag-systems">Tag Systems</h1>
+<ul>
+<li>Tape with a starting string</li>
+<li>Reading and deleting at the beginning (left)</li>
+<li>Appending (writing) at the end (right)</li>
+</ul>
+<h2 id="2-tag-system">2-Tag System</h2>
+<ol>
+<li>reads <em>1</em> symbol at the beginning of the tape</li>
+<li>appends a string at the end of the type
+<ul>
+<li>appended string depends on read symbol</li>
+</ul>
+</li>
+<li>removes <em>2</em> symbols at the beginning of the tape</li>
+</ol>
+<h3 id="example-test-for-oddeven-number">Example: Test for odd/even number</h3>
+<ul>
+<li>
+<p>Alphabet: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>C</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>C</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>C</mi><mn>3</mn></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\Sigma = \{C_1, C_2,C_3\}</annotation></semantics></math></span></span></p>
+</li>
+<li>
+<p>Rules:</p>
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">C_3 \rightarrow \epsilon</annotation></semantics></math></span></span></li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>→</mo><msub><mi>C</mi><mn>2</mn></msub><mtext>  </mtext><mi>O</mi></mrow><annotation encoding="application/x-tex">C_1 \rightarrow C_2 \; O</annotation></semantics></math></span></span></li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>2</mn></msub><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">C_2 \rightarrow E</annotation></semantics></math></span></span></li>
+</ul>
+</li>
+<li>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span></span>: empty word</p>
+</li>
+<li>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span></span>: Odd</p>
+</li>
+<li>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span></span>: Even</p>
+</li>
+<li>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mtext>  </mtext><msub><mi>C</mi><mn>1</mn></msub><mtext>  </mtext><mo stretchy="false">(</mo><msub><mi>C</mi><mn>3</mn></msub><msup><mo stretchy="false">)</mo><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">C_1 \; C_1 \; (C_3)^x</annotation></semantics></math></span></span></p>
+</li>
+<li>
+<p><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">a^x</annotation></semantics></math></span></span>: symbol a is repeated <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span></span> times</p>
+</li>
+<li>
+<p>the given rules show if <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span></span> is odd or even</p>
+</li>
+</ul>
+<p>Example even:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right" columnspacing=""><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>2</mn></msub><mi>O</mi><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>2</mn></msub><mi>O</mi><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>2</mn></msub><mi>O</mi><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>E</mi></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+C_1 C_1 C_3 C_3 C_3 C_3 \rightarrow  \\
+C_3 C_3 C_3 C_3 C_2 O \rightarrow \\
+C_3 C_3 C_2 O \rightarrow \\
+C_2 O \rightarrow \\
+E
+\end{align*}</annotation></semantics></math></span></div>
+<p>Example odd:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right" columnspacing=""><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>2</mn></msub><mi>O</mi><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>2</mn></msub><mi>O</mi><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>O</mi></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+C_1 C_1 C_3 C_3 C_3 \rightarrow  \\
+C_3 C_3 C_3 C_2 O \rightarrow \\
+C_3 C_2 O \rightarrow \\
+O
+\end{align*}</annotation></semantics></math></span></div>
+<h3 id="example-power-of-two">Example: Power of Two</h3>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msup><mn>2</mn><mi>n</mi></msup></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>→</mo><mi>n</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>C</mi><mn>1</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>→</mo><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>2</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>C</mi><mn>2</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>→</mo><mi>ϵ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>C</mi><mn>3</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>→</mo><msub><mi>C</mi><mn>3</mn></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>C</mi><mn>4</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>→</mo><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>C</mi><mn>5</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>→</mo><msub><mi>C</mi><mn>6</mn></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+2^n &#x26;\rightarrow  n \\
+C_1 &#x26;\rightarrow C_1 C_2 C_4 C_5 \\
+C_2 &#x26;\rightarrow \epsilon \\
+C_3 &#x26;\rightarrow C_3 \\
+C_4 &#x26;\rightarrow C_4 C_5 \\
+C_5 &#x26;\rightarrow C_6
+\end{align*}</annotation></semantics></math></span></div>
+<p>Starting with:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>C</mi><mn>3</mn></msub><msup><mo stretchy="false">)</mo><mrow><mn>2</mn><mi>n</mi></mrow></msup><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>1</mn></msub><mo>→</mo><mo stretchy="false">(</mo><msub><mi>C</mi><mn>6</mn></msub><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">(C_3)^{2n}C_1C_1 \rightarrow (C_6)^n</annotation></semantics></math></span></div>
+<p>For <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n=2</annotation></semantics></math></span></span>:</p>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right" columnspacing=""><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>1</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>2</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>2</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>1</mn></msub><msub><mi>C</mi><mn>2</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>2</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>4</mn></msub><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>3</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>5</mn></msub><msub><mi>C</mi><mn>3</mn></msub><msub><mi>C</mi><mn>6</mn></msub><mo>→</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>C</mi><mn>6</mn></msub><msub><mi>C</mi><mn>6</mn></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+C_3 C_3 C_3 C_3 C_1 C_1 \rightarrow \\
+C_3 C_3 C_1 C_1 C_3 \rightarrow \\
+C_1 C_1 C_3 C_3 \rightarrow \\
+C_3 C_3 C_1 C_2 C_4 C_5\rightarrow \\
+C_1 C_2 C_4 C_5 C_3 \rightarrow \\
+C_4 C_5 C_3 C_1 C_2 C_4 C_5 \rightarrow \\
+C_2 C_4 C_5 C_4 C_5 C_3 \rightarrow \\
+C_5 C_4 C_5 C_3 \rightarrow \\
+C_5 C_3 C_6 \rightarrow \\
+C_6 C_6
+\end{align*}</annotation></semantics></math></span></div>
+<h3 id="simulation-of-turing-machines-with-tag-systems">Simulation of Turing Machines with Tag Systems</h3>
+<p>Some of the notes here are taken from ‘Understanding Computation’ by Tom Stuart.</p>
+<ol>
+<li>Tape uses only 2 characters: <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span> and <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span>
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span> is the blank character</li>
+</ul>
+</li>
+<li>Split the tape into two pieces
+<ul>
+<li>left part
+<ul>
+<li>character under the head</li>
+<li>all characters left of the head</li>
+</ul>
+</li>
+<li>right part
+<ul>
+<li>all characters right of the head</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Interpret left part as binary number</li>
+<li>Interpret right part as binary number written <em>backwards</em></li>
+<li>Encode those 2 numbers as string (suitable to be used for Tag System)</li>
+<li>Simple operations:
+<ul>
+<li>Simulate
+<ul>
+<li><em>reading</em> from tape</li>
+<li><em>writing</em> to tape</li>
+<li><em>moving</em> the head</li>
+</ul>
+</li>
+<li>with simple operations
+<ul>
+<li>doubling / halfing</li>
+<li>incrementing / decrementing</li>
+<li>odd / even (parity) check</li>
+<li>…</li>
+</ul>
+</li>
+<li>e.g
+<ul>
+<li>move head to right:
+<ul>
+<li>doubling left number</li>
+<li>halving right number</li>
+</ul>
+</li>
+<li>reading from tape
+<ul>
+<li>check if left number is even/odd</li>
+</ul>
+</li>
+<li>writing
+<ul>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span>: incrementing number</li>
+<li><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span>: decrementing number</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Current <em>state</em> of simulated Turing machine represented by different encoding
+<ul>
+<li>e. g
+<ul>
+<li>State 1: use <em>a</em>, <em>b</em>, <em>c</em></li>
+<li>State 2: use <em>d</em>, <em>e</em>, <em>f</em></li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Convert each Turing Machine rule into a Tag Systems that rewrites the current string in the expected way</li>
+<li>Combine all the Tag Systems to make a large one the simulates every rule of the Turing Machine</li>
+</ol>
+<h3 id="cyclic-tag-systems">Cyclic Tag Systems</h3>
+<p>This are simplified Tag Systems</p>
+<ul>
+<li>The tape is allowed only to have 2 symbols <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span> and <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span></li>
+<li>A string is only appended if a <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span> is read</li>
+<li>The rules for appending strings is ordered</li>
+<li>The deletion number is <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span></li>
+</ul>
+<p>Algorithm:</p>
+<p>In each round:</p>
+<ul>
+<li>Read next rule in rule-set</li>
+<li>Read next symbol on tape
+<ul>
+<li>if <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span>: append the string from the rule set to the tape</li>
+<li>if <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span>: ignore the rule</li>
+</ul>
+</li>
+<li>Remove the last read symbol from the tape</li>
+<li>Start from the beginning with reading the next rule</li>
+</ul>
+<p>A Cyclic Tag System can simulate a normal Tag System. See ‘Understanding Computation’ by Tom Stuart on how to do that.</p>
+<!-- End Notes Week 10 -->
+<!-- Begin Notes Week 11 -->
+<h1 id="diophantine-equations">Diophantine Equations</h1>
+<p>See also <a href="https://en.wikipedia.org/wiki/Diophantine_equation">Wikipedia:Diophantine equation</a></p>
+<ul>
+<li>Polynomal equations</li>
+<li>Only integer solutions are sought</li>
+<li>Properties
+<ul>
+<li>no state</li>
+<li>no dynamics</li>
+<li>no time</li>
+<li>no loops</li>
+<li>no ‘IF’/‘THEN’</li>
+<li>just <em>equations</em> which all must be true</li>
+</ul>
+</li>
+</ul>
+<p>How to compute?</p>
+<ul>
+<li>Consider a space-time history</li>
+<li>Solve it in the digits of a large number</li>
+<li>Use equations to force it to be valid</li>
+</ul>
+<!-- End Notes Week 11 -->
+<!-- Begin Notes Week 12 -->
+<h1 id="primitive-recursive-functions">Primitive Recursive Functions</h1>
+<ul>
+<li>Recursion can do a lot!</li>
+<li>Functions are defined using itselves or other functions</li>
+<li>Each function has 2 definition:
+<ol>
+<li>Definition for argument <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></li>
+<li>General definition</li>
+</ol>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Name</th>
+<th>Definition (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>if </mtext><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\text{if } n=0</annotation></semantics></math></span></span>)</th>
+<th>Definition (<span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>if </mtext><mi>n</mi><mo>=</mo><mi>S</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{if } n=S(m)</annotation></semantics></math></span></span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">S(n) = n + 1</annotation></semantics></math></span></span></td>
+<td>Successor</td>
+<td>intrinsic/primitive</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>+</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">A(n,a)=n+a</annotation></semantics></math></span></span></td>
+<td>Addition</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S(A(m,a))</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>⋅</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">M(n,a)=n\cdot a</annotation></semantics></math></span></span></td>
+<td>Multiplication</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>M</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A(a,M(m,a))</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>a</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">E(n,a)=a^n</annotation></semantics></math></span></span></td>
+<td>Exponentiation</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M(a,E(m,a))</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>s</mi><mi>i</mi><mi>g</mi><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V(n)=sign(n)</annotation></semantics></math></span></span></td>
+<td>Positivity</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P(n) = n-1</annotation></semantics></math></span></span></td>
+<td>Predecessor</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>−</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">D(a,n) = a-n</annotation></semantics></math></span></span></td>
+<td>Subtraction</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(D(n,m))</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>a</mi></mrow><annotation encoding="application/x-tex">R(n,a)=n \bmod a</annotation></semantics></math></span></span></td>
+<td>Remainder</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>V</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>R</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M(S(R(m,a)),V(D(P(a),R(m,a))))</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>2</mn></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msubsup><mi>a</mi><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>i</mi></mrow><annotation encoding="application/x-tex">C(n,a)=\prod_{i=2}^{n+1} a \bmod i</annotation></semantics></math></span></span></td>
+<td>‘mod Product’</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>R</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M(C(m,a),R(a,(S(S(m)))))</annotation></semantics></math></span></span></td>
+</tr>
+<tr>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">Z(n)=1</annotation></semantics></math></span></span> if prime ; <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span> else</td>
+<td>Primality</td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span></span></td>
+<td><span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>S</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V(M(m,(P(m),S(m))))</annotation></semantics></math></span></span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Infinite loops not possible</li>
+<li>Can simulate a Turing Machine only for a given number of steps (weaker than TM’s)
+<ul>
+<li>Number of iterations of a loop need to be known from beginning</li>
+<li>Infinite loops are not possible</li>
+</ul>
+</li>
+<li><em>Not</em> considierd as universal system</li>
+</ul>
+<h1 id="some-simple-models">Some Simple Models</h1>
+<h2 id="chemical-reaction-networks">Chemical Reaction Networks</h2>
+<ul>
+<li>Inspired by chemical reaction equations</li>
+</ul>
+<div class="math math-display"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnalign="center center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>A</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">→</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>B</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>C</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">→</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>D</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>B</mi><mo>+</mo><mi>C</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">→</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>A</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>A</mi><mo>+</mo><mi>D</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">→</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>A</mi><mo>+</mo><mn>2</mn><mi>E</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>B</mi><mo>+</mo><mi>E</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo lspace="0em" rspace="0em">→</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>B</mi><mo>+</mo><mi>D</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{matrix}
+A &#x26; \rightarrow  &#x26; B \\ 
+C &#x26; \rightarrow &#x26; D \\ 
+B + C &#x26; \rightarrow &#x26; A \\ 
+A + D &#x26; \rightarrow &#x26; A + 2E\\ 
+B + E &#x26; \rightarrow &#x26; B + D
+\end{matrix}</annotation></semantics></math></span></div>
+<ul>
+<li>Nondeterministic: any reaction can happen at any time</li>
+<li>Primitive Recursive Functions can always compute this in bounded time, even if answer is <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span></span>.</li>
+<li>Chemical Reaction Networks are not stronger than Primitive Recursive Functions.</li>
+</ul>
+<h2 id="petri-nets">Petri Nets</h2>
+<ul>
+<li>A lot of different form of <a href="https://en.wikipedia.org/wiki/Petri_net">Petri Nets</a></li>
+<li>Components
+<ul>
+<li>Transition (edges)</li>
+<li>Places (nodes)</li>
+<li>Tokens (arcs) travel from transitions to places (or vice versa)</li>
+</ul>
+</li>
+<li>Nondeterministic</li>
+<li>Similar to (and as powerful as) Chemical Transition Networks</li>
+<li>Used to simulate concurrency in distributed systems (but not turing-complete)</li>
+</ul>
+<h2 id="vector-addition-systems">Vector Addition Systems</h2>
+<ul>
+<li>Rules: Starting position and list of possible moves (like a knight in chess)</li>
+<li>no coordinate ca go negative</li>
+<li>N-dimensional is posible</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-1</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>7 moves for 7 dimensions</li>
+<li>Non-deterministic</li>
+<li>Same as Chemical Reduction Networks
+<ul>
+<li>Put equations in vectors (linear combination)</li>
+</ul>
+</li>
+</ul>
+<h2 id="unordered-fractran">Unordered Fractran</h2>
+<ul>
+<li>Similar to fractran</li>
+<li>Choose any fraction randomly that yields an integer when multiplied with given number</li>
+<li>non-deterministic</li>
+</ul>
+<h2 id="broken-register-machine">Broken Register Machine</h2>
+<ul>
+<li>decrementing a register might fail even if register could be decremented</li>
+</ul>
+<h2 id="general-notes">General Notes</h2>
+<ul>
+<li>A lot of these systems get more powerful if they allow prioritizing</li>
+<li>determinism: turing complete</li>
+</ul>
+<!-- End Notes Week 13 -->
+<!-- Beginn Notes Week 14 -->
+<h1 id="halting-problem">Halting Problem</h1>
+<p>Suppose a Turing Machine “A” can take <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>n</mi><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Enc_1(table)</annotation></semantics></math></span></span>, <span class="math math-inline"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>n</mi><msub><mi>c</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>t</mi><mi>a</mi><mi>p</mi><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Enc_2(tape)</annotation></semantics></math></span></span> and <em>decide</em> wether a TM with the given table will ever halt, if started on the given tape.</p>
+<p>This is impossible!</p>
+<p>Idea (proof):</p>
+<ol>
+<li>Make a machine that does the opposite of whatever machine you give it (halt or not halt)</li>
+<li>The goal is to feed this machine to itself</li>
+<li>Analyze what machines do when they are fed to themselves</li>
+</ol>
+<h1 id="universal-machine">Universal Machine</h1>
+<p>It’s possible to create a “universal” machine, which just (slowly) does the same
+thing that the machine described to it would do.</p>
+<ul>
+<li>a programmable Turing Machine</li>
+<li>see <a href="https://en.wikipedia.org/wiki/Universal_Turing_machine">Universal Turing machine</a></li>
+</ul>
+<!-- End Notes Week 14 --></section><hr/></article><nav class="blog-post-nav"><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" rel="prev" href="/systemc">← <!-- -->SystemC</a></li><li><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" rel="next" href="/rwm_operations">Synchronization Primitives (Read-Modify-Write)<!-- --> →</a></li></ul></nav></div><div class="MuiGrid-root MuiGrid-item MuiGrid-grid-md-2 css-g65o49"><ul class="MuiList-root MuiList-padding css-1ontqvh" data-test="metadata-sidebar"><hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6"/><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd"><div class="MuiListItemText-root css-1tsvksn"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">Category</p></div></li><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd"><div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-tuxzvu"><div class="MuiGrid-root MuiGrid-item css-1wxaqej"><div class="MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-outlinedDefault css-10f1en8"><span class="MuiChip-label MuiChip-labelMedium css-9iedg7">Programming</span></div></div></div></li><hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6"/><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd"><div class="MuiListItemText-root css-ayb3n0"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">Tags</p></div></li><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd"><div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-tuxzvu"><div class="MuiGrid-root MuiGrid-item css-1wxaqej"><div class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-wk4je1"><span class="MuiChip-label MuiChip-labelMedium css-9iedg7">Computer Science</span></div></div><div class="MuiGrid-root MuiGrid-item css-1wxaqej"><div class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-wk4je1"><span class="MuiChip-label MuiChip-labelMedium css-9iedg7">ETH</span></div></div></div></li><hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6"/><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd"><div class="MuiListItemText-root css-1tsvksn"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">Created</p></div></li><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd" data-test="created-date"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">29. February 2016</p></li><hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6"/><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd"><div class="MuiListItemText-root css-1tsvksn"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">Modified</p></div></li><li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1yo8bqd" data-test="modified-date"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">17. March 2022</p></li><hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6"/></ul></div></div><div style="flex:1 0 auto"></div><div style="display:flex"><div role="group" class="MuiButtonGroup-root MuiButtonGroup-outlined css-12hl9jz" aria-label="social media links"><span class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-39nlm1" tabindex="0" role="button"><a href="https://www.linkedin.com/in/lukaswoodtli" target="_blank" rel="noreferrer" data-testid="footer-icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a></span><span class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-39nlm1" tabindex="0" role="button"><a href="https://github.com/LukasWoodtli" target="_blank" rel="noreferrer" data-testid="footer-icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a></span><span class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-39nlm1" tabindex="0" role="button"><a href="https://stackoverflow.com/cv/lukaswoodtli" target="_blank" rel="noreferrer" data-testid="footer-icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="stack-overflow" class="svg-inline--fa fa-stack-overflow " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M290.7 311L95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"></path></svg></a></span><span class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-39nlm1" tabindex="0" role="button"><a href="https://www.xing.com/profile/Lukas_Woodtli" target="_blank" rel="noreferrer" data-testid="footer-icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="xing" class="svg-inline--fa fa-xing " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M162.7 210c-1.8 3.3-25.2 44.4-70.1 123.5-4.9 8.3-10.8 12.5-17.7 12.5H9.8c-7.7 0-12.1-7.5-8.5-14.4l69-121.3c.2 0 .2-.1 0-.3l-43.9-75.6c-4.3-7.8 .3-14.1 8.5-14.1H100c7.3 0 13.3 4.1 18 12.2l44.7 77.5zM382.6 46.1l-144 253v.3L330.2 466c3.9 7.1 .2 14.1-8.5 14.1h-65.2c-7.6 0-13.6-4-18-12.2l-92.4-168.5c3.3-5.8 51.5-90.8 144.8-255.2 4.6-8.1 10.4-12.2 17.5-12.2h65.7c8 0 12.3 6.7 8.5 14.1z"></path></svg></a></span><span class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-39nlm1" tabindex="0" role="button"><a href="mailto:woodtli.lukas@gmail.com" target="_blank" rel="noreferrer" data-testid="footer-icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64C490.5 64 512 85.49 512 112C512 127.1 504.9 141.3 492.8 150.4L275.2 313.6C263.8 322.1 248.2 322.1 236.8 313.6L19.2 150.4C7.113 141.3 0 127.1 0 112C0 85.49 21.49 64 48 64H464zM217.6 339.2C240.4 356.3 271.6 356.3 294.4 339.2L512 176V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V176L217.6 339.2z"></path></svg></a></span></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/models_of_computation";window.___webpackCompilationHash="ebf77f862b7caaf39f5d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2ea6980a4a844f594507.js"],"app":["/app-1e714a6ebf09e0da48c3.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-4a54349431a77acbcb60.js"],"component---src-pages-dummy-page-tsx":["/component---src-pages-dummy-page-tsx-49f69df69eddcd0d90a0.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-590dafc8deabc80a2e4b.js"],"component---src-templates-blog-index-tsx":["/component---src-templates-blog-index-tsx-f5132ade79a19e489dbc.js"],"component---src-templates-blog-post-tsx":["/component---src-templates-blog-post-tsx-ddb853013b61ea1d756e.js"],"component---src-templates-static-site-js":["/component---src-templates-static-site-js-29e2f2fbd50d0473ba69.js"]};/*]]>*/</script><script src="/polyfill-2ea6980a4a844f594507.js" nomodule=""></script><script src="/component---src-templates-blog-post-tsx-ddb853013b61ea1d756e.js" async=""></script><script src="/022d3153bf09c36cd784dcdb36ffbd187f9c96d7-175be7054cf5d76b4c7b.js" async=""></script><script src="/commons-b9a963f19e0fdcc43084.js" async=""></script><script src="/a9a7754c-7e51f9bc3504726fa9e4.js" async=""></script><script src="/cb1608f2-8b21232f8956c9e9594e.js" async=""></script><script src="/app-1e714a6ebf09e0da48c3.js" async=""></script><script src="/dc6a8720040df98778fe970bf6c000a41750d3ae-da54993d5e5aa0da12f7.js" async=""></script><script src="/framework-137a6963f263188333cb.js" async=""></script><script src="/webpack-runtime-1b3e5728f3c07f383689.js" async=""></script></body></html>
