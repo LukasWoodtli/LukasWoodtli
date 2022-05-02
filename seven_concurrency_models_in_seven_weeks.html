@@ -372,40 +372,40 @@ rules that help us avoiding them:”</em></p>
 <li><em><span class="dquo">“</span>There’s exactly one way to acquire an intrinsic lock: a synchronized block.”</em></li>
 </ul>
 <p>Synchronized block:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">synchronized</span> <span class="err">​</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// use shared resources</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">synchronized</span><span class="w"> </span><span class="err">​</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// use shared resources</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>This means that lock acquisition and release have to take place in the same method and have to be strictly nested.”</em></p>
 <p><em><span class="dquo">“</span>Note that declaring a method as <code>synchronized</code> is just syntactic sugar for surrounding the method’s body with the following:”</em></p>
-<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="kd">synchronized</span> <span class="err">​</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span><span class="err">​</span>
-    <span class="c1">// method body</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="kd">synchronized</span><span class="w"> </span><span class="err">​</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="err">​</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// method body</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>ReentrantLock allows us to transcend these restrictions by providing explicit lock and unlock methods instead of using synchronized .”</em></p>
-<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="n">Lock</span> <span class="err">​</span><span class="n">lock</span> <span class="o">=</span> <span class="err">​</span><span class="k">new</span> <span class="n">ReentrantLock</span> <span class="err">​</span><span class="p">();</span>
-<span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
-<span class="k">try</span> <span class="err">​</span><span class="p">{</span>
-    <span class="c1">// use shared resources​</span>
-<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="n">Lock</span><span class="w"> </span><span class="err">​</span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">​</span><span class="k">new</span><span class="w"> </span><span class="n">ReentrantLock</span><span class="w"> </span><span class="err">​</span><span class="p">();</span><span class="w"></span>
+<span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="err">​</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// use shared resources​</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="hand-over-hand-locking">Hand-over-Hand Locking</h3>
 <p><em><span class="dquo">“</span>Hand-over-hand locking is an alternative in which we lock only a small portion of the list, allowing other threads unfettered access as long as they’re not looking at the particular nodes we’ve got locked.”</em></p>
 <h3 id="condition-variables">Condition Variables</h3>
 <p><em><span class="dquo">“</span>Concurrent programming often involves waiting for something to happen. […] This type of situation is what condition variables are designed to address.”</em></p>
-<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span> <span class="err">​</span><span class="p">();</span>
-<span class="n">Condition</span> <span class="n">condition</span> <span class="o">=</span> <span class="n">lock</span><span class="p">.</span><span class="na">newCondition</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="err">​</span><span class="n">ReentrantLock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReentrantLock</span><span class="w"> </span><span class="err">​</span><span class="p">();</span><span class="w"></span>
+<span class="n">Condition</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lock</span><span class="p">.</span><span class="na">newCondition</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
-<span class="k">try</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">condition</span> <span class="n">is</span> <span class="kc">true</span><span class="p">)</span>
-        <span class="n">condition</span><span class="p">.</span><span class="na">await</span><span class="p">();</span>
-    <span class="c1">// use shared resources</span>
-<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">condition</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">condition</span><span class="p">.</span><span class="na">await</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// use shared resources</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>A condition variable is associated with a lock, and a thread must hold that lock before being able to wait on the condition. Once it holds the lock, it checks to see if the condition that it’s interested in is already true. If it is, then it continues with whatever it wants to do and unlocks the lock. If, however, the condition is not true, it calls <code>await</code>, which </em><em>atomically</em><em> unlocks the lock and blocks on the condition variable.”</em></p>
 <p><em><span class="dquo">“</span>An operation is atomic if, from the point of view of another thread, it appears to be a single operation that has either happened or not - it never appears to be halfway through.”</em></p>
@@ -440,18 +440,18 @@ rules that help us avoiding them:”</em></p>
 <p><em><span class="dquo">“</span>Happily, we’re not beaten yet. <code>ConcurrentHashMap</code> in <code>java.util.concurrent</code> looks like exactly what we need. Not only does it provide atomic read-modify-write methods, but it’s been designed to support high levels of concurrent access (via a technique called lock striping).”</em></p>
 <p><em><span class="dquo">“</span>Instead of put, we’re now using a combination of <code>putIfAbsent</code> and <code>replace</code>.”</em></p>
 <p><em><span class="dquo">“</span>Here’s the documentation for <code>putIfAbsent</code>: If the specified key is not already associated with a value, associate it with the given value. This is equivalent to”</em></p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
-<span class="k">else</span>
-    <span class="k">return</span> <span class="err">​</span> <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">​</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>except that the action is performed atomically.”</em></p>
 <p><em><span class="dquo">“</span>And for <code>replace</code>: Replaces the entry for a key only if currently mapped to a given value. This is equivalent to”</em></p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">).</span><span class="na">equals</span><span class="p">(</span><span class="n">oldValue</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">newValue</span><span class="p">);</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">).</span><span class="na">equals</span><span class="p">(</span><span class="n">oldValue</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">newValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li><span class="dquo">“</span>except that the action is performed atomically.”*</li>

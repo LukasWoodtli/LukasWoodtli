@@ -280,7 +280,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">r</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">;</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>we’d end up with a function that immediately called itself”</em></p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">r</span><span class="p">()</span> <span class="p">{</span> <span class="n">r</span><span class="p">();</span> <span class="n">match</span><span class="p">(</span><span class="n">X</span><span class="p">);</span> <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">r</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">r</span><span class="p">();</span><span class="w"> </span><span class="n">match</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p><em><span class="dquo">“</span>Besides left-recursive rules, there are other grammar constructs that yield </em><em>nondeterministic</em><em> recursive-descent recognizers. A nondeterministic recognizer cannot decide which path to take.”</em></p>
 <p><em><span class="dquo">“</span>A grammar, G, is a set of rules from which we generate a class definition (in any object-oriented programming language) containing a method for each rule”</em></p>
@@ -289,36 +289,36 @@
 <h4 id="alternatives">Alternatives</h4>
 <p><em><span class="dquo">“</span>Alternatives become either a switch or an if-then-else sequence”</em></p>
 <p><img alt="Alternatives" class="img-fluid" src="/images/language_implementation_patterns/alternatives.svg"/></p>
-<div class="highlight"><pre><span></span><code><span class="k">switch</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">token</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span><span class="p">:</span>
-  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span><span class="p">:</span>
-    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span>
-    <span class="k">break</span><span class="p">;</span>
-  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span><span class="p">:</span>
-  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span><span class="p">:</span>
-    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span>
-    <span class="k">break</span><span class="p">;</span>
-  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span><span class="p">:</span>
-  <span class="k">case</span> <span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span><span class="p">:</span>
-    <span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span>
-    <span class="k">break</span><span class="p">;</span>
-  <span class="k">default</span><span class="p">:</span>
-    <span class="o">&lt;</span><span class="k">throw</span><span class="o">-</span><span class="n">exception</span><span class="o">&gt;</span>
-  <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">token</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">alt2</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;</span><span class="n">token1</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;</span><span class="n">token2</span><span class="o">-</span><span class="n">predicting</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">match</span><span class="o">-</span><span class="n">altN</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="k">throw</span><span class="o">-</span><span class="n">exception</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h4 id="optional-subrule-t">Optional subrule <code>(T)?</code></h4>
 <p><img alt="Option" class="img-fluid" src="/images/language_implementation_patterns/option.svg"/></p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">is</span><span class="o">-</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span> <span class="n">match</span><span class="p">(</span><span class="n">T</span><span class="p">);}</span> <span class="c1">// no error else clause</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">is</span><span class="o">-</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">match</span><span class="p">(</span><span class="n">T</span><span class="p">);}</span><span class="w"> </span><span class="c1">// no error else clause</span><span class="w"></span>
 </code></pre></div>
 <h4 id="one-or-more-subrules">One or more <code>(...)+</code> subrules</h4>
 <p><img alt="One or more" class="img-fluid" src="/images/language_implementation_patterns/one_or_more.svg"/></p>
-<div class="highlight"><pre><span></span><code><span class="k">do</span> <span class="p">{</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="p">}</span>
-<span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <h4 id="zero-or-more-subrules">Zero or more <code>(...)*</code> subrules</h4>
 <p><img alt="Zero or more" class="img-fluid" src="/images/language_implementation_patterns/zero_or_more.svg"/></p>
-<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span> <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="n">lookahead</span><span class="o">-</span><span class="n">predicts</span><span class="o">-</span><span class="n">an</span><span class="o">-</span><span class="n">alt</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">subrule</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">code</span><span class="o">-</span><span class="n">matching</span><span class="o">-</span><span class="n">alternatives</span><span class="o">&gt;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="pattern-2-ll1-recursive-descent-lexer">Pattern 2: <span class="caps">LL</span>(1) Recursive-Descent Lexer</h3>
 <p><em><span class="dquo">“</span>Lexers derive a stream of tokens from a character stream by recognizing lexical patterns. Lexers are also called </em><em>scanners</em><em>, </em><em>lexical analyzers</em><em>, and </em><em>tokenizers</em><em>.”</em></p>

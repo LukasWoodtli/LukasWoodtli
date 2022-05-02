@@ -433,7 +433,7 @@
 </li>
 </ul>
 <p>An overview of the mismatch is shown on <a href="http://www.tutorialspoint.com/hibernate/orm_overview.htm">Tutorialspoint</a></p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Mismatch</th>
@@ -553,10 +553,10 @@
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Java</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
-    <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
-    <span class="n">String</span> <span class="n">email</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li><span class="caps">DM</span></li>
@@ -565,8 +565,8 @@
 <div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Java</p>
-<div class="highlight"><pre><span></span><code><span class="k">new</span> <span class="n">Person</span><span class="p">()</span>
-<span class="n">p</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"Bill Stinnet"</span>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">()</span><span class="w"></span>
+<span class="n">p</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Bill Stinnet"</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Querying</li>
@@ -575,7 +575,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">col_name</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Java</p>
-<div class="highlight"><pre><span></span><code><span class="p">...</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">name</span>
+<div class="highlight"><pre><span></span><code><span class="p">...</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">name</span><span class="w"></span>
 </code></pre></div>
 <p><span class="caps">LINQ</span> is a powerful and compile time safe support for querying.</p>
 <h2 id="learning-goals">Learning Goals</h2>
@@ -670,7 +670,7 @@
 </li>
 </ul>
 <p>Examples in Java:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -863,21 +863,21 @@
 <span class="k">from</span><span class="w">   </span><span class="n">Publications</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
 </code></pre></div>
 <p>In Java:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Bag</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="p">{</span> <span class="n">Author</span> <span class="n">first</span><span class="p">,</span> <span class="n">string</span> <span class="n">title</span><span class="p">,</span> <span class="n">integer</span> <span class="n">year</span> <span class="p">}</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="n">Bag</span><span class="o">&lt;</span><span class="n">Struct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Author</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">integer</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="p">}</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>Queries with <code>DISTINCT</code> return a <em>set</em></p>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="w"></span>
 <span class="k">from</span><span class="w">   </span><span class="n">Authors</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 </code></pre></div>
 <p>In Java:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Set</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="p">{</span> <span class="n">string</span> <span class="n">name</span> <span class="p">}</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="n">Set</span><span class="o">&lt;</span><span class="n">Struct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">}</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>Queries with <code>ORDER BY</code> return a <em>list</em></p>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">title</span><span class="w"></span>
 <span class="k">from</span><span class="w"> </span><span class="n">Publications</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="k">desc</span><span class="w"></span>
 </code></pre></div>
 <p>In Java:</p>
-<div class="highlight"><pre><span></span><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span> <span class="p">{</span> <span class="n">string</span> <span class="n">name</span> <span class="p">}</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Struct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">}</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 <h4 id="extents">Extents</h4>
 <ul>
@@ -896,7 +896,7 @@
 <li>array: ordered, elements can be replaced</li>
 <li>dictionary: maps keys to values</li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th></th>
@@ -982,12 +982,12 @@
 <li>compatible to <span class="caps">OMG</span> Interface Definition Language (<span class="caps">IDL</span>)</li>
 </ul>
 <p><span class="caps">ODL</span> Syntax:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">name</span> <span class="o">[</span> <span class="p">(</span> <span class="n">extent</span> <span class="n">name</span><span class="p">,</span> <span class="n">key</span> <span class="n">name</span> <span class="p">)</span> <span class="o">]</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">exception</span> <span class="n">name</span> <span class="p">{</span> <span class="p">{</span> <span class="n">type</span> <span class="n">name</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
-  <span class="p">{</span> <span class="n">attribute</span> <span class="n">type</span> <span class="n">name</span> <span class="p">}</span>
-  <span class="p">{</span> <span class="n">relationship</span> <span class="n">type</span> <span class="n">name</span> <span class="n">inverse</span> <span class="n">relationship</span> <span class="p">}</span>
-  <span class="p">{</span> <span class="n">type</span> <span class="nf">name</span><span class="p">({</span> <span class="p">(</span><span class="n">in</span><span class="o">|</span><span class="n">out</span><span class="o">|</span><span class="n">inout</span><span class="p">)</span> <span class="n">type</span> <span class="n">name</span> <span class="p">})</span><span class="o">[</span><span class="n">raises</span> <span class="p">({</span> <span class="n">exception</span> <span class="p">})</span><span class="o">]</span> <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">name</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">extent</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">exception</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">relationship</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">inverse</span><span class="w"> </span><span class="n">relationship</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="nf">name</span><span class="p">({</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="o">|</span><span class="n">out</span><span class="o">|</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">})</span><span class="o">[</span><span class="n">raises</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="n">exception</span><span class="w"> </span><span class="p">})</span><span class="o">]</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>extent and key of a class can be specified optionally</li>
@@ -1135,7 +1135,7 @@
 <li><span class="caps">XML</span> file: <em>hibernate.cfg.xml</em> (or Java properties file <em>hibernate.properties</em>)</li>
 </ul>
 <h3 id="properties">Properties</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Property</th>
@@ -1196,7 +1196,7 @@
 <li>Some additional minor restrictions from <span class="caps">EJB</span> framework</li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">SessionFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="p">().</span><span class="na">configure</span><span class="p">().</span><span class="na">buildSessionFactory</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">SessionFactory</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Configuration</span><span class="p">().</span><span class="na">configure</span><span class="p">().</span><span class="na">buildSessionFactory</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Session<ul>
@@ -1214,11 +1214,11 @@
 </li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="na">openSession</span><span class="p">();</span>
-<span class="p">...</span>
-<span class="n">session</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>
-<span class="p">...</span>
-<span class="n">session</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factory</span><span class="p">.</span><span class="na">openSession</span><span class="p">();</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="n">session</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="n">session</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Transaction<ul>
@@ -1227,9 +1227,9 @@
 </li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Transaction</span> <span class="n">tx</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
-<span class="p">...</span>
-<span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Query<ul>
@@ -1239,9 +1239,9 @@
 </li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">List</span> <span class="n">persons</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="s">"FROM Persons"</span><span class="p">).</span><span class="na">list</span><span class="p">();</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">Object</span> <span class="n">p</span><span class="p">:</span> <span class="n">persons</span><span class="p">)</span>
-  <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">List</span><span class="w"> </span><span class="n">persons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="s">"FROM Persons"</span><span class="p">).</span><span class="na">list</span><span class="p">();</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">p</span><span class="p">:</span><span class="w"> </span><span class="n">persons</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Criteria<ul>
@@ -1780,7 +1780,7 @@
 </li>
 </ul>
 <p>Enabling transparent persistence</p>
-<div class="highlight"><pre><span></span><code><span class="n">config</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">TransparentPersistenceSupport</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><span class="n">config</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TransparentPersistenceSupport</span><span class="p">());</span><span class="w"></span>
 </code></pre></div>
 <h2 id="activation">Activation</h2>
 <ul>
@@ -1805,10 +1805,10 @@
 <li>per class configuration</li>
 </ul>
 <p>Methods for per class configuration of activation depth</p>
-<div class="highlight"><pre><span></span><code><span class="n">ObjectClass</span><span class="err">#</span><span class="n">minimumActivationDepth</span><span class="p">(</span><span class="n">minDepth</span><span class="p">)</span>
-<span class="n">ObjectClass</span><span class="err">#</span><span class="n">maximumActivationDepth</span><span class="p">(</span><span class="n">maxDepth</span><span class="p">)</span>
-<span class="n">ObjectClass</span><span class="err">#</span><span class="n">cascadeOnActivate</span><span class="p">(</span><span class="n">bool</span><span class="p">)</span>
-<span class="n">ObjectClass</span><span class="err">#</span><span class="n">objectField</span><span class="p">(...).</span><span class="na">cascadeOnActivate</span><span class="p">(</span><span class="n">bool</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">ObjectClass</span><span class="err">#</span><span class="n">minimumActivationDepth</span><span class="p">(</span><span class="n">minDepth</span><span class="p">)</span><span class="w"></span>
+<span class="n">ObjectClass</span><span class="err">#</span><span class="n">maximumActivationDepth</span><span class="p">(</span><span class="n">maxDepth</span><span class="p">)</span><span class="w"></span>
+<span class="n">ObjectClass</span><span class="err">#</span><span class="n">cascadeOnActivate</span><span class="p">(</span><span class="n">bool</span><span class="p">)</span><span class="w"></span>
+<span class="n">ObjectClass</span><span class="err">#</span><span class="n">objectField</span><span class="p">(...).</span><span class="na">cascadeOnActivate</span><span class="p">(</span><span class="n">bool</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <h3 id="transparent-activation">Transparent Activation</h3>
 <ul>
@@ -1823,7 +1823,7 @@
 </li>
 </ul>
 <p>Enabling the transparent activation framework</p>
-<div class="highlight"><pre><span></span><code><span class="n">config</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">TransparentActivationSupport</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><span class="n">config</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TransparentActivationSupport</span><span class="p">());</span><span class="w"></span>
 </code></pre></div>
 <h2 id="db4o-transactions">db4o Transactions</h2>
 <ul>
@@ -2080,12 +2080,12 @@
 </li>
 </ul>
 <p>Configuration interface:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// global setting (default: depends on environment)</span>
-<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">callConstructors</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="c1">// per class setting (default: depends on environment)</span>
-<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">objectClass</span><span class="p">(...).</span><span class="na">callConstructors</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="c1">// exceptions for debugging (default: true)</span>
-<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">exceptionsOnNotStorable</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// global setting (default: depends on environment)</span><span class="w"></span>
+<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">callConstructors</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"></span>
+<span class="c1">// per class setting (default: depends on environment)</span><span class="w"></span>
+<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">objectClass</span><span class="p">(...).</span><span class="na">callConstructors</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"></span>
+<span class="c1">// exceptions for debugging (default: true)</span><span class="w"></span>
+<span class="n">CommonConfiguration</span><span class="err">#</span><span class="n">exceptionsOnNotStorable</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Bypassing Constructors<ul>
@@ -2205,7 +2205,7 @@
 </li>
 </ul>
 <p><img alt="Nested Index" class="img-fluid" src="/images/object_databases/versant_cache.png"/></p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>pointer</th>
@@ -2737,7 +2737,7 @@ The fundamental layer is usually not directly needed by the application develop
 </ul>
 </li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Permit</th>
@@ -3048,7 +3048,7 @@ The fundamental layer is usually not directly needed by the application develop
 <li>A <em><span class="caps">DB</span></em> contains several <em>Containers</em>.</li>
 <li>A <em>Container</em> contains several <em>Objects</em>.</li>
 </ul>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Logical</th>
@@ -3549,7 +3549,7 @@ The fundamental layer is usually not directly needed by the application develop
 </li>
 </ul>
 <h3 id="comparison-between-infinitegraph-and-neo4j">Comparison between InfiniteGraph and Neo4j</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Infinite Graph (Objectivity)</th>
@@ -3830,7 +3830,7 @@ The fundamental layer is usually not directly needed by the application develop
 </li>
 </ul>
 <p>Example:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Employee</th>
@@ -3907,7 +3907,7 @@ The fundamental layer is usually not directly needed by the application develop
 </li>
 </ul>
 <p>Example:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Employee</th>
@@ -4373,7 +4373,7 @@ The fundamental layer is usually not directly needed by the application develop
 </li>
 </ul>
 <h2 id="typing-and-classification">Typing and Classification</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Typing</th>

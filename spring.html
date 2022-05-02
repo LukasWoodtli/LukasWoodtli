@@ -83,7 +83,7 @@
             <h1 id="dependency-injection-and-inversion-of-control">Dependency Injection and Inversion of Control</h1>
 <p>The Spring IoC container needs to know which beans to create for Dependency Injection.</p>
 <h2 id="define-beans">Define Beans</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Class Annotation</th>
@@ -106,7 +106,7 @@
 </tbody>
 </table>
 <h2 id="inject-beans">Inject Beans</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Annotation</th>
@@ -133,25 +133,25 @@
 If multiple candidate beans are available the expected one can be
 annotated with <code>@Primary</code>.</p>
 <p>Use <code>@Qualifier</code> for manual selection of a bean implementation:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
-<span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"bubblesort"</span><span class="p">)</span>
-<span class="kd">class</span> <span class="nc">BubbleSort</span> <span class="kd">implements</span> <span class="n">Sort</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
-<span class="nd">@Component</span>
-<span class="kd">class</span> <span class="nc">SimpleSort</span> <span class="kd">implements</span> <span class="n">Sort</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
-<span class="nd">@Component</span>
-<span class="kd">class</span> <span class="nc">MyBean</span> <span class="p">{</span>
-  <span class="nd">@Autowired</span>
-  <span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"bubblesort"</span><span class="p">)</span>
-  <span class="n">Sort</span> <span class="n">algorithm</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span><span class="w"></span>
+<span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"bubblesort"</span><span class="p">)</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">BubbleSort</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Sort</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nd">@Component</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">SimpleSort</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Sort</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nd">@Component</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">MyBean</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@Autowired</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"bubblesort"</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">Sort</span><span class="w"> </span><span class="n">algorithm</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="scopes">Scopes</h2>
 <h3 id="generic-scopes">Generic Scopes</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Scope</th>
@@ -170,7 +170,7 @@ annotated with <code>@Primary</code>.</p>
 </tbody>
 </table>
 <h3 id="web-context-scopes">Web Context Scopes</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Scope</th>
@@ -193,12 +193,12 @@ annotated with <code>@Primary</code>.</p>
 </tbody>
 </table>
 <h3 id="usage">Usage</h3>
-<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
-<span class="nd">@Scope</span><span class="p">(</span><span class="s">"singleton"</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyServiceImpl</span> <span class="kd">implements</span> <span class="n">MyService</span> <span class="p">{}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span><span class="w"></span>
+<span class="nd">@Scope</span><span class="p">(</span><span class="s">"singleton"</span><span class="p">)</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyServiceImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">MyService</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Annotation</th>
@@ -219,7 +219,7 @@ annotated with <code>@Primary</code>.</p>
 <h2 id="run-spring-ioc-container">Run Spring IoC container</h2>
 <p>Use <code>ApplicationContext</code> to launch an IoC container:</p>
 <h3 id="configuration-for-application-context">Configuration for Application Context</h3>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Class Annotation</th>
@@ -237,10 +237,10 @@ annotated with <code>@Primary</code>.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
-<span class="nd">@ComponentScan</span><span class="p">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="p">{</span> <span class="s">"com.mycompany.mypackage"</span> <span class="p">})</span>
-<span class="kd">class</span> <span class="nc">SpringContext</span> <span class="p">{</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span><span class="w"></span>
+<span class="nd">@ComponentScan</span><span class="p">(</span><span class="n">basePackages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">"com.mycompany.mypackage"</span><span class="w"> </span><span class="p">})</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">SpringContext</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h1 id="spring-boot">Spring Boot</h1>
 <p><code>@SpringBootApplication</code> is a shortcut for:</p>
@@ -254,15 +254,15 @@ annotated with <code>@Primary</code>.</p>
 <div class="highlight"><pre><span></span><code>myservice.url=http://myservice
 </code></pre></div>
 <p>The value can be read from Java:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyService</span> <span class="p">{</span>
-  <span class="nd">@Value</span><span class="p">(</span><span class="s">"${myservice.url}"</span><span class="p">)</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">url</span><span class="p">;</span>  <span class="c1">// this will contain: http://myservice</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyService</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@Value</span><span class="p">(</span><span class="s">"${myservice.url}"</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">;</span><span class="w">  </span><span class="c1">// this will contain: http://myservice</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h1 id="rest-services"><span class="caps">REST</span> Services</h1>
 <h2 id="controller">Controller</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Class Annotation</th>
@@ -287,7 +287,7 @@ annotated with <code>@Primary</code>.</p>
 </ul>
 <h3 id="parameters-to-handler-methods">Parameters to Handler Methods</h3>
 <p>These annotations can be added to the arguments of the handler method:</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Argument Annotation</th>
@@ -305,17 +305,17 @@ annotated with <code>@Primary</code>.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/hello/{name}"</span><span class="p">)</span>
-<span class="kd">public</span> <span class="n">MyBean</span> <span class="nf">hello</span><span class="p">(</span><span class="nd">@PathVariable</span> <span class="n">String</span> <span class="n">name</span><span class="p">,</span>
-                    <span class="nd">@RequestBody</span> <span class="n">MyDto</span> <span class="n">body</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">MyBean</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/hello/{name}"</span><span class="p">)</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="n">MyBean</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">MyDto</span><span class="w"> </span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyBean</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="return-values">Return Values</h3>
 <p>Usually either a bean (<span class="caps">DTO</span>) is returned (which is usually converted to a <span class="caps">JSON</span>) or
 a <code>ResponseEntity&lt;&gt;</code> can be used to provide some information to the client.</p>
 <h2 id="validation">Validation</h2>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Annotation</th>
@@ -365,48 +365,48 @@ a <code>ResponseEntity&lt;&gt;</code> can be used to provide some information to
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1">// contoller</span>
-<span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/hello/{name}"</span><span class="p">)</span>
-<span class="kd">public</span> <span class="n">MyBean</span> <span class="nf">hello</span><span class="p">(</span><span class="nd">@PathVariable</span> <span class="n">String</span> <span class="n">name</span><span class="p">,</span>
-                    <span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="n">MyDto</span> <span class="n">body</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// validate MyDto here</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// contoller</span><span class="w"></span>
+<span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/hello/{name}"</span><span class="p">)</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="n">MyBean</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">MyDto</span><span class="w"> </span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// validate MyDto here</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="c1">// bean</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyDto</span> <span class="p">{</span>
-  <span class="nd">@NotNull</span>
-  <span class="kd">private</span> <span class="n">Date</span> <span class="n">date</span><span class="p">;</span>
+<span class="c1">// bean</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyDto</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@NotNull</span><span class="w"></span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">date</span><span class="p">;</span><span class="w"></span>
 
-  <span class="nd">@Size</span><span class="p">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">string</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@Size</span><span class="p">(</span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">string</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="testing">Testing</h2>
 <h3 id="unit-testing-the-controller">Unit Testing the Controller</h3>
-<div class="highlight"><pre><span></span><code><span class="nd">@ExtendWith</span><span class="p">(</span><span class="n">SpringExtension</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>  <span class="c1">// before Junit 5 use `@RunWith(SpringRunner.class)`</span>
-<span class="nd">@WebMvcTest</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">MyController</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyControllerTest</span> <span class="p">{</span>
-  <span class="nd">@Autowired</span>
-  <span class="kd">private</span> <span class="n">MockMvc</span> <span class="n">mvc</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@ExtendWith</span><span class="p">(</span><span class="n">SpringExtension</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span><span class="c1">// before Junit 5 use `@RunWith(SpringRunner.class)`</span><span class="w"></span>
+<span class="nd">@WebMvcTest</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyController</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyControllerTest</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@Autowired</span><span class="w"></span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">MockMvc</span><span class="w"> </span><span class="n">mvc</span><span class="p">;</span><span class="w"></span>
 
-  <span class="nd">@MockBean</span>  <span class="c1">// mocking with Mockito</span>
-  <span class="kd">private</span> <span class="n">MyService</span> <span class="n">service</span><span class="p">;</span>
+<span class="w">  </span><span class="nd">@MockBean</span><span class="w">  </span><span class="c1">// mocking with Mockito</span><span class="w"></span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">MyService</span><span class="w"> </span><span class="n">service</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// write tests with `@Test`</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="c1">// write tests with `@Test`</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h3 id="integration-testing">Integration Testing</h3>
-<div class="highlight"><pre><span></span><code><span class="nd">@ExtendWith</span><span class="p">(</span><span class="n">SpringExtension</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>  <span class="c1">// before Junit 5 use `@RunWith(SpringRunner.class)`</span>
-<span class="nd">@SpringBootTest</span><span class="p">(</span><span class="n">classes</span> <span class="o">=</span> <span class="n">MyApplication</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
-                <span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="p">.</span><span class="na">WebEnvironment</span><span class="p">.</span><span class="na">RANDOM_PORT</span><span class="p">)</span>
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyControllerIT</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@ExtendWith</span><span class="p">(</span><span class="n">SpringExtension</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span><span class="c1">// before Junit 5 use `@RunWith(SpringRunner.class)`</span><span class="w"></span>
+<span class="nd">@SpringBootTest</span><span class="p">(</span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyApplication</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">webEnvironment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpringBootTest</span><span class="p">.</span><span class="na">WebEnvironment</span><span class="p">.</span><span class="na">RANDOM_PORT</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyControllerIT</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-  <span class="nd">@Autowired</span>
-  <span class="kd">private</span> <span class="n">TestRestTemplate</span> <span class="n">template</span><span class="p">;</span>
+<span class="w">  </span><span class="nd">@Autowired</span><span class="w"></span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">TestRestTemplate</span><span class="w"> </span><span class="n">template</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// We are testing also the service layer. So it is not mocked here.</span>
-  <span class="c1">// Data access could be mocked with @MockBean</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="c1">// We are testing also the service layer. So it is not mocked here.</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Data access could be mocked with @MockBean</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h1 id="spring-security">Spring Security</h1>
 <p>The Spring Security Filter Chain checks authentication and authorization for every request.</p>

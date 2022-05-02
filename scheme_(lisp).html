@@ -137,7 +137,7 @@ call themselves. There is a distinction between</p>
 </ul>
 <p>A recursive function calls itself. But it can be implemented as
 <em>recursive</em> or <em>iterative</em> process.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Recursive Process</th>
@@ -172,21 +172,21 @@ call themselves. There is a distinction between</p>
 </tbody>
 </table>
 <h3 id="recursive-process">Recursive Process</h3>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
-<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="mi">1</span>
-    <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">factorial</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span> <span class="c1">;; 'factorial' is part of bigger expression</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nf">factorial</span><span class="w"> </span><span class="nv">n</span><span class="p">)</span><span class="w"></span>
+<span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="p">(</span><span class="nf">factorial</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span><span class="w"> </span><span class="c1">;; 'factorial' is part of bigger expression</span><span class="w"></span>
 </code></pre></div>
 <h3 id="iterative-process">Iterative Process</h3>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">factorial</span> <span class="nv">n</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">fact-iter</span> <span class="mi">1</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">))</span> <span class="c1">;; inital values need to be provided</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nf">factorial</span><span class="w"> </span><span class="nv">n</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="nf">fact-iter</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">n</span><span class="p">))</span><span class="w"> </span><span class="c1">;; inital values need to be provided</span><span class="w"></span>
 
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fact-iter</span> <span class="nv">product</span> <span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span> <span class="c1">;; max-cout: intermediate result</span>
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">counter</span> <span class="nv">max-count</span><span class="p">)</span>
-       <span class="nv">product</span>
-       <span class="p">(</span><span class="nf">fact-iter</span> <span class="p">(</span><span class="nb">* </span><span class="nv">counter</span> <span class="nv">product</span><span class="p">)</span>
-                  <span class="p">(</span><span class="nb">+ </span><span class="nv">counter</span> <span class="mi">1</span><span class="p">)</span>
-                  <span class="nv">max-count</span><span class="p">)))</span> <span class="c1">;; max-cout: supply intermediate result to next call</span>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nf">fact-iter</span><span class="w"> </span><span class="nv">product</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="nv">max-count</span><span class="p">)</span><span class="w"> </span><span class="c1">;; max-cout: intermediate result</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="nv">max-count</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="nv">product</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="nf">fact-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="nv">product</span><span class="p">)</span><span class="w"></span>
+<span class="w">                  </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">                  </span><span class="nv">max-count</span><span class="p">)))</span><span class="w"> </span><span class="c1">;; max-cout: supply intermediate result to next call</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Iterative algorithms have constant space</li>
