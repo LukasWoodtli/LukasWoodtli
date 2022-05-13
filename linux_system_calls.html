@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2017-11-06T20:45:38+01:00" />
-<meta property="og:article:modified_time" content="2022-03-17T09:35:01+01:00" />
+<meta property="og:article:modified_time" content="2022-05-13T21:08:43+02:00" />
 <meta name="twitter:title" content="Linux System Calls ">
 <meta name="twitter:description" content="A system call is the basic interface between applications and the kernel. Linux has more than 300 system calls. The syscalls are implemented by the syscall function. Intel x86-64 System calls use the default calling convention (System V AMD64 ABI). Stack based arguments are not used. This limits the number …">
 
@@ -84,7 +84,7 @@
 <p>Linux has more than 300 <a href="http://man7.org/linux/man-pages/man2/syscalls.2.html">system calls</a>.</p>
 <p>The syscalls are implemented by the <a href="http://man7.org/linux/man-pages/man2/syscall.2.html"><code>syscall</code> function</a>.</p>
 <h1 id="intel-x86-64">Intel x86-64</h1>
-<p>System calls use the default <a href="./x86_calling_conventions.html">calling convention</a> (System V <span class="caps">AMD64</span> <span class="caps">ABI</span>).</p>
+<p>System calls use the default <a href="/blog/intel_calling_conventions">calling convention</a> (System V <span class="caps">AMD64</span> <span class="caps">ABI</span>).</p>
 <p>Stack based arguments are not used. This limits the number
 of arguments to 6.</p>
 <p>Each system call has an unique call code. The call code are provided
@@ -93,7 +93,7 @@ in the <code>rax</code> register.</p>
 <h2 id="registers">Registers</h2>
 <p>The registers are only used when needed.</p>
 <p>The call code is necessary.</p>
-<table class="table-striped table">
+<table class="table table-striped">
 <thead>
 <tr>
 <th>Register</th>
@@ -159,7 +159,7 @@ returns the process will be resumed.</p>
             <time itemprop="dateCreated" datetime="2017-11-06T20:45:38+01:00">Nov 6, 2017</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-03-17T09:35:01+01:00">Mar 17, 2022</time>
+<time datetime="2022-05-13T21:08:43+02:00">May 13, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
