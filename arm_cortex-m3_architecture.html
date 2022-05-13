@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2015-07-03T11:44:00+02:00" />
-<meta property="og:article:modified_time" content="2022-04-08T20:39:25+02:00" />
+<meta property="og:article:modified_time" content="2022-05-07T09:14:15+02:00" />
 <meta name="twitter:title" content="ARM Cortex-M3 Architecture ">
 <meta name="twitter:description" content="This page collects my notes about the Cortex-M3 architecture. In particular I use the EFM32TG840F32 processor on a STK3300 starter kit by Silicon Labs. Most information on this page is taken from the documentation by ARM. General CPU Design RISC Endianness bi-endian (little as default) Type Load/Store EFM32TG Overview …">
 
@@ -195,7 +195,7 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.cortexm.m3/index.html">documentation by <span class="caps">ARM</span></a>.</p>
 
 <h1 id="general">General</h1>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th></th>
@@ -218,7 +218,7 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 </tbody>
 </table>
 <h1 id="efm32tg-overview"><span class="caps">EFM32TG</span> Overview</h1>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Feature</th>
@@ -290,7 +290,7 @@ In particular I use the <em><span class="caps">EFM32TG840F32</span></em> process
 </table>
 <h1 id="registers">Registers</h1>
 <p>All registers are 32-bit wide.</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Register</th>
@@ -607,7 +607,7 @@ But it’s usually not nessecary to do the address translation in this directio
 </ul>
 <p>Signed data is represented using two’s complement format.</p>
 <h1 id="exceptions">Exceptions</h1>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Exception number</th>
@@ -756,7 +756,7 @@ It occurs when halting debug is disabled and the DebugMonitor is enabled.</p>
 </blockquote>
 <h1 id="the-vector-table">The Vector Table</h1>
 <p>The Vector Table contains the reset value of <em>SP_main</em> and the addresses of each exception handler function.</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Offset in Table (32-bit words)</th>
@@ -814,7 +814,7 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 <p>For example <code>ADDS R0, R0, R1;</code> updates the flags.</p>
 <h3 id="conditional-suffixes">Conditional Suffixes</h3>
 <p>This suffixes can be used for branching instructions but also for conditional execution commands.</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Suffix</th>
@@ -826,72 +826,72 @@ has to be 0x04 bigger the the beginning of the stack.</p>
 <tr>
 <td><code>EQ</code></td>
 <td>Equal</td>
-<td>Z<span class="math">\(=\)</span>1</td>
+<td><code>Z=1</code></td>
 </tr>
 <tr>
 <td><code>NE</code></td>
 <td>Not equal</td>
-<td>Z<span class="math">\(=\)</span>0</td>
+<td><code>Z=0</code></td>
 </tr>
 <tr>
 <td><code>CS</code>or <code>HS</code></td>
 <td>Unsigned higher or same (carry set)</td>
-<td>C<span class="math">\(=\)</span>1</td>
+<td><code>C=1</code></td>
 </tr>
 <tr>
 <td><code>CC</code>or <code>LO</code></td>
 <td>Unsigned lower (or carry clear)</td>
-<td>C<span class="math">\(=\)</span>0</td>
+<td><code>C=0</code></td>
 </tr>
 <tr>
 <td><code>MI</code></td>
 <td>Negative (minus)</td>
-<td>N<span class="math">\(=\)</span>1</td>
+<td><code>N=1</code></td>
 </tr>
 <tr>
 <td><code>PL</code></td>
 <td>Positive or zero (plus)</td>
-<td>N<span class="math">\(=\)</span>0</td>
+<td><code>N=0</code></td>
 </tr>
 <tr>
 <td><code>VS</code></td>
 <td>Signed overflow (V set)</td>
-<td>V<span class="math">\(=\)</span>1</td>
+<td><code>V=1</code></td>
 </tr>
 <tr>
 <td><code>VC</code></td>
 <td>No signed overflow (V clear)</td>
-<td>V<span class="math">\(=\)</span>0</td>
+<td><code>V=0</code></td>
 </tr>
 <tr>
 <td><code>HI</code></td>
 <td>Unsigned higher</td>
-<td>(C<span class="math">\(=\)</span>1) <span class="caps">AND</span> (Z<span class="math">\(=\)</span>0)</td>
+<td><code>(C=1) AND (Z=0)</code></td>
 </tr>
 <tr>
 <td><code>LS</code></td>
 <td>Unsigned lower or same</td>
-<td>(C<span class="math">\(=\)</span>0) <span class="caps">OR</span> (Z<span class="math">\(=\)</span>1)</td>
+<td><code>(C=0) OR (Z=1)</code></td>
 </tr>
 <tr>
 <td><code>GE</code></td>
 <td>Signed greater than or equal</td>
-<td>N<span class="math">\(=\)</span>V</td>
+<td><code>N=V</code></td>
 </tr>
 <tr>
 <td><code>LT</code></td>
 <td>Signed less than</td>
-<td>N<span class="math">\(\neq\)</span>V</td>
+<td><code>N NOT V</code></td>
 </tr>
 <tr>
 <td><code>GT</code></td>
 <td>Signed greater than</td>
-<td>(Z<span class="math">\(=\)</span>0) <span class="caps">AND</span> (N<span class="math">\(=\)</span>V)</td>
+<td><code>(Z=0) AND (N=V)</code></td>
 </tr>
 <tr>
 <td><code>LE</code></td>
 <td>Signed less than or equal</td>
-<td>(Z<span class="math">\(=\)</span>1) <span class="caps">OR</span> (N<span class="math">\(\neq\)</span>V)</td>
+<td><code>(Z=1) OR (N NOT V)</code></td>
 </tr>
 <tr>
 <td><code>AL</code> (or omitted)</td>
@@ -1282,68 +1282,6 @@ outside an <em><span class="caps">TI</span></em> block.</p>
 <p><code>nasm
 NOP&lt;c&gt;
 NOP&lt;c&gt;.W</code></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             <!--             <div>
             <span class="author_blurb"><a href=""><span class="author_name">Lukas Woodtli</span></a> -
                 </span><br />
@@ -1367,7 +1305,7 @@ NOP&lt;c&gt;.W</code></p>
             <time itemprop="dateCreated" datetime="2015-07-03T11:44:00+02:00">Jul 3, 2015</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-04-08T20:39:25+02:00">Apr 8, 2022</time>
+<time datetime="2022-05-07T09:14:15+02:00">May 7, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>

@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/</loc>
-<lastmod>2022-05-02T10:11:16-00:00</lastmod>
+<lastmod>2022-05-13T20:50:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tags.html</loc>
-<lastmod>2022-05-02T10:11:16-00:00</lastmod>
+<lastmod>2022-05-13T20:50:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/categories.html</loc>
-<lastmod>2022-05-02T10:11:16-00:00</lastmod>
+<lastmod>2022-05-13T20:50:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/archives.html</loc>
-<lastmod>2022-05-02T10:11:16-00:00</lastmod>
+<lastmod>2022-05-13T20:50:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/search.html</loc>
-<lastmod>2022-05-02T10:11:16-00:00</lastmod>
+<lastmod>2022-05-13T20:50:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/404.html</loc>
-<lastmod>2022-05-02T10:11:16-00:00</lastmod>
+<lastmod>2022-05-13T20:50:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -54,21 +54,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/pages/books.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-05-13T20:47:59+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/pages/contact.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-05-13T20:47:59+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/pages/courses.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-05-13T20:47:59+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -89,21 +89,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/pages/note_to_recruiters_and_headhunters.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-05-13T20:47:59+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/pages/resume.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-05-13T20:47:59+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/pages/skills.html</loc>
-<lastmod>2022-03-17T09:35:01+01:00</lastmod>
+<lastmod>2022-05-13T20:47:59+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -362,7 +362,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tmux.html</loc>
-<lastmod>2022-04-04T12:26:25+02:00</lastmod>
+<lastmod>2022-05-07T09:14:15+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -775,7 +775,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/arm_cortex-m3_architecture.html</loc>
-<lastmod>2022-04-08T20:39:25+02:00</lastmod>
+<lastmod>2022-05-07T09:14:15+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -894,7 +894,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/category/programming.html</loc>
-<lastmod>2022-04-12T05:48:05+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -943,7 +943,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/computer_science.html</loc>
-<lastmod>2022-04-12T05:48:05+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -999,28 +999,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/unix.html</loc>
-<lastmod>2022-04-10T19:39:06+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/linux.html</loc>
-<lastmod>2022-04-10T19:39:06+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/cheat_sheet.html</loc>
-<lastmod>2022-04-12T05:48:05+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/tools.html</loc>
-<lastmod>2022-04-10T19:39:06+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1041,7 +1041,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/embedded_systems.html</loc>
-<lastmod>2022-04-10T17:27:29+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1076,7 +1076,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/tag/assembler.html</loc>
-<lastmod>2022-04-11T19:00:54+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1146,7 +1146,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://lukaswoodtli.github.io/author/lukas_woodtli.html</loc>
-<lastmod>2022-04-12T05:48:05+01:00</lastmod>
+<lastmod>2022-05-07T09:14:15+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -13,13 +13,13 @@
 
 <meta property="og:title" content="tmux "/>
 <meta property="og:url" content="./tmux.html" />
-<meta property="og:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux …" />
+<meta property="og:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s [name] Create a named session tmux ls List current sessions tmux a Attach to last session tmux …" />
 <meta property="og:site_name" content="Lukas Woodtli" />
 <meta property="og:article:author" content="Lukas Woodtli" />
 <meta property="og:article:published_time" content="2018-07-03T16:18:14+02:00" />
-<meta property="og:article:modified_time" content="2022-04-04T12:26:25+02:00" />
+<meta property="og:article:modified_time" content="2022-05-07T09:14:15+02:00" />
 <meta name="twitter:title" content="tmux ">
-<meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s &lt;name&gt; Create a named session tmux ls List current sessions tmux a Attach to last session tmux …">
+<meta name="twitter:description" content="Prefix Key The prefix key combination needs to be pressed before any command for tmux (when tmux is running). By default the PREFIX is: CTRL + b Sessions Key Binding Function tmux new -s [name] Create a named session tmux ls List current sessions tmux a Attach to last session tmux …">
 
         <title>tmux  · Lukas Woodtli
 </title>
@@ -112,7 +112,7 @@
 <p>The prefix key combination needs to be pressed before any command for tmux (when tmux is running).</p>
 <p>By default the <code>PREFIX</code> is: <code>CTRL + b</code></p>
 <h1 id="sessions">Sessions</h1>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Key Binding</th>
@@ -121,7 +121,7 @@
 </thead>
 <tbody>
 <tr>
-<td><code>tmux new -s &lt;name&gt;</code></td>
+<td><code>tmux new -s [name]</code></td>
 <td>Create a named session</td>
 </tr>
 <tr>
@@ -133,11 +133,11 @@
 <td>Attach to last session</td>
 </tr>
 <tr>
-<td><code>tmux a -t &lt;name&gt;</code></td>
+<td><code>tmux a -t [name]</code></td>
 <td>Attach to named session</td>
 </tr>
 <tr>
-<td><code>tmux kill-session -t &lt;name&gt;</code></td>
+<td><code>tmux kill-session -t [name]</code></td>
 <td>Kill named session</td>
 </tr>
 <tr>
@@ -172,10 +172,10 @@ in command line (<code>PREFIX :</code>).</p>
 </li>
 </ul>
 <h2 id="the-target-flag-t">The Target Flag (<code>-t</code>)</h2>
-<p>To specify the target session, window and pane for a command the flag <code>-t &lt;session-name&gt;:&lt;window-id&gt;.&lt;pane-id&gt;</code> is used.</p>
+<p>To specify the target session, window and pane for a command the flag <code>-t [session-name]:[window-id].[pane-id]</code> is used.</p>
 <ul>
-<li><code>&lt;session-name&gt;</code>: The name of the session</li>
-<li><code>&lt;window-id&gt;</code> and <code>&lt;pane-id&gt;</code> (optional): id number of window or pane</li>
+<li><code>[session-name]</code>: The name of the session</li>
+<li><code>[window-id]</code> and <code>[pane-id]</code> (optional): id number of window or pane</li>
 </ul>
 <p>Examples:</p>
 <ul>
@@ -199,11 +199,11 @@ This can also be used for pair-programming.</p>
 <h2 id="additional-flags-for-tmux-new">Additional Flags for <code>tmux new</code></h2>
 <ul>
 <li><code>-d</code>: Create in background (detached)</li>
-<li><code>-n &lt;name&gt;</code>: Name the first windows</li>
+<li><code>-n [name]</code>: Name the first windows</li>
 </ul>
 <h1 id="windows">Windows</h1>
 <p>Like tabs in browser.</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Key Binding</th>
@@ -228,7 +228,7 @@ This can also be used for pair-programming.</p>
 <td>Move to previous window</td>
 </tr>
 <tr>
-<td><code>PREFIX &lt;num&gt;</code></td>
+<td><code>PREFIX [num]</code></td>
 <td>Move to window by index</td>
 </tr>
 <tr>
@@ -258,7 +258,7 @@ This can also be used for pair-programming.</p>
 </li>
 </ul>
 <h1 id="panes">Panes</h1>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Key Binding</th>
@@ -279,11 +279,11 @@ This can also be used for pair-programming.</p>
 <td>Cycle through panes</td>
 </tr>
 <tr>
-<td><code>PREFIX &lt;up/down/left/right&gt;</code></td>
+<td><code>PREFIX [up/down/left/right]</code></td>
 <td>Navigate around panes</td>
 </tr>
 <tr>
-<td><code>PREFIX ALT &lt;up/down/left/right&gt;</code></td>
+<td><code>PREFIX ALT [up/down/left/right]</code></td>
 <td>Resize panes</td>
 </tr>
 <tr>
@@ -310,7 +310,7 @@ This can also be used for pair-programming.</p>
 </li>
 </ul>
 <h2 id="pane-layouts">Pane Layouts</h2>
-<p>Command: <code>select-layout -t &lt;session&gt; &lt;layout-type&gt;</code></p>
+<p>Command: <code>select-layout -t [session] [layout-type]</code></p>
 <p>There are following layout types:</p>
 <ul>
 <li><code>even-horizontal</code></li>
@@ -323,15 +323,15 @@ This can also be used for pair-programming.</p>
 <h1 id="panes-and-windows">Panes and Windows</h1>
 <ul>
 <li>Create new window form current pane: <code>PREFIX !</code></li>
-<li>Join a window (or pane) in other window (even from other session): <code>join-pane -s &lt;session-name&gt;:&lt;window-id&gt;.&lt;pane-id&gt;</code><ul>
-<li>Specify target: join-pane -s <session-name>:<window-id>.<pane-id> -t <session-name>:<window-id>.<pane-id>`</pane-id></window-id></session-name></pane-id></window-id></session-name></li>
+<li>Join a window (or pane) in other window (even from other session): <code>join-pane -s [session-name]:[window-id].[pane-id]</code><ul>
+<li>Specify target: <code>join-pane -s [session-name]:[window-id].[pane-id] -t [session-name]:[window-id].[pane-id]</code></li>
 </ul>
 </li>
 <li>Move windows between sessions: <code>PREFIX .</code></li>
 </ul>
 <h1 id="buffers">Buffers</h1>
 <p><code>vi</code> mode needs to be activated for these key bindings (<code>setw -g mode-keys vi</code>)</p>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Key Binding (vi)</th>
@@ -353,7 +353,7 @@ This can also be used for pair-programming.</p>
 </tr>
 </tbody>
 </table>
-<table class="table table-striped">
+<table class="table-striped table">
 <thead>
 <tr>
 <th>Key Binding in Copy mode (vi)</th>
@@ -403,7 +403,7 @@ This can also be used for pair-programming.</p>
 <ul>
 <li>Copy visible content of pane: <code>capture-pane</code></li>
 <li>Show the content of paste buffer: <code>show-buffer</code></li>
-<li>Store the content of paste buffer in a file: <code>save-buffer [-b buffer-index] &lt;file-name&gt;</code></li>
+<li>Store the content of paste buffer in a file: <code>save-buffer [-b buffer-index] [file-name]</code></li>
 <li>tmux maintains a stack of paste buffers:<ul>
 <li>Paste buffer 0: <code>PREFIX</code> <code>]</code></li>
 <li>Show all buffers in stack: <code>list-buffers</code></li>
@@ -413,23 +413,23 @@ This can also be used for pair-programming.</p>
 </ul>
 <h1 id="send-shell-commands">Send Shell Commands</h1>
 <p>Shell commands can be sent to tmux:</p>
-<p><code>tmux send-keys -t &lt;session-name&gt;:&lt;window-id&gt;.&lt;pane-id&gt; '&lt;command&gt;' C-m</code></p>
+<p><code>tmux send-keys -t [session-name]:[window-id].[pane-id] '[command]' C-m</code></p>
 <p>Arguments and Flags:</p>
 <ul>
 <li><code>-t</code>: Target</li>
-<li><code>&lt;command&gt;</code>: Can be any shell command</li>
+<li><code>[command]</code>: Can be any shell command</li>
 <li><code>C-m</code>: Carriage return (enter, <code>CTRL</code>-<code>M</code>)</li>
 </ul>
 <h1 id="config">Config</h1>
 <ul>
 <li>Personal config file: <code>~/.tmux.conf</code></li>
 <li>A custom config file can be supplied when tmux is started<ul>
-<li><code>tmux -f &lt;file-name&gt;</code></li>
+<li><code>tmux -f [file-name]</code></li>
 <li>add <code>source-file ~/.tmux.conf</code> as first line to get settings from default file</li>
 </ul>
 </li>
-<li>Reload file: <code>source-file &lt;file-name&gt;</code></li>
-<li>Bind commands to keys: <code>bind [-nr] &lt;key&gt; &lt;command0&gt; \; &lt;command1&gt; ...</code><ul>
+<li>Reload file: <code>source-file [file-name]</code></li>
+<li>Bind commands to keys: <code>bind [-nr] [key] [command0] \; [command1] ...</code><ul>
 <li><code>-n</code>: Don’t use <code>PREFIX</code></li>
 <li><code>-r</code>: Command may repeat (hold key)</li>
 <li>Separate commands by <code>\;</code></li>
@@ -462,7 +462,7 @@ This can also be used for pair-programming.</p>
             <time itemprop="dateCreated" datetime="2018-07-03T16:18:14+02:00">Jul 3, 2018</time>
 
 <h4>Last Updated</h4>
-<time datetime="2022-04-04T12:26:25+02:00">Apr 4, 2022</time>
+<time datetime="2022-05-07T09:14:15+02:00">May 7, 2022</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#programming-ref">Programming</a>
