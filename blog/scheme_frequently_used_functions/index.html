@@ -61,12 +61,12 @@
     (list 1 2 3)
     (list 4 5 6))
 &gt;&gt;&gt; (9 12 15)</code></pre></div>
-<p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%25_sec_2.2.1" target="_blank">SICP:2.2.1  Representing Sequences:Mapping over lists</a></p>
+<p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-15.html#%25_sec_2.2.1" target="_blank">SICP:2.2.1  Representing Sequences:Mapping over lists</a></p>
 <div class="MuiListItemText-root MuiListItemText-inset css-1ni0dl2"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig"><ul>
 <li><code class="language-text">(for-each fun lst)</code>: applies a function <code class="language-text">fun</code> to each element in the list <code class="language-text">lst</code> but doesn’t create a new list. The return value of the function is ignored.</li>
 </ul></span></div>
 <p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><em>“The procedure <code class="language-text">for-each</code> is similar to map. It takes as arguments a procedure and a list of elements. However, rather than forming a list of the results, <code class="language-text">for-each</code> just applies the procedure to each of the elements in turn, from left to right. The values returned by applying the procedure to the elements are not used at all - <code class="language-text">for-each</code> is used with procedures that perform an action, such as printing.”</em></p>
-<p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%25_sec_2.2.1" target="_blank">SICP:2.2.1  Representing Sequences:Exercise 2.23</a></p>
+<p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-15.html#%25_sec_2.2.1" target="_blank">SICP:2.2.1  Representing Sequences:Exercise 2.23</a></p>
 <div class="MuiListItemText-root MuiListItemText-inset css-1ni0dl2"><span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-yb0lig"><ul>
 <li>
 <p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><code class="language-text">(flatten t)</code>: flattens a tree structure into a list</p>
@@ -75,7 +75,7 @@
 <p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><code class="language-text">(filter p lst)</code>: Creates a new list with the elements of <code class="language-text">lst</code> for which the predicate <code class="language-text">p</code> is satisfied</p>
 </li>
 <li>
-<p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><code class="language-text">(foldr f b lst)</code>: applies the function <code class="language-text">f</code> to the next element of the list and the result of the previous element. <code class="language-text">b</code> is the initial begining value. The list is traversed from right to left. Also known as <code class="language-text">acumulate</code> (<a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%25_sec_2.2.3" target="_blank">SICP:2.2.3</a>)</p>
+<p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><code class="language-text">(foldr f b lst)</code>: applies the function <code class="language-text">f</code> to the next element of the list and the result of the previous element. <code class="language-text">b</code> is the initial beginning value. The list is traversed from right to left. Also known as <code class="language-text">acumulate</code> (<a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-15kjgm" href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-15.html#%25_sec_2.2.3" target="_blank">SICP:2.2.3</a>)</p>
 </li>
 <li>
 <p class="MuiTypography-root MuiTypography-body1 css-9l3uo3"><code class="language-text">(foldl f b lst)</code>: Same as <code class="language-text">foldlr</code> but the list is traversed from left to right.</p>
